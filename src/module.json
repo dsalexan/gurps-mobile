@@ -1,0 +1,38 @@
+{
+  "name": "gurps-mobile",
+  "title": "GURPS Companion Sheet",
+  "description": "",
+  "version": "This is auto replaced",
+  "author": "dsalexan",
+  "authors": [
+    {
+      "name": "dsalexan",
+      "email": "danilo.salexan@gmail.com",
+      "discord": "dsalexan#8004"
+    }
+  ],
+  "minimumCoreVersion": "9",
+  "compatibleCoreVersion": "9",
+  "scripts": [],
+  "esmodules": ["module/gurps-mobile.js"],
+  "styles": ["styles/gurps-mobile.css"],
+  "packs": [],
+  "dependencies": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": false,
+  "url": "This is auto replaced",
+  "manifest": "This is auto replaced",
+  "download": "This is auto replaced",
+  "license": "",
+  "readme": "",
+  "bugs": "",
+  "changelog": "",
+  "system": [],
+  "library": false
+}
