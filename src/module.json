@@ -15,7 +15,7 @@
   "compatibleCoreVersion": "9",
   "scripts": [],
   "esmodules": ["module/gurps-mobile.js"],
-  "styles": ["styles/gurps-mobile.css"],
+  "styles": ["styles/gurps-mobile.css", "styles/tailwind.css"],
   "packs": [],
   "dependencies": [],
   "languages": [

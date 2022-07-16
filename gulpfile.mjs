@@ -1,6 +1,9 @@
 import fs from "fs-extra"
 import gulp from "gulp"
 import sass from "gulp-dart-sass"
+import tailwindcss from "tailwindcss"
+import postcss from "gulp-postcss"
+import autoprefixer from "autoprefixer"
 import sourcemaps from "gulp-sourcemaps"
 import path from "node:path"
 import buffer from "vinyl-buffer"
@@ -56,6 +59,16 @@ function buildStyles() {
 }
 
 /**
+ * Build TailwindCSS
+ */
+function buildTailwindCSS() {
+  return gulp
+    .src(`${stylesDirectory}/tailwind.css`)
+    .pipe(postcss([tailwindcss(`./tailwind.config.cjs`), autoprefixer]))
+    .pipe(gulp.dest(`${distDirectory}/styles`))
+}
+
+/**
  * Copy static files
  */
 async function copyFiles() {
@@ -72,6 +85,7 @@ async function copyFiles() {
 export function watch() {
   gulp.watch(`${sourceDirectory}/**/*.${sourceFileExtension}`, { ignoreInitial: false }, buildCode)
   gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, { ignoreInitial: false }, buildStyles)
+  gulp.watch(`${stylesDirectory}/tailwind.css`, { ignoreInitial: false }, buildTailwindCSS)
   gulp.watch(
     staticFiles.map((file) => `${sourceDirectory}/${file}`),
     { ignoreInitial: false },
@@ -79,7 +93,7 @@ export function watch() {
   )
 }
 
-export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, copyFiles))
+export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, buildTailwindCSS, copyFiles))
 
 /********************/
 /*      CLEAN       */

@@ -6,7 +6,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "jsx": "react"
   },
-  "include": ["src", "types/*/index.d.ts"]
+  "include": ["src", "src/**/*.d.ts", "types/*/index.d.ts"]
 }

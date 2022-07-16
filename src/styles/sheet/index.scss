@@ -1,0 +1,50 @@
+body.mobile {
+  .app {
+    margin: 0;
+    background: #111;
+
+    &.window-app {
+      min-width: auto;
+      width: 100vw !important;
+      min-height: auto;
+      height: 100vh !important;
+      top: 0px !important;
+      box-shadow: none;
+
+      header.window-header {
+        padding: 0;
+        justify-content: flex-end;
+        align-items: center;
+        flex: 0 0 50px;
+        line-height: normal;
+
+        a[id^="popout_"],
+        .window-title {
+          display: none;
+        }
+
+        a.header-button {
+          &.import,
+          &.configure-sheet,
+          &.configure-token {
+            display: none;
+          }
+
+          &.close {
+            margin: 0 8px;
+          }
+
+          font-size: 0;
+          i {
+            font-size: x-large;
+            color: white;
+          }
+        }
+      }
+
+      section.window-content {
+        padding: 0;
+      }
+    }
+  }
+}

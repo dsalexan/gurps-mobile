@@ -1,0 +1,12 @@
+.mobile.sheet {
+  header.window-header {
+  }
+
+  section.window-content {
+    form {
+      &,
+      &.editable {
+      }
+    }
+  }
+}

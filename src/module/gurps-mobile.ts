@@ -15,11 +15,19 @@ import settings, { getSetting, registerSettings } from "./settings"
 import { preloadTemplates } from "./preloadTemplates"
 import LOGGER from "./logger"
 
+import { MobileGurpsActorSheet } from "./actor/actor-sheet"
+
 // Initialize module
 Hooks.once(`init`, async () => {
   LOGGER.info(`Initializing...`)
 
   // Assign custom classes and constants here
+
+  // injecting styles
+  document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">`)[0])
+  document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="https://rsms.me/inter/inter.css">`)[0])
+  document.querySelector(`head`)?.appendChild($(`<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>`)[0])
+  document.querySelector(`head`)?.appendChild($(`<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>`)[0])
 
   // Register custom module settings
   registerSettings({
@@ -31,6 +39,11 @@ Hooks.once(`init`, async () => {
   await preloadTemplates()
 
   // Register custom sheets (if any)
+  Actors.registerSheet(`gurps`, MobileGurpsActorSheet, {
+    // Add this sheet last
+    label: `Mobile`,
+    makeDefault: false,
+  })
 })
 
 // Setup module

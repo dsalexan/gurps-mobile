@@ -19,15 +19,15 @@ module.exports = {
   rules: {
     // Specify any specific ESLint rules.
     quotes: [`warn`, `backtick`],
+    "@typescript-eslint/no-var-requires": `off`,
+    "@typescript-eslint/ban-types": `off`,
+    "@typescript-eslint/no-namespace": `off`,
   },
 
   overrides: [
     {
       files: [`./*.cjs`],
-      rules: {
-        "@typescript-eslint/no-var-requires": `off`,
-        "@typescript-eslint/ban-types": `off`,
-      },
+      rules: {},
     },
   ],
 }
