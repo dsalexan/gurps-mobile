@@ -1,10 +1,16 @@
-import { GurpsActorSheet } from "../../lib/gurps/actor/actor-sheet"
+import { GurpsActorSheet } from "lib/gurps/actor/actor-sheet"
+
+import { MobileSheet } from "app"
+import react from "lib/react"
+import { ReactComponentSheet } from "lib/react/ReactComponentSheet"
 
 /**
  * Extend the basic GurpsActorSheet with mobile adaptations
  * @extends {GurpsActorSheet}
  */
-export class MobileGurpsActorSheet extends GurpsActorSheet {
+export class MobileGurpsActorSheet extends GurpsActorSheet implements ReactComponentSheet {
+  _reactDOM_rendered = false
+
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -29,6 +35,11 @@ export class MobileGurpsActorSheet extends GurpsActorSheet {
   async _render(...args: any[]) {
     await super._render(...args)
 
-    console.log(`RENDER TEMPLATE HANDLEBAR SHIT`)
+    if (!this._reactDOM_rendered) {
+      console.log(`RENDER TEMPLATE HANDLEBAR SHIT`)
+
+      react(MobileSheet, { name: `bob` })
+      this._reactDOM_rendered = true
+    }
   }
 }

@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "ES2020",
     "lib": ["DOM", "ES2020"],
-    "types": ["@league-of-foundry-developers/foundry-vtt-types", "./types/gurps"],
+    "types": ["@emotion/react/types/css-prop", "@league-of-foundry-developers/foundry-vtt-types", "./types/gurps"],
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "jsx": "react"
+    "baseUrl": "./src/",
+    "paths": {
+      // "components": [
+      //   "src/components"
+      // ],
+      // "@/*": ["./src/*"]
+    }
   },
   "include": ["src", "src/**/*.d.ts", "types/*/index.d.ts"]
 }

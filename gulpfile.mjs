@@ -24,7 +24,7 @@ const sourceDirectory = `./src`
 const distDirectory = `./dist`
 const stylesDirectory = `${sourceDirectory}/styles`
 const stylesExtension = `scss`
-const sourceFileExtension = `ts`
+const sourceFileExtension = `{ts,tsx}`
 const staticFiles = [`assets`, `fonts`, `lang`, `packs`, `templates`, `module.json`]
 
 /********************/
@@ -36,7 +36,7 @@ let cache
 /**
  * Build the distributable JavaScript code
  */
-function buildCode() {
+export function buildCode() {
   return rollupStream({ ...rollupConfig(), cache })
     .on(`bundle`, (bundle) => {
       cache = bundle
@@ -85,7 +85,7 @@ async function copyFiles() {
 export function watch() {
   gulp.watch(`${sourceDirectory}/**/*.${sourceFileExtension}`, { ignoreInitial: false }, buildCode)
   gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, { ignoreInitial: false }, buildStyles)
-  gulp.watch(`${stylesDirectory}/tailwind.css`, { ignoreInitial: false }, buildTailwindCSS)
+  // gulp.watch(`${stylesDirectory}/tailwind.css`, { ignoreInitial: false }, buildTailwindCSS)
   gulp.watch(
     staticFiles.map((file) => `${sourceDirectory}/${file}`),
     { ignoreInitial: false },
@@ -93,7 +93,7 @@ export function watch() {
   )
 }
 
-export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, buildTailwindCSS, copyFiles))
+export const build = gulp.series(clean, gulp.parallel(buildCode, buildStyles, copyFiles))
 
 /********************/
 /*      CLEAN       */
