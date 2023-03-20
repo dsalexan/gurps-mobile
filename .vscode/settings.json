@@ -1,0 +1,15 @@
+{
+  "http.proxyStrictSSL": false,
+  // "prettier.requireConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "javascript.validate.enable": false,
+  // "javascript.format.enable": false,
+  "eslint.validate": [ "javascript", "typescript" ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "stylelint.validate": ["scss"]
+}

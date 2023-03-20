@@ -1,0 +1,500 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+				This data file contains information taken from the GURPS Crusades sourcebook written by Eugene Moyers. _
+				Power-ups 2 - Perks is Copyright © 2010 by Steve Jackson Games Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.GDF"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Filename: GURPS Power-Ups 2 Perks 4e.GDF
+//  Created: den 10 februari 2008
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Crusades sourcebook written by Eugene Moyers.
+//  GURPS Crusades is Copyright © 2010 by
+//  Steve Jackson Games Incorporated. All rights reserved.
+
+*******************************************************************************************************************
+// 
+// 
+//  
+// 
+//  The file changes a lot of perks already described in other data files, the file "Compilation of Perks.gdf" can be loaded if not these are loaded
+// 
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Crusades>
+
+Crusader Knight (Crusades), displaycost(130),_
+	description(_
+				This template represents a typical Crusader from the _
+				knightly/noble class. Armored knights were the heart of any _
+				Crusader army. They were also the driving force in Crusader _
+				politics, colonization, and administration. Although they come _
+				from many different European kingdoms, the knightly class in _
+				Outremer has a fairly common social background and similar _
+				martial training. _
+	),_
+	page(CR32),_
+	cat(Character Templates, Character Templates - Crusades),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 13,_
+			ST:IQ = 10,_
+			ST:HT = 11,_
+			ST:Hit Points = 12,_
+			ST:Will = 10,_
+			ST:Perception = 10,_
+			ST:Fatigue Points = 11,_
+			ST:Basic Speed = 6 _
+	),_
+	adds(_
+			AD:Status = 1,_
+			SK:Riding (Horse) = 2pts,_
+			SK:Heraldry = 2pts,_
+			SK:Knife = 1pts,_
+			SK:Leadership = 4pts,_
+			SK:Tactics = 4pts,_
+			%CrusaderSkillsAliasList%_
+	),_
+	x(_
+			#ChoiceList(_
+				name(CrusaderSkills),_
+				title(Crusader: Primary Skills),_
+				text(Choose one of the following Primary Skill packages:),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				{Broadsword@DX+2, Lance@DX, Shield@DX+1, Axe/Mace@DX},_
+				{Broadsword@DX+2, Lance@DX, Shield@DX+1, Flail@DX},_
+				{Axe/Mace@DX+2, Broadsword@DX, Lance@DX, Shield@DX},_
+				{Flail@DX+1, Broadsword@DX, Lance@DX, Shield@DX},_
+				{Lance@DX+2, Shield@DX+2, Axe/Mace@DX},_
+				{Lance@DX+2, Shield@DX+2, Broadsword@DX},_
+				{Lance@DX+2, Shield@DX+2, Flail@DX-1}_
+	),_
+	aliaslist(_
+				{SK:Broadsword = 8pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts, "SK:Axe/Mace" = 2pts},_
+				{SK:Broadsword = 8pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts, SK:Flail = 2pts},_
+				{"SK:Axe/Mace" = 8pts, SK:Broadsword = 2pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts},_
+				{SK:Flail = 8pts, SK:Broadsword = 2pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts},_
+				{SK:Lance = 8pts, SK:Shield (Shield) = 4pts, "SK:Axe/Mace" = 2pts},_
+				{SK:Lance = 8pts, SK:Shield (Shield) = 4pts, SK:Broadsword = 2pts},_
+				{SK:Lance = 8pts, SK:Shield (Shield) = 4pts, SK:Flail = 2pts}_
+			)_
+		)_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(comment(Crusader Knight),_
+		text(Advantages: Select 40 points from the following:),_
+		tagwith(CrusaderKnight(yes)),_
+		pointswanted(40),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 2, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 2, downto 1),_
+			AD:Combat Reflexes,_
+			AD:Fearlessness,_
+			AD:Fit,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Patron,_
+			AD:Reputation,_
+			AD:Signature Gear,_
+			#newitem(AD:Status, 5/10, existing(AD:Status)),_
+			AD:Wealth _
+		)_
+	),_
+	select4(comment(Crusader Knight),_
+		text(Disadvantages: Select -40 points from the following:),_
+		tagwith(CrusaderKnight(yes)),_
+		pointswanted(-40),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Code of Honor (Chivalry),_
+			DI:Duty,_
+			DI:Fanaticism,_
+			DI:Greed,_
+			DI:Intolerance,_
+			DI:Overconfidence,_
+			DI:Social Stigma (Disowned),_
+			DI:Vow _
+		)_
+	),_
+	select5(comment(Crusader Knight),_
+		text(Background Skills: Select 4 of the following:),_
+		tagwith(CrusaderKnight(yes)),_
+		pointswanted(8),_
+		itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:First Aid #codes(upto 2pts, downto 2pts),_
+			SK:Falconry #codes(upto 2pts, downto 2pts),_
+			SK:Politics #codes(upto 2pts, downto 2pts),_
+			SK:Diplomacy #codes(upto 2pts, downto 2pts),_
+			SK:Strategy (Land) #codes(upto 2pts, downto 2pts),_
+			SK:Carousing #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select6(#List(QuirkSelection))
+
+Saracen Warrior (Crusades), displaycost(130),_
+	description(_
+				This template represents a typical Muslim noble warrior. _
+				Muslim society was semi-feudal. In theory the Arab Bedouin _
+				tribes elected their leaders democratically, but in practice certain _
+				families dominated the leadership and came to be treated _
+				as noble. Persian and Syrian societies were ancient monarchies _
+				with a feudal elite. The Turks were a tribal people with _
+				dominant clans and families. _
+	),_
+	page(CR33),_
+	cat(Character Templates, Character Templates - Crusades),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 13,_
+			ST:IQ = 10,_
+			ST:HT = 12,_
+			ST:Hit Points = 11,_
+			ST:Will = 10,_
+			ST:Perception = 10,_
+			ST:Fatigue Points = 12,_
+			ST:Basic Speed = 6.25,_
+			ST:Basic Move = 6 _
+	),_
+	adds(_
+			DI:Discipline of Faith (Ritualism),_
+			SK:Bow = 4pts,_
+			SK:Broadsword = 4pts,_
+			SK:Knife = 2pts,_
+			SK:Lance = 4pts,_
+			SK:Riding (Horse) = 4pts,_
+			SK:Shield (Shield) = 2pts,_
+			SK:Public Speaking = 2pts,_
+			SK:Survival (Desert) = 4pts,_
+			SK:Area Knowledge ([Area]) = 2pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(comment(Saracen Warrior),_
+		text(Advantages: Select 40 points from the following:),_
+		tagwith(SaracenWarrior(yes)),_
+		pointswanted(40),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 2, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 1, downto 1),_
+			AD:Combat Reflexes,_
+			AD:Charisma,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Signature Gear,_
+			AD:Status,_
+			AD:Wealth _
+		)_
+	),_
+	select4(comment(Saracen Warrior),_
+		text(Disadvantages: Select -35 points from the following:),_
+		tagwith(SaracenWarrior(yes)),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Soldier's),_
+			DI:Code of Honor (Chivalry),_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			DI:Overconfidence,_
+			DI:Vow _
+		)_
+	),_
+	select5(comment(Saracen Warrior),_
+		text(Secondary Skills: Select 1 of the following:),_
+		tagwith(SaracenWarrior(yes)),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Armoury (Melee Weapons) #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(comment(Saracen Warrior),_
+		text(Background Skills: Select 4 of the following:),_
+		tagwith(SaracenWarrior(yes)),_
+		pointswanted(8),_
+		itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Camouflage #codes(upto 2pts, downto 2pts),_
+			SK:Falconry #codes(upto 2pts, downto 2pts),_
+			SK:First Aid #codes(upto 2pts, downto 2pts),_
+			SK:Scrounging #codes(upto 2pts, downto 2pts),_
+			SK:Tactics #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Assassin (Crusades), displaycost(130),_
+	description(_
+				This template is representative of the fanatical Ismaili sect. _
+				Most Assassins were from the lower classes and of fairly young _
+				age; they could have any background. They were usually fit and _
+				would have other skills from the trades they followed before _
+				being recruited. In addition to their chosen profession, they _
+				also cultivated other common trades to help themselves blend _
+				in while on missions. _
+	),_
+	page(CR33),_
+	cat(Character Templates, Character Templates - Crusades),_
+	sets(_
+			ST:ST = 10,_
+			ST:DX = 13,_
+			ST:IQ = 11,_
+			ST:HT = 12,_
+			ST:Hit Points = 10,_
+			ST:Will = 11,_
+			ST:Perception = 11,_
+			ST:Fatigue Points = 12,_
+			ST:Basic Speed = 6.25,_
+			ST:Basic Move = 6 _
+	),_
+	adds(_
+			DI:Discipline of Faith (Asceticism),_
+			DI:Fanaticism = 2,_
+			SK:Disguise = 4pts,_
+			SK:Knife = 4pts,_
+			SK:Poisons = 4pts,_
+			SK:Running = 2pts,_
+			SK:Shadowing = 4pts,_
+			SK:Stealth = 4pts,_
+			SK:Lockpicking = 2pts,_
+			SK:Survival (Desert) = 2pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(comment(Assassin),_
+		text(Advantages: Select 30 points from the following:),_
+		tagwith(Assassin(yes)),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 2, downto 1),_
+			AD:Extra Basic Move #codes(upto 1, downto 1),_
+			AD:Absolute Direction,_
+			AD:Ambidexterity,_
+			AD:High Pain Threshold,_
+			AD:Night Vision _
+		)_
+	),_
+	select4(comment(Assassin),_
+		text(Disadvantages: Select -10 points from the following:),_
+		tagwith(Assassin(yes)),_
+		pointswanted(-10),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Obsession,_
+			DI:Overconfidence,_
+			#newitem(DI:Sense Of Duty (Assassin cult), -5, page(B153), upto(5), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			DI:Vow _
+		)_
+	),_
+	select5(comment(Assassin),_
+		text(Secondary Skills: Select 1 of the following:),_
+		tagwith(Assassin(yes)),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Leatherworking #codes(upto 2pts, downto 2pts),_
+			SK:Sewing #codes(upto 2pts, downto 2pts),_
+			SK:Carpentry #codes(upto 2pts, downto 2pts),_
+			SK:Masonry #codes(upto 2pts, downto 2pts),_
+			SK:Artist (Pottery) #codes(upto 2pts, downto 2pts),_
+			SK:Artist (Woodworking) #codes(upto 2pts, downto 2pts),_
+			SK:Professional Skill ([DX based]) #codes(upto 2pts, downto 2pts),_
+			SK:Professional Skill ([IQ based]) #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select6(comment(Assassin),_
+		text(Background Skills: Select 6 of the following:),_
+		tagwith(Assassin(yes)),_
+		pointswanted(12),_
+		itemswanted(6),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Garrote #codes(upto 2pts, downto 2pts),_
+			SK:Escape #codes(upto 2pts, downto 2pts),_
+			SK:Pickpocket #codes(upto 2pts, downto 2pts),_
+			SK:Sleight of Hand #codes(upto 2pts, downto 2pts),_
+			SK:Area Knowledge ([Area]) #codes(upto 2pts, downto 2pts),_
+			SK:Hiking #codes(upto 2pts, downto 2pts),_
+			SK:Scrounging #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Religious Warrior (Crusades), displaycost(130),_
+	description(_
+				Strictly speaking, the knights of themilitary orders were not _
+				Crusaders. They were warriors who took monk-like vows of _
+				poverty, chastity, and obedience, and swore military service to _
+				the Church to protect the Holy Lands. They lived a Spartan _
+				existence in barracks and spent their spare time in prayer and _
+				training. _
+	),_
+	page(CR33),_
+	cat(Character Templates, Character Templates - Crusades),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 13,_
+			ST:IQ = 10,_
+			ST:HT = 11,_
+			ST:Hit Points = 12,_
+			ST:Will = 10,_
+			ST:Perception = 10,_
+			ST:Fatigue Points = 11,_
+			ST:Basic Speed = 6,_
+			ST:Basic Move = 6 _
+	),_
+	adds(_
+			AD:Legal Immunity = 3,_
+			AD:Patron (Church) _
+				with {Equipment: no more than starting wealth, +50%, group(Patron), page(B73)} _
+				and {Frequency: roll of  6 or less (Quite rarely), *1/2, shortname(6 or less), group(Frequency of Appearance), page(B36)} _
+				respond 5,_
+			SK:Knife = 1pts,_
+			SK:Riding (Horse) = 2pts,_
+			SK:Theology (Christian) = 4pts,_
+			SK:Hidden Lore (Religious Objects) = 2pts,_
+			SK:Leadership = 2pts,_
+			SK:Tactics = 2pts,_
+			%PrimarySkillsAliasList%_
+	),_
+	x(_
+			#ChoiceList(_
+				name(PrimarySkills),_
+				title(Religious Warrior: Primary Skills),_
+				text(Choose one of the following Primary Skill packages:),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+			{Broadsword@DX+2, Lance@DX, Shield@DX+1, Axe/Mace@DX},_
+			{Broadsword@DX+2, Lance@DX, Shield@DX+1, Flail@DX},_
+			{Axe/Mace@DX+2, Broadsword@DX, Lance@DX, Shield@DX},_
+			{Flail@DX+1, Broadsword@DX, Lance@DX, Shield@DX},_
+			{Lance@DX+2, Shield@DX+2, Axe/Mace@DX},_
+			{Lance@DX+2, Shield@DX+2, Broadsword@DX},_
+			{Lance@DX+2, Shield@DX+2, Flail@DX-1}_
+	),_
+	aliaslist(_
+				{SK:Broadsword = 8pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts, "SK:Axe/Mace" = 2pts},_
+				{SK:Broadsword = 8pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts, SK:Flail = 2pts},_
+				{"SK:Axe/Mace" = 8pts, SK:Broadsword = 2pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts},_
+				{SK:Flail = 8pts, SK:Broadsword = 2pts, SK:Lance = 2pts, SK:Shield (Shield) = 2pts},_
+				{SK:Lance = 8pts, SK:Shield (Shield) = 4pts, "SK:Axe/Mace" = 2pts},_
+				{SK:Lance = 8pts, SK:Shield (Shield) = 4pts, SK:Broadsword = 2pts},_
+				{SK:Lance = 8pts, SK:Shield (Shield) = 4pts, SK:Flail = 2pts}_
+			)_
+		)_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(comment(RELIGIOUS WARRIOR),_
+		text(Advantages: Select 15 points from the following:),_
+		tagwith(RELIGIOUSWARRIOR(yes)),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 1, downto 1),_
+			AD:Extra Will #codes(upto 3, downto 1),_
+			AD:Charisma,_
+			AD:Claim to Hospitality,_
+			AD:Combat Reflexes,_
+			AD:Fit,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Status _
+		)_
+	),_
+	select4(comment(RELIGIOUS WARRIOR),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(RELIGIOUSWARRIOR(yes)),_
+		pointswanted(-15),_
+		itemswanted(1),_
+		list(_
+			#newitem(DI:Duty (Church), -15, mods(Duty), page(B134), cat(Mundane, Social), upto(4),  levelnames("15 or less (almost always)")),_
+			DI:Fanaticism _
+		)_
+	),_
+	select5(comment(RELIGIOUS WARRIOR),_
+		text(Disadvantages: Select -25 points from the following:),_
+		tagwith(RELIGIOUSWARRIOR(yes)),_
+		pointswanted(-25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Discipline of Faith,_
+			DI:Impulsiveness,_
+			DI:Intolerance,_
+			DI:Overconfidence,_
+			DI:Sense Of Duty,_
+			DI:Vow,_
+			DI:Discipline of Faith (Asceticism),_
+			DI:Discipline of Faith (Monasticism),_
+			DI:Discipline of Faith (Mysticism),_
+			DI:Discipline of Faith (Ritualism) _
+		)_
+	),_
+	select6(comment(RELIGIOUS WARRIOR),_
+		text(Background Skills: Select 4 of the following:),_
+		tagwith(RELIGIOUSWARRIOR(yes)),_
+		pointswanted(8),_
+		itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:First Aid #codes(upto 2pts, downto 2pts),_
+			SK:Falconry #codes(upto 2pts, downto 2pts),_
+			SK:Heraldry #codes(upto 2pts, downto 2pts),_
+			SK:Diplomacy #codes(upto 2pts, downto 2pts),_
+			SK:Naturalist #codes(upto 2pts, downto 2pts),_
+			SK:Strategy (Land) #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+#MergeTags in "TE:Crusader Knight (Crusades)" with {replacetags(in "TE:Crusader Knight (Crusades)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Assassin (Crusades)" with {replacetags(in "TE:Assassin (Crusades)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Religious Warrior (Crusades)" with {replacetags(in "TE:Religious Warrior (Crusades)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Saracen Warrior (Crusades)" with {replacetags(in "TE:Saracen Warrior (Crusades)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

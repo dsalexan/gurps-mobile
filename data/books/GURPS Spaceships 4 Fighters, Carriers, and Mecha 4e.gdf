@@ -1,0 +1,81 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+				This data file contains information taken from the GURPS Spaceships 2: Traders, Liners, and Transports sourcebook. _
+				GURPS Spaceships 4: Fighters, Carriersb and Mecha is Copyright © 2009 by Steve Jackson Games _
+				Incorporated. All rights reserved.
+Requires=GURPS Basic Set 4th Ed.--Characters.gdf
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Spaceships 4 Fighters Carriers and Mecha.gdf
+//  Created: June 08, 2008
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Spaceships 2: Traders, Liners, and Transports sourcebook.
+//  GURPS Spaceships 4: Fighters, Carriersb and Mecha is Copyright © 2009 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Techniques, Techniques - Noncombat>
+Aggressive Maneuvering (Piloting (High-Performance Spacecraft)), Tech/A, tl(0-12), needs(SK:Piloting (High-Performance Spacecraft)), page(SS4:31), default("SK:Piloting (High-Performance Spacecraft)"), upto(prereq + 2)
+
+Ambush Maneuver (%Piloting Skill%), Tech/A, tl(0-12), needs(SK:%Piloting Skill%), page(SS4:31), default("SK:%Piloting Skill%"), upto(prereq + 3),_
+	x(#ChoiceList(_
+			name(Piloting Skill),_
+			title(Aggressive Maneuvering: Choose a Piloting specialty),_
+			text(Choose a Piloting specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+					"Piloting (Aerospace)",_
+					"Piloting (Autogyro)",_
+					"Piloting (Contragravity)",_
+					"Piloting (Flight Pack)",_
+					"Piloting (Glider)",_
+					"Piloting (Heavy Airplane)",_
+					"Piloting (Helicopter)",_
+					"Piloting (High-Performance Airplane)",_
+					"Piloting (High-Performance Spacecraft)",_
+					"Piloting (Light Airplane)",_
+					"Piloting (Lighter-Than-Air)",_
+					"Piloting (Lightsail)",_
+					"Piloting (Low-G Wings)",_
+					"Piloting (Low-Performance Spacecraft)",_
+					"Piloting (Ultralight)",_
+					"Piloting (Vertol)" _
+				)_
+			)_
+		), noresync(yes)
+
+Escape Maneuver (Piloting (High-Performance Spacecraft)), Tech/A, tl(0-12), needs(SK:Piloting (High-Performance Spacecraft)), page(SS4:31), default("SK:Piloting (High-Performance Spacecraft)"), upto(prereq + 4)
+Evasive Maneuvering (Piloting (High-Performance Spacecraft)), Tech/A, tl(0-12), needs(SK:Piloting (High-Performance Spacecraft)), page(SS4:31), default("SK:Piloting (High-Performance Spacecraft)"), upto(prereq + 4)
+Reversal Maneuver (Piloting (High-Performance Spacecraft)), Tech/A, tl(0-12), needs(SK:Piloting (High-Performance Spacecraft)), page(SS4:31), default("SK:Piloting (High-Performance Spacecraft)"), upto(prereq + 3)

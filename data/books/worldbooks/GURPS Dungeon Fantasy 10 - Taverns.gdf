@@ -1,0 +1,278 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+		This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, and this file third. This will ensure the proper modifications to spells required.  THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.  MIX WITH OTHER DATA FILES WITH CAUTION.
+WorldBook=Dungeon Fantasy
+Requires="GURPS Dungeon Fantasy  1 - Adventurers.GDF"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 12-27-2007
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Dungeon Fantasy 1: Adventurers sourcebook.
+//  GURPS Dungeon Fantasy 1: Adventurers is Copyright © 2007 by Steve Jackson Games Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Advantages, disadvantages, skills, Wildcard skills, spells, powers, equipment, and advantage modifiers.
+// 		Some character templates, but this is incomplete.
+// 
+//  This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, and this file third.
+//  This will ensure the proper modifications to spells required.
+// 	THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.
+// 	MIX WITH OTHER DATA FILES WITH CAUTION.
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith		- Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Dungeon Fantasy, Character Templates - Dungeon Fantasy - Adventurers>
+
+Innkeeper (Dungeon Fantasy), displaycost(250),_
+	description(Delvers customarily start as adventurers, find their fortune, and then buy an inn. Things could go the other way, though: a tavern employee or owner might learn from the adventurers who frequent his establishment, and then venture out to seek loot instead of pushing a mop. This whimsical template is best for gamers who want to try their hand at playing a 250-point frying-pan-brandishing generalist.),_
+	page(DF10:8),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 13,_
+			ST:IQ = 13,_
+			ST:HT = 12,_
+			ST:Hit Points = 12,_
+			ST:Will = 13,_
+			ST:Perception = 14,_
+			ST:Fatigue Points = 12,_
+			ST:Basic Speed = 6,_
+			ST:Basic Move = 6 _
+			),_
+	adds(_
+			SK:Brawling=2pts,_
+			SK:Crossbow=2pts,_
+			SK:Fast-Draw (Knife)=2pts,_
+			SK:Knife=2pts,_
+			SK:Wrestling=4pts,_
+			SK:Professional Skill ([IQ based])=2pts respond "Bartending",_
+			SK:Carousing=2pts,_
+			PE:Alcohol Tolerance,_
+			PE:No Hangover,_
+			AD:Luck,_
+			AD:Wild Talent _
+				),_
+	creates(_
+			"PE:Improvised Weapons (Kitchenware), 1" _
+			),_
+	select1(#List(Languages)),_
+	select2(_
+			text(Advantages: Select a total of 50 points from the following:),_
+			pointswanted(50),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			#list(GMAdvantages),_
+			#list(Innkeeper Abilities),_
+			AD:Extra ST #codes(upto 5, downto 1),_
+			AD:Extra DX #codes(upto 2, downto 1),_
+			AD:Extra IQ #codes(upto 2, downto 1),_
+			AD:Extra HT #codes(upto 5, downto 1),_
+			AD:Extra Hit Points #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto 7, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Vision,_
+			AD:Acute touch,_
+			AD:Charisma,_
+			AD:Combat Reflexes,_
+			AD:Discriminatory Smell,_
+			AD:Eidetic Memory,_
+			AD:Photographic Memory,_
+			AD:Fearlessness,_
+			AD:Unfazeable,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			PE:Honest Face,_
+			AD:Intuition,_
+			AD:Language Talent,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Lifting ST #codes(upto 3, downto 1),_
+			PE:Penetrating Voice,_
+			AD:Rapier Wit,_
+			AD:Resistant to Poison #codes(upto 1, downto 1),_
+			AD:Signature Gear,_
+			AD:Smooth Operator #codes(upto 3, downto 1),_
+			AD:Wealth #codes(upto 2, downto 1),_
+			#newitem(AD:Extra Wild Talent, 20/40, existing(AD:Wild Talent)) #codes(upto 3, downto 2),_
+			#newitem(AD:Additional Luck, 15/45, existing(AD:Luck)) #codes(upto 3, downto 2)_
+				)_
+			),_
+	select3(_
+			text(Disadvantages: Select a total of -20 points from the following:),_
+			pointswanted(-20),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			#list(GMDisadvantages),_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Spending,_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Xenophilia _
+				)_
+			),_
+	select4(_
+			text(Disadvantages: Select a total of -25 points from the following:),_
+			pointswanted(-25),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			#BuildSelectList(Disdvantages where Innkeeper is "Yes", template(#newitem(DI:_Increase/Modify %ListItem%, cost(0), displaycost(varies), existing(DI:%ListItem%)))),_
+			#list(GMDisadvantages),_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Spending,_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Xenophilia,_
+			DI:Reduced Fatigue Points #codes(upto 3, downto 1),_
+			DI:Bad Temper,_
+			DI:Chummy,_
+			DI:Gregarious,_
+			DI:Compulsive Carousing,_
+			DI:Gluttony,_
+			DI:Honesty,_
+			DI:Lecherousness,_
+			DI:Miserliness,_
+			DI:Odious Personal Habit,_
+			DI:Overweight,_
+			DI:Fat,_
+			DI:Post-Combat Shakes,_
+			DI:Stubbornness _
+				)_
+			),_
+	select5(_
+			text(Skills: Select a total of 4 points from the following:),_
+			pointswanted(4),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Axe/Mace #codes(upto 4pts, downto 4pts),_
+			SK:Broadsword #codes(upto 4pts, downto 4pts),_
+			SK:Shortsword #codes(upto 4pts, downto 4pts),_
+			SK:Staff #codes(upto 4pts, downto 4pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 4pts, downto 4pts) _
+				)_
+			),_
+	select6(_
+			text(Skills: Select a total of 8 points from the following:),_
+			pointswanted(8),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			SK:Axe/Mace #codes(upto 4pts),_
+			SK:Broadsword #codes(upto 4pts),_
+			SK:Shortsword #codes(upto 4pts),_
+			SK:Staff #codes(upto 4pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 4pts) _
+				)_
+			),_
+	select7(_
+			text(Skills: Select a total of 16 points from the following:),_
+			pointswanted(16),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(atleast 7, upto 8),_
+			list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Filch #codes(upto 4pts, downto 2pts),_
+			SK:Pickpocket #codes(upto 4pts, downto 2pts),_
+			SK:Sleight of Hand #codes(upto 4pts, downto 2pts),_
+			SK:Connoisseur #codes(upto 4pts, downto 2pts),_
+			SK:Connoisseur (Dance) #codes(upto 4pts, downto 2pts),_
+			SK:Connoisseur (Literature) #codes(upto 4pts, downto 2pts),_
+			SK:Connoisseur (Music) #codes(upto 4pts, downto 2pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 4pts, downto 2pts),_
+			SK:Connoisseur (Wine) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Talk #codes(upto 4pts, downto 2pts),_
+			SK:Gambling #codes(upto 4pts, downto 2pts),_
+			SK:Leadership #codes(upto 4pts, downto 2pts),_
+			SK:Merchant #codes(upto 4pts, downto 2pts),_
+			SK:Smuggling #codes(upto 4pts, downto 2pts),_
+			SK:Streetwise #codes(upto 4pts, downto 2pts),_
+			SK:Diplomacy #codes(upto 4pts, downto 2pts),_
+			SK:Poisons #codes(upto 4pts, downto 2pts),_
+			SK:Sex Appeal #codes(upto 4pts, downto 2pts),_
+			SK:Scrounging #codes(upto 4pts, downto 2pts),_
+			SK:Body Language #codes(upto 4pts, downto 2pts),_
+			SK:Lip Reading #codes(upto 4pts, downto 2pts),_
+			SK:Search #codes(upto 4pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 4pts, downto 2pts),_
+			SK:Intimidation #codes(upto 4pts, downto 2pts) _
+				)_
+			),_
+	select8(_
+			text(Skills: Select a total of 3 points from the following:),_
+			pointswanted(3),_
+			tagwith(Innkeeper(yes)),_
+			itemswanted(3),_
+			list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Stealth #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Hiking #codes(upto 1pts),_
+			SK:Observation #codes(upto 1pts),_
+			SK:Urban Survival #codes(upto 1pts),_
+			SK:Filch #codes(upto 1pts),_
+			SK:Pickpocket #codes(upto 1pts),_
+			SK:Sleight of Hand #codes(upto 1pts),_
+			SK:Connoisseur #codes(upto 1pts),_
+			SK:Connoisseur (Dance) #codes(upto 1pts),_
+			SK:Connoisseur (Literature) #codes(upto 1pts),_
+			SK:Connoisseur (Music) #codes(upto 1pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 1pts),_
+			SK:Connoisseur (Wine) #codes(upto 1pts),_
+			SK:Fast-Talk #codes(upto 1pts),_
+			SK:Gambling #codes(upto 1pts),_
+			SK:Leadership #codes(upto 1pts),_
+			SK:Merchant #codes(upto 1pts),_
+			SK:Smuggling #codes(upto 1pts),_
+			SK:Streetwise #codes(upto 1pts),_
+			SK:Diplomacy #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Sex Appeal #codes(upto 1pts),_
+			SK:Scrounging #codes(upto 1pts),_
+			SK:Body Language #codes(upto 1pts),_
+			SK:Lip Reading #codes(upto 1pts),_
+			SK:Search #codes(upto 1pts),_
+			SK:Detect Lies #codes(upto 1pts),_
+			SK:Intimidation #codes(upto 1pts) _
+				)_
+			),_
+	select9(#List(QuirkSelection)),_
+	replacetags(in "TE:Innkeeper (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15()")

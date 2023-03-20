@@ -1,0 +1,111 @@
+#token-hud {
+  /* .status-maneuvers {
+    visibility: visible;
+  } */
+
+  & > .col {
+    & > .control-icon {
+      & > .collapsible-wrapper {
+        & > label.label-toggle {
+          display: flex;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+
+          & > .icon {
+            font-size: 36px;
+          }
+        }
+      }
+    }
+  }
+
+  .maneuver-content {
+    position: absolute;
+    left: 65px;
+    top: 50px;
+  }
+
+  .status-maneuvers {
+    display: grid;
+    padding: 9px;
+    box-sizing: content-box;
+    grid-template-columns: 500px 500px;
+    grid-template-rows: repeat(7, auto);
+    background: rgb(0 0 0 / 80%);
+    box-shadow: 0 0 15px #000;
+    border: 1px solid #333;
+    border-radius: 4px;
+    pointer-events: all;
+
+    .effect-control {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      .label {
+        font-size: var(--s3);
+        line-height: calc(var(--s1) * 3.5);
+        text-align: left;
+        vertical-align: top;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        opacity: 0.6;
+        color: #ccc;
+      }
+
+      .icons {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        & > img.icon {
+          --size: var(--s5);
+
+          height: var(--size);
+          width: var(--size);
+          max-height: var(--size);
+
+          & ~ img.icon {
+            --size: calc(var(--s1) * 4.5);
+
+            margin-left: calc(-0.9 * var(--s1));
+          }
+        }
+      }
+
+      &:hover {
+        .icons > img,
+        .label,
+        .effect-control {
+          opacity: 1;
+        }
+      }
+
+      &.active {
+        .effect-control {
+          opacity: 1;
+        }
+        .label {
+          color: #eee;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  div.right .control-icon {
+    margin: 5px 0;
+  }
+
+  /* 
+  // if #collapsible-hud is checked, set border of .maneuver-open
+  .maneuver-open 
+  {
+    border: 1px solid #ff6400;
+  } */
+}

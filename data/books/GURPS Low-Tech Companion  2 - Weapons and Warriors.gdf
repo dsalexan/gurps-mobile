@@ -1,0 +1,1811 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+				This data file contains information taken from the appendix of the GURPS Low-Tech Companion 2 Weapons and Warriors sourcebook. _
+				GURPS Low-Tech Companion 2 Weapons and Warriors is Copyright © 2011 by Steve Jackson Games Incorporated. _
+				All rights reserved.
+Incomplete=Yes
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  GURPS® Character Assistant
+//  Filename: GURPS Low-Tech Companion 2 Weappons and Warriors.gdf
+//  Created:  July 28, 2011
+//  Requires GCA v4 or later!
+// 
+// 
+//  This data file contains information taken from the appendix of the GURPS Low-Tech Companion 2 Weapons and Warriors sourcebook.
+//  GURPS Low-Tech Companion 2 Weapons and Warriors is Copyright © 2011 by Steve Jackson Games Incorporated.
+//  All rights reserved.
+// 
+//  Information in this file includes:
+// 	New Equipment.
+// 	New Perks.
+// 	New Skills (and minor fixes to defaults of Professional Skills in Characters).
+// 
+*******************************************************************************************************************
+// 
+// 
+//  If you find any errors or omissions in this file please drop a message at:
+//  http://forums.sjgames.com
+// 
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Techniques, Techniques - Realistic>
+Running the Pole (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 2), needs(SK:Acrobatics), upto(prereq), page(LT2:8)
+
+<Combat/Weapons - Melee Combat>
+Shield (Guige), DX/E, default(DX - 4, "SK:Shield (Shield)" - 2, "SK:Shield (Buckler)" - 2, "SK:Shield (Force)" - 2, "SK:Shield Art (Guige)" - 3), page(LT2:19), blockat(@int(%level/2)+3), cat(_General, Combat/Weapons - Melee Combat),_
+	conditional(-3 to "SK:Shield (Guige)" when "Blocking using only neck strap")
+#MergeTags in "SK:Shield (Shield)" with {default("SK:Shield (Guige)" - 2)}
+#MergeTags in "SK:Shield (Buckler)" with {default("SK:Shield (Guige)" - 2)}
+#MergeTags in "SK:Shield (Force)" with {default("SK:Shield (Guige)" - 2)}
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<ShieldSkill>
+SK:Shield (Guige)
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Shield>
+Shield: Boss: No Boss, -25, gives(-2 to owner::baseweight, =$/textindexedvalue( $modetag(mode), ("Rush", +1), ("Bash", +1) ) to owner::damage$), shortname(No Boss), page(LT2:20)
+Shield: Boss: Conical Boss, +50, gives(+3 to owner::baseweight, =+@textindexedvalue( $modetag(mode), ("Rush", 1), ("Bash", 1) ) to owner::damage$), shortname(Conical Boss), page(LT2:20)
+Shield: Boss: Spiked Boss, +50,_
+	gives(_
+			+3 to owner::baseweight,_
+			=$/textindexedvalue( $modetag(mode), ("Rush", +1), ("Bash", +1) ) to owner::damage$,_
+			=nobase to owner::damtype$,_
+			=$/textindexedvalue( $modetag(mode), ("Rush", "imp"), ("Bash", "imp"), ("Rim Blade", "cut") ) to owner::damtype$_
+			), shortname(Spiked Boss), page(LT2:20)
+Shield: Disarming Spike, +30, gives(+1 to owner::baseweight), page(LT2:20), shortname(Disarming Spike)
+Shield: No Guige (DB2+ only), -10, shortname(No Guige), gives(-1 to owner::baseweight), page(LT2:20)
+Shield: Lantern Hook, +20, gives(+0.5 to owner::baseweight), page(LT2:20), shortname(Lantern Hook)
+Shield: Lance Cutout, +30, conditional(+1 to SK:Lance), page(LT2:20), shortname(Lance Cutout)
+Shield: Rim Blade, +0.5 CF, page(LT2:20), shortname(Rim Blade),_
+	addmode(Rim Blade,_
+			damage(sw-2), damtype(cut), reach(%copyfirst), parry(%copyfirst), skillused(%copyfirst) _
+		)
+
+<Punch/Kick>
+Include +2 damage from Spiked Gauntlets in base damage, +0, shortname(Has Spiked Gauntlets), gives(=+@textindexedvalue( $modetag(mode), ("Punch", 2) ) to owner::damage$ listAs "+2 damage from Spiked Gauntlets"), group(Punch/Kick)
+
+Add Punch w/Spiked Gauntlets Combat Table Entry, +0, shortname(Punch w/Spiked Gauntlets),_
+	addmode(Punch w/Spiked Gauntlets,_
+			damage(2 + %copyfirst - @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0))), damtype(cr), reach(%copyfirst), parry(%copyfirst), skillused(%copyfirst) _
+		)
+
+<Armor - Plate>
+Armor: Spiked Plate, +2 CF, gives(-1 to owner::dr), page(LT2:18)
+
+<Armor>
+Armor: Adjusting for SM-6, *0.01, shortname(SM -6), page(LT2:21), tier(1),_
+	gives(_
+		=*0.01 to owner::baseweight_
+	)
+Armor: Adjusting for SM-5, *0.04, shortname(SM -5), page(LT2:21), tier(1),_
+	gives(_
+		=*0.04 to owner::baseweight_
+	)
+Armor: Adjusting for SM-4, *0.09, shortname(SM -4), page(LT2:21), tier(1),_
+	gives(_
+		=*0.09 to owner::baseweight_
+	)
+Armor: Adjusting for SM-3, *0.16, shortname(SM -3), page(LT2:21), tier(1),_
+	gives(_
+		=*0.16 to owner::baseweight_
+	)
+Armor: Adjusting for SM-2, *0.25, shortname(SM -2), page(LT2:21), tier(1),_
+	gives(_
+		=*0.25 to owner::baseweight_
+	)
+Armor: Adjusting for SM-1, *0.64, shortname(SM -1), page(LT2:21), tier(1),_
+	gives(_
+		=*0.64 to owner::baseweight_
+	)
+Armor: Adjusting for SM+0, *1, shortname(SM +0), page(LT2:21), tier(1)
+
+Armor: Adjusting for SM+1, *2.25, shortname(SM +1), page(LT2:21), tier(1),_
+	gives(_
+		=*2.25 to owner::baseweight_
+	)
+Armor: Adjusting for SM+2, *6.25, shortname(SM +2), page(LT2:21), tier(1),_
+	gives(_
+		=*6.25 to owner::baseweight_
+	)
+Armor: Adjusting for SM+3, *12.25, shortname(SM +3), page(LT2:21), tier(1),_
+	gives(_
+		=*12.25 to owner::baseweight_
+	)
+Armor: Adjusting for SM+4, *25, shortname(SM +4), page(LT2:21), tier(1),_
+	gives(_
+		=*25 to owner::baseweight_
+	)
+Armor: Adjusting for SM+5, *56.25, shortname(SM +5), page(LT2:21), tier(1),_
+	gives(_
+		=*56.25 to owner::baseweight_
+	)
+Armor: Adjusting for SM+6, *100, shortname(SM +6), page(LT2:21), tier(1),_
+	gives(_
+		=*100 to owner::baseweight_
+	)
+
+<Shield>
+Weapon: SM Adjusted Grip, +0.5 CF, page(LT2:20), shortname(SM Adjusted Grip)
+Weapon: Adjusting for SM-6, *0.01, shortname(SM-6), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*0.01 to owner::baseweight,_
+		=*0.1 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ),_
+			( "sw+3", -3 ), ( "thr+3", -3 ),_
+			( "sw+4", -4 ), ( "thr+4", -4 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ),_
+			( "sw+8", -7 ), ( "thr+8", -7 ),_
+			( "sw+9", -8 ), ( "thr+9", -8 ),_
+			( "sw+10", -9 ), ( "thr+10", -9 ),_
+		else -1 ) to owner::damage$ listAs "SM-6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "C" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C*" ), ( "1, 2*", "C*" ),_
+			( "2,3", "C,1" ),( "2, 3", "C,1" ), ( "2,3*", "C,1*" ), ( "2, 3*", "C,1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1*" ),_
+			( "1-6*", "C,1*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-5, *0.04, shortname(SM-5), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*0.04 to owner::baseweight,_
+		=*0.2 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ),_
+			( "sw+9", -7 ), ( "thr+9", -7 ),_
+			( "sw+10", -8 ), ( "thr+10", -8 ),_
+		else -1 ) to owner::damage$ listAs "SM-5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-4, *0.09, shortname(SM-4), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*0.09 to owner::baseweight,_
+		=*0.3 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ),_
+			( "sw+7", -5 ), ( "thr+7", -5 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ),_
+			( "sw+9", -6 ), ( "thr+9", -6 ),_
+			( "sw+10", -7 ), ( "thr+10", -7 ),_
+		else -1 ) to owner::damage$ listAs "SM-4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-3, *0.16, shortname(SM-3), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*0.16 to owner::baseweight,_
+		=*0.4 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ),_
+			( "sw+7", -4 ), ( "thr+7", -4 ),_
+			( "sw+8", -5 ), ( "thr+8", -5 ),_
+			( "sw+9", -5 ), ( "thr+9", -5 ),_
+			( "sw+10", -6 ), ( "thr+10", -6 ),_
+		else -1 ) to owner::damage$ listAs "SM-3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "C,1-2" ), ( "1-3*", "C,1-2*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-3*" ),_
+			( "1-6*", "C,1-3*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-2, *0.25, shortname(SM-2), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*0.25 to owner::baseweight,_
+		=*0.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ),_
+			( "sw+5", -2 ), ( "thr+5", -2 ),_
+			( "sw+6", -3 ), ( "thr+6", -3 ),_
+			( "sw+7", -3 ), ( "thr+7", -3 ),_
+			( "sw+8", -4 ), ( "thr+8", -4 ),_
+			( "sw+9", -4 ), ( "thr+9", -4 ),_
+			( "sw+10", -5 ), ( "thr+10", -5 ),_
+		else 0 ) to owner::damage$ listAs "SM-2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1" ), ( "1, 2", "1" ), ( "1,2*", "1*" ), ( "1, 2*", "1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "1,2" ), ( "1-3*", "1,2*" ),_
+			( "1-4", "1,2" ), ( "1-4*", "1,2*" ),_
+			( "1-5*", "1-3*" ),_
+			( "1-6*", "1-4*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-1, *0.64, shortname(SM-1), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*0.64 to owner::baseweight,_
+		=*0.8 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ),_
+			( "sw+2", 0 ), ( "thr+2", 0 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ),_
+			( "sw+4", -1 ), ( "thr+4", -1 ),_
+			( "sw+5", -1 ), ( "thr+5", -1 ),_
+			( "sw+6", -1 ), ( "thr+6", -1 ),_
+			( "sw+7", -1 ), ( "thr+7", -1 ),_
+			( "sw+8", -2 ), ( "thr+8", -2 ),_
+			( "sw+9", -2 ), ( "thr+9", -2 ),_
+			( "sw+10", -2 ), ( "thr+10", -2 ),_
+		else 0 ) to owner::damage$ listAs "SM-1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "2" ),_
+			( "3", "3" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1,2" ), ( "1, 2", "1,2" ), ( "1,2*", "1,2*" ), ( "1, 2*", "1,2*" ),_
+			( "2,3", "2,3" ),( "2, 3", "2,3" ), ( "2,3*", "2,3*" ), ( "2, 3*", "2,3*" ),_
+			( "1-3", "1-3" ), ( "1-3*", "1-3*" ),_
+			( "1-4", "1-4" ), ( "1-4*", "1-4*" ),_
+			( "1-5*", "1-5*" ),_
+			( "1-6*", "1-5*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+0, *1, shortname(SM+0), page(LT2:20), tier(1),_
+	group(Shield)
+
+Weapon: Adjusting for SM+1, *2.25, shortname(SM+1), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*2.25 to owner::baseweight,_
+		=*1.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 1 ), ( "thr+1", 1 ),_
+			( "sw+2", 1 ), ( "thr+2", 1 ),_
+			( "sw+3", 2 ), ( "thr+3", 2 ),_
+			( "sw+4", 2 ), ( "thr+4", 2 ),_
+			( "sw+5", 3 ), ( "thr+5", 3 ),_
+			( "sw+6", 3 ), ( "thr+6", 3 ),_
+			( "sw+7", 4 ), ( "thr+7", 4 ),_
+			( "sw+8", 4 ), ( "thr+8", 4 ),_
+			( "sw+9", 5 ), ( "thr+9", 5 ),_
+			( "sw+10", 5 ), ( "thr+10", 5 ),_
+		else 1 ) to owner::damage$ listAs "SM+1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "1" ),_
+			( "2", "3" ),_
+			( "3", "4" ),_
+			( "C,1", "1" ), ( "C, 1", "1" ),_
+			( "1,2", "1-3" ), ( "1, 2", "1-3" ), ( "1,2*", "1-3*" ), ( "1, 2*", "1-3*" ),_
+			( "2,3", "3,4" ),( "2, 3", "3,4" ), ( "2,3*", "3,4*" ), ( "2, 3*", "3,4*" ),_
+			( "1-3", "1-4" ), ( "1-3*", "1-4*" ),_
+			( "1-4", "1-5" ), ( "1-4*", "1-5*" ),_
+			( "1-5*", "1-7*" ),_
+			( "1-6*", "1-8*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+2, *6.25, shortname(SM+2), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*6.25 to owner::baseweight,_
+		=*2.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 2 ), ( "thr+1", 2 ),_
+			( "sw+2", 3 ), ( "thr+2", 3 ),_
+			( "sw+3", 5 ), ( "thr+3", 5 ),_
+			( "sw+4", 6 ), ( "thr+4", 6 ),_
+			( "sw+5", 8 ), ( "thr+5", 8 ),_
+			( "sw+6", 9 ), ( "thr+6", 9 ),_
+			( "sw+7", 11 ), ( "thr+7", 11 ),_
+			( "sw+8", 12 ), ( "thr+8", 12 ),_
+			( "sw+9", 14 ), ( "thr+9", 14 ),_
+			( "sw+10", 15 ), ( "thr+10", 15 ),_
+		else 1 ) to owner::damage$ listAs "SM+2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "4" ),_
+			( "3", "5" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-4" ), ( "1, 2", "2-4" ), ( "1,2*", "2-4*" ), ( "1, 2*", "2-4*" ),_
+			( "2,3", "4,5" ),( "2, 3", "4,5" ), ( "2,3*", "4,5*" ), ( "2, 3*", "4,5*" ),_
+			( "1-3", "2-5" ), ( "1-3*", "2-5*" ),_
+			( "1-4", "2-7" ), ( "1-4*", "2-7*" ),_
+			( "1-5*", "2-9*" ),_
+			( "1-6*", "2-11*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+3, *12.25, shortname(SM+3), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*12.25 to owner::baseweight,_
+		=*3.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 3 ), ( "thr+1", 3 ),_
+			( "sw+2", 5 ), ( "thr+2", 5 ),_
+			( "sw+3", 8 ), ( "thr+3", 8 ),_
+			( "sw+4", 10 ), ( "thr+4", 10 ),_
+			( "sw+5", 13 ), ( "thr+5", 13 ),_
+			( "sw+6", 15 ), ( "thr+6", 15 ),_
+			( "sw+7", 18 ), ( "thr+7", 18 ),_
+			( "sw+8", 20 ), ( "thr+8", 20 ),_
+			( "sw+9", 23 ), ( "thr+9", 23 ),_
+			( "sw+10", 25 ), ( "thr+10", 25 ),_
+		else 2 ) to owner::damage$ listAs "SM+3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "5" ),_
+			( "3", "7" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-5" ), ( "1, 2", "2-5" ), ( "1,2*", "2-5*" ), ( "1, 2*", "2-5*" ),_
+			( "2,3", "5-7" ),( "2, 3", "5-7" ), ( "2,3*", "5-7*" ), ( "2, 3*", "5-7*" ),_
+			( "1-3", "2-7" ), ( "1-3*", "2-7*" ),_
+			( "1-4", "2-9" ), ( "1-4*", "2-9*" ),_
+			( "1-5*", "2-12*" ),_
+			( "1-6*", "2-14*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+4, *25, shortname(SM+4), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*25 to owner::baseweight,_
+		=*5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 4 ), ( "thr+1", 4 ),_
+			( "sw+2", 8 ), ( "thr+2", 8 ),_
+			( "sw+3", 12 ), ( "thr+3", 12 ),_
+			( "sw+4", 16 ), ( "thr+4", 16 ),_
+			( "sw+5", 20 ), ( "thr+5", 20 ),_
+			( "sw+6", 24 ), ( "thr+6", 24 ),_
+			( "sw+7", 28 ), ( "thr+7", 28 ),_
+			( "sw+8", 32 ), ( "thr+8", 32 ),_
+			( "sw+9", 36 ), ( "thr+9", 36 ),_
+			( "sw+10", 40 ), ( "thr+10", 40 ),_
+		else 3 ) to owner::damage$ listAs "SM+4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "3" ),_
+			( "2", "6" ),_
+			( "3", "9" ),_
+			( "C,1", "1-3" ), ( "C, 1", "1-3" ),_
+			( "1,2", "3-6" ), ( "1, 2", "3-6" ), ( "1,2*", "3-6*" ), ( "1, 2*", "3-6*" ),_
+			( "2,3", "6-9" ),( "2, 3", "6-9" ), ( "2,3*", "6-9*" ), ( "2, 3*", "6-9*" ),_
+			( "1-3", "3-9" ), ( "1-3*", "3-9*" ),_
+			( "1-4", "3-12" ), ( "1-4*", "3-12*" ),_
+			( "1-5*", "3-15*" ),_
+			( "1-6*", "3-17*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+5, *56.25, shortname(SM+5), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*56.54 to owner::baseweight,_
+		=*7.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 7 ), ( "thr+1", 7 ),_
+			( "sw+2", 13 ), ( "thr+2", 13 ),_
+			( "sw+3", 20 ), ( "thr+3", 20 ),_
+			( "sw+4", 26 ), ( "thr+4", 26 ),_
+			( "sw+5", 33 ), ( "thr+5", 33 ),_
+			( "sw+6", 39 ), ( "thr+6", 39 ),_
+			( "sw+7", 46 ), ( "thr+7", 46 ),_
+			( "sw+8", 52 ), ( "thr+8", 52 ),_
+			( "sw+9", 59 ), ( "thr+9", 59 ),_
+			( "sw+10", 65 ), ( "thr+10", 65 ),_
+		else 4 ) to owner::damage$ listAs "SM+5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "4" ),_
+			( "2", "8" ),_
+			( "3", "11" ),_
+			( "C,1", "2-4" ), ( "C, 1", "2-4" ),_
+			( "1,2", "4-8" ), ( "1, 2", "4-8" ), ( "1,2*", "4-8*" ), ( "1, 2*", "4-8*" ),_
+			( "2,3", "8-11" ),( "2, 3", "8-11" ), ( "2,3*", "8-11*" ), ( "2, 3*", "8-11*" ),_
+			( "1-3", "4-11" ), ( "1-3*", "4-11*" ),_
+			( "1-4", "4-15" ), ( "1-4*", "4-15*" ),_
+			( "1-5*", "4-19*" ),_
+			( "1-6*", "4-23*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+6, *100, shortname(SM+6), page(LT2:20), tier(1),_
+	group(Shield),_
+	gives(_
+		=*100 to owner::baseweight,_
+		=*10 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 9 ), ( "thr+1", 9 ),_
+			( "sw+2", 18 ), ( "thr+2", 18 ),_
+			( "sw+3", 27 ), ( "thr+3", 27 ),_
+			( "sw+4", 36 ), ( "thr+4", 36 ),_
+			( "sw+5", 45 ), ( "thr+5", 45 ),_
+			( "sw+6", 54 ), ( "thr+6", 54 ),_
+			( "sw+7", 63 ), ( "thr+7", 63 ),_
+			( "sw+8", 72 ), ( "thr+8", 72 ),_
+			( "sw+9", 81 ), ( "thr+9", 81 ),_
+			( "sw+10", 90 ), ( "thr+10", 90 ),_
+		else 5 ) to owner::damage$ listAs "SM+6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "5" ),_
+			( "2", "9" ),_
+			( "3", "14" ),_
+			( "C,1", "2-5" ), ( "C, 1", "2-5" ),_
+			( "1,2", "5-9" ), ( "1, 2", "5-9" ), ( "1,2*", "5-9*" ), ( "1, 2*", "5-9*" ),_
+			( "2,3", "9-14" ),( "2, 3", "9-14" ), ( "2,3*", "9-14*" ), ( "2, 3*", "9-14*" ),_
+			( "1-3", "5-14" ), ( "1-3*", "5-14*" ),_
+			( "1-4", "5-18" ), ( "1-4*", "5-18*" ),_
+			( "1-5*", "5-23*" ),_
+			( "1-6*", "5-28*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+<Bow Quality>
+Weapon: SM Adjusted Grip, +0.5 CF, page(LT2:20), shortname(SM Adjusted Grip)
+Weapon: Adjusting for SM-6, *0.01, shortname(SM-6), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*0.01 to owner::baseweight,_
+		=*0.1 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ), ( "@thr(me::weaponst)+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ), ( "@thr(me::weaponst)+2", -2 ),_
+			( "sw+3", -3 ), ( "thr+3", -3 ), ( "@thr(me::weaponst)+3", -3 ),_
+			( "sw+4", -4 ), ( "thr+4", -4 ), ( "@thr(me::weaponst)+4", -4 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ), ( "@thr(me::weaponst)+5", -5 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ), ( "@thr(me::weaponst)+6", -6 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ), ( "@thr(me::weaponst)+7", -7 ),_
+			( "sw+8", -7 ), ( "thr+8", -7 ), ( "@thr(me::weaponst)+8", -8 ),_
+			( "sw+9", -8 ), ( "thr+9", -8 ), ( "@thr(me::weaponst)+9", -9 ),_
+			( "sw+10", -9 ), ( "thr+10", -9 ), ( "@thr(me::weaponst)+10", -10 ),_
+		else -1 ) to owner::damage$ listAs "SM-6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "C" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C*" ), ( "1, 2*", "C*" ),_
+			( "2,3", "C,1" ),( "2, 3", "C,1" ), ( "2,3*", "C,1*" ), ( "2, 3*", "C,1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1*" ),_
+			( "1-6*", "C,1*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-5, *0.04, shortname(SM-5), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*0.04 to owner::baseweight,_
+		=*0.2 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ), ( "@thr(me::weaponst)+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ), ( "@thr(me::weaponst)+2", -2 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ), ( "@thr(me::weaponst)+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ), ( "@thr(me::weaponst)+4", -3 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ), ( "@thr(me::weaponst)+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ), ( "@thr(me::weaponst)+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ), ( "@thr(me::weaponst)+7", -6 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ), ( "@thr(me::weaponst)+8", -6 ),_
+			( "sw+9", -7 ), ( "thr+9", -7 ), ( "@thr(me::weaponst)+9", -7 ),_
+			( "sw+10", -8 ), ( "thr+10", -8 ), ( "@thr(me::weaponst)+10", -8 ),_
+		else -1 ) to owner::damage$ listAs "SM-5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-4, *0.09, shortname(SM-4), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*0.09 to owner::baseweight,_
+		=*0.3 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ), ( "@thr(me::weaponst)+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ), ( "@thr(me::weaponst)+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ), ( "@thr(me::weaponst)+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ), ( "@thr(me::weaponst)+4", -3 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ), ( "@thr(me::weaponst)+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ), ( "@thr(me::weaponst)+6", -4 ),_
+			( "sw+7", -5 ), ( "thr+7", -5 ), ( "@thr(me::weaponst)+7", -5 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ), ( "@thr(me::weaponst)+8", -6 ),_
+			( "sw+9", -6 ), ( "thr+9", -6 ), ( "@thr(me::weaponst)+9", -6 ),_
+			( "sw+10", -7 ), ( "thr+10", -7 ), ( "@thr(me::weaponst)+10", -7 ),_
+		else -1 ) to owner::damage$ listAs "SM-4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-3, *0.16, shortname(SM-3), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*0.16 to owner::baseweight,_
+		=*0.4 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ), ( "@thr(me::weaponst)+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ), ( "@thr(me::weaponst)+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ), ( "@thr(me::weaponst)+3", -2 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ), ( "@thr(me::weaponst)+4", -2 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ), ( "@thr(me::weaponst)+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ), ( "@thr(me::weaponst)+6", -4 ),_
+			( "sw+7", -4 ), ( "thr+7", -4 ), ( "@thr(me::weaponst)+7", -4 ),_
+			( "sw+8", -5 ), ( "thr+8", -5 ), ( "@thr(me::weaponst)+8", -5 ),_
+			( "sw+9", -5 ), ( "thr+9", -5 ), ( "@thr(me::weaponst)+9", -5 ),_
+			( "sw+10", -6 ), ( "thr+10", -6 ), ( "@thr(me::weaponst)+10", -6 ),_
+		else -1 ) to owner::damage$ listAs "SM-3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "C,1-2" ), ( "1-3*", "C,1-2*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-3*" ),_
+			( "1-6*", "C,1-3*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-2, *0.25, shortname(SM-2), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*0.25 to owner::baseweight,_
+		=*0.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ), ( "@thr(me::weaponst)+1", 0 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ), ( "@thr(me::weaponst)+2", -1 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ), ( "@thr(me::weaponst)+3", -1 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ), ( "@thr(me::weaponst)+4", -2 ),_
+			( "sw+5", -2 ), ( "thr+5", -2 ), ( "@thr(me::weaponst)+5", -2 ),_
+			( "sw+6", -3 ), ( "thr+6", -3 ), ( "@thr(me::weaponst)+6", -3 ),_
+			( "sw+7", -3 ), ( "thr+7", -3 ), ( "@thr(me::weaponst)+7", -3 ),_
+			( "sw+8", -4 ), ( "thr+8", -4 ), ( "@thr(me::weaponst)+8", -4 ),_
+			( "sw+9", -4 ), ( "thr+9", -4 ), ( "@thr(me::weaponst)+9", -4 ),_
+			( "sw+10", -5 ), ( "thr+10", -5 ), ( "@thr(me::weaponst)+10", -5 ),_
+		else 0 ) to owner::damage$ listAs "SM-2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1" ), ( "1, 2", "1" ), ( "1,2*", "1*" ), ( "1, 2*", "1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "1,2" ), ( "1-3*", "1,2*" ),_
+			( "1-4", "1,2" ), ( "1-4*", "1,2*" ),_
+			( "1-5*", "1-3*" ),_
+			( "1-6*", "1-4*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-1, *0.64, shortname(SM-1), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*0.64 to owner::baseweight,_
+		=*0.8 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ), ( "@thr(me::weaponst)+1", 0 ),_
+			( "sw+2", 0 ), ( "thr+2", 0 ), ( "@thr(me::weaponst)+2", 0 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ), ( "@thr(me::weaponst)+3", -1 ),_
+			( "sw+4", -1 ), ( "thr+4", -1 ), ( "@thr(me::weaponst)+4", -1 ),_
+			( "sw+5", -1 ), ( "thr+5", -1 ), ( "@thr(me::weaponst)+5", -1 ),_
+			( "sw+6", -1 ), ( "thr+6", -1 ), ( "@thr(me::weaponst)+6", -1 ),_
+			( "sw+7", -1 ), ( "thr+7", -1 ), ( "@thr(me::weaponst)+7", -1 ),_
+			( "sw+8", -2 ), ( "thr+8", -2 ), ( "@thr(me::weaponst)+8", -2 ),_
+			( "sw+9", -2 ), ( "thr+9", -2 ), ( "@thr(me::weaponst)+9", -2 ),_
+			( "sw+10", -2 ), ( "thr+10", -2 ), ( "@thr(me::weaponst)+10", -2 ),_
+		else 0 ) to owner::damage$ listAs "SM-1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "2" ),_
+			( "3", "3" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1,2" ), ( "1, 2", "1,2" ), ( "1,2*", "1,2*" ), ( "1, 2*", "1,2*" ),_
+			( "2,3", "2,3" ),( "2, 3", "2,3" ), ( "2,3*", "2,3*" ), ( "2, 3*", "2,3*" ),_
+			( "1-3", "1-3" ), ( "1-3*", "1-3*" ),_
+			( "1-4", "1-4" ), ( "1-4*", "1-4*" ),_
+			( "1-5*", "1-5*" ),_
+			( "1-6*", "1-5*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+0, *1, shortname(SM+0), page(LT2:20), tier(1),_
+	group(Bow Quality)
+
+Weapon: Adjusting for SM+1, *2.25, shortname(SM+1), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*2.25 to owner::baseweight,_
+		=*1.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 1 ), ( "thr+1", 1 ), ( "@thr(me::weaponst)+1", 1 ),_
+			( "sw+2", 1 ), ( "thr+2", 1 ), ( "@thr(me::weaponst)+2", 1 ),_
+			( "sw+3", 2 ), ( "thr+3", 2 ), ( "@thr(me::weaponst)+3", 2 ),_
+			( "sw+4", 2 ), ( "thr+4", 2 ), ( "@thr(me::weaponst)+4", 2 ),_
+			( "sw+5", 3 ), ( "thr+5", 3 ), ( "@thr(me::weaponst)+5", 3 ),_
+			( "sw+6", 3 ), ( "thr+6", 3 ), ( "@thr(me::weaponst)+6", 3 ),_
+			( "sw+7", 4 ), ( "thr+7", 4 ), ( "@thr(me::weaponst)+7", 4 ),_
+			( "sw+8", 4 ), ( "thr+8", 4 ), ( "@thr(me::weaponst)+8", 4 ),_
+			( "sw+9", 5 ), ( "thr+9", 5 ), ( "@thr(me::weaponst)+9", 5 ),_
+			( "sw+10", 5 ), ( "thr+10", 5 ), ( "@thr(me::weaponst)+10", 5 ),_
+		else 1 ) to owner::damage$ listAs "SM+1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "1" ),_
+			( "2", "3" ),_
+			( "3", "4" ),_
+			( "C,1", "1" ), ( "C, 1", "1" ),_
+			( "1,2", "1-3" ), ( "1, 2", "1-3" ), ( "1,2*", "1-3*" ), ( "1, 2*", "1-3*" ),_
+			( "2,3", "3,4" ),( "2, 3", "3,4" ), ( "2,3*", "3,4*" ), ( "2, 3*", "3,4*" ),_
+			( "1-3", "1-4" ), ( "1-3*", "1-4*" ),_
+			( "1-4", "1-5" ), ( "1-4*", "1-5*" ),_
+			( "1-5*", "1-7*" ),_
+			( "1-6*", "1-8*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+2, *6.25, shortname(SM+2), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*6.25 to owner::baseweight,_
+		=*2.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 2 ), ( "thr+1", 2 ), ( "@thr(me::weaponst)+1", 2 ),_
+			( "sw+2", 3 ), ( "thr+2", 3 ), ( "@thr(me::weaponst)+2", 3 ),_
+			( "sw+3", 5 ), ( "thr+3", 5 ), ( "@thr(me::weaponst)+3", 5 ),_
+			( "sw+4", 6 ), ( "thr+4", 6 ), ( "@thr(me::weaponst)+4", 6 ),_
+			( "sw+5", 8 ), ( "thr+5", 8 ), ( "@thr(me::weaponst)+5", 8 ),_
+			( "sw+6", 9 ), ( "thr+6", 9 ), ( "@thr(me::weaponst)+6", 9 ),_
+			( "sw+7", 11 ), ( "thr+7", 11 ), ( "@thr(me::weaponst)+7", 11 ),_
+			( "sw+8", 12 ), ( "thr+8", 12 ), ( "@thr(me::weaponst)+8", 12 ),_
+			( "sw+9", 14 ), ( "thr+9", 14 ), ( "@thr(me::weaponst)+9", 14 ),_
+			( "sw+10", 15 ), ( "thr+10", 15 ), ( "@thr(me::weaponst)+10", 15 ),_
+		else 1 ) to owner::damage$ listAs "SM+2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "4" ),_
+			( "3", "5" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-4" ), ( "1, 2", "2-4" ), ( "1,2*", "2-4*" ), ( "1, 2*", "2-4*" ),_
+			( "2,3", "4,5" ),( "2, 3", "4,5" ), ( "2,3*", "4,5*" ), ( "2, 3*", "4,5*" ),_
+			( "1-3", "2-5" ), ( "1-3*", "2-5*" ),_
+			( "1-4", "2-7" ), ( "1-4*", "2-7*" ),_
+			( "1-5*", "2-9*" ),_
+			( "1-6*", "2-11*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+3, *12.25, shortname(SM+3), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*12.25 to owner::baseweight,_
+		=*3.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 3 ), ( "thr+1", 3 ), ( "@thr(me::weaponst)+1", 3 ),_
+			( "sw+2", 5 ), ( "thr+2", 5 ), ( "@thr(me::weaponst)+2", 5 ),_
+			( "sw+3", 8 ), ( "thr+3", 8 ), ( "@thr(me::weaponst)+3", 8 ),_
+			( "sw+4", 10 ), ( "thr+4", 10 ), ( "@thr(me::weaponst)+4", 10 ),_
+			( "sw+5", 13 ), ( "thr+5", 13 ), ( "@thr(me::weaponst)+5", 13 ),_
+			( "sw+6", 15 ), ( "thr+6", 15 ), ( "@thr(me::weaponst)+6", 15 ),_
+			( "sw+7", 18 ), ( "thr+7", 18 ), ( "@thr(me::weaponst)+7", 18 ),_
+			( "sw+8", 20 ), ( "thr+8", 20 ), ( "@thr(me::weaponst)+8", 20 ),_
+			( "sw+9", 23 ), ( "thr+9", 23 ), ( "@thr(me::weaponst)+9", 23 ),_
+			( "sw+10", 25 ), ( "thr+10", 25 ), ( "@thr(me::weaponst)+10", 25 ),_
+		else 2 ) to owner::damage$ listAs "SM+3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "5" ),_
+			( "3", "7" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-5" ), ( "1, 2", "2-5" ), ( "1,2*", "2-5*" ), ( "1, 2*", "2-5*" ),_
+			( "2,3", "5-7" ),( "2, 3", "5-7" ), ( "2,3*", "5-7*" ), ( "2, 3*", "5-7*" ),_
+			( "1-3", "2-7" ), ( "1-3*", "2-7*" ),_
+			( "1-4", "2-9" ), ( "1-4*", "2-9*" ),_
+			( "1-5*", "2-12*" ),_
+			( "1-6*", "2-14*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+4, *25, shortname(SM+4), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*25 to owner::baseweight,_
+		=*5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 4 ), ( "thr+1", 4 ), ( "@thr(me::weaponst)+1", 4 ),_
+			( "sw+2", 8 ), ( "thr+2", 8 ), ( "@thr(me::weaponst)+2", 8 ),_
+			( "sw+3", 12 ), ( "thr+3", 12 ), ( "@thr(me::weaponst)+3", 12 ),_
+			( "sw+4", 16 ), ( "thr+4", 16 ), ( "@thr(me::weaponst)+4", 16 ),_
+			( "sw+5", 20 ), ( "thr+5", 20 ), ( "@thr(me::weaponst)+5", 20 ),_
+			( "sw+6", 24 ), ( "thr+6", 24 ), ( "@thr(me::weaponst)+6", 24 ),_
+			( "sw+7", 28 ), ( "thr+7", 28 ), ( "@thr(me::weaponst)+7", 28 ),_
+			( "sw+8", 32 ), ( "thr+8", 32 ), ( "@thr(me::weaponst)+8", 32 ),_
+			( "sw+9", 36 ), ( "thr+9", 36 ), ( "@thr(me::weaponst)+9", 36 ),_
+			( "sw+10", 40 ), ( "thr+10", 40 ), ( "@thr(me::weaponst)+10", 40 ),_
+		else 3 ) to owner::damage$ listAs "SM+4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "3" ),_
+			( "2", "6" ),_
+			( "3", "9" ),_
+			( "C,1", "1-3" ), ( "C, 1", "1-3" ),_
+			( "1,2", "3-6" ), ( "1, 2", "3-6" ), ( "1,2*", "3-6*" ), ( "1, 2*", "3-6*" ),_
+			( "2,3", "6-9" ),( "2, 3", "6-9" ), ( "2,3*", "6-9*" ), ( "2, 3*", "6-9*" ),_
+			( "1-3", "3-9" ), ( "1-3*", "3-9*" ),_
+			( "1-4", "3-12" ), ( "1-4*", "3-12*" ),_
+			( "1-5*", "3-15*" ),_
+			( "1-6*", "3-17*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+5, *56.25, shortname(SM+5), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*56.54 to owner::baseweight,_
+		=*7.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 7 ), ( "thr+1", 7 ), ( "@thr(me::weaponst)+1", 7 ),_
+			( "sw+2", 13 ), ( "thr+2", 13 ), ( "@thr(me::weaponst)+2", 13 ),_
+			( "sw+3", 20 ), ( "thr+3", 20 ), ( "@thr(me::weaponst)+3", 20 ),_
+			( "sw+4", 26 ), ( "thr+4", 26 ), ( "@thr(me::weaponst)+4", 26 ),_
+			( "sw+5", 33 ), ( "thr+5", 33 ), ( "@thr(me::weaponst)+5", 33 ),_
+			( "sw+6", 39 ), ( "thr+6", 39 ), ( "@thr(me::weaponst)+6", 39 ),_
+			( "sw+7", 46 ), ( "thr+7", 46 ), ( "@thr(me::weaponst)+7", 46 ),_
+			( "sw+8", 52 ), ( "thr+8", 52 ), ( "@thr(me::weaponst)+8", 52 ),_
+			( "sw+9", 59 ), ( "thr+9", 59 ), ( "@thr(me::weaponst)+9", 59 ),_
+			( "sw+10", 65 ), ( "thr+10", 65 ), ( "@thr(me::weaponst)+10", 65 ),_
+		else 4 ) to owner::damage$ listAs "SM+5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "4" ),_
+			( "2", "8" ),_
+			( "3", "11" ),_
+			( "C,1", "2-4" ), ( "C, 1", "2-4" ),_
+			( "1,2", "4-8" ), ( "1, 2", "4-8" ), ( "1,2*", "4-8*" ), ( "1, 2*", "4-8*" ),_
+			( "2,3", "8-11" ),( "2, 3", "8-11" ), ( "2,3*", "8-11*" ), ( "2, 3*", "8-11*" ),_
+			( "1-3", "4-11" ), ( "1-3*", "4-11*" ),_
+			( "1-4", "4-15" ), ( "1-4*", "4-15*" ),_
+			( "1-5*", "4-19*" ),_
+			( "1-6*", "4-23*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+6, *100, shortname(SM+6), page(LT2:20), tier(1),_
+	group(Bow Quality),_
+	gives(_
+		=*100 to owner::baseweight,_
+		=*10 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 9 ), ( "thr+1", 9 ), ( "@thr(me::weaponst)+1", 9 ),_
+			( "sw+2", 18 ), ( "thr+2", 18 ), ( "@thr(me::weaponst)+2", 18 ),_
+			( "sw+3", 27 ), ( "thr+3", 27 ), ( "@thr(me::weaponst)+3", 27 ),_
+			( "sw+4", 36 ), ( "thr+4", 36 ), ( "@thr(me::weaponst)+4", 36 ),_
+			( "sw+5", 45 ), ( "thr+5", 45 ), ( "@thr(me::weaponst)+5", 45 ),_
+			( "sw+6", 54 ), ( "thr+6", 54 ), ( "@thr(me::weaponst)+6", 54 ),_
+			( "sw+7", 63 ), ( "thr+7", 63 ), ( "@thr(me::weaponst)+7", 63 ),_
+			( "sw+8", 72 ), ( "thr+8", 72 ), ( "@thr(me::weaponst)+8", 72 ),_
+			( "sw+9", 81 ), ( "thr+9", 81 ), ( "@thr(me::weaponst)+9", 81 ),_
+			( "sw+10", 90 ), ( "thr+10", 90 ), ( "@thr(me::weaponst)+10", 90 ),_
+		else 5 ) to owner::damage$ listAs "SM+6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "5" ),_
+			( "2", "9" ),_
+			( "3", "14" ),_
+			( "C,1", "2-5" ), ( "C, 1", "2-5" ),_
+			( "1,2", "5-9" ), ( "1, 2", "5-9" ), ( "1,2*", "5-9*" ), ( "1, 2*", "5-9*" ),_
+			( "2,3", "9-14" ),( "2, 3", "9-14" ), ( "2,3*", "9-14*" ), ( "2, 3*", "9-14*" ),_
+			( "1-3", "5-14" ), ( "1-3*", "5-14*" ),_
+			( "1-4", "5-18" ), ( "1-4*", "5-18*" ),_
+			( "1-5*", "5-23*" ),_
+			( "1-6*", "5-28*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+<Sling Quality>
+Weapon: SM Adjusted Grip, +0.5 CF, page(LT2:20), shortname(SM Adjusted Grip)
+Weapon: Adjusting for SM-6, *0.01, shortname(SM-6), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*0.01 to owner::baseweight,_
+		=*0.1 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ),_
+			( "sw+3", -3 ), ( "thr+3", -3 ),_
+			( "sw+4", -4 ), ( "thr+4", -4 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ),_
+			( "sw+8", -7 ), ( "thr+8", -7 ),_
+			( "sw+9", -8 ), ( "thr+9", -8 ),_
+			( "sw+10", -9 ), ( "thr+10", -9 ),_
+		else -1 ) to owner::damage$ listAs "SM-6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "C" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C*" ), ( "1, 2*", "C*" ),_
+			( "2,3", "C,1" ),( "2, 3", "C,1" ), ( "2,3*", "C,1*" ), ( "2, 3*", "C,1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1*" ),_
+			( "1-6*", "C,1*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-5, *0.04, shortname(SM-5), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*0.04 to owner::baseweight,_
+		=*0.2 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ),_
+			( "sw+9", -7 ), ( "thr+9", -7 ),_
+			( "sw+10", -8 ), ( "thr+10", -8 ),_
+		else -1 ) to owner::damage$ listAs "SM-5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-4, *0.09, shortname(SM-4), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*0.09 to owner::baseweight,_
+		=*0.3 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ),_
+			( "sw+7", -5 ), ( "thr+7", -5 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ),_
+			( "sw+9", -6 ), ( "thr+9", -6 ),_
+			( "sw+10", -7 ), ( "thr+10", -7 ),_
+		else -1 ) to owner::damage$ listAs "SM-4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-3, *0.16, shortname(SM-3), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*0.16 to owner::baseweight,_
+		=*0.4 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ),_
+			( "sw+7", -4 ), ( "thr+7", -4 ),_
+			( "sw+8", -5 ), ( "thr+8", -5 ),_
+			( "sw+9", -5 ), ( "thr+9", -5 ),_
+			( "sw+10", -6 ), ( "thr+10", -6 ),_
+		else -1 ) to owner::damage$ listAs "SM-3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "C,1-2" ), ( "1-3*", "C,1-2*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-3*" ),_
+			( "1-6*", "C,1-3*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-2, *0.25, shortname(SM-2), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*0.25 to owner::baseweight,_
+		=*0.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ),_
+			( "sw+5", -2 ), ( "thr+5", -2 ),_
+			( "sw+6", -3 ), ( "thr+6", -3 ),_
+			( "sw+7", -3 ), ( "thr+7", -3 ),_
+			( "sw+8", -4 ), ( "thr+8", -4 ),_
+			( "sw+9", -4 ), ( "thr+9", -4 ),_
+			( "sw+10", -5 ), ( "thr+10", -5 ),_
+		else 0 ) to owner::damage$ listAs "SM-2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1" ), ( "1, 2", "1" ), ( "1,2*", "1*" ), ( "1, 2*", "1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "1,2" ), ( "1-3*", "1,2*" ),_
+			( "1-4", "1,2" ), ( "1-4*", "1,2*" ),_
+			( "1-5*", "1-3*" ),_
+			( "1-6*", "1-4*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-1, *0.64, shortname(SM-1), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*0.64 to owner::baseweight,_
+		=*0.8 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ),_
+			( "sw+2", 0 ), ( "thr+2", 0 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ),_
+			( "sw+4", -1 ), ( "thr+4", -1 ),_
+			( "sw+5", -1 ), ( "thr+5", -1 ),_
+			( "sw+6", -1 ), ( "thr+6", -1 ),_
+			( "sw+7", -1 ), ( "thr+7", -1 ),_
+			( "sw+8", -2 ), ( "thr+8", -2 ),_
+			( "sw+9", -2 ), ( "thr+9", -2 ),_
+			( "sw+10", -2 ), ( "thr+10", -2 ),_
+		else 0 ) to owner::damage$ listAs "SM-1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "2" ),_
+			( "3", "3" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1,2" ), ( "1, 2", "1,2" ), ( "1,2*", "1,2*" ), ( "1, 2*", "1,2*" ),_
+			( "2,3", "2,3" ),( "2, 3", "2,3" ), ( "2,3*", "2,3*" ), ( "2, 3*", "2,3*" ),_
+			( "1-3", "1-3" ), ( "1-3*", "1-3*" ),_
+			( "1-4", "1-4" ), ( "1-4*", "1-4*" ),_
+			( "1-5*", "1-5*" ),_
+			( "1-6*", "1-5*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+0, *1, shortname(SM+0), page(LT2:20), tier(1),_
+	group(Sling Quality)
+
+Weapon: Adjusting for SM+1, *2.25, shortname(SM+1), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*2.25 to owner::baseweight,_
+		=*1.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 1 ), ( "thr+1", 1 ),_
+			( "sw+2", 1 ), ( "thr+2", 1 ),_
+			( "sw+3", 2 ), ( "thr+3", 2 ),_
+			( "sw+4", 2 ), ( "thr+4", 2 ),_
+			( "sw+5", 3 ), ( "thr+5", 3 ),_
+			( "sw+6", 3 ), ( "thr+6", 3 ),_
+			( "sw+7", 4 ), ( "thr+7", 4 ),_
+			( "sw+8", 4 ), ( "thr+8", 4 ),_
+			( "sw+9", 5 ), ( "thr+9", 5 ),_
+			( "sw+10", 5 ), ( "thr+10", 5 ),_
+		else 1 ) to owner::damage$ listAs "SM+1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "1" ),_
+			( "2", "3" ),_
+			( "3", "4" ),_
+			( "C,1", "1" ), ( "C, 1", "1" ),_
+			( "1,2", "1-3" ), ( "1, 2", "1-3" ), ( "1,2*", "1-3*" ), ( "1, 2*", "1-3*" ),_
+			( "2,3", "3,4" ),( "2, 3", "3,4" ), ( "2,3*", "3,4*" ), ( "2, 3*", "3,4*" ),_
+			( "1-3", "1-4" ), ( "1-3*", "1-4*" ),_
+			( "1-4", "1-5" ), ( "1-4*", "1-5*" ),_
+			( "1-5*", "1-7*" ),_
+			( "1-6*", "1-8*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+2, *6.25, shortname(SM+2), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*6.25 to owner::baseweight,_
+		=*2.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 2 ), ( "thr+1", 2 ),_
+			( "sw+2", 3 ), ( "thr+2", 3 ),_
+			( "sw+3", 5 ), ( "thr+3", 5 ),_
+			( "sw+4", 6 ), ( "thr+4", 6 ),_
+			( "sw+5", 8 ), ( "thr+5", 8 ),_
+			( "sw+6", 9 ), ( "thr+6", 9 ),_
+			( "sw+7", 11 ), ( "thr+7", 11 ),_
+			( "sw+8", 12 ), ( "thr+8", 12 ),_
+			( "sw+9", 14 ), ( "thr+9", 14 ),_
+			( "sw+10", 15 ), ( "thr+10", 15 ),_
+		else 1 ) to owner::damage$ listAs "SM+2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "4" ),_
+			( "3", "5" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-4" ), ( "1, 2", "2-4" ), ( "1,2*", "2-4*" ), ( "1, 2*", "2-4*" ),_
+			( "2,3", "4,5" ),( "2, 3", "4,5" ), ( "2,3*", "4,5*" ), ( "2, 3*", "4,5*" ),_
+			( "1-3", "2-5" ), ( "1-3*", "2-5*" ),_
+			( "1-4", "2-7" ), ( "1-4*", "2-7*" ),_
+			( "1-5*", "2-9*" ),_
+			( "1-6*", "2-11*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+3, *12.25, shortname(SM+3), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*12.25 to owner::baseweight,_
+		=*3.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 3 ), ( "thr+1", 3 ),_
+			( "sw+2", 5 ), ( "thr+2", 5 ),_
+			( "sw+3", 8 ), ( "thr+3", 8 ),_
+			( "sw+4", 10 ), ( "thr+4", 10 ),_
+			( "sw+5", 13 ), ( "thr+5", 13 ),_
+			( "sw+6", 15 ), ( "thr+6", 15 ),_
+			( "sw+7", 18 ), ( "thr+7", 18 ),_
+			( "sw+8", 20 ), ( "thr+8", 20 ),_
+			( "sw+9", 23 ), ( "thr+9", 23 ),_
+			( "sw+10", 25 ), ( "thr+10", 25 ),_
+		else 2 ) to owner::damage$ listAs "SM+3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "5" ),_
+			( "3", "7" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-5" ), ( "1, 2", "2-5" ), ( "1,2*", "2-5*" ), ( "1, 2*", "2-5*" ),_
+			( "2,3", "5-7" ),( "2, 3", "5-7" ), ( "2,3*", "5-7*" ), ( "2, 3*", "5-7*" ),_
+			( "1-3", "2-7" ), ( "1-3*", "2-7*" ),_
+			( "1-4", "2-9" ), ( "1-4*", "2-9*" ),_
+			( "1-5*", "2-12*" ),_
+			( "1-6*", "2-14*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+4, *25, shortname(SM+4), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*25 to owner::baseweight,_
+		=*5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 4 ), ( "thr+1", 4 ),_
+			( "sw+2", 8 ), ( "thr+2", 8 ),_
+			( "sw+3", 12 ), ( "thr+3", 12 ),_
+			( "sw+4", 16 ), ( "thr+4", 16 ),_
+			( "sw+5", 20 ), ( "thr+5", 20 ),_
+			( "sw+6", 24 ), ( "thr+6", 24 ),_
+			( "sw+7", 28 ), ( "thr+7", 28 ),_
+			( "sw+8", 32 ), ( "thr+8", 32 ),_
+			( "sw+9", 36 ), ( "thr+9", 36 ),_
+			( "sw+10", 40 ), ( "thr+10", 40 ),_
+		else 3 ) to owner::damage$ listAs "SM+4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "3" ),_
+			( "2", "6" ),_
+			( "3", "9" ),_
+			( "C,1", "1-3" ), ( "C, 1", "1-3" ),_
+			( "1,2", "3-6" ), ( "1, 2", "3-6" ), ( "1,2*", "3-6*" ), ( "1, 2*", "3-6*" ),_
+			( "2,3", "6-9" ),( "2, 3", "6-9" ), ( "2,3*", "6-9*" ), ( "2, 3*", "6-9*" ),_
+			( "1-3", "3-9" ), ( "1-3*", "3-9*" ),_
+			( "1-4", "3-12" ), ( "1-4*", "3-12*" ),_
+			( "1-5*", "3-15*" ),_
+			( "1-6*", "3-17*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+5, *56.25, shortname(SM+5), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*56.54 to owner::baseweight,_
+		=*7.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 7 ), ( "thr+1", 7 ),_
+			( "sw+2", 13 ), ( "thr+2", 13 ),_
+			( "sw+3", 20 ), ( "thr+3", 20 ),_
+			( "sw+4", 26 ), ( "thr+4", 26 ),_
+			( "sw+5", 33 ), ( "thr+5", 33 ),_
+			( "sw+6", 39 ), ( "thr+6", 39 ),_
+			( "sw+7", 46 ), ( "thr+7", 46 ),_
+			( "sw+8", 52 ), ( "thr+8", 52 ),_
+			( "sw+9", 59 ), ( "thr+9", 59 ),_
+			( "sw+10", 65 ), ( "thr+10", 65 ),_
+		else 4 ) to owner::damage$ listAs "SM+5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "4" ),_
+			( "2", "8" ),_
+			( "3", "11" ),_
+			( "C,1", "2-4" ), ( "C, 1", "2-4" ),_
+			( "1,2", "4-8" ), ( "1, 2", "4-8" ), ( "1,2*", "4-8*" ), ( "1, 2*", "4-8*" ),_
+			( "2,3", "8-11" ),( "2, 3", "8-11" ), ( "2,3*", "8-11*" ), ( "2, 3*", "8-11*" ),_
+			( "1-3", "4-11" ), ( "1-3*", "4-11*" ),_
+			( "1-4", "4-15" ), ( "1-4*", "4-15*" ),_
+			( "1-5*", "4-19*" ),_
+			( "1-6*", "4-23*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+6, *100, shortname(SM+6), page(LT2:20), tier(1),_
+	group(Sling Quality),_
+	gives(_
+		=*100 to owner::baseweight,_
+		=*10 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 9 ), ( "thr+1", 9 ),_
+			( "sw+2", 18 ), ( "thr+2", 18 ),_
+			( "sw+3", 27 ), ( "thr+3", 27 ),_
+			( "sw+4", 36 ), ( "thr+4", 36 ),_
+			( "sw+5", 45 ), ( "thr+5", 45 ),_
+			( "sw+6", 54 ), ( "thr+6", 54 ),_
+			( "sw+7", 63 ), ( "thr+7", 63 ),_
+			( "sw+8", 72 ), ( "thr+8", 72 ),_
+			( "sw+9", 81 ), ( "thr+9", 81 ),_
+			( "sw+10", 90 ), ( "thr+10", 90 ),_
+		else 5 ) to owner::damage$ listAs "SM+6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "5" ),_
+			( "2", "9" ),_
+			( "3", "14" ),_
+			( "C,1", "2-5" ), ( "C, 1", "2-5" ),_
+			( "1,2", "5-9" ), ( "1, 2", "5-9" ), ( "1,2*", "5-9*" ), ( "1, 2*", "5-9*" ),_
+			( "2,3", "9-14" ),( "2, 3", "9-14" ), ( "2,3*", "9-14*" ), ( "2, 3*", "9-14*" ),_
+			( "1-3", "5-14" ), ( "1-3*", "5-14*" ),_
+			( "1-4", "5-18" ), ( "1-4*", "5-18*" ),_
+			( "1-5*", "5-23*" ),_
+			( "1-6*", "5-28*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+<Sword Class Quality>
+"Weapon: Armor Piercing", +3 CF, shortname(Armor Piercing), page(LT2:12), group(Sword Class Quiality),_
+	gives(_
+			=nobase to owner::damtype$,_
+			=$/textindexedvalue( $modetag(damtype), ("cut", "cr"), ("imp", "imp"), ("cr", "cr") ) to owner::damtype$ listAs "",_
+			=-@textindexedvalue( $modetag(damtype), ("imp", 1), ELSE 0 ) to owner::damage$ listAs "",_
+			=2 to owner::armordivisor_
+	)
+//  FIXME ^^^^ Armor divisor doesn't support targeting; needs to be this:
+// 	=@textindexedvalue( $modetag(damtype), ("imp", 2), ELSE 0 ) to owner::armordivisor$_
+
+<Crushing/Imp Class Quality>
+"Weapon: Armor Piercing", +9 CF, shortname(Armor Piercing), page(LT2:12), group(Crushing/Imp Class Quality),_
+	gives(_
+			=nobase to owner::damtype$,_
+			=$/textindexedvalue( $modetag(damtype), ("cut", "cr"), ("imp", "imp"), ("cr", "cr") ) to owner::damtype$ listAs "",_
+			=-@textindexedvalue( $modetag(damtype), ("imp", 1), ELSE 0 ) to owner::damage$ listAs "",_
+			=2 to owner::armordivisor_
+	)
+//  FIXME ^^^^ Armor divisor doesn't support targeting; needs to be this:
+// 	=@textindexedvalue( $modetag(damtype), ("imp", 2), ELSE 0 ) to owner::armordivisor$_
+
+<Melee Quality>
+Weapon: SM Adjusted Grip, +0.5 CF, page(LT2:20), shortname(SM Adjusted Grip), group(Melee Quality)
+Weapon: Adjusting for SM-6, *0.01, shortname(SM-6), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*0.01 to owner::baseweight,_
+		=*0.1 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ),_
+			( "sw+3", -3 ), ( "thr+3", -3 ),_
+			( "sw+4", -4 ), ( "thr+4", -4 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ),_
+			( "sw+8", -7 ), ( "thr+8", -7 ),_
+			( "sw+9", -8 ), ( "thr+9", -8 ),_
+			( "sw+10", -9 ), ( "thr+10", -9 ),_
+		else -1 ) to owner::damage$ listAs "SM-6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "C" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C*" ), ( "1, 2*", "C*" ),_
+			( "2,3", "C,1" ),( "2, 3", "C,1" ), ( "2,3*", "C,1*" ), ( "2, 3*", "C,1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1*" ),_
+			( "1-6*", "C,1*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-5, *0.04, shortname(SM-5), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*0.04 to owner::baseweight,_
+		=*0.2 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -2 ), ( "thr+2", -2 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ),_
+			( "sw+5", -4 ), ( "thr+5", -4 ),_
+			( "sw+6", -5 ), ( "thr+6", -5 ),_
+			( "sw+7", -6 ), ( "thr+7", -6 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ),_
+			( "sw+9", -7 ), ( "thr+9", -7 ),_
+			( "sw+10", -8 ), ( "thr+10", -8 ),_
+		else -1 ) to owner::damage$ listAs "SM-5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1" ), ( "1-4*", "C,1*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-4, *0.09, shortname(SM-4), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*0.09 to owner::baseweight,_
+		=*0.3 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -3 ), ( "thr+4", -3 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ),_
+			( "sw+7", -5 ), ( "thr+7", -5 ),_
+			( "sw+8", -6 ), ( "thr+8", -6 ),_
+			( "sw+9", -6 ), ( "thr+9", -6 ),_
+			( "sw+10", -7 ), ( "thr+10", -7 ),_
+		else -1 ) to owner::damage$ listAs "SM-4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "1" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1" ),( "2, 3", "1" ), ( "2,3*", "1*" ), ( "2, 3*", "1*" ),_
+			( "1-3", "C,1" ), ( "1-3*", "C,1*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-2*" ),_
+			( "1-6*", "C,1-2*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-3, *0.16, shortname(SM-3), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*0.16 to owner::baseweight,_
+		=*0.4 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", -1 ), ( "thr+1", -1 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -2 ), ( "thr+3", -2 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ),_
+			( "sw+5", -3 ), ( "thr+5", -3 ),_
+			( "sw+6", -4 ), ( "thr+6", -4 ),_
+			( "sw+7", -4 ), ( "thr+7", -4 ),_
+			( "sw+8", -5 ), ( "thr+8", -5 ),_
+			( "sw+9", -5 ), ( "thr+9", -5 ),_
+			( "sw+10", -6 ), ( "thr+10", -6 ),_
+		else -1 ) to owner::damage$ listAs "SM-3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "C" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C" ), ( "C, 1", "C" ),_
+			( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "C,1-2" ), ( "1-3*", "C,1-2*" ),_
+			( "1-4", "C,1-2" ), ( "1-4*", "C,1-2*" ),_
+			( "1-5*", "C,1-3*" ),_
+			( "1-6*", "C,1-3*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-2, *0.25, shortname(SM-2), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*0.25 to owner::baseweight,_
+		=*0.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ),_
+			( "sw+2", -1 ), ( "thr+2", -1 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ),_
+			( "sw+4", -2 ), ( "thr+4", -2 ),_
+			( "sw+5", -2 ), ( "thr+5", -2 ),_
+			( "sw+6", -3 ), ( "thr+6", -3 ),_
+			( "sw+7", -3 ), ( "thr+7", -3 ),_
+			( "sw+8", -4 ), ( "thr+8", -4 ),_
+			( "sw+9", -4 ), ( "thr+9", -4 ),_
+			( "sw+10", -5 ), ( "thr+10", -5 ),_
+		else 0 ) to owner::damage$ listAs "SM-2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "1" ),_
+			( "3", "2" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1" ), ( "1, 2", "1" ), ( "1,2*", "1*" ), ( "1, 2*", "1*" ),_
+			( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ),_
+			( "1-3", "1,2" ), ( "1-3*", "1,2*" ),_
+			( "1-4", "1,2" ), ( "1-4*", "1,2*" ),_
+			( "1-5*", "1-3*" ),_
+			( "1-6*", "1-4*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM-1, *0.64, shortname(SM-1), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*0.64 to owner::baseweight,_
+		=*0.8 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 0 ), ( "thr+1", 0 ),_
+			( "sw+2", 0 ), ( "thr+2", 0 ),_
+			( "sw+3", -1 ), ( "thr+3", -1 ),_
+			( "sw+4", -1 ), ( "thr+4", -1 ),_
+			( "sw+5", -1 ), ( "thr+5", -1 ),_
+			( "sw+6", -1 ), ( "thr+6", -1 ),_
+			( "sw+7", -1 ), ( "thr+7", -1 ),_
+			( "sw+8", -2 ), ( "thr+8", -2 ),_
+			( "sw+9", -2 ), ( "thr+9", -2 ),_
+			( "sw+10", -2 ), ( "thr+10", -2 ),_
+		else 0 ) to owner::damage$ listAs "SM-1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "C" ),_
+			( "1", "1" ),_
+			( "2", "2" ),_
+			( "3", "3" ),_
+			( "C,1", "C,1" ), ( "C, 1", "C,1" ),_
+			( "1,2", "1,2" ), ( "1, 2", "1,2" ), ( "1,2*", "1,2*" ), ( "1, 2*", "1,2*" ),_
+			( "2,3", "2,3" ),( "2, 3", "2,3" ), ( "2,3*", "2,3*" ), ( "2, 3*", "2,3*" ),_
+			( "1-3", "1-3" ), ( "1-3*", "1-3*" ),_
+			( "1-4", "1-4" ), ( "1-4*", "1-4*" ),_
+			( "1-5*", "1-5*" ),_
+			( "1-6*", "1-5*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+0, *1, shortname(SM+0), page(LT2:20), tier(1),_
+	group(Melee Quality)
+
+Weapon: Adjusting for SM+1, *2.25, shortname(SM+1), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*2.25 to owner::baseweight,_
+		=*1.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 1 ), ( "thr+1", 1 ),_
+			( "sw+2", 1 ), ( "thr+2", 1 ),_
+			( "sw+3", 2 ), ( "thr+3", 2 ),_
+			( "sw+4", 2 ), ( "thr+4", 2 ),_
+			( "sw+5", 3 ), ( "thr+5", 3 ),_
+			( "sw+6", 3 ), ( "thr+6", 3 ),_
+			( "sw+7", 4 ), ( "thr+7", 4 ),_
+			( "sw+8", 4 ), ( "thr+8", 4 ),_
+			( "sw+9", 5 ), ( "thr+9", 5 ),_
+			( "sw+10", 5 ), ( "thr+10", 5 ),_
+		else 1 ) to owner::damage$ listAs "SM+1 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "1" ),_
+			( "2", "3" ),_
+			( "3", "4" ),_
+			( "C,1", "1" ), ( "C, 1", "1" ),_
+			( "1,2", "1-3" ), ( "1, 2", "1-3" ), ( "1,2*", "1-3*" ), ( "1, 2*", "1-3*" ),_
+			( "2,3", "3,4" ),( "2, 3", "3,4" ), ( "2,3*", "3,4*" ), ( "2, 3*", "3,4*" ),_
+			( "1-3", "1-4" ), ( "1-3*", "1-4*" ),_
+			( "1-4", "1-5" ), ( "1-4*", "1-5*" ),_
+			( "1-5*", "1-7*" ),_
+			( "1-6*", "1-8*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+2, *6.25, shortname(SM+2), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*6.25 to owner::baseweight,_
+		=*2.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 2 ), ( "thr+1", 2 ),_
+			( "sw+2", 3 ), ( "thr+2", 3 ),_
+			( "sw+3", 5 ), ( "thr+3", 5 ),_
+			( "sw+4", 6 ), ( "thr+4", 6 ),_
+			( "sw+5", 8 ), ( "thr+5", 8 ),_
+			( "sw+6", 9 ), ( "thr+6", 9 ),_
+			( "sw+7", 11 ), ( "thr+7", 11 ),_
+			( "sw+8", 12 ), ( "thr+8", 12 ),_
+			( "sw+9", 14 ), ( "thr+9", 14 ),_
+			( "sw+10", 15 ), ( "thr+10", 15 ),_
+		else 1 ) to owner::damage$ listAs "SM+2 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "4" ),_
+			( "3", "5" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-4" ), ( "1, 2", "2-4" ), ( "1,2*", "2-4*" ), ( "1, 2*", "2-4*" ),_
+			( "2,3", "4,5" ),( "2, 3", "4,5" ), ( "2,3*", "4,5*" ), ( "2, 3*", "4,5*" ),_
+			( "1-3", "2-5" ), ( "1-3*", "2-5*" ),_
+			( "1-4", "2-7" ), ( "1-4*", "2-7*" ),_
+			( "1-5*", "2-9*" ),_
+			( "1-6*", "2-11*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+3, *12.25, shortname(SM+3), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*12.25 to owner::baseweight,_
+		=*3.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 3 ), ( "thr+1", 3 ),_
+			( "sw+2", 5 ), ( "thr+2", 5 ),_
+			( "sw+3", 8 ), ( "thr+3", 8 ),_
+			( "sw+4", 10 ), ( "thr+4", 10 ),_
+			( "sw+5", 13 ), ( "thr+5", 13 ),_
+			( "sw+6", 15 ), ( "thr+6", 15 ),_
+			( "sw+7", 18 ), ( "thr+7", 18 ),_
+			( "sw+8", 20 ), ( "thr+8", 20 ),_
+			( "sw+9", 23 ), ( "thr+9", 23 ),_
+			( "sw+10", 25 ), ( "thr+10", 25 ),_
+		else 2 ) to owner::damage$ listAs "SM+3 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "2" ),_
+			( "2", "5" ),_
+			( "3", "7" ),_
+			( "C,1", "1,2" ), ( "C, 1", "1,2" ),_
+			( "1,2", "2-5" ), ( "1, 2", "2-5" ), ( "1,2*", "2-5*" ), ( "1, 2*", "2-5*" ),_
+			( "2,3", "5-7" ),( "2, 3", "5-7" ), ( "2,3*", "5-7*" ), ( "2, 3*", "5-7*" ),_
+			( "1-3", "2-7" ), ( "1-3*", "2-7*" ),_
+			( "1-4", "2-9" ), ( "1-4*", "2-9*" ),_
+			( "1-5*", "2-12*" ),_
+			( "1-6*", "2-14*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+4, *25, shortname(SM+4), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*25 to owner::baseweight,_
+		=*5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 4 ), ( "thr+1", 4 ),_
+			( "sw+2", 8 ), ( "thr+2", 8 ),_
+			( "sw+3", 12 ), ( "thr+3", 12 ),_
+			( "sw+4", 16 ), ( "thr+4", 16 ),_
+			( "sw+5", 20 ), ( "thr+5", 20 ),_
+			( "sw+6", 24 ), ( "thr+6", 24 ),_
+			( "sw+7", 28 ), ( "thr+7", 28 ),_
+			( "sw+8", 32 ), ( "thr+8", 32 ),_
+			( "sw+9", 36 ), ( "thr+9", 36 ),_
+			( "sw+10", 40 ), ( "thr+10", 40 ),_
+		else 3 ) to owner::damage$ listAs "SM+4 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "1" ),_
+			( "1", "3" ),_
+			( "2", "6" ),_
+			( "3", "9" ),_
+			( "C,1", "1-3" ), ( "C, 1", "1-3" ),_
+			( "1,2", "3-6" ), ( "1, 2", "3-6" ), ( "1,2*", "3-6*" ), ( "1, 2*", "3-6*" ),_
+			( "2,3", "6-9" ),( "2, 3", "6-9" ), ( "2,3*", "6-9*" ), ( "2, 3*", "6-9*" ),_
+			( "1-3", "3-9" ), ( "1-3*", "3-9*" ),_
+			( "1-4", "3-12" ), ( "1-4*", "3-12*" ),_
+			( "1-5*", "3-15*" ),_
+			( "1-6*", "3-17*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+5, *56.25, shortname(SM+5), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*56.54 to owner::baseweight,_
+		=*7.5 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 7 ), ( "thr+1", 7 ),_
+			( "sw+2", 13 ), ( "thr+2", 13 ),_
+			( "sw+3", 20 ), ( "thr+3", 20 ),_
+			( "sw+4", 26 ), ( "thr+4", 26 ),_
+			( "sw+5", 33 ), ( "thr+5", 33 ),_
+			( "sw+6", 39 ), ( "thr+6", 39 ),_
+			( "sw+7", 46 ), ( "thr+7", 46 ),_
+			( "sw+8", 52 ), ( "thr+8", 52 ),_
+			( "sw+9", 59 ), ( "thr+9", 59 ),_
+			( "sw+10", 65 ), ( "thr+10", 65 ),_
+		else 4 ) to owner::damage$ listAs "SM+5 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "4" ),_
+			( "2", "8" ),_
+			( "3", "11" ),_
+			( "C,1", "2-4" ), ( "C, 1", "2-4" ),_
+			( "1,2", "4-8" ), ( "1, 2", "4-8" ), ( "1,2*", "4-8*" ), ( "1, 2*", "4-8*" ),_
+			( "2,3", "8-11" ),( "2, 3", "8-11" ), ( "2,3*", "8-11*" ), ( "2, 3*", "8-11*" ),_
+			( "1-3", "4-11" ), ( "1-3*", "4-11*" ),_
+			( "1-4", "4-15" ), ( "1-4*", "4-15*" ),_
+			( "1-5*", "4-19*" ),_
+			( "1-6*", "4-23*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)
+
+Weapon: Adjusting for SM+6, *100, shortname(SM+6), page(LT2:20), tier(1),_
+	group(Melee Quality),_
+	gives(_
+		=*100 to owner::baseweight,_
+		=*10 to owner::minst,_
+		=nobase to owner::reach$,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+1", 9 ), ( "thr+1", 9 ),_
+			( "sw+2", 18 ), ( "thr+2", 18 ),_
+			( "sw+3", 27 ), ( "thr+3", 27 ),_
+			( "sw+4", 36 ), ( "thr+4", 36 ),_
+			( "sw+5", 45 ), ( "thr+5", 45 ),_
+			( "sw+6", 54 ), ( "thr+6", 54 ),_
+			( "sw+7", 63 ), ( "thr+7", 63 ),_
+			( "sw+8", 72 ), ( "thr+8", 72 ),_
+			( "sw+9", 81 ), ( "thr+9", 81 ),_
+			( "sw+10", 90 ), ( "thr+10", 90 ),_
+		else 5 ) to owner::damage$ listAs "SM+6 Weapon damage bonus",_
+		=$/textindexedvalue( {$modetag(reach)},_
+			( "C", "2" ),_
+			( "1", "5" ),_
+			( "2", "9" ),_
+			( "3", "14" ),_
+			( "C,1", "2-5" ), ( "C, 1", "2-5" ),_
+			( "1,2", "5-9" ), ( "1, 2", "5-9" ), ( "1,2*", "5-9*" ), ( "1, 2*", "5-9*" ),_
+			( "2,3", "9-14" ),( "2, 3", "9-14" ), ( "2,3*", "9-14*" ), ( "2, 3*", "9-14*" ),_
+			( "1-3", "5-14" ), ( "1-3*", "5-14*" ),_
+			( "1-4", "5-18" ), ( "1-4*", "5-18*" ),_
+			( "1-5*", "5-23*" ),_
+			( "1-6*", "5-28*" ),_
+			( "", "" ),_
+		else "Error" ) to owner::reach$_
+	)

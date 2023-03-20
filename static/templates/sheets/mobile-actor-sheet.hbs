@@ -1,0 +1,384 @@
+<form class='{{cssClass}}' autocomplete='off'>
+  {{log 'gurps-mobile' '   (handlebars) ' this level='error'}}
+  {{log 'gurps-mobile' '        (actor) ' actor level='error'}}
+  {{log 'gurps-mobile' '    (maneuvers) ' maneuvers level='error'}}
+  {{log 'gurps-mobile' '     (maneuver) ' actor.flags.gurps.mobile.lastManeuver data.conditions level='error'}}
+  {{log 'gurps-mobile' '(last-maneuver) ' data.conditions.maneuver level='error'}}
+  {{log 'gurps-mobile' '      (feature) ' tabs level='error'}}
+  <div class="header">
+    <div class="wrapper portrait">
+      <div class="portrait">
+        <div class='img-display'>
+          <img class='profile-img' src='{{actor.img}}' title='{{actor.name}}' />
+        </div>
+      </div>
+      <div class="portrait-overlay">
+        <div class="icons">
+        </div>
+        <div class="name">{{actor.name}}</div>
+      </div>
+    </div>
+    <div class="wrapper left">
+      <div class="header-bar">
+          <i class="icon mdi mdi-cog settings" aria-hidden="true"></i>
+          <i class="icon mdi mdi-newspaper-variant-outline fullgcs" aria-hidden="true"></i>
+          <div class="spacer"></div>
+          <i class="icon mdi mdi-close-thick close" aria-hidden="true"></i>
+      </div>
+      <div class="pools">
+        <div class="resource-pools">
+          <div class="resource-pool hp">
+            <div class="current-value" style="width: {{percentage data.HP.value data.HP.max}}%">{{data.HP.value}}</div>
+            <div class="full">{{data.HP.max}}</div>
+          </div>
+          <div class="resource-pool fp">
+            <div class="current-value" style="width: {{percentage data.FP.value data.FP.max}}%">{{data.FP.value}}</div>
+            <div class="full">{{data.FP.max}}</div>
+          </div>
+        </div>
+        <div class="extra">
+          {{#> gurps/interactible label=data.traits.sizemod path="data.traits.sizemod"}}<b>SIZE</b>{{/gurps/interactible}}
+          {{#> gurps/interactible label="HIT"}}{{gurpsIcon 'hit_location'}}{{/gurps/interactible}}
+        </div>
+      </div>
+      <div class="primary-attributes">
+        <div class="attribute">{{#> gurps/interactible label="ST" path="data.attributes.ST.value"}}{{data.attributes.ST.value}}{{/gurps/interactible}}</div>
+        <div class="attribute">{{#> gurps/interactible label="DX" path="data.attributes.DX.value"}}{{data.attributes.DX.value}}{{/gurps/interactible}}</div>
+        <div class="attribute">{{#> gurps/interactible label="IQ" path="data.attributes.IQ.value"}}{{data.attributes.IQ.value}}{{/gurps/interactible}}</div>
+        <div class="attribute">{{#> gurps/interactible label="HT" path="data.attributes.HT.value"}}{{data.attributes.HT.value}}{{/gurps/interactible}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="content combat dark {{actor.flags.gurps.mobile.combatClass}}">
+    <div class="icon status-tray">
+      <div class="chevron up">
+        <i class="icon mdi mdi-chevron-up"></i>
+      </div>
+
+      <div class="divider"></div>
+
+      {{#each status}}
+          {{#if this.spacer}}
+            <div class="spacer"><svg viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg></div>
+          {{else}}
+          <div class="header">
+            <div class="label">{{this.header}}</div>
+            <div class="children">
+              {{#each this.children}}
+                <div class="status {{equals true this.main 'main'}} {{equals true this.tray 'tray'}} {{equals undefined this.value 'valueless'}}">
+                  <i class="icon-wrapper">{{gurpsIcon icon}}</i>
+                  <div class="label">{{this.label}}</div>
+                  <div class="value">{{{this.value}}}</div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/if}}
+      {{/each}}
+
+
+      {{!-- <div class="status main">
+        <i class="icon-wrapper">{{gurpsIcon data.conditions.maneuver}}</i>
+        <div class="label">{{gurpsLabel data.conditions.maneuver}}</div>
+      </div>
+      <div class="spacer"><svg viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg></div>
+      {{#each status}}
+      <div class="status">
+        <i class="icon-wrapper">{{gurpsIcon icon}}</i>
+        <div class="label">{{label}}</div>
+      </div>
+      {{/each}} --}}
+      <div class="divider"></div>
+      <div class="chevron down">
+        <i class="icon mdi mdi-chevron-down"></i>
+      </div>
+    </div>
+    <div class="maneuvers hold-scroll-wrapper">
+      <div class="wrapper" data-path="data.conditions.maneuver">
+        {{#each maneuvers}}
+          <div class="maneuver-level {{isTrue expanded 'expanded' ''}}" data-level="{{level}}">
+            {{#each children}}
+              {{> gurps/maneuver/group this}}
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="floating-wrapper hidden maneuver-select">
+      <div class="floating maneuver solid round">
+        <div class="icon-wrapper">{{gurpsIcon 'maneuver'}}</div>          
+      </div>
+    </div>
+
+    <div class="tabs" data-value="{{combatTab}}">
+      <div class="tab {{equals 'attack' combatTab 'selected'}} {{equals 'attack' tags 'tagged'}}" data-value="attack">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'attack'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'defense' combatTab 'selected'}} {{equals 'defense' tags 'tagged'}}" data-value="defense">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'defense'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'advantage' combatTab 'selected'}} {{equals 'advantage' tags 'tagged'}}" data-value="advantage">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'advantage'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'spell' combatTab 'selected'}} {{equals 'spell' tags 'tagged'}}" data-value="spell">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'spell'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'equipment' combatTab 'selected'}} {{equals 'equipment' tags 'tagged'}}" data-value="equipment">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'equipment'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+    </div>
+    <div class="panels">
+      <div class="panel {{equals 'attack' combatTab 'selected'}}" data-value="attack">
+        {{#each tabs.attacks}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>
+      <div class="panel {{equals 'defense' combatTab 'selected'}}" data-value="defense">
+        <div class="feature interactible">
+          <div class="value">10<i>*</i></div>
+          <div class="label">Air Move</div>
+          <div class="extras">
+            <div>Flight</div>
+            <div>X-Heavy Encumbrance</div>
+          </div>
+          <div class="background-icon">
+            <svg  fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="feature interactible">
+          <div class="value">10<i>*</i></div>
+          <div class="label">Air Move</div>
+          <div class="extras">
+            <div>Flight</div>
+            <div>X-Heavy Encumbrance</div>
+          </div>
+          <div class="background-icon">
+            <svg  fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>      
+      <div class="panel {{equals 'advantage' combatTab 'selected'}}" data-value="advantage">
+        <div class="feature interactible">
+          <div class="value">10<i>*</i></div>
+          <div class="label">Air Move</div>
+          <div class="extras">
+            <div>Flight</div>
+            <div>X-Heavy Encumbrance</div>
+          </div>
+          <div class="background-icon">
+            <svg  fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="feature interactible">
+          <div class="value">10<i>*</i></div>
+          <div class="label">Air Move</div>
+          <div class="extras">
+            <div>Flight</div>
+            <div>X-Heavy Encumbrance</div>
+          </div>
+          <div class="background-icon">
+            <svg  fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="feature interactible">
+          <div class="value">10<i>*</i></div>
+          <div class="label">Air Move</div>
+          <div class="extras">
+            <div>Flight</div>
+            <div>X-Heavy Encumbrance</div>
+          </div>
+          <div class="background-icon">
+            <svg  fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="panel {{equals 'spell' combatTab 'selected'}}" data-value="spell">
+        <div class="feature interactible">
+          <div class="value">10<i>*</i></div>
+          <div class="label">Air Move</div>
+          <div class="extras">
+            <div>Flight</div>
+            <div>X-Heavy Encumbrance</div>
+          </div>
+          <div class="background-icon">
+            <svg  fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>      
+      <div class="panel {{equals 'equipment' combatTab 'selected'}}" data-value="equipment">
+      </div>
+    </div>
+  </div>
+  <div class="content ooc light {{actor.flags.gurps.mobile.oocClass}}">
+    <div class="label">Out-of-Combat Overview</div>
+    <div class="holder"></div>
+    
+    <div class="tabs" data-value="{{oocTab}}">
+      <div class="tab {{equals 'attribute' oocTab 'selected'}}" data-value="attribute">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'attribute'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'advantage' oocTab 'selected'}}" data-value="advantage">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'advantage'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'skill' oocTab 'selected'}}" data-value="skill">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'skill'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'spell' oocTab 'selected'}}" data-value="spell">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'spell'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+      <div class="tab {{equals 'equipment' oocTab 'selected'}}" data-value="equipment">
+        <div class="wrapper-icon">
+          <i class="icon">{{gurpsIcon 'equipment'}}</i>
+        </div>
+        <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
+      </div>
+    </div>
+    <div class="panels">
+      <div class="panel {{equals 'attribute' oocTab 'selected'}}" data-value="attribute">
+        {{#each tabs.attributes}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>
+      <div class="panel {{equals 'advantage' oocTab 'selected'}}" data-value="advantage">
+        {{#each tabs.advantages}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>      
+      <div class="panel {{equals 'skill' oocTab 'selected'}}" data-value="skill">
+        <div class="header flex-end">
+          <div class="button">
+            <div class="wrapper-icon">
+              <i class="icon">{{gurpsIcon 'skill'}}</i>
+            </div>
+            <div class="label">All Skills</A></div>
+          </div>
+        </div>
+        {{#each tabs.skills}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>
+      <div class="panel {{equals 'spell' oocTab 'selected'}}" data-value="spell">
+        {{#each tabs.spells}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>      
+      <div class="panel {{equals 'equipment' oocTab 'selected'}}" data-value="equipment">
+        <div class="header flex-end">
+          <div class="button">
+            <div class="wrapper-icon">
+              <i class="icon">{{gurpsIcon 'coin'}}</i>
+            </div>
+            <div class="label">Coin Pouch</div>
+          </div>
+        </div>
+        {{#each tabs.equipment}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <!--dynamic-->
+  <div class="modal portrait no-margin hidden">
+    <div class="backdrop"></div>
+
+    <div class="wrapper">
+      <div class="header">
+        <i class="icon mdi mdi-arrow-left close"></i>
+        {{!-- <div class="spacer"></div> --}}
+        <div class="name">{{actor.name}}</div>
+      </div>
+
+      <img src='{{actor.img}}' title='{{actor.name}}'>
+    </div>
+  </div>
+  <div class="modal pin hidden">
+    <div class="backdrop"></div>
+
+    <div class="wrapper">
+      <svg class="chevron" height="9" width="9">
+        <polygon points="0,0 9,0 4.5,9" class="triangle" />
+      </svg>
+
+      <div class="children">
+        {{#if pinned.length}}
+          {{#each pinned}}
+            {{> gurps/feature_list this}}
+          {{/each}}
+        {{else}}
+          {{!-- <div class="empty">There is no pinned features</div> --}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="modal skills hidden">
+    <div class="backdrop"></div>
+
+    <div class="wrapper">
+      <div class="header">
+        <div class="button disabled">
+          <i class="icon mdi mdi-filter-outline "></i>
+        </div>
+        <div class="spacer"></div>
+        <div class="button close">
+          <i class="icon mdi mdi-close-thick"></i>
+        </div>
+      </div>
+
+      <div class="auto-complete" id="skill-auto-complete">
+        <input class="input" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
+      </div>
+    </div>
+  </div>
+  <!-- floating -->
+  <div class="floating-wrapper left">
+    <div class="floating pin solid {{isTrue pinned.length 'active'}}">
+      <div class="icon-wrapper"><i class="icon mdi mdi-pin"></i></div>          
+    </div>
+  </div>
+  <div class="floating-wrapper right">
+    <div class="floating bucket">
+      <div class="label modifier" data-value="+99">+99</div>
+      <div class="icon-wrapper"><i class="icon mdi mdi-pail"></i></div>    
+    </div>
+  </div>
+  
+</form>

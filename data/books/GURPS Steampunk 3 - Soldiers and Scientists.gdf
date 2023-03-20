@@ -1,0 +1,100 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file, 
+* or the first line AFTER the 'Encoding=UTF-8' line, when that is included.
+
+Description=Gurps Steampunk 3: Soldiers and Scientists
+Program=5.0.172.0
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* Gareth Parker (https://github.com/Garethp)
+* GURPS® Character Assistant Data File
+* Created: 13 March 2022
+*
+************************************************************************************************************************
+
+**************************************
+*
+* To Do
+* -----
+* [/] Advantages
+* [x] Disadvantages
+* [x] Quirks
+* [x] Skills
+* [ ] Templates
+*
+**************************************
+
+[ADVANTAGES]
+Aesthete, 5/10, gives(+1 To GR:Aesthete), page(9), upto(4), cat(Mundane, Mental, Talents), mods(_Talents),_
+	conditional(+1 to ST:Reaction), description(Connoisseur, Current Affairs (High Culture and Popular Culture), Public Speaking, Savoir-Faire (High Society), and Writing.)
+
+[DISADVANTAGES]
+Code of Honor (Consulting Savant),cat(Mundane, Mental, Mundane Mental, Mundane, Mental),cost(-5),page(12),description(This is a Professional code for a philosopher-for-hire in a world of runaway steampunk science. You endeavor to provide good, complete consultancy work appropriate to the pay you receive, including at least mentioning ideas and theories with which you disagree (though you can make it very clear that you do disagree). Likewise, although you may make your opinion of your rivals clear, you acknowledge their professional qualifications. Conversely, you do not associate with unqualified individuals as professional equals.)
+Code of Honor (Demimondaine),cat(Mundane, Mental, Mundane Mental, Mundane, Mental),cost(-5),page(12),description(This is another Professional code, for the higher class of courtesan. It’s not universal in that profession – the life is too precarious, and a demimondaine is by definition a woman who lacks “honor” as Steam Age society likes to define it – but there are certain rules that help reassure gentlemen, and you take them seriously. You are broadly truthful to your gentlemen, and don’t promise an exclusive alliance unless you mean it (which means that the man in question must be able to support you). You don’t steal from them or embarrass them in public. You don’t gossip about them by name (or in terms that make them easy to identify) except to close female friends who you believe share the code. You repay debts and favors. You treat fellow courtesans with respect, warning other women off men who you know are dangerous or untrustworthy, and not poaching clients.)
+Code of Honor (Mastermind),cat(Mundane, Mental, Mundane Mental, Mundane, Mental),cost(-5),page(12),description(This is a code for a cinematic master criminal (or “radical independent thinker”) who refuses to be bound by laws of society, but who has standards. You present yourself as a polite gentleman, even to people you’re trying to kill – and if you’re refraining from killing them for now, you preserve all the courtesies. You keep your word to equals, which mostly means competent fellow masterminds and national governments. (That’s only good business, after all.) If you are insulted, you must inflict an instructive revenge – which doesn’t mean fighting fair; it means making your point absolutely clear, possibly with artillery. Rebellious or insolent minions cannot be tolerated, though family doesn’t count as minions.)
+Code of Honor (Plunger),cat(Mundane, Mental, Mundane Mental, Mundane, Mental),cost(-5),page(12)
+Code of Honor (Respectable Working Class),cat(Mundane, Mental, Mundane Mental, Mundane, Mental),cost(-5),page(12)
+Code of Honor (Sportsman),cat(Mundane, Mental, Mundane Mental, Mundane, Mental),cost(-5),page(12)
+Compulsive Melodrama, -5, displaycost(-5*), page(12), cat(Mundane, Mental), mods(Self-Control),initmods(You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+Compulsive Excersize, -5, displaycost(-5*), page(12), cat(Mundane, Mental), mods(Self-Control),initmods(You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+Compulsive Publicity-Seeking, -5, displaycost(-5*), page(12), cat(Mundane, Mental), mods(Self-Control),initmods(You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+
+[PERKS]
+Captain's Command,cat(_General),cost(1),page(10),description(You have a gift for commanding vehicles. While you are operating the main controls or in charge on the bridge of a large vehicle, you get +1 to all Intimidation, Leadership, and Public Speaking rolls which you make while addressing its crew. This perk may be taken up to four times, giving +1 per level to those skills in that situation each time. You also have little trouble recruiting crews for any large vehicle you command. If you take a crew as Allies, the GM should never query where you found them; they just showed up and liked what they saw of you. If you simply employ them as hirelings, you get +1 per level of the perk to your roll for finding them (p. B517), and +1 per level to the loyalty roll (p. B518).)
+Patience of Job,cat(_General),cost(1),page(10),description(You can withstand physical nuisances with ease; for instance, you could spend hours in a mosquito-infested swamp without scratching or swatting. You may ignore up to -2 in penalties for such distractions on long tasks (at least an hour); e.g., on Stealth rolls when crawling through 100 yards of nettles and biting ants.)
+
+[QUIRKS]
+Affected by Magnetism,cat(General,Physical),cost(-1),page(14),description(This quirk is limited to automatons, mechanical men, and humans with a lot of steampunk prosthetics – but in some games, it is mandatory for them. Whereas ultra-tech machinery may be built of advanced polymers, ceramics, and non-ferrous alloys, steampunk tech favors iron and steel. So, unlike beings composed of meat, magnets affect you (big ones can pick you up, small ones stick to you), and electromagnetic detectors and senses spot you easily, if they exist. This is only a specific problem (that is, this quirk is only available) in settings where electrical and electro-magnetic effects and technologies are widespread. It’s more than a 0-point feature (unlike most “Affected by” traits) because magnetism has widespread technological applications in those settings.)
+Anarchist Believer,cat(General),cost(-1),page(14),description(You have at least a theoretical belief in one of the many varieties of anarchism – the radical idea that power structures such as governments and organized religion serve to oppress humanity. Unfortunately for you, some anarchists fight against that oppression by throwing bombs or assassinating the powerful, but they have Fanaticism or an Obsession; you may sympathize with them or argue that they’re going too far, but you aren’t impelled to follow their example. However, you may have other related disadvantages, such as Odious Personal Habit (Political Ranting) or Intolerance (The well-off). Your beliefs can give you -1 or worse to reactions from a lot of other people, especially those in power. Perhaps worse, you get similar penalties from some other political idealists, including “statist” socialists who want to oppose oppression by building power structures of their own. If you only have this as a quirk, you can avoid expressing your beliefs in that sort of company, and so dodge problems. Your idealism can also give anyone who is fluent in anarchist jargon +1 or better on rolls to manipulate you, or give you -1 on rolls to resist such manipulation or to control yourself when the cause is at stake. You do get +1 to reactions from people who agree with you and who know of your beliefs.)
+Aristocratic Drawl,cat(General),cost(-1),page(14),description(You not only have an upper-class accent (in itself simply a marker for Status), but it’s notably languid. You find it hard to say anything briskly, though you can bark things out when you recognize a real emergency; the GM can always rule that normal conversations with you take up to twice as long as normal. Radical socialists and anarchists react to you at an extra -2 over any other hostile responses to high Status they may evince, because you embody everything they find annoying about the upper classes. Brisk or business-like folk (including a lot of engineers and businessmen) may have their view of you slip down a level on the reaction table after dealing with you for a few minutes, as their exasperation grows.)
+Assertively Amoral,cat(General),cost(-1),page(14),description(You openly eschew religious or traditional values in favor of a personal moral code, or no moral code at all. This earns -1 to reactions from individuals with quirks or disadvantages favoring faith or tradition. It commonly accompanies Callous or Selfish, but not always; you may be serious about a highly unconventional morality. As a quirk, this is mostly a minor conversational affectation, often found in witty forms among Oscar Wilde and George Bernard Shaw protagonists. Bragging about your amorality enough to annoy everybody is an Odious Personal Habit. Simply behaving in an amoral way is some variety of villainous disadvantage.)
+Delusional Competence,cat(General),cost(-1),page(14)
+Epitome,cat(General),cost(-1),page(15)
+Gothic Thinking,cat(General),cost(-1),page(15)
+Inappropriate Manner (Aristocratic),cat(General),cost(-1),page(15),taboo(QU:Inappropriate Manner (Oily),QU:Inappropriate Manner (Pushy),QU:Inappropriate Manner (Salacious),QU:Inappropriate Manner (Scummy),QU:Inappropriate Manner (Wishy-Washy))
+Inappropriate Manner (Oily),cat(General),cost(-1),page(15),taboo(QU:Inappropriate Manner (Aristocratic),QU:Inappropriate Manner (Pushy),QU:Inappropriate Manner (Salacious),QU:Inappropriate Manner (Scummy),QU:Inappropriate Manner (Wishy-Washy))
+Inappropriate Manner (Pushy),cat(General),cost(-1),page(15),taboo(QU:Inappropriate Manner (Aristocratic),QU:Inappropriate Manner (Oily),QU:Inappropriate Manner (Salacious),QU:Inappropriate Manner (Scummy),QU:Inappropriate Manner (Wishy-Washy))
+Inappropriate Manner (Salacious),cat(General),cost(-1),page(15),taboo(QU:Inappropriate Manner (Aristocratic),QU:Inappropriate Manner (Oily),QU:Inappropriate Manner (Pushy),QU:Inappropriate Manner (Scummy),QU:Inappropriate Manner (Wishy-Washy))
+Inappropriate Manner (Scummy),cat(General),cost(-1),page(15),taboo(QU:Inappropriate Manner (Aristocratic),QU:Inappropriate Manner (Oily),QU:Inappropriate Manner (Pushy),QU:Inappropriate Manner (Salacious),QU:Inappropriate Manner (Wishy-Washy))
+Inappropriate Manner (Wishy-Washy),cat(General),cost(-1),page(15),taboo(QU:Inappropriate Manner (Aristocratic),QU:Inappropriate Manner (Oily),QU:Inappropriate Manner (Pushy),QU:Inappropriate Manner (Salacious),QU:Inappropriate Manner (Scummy))
+Luddite,cat(General),cost(-1),page(15)
+Proud,cat(General),cost(-1),page(16)
+Quotes Gilbert and Sullivan,cat(General),cost(-1),page(16)
+
+[SKILLS]
+Artist (Engraving), type(IQ/H), default(IQ - 6, SK:Artist - 6), page(16), cat(_General, Arts/Entertainment, Craft),description(The art of creating small, fine designs on hard surfaces using scribing tools or chemical methods, and sometimes printing to paper from engraved surfaces.)
+Crewman (Aircraftman), type(IQ/E),tl(0-12), default(IQ - 4, SK:Crewman - 4), page(16), cat(_General),description(The skill of acting as a crewman on gigantic heavier-than-air flying machines, including tending to complex fail-safe power and propulsion systems while they are running.)
+Crewman (Landshipman), type(IQ/E),tl(0-12), default(IQ - 4, SK:Crewman - 4), page(16), cat(_General),description(The skill of managing complex mechanical systems on huge land vehicles, including maintaining intricate power and braking systems while on the move.)
+Driving (Mecha),type(DX/A),tl(0-12),cat(_General, Vehicle, _General, Vehicle),default(DX - 5, IQ - 5, SK:Driving - 4),page(B188)
+Engineer (Mechanical Computers),type(IQ/H),tl(0-12),cat(_General, Design/Invention, _General, Design/Invention),default("SK:Mechanic (Mechanical Computers)" - 6),page(B190),description(: The skill of designing complex mechanical devices with information-processing capability)
+Expert Skill (Scientific Theorizing), IQ/H, tl(0-12), page(16), cat(_General, Knowledge),description(This is a skill for popular science writers, dedicated readers of scientific journals, and government scientific advisors. You have a broad knowledge of the jargon and common themes of research in the physical sciences, but no significant laboratory experience from this skill; you can follow scientists’ conversations, but not join in (except with intelligent-amateur questions). You can roll against this skill (with no bonus) to answer routine questions of scientific fact (or current belief) that someone with an actual relevant scientific skill would get +3 or more to answer)
+Hidden Lore (Fringe Science), IQ/A, page(17), cat(_General, Knowledge),description(You know about unorthodox theories and outlying data points in cryptozoology, parapsychology, ufology, and similar fields, which the scientific community rejects. You recognize the names of researchers and can discuss their careers and theories, though you can’t judge how valid their work is – that calls for a Weird Science roll. You also know about proven findings being kept secret for the good of humanity – the really hidden part of all this! Where Current Affairs (Science & Technology) provides knowledge of discoveries that have just gained recognition, Hidden Lore (Fringe Science) is about discoveries that haven’t.)
+Hobby Skill (Feats of Strength),type(DX/E),cat(_General, Knowledge, _General, Knowledge),default(DX - 4),page(17)
+Hobby Skill (Feats of Science),type(IQ/E),cat(_General, Knowledge, _General, Knowledge),default(IQ - 4),page(17)
+Mechanic (Mechanical Computers),type(IQ/A),cat(_General, Repair/Maintenance, _General, Repair/Maintenance),tl(0-12),page(17),default(IQ - 5, "SK:Engineer (Mechanical Computers)" - 4, SK:Machinist - 5, SK:Mechanic - 4)
+Piloting (Ornithopter), DX/A, tl(0-12), default(IQ - 6, "SK:Piloting (Autogyro)" - 5, "SK:Piloting (Glider)" - 5, "SK:Piloting (Helicopter)" - 5, "SK:Piloting (Light Airplane)" - 5, "SK:Piloting (Low-G Wings)" - 5, "SK:Piloting (Ultralight)" - 5, "SK:Piloting (Vertol)" - 5, SK:Piloting - 4), page(17), cat(_General, Vehicle),description(Any vehicle that flies by flapping its wings)
+Shiphandling (Aeronerrf), IQ/H, tl(0-12), default(IQ - 6, SK:Airshipman - 5, "SK:Piloting (Heavy Airplane)" - 5), needs(SK:Airshipman, SK:Leadership, "SK:Navigation (Air)"), page(17), cat(_General, Vehicle)
+Shiphandling (Landship), IQ/H, tl(0-12), default(IQ - 6, SK:Landshipman - 5), needs(SK:Leadership, "SK:Navigation (Land)"), page(17), cat(_General, Vehicle)
+
+[GROUPS]
+<Aesthete>
+SK:Connoisseur
+SK:Connoisseur (Dance)
+SK:Connoisseur (Literature)
+SK:Connoisseur (Music)
+SK:Connoisseur (Visual Arts)
+SK:Connoisseur (Wine)
+SK:Current Affairs (High Culture)
+SK:Current Affairs (Popular Culture)
+SK:Public Speaking
+SK:Public Speaking (Debate)
+SK:Public Speaking (Oratory)
+SK:Public Speaking (Punning)
+SK:Public Speaking (Rhetoric)
+SK:Public Speaking (Storytelling)
+SK:Savoir-Faire (High Society)
+SK:Writing

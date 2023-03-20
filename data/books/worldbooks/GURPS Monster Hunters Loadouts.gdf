@@ -1,0 +1,72 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+				This data file contains information taken from the GURPS Monster Hunters Loadouts sourcebook, which is Copyright  © 2010 _
+				by Steve Jackson Games Incorporated. All right reserved.
+WorldBook=Monster Hunters
+Requires=GURPS Basic Set 4th Ed.--Characters.gdf
+Incomplete=Yes
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Monster Hunters Loadouts.gdf
+//  Created:  January 3, 2010
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Monster Hunters Loadouts sourcebook, which is
+//  Copyright  © 2010 by Steve Jackson Games Incorporated. All right reserved.
+// 
+//  Information in this file includes:
+// 	Advantages, Disadvantagess, Quirks, Including Bonuses and Penalties.
+// 	Skills, Including Bonuses, Classes, Needs and Prereqs.
+// 	Equipment
+// 	Modifiers
+// 
+//  STILL NEEDED: Character and racial templates
+// 
+//  Note that this file does not remove any existing traits, as Monster Hunters allows
+//  "non-approved" traits to be taken, with GM permission.
+// 
+*******************************************************************************************************************
+// 
+//  Jason "PK" Levine - Creation and major work (All traits, equipment, and modifiers)
+//  Eric B. Smith	- Templates
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyrightb © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Monster Hunters - Semiautomatic Pistols>
+"Magnum BFR, .45-70 Springfield", cat(Monster Hunters), ammo(0.43 lb.), page(MHLH10), basecost(900), baseweight(4.6), techlvl(8), mods(Guns, Equipment), lc(3), description(TL:8 LC:3 Ammo:0.43 lb. Damage:4d+2 pi+ Acc:3 Range:280/3000 RoF:1 Shots:5(2i) ST:12 Bulk:-3 Rcl:4 Skill:Guns (Pistol) Notes:[1], [1] No lanyard ring (p. B289 and High-Tech, p. 154).), damage(4d+2), damtype(pi+), minst(12), rangehalfdam(280), rangemax(3000), acc(3), rof(1), shots(5(2i)), rcl(4), bulk(-3), skillused(Guns (Pistol), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!)
+"GI Model 2, .50 GI", cat(Monster Hunters), ammo(0.6 lb.), page(MHLH10), basecost(2800), baseweight(3.2), techlvl(8), mods(Guns, Equipment), lc(3), description(TL:8 LC:3 Ammo:0.6 lb. Damage:2d+2 pi+ Acc:3 Range:150/1600 RoF:3 Shots:7+1(3) ST:10 Bulk:-2 Rcl:3 Skill:Guns (Pistol) Notes:[1,2], [1] No lanyard ring (p. B289 and High-Tech, p. 154), [2] Very Reliable: Won't malfunction unless lack of maintenance lowers Malf. (p. B407).), damage(2d+2), damtype(pi+), minst(10), rangehalfdam(1500), rangemax(1600), acc(3), rof(3), shots(7+1(3)), rcl(3), bulk(-2), skillused(Guns (Pistol), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!)
+
+<Monster Hunters - Shotguns>
+"Crescent Faultless, 12G 2.75''", cat(Monster Hunters), ammo(0.2 lb.), page(MHLH10), basecost(150), baseweight(8), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.2 lb. Damage:1d+1 pi Acc:3 Range:40/800 RoF:2x9 Shots:2(2i) ST:10† Bulk:-6 Rcl:1/5 Skill:Guns (Shotgun) Notes:[1], [1] First Rcl figure is for shot; second is for slugs.), damage(1d+1), damtype(pi), minst(10†), rangehalfdam(40), rangemax(800), acc(3), rof(2x9), shots(2(2i)), rcl(1/5), bulk(-6), skillused(Guns (Shotgun), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!)
+
+<Monster Hunters - Rifles>
+"A-Square Hannibal, .577 Tyrannosaur", cat(Monster Hunters), ammo(0.5 lb.), page(MHLH10), basecost(4175), baseweight(14.1), techlvl(8), mods(Guns, Equipment), lc(3), description(TL:8 LC:3 Ammo:0.5 lb. Damage:5dx2 pi+ Acc:4 Range:700/3000 RoF:1 Shots:3+1(2i) ST:13† Bulk:-5 Rcl:8 Skill:Guns (Rifle)), damage(5dx2), damtype(pi+), minst(13†), rangehalfdam(700), rangemax(3000), acc(4), rof(1), shots(3+1(2i)), rcl(8), bulk(-5), skillused(Guns (Rifle), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!)
+"Alexander .50 Beowulf Entry, .50 Beowulf", cat(Monster Hunters), ammo(1.1 lb.), page(MHLH10), basecost(1200), baseweight(7), techlvl(8), mods(Guns, Equipment), lc(3), description(TL:8 LC:3 Ammo:1.1 lb. Damage:6d+1 pi+ Acc:4 Range:380/2700 RoF:3 Shots:10+1(3) ST:10† Bulk:-5 Rcl:4 Skill:Guns (Rifle)), damage(6d+1), damtype(pi+), minst(10†), rangehalfdam(380), rangemax(2700), acc(4), rof(3), shots(10+1(3)), rcl(4), bulk(-5), skillused(Guns (Rifle), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!)
+
+<Monster Hunters - Grenade Launchers>
+"FN MK 13 MOD 0 EGLM, 40x4 6mmSR", basecost(1500), cat(Monster Hunters), baseweight(3.5), ammo(0.5), techlvl(8), mods(Guns, Equipment), lc(1), description(),_
+		newmode(Primary, damage(7d), armordivisor(10), damtype(cr ex), minst(9*), rangehalfdam(30), rangemax(440), acc(1), rof(1), shots(1(3i)), rcl(2), bulk(-), notes([1,2], [1] First Range figure is minimum range, not 1/2D [2] Clamps under rifle or carbie; add weight to weight of host weapon and add -1 to weapon's Bulk.), skillused(Guns (Grenade Launcher), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!)),_
+		newmode(linked, damage(6d [2d]), damtype(cr ex), minst(9*), rangehalfdam(30), rangemax(440), skillused(Guns (Grenade Launcher), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)-2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2, Gun!))
+		

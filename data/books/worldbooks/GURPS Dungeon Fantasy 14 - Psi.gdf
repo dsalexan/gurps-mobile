@@ -1,0 +1,1369 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Description=01/24/2020.
+Program=4.0.283
+Incomplete=Yes
+Requires="GURPS Dungeon Fantasy  1 - Adventurers.gdf"
+
+[AUTHOR]
+********************************************************************************************************\[START]
+//
+// GURPS® Character Assistant
+// Filename: GURPS Dungeon Fantasy 14 - Psi.gdf
+// Created: 
+// Modified: 
+// Requires GCA v4 or later!
+//
+// This data file contains information taken from the GURPS  sourcebook.
+// GURPS  is Copyright(C)  by Steve Jackson Games
+// Incorporated. All rights reserved.
+//
+// Information in this file includes:
+//
+//
+********************************************************************************************************
+//
+// Eric B. Smith	- GURPS Data File Coordinator, Major Work
+//
+// If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+// eric.frogkiller@gmail.com
+//
+// Or drop a message at:
+// http://forums.sjgames.com
+// 
+********************************************************************************************************
+//
+// GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+// Games. All rights reserved.
+//
+// The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+// copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+// rights reserved by Steve Jackson Games Incorporated.
+//
+********************************************************************************************************\[STOP]
+//   \par	new paragraph in RTF in description() tag
+//   ~P		new paragraph in the #Message() directive
+*******************************************************************************************************\[START]
+[ATTRIBUTES]
+********************************************************************************************************\[STOP]
+
+
+*******************************************************************************************************\[START]
+[ADVANTAGES]
+********************************************************************************************************\[STOP]
+#Delete "AD:Psi Talent"
+#Delete "AD:Psionic Affliction (Mind Blast)"
+#Delete "AD:Psionic Clairsentience"
+#Delete "AD:Psionic Damage Resistance"
+#Delete "AD:Psionic Detect (Psionics)"
+#Delete "AD:Psionic Fatigue Attack (Mind Blast)"
+#Delete "AD:Psionic Mind Control"
+#Delete "AD:Psionic Mind Reading"
+#Delete "AD:Psionic Mind Shield"
+#Delete "AD:Psionic Para-Radar"
+#Delete "AD:Psionic Psychometry"
+#Delete "AD:Psionic Telecommunication (Telesend)"
+#Delete "AD:Psionic Telekinesis"
+#Delete "AD:Unusual Background (Psionic)"
+
+<General/Other Physical Features>
+_New Alternative Abilities, 0, isparent(yes), childprofile(1), page(P11,DF14:5),_
+	cat(Psionic Abilities),_
+	description(_
+			In GCA Alternative Abilities are created using the Parent/Child trait relationship. Look at the Description of "_New Parent Item" for a full description of Parent items in GCA. _
+			To create an Alternative Ability in GCA simply add this trait to the character then make all the Alternate traits Children of the New Alternative Abilities Parent item._
+	),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, ,"New Alternative Abilities"))
+
+<Psionic Abilities>
+Resistant to Psionics, 2/4, upto(6), page(DF14:14)
+Unusual Background (Psionic), 10, page(DF14:14)
+Energy Reserve (Psionic), 3/6, upto(20), mods(Energy Reserve), cat(Attributes, Exotic, Physical, Exotic Physical), page(DF14:19,P119)
+Psi Talent, 5/10, upto(6), page(DF14:4),_
+	gives(_
+			+1 to AD:Psionic Transdimensional Sight,_
+			+1 to AD:Psionic Dispel Psi::skillscore,_
+			+1 to AD:Psionic Psight::skillscore,_
+			+1 to AD:Psionic Psychic Sensitivity::skillscore,_
+			+1 to AD:Psionic Psychometry::skillscore,_
+			+1 to AD:Psionic Remote Viewing::skillscore,_
+			+1 to AD:Psionic Transdimensional Sight::skillscore,_
+			+1 to AD:Psionic Ergokinetic Shield::skillscore,_
+			+1 to AD:Psionic Psychokinetic Lash::skillscore,_
+			+1 to AD:Psionic Pyrokinetic Bolt::skillscore,_
+			+1 to AD:Psionic Telekinesis::skillscore,_
+			+1 to AD:Psionic Empahty::skillscore,_
+			+1 to AD:Psionic Fear::skillscore,_
+			+1 to AD:Psionic Intuition::skillscore,_
+			+1 to AD:Psionic Madness::skillscore,_
+			+1 to AD:Psionic Mind Blast::skillscore,_
+			+1 to AD:Psionic Mind Control::skillscore,_
+			+1 to AD:Psionic Mind Meld::skillscore,_
+			+1 to AD:Psionic Mind Reading::skillscore,_
+			+1 to AD:Psionic Mind Stab::skillscore,_
+			+1 to AD:Psionic Telesend::skillscore_
+		)
+
+<Psionic Abilities, Psionic Abilities - Mentalist Power-Ups>
+Acute ESP, 2/4, page(DF14:19),_
+	upto(AD:Psi Talent::level),_
+	gives(_
+			+1 to AD:Psionic Psight::skillscore,_
+			+1 to AD:Psionic Psychic Sensitivity::skillscore,_
+			+1 to AD:Psionic Transdimensional Sight::skillscore,_
+			+1 to AD:Psionic Remote Viewing::skillscore_
+	),_
+	needs(_
+		AD:Psi Talent,_
+		(_
+			AD:Psionic Psight | _
+			AD:Psionic Psychic Sensitivity | _
+			AD:Psionic Remote Viewing | _
+			AD:Psionic Transdimensional Sight_
+		)_
+	)
+
+Blind Viewing, 6, page(DF14:19),_
+	needs(AD:Psionic Remote Viewing),_
+	conditional(+5 to AD:Psionic Remote Viewing when "projecting sensses to someplace you cannot see to inore the -5 penalty")
+
+Bonded Creature, 31/32, page(DF14:20)
+
+Death Possession, 20/40, page(DF14:20)
+
+Extended Defense (Ergokinetic Shield), 7, page(DF14:20-21),_
+	needs(AD:Psionic Ergokinetic Shield)
+
+Extended Defense (Mind Shield), 7, page(DF14:20-21),_
+	needs(AD:Psionic Mind Shield)
+
+Extended Defense (Psychic Armor), 7, page(DF14:20-21),_
+	needs(AD:Psionic Psychic Armor)
+
+Sudden Defense (Ergokinetic Shield), 5, page(DF14:20-21),_
+	needs(AD:Psionic Ergokinetic Shield)
+
+Sudden Defense (Mind Shield), 5, page(DF14:20-21),_
+	needs(AD:Psionic Mind Shield)
+
+Sudden Defense (Psychic Armor), 5, page(DF14:20-21),_
+	needs(AD:Psionic Psychic Armor)
+
+Elder Lore, 8, page(DF14:21),_
+	needs(AD:Psi Talent),_
+	skillused(ST:IQ, SK:Hidden Lore (Elder Things)), mode(analyze)
+
+Mass Chaos (Fear), 7, page(DF14:21),_
+	needs(AD:Psionic Fear)
+
+Mass Chaos (Madness), 7, page(DF14:21),_
+	needs(AD:Psionic Madness)
+
+Mass Chaos (Mind Blast), 7, page(DF14:21),_
+	needs(AD:Psionic Mind Blast)
+
+Your Eyes are My Eyes (Mind Meld), 4, page(DF14:21),_
+	needs(_
+		AD:Psi Talent,_
+		AD:Psionic Mind Meld_
+		)
+
+Your Eyes are My Eyes (Mind Reading), 4, page(DF14:21),_
+	needs(_
+		AD:Psi Talent,_
+		AD:Psionic Mind Reading_
+		)
+
+Your Tongue is My Tongue (Mind Meld), 7, page(DF14:21),_
+	needs(_
+		AD:Psi Talent = 2,_
+		AD:Psionic Mind Meld_
+		)
+
+Your Tongue is My Tongue (Mind Reading), 7, page(DF14:21),_
+	needs(_
+		AD:Psi Talent = 2,_
+		AD:Psionic Mind Reading_
+		)
+
+Psientist, 5/10, upto(6), page(DF14:21),_
+	gives(_
+		+1 to SK:Hidden Lore (Elder Things),_
+		+1 to SK:Hidden Lore (Psi),_
+		+1 to SK:Hypnotism,_
+		+1 to SK:Meditation,_
+		+1 to SK:Mental Strength,_
+		+1 to SK:Mind Block,_
+		+1 to SK:Psychology_
+	),_
+	conditional(+1 to ST:Reaction when "from mentalists & psis")
+
+Residue Sense, 7, page(DF14:21),_
+	needs(_
+		AD:Psionic Psychic Sensitivity,_
+		AD:Psionic Psychometry_
+		)
+
+Second Nature, 45/90, upto(2), page(DF14:21),_
+	needs(_
+		AD:Psi Talent = @indexedvalue(%level,5,6)_
+	)
+
+Speed of Thought, 36, page(DF14:22),_
+	needs(AD:Psi Talent = 5)
+
+Coordinator, 9, page(DF14:21),_
+	needs(_
+			AD:Psionic Telesend,_
+			AD:Psi Talent = 3_
+		)
+
+Mr. Universe, 7, page(DF14:21),_
+	needs(_
+			AD:Psionic Telesend,_
+			AD:Psi Talent = 2_
+		)
+
+Spotter, 6/10, upto(2), page(DF14:21),_
+	needs(_
+			AD:Psionic Telesend,_
+			AD:Psi Talent = @indexedvalue(%level,2,4)_
+		)
+
+True Will, 5, page(DF14:21),_
+	needs(_
+			AD:Psi Talent_
+		)
+
+<Psionic Abilities, Psionic Abilities - Anti-Psi>
+Psionic Dispel Psi, 20/40, upto(2), page(DF14:5),_
+	levelnames(touch, use Speed/Range Table (p. B550)),_
+	mode(dispel (contest vs Will)), skillused(Will),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,2,4)_
+	)
+
+Psionic Mind Shield, 2/4/5/7/8/10/12/13/15/16/18/20, displaycost(2/4/+), upto(12), page(DF14:),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,0,0,0,0,0,1,2,3,4,5,6)_
+	)
+
+Psionic Psychic Armor, 4/7/11/14/18/21/25/28/32/35/39/42, displaycost(4/7/+), upto(12), page(DF14:),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,0,0,0,0,0,1,2,3,4,5,6)_
+	)
+
+<Psionic Abilities, Psionic Abilities - ESP>
+Psionic Psight, 36, page(DF14:9),_
+	skillused(ST:Perception), mode(''See''),_
+	needs(_
+		AD:Unusual Background (Psionic)_
+	),_
+	conditional(_
+		+3 to (SK:Observation, SK:Search, SK:Traps) when "spotting things behind concealment that offers no DR"_
+	)
+
+Psionic Psychic Sensitivity, 9/18/27, upto(3), page(DF14:9),_
+	mode(perceive|analyze), skillused(ST:Perception | ST:IQ, SK:Hidden Lore (Psi)),_
+	gives(_
+		=-@textindexedvalue($modetag(mode), ("analyze", AD:Acute ESP::level)) to me::skillscore$_
+	),
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,2,4)_
+	)
+
+Psionic Psychometry, 18/28/38, upto(3), page(DF14:10),_
+	skillused(ST:IQ), mode(sense history),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,2,4)_
+	)
+
+Psionic Remote Viewing, 40/45/50, upto(3), page(DF14:),_
+	mode(activate|perceive), skillused(ST:IQ|ST:Perception),_
+	gives(_
+		=-@textindexedvalue($modetag(mode), ("activate", AD:Acute ESP::level)) to me::skillscore$_
+	),
+	needs(_
+		AD:Unusual Background (Psionic),_
+		(AD:Psionic Psight | AD:Psi Talent = @indexedvalue(%level,0,0,1))_
+	)
+
+Psionic Transdimensional Sight, 13, page(DF14:),_
+	mode(perceive), skillused(ST:Perception),_
+	needs(_
+		AD:Unusual Background (Psionic)_
+	)
+
+<Psionic Abilities, Psionic Abilities - Psychokinesis>
+Psionic Ergokinetic Shield, 4/7/11/14/18/21/25/28/32/35/39/42, displaycost(4/7/+), upto(12), page(DF14:6),_
+	skillused(Will-4), mode(activate),_
+	gives(+1 to ST:DR),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,1,1,2,2,3,3,4,4,5,5,6,6)_
+	)
+
+Psionic Levitation, 8/18/28, upto(3), page(DF14:6),_
+	levelnames("5' ceiling", "10' ceiling", "10' ceiling"),_
+	gives(=+@indexedvalue(%level, 1, ST:Basic Move, (2*ST:Basic Move)) to ST:Air Move),_
+	replacetags(_
+		in "ST:Air Move" with "hide(), display(yes), mainwin(11), noresync(yes)",_
+	),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,1,2,4)_
+	)
+
+Psionic Psychokinetic Lash, 5/10/15/19/24/29, displaycost(5/10/+), upto(6), page(DF14:10),_
+	damage($solver(%level)d), damtype(cr), acc(3), rangehalfdam(10), rangemax(100), rof(1), shots(n/a), rcl(1), reach(), parry(0),_
+	move(Lash), skillused(Innate Attack (Gaze)),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,1,2,3,4,5,6)_
+	)
+
+Psionic Pyrokinetic Bolt, 5/10/15/19/24/29, displaycost(5/10/+), upto(6), page(DF14:10),_
+	damage($solver(%level)d), damtype(bu), acc(3), rangehalfdam(10), rangemax(100), rof(1), shots(n/a), rcl(1), reach(), parry(0),_
+	move(Lash), skillused(Innate Attack (Gaze)),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,1,2,3,4,5,6)_
+	)
+
+Psionic Telekinesis, 4/7/11/14/18/21/25/28/32/35/39/42/46/49/53/56, displaycost(4/7/+), upto(16), page(DF14:11),_
+	gives(+1 to ST:TK ST, +1 to ST:TK Move),_
+	conditional(_
+			=+4 to GR:High Manual Dexterity when "performing DX-based tasks",_
+			=+4 to SK:Machinist when "performing fine DX-based tasks",_
+			=+4 to SK:Mechanic when "performing fine DX-based tasks" _
+		),_
+	replacetags(_
+			in "ST:TK ST" with "hide(), display(yes), mainwin(11), noresync(yes)",_
+			in "ST:TK Basic Lift" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Move" with "hide(), display(yes), mainwin(11), noresync(yes)",_
+			in "ST:TK No Encumbrance" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Light Encumbrance" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Medium Encumbrance" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Heavy Encumbrance" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK X-Heavy Encumbrance" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK No Encumbrance Move" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Light Encumbrance Move" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Medium Encumbrance Move" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK Heavy Encumbrance Move" with "hide(), display(yes), noresync(yes)",_
+			in "ST:TK X-Heavy Encumbrance Move" with "hide(), display(yes), noresync(yes)" _
+		),_
+	rangemax(10), mode(thrust | swing), damage(thr | sw), damtype(cr), skillused(ST:DX), parry(0), damagebasedon(ST:TK ST),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6)_
+	)
+
+<Psionic Abilities, Psionic Abilities - Telepathy>
+Psionic Battlesense, 24/48, upto(3), page(DF14:5),_
+	needs(_
+		AD:Psionic Mind Reading,_
+		AD:Psi Talent = @indexedvalue(%level,2,4,6)_
+	),
+	gives(_
+		+1 to ST:Block,_
+		+1 to ST:Parry,_
+		+1 to ST:Dodge_
+	),
+	conditional(_
+		-1 to (ST:Block, ST:Parry, ST:Dodge) when "defending against attacks from mindless creatures",_
+		+1 to "SKCAT:Combat/Weapons - Melee Combat"  when "defending against attacks from non-minldless creatures"_
+	)
+
+Psionic Empathy, 13, page(DF14:6),_
+	mode("spot imposter, sense possession, or learn whether an NPC has hostile intents"), skillused(IQ),_
+	needs(_
+		AD:Unusual Background (Psionic)_
+	),_
+	conditional(_
+			+3 to (SK:Detect Lies, SK:Psychology) when "single skill roll"_
+	)
+
+Psionic Fear, 27, page(DF14:6),_
+	mode(Terror), skillused(SK:Intuition, ST:Will),_
+	needs(_
+			AD:Psionic Telesend_
+		)
+
+Psionic Intuition, 13, page(DF14:6),_
+	skillused(ST:IQ), mode(guess correctly),_
+	needs(_
+		AD:Unusual Background (Psionic)_
+	)
+
+Psionic Madness, 28/33, upto(3), page(DF14:7),_
+	levelnames("-1/yard range", "use Speed/Range Table (p. B550)", "use Long-Distance Modifiers (B241)"),_
+	mode(inflict madness (contest vs Will)), skillused(ST:Will),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,2,4)_
+	)
+
+Psionic Mind Blast, 29/34, upto(3), page(DF14:7),_
+	levelnames("-1/yard range", "use Speed/Range Table (p. B550)", "use Long-Distance Modifiers (B241)"),_
+	mode(mind blast), skillused(ST:IQ),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = @indexedvalue(%level,0,2,4)_
+	)
+
+Psionic Mind Control, 30/45, upto(2), page(DF14:7),_
+	mode(control (costest vs Will)), skillused(ST:IQ),_
+	needs(_
+		AD:Psionic Telesend,_
+		AD:Psi Talent = @indexedvalue(%level,2,4)_
+	)
+
+Psionic Mind Meld, 12, upto(2), page(DF14:8),_
+	mode(mind probe (contest vs Will)), skillused(ST:IQ, SK:Interrogation),_
+	needs(_
+		AD:Unusual Background (Psionic),_
+		AD:Psi Talent = 2_
+	)
+
+Psionic Mind Reading, 27, page(DF14:8),_
+	mode(read mind (contest vs Will)), skillused(ST:IQ),_
+	needs(_
+		AD:Unusual Background (Psionic)_
+	)
+
+Psionic Mind Stab, 46/62, upto(3), page(DF14:9),_
+	levelnames("-1/yard range", "use Speed/Range Table (p. B550)", "use Long-Distance Modifiers (B241)"),_
+	mode(stab (contest vs Will)), skillused(Will),_
+	needs(_
+		AD:Psionic Telesend,_
+		AD:Psi Talent = @indexedvalue(%level,2,4,6)_
+	)
+
+Psionic Telesend, 27, page(DF14:9),_
+	skillused(ST:IQ), mode(communicate),_
+	needs(_
+		AD:Unusual Background (Psionic)_
+	)
+
+*******************************************************************************************************\[START]
+[PERKS]
+********************************************************************************************************\[STOP]
+<Psi Perks>
+Focused Resistance, 1, page(DF14:14),_
+	x(#InputToTag("You must specialize in one specific Psionics ability, spell, Enthrallment skill, or monster attack that targets IQ or Will:", NameExt, , "Focused Resistance"))
+Gazer, 1, page(DF14:14)
+Psharp, 1, page(DF14:14),_
+	conditional(+3 to SK:Gambling when "using Psi abilities, +1 to +3")
+Psychic Replica, 1, page(DF14:14)
+Psychic Terror, 1, page(DF14:14)
+Telekinetic Tether, 1, page(DF14:14)
+Weird Dreams, 1, page(DF14:14),_
+	taboo(DI:Nightmares)
+
+
+*******************************************************************************************************\[START]
+[SKILLS]
+********************************************************************************************************\[STOP]
+<Knowledge>
+Hidden Lore (Elder Things), IQ/A, page(B199), cat(_General, Knowledge)
+Hidden Lore (Psi), IQ/A, page(B199), cat(_General, Knowledge)
+
+*******************************************************************************************************\[START]
+[LISTS]
+********************************************************************************************************\[STOP]
+<Mentalist Lens>	
+	comment(Mentalist Lens), text(Primary Skills: Select at least 1 of the following:), tagwith(MentalistLens(yes)), pointswanted(4), itemswanted(atleast 1), list(_
+			SK:Hidden Lore (Elder Things),_
+			SK:Hidden Lore (Psi) _
+		)_
+	),_
+	select2(comment(Mentalist Lens), text(Mentalist Abilities: Select 25 points from the following:), tagwith(MentalistLens(yes)), pointswanted(25), itemswanted(atleast 1), multitype(yes), list(_
+			#newitem(AD:Psi Talent 2-6, 5, displaycost(+5-+25), existing(AD:Psi Talent)) #codes(upto 6, downto 2),_
+			#list(PsiAbilities),_
+			SK:Hypnotism,_
+			SK:Mental Strength,_
+			SK:Mind Block _
+		)_
+	),_
+	sets(_
+			ST:Will = ST:Will + 1,_
+			ST:Fatigue Points = ST:Fatigue Points + 1 _
+		),_
+	adds(_
+			AD:Psi Talent,_
+			AD:Unusual Background (Psionic) _
+			), y(
+// )
+
+<PsiAbilities>
+"PE:Focused Resistance",_
+"PE:Gazer",_
+"PE:Psharp",_
+"PE:Psychic Replica",_
+"PE:Psychic Terror",_
+"PE:Telekinetic Tether",_
+"PE:Weird Dreams",_
+"AD:Psionic Battlesense",_
+"AD:Psionic Dispel Psi",_
+"AD:Psionic Empathy",_
+"AD:Psionic Ergokinetic Shield",_
+"AD:Psionic Fear",_
+"AD:Psionic Intuition",_
+"AD:Psionic Levitation",_
+"AD:Psionic Madness",_
+"AD:Psionic Mind Blast",_
+"AD:Psionic Mind Control",_
+"AD:Psionic Mind Meld",_
+"AD:Psionic Mind Reading",_
+"AD:Psionic Mind Shield",_
+"AD:Psionic Mind Stab",_
+"AD:Psionic Psight",_
+"AD:Psionic Psychic Armor",_
+"AD:Psionic Psychic Sensitivity",_
+"AD:Psionic Psychokinetic Lash",_
+"AD:Psionic Psychometry",_
+"AD:Psionic Remote Viewing",_
+"AD:Psionic Telekinesis",_
+"AD:Psionic Telesend",_
+"AD:Psionic Transdimensional Sight",_
+"AD:_New Alternative Abilities",_
+"AD:Psi Talent",_
+"AD:Acute ESP",_
+"AD:Energy Reserve (Psionic)",_
+"AD:Unusual Background (Psionic)",_
+"AD:Blind Viewing",_
+"AD:Bonded Creature",_
+"AD:Coordinator",_
+"AD:Death Possession",_
+"AD:Elder Lore",_
+"AD:Extended Defense (Ergokinetic Shield)",_
+"AD:Extended Defense (Mind Shield)",_
+"AD:Extended Defense (Psychic Armor)",_
+"AD:Mass Chaos (Fear)",_
+"AD:Mass Chaos (Madness)",_
+"AD:Mass Chaos (Mind Blast)",_
+"AD:Mr. Universe",_
+"AD:Psientist",_
+"AD:Residue Sense",_
+"AD:Second Nature",_
+"AD:Speed of Thought",_
+"AD:Spotter",_
+"AD:Sudden Defense (Ergokinetic Shield)",_
+"AD:Sudden Defense (Mind Shield)",_
+"AD:Sudden Defense (Psychic Armor)",_
+"AD:True Will",_
+"AD:Your Eyes are My Eyes (Mind Meld)",_
+"AD:Your Eyes are My Eyes (Mind Reading)",_
+"AD:Your Tongue is My Tongue (Mind Meld)",_
+"AD:Your Tongue is My Tongue (Mind Reading)"
+
+*******************************************************************************************************\[START]
+[TEMPLATES]
+********************************************************************************************************\[STOP]
+<Character Templates, Character Templates - Dungeon Fantasy, Character Templates - Dungeon Fantasy - Adventurers>
+Mentalist (Dungeon Fantasy), displaycost(250),_
+	description(_
+			You are a true master of the mind. Where other adventurers _
+			pull off stunts by using spells or otherworldly powers to channel _
+			external energies, you achieve results without outside help _
+			thanks to Psionics. But you don't just use psi! You put the "mental" _
+			in "mentalist," rivaling many spellcasters when it comes to _
+			brains; surpassing crusading clerics and even death-cheating _
+			necromancers for sheer willpower; and impressing everybody _
+			with your astonishing feats of intellect. And you know about a _
+			great many things - possibly including Elder Things. _
+		),_
+	page(DF14:15),_
+	sets(_
+			ST:ST = 9,_
+			ST:DX = 12,_
+			ST:IQ = 14,_
+			ST:HT = 12,_
+			ST:Will = 16,_
+			ST:Perception = 14,_
+			ST:Fatigue Points = 15 _
+		),_
+	adds(_
+			AD:Psi Talent = 3,_
+			AD:Unusual Background (Psionic),_
+			SK:Hidden Lore (Psi) = 4pts _
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Mentalist), text(Advantages: Select 60 points from the following:), tagwith(Mentalist(yes)), pointswanted(atleast 50, upto 60), itemswanted(atleast 1), list(_
+			#newitem(AD:Psi Talent 4-6, 5, displaycost(+5-+15), existing(AD:Psi Talent)) #codes(upto 6, downto 4),_
+			#list(PsiAbilities) _
+		)_
+	),_
+	select3(comment(Mentalist), text(Advantages: Select 25 points from the following:), tagwith(Mentalist(yes)), pointswanted(25), itemswanted(atleast 1), list(_
+			#newitem(AD:Psi Talent 4-6, 5, displaycost(+5-+15), existing(AD:Psi Talent)) #codes(upto 6, downto 4),_
+			AD:Extra ST #codes(upto 1, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra Will #codes(upto 5, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Extra Fatigue Points #codes(upto 8, downto 1),_
+			AD:Animal Empathy,_
+			AD:Charisma #codes(upto 5, downto 1),_
+			AD:Danger Sense,_
+			AD:Eidetic Memory,_
+			AD:Photographic Memory,_
+			AD:Luck,_
+			AD:Magic Resistance,_
+			AD:Resistant to Psionics,_
+			AD:Serendipity #codes(upto 1, downto 1),_
+			AD:Signature Gear,_
+			AD:Smooth Operator #codes(upto 1, downto 1),_
+			AD:Spirit Empathy,_
+			AD:Unfazeable,_
+			AD:Voice,_
+			AD:Wild Talent #codes(upto 1, downto 1) _
+		)_
+	),_
+	select4(comment(Mentalist), text(Disadvantages: Select -15 points from the following:), tagwith(Mentalist(yes)), pointswanted(-15), itemswanted(atleast 1), list(_
+			DI:Curious,_
+			DI:Bad Temper,_
+			DI:Combat Paralysis,_
+			DI:Jealousy,_
+			DI:Loner,_
+			DI:Low Pain Threshold,_
+			DI:No Sense of Humor,_
+			DI:Odious Personal Habit,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Post-Combat Shakes,_
+			DI:Pyromania,_
+			DI:Selfish,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Skinny,_
+			DI:Stubbornness,_
+			DI:Unfit,_
+			DI:Wealth #codes(upto 3, downto 1) _
+		)_
+	),_
+	select5(comment(Mentalist), text(Disadvantages: Select -25 points from the following:), tagwith(Mentalist(yes)), pointswanted(-25), itemswanted(atleast 1), list(_
+			DI:Curious,_
+			DI:Bad Temper,_
+			DI:Combat Paralysis,_
+			DI:Jealousy,_
+			DI:Loner,_
+			DI:Low Pain Threshold,_
+			DI:No Sense of Humor,_
+			DI:Odious Personal Habit,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Post-Combat Shakes,_
+			DI:Pyromania,_
+			DI:Selfish,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Skinny,_
+			DI:Stubbornness,_
+			DI:Unfit,_
+			DI:Wealth #codes(upto 3, downto 1),_
+			DI:Frightens Animals,_
+			DI:Weirdness Magnet,_
+			DI:Xenophilia,_
+			#newitem(DI:Delusion (Elder Things are my friends!), -5, levelnames(Minor), page(B130), cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction)),_
+			#newitem(DI:Intolerance (Stupid people), -5, page(B140), cat(Mundane, Mental, MundaneMental)),_
+			#newitem(DI:Obsession (Learn something dangerous involving Elder Things), -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Obsession (Become a world-class psi at any cost), -10, displaycost(-10*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )) _
+		)_
+	),_
+	select6(comment(Mentalist), text(Secondary Skills: Select at least 3-4 of the following:), tagwith(Mentalist(6)), pointswanted(8), itemswanted(atleast 3, upto 4), list(_
+			SK:Aerobatics #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Talk #codes(upto 4pts, downto 2pts),_
+			SK:Gambling #codes(upto 4pts, downto 2pts),_
+			SK:Hidden Lore (Elder Things) #codes(upto 4pts, downto 2pts),_
+			SK:Interrogation #codes(upto 4pts, downto 2pts),_
+			SK:Occultism #codes(upto 4pts, downto 2pts),_
+			SK:Hypnotism #codes(upto 4pts, downto 2pts),_
+			SK:Psychology #codes(upto 4pts, downto 2pts),_
+			SK:Mental Strength #codes(upto 4pts, downto 2pts),_
+			SK:Mind Block #codes(upto 4pts, downto 2pts),_
+			SK:Meditation #codes(upto 4pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select7(comment(Mentalist), text(Secondary Skills: Select 1 of the following:), tagwith(Mentalist(7)), pointswanted(4), itemswanted(1), list(_
+			SK:Rapier #codes(upto 4pts, downto 4pts),_
+			SK:Saber #codes(upto 4pts, downto 4pts),_
+			SK:Shortsword #codes(upto 4pts, downto 4pts),_
+			SK:Smallsword #codes(upto 4pts, downto 4pts),_
+			SK:Staff #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select8(comment(Mentalist), text(Secondary Skills: Select 2 of the following:), tagwith(Mentalist(8)), pointswanted(8), itemswanted(2), list(_
+			#BuildSelectList(Skills where Mentalist is "7", template(#newitem(SK:_Increase %ListItem%, existing(%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ) ),_
+			SK:Innate Attack (Gaze) #codes(upto 4pts, downto 4pts),_
+			SK:Shield (Shield) #codes(upto 4pts, downto 4pts),_
+			SK:Shield (Buckler) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Axe/Mace) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Dart) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Harpoon) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Spear) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Stick) #codes(upto 4pts, downto 4pts),_
+			SK:Cloak #codes(upto 4pts, downto 4pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts),_
+			SK:Wrestling #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select9(comment(Mentalist), text(Skills: Select 7 of the following:), tagwith(Mentalist(9)), pointswanted(7), itemswanted(7), list(_
+			SK:Climbing #codes(upto 1pts, downto 1pts),_
+			SK:Stealth #codes(upto 1pts, downto 1pts),_
+			SK:First Aid #codes(upto 1pts, downto 1pts),_
+			SK:Gesture #codes(upto 1pts, downto 1pts),_
+			SK:Acting #codes(upto 1pts, downto 1pts),_
+			SK:Public Speaking #codes(upto 1pts, downto 1pts),_
+			SK:Research #codes(upto 1pts, downto 1pts),_
+			SK:Teaching #codes(upto 1pts, downto 1pts),_
+			SK:Diplomacy #codes(upto 1pts, downto 1pts),_
+			SK:Strategy (Air) #codes(upto 1pts, downto 1pts),_
+			SK:Strategy (Land) #codes(upto 1pts, downto 1pts),_
+			SK:Strategy (Naval) #codes(upto 1pts, downto 1pts),_
+			SK:Hiking #codes(upto 1pts, downto 1pts),_
+			SK:Intimidation #codes(upto 1pts, downto 1pts),_
+			SK:Scrounging #codes(upto 1pts, downto 1pts),_
+			SK:Body Language #codes(upto 1pts, downto 1pts),_
+			SK:Lip Reading #codes(upto 1pts, downto 1pts),_
+			SK:Observation #codes(upto 1pts, downto 1pts),_
+			SK:Search #codes(upto 1pts, downto 1pts),_
+			SK:Tracking #codes(upto 1pts, downto 1pts),_
+			SK:Aerobatics #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Talk #codes(upto 1pts, downto 1pts),_
+			SK:Gambling #codes(upto 1pts, downto 1pts),_
+			SK:Hidden Lore (Elder Things) #codes(upto 1pts, downto 1pts),_
+			SK:Interrogation #codes(upto 1pts, downto 1pts),_
+			SK:Occultism #codes(upto 1pts, downto 1pts),_
+			SK:Hypnotism #codes(upto 1pts, downto 1pts),_
+			SK:Psychology #codes(upto 1pts, downto 1pts),_
+			SK:Mental Strength #codes(upto 1pts, downto 1pts),_
+			SK:Mind Block #codes(upto 1pts, downto 1pts),_
+			SK:Meditation #codes(upto 1pts, downto 1pts),_
+			SK:Detect Lies #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Knife) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Sword) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 1pts, downto 1pts) _
+			)_
+	),_
+	select10(#list(QuirkSelection))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Mentalist Lens (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+	
+<Character Templates - Dungeon Fantasy - Mixed Professions - Barbarian, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Barbarian-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Artificer, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Artificer-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Bard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Bard-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Cleric, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Cleric-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Druid, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Druid-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Holy Warrior, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Holy Warrior-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Knight, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Knight-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Martial Artist, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Martial Artist-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scholar, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Scholar-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scout, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Scout-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Swashbuckler, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Swashbuckler-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Thief, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Thief-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Wizard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Wizard-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Ninja, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Ninja-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Assassin, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Assassin-Mentalist (Dungeon Fantasy), displaycost(+50),_
+	page(DF14:19),_
+	select1(#list(Mentalist Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Mentalist, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Mentalist-Barbarian (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Why a brainy mentalist would "go barbarian" is anybody's _
+			guess. Still, if a psi ends up beaten unconscious or freezing to _
+			death often enough, he might find primal screams therapeutic. _
+		),_
+	page(DF14:17),_
+	sets(_
+			ST:ST = ST:ST + 2 _
+		),_
+	adds(_
+			AD:High Pain Threshold,_
+			AD:Outdoorsman _
+		),_
+	select1(comment(Mentalist-Barbarian), text(Skills: Select 10 of the following:), tagwith(Mentalist-Barbarian(yes)), pointswanted(10), itemswanted(10), list(_
+			SK:Brawling #codes(upto 1pts, downto 1pts),_
+			SK:Camouflage #codes(upto 1pts, downto 1pts),_
+			SK:Seamanship #codes(upto 1pts, downto 1pts),_
+			SK:Animal Handling #codes(upto 1pts, downto 1pts),_
+			#newitem(SK:Disguise (Animals), IQ/A, tl(0-12), default(IQ - 5, SK:Makeup - 3), page(B187), cat(_General, Criminal/Street, Spy)) #codes(upto 1pts, downto 1pts),_
+			SK:Navigation (Land) #codes(upto 1pts, downto 1pts),_
+			SK:Weather Sense #codes(upto 1pts, downto 1pts),_
+			SK:Mimicry (Animal Sounds) #codes(upto 1pts, downto 1pts),_
+			SK:Mimicry (Bird Calls) #codes(upto 1pts, downto 1pts),_
+			SK:Naturalist #codes(upto 1pts, downto 1pts),_
+			SK:Carousing #codes(upto 1pts, downto 1pts),_
+			SK:Swimming #codes(upto 1pts, downto 1pts),_
+			SK:Hiking #codes(upto 1pts, downto 1pts),_
+			SK:Running #codes(upto 1pts, downto 1pts),_
+			SK:Fishing #codes(upto 1pts, downto 1pts),_
+			SK:Tracking #codes(upto 1pts, downto 1pts),_
+			SK:Survival #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts, downto 1pts) _
+		)_
+	)
+
+Mentalist-Bard (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			The Telepathy discipline mixes with mind-clouding magic _
+			and bardic skills to make mentalist-bards unbeatable at influencing _
+			others - with or without mana. Most prefer their voice _
+			to musical instruments, and favor spells over a second costly _
+			power on the bard side of the ledger. _
+		),_
+	page(DF14:17),_
+	adds(_
+			AD:Bardic Talent,_
+			AD:Charisma,_
+			AD:Musical Ability,_
+			AD:Voice,_
+			SK:Public Speaking = 1pts,_
+			SK:Musical Instrument = 1pts,_
+			SK:Singing = 1pts _
+		),_
+	select1(_
+		text(Bardic Abilities: Select a total of 19 points from the following:),_
+		pointswanted(atleast 10, upto 19),_
+		tagwith(Bard(yes)),_
+		itemswanted(atleast 1), multitype(yes),_
+		list(_
+			#list(Bard Abilities),_
+			#list(Bard Spells),_
+			#list(Bard Skills)_
+		)_
+	)
+
+Mentalist-Cleric (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Learning the way of the cleric corrects for one of psi'smajor _
+			blind spots: its inability to heal. Given amentalist's high IQ and _
+			natural self-discipline (Will is wonderful when conducting _
+			exorcisms and turning undead), this is a great fit. _
+		),_
+	page(DF14:17),_
+	adds(_
+			AD:Clerical Investment,_
+			AD:Power Investiture (Holy) = 2,_
+			SK:Diagnosis = 1pts,_
+			SK:Esoteric Medicine (Holy) = 1pts,_
+			SK:Exorcism = 1pts,_
+			SK:Meditation = 1pts,_
+			SK:Occultism = 1pts,_
+			SK:Public Speaking = 1pts,_
+			SK:Religious Ritual = 1pts,_
+			SK:Surgery = 1pts,_
+			SK:Theology = 1pts _
+		),_
+	select1(comment(Mentalist-Cleric), text(Disadvantages: Select -10 points from the following:), tagwith(Mentalist-Cleric(yes)), pointswanted(-10), itemswanted(1), list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Coreligionists),_
+			DI:Vow (No edged weapons) _
+			)_
+			),
+	select2(_
+		text("Please select 26 points in Holy abilities and/or clerical spells."),_
+		pointswanted(atleast 15, upto 26),_
+		tagwith(Cleric(yes)),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			#list(Holy Abilities),_
+			#grouplist(GR:AllSpellsHoly, append( #codes(upto 1pts)))_
+		)_
+	)
+
+Mentalist-Druid (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			The main reason to become a mentalist-druid is to add spells _
+			that are really far from what Psionics does. It's about great _
+			breadth, not synergy - that, and controlling people and beasts. _
+		),_
+	page(DF14:17),_
+	adds(_
+			AD:Power Investiture (Druidic) = 2,_
+			SK:Esoteric Medicine (Druidic) = 1pts,_
+			SK:Herb Lore = 1pts,_
+			SK:Naturalist = 1pts,_
+			SK:Pharmacy (Herbal) = 1pts,_
+			SK:Religious Ritual (Druidic) = 1pts,_
+			SK:Theology (Druidic) = 1pts _
+		),_
+	select1(comment(Mentalist-Druid), text(Skills: Select 4 of the following:), tagwith(Mentalist-Druid(yes)), pointswanted(4), itemswanted(4), list(_
+			SK:Disguise (Animals) #codes(upto 1pts, downto 1pts),_
+			SK:Hidden Lore (Elementals) #codes(upto 1pts, downto 1pts),_
+			SK:Hidden Lore (Faeries) #codes(upto 1pts, downto 1pts),_
+			SK:Hidden Lore (Nature Spirits) #codes(upto 1pts, downto 1pts),_
+			SK:Weather Sense #codes(upto 1pts, downto 1pts),_
+			SK:Diagnosis #codes(upto 1pts, downto 1pts),_
+			SK:Mimicry (Animal Sounds) #codes(upto 1pts, downto 1pts),_
+			SK:Mimicry (Bird Calls) #codes(upto 1pts, downto 1pts),_
+			SK:Veterinary #codes(upto 1pts, downto 1pts),_
+			SK:Survival #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts, downto 1pts),_
+			SK:Animal Handling #codes(upto 1pts, downto 1pts),_
+			SK:Animal Handling (Big Cats) #codes(upto 1pts, downto 1pts),_
+			SK:Animal Handling (Dogs) #codes(upto 1pts, downto 1pts),_
+			SK:Animal Handling (Equines) #codes(upto 1pts, downto 1pts),_
+			SK:Animal Handling (Raptors) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select2(_
+		text("Select 20 points total in Druidic abilities and/or druidic spells."),_
+		pointswanted(atleast 15, upto 20),_
+		tagwith(Druid(yes)),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			#list(Druid Abilities),_
+			#grouplist(GR:AllSpellsDruidic, append( #codes(upto 1pts)))_
+		)_
+	)
+
+Mentalist-Holy Warrior (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			A mentalist's imposing willpower helps when facing down _
+			demons and undead - and Higher Purpose does give +1 to psi _
+			use on suitable enemies.Mentalist-holy warriors are rarer than _
+			mentalist-clerics, though; a second costly power just isn't as _
+			flexible as spells. _
+		),_
+	page(DF14:17),_
+	sets(_
+			ST:ST=ST:ST+1_
+	),_
+	x(#InputReplace("Please specify a monster type:", "[Primary Monster Type]", "monster", "Physiology & Physiology")),_
+	adds(_
+			AD:Holiness =1,_
+			SK:Exorcism =1pts _
+		),_
+	creates(_
+		{PE:Shtick (Foes slain personally can't rise as undead), 1, page(B100)},_
+		{SK:Physiology ([Primary Monster Type]), IQ/H, HolyWarrior(yes), tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences) } =1pts,_
+		{SK:Psychology ([Primary Monster Type]), IQ/H, HolyWarrior(yes), default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities) } =1pts_
+	),_
+	select1(_
+		text("Select a Higher Purpose."),_
+		pointswanted(5),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		list(_
+			#newitem(AD:Holy Warrior Higher Purpose (Slay Demons), 5/10, upto(1), page(B59), cat(Supernatural, Mental) ),_
+			#newitem(AD:Holy Warrior Higher Purpose (Slay Undead), 5/10, upto(1), page(B59), cat(Supernatural, Mental) )_
+		)_
+	),_
+	select2(comment(Mentalist-Holy Warrior), text(Advantages: Select 5 points from the following:), tagwith(Mentalist-HolyWarrior(yes)), pointswanted(5), itemswanted(1), list(_
+			#newitem(AD:Holiness 2, 5, displaycost(+5), existing(AD:Holiness)) #codes(upto 2, downto 2),_
+			AD:Rapid Healing,_
+			AD:Resistant to Poison #codes(upto 1, downto 1),_
+			AD:Striking ST #codes(upto 1, downto 1) _
+		)_
+	),_
+	select3(comment(Mentalist-Holy Warrior), text(Disadvantages: Select -10 points from the following:), tagwith(Mentalist-HolyWarrior(yes)), pointswanted(-10), itemswanted(1), list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Good entities),_
+			DI:Vow (Own no more than horse can carry)_
+		)_
+	),_
+	select4(comment(Mentalist-Holy Warrior), text(Skills: Select 1 of the following:), tagwith(Mentalist-HolyWarrior(yes)), pointswanted(1), itemswanted(1), list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts, downto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select5(comment(Mentalist-Holy Warrior), text(Increase your primary melee weapon skill:), tagwith(Mentalist-HolyWarrior(yes)), pointswanted(4), itemswanted(1), list(_
+			#BuildSelectList(Skills where cat includes "Combat/Weapons - Melee Combat", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ))_
+		)_
+	),_
+	select6(_
+		text("Select 26 points total in Holy abilities and/or additional skills."),_
+		pointswanted(atleast 20, upto 26),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where HolyWarrior is "yes", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+1pts) )),_
+			#newitem(SK:_Increase Exorcism, IQ/H, existing(SK:Exorcism)),_
+			#list(Holy Abilities),_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts),_
+			#newitem(SK:Physiology ([Secondary Monster Type]), IQ/H, tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences),x(#InputReplace("Please specify a monster type:", "[Secondary Monster Type]", "monster", "Physiology")) #codes(upto 1pts)),_
+			#newitem(SK:Psychology ([Secondary Monster Type]), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities),x(#InputReplace("Please specify a monster type:", "[Secondary Monster Type]", "monster", "Psychology")) #codes(upto 1pts))_
+		) _
+	)
+
+
+Mentalist-Knight (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Dedicated psionic warriors - and mentalists who grow tired _
+			of losing fights - may seek to learn the art of war. This lens _
+			yields an all-around fighter. For a weapon specialist, select _
+			Mentalist-Scout or Mentalist-Swashbuckler. _
+		),_
+	page(DF14:18),_
+	sets(_
+			ST:ST = ST:ST + 1,_
+			ST:HT = ST:HT + 1,_
+			ST:Basic Speed = ST:Basic Speed - 0.25 _
+		),_
+	adds(_
+			AD:Combat Reflexes,_
+			AD:High Pain Threshold,_
+			SK:Brawling = 1pts,_
+			SK:Connoisseur (Weapons) = 1pts,_
+			SK:Leadership = 1pts,_
+			SK:Tactics = 1pts,_
+			SK:Strategy (Land) = 1pts _
+		),_
+	select1(comment(Mentalist-Knight), text(Skills: Select 1 of the following:), tagwith(Mentalist-Knight(yes)), pointswanted(1), itemswanted(1), list(_
+			SK:Armoury (Body Armor) #codes(upto 1pts, downto 1pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select2(comment(Mentalist-Knight), text(Increase your primary melee weapon skill:), tagwith(Mentalist-Knight(yes)), pointswanted(4), itemswanted(1), list(_
+			#BuildSelectList(Skills where cat includes "Combat/Weapons - Melee Combat", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ))_
+		)_
+	)
+
+Mentalist-Martial Artist (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Many people feel that psi and chi overlap, butmastering both _
+			spreads points thin. Still, Judo and Karate are good for grappling _
+			and striking with Telekinesis, and Power Blow can double _
+			that ability's ST for one blow or action, just as for physical ST. _
+		),_
+	page(DF14:18),_
+	adds(_
+			AD:Chi Talent,_
+			AD:Trained by a Master,_
+			DI:Disciplines of Faith (Chi Rituals),_
+			SK:Acrobatics = 1pts,_
+			SK:Jumping = 1pts _
+		),_
+	select1(comment(Mentalist-Martial Artist), text(Skills: Select both of the following, one at 1pts, the other at 2pts:), tagwith(Mentalist-MartialArtist(yes)), pointswanted(3), itemswanted(2), list(_
+			SK:Judo #codes(upto 2pts, downto 1pts),_
+			SK:Karate #codes(upto 2pts, downto 1pts) _
+		)_
+	),_
+	select2(_
+		text("Select 10 points in Chi abilities and/or chi skills."),_
+		tagwith(MartialArtist(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(10),_
+		multitype(yes),_
+		list(_
+			#list(Martial Artist Abilities),_
+			#buildlist(list(#list(Martial Artist Skills)), template(%ListItem% #codes(upto 4pts, downto 1pts)))_
+		)_
+	)
+
+Mentalist-Scout (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Given that mentalists have Psionics abilities that let them _
+			blast distant foes, archery is somewhat marginal. As partial _
+			compensation, mentalist-scouts with Heroic Archer and _
+			Telekinesis can guide arrows: +2 to hit or +1 to damage. This _
+			consumes 1 FP/arrow and counts as a use of psi. _
+		),_
+	page(DF14:18),_
+	sets(_
+			ST:DX = ST:DX + 1,_
+			ST:Basic Speed = ST:Basic Speed - 0.25 _
+		),_
+	adds(_
+			AD:Heroic Archer,_
+			SK:Bow = 8pts,_
+			SK:Camouflage = 1pts,_
+			SK:Cartography = 1pts,_
+			SK:Fast-Draw (Arrow) = 1pts,_
+			SK:Navigation (Land) = 1pts _
+		),_
+	select1(comment(Mentalist-Scout), text(Skills: Select 1 of the following:), tagwith(Mentalist-Scout(yes)), pointswanted(1), itemswanted(1), list(_
+			SK:Survival #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts, downto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select2(comment(Mentalist-Scout), text(Skills: Select at least of the following:), tagwith(Mentalist-Scout(yes)), pointswanted(2), itemswanted(atleast 1, upto 2), list(_
+			SK:Climbing #codes(upto 2pts, downto 1pts),_
+			SK:Stealth #codes(upto 2pts, downto 1pts),_
+			SK:Observation #codes(upto 2pts, downto 1pts),_
+			SK:Tracking #codes(upto 2pts, downto 1pts) _
+		)_
+	)
+
+Mentalist-Swashbuckler (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Mentalists have low ST and thus favor lighter weapons, _
+			making this their best melee-combat lens inasmuch as any _
+			such lens suits a psi. All three advantages below do give their _
+			bonuses when wielding an appropriate weapon with _
+			Telekinesis, though! _
+		),_
+	page(DF14:18),_
+	sets(_
+			ST:DX = ST:DX + 1,_
+			ST:Basic Speed = ST:Basic Speed - 0.25 _
+		),_
+	adds(_
+			AD:Enhanced Parry (%Melee Weapon%),_
+			PE:Weapon Bond (%Weapon%),_
+			AD:Weapon Master,_
+			SK:Acrobatics = 1pts _
+		),_
+	select1(comment(Mentalist-Swashbuckler), text(Skills: Select 1 of the following:), tagwith(Mentalist-Swashbuckler(yes)), pointswanted(8), itemswanted(1), list(_
+			#BuildSelectList(Skills where cat includes "Combat/Weapons - Melee Combat", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+8pts) ))_
+			SK:Rapier #codes(upto 8pts, downto 8pts),_
+			SK:Saber #codes(upto 8pts, downto 8pts),_
+			SK:Shortsword #codes(upto 8pts, downto 8pts),_
+			SK:Smallsword #codes(upto 8pts, downto 8pts) _
+		)_
+	)
+
+Mentalist-Thief (Dungeon Fantasy), displaycost(+50),_
+	description(_
+				A mentalist has many abilities that could greatly aid thievery, _
+				from various ESP gifts to locate booty, through Telekinesis _
+				for delicate work (gives a juicy +4; see p. B92), to out-and-out _
+				mind control of one's marks. _
+		),_
+	page(DF14:18),_
+	sets(_
+			ST:DX = ST:DX + 2,_
+			ST:Basic Speed = ST:Basic Speed - 0.5 _
+			),_
+	adds(_
+			AD:Flexibility,_
+			AD:High Manual Dexterity,_
+			SK:Stealth = 4pts,_
+			SK:Climbing = 1pts,_
+			SK:Filch = 1pts,_
+			SK:Forced Entry = 1pts,_
+			SK:Lockpicking = 1pts,_
+			SK:Pickpocket = 1pts,_
+			SK:Traps = 1pts _
+		)
+
+Mentalist-Wizard (Dungeon Fantasy), displaycost(+50),_
+	description(_
+			Like the cleric-wizard, the mentalist-wizard is a master of _
+			two realms who will rarely be at a loss for options. The scope _
+			of potential tricks is by far greater for this spellcaster lens than _
+			for any of the others. _
+		),_
+	x(#message("Take an additional 20 points in wizardly spells of any kind.")),_
+	needs(20 Spells=1pts),_
+	page(DF14:18),_
+	sets(_
+			ST:Fatigue Points = ST:Fatigue Points + 1 _
+		),_
+	adds(_
+			AD:Magery 0,_
+			AD:Magery = 2,_
+			SK:Thaumatology = 1pts _
+		),_
+	select1(comment(Mentalist-Wizard), text(Skills: Select 1 of the following:), tagwith(Mentalist-Wizard(yes)), pointswanted(1), itemswanted(1), list(_
+			SK:Alchemy #codes(upto 1pts, downto 1pts),_
+			SK:Occultism #codes(upto 1pts, downto 1pts) _
+		)_
+	)
+
+********************************************************************************************************\[STOP]
+//   EQUIPMENT MODIFIERS
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Equipment>
+
+<Armor>
+Psiphobic, +19 CF,_
+	group(Armor),_
+	page(DF14:24)
+Psiphilic (%AttackList%), +19 CF, displaycost(+19 CF/+24 CF), upto(1), page(DF14:24),_
+	group(Armor),_
+	formula(14 + (5 * (%Attack7Alias% + %Attack6Alias% + %Attack5Alias% + %Attack4Alias% + %Attack3Alias% + %Attack2Alias% + %Attack1Alias%))),_
+	forceformula(yes),_
+	x(#ChoiceList(_
+			name(Attack),_
+			title(Psiphilic),_
+			text(Choose a phobia from the list of examples provided:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"Psychokinetic Lash",_
+				"Pyrokinetic Bolt",_
+				"Dispel Psi",_
+				"Fear",_
+				"Madness",_
+				"Mind Blast",_
+				"Mind Stab"_
+			),_
+			aliaslist(_
+			1,1,1,1,1,1,1_
+			)_
+		)_
+	)
+
+<Shield>
+Psiphobic, +99 CF,_
+	group(Shield),_
+	page(DF14:24)
+Psiphilic (%AttackList%), +99 CF, displaycost(+99 CF/+104 CF), upto(1), page(DF14:24),_
+	group(Shield),_
+	formula(94 + (5 * (%Attack7Alias% + %Attack6Alias% + %Attack5Alias% + %Attack4Alias% + %Attack3Alias% + %Attack2Alias% + %Attack1Alias%))),_
+	forceformula(yes),_
+	x(#ChoiceList(_
+			name(Attack),_
+			title(Psiphilic),_
+			text(Choose a phobia from the list of examples provided:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"Psychokinetic Lash",_
+				"Pyrokinetic Bolt",_
+				"Dispel Psi",_
+				"Fear",_
+				"Madness",_
+				"Mind Blast",_
+				"Mind Stab"_
+			),_
+			aliaslist(_
+			1,1,1,1,1,1,1_
+			)_
+		)_
+	)
+
+<Arrow>
+<Bow Quality>
+
+
+<Melee Quality>
+Psiphobic, +19 CF,_
+	group(Melee Quality),_
+	page(DF14:24)
+Psiphilic (%AttackList%), +19 CF, displaycost(+19 CF/+24 CF), upto(1), page(DF14:24),_
+	group(Melee Quality),_
+	formula(14 + (5 * (%Attack7Alias% + %Attack6Alias% + %Attack5Alias% + %Attack4Alias% + %Attack3Alias% + %Attack2Alias% + %Attack1Alias%))),_
+	forceformula(yes),_
+	x(#ChoiceList(_
+			name(Attack),_
+			title(Psiphilic),_
+			text(Choose a phobia from the list of examples provided:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"Psychokinetic Lash",_
+				"Pyrokinetic Bolt",_
+				"Dispel Psi",_
+				"Fear",_
+				"Madness",_
+				"Mind Blast",_
+				"Mind Stab"_
+			),_
+			aliaslist(_
+			1,1,1,1,1,1,1_
+			)_
+		)_
+	)
+
+
+
+
+
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment>
+Firestarters, basecost(30), baseweight(0.25), page(DF14:23)
+Hypno-Disc, basecost(250), baseweight(0.1), page(DF14:23)
+Psure-Test, basecost(50), baseweight(0), page(DF14:23)
+Squiddy Snacks, basecost(5), baseweight(0.5), page(DF14:23)
+Telekinetic’s Webbing, basecost(3), baseweight(160), page(DF14:24)

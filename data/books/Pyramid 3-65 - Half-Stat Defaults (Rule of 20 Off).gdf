@@ -1,0 +1,1090 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Description=2022 September 13. _
+			This file contains changes outlined is Douglas Cole's Pyramid 3/65 article Half-Stat Defaults.
+Program=4.0.283
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+Incomplete=Yes
+
+[AUTHOR]
+******************************************************************************************************\[START]
+*
+* GURPS® Character Assistant
+* Filename: Pyramid 3-65 - Half-Stat Defaults.gdf
+* Created: 03/21/2014
+* Modified: 03/21/2014 
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS  sourcebook.
+* GURPS  is Copyright(C)  by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*
+*
+******************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* eric.frogkiller@gmail.com
+*
+* Or drop a message at:
+* http://forums.sjgames.com
+* 
+******************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is copyright (c) 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+*******************************************************************************************************\[STOP]
+[SKILLTYPES]
+******************************************************************************************************\[START]
+DX/E[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[-2], cost(1/2/4/8), base(+0), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+DX/E[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[-1], cost(1/2/4/8), base(+1), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+DX/E[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[+0], cost(1/2/4/8), base(+2), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+DX/E[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[+1], cost(1/2/4/8), base(+3), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+DX/E[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[+2], cost(1/2/4/8), base(+4), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+DX/E[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[+3], cost(1/2/4/8), base(+5), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+DX/E[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/A[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/H[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:DX/2)), relname(DX/2)
+DX/VH[+4], cost(1/2/4/8), base(+6), defaultstat(@int(ST:DX/2)), relname(DX/2)
+
+IQ/E[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[-2], cost(1/2/4/8), base(+0), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+IQ/E[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[-1], cost(1/2/4/8), base(+1), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+IQ/E[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[+0], cost(1/2/4/8), base(+2), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+IQ/E[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[+1], cost(1/2/4/8), base(+3), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+IQ/E[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[+2], cost(1/2/4/8), base(+4), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+IQ/E[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[+3], cost(1/2/4/8), base(+5), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+IQ/E[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/A[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/H[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+IQ/VH[+4], cost(1/2/4/8), base(+6), defaultstat(@int(ST:IQ/2)), relname(IQ/2)
+
+HT/E[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[-2], cost(1/2/4/8), base(+0), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+HT/E[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[-1], cost(1/2/4/8), base(+1), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+HT/E[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[+0], cost(1/2/4/8), base(+2), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+HT/E[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[+1], cost(1/2/4/8), base(+3), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+HT/E[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[+2], cost(1/2/4/8), base(+4), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+HT/E[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[+3], cost(1/2/4/8), base(+5), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+HT/E[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/A[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/H[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:HT/2)), relname(HT/2)
+HT/VH[+4], cost(1/2/4/8), base(+6), defaultstat(@int(ST:HT/2)), relname(HT/2)
+
+ST/E[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[-2], cost(1/2/4/8), base(+0), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+ST/E[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[-1], cost(1/2/4/8), base(+1), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+ST/E[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[+0], cost(1/2/4/8), base(+2), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+ST/E[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[+1], cost(1/2/4/8), base(+3), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+ST/E[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[+2], cost(1/2/4/8), base(+4), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+ST/E[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[+3], cost(1/2/4/8), base(+5), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+ST/E[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/A[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/H[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:ST/2)), relname(ST/2)
+ST/VH[+4], cost(1/2/4/8), base(+6), defaultstat(@int(ST:ST/2)), relname(ST/2)
+
+Per/E[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[-2], cost(1/2/4/8), base(+0), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Per/E[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[-1], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Per/E[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[+0], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Per/E[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[+1], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Per/E[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[+2], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Per/E[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[+3], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Per/E[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/A[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/H[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:Per/2)), relname(Per/2)
+Per/VH[+4], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Per/2)), relname(Per/2)
+
+Will/E[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[-2], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[-2], cost(1/2/4/8), base(+0), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+Will/E[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[-1], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[-1], cost(1/2/4/8), base(+1), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+Will/E[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[+0], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[+0], cost(1/2/4/8), base(+2), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+Will/E[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[+1], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[+1], cost(1/2/4/8), base(+3), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+Will/E[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[+2], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[+2], cost(1/2/4/8), base(+4), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+Will/E[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[+3], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[+3], cost(1/2/4/8), base(+5), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+Will/E[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/A[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/H[+4], cost(1/2/4/8), base(+7), defaultstat(@int(ST:Will/2)), relname(Will/2)
+Will/VH[+4], cost(1/2/4/8), base(+6), defaultstat(@int(ST:Will/2)), relname(Will/2)
+
+*******************************************************************************************************\[STOP]
+[Settings]
+******************************************************************************************************\[START]
+ruleof(0)
+
+*******************************************************************************************************\[STOP]
+[SKILLS]
+******************************************************************************************************\[START]
+<_New Skills>
+_New Skill, %typelist%%penaltyalt2list%, page(B175), cat(_General, _New Skills), tl(%TL1alias%),_
+	x(#InputToTagReplace("Please enter the name of this Skill:" , name, , "New Skill"),_
+	#ChoiceList(_
+			name(parry),_
+			title(New Skill: Can this skill be used to parry in combat?),_
+			text(Can this skill be used to parry in combat? Choose one:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"_No Parry",_
+				"Normal Parry",_
+				"Knife Parry"=-1,_
+				"Staff Parry"=+2_
+			),_
+			aliaslist(_
+				"",_
+				"@int(%level/2)+3",_
+				"@int(%level/2)+3-1",_
+				"@int(%level/2)+3+2"_
+				)_
+			),_
+	#ChoiceList(_
+			name(block),_
+			title(New Skill: Can this skill be used to Block in combat?),_
+			text(Can this skill be used to block in combat? Choose one:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"_No Block",_
+				"Normal Block"_
+			),_
+			aliaslist(_
+				"",_
+				"@int(%level/2)+3"_
+				)_
+			),_
+	#ChoiceList(_
+			name(TL),_
+			title(New Skill: Is this skill TL based?),_
+			text(Is this skill TL based?),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Not TL based",_
+				"TL based"_
+				),_
+			aliaslist(_
+				"",_
+				"0-12"_
+				)_
+			),_
+	#ChoiceList(_
+			name(type),_
+			title(New Skill: Choose a Skill Type),_
+			text(Choose the type of skill from the list below:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"DX/E",_
+				"DX/A",_
+				"DX/H",_
+				"DX/VH",_
+				"IQ/E",_
+				"IQ/A",_
+				"IQ/H",_
+				"IQ/VH",_
+				"HT/E",_
+				"HT/A",_
+				"HT/H",_
+				"HT/VH",_
+				"Will/E",_
+				"Will/A",_
+				"Will/H",_
+				"Will/VH",_
+				"Per/E",_
+				"Per/A",_
+				"Per/H",_
+				"Per/VH"_
+			),_
+		aliaslist(_
+					"DX",_
+					"DX",_
+					"DX",_
+					"DX",_
+					"IQ",_
+					"IQ",_
+					"IQ",_
+					"IQ",_
+					"HT",_
+					"HT",_
+					"HT",_
+					"HT",_
+					"Will",_
+					"Will",_
+					"Will",_
+					"Will",_
+					"Perception",_
+					"Perception",_
+					"Perception",_
+					"Perception"_
+				),_
+		alt1list(_
+				"+1",_
+				"+0",_
+				"-1",_
+				"-1",_
+				"+1",_
+				"+0",_
+				"-1",_
+				"-1",_
+				"+1",_
+				"+0",_
+				"-1",_
+				"-1",_
+				"+1",_
+				"+0",_
+				"-1",_
+				"-1",_
+				"+1",_
+				"+0",_
+				"-1",_
+				"-1"_
+			),_
+		alt2list(_
+				"[+1]",_
+				"[+0]",_
+				"[-1]",_
+				"[-1]",_
+				"[+1]",_
+				"[+0]",_
+				"[-1]",_
+				"[-1]",_
+				"[+1]",_
+				"[+0]",_
+				"[-1]",_
+				"[-1]",_
+				"[+1]",_
+				"[+0]",_
+				"[-1]",_
+				"[-1]",_
+				"[+1]",_
+				"[+0]",_
+				"[-1]",_
+				"[-1]"_
+				)_
+			),_
+	#ChoiceList(_
+			name(penalty),_
+			title(New Skill: Choose a Skill Type),_
+			text(Choose the normal attribute default -> new attribute default penalty below:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+					"_no default",_
+					"-7 -> [-2]",_
+					"-6 -> [-1]",_
+					"-5 -> [+0]",_
+					"-4 -> [+1]",_
+					"-3 -> [+2]",_
+					"-2 -> [+3]",_
+					"-1 -> [+4]"_
+				),_
+			aliaslist(_
+					"",_
+					"%typealiaslist% + me::defmod",_
+					"%typealiaslist% + me::defmod",_
+					"%typealiaslist% + me::defmod",_
+					"%typealiaslist% + me::defmod",_
+					"%typealiaslist% + me::defmod",_
+					"%typealiaslist% + me::defmod",_
+					"%typealiaslist% + me::defmod"_
+			),_
+			alt1list(_
+					"%typealt1list%",_
+					"-2",_
+					"-1",_
+					"+0",_
+					"+1",_
+					"+2",_
+					"+3",_
+					"+4"_
+			),_
+			alt2list(_
+					"%typealt2list%",_
+					"[-2]",_
+					"[-1]",_
+					"[+0]",_
+					"[+1]",_
+					"[+2]",_
+					"[+3]",_
+					"[+4]"_
+			)_
+		),_
+	#edit _
+	), noresync(yes), parryat(%parryaliaslist%), blockat(%blockaliaslist%),_
+	default(%penaltyaliaslist%), defmod(-@int(0.5 + ST:%typealiaslist%/2)%penaltyalt1list%)
+
+#ReplaceTags in "SK:Accounting" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Finance - 4, "SK:Mathematics (Statistics)" - 5, SK:Merchant - 5), defmod(-@int(0.5 + ST:IQ/2)-1)}
+#ReplaceTags in "SK:Acrobatics" with {type(DX/H[-1]), default(DX + me::defmod, SK:Aerobatics - 4, SK:Aquabatics - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Acting" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Performance - 2, SK:Public Speaking - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Administration" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Merchant - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Aerobatics" with {type(DX/H[-1]), default(DX + me::defmod, SK:Acrobatics - 4, SK:Aquabatics - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Airshipman" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Alchemy" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Animal Handling" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Animal Handling (Big Cats)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Animal Handling (Dogs)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Animal Handling (Equines)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Animal Handling (Raptors)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Anthropology" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Paleontology (Paleoanthropology)" - 2, SK:Sociology - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Aquabatics" with {type(DX/H[-1]), default(DX + me::defmod, SK:Acrobatics - 4, SK:Aerobatics - 4), needs(SK:Swimming | AD:Amphibious | "DI:No Legs (Aquatic)"), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Archaeology" with {type(IQ/H[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Architecture" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer (Civil)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Area Knowledge ([Area])" with {type(IQ/E[+1]), default(IQ + me::defmod, "SK:Geography ([Area])" - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Armoury (Battlesuits)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Body Armor)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Force Shields)" - 4, "SK:Armoury (Vehicular Armor)" - 4, "SK:Engineer (Body Armor)" - 4, "SK:Smith (Copper)" - me::default1, "SK:Smith (Iron)" - me::default2, SK:Machinist - me::default3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Force Shields)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Body Armor)" - 4, "SK:Armoury (Vehicular Armor)" - 4, "SK:Engineer (Force Shields)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Heavy Weapons)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Melee Weapons)" - 4, "SK:Armoury (Small Arms)" - 4, "SK:Armoury (Missile Weapons)" - 4, "SK:Engineer (Artillery)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Melee Weapons)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Small Arms)" - 4, "SK:Armoury (Heavy Weapons)" - 4, "SK:Armoury (Missile Weapons)" - 4, "SK:Engineer (Melee Weapons)" - 4, "SK:Smith (Copper)" - me::default1, "SK:Smith (Iron)" - me::default2, SK:Machinist - me::default3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Missile Weapons)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Melee Weapons)" - 4, "SK:Armoury (Small Arms)" - 4, "SK:Armoury (Heavy Weapons)" - 4, "SK:Engineer (Missile Weapons)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Small Arms)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Melee Weapons)" - 4, "SK:Armoury (Heavy Weapons)" - 4, "SK:Armoury (Missile Weapons)" - 4, "SK:Engineer (Small Arms)" - 4, SK:Machinist - me::default1), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Armoury (Vehicular Armor)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Armoury - me::default0, "SK:Armoury (Battlesuits)" - 4, "SK:Armoury (Body Armor)" - 4, "SK:Armoury (Force Shields)" - 4, "SK:Engineer (Vehicular Armor)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artillery (Beams)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artillery (Bombs)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artillery (Cannon)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artillery (Catapult)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artillery (Guided Missile)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artillery (Torpedoes)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Artist" with {type(IQ/H[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Body Art)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Artist (Calligraphy)" - 4, "SK:Artist (Drawing)" - 4, "SK:Artist (Illumination)" - 4, SK:Artist - 6, "SK:Artist (Painting)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Calligraphy)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Artist (Body Art)" - 4, "SK:Artist (Drawing)" - 2, "SK:Artist (Illumination)" - 2, "SK:Artist (Painting)" - 2, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Drawing)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Artist (Body Art)" - 4, "SK:Artist (Calligraphy)" - 2, "SK:Artist (Illumination)" - 2, "SK:Artist (Painting)" - 2, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Illumination)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Artist (Body Art)" - 4, "SK:Artist (Calligraphy)" - 2, "SK:Artist (Drawing)" - 2, "SK:Artist (Painting)" - 2, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Illusion)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Interior Decorating)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Architecture - 3, "SK:Artist (Scene Design)" - 4, "SK:Artist (Woodworking)" - 4, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Painting)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Artist (Body Art)" - 4, "SK:Artist (Calligraphy)" - 2, "SK:Artist (Drawing)" - 2, "SK:Artist (Illumination)" - 2, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Pottery)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Scene Design)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Architecture - 3, "SK:Artist (Interior Decorating)" - 4, "SK:Artist (Woodworking)" - 4, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Sculpting)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Artist (Woodworking)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Carpentry - 3, "SK:Artist (Interior Decorating)" - 4, "SK:Artist (Scene Design)" - 4, SK:Artist - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Astronomy" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Astronomy), needs("SK:Mathematics (Applied)" = 1pts), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Astronomy (Observational)" with {type(IQ/A[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Autohypnosis" with {type(Will/H[-1]), default(SK:Meditation - 4), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Axe/Mace" with {type(DX/A[+0]), default(DX + me::defmod, SK:Flail - 4, "SK:Two-Handed Axe/Mace" - 3, "SK:Axe/Mace Art" - 3, "SK:Axe/Mace Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Axe/Mace Art" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Axe/Mace" - 3, "SK:Axe/Mace Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Axe/Mace Sport" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Axe/Mace" - 3, "SK:Axe/Mace Art" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Battlesuit" with {type(DX/A[+0]), default(DX + me::defmod, SK:Diving Suit - 2, SK:NBC Suit - 2, SK:Vacc Suit - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Beam Weapons (Pistol)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Beam Weapons - 4, "SK:Guns (Pistol)" - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Beam Weapons (Projector)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Beam Weapons - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Beam Weapons (Rifle)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Beam Weapons - 4, "SK:Guns (Rifle)" - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Bicycling" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Driving (Motorcycle)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Bioengineering (Cloning)" with {type(IQ/H[-1]), default(SK:Biology - 5, SK:Bioengineering - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Bioengineering (Genetic Engineering)" with {type(IQ/H[-1]), default(SK:Biology - 5, SK:Bioengineering - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Bioengineering (Tissue Engineering)" with {type(IQ/H[-1]), default(SK:Biology - 5, SK:Bioengineering - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Biology (Earthlike)" with {type(IQ/VH[-1]), default(IQ + me::defmod, "SK:Naturalist (Earthlike)" - 6, SK:Biology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Biology (Gas Giants)" with {type(IQ/VH[-1]), default(IQ + me::defmod, "SK:Naturalist (Gas Giants)" - 6, SK:Biology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Biology (Hostile Terrestrial)" with {type(IQ/VH[-1]), default(IQ + me::defmod, "SK:Naturalist (Hostile Terrestrial)" - 6, SK:Biology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Biology (Ice Dwarfs)" with {type(IQ/VH[-1]), default(IQ + me::defmod, "SK:Naturalist (Ice Dwarfs)" - 6, SK:Biology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Biology (Ice Worlds)" with {type(IQ/VH[-1]), default(IQ + me::defmod, "SK:Naturalist (Ice Worlds)" - 6, SK:Biology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Biology (Rock Worlds)" with {type(IQ/VH[-1]), default(IQ + me::defmod, "SK:Naturalist (Rock Worlds)" - 6, SK:Biology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Blind Fighting" with {type(Per/VH[-1]), default(), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)-1)}
+#ReplaceTags in "SK:Blowpipe" with {type(DX/H[-1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Boating (Large Powerboat)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Boating (Motorboat)" - 2, "SK:Boating (Sailboat)" - 4, "SK:Boating (Unpowered)" - 4, SK:Seamanship - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Boating (Motorboat)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Boating (Large Powerboat)" - 2, "SK:Boating (Sailboat)" - 3, "SK:Boating (Unpowered)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Boating (Sailboat)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Boating (Large Powerboat)" - 4, "SK:Boating (Motorboat)" - 3, "SK:Boating (Unpowered)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Boating (Unpowered)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Boating (Large Powerboat)" - 4, "SK:Boating (Motorboat)" - 3, "SK:Boating (Sailboat)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Body Control" with {type(HT/VH[-1]), default(), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)-1)}
+#ReplaceTags in "SK:Body Language" with {type(Per/A[+0]), default(SK:Detect Lies - 4, SK:Psychology - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Body Sense" with {type(DX/H[-1]), default(DX + me::defmod, SK:Acrobatics - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Bolas" with {type(DX/A[+0]), default(SK:Bolas Art - 3, SK:Bolas Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Bolas Art" with {type(DX/A[-1]), default(DX + me::defmod, SK:Bolas - 3, SK:Bolas Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Bolas Sport" with {type(DX/A[-1]), default(DX + me::defmod, SK:Bolas - 3, SK:Bolas Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Bow" with {type(DX/A[+0]), default(DX + me::defmod, SK:Bow Art - 3, SK:Bow Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Bow Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Bow - 3, SK:Bow Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Bow Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Bow - 3, SK:Bow Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Boxing" with {type(DX/A[+0]), default(SK:Boxing Art - 3, SK:Boxing Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Boxing Art" with {type(DX/A[-1]), default(DX + me::defmod, SK:Boxing - 3, SK:Boxing Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Boxing Sport" with {type(DX/A[-1]), default(DX + me::defmod, SK:Boxing - 3, SK:Boxing Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Brainwashing" with {type(IQ/H[-1]), default("SK:Electronics Operation (Medical)" - 6, SK:Hypnotism - 6, SK:Interrogation - 6, SK:Pharmacy - 6, SK:Psychology - 6, SK:Surgery - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Brawling" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Brawling Art" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Brawling Sport" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Breaking Blow" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Breath Control" with {type(HT/H[-1]), default(), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)-1)}
+#ReplaceTags in "SK:Broadsword" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Sword - 4, SK:Rapier - 4, SK:Saber - 4, SK:Shortsword - 2, "SK:Two-Handed Sword" - 4, SK:Broadsword Art - 3, SK:Broadsword Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Broadsword Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 3, SK:Broadsword Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Broadsword Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 3, SK:Broadsword Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Camouflage" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Survival - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Carousing" with {type(HT/E[+1]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+1)}
+#ReplaceTags in "SK:Carpentry" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Cartography" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Geography - 2, "SK:Mathematics (Surveying)" - 2, SK:Navigation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Chemistry" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Alchemy - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Climbing" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Cloak" with {type(DX/A[+0]), default(DX + me::defmod, SK:Net - 4, SK:Shield - 4, SK:Cloak Art - 3, SK:Cloak Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Cloak Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Cloak - 3, SK:Cloak Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Cloak Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Cloak - 3, SK:Cloak Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Computer Hacking" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Computer Operation" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Computer Programming" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Connoisseur" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Connoisseur (Dance)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Dancing - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Connoisseur (Literature)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Literature - 3, SK:Poetry - 3, SK:Writing - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Connoisseur (Music)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Group Performance (Conducting)" - 3, SK:Musical Composition - 3, SK:Musical Instrument - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Connoisseur (Visual Arts)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Artist - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Connoisseur (Wine)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Cooking" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Housekeeping - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Counterfeiting" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Forgery - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Criminology" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Psychology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Crossbow" with {type(DX/E[+1]), default(DX + me::defmod, SK:Crossbow Art - 3, SK:Crossbow Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Crossbow Art" with {type(DX/E[+1]), default(DX + me::defmod, SK:Crossbow - 3, SK:Crossbow Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Crossbow Sport" with {type(DX/E[+1]), default(DX + me::defmod, SK:Crossbow - 3, SK:Crossbow Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Cryptography" with {type(IQ/H[-1]), default("SK:Mathematics (Cryptology)" - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Current Affairs ([Regional])" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Business)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Headline News)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (High Culture)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (People)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Politics)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Popular Culture)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Science & Technology)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Sports)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Current Affairs (Travel)" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Research - 4, SK:Current Affairs - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Dancing" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Detect Lies" with {type(Per/H[-1]), default(SK:Perception - 6, SK:Body Language - 4, SK:Psychology - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)-1)}
+#ReplaceTags in "SK:Diagnosis" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:First Aid - 8, SK:Physician - 4, SK:Veterinary - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Diplomacy" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Politics - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Disguise" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Makeup - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Diving Suit" with {type(DX/A[+0]), default(DX + me::defmod, SK:Scuba - 2, SK:Battlesuit - 4, SK:NBC Suit - 4, SK:Vacc Suit - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Dreaming" with {type(Will/H[-1]), default(Will + me::defmod), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Driving (Automobile)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Driving (Heavy Wheeled)" - 2, SK:Driving - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Construction Equipment)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, SK:Driving - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Halftrack)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Driving (Tracked)" - 2, SK:Driving - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Heavy Wheeled)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Driving (Automobile)" - 2, SK:Driving - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Hovercraft)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, SK:Driving - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Locomotive)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, SK:Driving - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Mecha)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, SK:Battlesuit - 3, SK:Driving - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Motorcycle)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, SK:Bicycling - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Driving (Tracked)" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod, "SK:Driving (Halftrack)" - 2, SK:Driving - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Dropping" with {type(DX/A[+2]), default(DX + me::defmod, SK:Throwing - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+2)}
+#ReplaceTags in "SK:Economics" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Finance - 3, SK:Market Analysis - 5, SK:Merchant - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Electrician" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer (Electrical)" - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Communications)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Communications)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Electronic Warfare)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Electronic Warfare)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Force Shields)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Force Shields)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Matter Transmitters)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Matter Transmitters)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Media)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Media)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Medical)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Medical)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Parachronic)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Parachronic)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Psychotronics)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Psychotronics)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Scientific)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Scientific)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Security)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Security)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Sensors)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Sensors)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Sonar)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Sonar)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Surveillance)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Surveillance)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Operation (Temporal)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Repair (Temporal)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Communications)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Computers)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Computer Operation" - 5, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Electronic Warfare)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Electronic Warfare)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Force Shields)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Force Shields)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Matter Transmitters)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Matter Transmitters)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Media)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Media)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Medical)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Medical)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Parachronic)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Parachronic)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Psychotronics)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Psychotronics)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Scientific)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Scientific)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Security)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Security)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Sensors)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Sensors)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Sonar)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Sonar)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Surveillance)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Surveillance)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Electronics Repair (Temporal)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Temporal)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Engineer (%type%)" with {type(IQ/H[-1]), default("SK:Mechanic (%type%)" - 6, "SK:Armoury (%examplelist%)" - 6, SK:Engineer - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer ([Type])" with {type(IQ/H[-1]), default("SK:Mechanic ([Type])" - 6, "SK:Armoury ([Type])" - 6, SK:Engineer - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Artillery)" with {type(IQ/H[-1]), default("SK:Armoury (Heavy Weapons)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Civil)" with {type(IQ/H[-1]), default(SK:Architecture - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Combat)" with {type(IQ/H[-1]), default("SK:Explosives (Demolition)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Electrical)" with {type(IQ/H[-1]), default(SK:Electrician - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Electronics)" with {type(IQ/H[-1]), default(SK:Electronics Repair - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Materials)" with {type(IQ/H[-1]), default(SK:Chemistry - 6, SK:Metallurgy - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts"), (SK:Chemistry = 1 pts | SK:Metallurgy = 1 pts)), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Microtechnology)" with {type(IQ/H[-1]), default("SK:Mechanic (Micromachines)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Mining)" with {type(IQ/H[-1]), default("SK:Explosives (Demolition)" - 6, SK:Geology - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Nanotechnology)" with {type(IQ/H[-1]), default("SK:Mechanic (Nanomachines)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Parachronic)" with {type(IQ/H[-1]), default("SK:Electronics Operation (Parachronic)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts"), SK:Physics = 1 pts), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Psychotronics)" with {type(IQ/H[-1]), default("SK:Electronics Operation (Psychotronics)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Engineer (Temporal)" with {type(IQ/H[-1]), default("SK:Electronics Operation (Temporal)" - 6, SK:Engineer - 4), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts"), SK:Physics = 1 pts), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Enthrallment (Captivate)" with {type(Will/H[-1]), default(), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Enthrallment (Persuade)" with {type(Will/H[-1]), default(), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Enthrallment (Suggest)" with {type(Will/H[-1]), default(), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Enthrallment (Sway Emotions)" with {type(Will/H[-1]), default(), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Erotic Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Acrobatics - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Escape" with {type(DX/H[-1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Esoteric Medicine" with {type(Per/H[-1]), default(Per + me::defmod), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)-1)}
+#ReplaceTags in "SK:Exorcism" with {type(Will/H[-1]), default(Will + me::defmod, SK:Religious Ritual - 3, SK:Ritual Magic - 3, SK:Theology - 3), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Expert Skill" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Computer Security)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Egyptology)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Epidemiology)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Hydrology)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Military Science)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Natural Philosophy)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Political Science)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Psionics)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Thanatology)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Expert Skill (Xenology)" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Explosives (Demolition)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer (Combat)" - 3, "SK:Engineer (Mining)" - 3, "SK:Explosives (Underwater Demolition)" - 2, SK:Explosives - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Explosives (Explosive Ordnance Disposal)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Explosives (Nuclear Ordnance Disposal)" - 2, SK:Explosives - 4), needs(DX = 12), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Explosives (Fireworks)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Chemistry - 3, SK:Explosives - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Explosives (Nuclear Ordnance Disposal)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Explosives (Explosive Ordnance Disposal)" - 2, SK:Explosives - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Explosives (Underwater Demolition)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Explosives (Demolition)" - 2, SK:Explosives - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Falconry" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Animal Handling (Raptors)" - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Farming" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Biology - 5, SK:Gardening - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fast-Draw" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Ammo)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Arrow)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Force Sword)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Knife)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Long Arm)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Pistol)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Sword)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Draw (Two-Handed Sword)" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Fast-Talk" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Acting - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Filch" with {type(DX/A[+0]), default(DX + me::defmod, SK:Pickpocket - 4, SK:Sleight of Hand - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Finance" with {type(IQ/H[-1]), default(SK:Accounting - 4, SK:Economics - 3, SK:Merchant - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Fire Eating" with {type(DX/A[+0]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:First Aid" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Esoteric Medicine, SK:Physician, SK:Veterinary - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Fishing" with {type(Per/E[+1]), default(Per + me::defmod), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+1)}
+#ReplaceTags in "SK:Flail" with {type(DX/H[-1]), default(DX + me::defmod, "SK:Axe/Mace" - 4, "SK:Two-Handed Flail" -3, SK:Flail Art - 3, SK:Flail Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Flail Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Flail - 3, SK:Flail Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Flail Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Flail - 3, SK:Flail Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Flight" with {type(HT/A[+0]), default(HT + me::defmod), needs(AD:Flight), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+0)}
+#ReplaceTags in "SK:Flying Leap" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Force Sword" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 3, "SK:Jitte/Sai" - 3, SK:Knife - 3, SK:Shortsword - 3, "SK:Two-Handed Sword" - 3, SK:Force Sword Art - 3, SK:Force Sword Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Force Sword Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Sword - 3, SK:Force Sword Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Force Sword Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Sword - 3, SK:Force Sword Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Force Whip" with {type(DX/A[+0]), default(DX + me::defmod, SK:Kusari - 3, SK:Monowire Whip - 3, SK:Whip - 3, SK:Force Whip Art - 3, SK:Force Whip Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Force Whip Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Whip - 3, SK:Force Whip Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Force Whip Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Whip - 3, SK:Force Whip Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Forced Entry" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Forensics" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Criminology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Forgery" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Counterfeiting - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Fortune-Telling" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Astrology)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Augury)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Crystal Gazing)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Dream Interpretation)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Feng Shui)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Palmistry)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Fortune-Telling (Tarot)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Fast-Talk" - 3, SK:Occultism - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Forward Observer" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Artillery - 5, SK:Electronics Operation - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Free Fall" with {type(DX/A[+0]), default(DX + me::defmod, HT + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Freight Handling" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Gambling" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Mathematics (Statistics)" - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Games" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Gardening" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Farming - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Garrote" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Geography ([Regional])" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Area Knowledge ([Regional])" - 6, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Earthlike)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geology (Earthlike)" - 4, "SK:Meteorology (Earthlike)" - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Gas Giants)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geology (Gas Giants)" - 4, "SK:Meteorology (Gas Giants)" - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Hostile Terrestrial)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geology (Hostile Terrestrial)" - 4, "SK:Meteorology (Hostile Terrestrial)" - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Ice Dwarfs)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geology (Ice Dwarfs)" - 4, "SK:Meteorology (Ice Dwarfs)" - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Ice Worlds)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geology (Ice Worlds)" - 4, "SK:Meteorology (Ice Worlds)" - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Political)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Economics - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geography (Rock Worlds)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geology (Rock Worlds)" - 4, "SK:Meteorology (Rock Worlds)" - 4, SK:Geography - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geology (Earthlike)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geography (Physical)" -4, SK:Prospecting - 5, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geology (Gas Giants)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geography (Physical)" -4, SK:Prospecting - 5, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geology (Hostile Terrestrial)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geography (Physical)" -4, SK:Prospecting - 5, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geology (Ice Dwarfs)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geography (Physical)" -4, SK:Prospecting - 5, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geology (Ice Worlds)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geography (Physical)" -4, SK:Prospecting - 5, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Geology (Rock Worlds)" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Geography (Physical)" -4, SK:Prospecting - 5, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Gesture" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Group Performance (Choreography)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Dancing - 2), needs((SK:Diplomacy | SK:Intimidation | SK:Leadership), SK:Dancing), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Group Performance (Conducting)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Musical Instrument - 2, SK:Singing - 2), needs((SK:Diplomacy | SK:Intimidation | SK:Leadership), (2 GR:Musical Instrument | SK:Singing, 1 GR:Musical Instrument | 2 GR:Conducting)), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Group Performance (Directing)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Performance - 5), needs((SK:Diplomacy | SK:Intimidation | SK:Leadership), SK:Performance), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Group Performance (Fight Choreography)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Stage Combat - 2), needs((SK:Diplomacy | SK:Intimidation | SK:Leadership), SK:Stage Combat), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Gunner (Beams)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Gunner - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Gunner (Cannon)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Gunner - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Gunner (Catapult)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Gunner - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Gunner (Machine Gun)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Gunner - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Gunner (Rockets)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Gunner - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Grenade Launcher)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Guns - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Gyroc)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Guns - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Light Anti-Armor Weapon)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Guns - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Light Machine Gun)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)" - 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Musket)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)" - 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Pistol)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)" - 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Rifle)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)" - 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Shotgun)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)" - 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Guns (Submachine Gun)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)" - 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Hazardous Materials" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Hazardous Materials - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hazardous Materials (Biological)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Hazardous Materials - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hazardous Materials (Chemical)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Hazardous Materials - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hazardous Materials (Radioactive)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Hazardous Materials - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Heraldry" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Savoir-Faire (High Society)" - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Herb Lore" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Hidden Lore" with {type(IQ/A[+0]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hidden Lore (Conspiracies)" with {type(IQ/A[+0]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hidden Lore (Demon Lore)" with {type(IQ/A[+0]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hidden Lore (Faerie Lore)" with {type(IQ/A[+0]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hidden Lore (Spirit Lore)" with {type(IQ/A[+0]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Hiking" with {type(HT/A[+0]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+0)}
+#ReplaceTags in "SK:History" with {type(IQ/H[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Hobby Skill ([DX-based])" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Hobby Skill ([IQ-based])" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Holdout" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Sleight of Hand - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Housekeeping" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Hypnotism" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Immovable Stance" with {type(DX/H[-1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Innate Attack (Beam)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Innate Attack - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Innate Attack (Breath)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Innate Attack - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Innate Attack (Gaze)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Innate Attack - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Innate Attack (Projectile)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Innate Attack - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Intelligence Analysis" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Strategy - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Interrogation" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Intimidation - 3, SK:Psychology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Intimidation" with {type(Will/A[+0]), default(Will + me::defmod, SK:Acting - 3), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)+0)}
+#ReplaceTags in "SK:Invisibility Art" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Jeweler" with {type(IQ/H[-1]), default(IQ + me::defmod, "SK:Smith (Copper)" - 4, "SK:Smith (Lead and Tin)" - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Jitte/Sai" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Sword - 4, "SK:Main-Gauche" - 4, SK:Shortsword - 3, "SK:Jitte/Sai Art" - 3, "SK:Jitte/Sai Sport" - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Jitte/Sai Art" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Jitte/Sai" - 3, "SK:Jitte/Sai Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Jitte/Sai Sport" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Jitte/Sai" - 3, "SK:Jitte/Sai Art" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Judo" with {type(DX/H[-1]), default(SK:Judo Art - 3, SK:Judo Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Judo Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Judo - 3, SK:Judo Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Judo Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Judo - 3, SK:Judo Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Jumping" with {type(DX/E[+1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Karate" with {type(DX/H[-1]), default(SK:Karate Art - 3, SK:Karate Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Karate Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Karate - 3, SK:Karate Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Karate Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Karate - 3, SK:Karate Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Kiai" with {type(HT/H[-1]), default(), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)-1)}
+#ReplaceTags in "SK:Knife" with {type(DX/E[+1]), default(DX + me::defmod, SK:Force Sword - 3, "SK:Main-Gauche" - 3, SK:Shortsword - 3, SK:Knife Art - 3, SK:Knife Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Knife Art" with {type(DX/E[+1]), default(DX + me::defmod, SK:Knife - 3, SK:Knife Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Knife Sport" with {type(DX/E[+1]), default(DX + me::defmod, SK:Knife - 3, SK:Knife Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Knot-Tying" with {type(DX/E[+1]), default(DX + me::defmod, SK:Climbing - 4, SK:Seamanship - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Kusari" with {type(DX/H[-1]), default(DX + me::defmod, "SK:Two-Handed Flail" - 4, SK:Force Whip - 3, SK:Monowire Whip - 3, SK:Whip - 3, SK:Kusari Art - 3, SK:Kusari Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Kusari Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Kusari - 3, SK:Kusari Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Kusari Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Kusari - 3, SK:Kusari Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Lance" with {type(DX/A[+0]), default(DX + me::defmod, SK: Spear  - 3, SK:Lance Art - 3, SK:Lance Sport - 3), needs(SK:Riding), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Lance Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Lance - 3, SK:Lance Sport - 3), needs(SK:Riding Sport), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Lance Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Lance - 3, SK:Lance Art - 3), needs(SK:Riding), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Lasso" with {type(DX/A[+0]), default(SK:Lasso Art - 3, SK:Lasso Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Lasso Art" with {type(DX/A[-1]), default(DX + me::defmod, SK:Lasso - 3, SK:Lasso Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Lasso Sport" with {type(DX/A[-1]), default(DX + me::defmod, SK:Lasso - 3, SK:Lasso Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Law" with {type(IQ/H[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Leadership" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Leatherworking" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Lifting" with {type(HT/A[+0]), default(), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+0)}
+#ReplaceTags in "SK:Light Walk" with {type(DX/H[-1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Linguistics" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Lip Reading" with {type(Per/A[+4]), default(Per + me::defmod0), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+4)}
+#ReplaceTags in "SK:Liquid Projector (Flamethrower)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Liquid Projector - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Liquid Projector (Sprayer)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Liquid Projector - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Liquid Projector (Squirt Gun)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Liquid Projector - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Liquid Projector (Water Cannon)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Liquid Projector - 4, SK:Gun!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Literature" with {type(IQ/H[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Lockpicking" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Machinist" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Mechanic - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Main-Gauche" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Jitte/Sai" - 4, SK:Knife - 4, SK:Rapier - 3, SK:Saber - 3, SK:Smallsword - 3, "SK:Main-Gauche Art" - 3, "SK:Main-Gauche Sport" - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Main-Gauche Art" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Main-Gauche" - 3, "SK:Main-Gauche Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Main-Gauche Sport" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Main-Gauche" - 3, "SK:Main-Gauche Art" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Makeup" with {type(IQ/E[+1]), default(IQ + me::defmod, SK:Disguise - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Market Analysis" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Economics - 5, SK:Merchant - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Masonry" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Mathematics (Applied)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Engineer - 5, SK:Physics - 5, SK:Mathematics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mathematics (Computer Science)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Computer Programming - 5, SK:Mathematics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mathematics (Cryptology)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Cryptography - 5, SK:Mathematics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mathematics (Pure)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Mathematics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mathematics (Statistics)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Mathematics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mathematics (Surveying)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Cartography - 3, SK:Navigation - 4, SK:Mathematics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mechanic (%type%)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer (%type%)" - 4, SK:Machinist - 5, SK:Mechanic - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Mechanic ([Type])" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer ([Type])" - 4, SK:Machinist - 5, SK:Mechanic - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Mechanic (Micromachines)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer (Microtechnology)" - 4, SK:Machinist - 5, SK:Mechanic - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Mechanic (Nanomachines)" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Engineer (Nanotechnology)" - 4, SK:Machinist - 5, SK:Mechanic - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Meditation" with {type(Will/H[-1]), default(Will + me::defmod, SK:Autohypnosis - 4), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Mental Strength" with {type(Will/E[+1]), default(), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)+1)}
+#ReplaceTags in "SK:Merchant" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Finance - 6, SK:Market Analysis - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Metallurgy" with {type(IQ/H[-1]), default(SK:Chemistry - 5, SK:Jeweler - 8, SK:Smith - 8), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Meteorology (Earthlike)" with {type(IQ/A[-1]), default(IQ + me::defmod, SK:Meteorology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Meteorology (Gas Giants)" with {type(IQ/A[-1]), default(IQ + me::defmod, SK:Meteorology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Meteorology (Hostile Terrestrial)" with {type(IQ/A[-1]), default(IQ + me::defmod, SK:Meteorology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Meteorology (Ice Dwarfs)" with {type(IQ/A[-1]), default(IQ + me::defmod, SK:Meteorology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Meteorology (Ice Worlds)" with {type(IQ/A[-1]), default(IQ + me::defmod, SK:Meteorology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Meteorology (Rock Worlds)" with {type(IQ/A[-1]), default(IQ + me::defmod, SK:Meteorology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mimicry (Animal Sounds)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Naturalist - 6, "SK:Mimicry (Bird Calls)" - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mimicry (Bird Calls)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Naturalist - 6, "SK:Mimicry (Animal Sounds)" - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mimicry (Speech)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Acting - 6, SK:Linguistics - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Mind Block" with {type(Will/A[+0]), default(Will + me::defmod, SK:Meditation - 5), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)+0)}
+#ReplaceTags in "SK:Monowire Whip" with {type(DX/H[-1]), default(DX + me::defmod, SK:Force Whip - 3, SK:Kusari - 3, SK:Whip - 3, SK:Monowire Whip Art - 3, SK:Monowire Whip Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Monowire Whip Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Monowire Whip - 3, SK:Monowire Whip Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Monowire Whip Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Monowire Whip - 3, SK:Monowire Whip Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Mount" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Musical Composition" with {type(IQ/H[-1]), default(SK:Musical Instrument - 2, SK:Poetry - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Musical Influence" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Musical Instrument" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Naturalist" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Biology - 3, SK:Naturalist - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Navigation (Air)" with {type(IQ/A[+0]), default(SK:Astronomy - 5, "SK:Navigation (Sea)" - 2, "SK:Navigation (Land)" - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Navigation (Hyperspace)" with {type(IQ/A[+0]), default(SK:Astronomy - 4, "SK:Mathematics (Applied)" - 4, "SK:Navigation (Space)" - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Navigation (Land)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Cartography - 4, "SK:Mathematics (Surveying)" - 4, "SK:Navigation (Sea)" - 2, "SK:Navigation (Air)" - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Navigation (Sea)" with {type(IQ/A[+0]), default(SK:Astronomy - 5, SK:Seamanship - 5, "SK:Navigation (Air)" - 2, "SK:Navigation (Land)" - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Navigation (Space)" with {type(IQ/A[+0]), default(SK:Astronomy - 4, "SK:Mathematics (Applied)" - 4, "SK:Navigation (Hyperspace)" - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:NBC Suit" with {type(DX/A[+0]), default(DX + me::defmod, SK:Battlesuit - 2, SK:Diving Suit - 2, SK:Vacc Suit - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Net" with {type(DX/H[-1]), default(SK:Cloak - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Net Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Net - 3, SK:Net Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Net Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Net - 3, SK:Net Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Observation" with {type(Per/A[+0]), default(Per + me::defmod, SK:Shadowing - 5), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Occultism" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Packing" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Animal Handling (Equines)" - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Paleontology (Micropaleontology)" with {type(IQ/H[-1]), default(SK:Biology - 4, SK:Paleontology - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Paleontology (Paleoanthropology)" with {type(IQ/H[-1]), default(SK:Biology - 4, SK:Anthropology - 2, SK:Paleontology - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Paleontology (Paleobotany)" with {type(IQ/H[-1]), default(SK:Biology - 4, SK:Paleontology - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Paleontology (Paleozoology)" with {type(IQ/H[-1]), default(SK:Biology - 4, SK:Paleontology - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Panhandling" with {type(IQ/E[+1]), default(IQ + me::defmod, "SK:Fast-Talk" - 2, SK:Public Speaking - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Parachuting" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Parry Missile Weapons" with {type(DX/H[-1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Performance" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Acting - 2, SK:Public Speaking - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Pharmacy (Herbal)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Biology - 5, SK:Herb Lore - 5, SK:Naturalist - 5), needs(SK:Naturalist), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Pharmacy (Synthetic)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Chemistry - 5, SK:Physician - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Philosophy" with {type(IQ/H[-1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Photography" with {type(IQ/A[+0]), default(IQ + me::defmod, "SK:Electronics Operation (Media)" - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Physician" with {type(IQ/H[-2]), default(IQ + me::defmod, SK:First Aid - 11, SK:Veterinary - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-2)}
+#ReplaceTags in "SK:Physics" with {type(IQ/VH[-1]), default(IQ + me::defmod), needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Physiology" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Pickpocket" with {type(DX/H[-1]), default(DX + me::defmod, SK:Filch - 5, SK:Sleight of Hand - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Aerospace)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (High-Performance Airplane)" - 2, SK:Piloting - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Autogyro)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Helicopter)" - 3, "SK:Piloting (Heavy Airplane)" - 4, "SK:Piloting (High-Performance Airplane)" - 4, "SK:Piloting (Light Airplane)" - 4, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Contragravity)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Vertol)" - 3, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Flight Pack)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Vertol)" - 4, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Glider)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Light Airplane)" - 2, "SK:Piloting (Ultralight)" - 2, SK:Piloting - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Heavy Airplane)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Aerospace)" - 4, "SK:Piloting (High-Performance Airplane)" - 2, "SK:Piloting (Light Airplane)" - 2, SK:Piloting - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Helicopter)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Autogyro)" - 2, "SK:Piloting (Vertol)" - 4, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (High-Performance Airplane)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Aerospace)" - 2, "SK:Piloting (Heavy Airplane)" - 2, "SK:Piloting (Light Airplane)" - 2, SK:Piloting - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (High-Performance Spacecraft)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Aerospace)" - 4, "SK:Piloting (Low-Performance Spacecraft)" - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Light Airplane)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Glider)" - 2, "SK:Piloting (Heavy Airplane)" - 2, "SK:Piloting (High-Performance Airplane)" - 2, "SK:Piloting (Ultralight)" - 2, SK:Piloting - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Lighter-Than-Air)" with {type(DX/A[-1]), default(IQ + me::defmod, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Lightsail)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Low-Performance Spacecraft)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Low-G Wings)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Glider)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Low-Performance Spacecraft)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Aerospace)" - 4, "SK:Piloting (High-Performance Spacecraft)" - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Ultralight)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Glider)" - 2, "SK:Piloting (Light Airplane)" - 2, "SK:Piloting (Heavy Airplane)" - 4, "SK:Piloting (High-Performance Airplane)" - 4, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Piloting (Vertol)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Piloting (Contragravity)" - 3, "SK:Piloting (Helicopter)" - 4, SK:Piloting - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Poetry" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Writing - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Poisons" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Chemistry - 5, SK:Pharmacy - 3, SK:Physician - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Polearm" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Two-Handed Axe/Mace" - 4, SK:Spear - 4, SK:Staff - 4, SK:Polearm Art - 3, SK:Polearm Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Polearm Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Polearm - 3, SK:Polearm Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Polearm Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Polearm - 3, SK:Polearm Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Politics" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Diplomacy - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Power Blow" with {type(Will/H[-1]), default(), defmod(-@int(0.5 + ST:Will/2)+@MAX(0,ST:Will-20)-1)}
+#ReplaceTags in "SK:Pressure Points" with {type(IQ/H[-1]), default(SK:Esoteric Medicine - 4), needs(AD:Trained By A Master | AD:Weapon Master), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Pressure Secrets" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Professional Skill ([DX based])" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Professional Skill ([IQ based])" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Air Traffic Controller)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Barber)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Brewer)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Cooper)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Distiller)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Dyer)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Florist)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Game Designer)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Glassblower)" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Journalist)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Prostitute)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Tailor)" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Tanner)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Vinter)" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Professional Skill (Weaver)" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Propaganda" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Merchant - 5, SK:Psychology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Prospecting" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Geology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Psychology" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Sociology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Public Speaking" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Public Speaking, SK:Acting - 5, SK:Performance - 2, SK:Politics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Public Speaking (Debate)" with {type(IQ/E[+0]), default(IQ + me::defmod, SK:Acting - 5, SK:Performance - 2, SK:Politics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Public Speaking (Oratory)" with {type(IQ/E[+0]), default(IQ + me::defmod, SK:Acting - 5, SK:Performance - 2, SK:Politics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Public Speaking (Punning)" with {type(IQ/E[+0]), default(IQ + me::defmod, SK:Acting - 5, SK:Performance - 2, SK:Politics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Public Speaking (Rhetoric)" with {type(IQ/E[+0]), default(IQ + me::defmod, SK:Acting - 5, SK:Performance - 2, SK:Politics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Public Speaking (Storytelling)" with {type(IQ/E[+0]), default(IQ + me::defmod, SK:Acting - 5, SK:Performance - 2, SK:Politics - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Push" with {type(DX/H[-1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Rapier" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 4, "SK:Main-Gauche" - 3, SK:Saber - 3, SK:Smallsword - 3, SK:Rapier Art - 3, SK:Rapier Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Rapier Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Rapier - 3, SK:Rapier Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Rapier Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Rapier - 3, SK:Rapier Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Religious Ritual" with {type(IQ/H[-1]), default(SK:Ritual Magic - 6, SK:Theology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Research" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Writing - 3), needs(1 CA:Language Written = 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+
+#ReplaceTags in "SK:Riding (%beast%)" with {type(DX/A[+0]), default(DX + me::defmod, SK:Riding - 10), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Riding (Big Cats)" with {type(DX/A[+0]), default(DX + me::defmod, SK:Riding - 10,"SK:Animal Handling (Big Cats)"-3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Riding (Dogs)" with {type(DX/A[+0]), default(DX + me::defmod, SK:Riding - 10,"SK:Animal Handling (Dogs)"-3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Riding (Equines)" with {type(DX/A[+0]), default(DX + me::defmod, SK:Riding - 10,"SK:Animal Handling (Equines)"-3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Riding (Raptors)" with {type(DX/A[+0]), default(DX + me::defmod, SK:Riding - 10,"SK:Animal Handling (Raptors)"), defmod(-@int(0.5 + ST:DX/2)+@MIN(@INT(ST:DX/2),@MAX(0,ST:DX-ST:RuleOf::score))+0)}
+
+#ReplaceTags in "SK:Ritual Magic" with {type(IQ/VH[-1]), default(SK:Religious Ritual - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Running" with {type(HT/A[+0]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+0)}
+#ReplaceTags in "SK:Saber" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 4, SK:Shortsword - 4, "SK:Main-Gauche" - 3, SK:Rapier - 3, SK:Smallsword - 3, SK:Saber Art - 3, SK:Saber Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Saber Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Saber - 3, SK:Saber Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Saber Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Saber - 3, SK:Saber Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Savoir-Faire" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Savoir-Faire (Dojo)" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Savoir-Faire (High Society)" with {type(IQ/E[+1]), default(IQ + me::defmod, "SK:Savoir-Faire (Servant)" - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Savoir-Faire (Mafia)" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Savoir-Faire (Military)" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Savoir-Faire (Police)" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Savoir-Faire (Servant)" with {type(IQ/E[+1]), default(IQ + me::defmod, "SK:Savoir-Faire (High Society)" - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Scrounging" with {type(Per/E[+1]), default(Per + me::defmod), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+1)}
+#ReplaceTags in "SK:Scuba" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Diving Suit - 2), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Seamanship" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Search" with {type(Per/A[+0]), default(Per + me::defmod, SK:Criminology - 5), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Sewing" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Sex Appeal" with {type(HT/A[+2]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+2)}
+#ReplaceTags in "SK:Shadowing" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Observation - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Shield (Buckler)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Shield)" - 2, "SK:Shield (Force)" - 2, "SK:Shield Art (Buckler)" - 3, "SK:Shield Sport (Buckler)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield (Force)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Shield)" - 2, "SK:Shield (Buckler)" - 2, "SK:Shield Art (Force)" - 3, "SK:Shield Sport (Force)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield (Shield)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Buckler)" - 2, "SK:Shield (Force)" - 2, "SK:Shield Art (Shield)" - 3, "SK:Shield Sport (Shield)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield Art (Buckler)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Buckler)" - 3, "SK:Shield Sport (Buckler)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield Art (Force)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Force)" - 3, "SK:Shield Sport (Force)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield Art (Shield)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Shield)" - 3, "SK:Shield Sport (Shield)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield Sport (Buckler)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Buckler)" - 3, "SK:Shield Art (Buckler)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield Sport (Force)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Force)" - 3, "SK:Shield Art (Force)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shield Sport (Shield)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Shield (Shield)" - 3, "SK:Shield Art (Shield)" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Shiphandling (Airship)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Airshipman - 5, "SK:Piloting (Lighter-Than-Air)" - 5), needs(SK:Airshipman, SK:Leadership, "SK:Navigation (Air)"), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Shiphandling (Ship)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Seamanship - 5, "SK:Boating (Large Powerboat)" - 5, "SK:Boating (Sailboat)" - 5), needs(SK:Seamanship, SK:Leadership, "SK:Navigation (Sea)"), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Shiphandling (Spaceship)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Spacer - 5, "SK:Piloting (High-Performance Spacecraft)" - 5, "SK:Piloting (Lightsail)" - 5, "SK:Piloting (Low-Performance Spacecraft)" - 5), needs(SK:Spacer, SK:Leadership, "SK:Navigation (Space)"), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Shiphandling (Starship)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Spacer - 5, "SK:Piloting (High-Performance Spacecraft)" - 5, "SK:Piloting (Lightsail)" - 5, "SK:Piloting (Low-Performance Spacecraft)" - 5), needs(SK:Spacer, SK:Leadership, "SK:Navigation (Hyperspace)"), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Shiphandling (Submarine)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Submariner - 5, "SK:Submarine (Large Sub)" - 5), needs(SK:Submariner, SK:Leadership, "SK:Navigation (Sea)"), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Shortsword" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 2, SK:Force Sword - 4, "SK:Jitte/Sai" - 3, SK:Knife - 4, SK:Saber - 4, SK:Smallsword - 4, SK:Tonfa - 3, SK:Shortsword Art - 3, SK:Shortsword Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Shortsword Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Shortsword - 3, SK:Shortsword Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Shortsword Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Shortsword - 3, SK:Shortsword Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Singing" with {type(HT/E[+1]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+1)}
+#ReplaceTags in "SK:Skating" with {type(HT/H[-1]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)-1)}
+#ReplaceTags in "SK:Skiing" with {type(HT/H[-1]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)-1)}
+#ReplaceTags in "SK:Sleight of Hand" with {type(DX/H[-1]), default(SK:Filch - 5), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Sling" with {type(DX/H[-1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Sling Art" with {type(DX/H[-1]), default(DX + me::defmod, SK:Sling - 3, SK:Sling Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Sling Sport" with {type(DX/H[-1]), default(DX + me::defmod, SK:Sling - 3, SK:Sling Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Smallsword" with {type(DX/A[+0]), default(DX + me::defmod, SK:Shortsword - 4, "SK:Main-Gauche" - 3, SK:Rapier - 3, SK:Saber - 3, SK:Smallsword Art - 3, SK:Smallsword Sport - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Smallsword Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Smallsword - 3, SK:Smallsword Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Smallsword Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Smallsword - 3, SK:Smallsword Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Smith (Copper)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Jeweler - 4, SK:Smith - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Smith (Iron)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Smith - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Smith (Lead and Tin)" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Jeweler - 4, SK:Smith - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Smuggling" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Sociology" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Anthropology - 3, SK:Psychology - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Soldier" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Spacer" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Spear" with {type(DX/A[+0]), default(DX + me::defmod, SK:Polearm - 4, SK:Staff - 2, SK:Spear Art - 3, SK:Spear Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Spear Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Spear - 3, SK:Spear Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Spear Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Spear - 3, SK:Spear Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Spear Thrower" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Thrown Weapon (Spear)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Speed-Reading" with {type(IQ/A[+0]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Sports" with {type(DX/A[+0]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Staff" with {type(DX/A[+0]), default(DX + me::defmod, SK:Polearm - 4, SK:Spear - 2, SK:Staff Art - 3, SK:Staff Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Staff Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Staff - 3, SK:Staff Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Staff Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Staff - 3, SK:Staff Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Stage Combat" with {type(DX/A[+0]), default(SK:Combat Sport - 2, SK:Combat Art - 2, SK:Performance - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Stealth" with {type(DX/A[+0]), default(DX + me::defmod, IQ + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Strategy (Air)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Intelligence Analysis - 6, SK:Tactics - 6, SK:Strategy - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Strategy (Interstellar)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Intelligence Analysis - 6, SK:Tactics - 6, SK:Strategy - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Strategy (Land)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Intelligence Analysis - 6, SK:Tactics - 6, SK:Strategy - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Strategy (Naval)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Intelligence Analysis - 6, SK:Tactics - 6, SK:Strategy - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Strategy (Space)" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Intelligence Analysis - 6, SK:Tactics - 6, SK:Strategy - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Streetwise" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Submarine (Free-Flooding Sub)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Submarine (Large Sub)" - 4, "SK:Submarine (Mini-Sub)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Submarine (Large Sub)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Submarine (Free-Flooding Sub)" - 4, "SK:Submarine (Mini-Sub)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Submarine (Mini-Sub)" with {type(DX/A[-1]), default(IQ + me::defmod, "SK:Submarine (Free-Flooding Sub)" - 4, "SK:Submarine (Large Sub)" - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Submariner" with {type(IQ/E[+1]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+1)}
+#ReplaceTags in "SK:Sumo Wrestling" with {type(DX/A[+0]), default(SK:Sumo Wrestling Art - 3, SK:Sumo Wrestling Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Sumo Wrestling Art" with {type(DX/A[+0]), default(SK:Sumo Wrestling - 3, SK:Sumo Wrestling Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Sumo Wrestling Sport" with {type(DX/A[+0]), default(SK:Sumo Wrestling - 3, SK:Sumo Wrestling Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Surgery" with {type(IQ/VH[-1]), default(SK:First Aid - 12, SK:Physician - 5, SK:Physiology - 8, SK:Veterinary - 5), needs(SK:First Aid = 1pts | SK:Physician = 1pts), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Survival" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Arctic)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Swampland)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Bank)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Salt-Water Sea)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Deep Ocean Vent)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Bank)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Salt-Water Sea)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Desert)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Arctic)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Swampland)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Fresh-Water Lake)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Bank)" - 4, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Salt-Water Sea)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Island/Beach)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Tropical Lagoon)" - 4, "SK:Survival (Arctic)" - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Swampland)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Jungle)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Arctic)" - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Swampland)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Mountain)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Arctic)" - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Swampland)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Open Ocean)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Bank)" - 4, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Salt-Water Sea)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Plains)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Arctic)" - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Swampland)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Radioactive Wasteland)" with {type(Per/A[+0]), default(), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Reef)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Bank)" - 4, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Salt-Water Sea)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (River/Stream)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Swampland)" - 4, "SK:Survival (Bank)" - 4, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (Salt-Water Sea)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Salt-Water Sea)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Bank)" - 4, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Tropical Lagoon)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Swampland)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (River/Stream)" - 4, "SK:Survival (Arctic)" - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Woodlands)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Tropical Lagoon)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Island/Beach)" - 4, "SK:Survival (Bank)" - 4, "SK:Survival (Deep Ocean Vent)" - 4, "SK:Survival (Fresh-Water Lake)" - 4, "SK:Survival (Open Ocean)" - 4, "SK:Survival (Reef)" - 4, "SK:Survival (River/Stream)" - 4, "SK:Survival (Salt-Water Sea)" - 4), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Survival (Woodlands)" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 3, "SK:Survival (Arctic)" - 3, "SK:Survival (Desert)" - 3, "SK:Survival (Island/Beach)" - 3, "SK:Survival (Jungle)" - 3, "SK:Survival (Mountain)" - 3, "SK:Survival (Plains)" - 3, "SK:Survival (Swampland)" - 3), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Swimming" with {type(HT/E[+1]), default(HT + me::defmod), defmod(-@int(0.5 + ST:HT/2)+@MAX(0,ST:HT-20)+1)}
+#ReplaceTags in "SK:Symbol Drawing" with {type(IQ/H[-1]), default(SK:Ritual Magic - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Tactics" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Strategy - 6), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Teaching" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Teamster" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Animal Handling - 4, SK:Riding - 2, SK:Teamster - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Thaumatology" with {type(IQ/VH[-2]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-2)}
+#ReplaceTags in "SK:Theology" with {type(IQ/H[-1]), default(IQ + me::defmod, SK:Religious Ritual - 4), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Throwing" with {type(DX/A[+2]), default(DX + me::defmod, SK:Dropping - 4), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+2)}
+#ReplaceTags in "SK:Throwing Art" with {type(DX/H[-1]), default(), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Thrown Weapon (Axe/Mace)" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Thrown Weapon (Dart)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Throwing - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Thrown Weapon (Harpoon)" with {type(DX/E[+1]), default(DX + me::defmod, "SK:Thrown Weapon (Spear)" - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Thrown Weapon (Knife)" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Thrown Weapon (Shuriken)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Throwing - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Thrown Weapon (Spear)" with {type(DX/E[+1]), default(DX + me::defmod, SK:Spear Thrower - 4, "SK:Thrown Weapon (Harpoon)" - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Thrown Weapon (Stick)" with {type(DX/E[+1]), default(DX + me::defmod), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Tonfa" with {type(DX/A[+0]), default(DX + me::defmod, SK:Shortsword - 3, SK:Tonfa Art - 3, SK:Tonfa Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Tonfa Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Tonfa - 3, SK:Tonfa Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Tonfa Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Tonfa - 3, SK:Tonfa Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Tracking" with {type(Per/A[+0]), default(Per + me::defmod, SK:Naturalist - 5), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Traps" with {type(IQ/A[+0]), default(IQ + me::defmod, SK:Lockpicking - 3), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Two-Handed Axe/Mace" with {type(DX/A[+0]), default(DX + me::defmod, SK:Polearm - 4, "SK:Two-Handed Flail" - 4, "SK:Axe/Mace" - 3, "SK:Two-Handed Axe/Mace Art" - 3, "SK:Two-Handed Axe/Mace Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Two-Handed Axe/Mace Art" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Two-Handed Axe/Mace" - 3, "SK:Two-Handed Axe/Mace Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Two-Handed Axe/Mace Sport" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Two-Handed Axe/Mace" - 3, "SK:Two-Handed Axe/Mace Art" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Two-Handed Flail" with {type(DX/H[-1]), default(DX + me::defmod, SK:Kusari - 4, "SK:Two-Handed Axe/Mace" - 4, SK:Flail - 3, "SK:Two-Handed Flail Art" - 3, "SK:Two-Handed Flail Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Two-Handed Flail Art" with {type(DX/H[-1]), default(DX + me::defmod, "SK:Two-Handed Flail" - 3, "SK:Two-Handed Flail Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Two-Handed Flail Sport" with {type(DX/H[-1]), default(DX + me::defmod, "SK:Two-Handed Flail" - 3, "SK:Two-Handed Flail Art" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)-1)}
+#ReplaceTags in "SK:Two-Handed Sword" with {type(DX/A[+0]), default(DX + me::defmod, SK:Broadsword - 4, SK:Force Sword - 4, "SK:Two-Handed Sword Art" - 3, "SK:Two-Handed Sword Sport" - 3, SK:Sword!), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Two-Handed Sword Art" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Two-Handed Sword" - 3, "SK:Two-Handed Sword Sport" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Two-Handed Sword Sport" with {type(DX/A[+0]), default(DX + me::defmod, "SK:Two-Handed Sword" - 3, "SK:Two-Handed Sword Art" - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Typing" with {type(DX/E[+1]), default(DX + me::defmod, SK:Administration - 3, SK:Computer Operation - 3, SK:Research - 3, SK:Writing - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+1)}
+#ReplaceTags in "SK:Urban Survival" with {type(Per/A[+0]), default(Per + me::defmod), defmod(-@int(0.5 + ST:Per/2)+@MAX(0,ST:Per-20)+0)}
+#ReplaceTags in "SK:Vacc Suit" with {type(DX/A[+0]), default(DX + me::defmod, SK:Battlesuit - 2, SK:Diving Suit - 2, SK:NBC Suit - 2), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Ventriloquism" with {type(IQ/H[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Veterinary" with {type(IQ/H[-1]), default(SK:Animal Handling - 6, SK:Physician - 5, SK:Surgery - 5), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Weather Sense" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Weird Science" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}
+#ReplaceTags in "SK:Whip" with {type(DX/A[+0]), default(DX + me::defmod, SK:Force Whip - 3, SK:Kusari - 3, SK:Monowire Whip - 3, SK:Whip Art - 3, SK:Whip Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Whip Art" with {type(DX/A[+0]), default(DX + me::defmod, SK:Whip - 3, SK:Whip Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Whip Sport" with {type(DX/A[+0]), default(DX + me::defmod, SK:Whip - 3, SK:Whip Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Wrestling" with {type(DX/A[+0]), default(SK:Wrestling Art - 3, SK:Wrestling Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Wrestling Art" with {type(DX/A[+0]), default(SK:Wrestling - 3, SK:Wrestling Sport - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Wrestling Sport" with {type(DX/A[+0]), default(SK:Wrestling - 3, SK:Wrestling Art - 3), defmod(-@int(0.5 + ST:DX/2)+@MAX(0,ST:DX-20)+0)}
+#ReplaceTags in "SK:Writing" with {type(IQ/A[+0]), default(IQ + me::defmod), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)+0)}
+#ReplaceTags in "SK:Zen Archery" with {type(IQ/VH[-1]), default(), defmod(-@int(0.5 + ST:IQ/2)+@MAX(0,ST:IQ-20)-1)}

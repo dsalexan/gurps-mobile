@@ -1,0 +1,2205 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		This data file contains information taken from the GURPS Lands out of Time 4e sourcebook.
+		GURPS Lands out of Time is Copyright © 2006 by Steve Jackson Games Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+WorldBook=Lands Out of Time
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Lands Out of Time 4e.gdf
+//  Created: April 1, 2005
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Lands out of Time 4e sourcebook.
+//  GURPS Lands out of Time is Copyright © 2006 by Steve Jackson Games Incorporated. All rights reserved.
+//  http://e23.sjgames.com/item.html?id=SJG82-0012
+// 
+//  Information in this file includes:
+// 	Advantages, Disadvantages, Quirks, Skills, and Techniques
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Martin Etherington - Major Work, Character templates
+//  Eric B. Smith - GURPS Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<High Manual Dexterity>
+SK:Bone Carving
+SK:Flint Knapping
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Craft>
+Bone Carving, DX/A, default(DX - 2, "SK:Armoury - 2"), page(LoT11), cat(Craft, Knowledge)
+Flint Knapping, DX/A, default(DX - 2, "SK:Armoury - 1", "SK:Anthropology - 4"), page(LoT11), cat(Craft, Knowledge)
+
+<Techniques, Techniques - Noncombat>
+Bow and Palette Firestarting (Survival), Tech/A, default("SK:Survival::level"), needs(SK:Survival (Arctic) | SK:Survival (Desert) | SK:Survival (Island/Beach) | SK:Survival (Jungle) | SK:Survival (Mountain) | SK:Survival (Plains) | SK:Survival (Swampland) | SK:Survival (Woodlands)), upto(Prereq + 4), page(LoT11)
+Flint Sparking (Survival), Tech/A, default("SK:Survival::level"+1), needs(SK:Survival (Arctic) | SK:Survival (Desert) | SK:Survival (Island/Beach) | SK:Survival (Jungle) | SK:Survival (Mountain) | SK:Survival (Plains) | SK:Survival (Swampland) | SK:Survival (Woodlands)), upto(Prereq + 5), page(LoT11)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Racial Templates - Lands out of Time>
+Caveman (Lands Out of Time), displaycost(5), cost(10),_
+		cat(Racial Templates),_
+		description(_
+			This is usually the dominant intelligent Race in Lands out of Time. Technologically they are _
+			adept at working with Bone and stone, weare hides and use axes, spears, slings and bows. _
+			They do not have writing but do have artistic skill in paintings. They live in tribal groups _
+			with a shamanic form of religion._
+			),_
+	page(LoT12),_
+	race(Cro-Magnon (Caveman)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives( _
+		+1 to ST:HT _
+		),_
+	adds( _
+		DI:Innumerate _
+		)
+
+Caveman - Primitive (Lands Out of Time), displaycost(10), cost(15),_
+		cat(Racial Templates),_
+		description(_
+			While not as brutal as Neanderthals they are much less advanced as cavemen. They have mastered _
+			only primitive fire-making and have flint weapons._
+			),_
+	page(LoT12),_
+	race(Cro-Magnon (Caveman - Primitive)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+		gives( _
+		+1 to ST:ST,_
+		+1 to ST:HT,_
+		-1 to ST:Tech Level _
+		),_
+		adds( _
+		DI:Innumerate _
+		)
+
+Neanderthal (Lands Out of Time), displaycost(-42), cost(-20),_
+		cat(Racial Templates),_
+		description(_
+			Neanterthalls are brutes, plain and simple. They are thick skulled, heavy jawed, muscle bound, hirsute beast-men._
+			),_
+	page(LoT12),_
+	race(Neanderthal),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+		gives( _
+		+2 to ST:ST,_
+		+1 to ST:HT,_
+		-2 to ST:IQ,_
+		-2 to ST:Tech Level _
+		),_
+		adds( _
+		AD:Damage Resistance = 1 with "Tough Skin, -40%, group(Damage Resistance)",_
+		DI:Innumerate,_
+		DI:Bad Temper,_
+		DI:Short Lifespan _
+		)
+
+Protohuman (Lands Out of Time), displaycost(-75), cost(-61),_
+		cat(Racial Templates),_
+		description(_
+			Protohumans are hominids just on the right side of sapience, standing between 3 and 4 feet tall. _
+			They closely resemble bipedal monkeys._
+			),_
+	page(LoT13),_
+	race(Protohuman),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+		gives( _
+		-1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT,_
+		-4 to ST:IQ,_
+		+1 to ST:Perception,_
+		-2 to ST:Tech Level,_
+		+2 to SK:Climbing _
+		),_
+		adds( _
+		AD:Catfall,_
+		PE:Fur,_
+		DI:Innumerate,_
+		DI:Bestial,_
+		DI:Short Lifespan _
+		)
+
+Saurians - Advanced (Lands Out of Time), displaycost(17), cost(10),_
+		cat(Racial Templates),_
+		description(_
+			The Saurians are a race of sentient dinosaurs, descended from a small theropod. Not humanoid _
+			in shape they do have semi-horizontal posture, akin to Tyrannosaur._
+			),_
+	page(LoT14),_
+	race(Saurians - Advanced),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+		gives( _
+		+2 to ST:ST,_
+		-1 to ST:DX,_
+		+1 to ST:HT _
+		),_
+		adds( _
+		AD:Damage Resistance = 2,_
+		AD:Nictitating Membrane = 3,_
+		DI:Callous,_
+		AD:Claws(Sharp Claws),_
+		AD:Teeth(Sharp Teeth),_
+		DI:Cold-Blooded,_
+		DI:Ham-Fisted _
+		),_
+creates(_
+		"AD:Striker (Crushing; Tail), 5,mods(Striker, Alternative Attack),page(B88),damage(thr + @if(@hasmod(Weak) then 0 else owner::basethdice) + @if("SK:Brawling::level" > ST:DX+1 then owner::basethdice else 0)),damtype(cr),reach(C),parry(0),skillused(ST:DX, SK:Brawling)" _
+			with "Clumsy, -20%/-40%,group(Striker),page(B88),levelnames(-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20),gives(-1 to owner::skillscore),level(2)"_
+	)
+
+Saurians - Primitive (Lands Out of Time), displaycost(-45), cost(-37),_
+		cat(Racial Templates),_
+		description(_
+			The Saurians are a race of sentient dinosaurs, descended from a small theropod. Not humanoid i_
+			n shape they do have semi-horizontal posture, akin to Tyrannosaur._
+			),_
+	page(LoT14),_
+	race(Saurians - Advanced),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+		gives( _
+		+3 to ST:ST,_
+		-1 to ST:DX,_
+		-3 to ST:IQ,_
+		+1 to ST:HT,_
+		+4 to ST:Hit Points,_
+		-1 to ST:Basic Move _
+		),_
+		adds( _
+		AD:Damage Resistance = 2,_
+		AD:Nictitating Membrane = 3,_
+		DI:Callous,_
+		AD:Claws(Sharp Claws),_
+		AD:Teeth(Sharp Teeth),_
+		DI:Cold-Blooded,_
+		DI:Ham-Fisted,_
+		DI:Innumerate,_
+		DI:Bestial _
+		),_
+creates(_
+		"AD:Striker (Crushing; Tail), 5,mods(Striker, Alternative Attack),page(B88),damage(thr + @if(@hasmod(Weak) then 0 else owner::basethdice) + @if("SK:Brawling::level" > ST:DX+1 then owner::basethdice else 0)),damtype(cr),reach(C),parry(0),skillused(ST:DX, SK:Brawling)" _
+			with "Clumsy, -20%/-40%,group(Striker),page(B88),levelnames(-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20),gives(-1 to owner::skillscore),level(2)"_
+	)
+
+*******************************************************************************************************************
+<Character Templates - Lands out of Time>
+*******************************************************************************************************************
+
+Tribal Chief (Lands Out of Time), displaycost(102),_
+	cat(Character Templates),_
+	description(_
+				You lead your tribe with wisdom, cunning, and the occasional good whap with a club or axe. _
+				Your position may be inherited, but it is still earned on a daily basis. Many are those who _
+				would challenge you, and heavy are the responsibilities you bear if the tribe suffers ill _
+				fortune, it may be because the spirits are angry with you. You may be a bully and a thug, _
+				or you may be enlightened and wise, but you must still blend insight and strength into _
+				effective command and guidance. If you are secure in your power, you may greet outsiders _
+				with cautious friendliness; if you fear for your position, you may treat all strangers as _
+				threats. _
+	),_
+	page(LoT15),_
+	sets(_
+			ST:ST = 12,_
+			ST:IQ = 12,_
+			ST:HT = 11,_
+			ST:Hit Points = 13 _
+	),_
+	adds(_
+			AD:Charisma = 1,_
+			AD:Status = 2,_
+			SK:Leadership = 8pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(AD:Extra Charisma, 5/10, initmods(Affects displayed score, +0%, gives(+Owner::Level to AD:Charisma))) #codes(upto 3),_
+			AD:Common Sense,_
+			AD:Empathy,_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:High Pain Threshold,_
+			#newitem(AD:High TL, 5/10, initmods(Affects displayed score, +0%, gives(+Owner::Level to ST:Tech Level))) #codes(upto 1),_
+			AD:Intuition,_
+			AD:Less Sleep #codes(upto 3),_
+			AD:Smooth Operator,_
+			AD:Voice _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Chummy,_
+			DI:Duty,_
+			DI:Enemy (Formidable group),_
+			DI:Enemy (Less powerful group),_
+			DI:Enemy (One Person),_
+			#newitem(DI:Fanaticism (Tribe), -15/-15, levelnames( , Extreme), page(B136), upto(2), cat(Mundane, Mental)),_
+			DI:Guilt Complex,_
+			DI:Lecherousness,_
+			DI:Megalomania,_
+			DI:One Eye,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Sadism,_
+			DI:Selfish,_
+			DI:Selfless,_
+			#newitem(DI:Sense of Duty (Tribe), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")) _
+		)_
+	),_
+	select5(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Brawling #codes(upto 8pts, downto 8pts),_
+			SK:Knife #codes(upto 8pts, downto 8pts),_
+			SK:Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Bow #codes(upto 8pts, downto 8pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Spear #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Talk #codes(upto 8pts, downto 8pts),_
+			SK:Intimidation #codes(upto 8pts, downto 8pts),_
+			SK:Diplomacy #codes(upto 8pts, downto 8pts),_
+			SK:Tactics #codes(upto 8pts, downto 8pts),_
+			SK:Detect Lies #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Shield (Shield) #codes(upto 2pts, downto 2pts),_
+			SK:Shield (Buckler) #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Carousing #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Survival #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Arctic) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Desert) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Island/Beach) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Jungle) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Plains) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Swampland) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Woodlands) #codes(upto 2pts, downto 2pts),_
+			SK:Interrogation #codes(upto 2pts, downto 2pts),_
+			SK:Law #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Armoury (Body Armor) #codes(upto 1pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 1pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 1pts),_
+			SK:Body Language #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Throwing #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Jungle Princess (Lands Out of Time), displaycost(102),_
+	cat(Character Templates),_
+	description(_
+				You are either the favored daughter of the chief, or you rose to leadership on your own. _
+				Lacking something of the brute strength of the warriors, you have mastered finer arts. _
+				You also have a penchant for exotic mates, such as the so-called Timelost who sometimes _
+				wander by, or handsome exiles from other tribes. You may be a sweet and sincere innocent, _
+				or a cold and callous manipulator who uses her beauty and wiles to ensnare others. _
+	),_
+	page(LoT15),_
+	sets(_
+			ST:ST = 10,_
+			ST:IQ = 12,_
+			ST:HT = 11,_
+			ST:Hit Points = 11 _
+	),_
+	adds(_
+			AD:Charisma = 2,_
+			AD:Status = 2,_
+			SK:Leadership = 8pts,_
+			SK:Erotic Art = 2pts,_
+			SK:Sex Appeal = 1pts,_
+			AD:Appearance = 2 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(AD:Extra Charisma, 5/10, initmods(Affects displayed score, +0%, gives(+Owner::Level to AD:Charisma))) #codes(upto 3),_
+			AD:Common Sense,_
+			AD:Empathy,_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:High Pain Threshold,_
+			#newitem(AD:High TL, 5/10, initmods(Affects displayed score, +0%, gives(+Owner::Level to ST:Tech Level))) #codes(upto 1),_
+			AD:Intuition,_
+			AD:Less Sleep #codes(upto 3),_
+			AD:Smooth Operator,_
+			AD:Voice _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Chummy,_
+			DI:Duty,_
+			DI:Enemy (Formidable group),_
+			DI:Enemy (Less powerful group),_
+			DI:Enemy (One Person),_
+			#newitem(DI:Fanaticism (Tribe), -15/-15, levelnames( , Extreme), page(B136), upto(2), cat(Mundane, Mental)),_
+			DI:Guilt Complex,_
+			DI:Lecherousness,_
+			DI:Megalomania,_
+			DI:One Eye,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Sadism,_
+			DI:Selfish,_
+			DI:Selfless,_
+			#newitem(DI:Sense of Duty (Tribe), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")) _
+		)_
+	),_
+	select5(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Brawling #codes(upto 8pts, downto 8pts),_
+			SK:Knife #codes(upto 8pts, downto 8pts),_
+			SK:Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Bow #codes(upto 8pts, downto 8pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Spear #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Talk #codes(upto 8pts, downto 8pts),_
+			SK:Intimidation #codes(upto 8pts, downto 8pts),_
+			SK:Diplomacy #codes(upto 8pts, downto 8pts),_
+			SK:Tactics #codes(upto 8pts, downto 8pts),_
+			SK:Detect Lies #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Shield (Shield) #codes(upto 2pts, downto 2pts),_
+			SK:Shield (Buckler) #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Carousing #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Survival #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Arctic) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Desert) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Island/Beach) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Jungle) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Plains) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Swampland) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Woodlands) #codes(upto 2pts, downto 2pts),_
+			SK:Interrogation #codes(upto 2pts, downto 2pts),_
+			SK:Law #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Armoury (Body Armor) #codes(upto 1pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 1pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 1pts),_
+			SK:Body Language #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Throwing #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Tribal Warrior (Lands Out of Time), displaycost(79),_
+	cat(Character Templates),_
+	description(_
+				You are the backbone of the tribe, a skilled warrior, capable of facing a small _
+				dinosaur or an enemy tribesman in battle. You may have primitive tools, but you _
+				are by no means stupid, and you know how to stay alive in a hostile world. You _
+				may be a noble guardian or a brutal thug, but whatever your goals are, you prefer _
+				to achieve them by force. _
+	),_
+	page(LoT16),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 11,_
+			ST:HT = 12,_
+			ST:Hit Points = 13,_
+			ST:Perception = 12 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Catfall,_
+			AD:Danger Sense,_
+			AD:Fearlessness #codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill #codes(upto 3),_
+			AD:Hard to Subdue #codes(uptp 3),_
+			AD:High Pain Threshold,_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Duty,_
+			DI:Ham-Fisted #codes(upto 2),_
+			DI:Impulsiveness,_
+			DI:Missing Digit #codes(upto 1),_
+			DI:On the Edge,_
+			DI:One Eye,_
+			DI:Overconfidence,_
+			DI:Wounded,_
+			#newitem(DI:Sense of Duty (Tribe), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")) _
+		)_
+	),_
+	select5(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Brawling #codes(upto 8pts, downto 8pts),_
+			SK:Knife #codes(upto 8pts, downto 8pts),_
+			SK:Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Bow #codes(upto 8pts, downto 8pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Spear #codes(upto 8pts, downto 8pts),_
+			SK:Tactics #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Fast-Draw #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Knife) #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Sword) #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 2pts, downto 2pts),_
+			SK:Shield (Shield) #codes(upto 2pts, downto 2pts),_
+			SK:Shield (Buckler) #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Survival #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Arctic) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Desert) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Island/Beach) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Jungle) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Plains) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Swampland) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Woodlands) #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Armoury (Body Armor) #codes(upto 1pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 1pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Throwing #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts),_
+			SK:Intimidation #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Tribal Shaman (Lands Out of Time), displaycost(92),_
+	cat(Character Templates),_
+	description(_
+				You know the secret and hidden ways of your people. You know which herbs cure the sick, _
+				and which can ease the passing of those beyond cure. You know the secret language of _
+				the great scaled beasts and read the future in their hoots and calls. You mediate between _
+				this world and the world of spirits and powers. You may wield true magical powers, or you _
+				may only think you do. You may also be a bully or someone who loves the power gained from _
+				having knowledge others lack. _
+	),_
+	page(LoT16),_
+	sets(_
+			ST:DX = 11,_
+			ST:IQ = 12,_
+			ST:HT = 11,_
+			ST:Will = 13,_
+			ST:Perception = 14 _
+	),_
+	adds(_
+			AD:Status = 1 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 15 points from among the following advantages."),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Animal Empathy,_
+			AD:Blessed,_
+			AD:Charisma #codes(upto 2),_
+			#newitem(AD:Extra Status, 5/10, initmods(Affects displayed score, +0%, gives(+Owner::Level to AD:Status))) #codes(upto 1),_
+			AD:Channeling,_
+			AD:Clerical Investment,_
+			AD:Empathy,_
+			AD:Sensitive,_
+			#newitem(AD:Favor (Contact), 1/2/3/4, displaycost(varies), levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) | Favor, *1/5, group(Patron))),_
+			AD:Intuition,_
+			AD:Medium,_
+			AD:Oracle,_
+			AD:Spirit Empathy,_
+			AD:Healer,_
+			AD:Voice _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Cowardice,_
+			#newitem(DI:Duty (Tribe), -2/-5/-10/-15, displaycost(-15), mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) #codes(upto 4, downto 4),_
+			DI:Extra Sleep #codes(upto 2),_
+			DI:Hidebound,_
+			DI:Jealousy,_
+			DI:Phantom Voices,_
+			DI:Selfish,_
+			DI:Selfless,_
+			DI:Stubbornness,_
+			DI:Supersensitive,_
+			DI:Unfit _
+		)_
+	),_
+	select5(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Dancing #codes(upto 8pts, downto 8pts),_
+			SK:Diagnosis #codes(upto 8pts, downto 8pts),_
+			SK:Diplomacy #codes(upto 8pts, downto 8pts),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Religious Ritual #codes(upto 8pts, downto 8pts),_
+			SK:Dreaming #codes(upto 8pts, downto 8pts),_
+			SK:Enthrallment (Captivate) #codes(upto 8pts, downto 8pts),_
+			SK:Enthrallment (Persuade) #codes(upto 8pts, downto 8pts),_
+			SK:Enthrallment (Suggest) #codes(upto 8pts, downto 8pts),_
+			SK:Enthrallment (Sway Emotions) #codes(upto 8pts, downto 8pts),_
+			SK:Esoteric Medicine #codes(upto 8pts, downto 8pts),_
+			SK:Herb Lore #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Fast-Talk #codes(upto 2pts, downto 2pts),_
+			SK:Fortune-Telling #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore #codes(upto 2pts, downto 2pts),_
+			SK:Leadership #codes(upto 2pts, downto 2pts),_
+			SK:Public Speaking #codes(upto 2pts, downto 2pts),_
+			SK:History #codes(upto 2pts, downto 2pts),_
+			SK:Poisons #codes(upto 2pts, downto 2pts),_
+			SK:Psychology #codes(upto 2pts, downto 2pts),_
+			SK:Veterinary #codes(upto 2pts, downto 2pts),_
+			SK:Body Language #codes(upto 2pts, downto 2pts),_
+			SK:Exorcism #codes(upto 2pts, downto 2pts),_
+			SK:Meditation #codes(upto 2pts, downto 2pts),_
+			SK:Intimidation #codes(upto 2pts, downto 2pts),_
+			SK:Mental Strength #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Knife #codes(upto 1pts),_
+			SK:Staff #codes(upto 1pts),_
+			SK:Spear #codes(upto 1pts),_
+			SK:Singing #codes(upto 1pts),_
+			SK:Occultism #codes(upto 1pts),_
+			SK:Teaching #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:History #codes(upto 1pts),_
+			SK:Observation #codes(upto 1pts),_
+			SK:Survival #codes(upto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Tribal Wanderer (Lands Out of Time), displaycost(94),_
+	cat(Character Templates),_
+	description(_
+				While you can fight, you avoid it if possible. You lack the mystical wisdom of the _
+				shaman, but you still know the feel of the wilderness. You move unheard, unseen, _
+				and unscented around the terrible-claw packs, and you find the trails which the _
+				rest of the tribe can follow safely. You see the other tribes moving before they _
+				see you, and you can watch the strange ones for days until you are sure they are trustworthy. _
+	),_
+	page(LoT17),_
+	sets(_
+			ST:IQ = 11,_
+			ST:DX = 11,_
+			ST:HT = 13,_
+			ST:Hit Points = 11,_
+			ST:Perception = 14 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Touch,_
+			AD:Acute Vision,_
+			AD:Animal Empathy,_
+			AD:Danger Sense,_
+			AD:Fearlessness #codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Flexibility,_
+			AD:Less Sleep,_
+			AD:Perfect Balance,_
+			AD:Reduced Consumption,_
+			AD:Outdoorsman _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Curious,_
+			#newitem(DI:Duty (Tribe), -2/-5/-10/-15, displaycost(-10), mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) #codes(upto 3, downto 3),_
+			DI:Easy to Read,_
+			DI:Impulsiveness,_
+			DI:Insomniac,_
+			DI:Light Sleeper,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Trickster _
+		)_
+	),_
+	select5(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 8pts, downto 8pts),_
+			SK:Tracking #codes(upto 8pts, downto 8pts),_
+			SK:Survival #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Arctic) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Desert) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Island/Beach) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Jungle) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Mountain) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Plains) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Swampland) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Woodlands) #codes(upto 8pts, downto 8pts),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Stealth #codes(upto 8pts, downto 8pts),_
+			SK:Hiking #codes(upto 8pts, downto 8pts)_
+		)_
+	),_
+	select6(_
+		text("Secondary Skills: choose 4 points from the following."),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Herb Lore #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 2pts, downto 2pts),_
+			SK:Weather Sense #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Swimming #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Cooking #codes(upto 1pts),_
+			SK:Falconry #codes(upto 1pts),_
+			SK:Packing #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Veterinary #codes(upto 1pts),_
+			SK:Axe/Mace #codes(upto 1pts),_
+			SK:Riding #codes(upto 1pts),_
+			SK:Running #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Tribal Outcast (Lands Out of Time), displaycost(94),_
+	cat(Character Templates),_
+	description(_
+				You said the wrong thing to the wrong warrior, or perhaps you should have been more _
+				circumspect about which of the shaman's daughters you danced the dance of new life _
+				with. No matter the cause, you are without a home, and this is a dangerous world to _
+				be in without allies. You may have been almost anything in your home tribe, but now, _
+				you're a survivor, learning whatever you have to in order to stay alive. You are eager _
+				to find new allies, but the habits which caused your exile are deeply ingrained, and _
+				you may make only more enemies if you are not careful. _
+	),_
+	page(LoT17),_
+	sets(_
+			ST:IQ = 11,_
+			ST:DX = 11,_
+			ST:HT = 13,_
+			ST:Hit Points = 11,_
+			ST:Perception = 14 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Touch,_
+			AD:Acute Vision,_
+			AD:Animal Empathy,_
+			AD:Danger Sense,_
+			AD:Fearlessness #codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Flexibility,_
+			AD:Less Sleep,_
+			AD:Perfect Balance,_
+			AD:Reduced Consumption,_
+			AD:Outdoorsman _
+		)_
+	),_
+	select4(_
+		text("Choose -15 points from among the following disadvantages."),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			DI:Odious Personal Habit,_
+			DI:Social Stigma,_
+			DI:Enemy (Formidable group),_
+			DI:Enemy (Less powerful group),_
+			DI:Enemy (One Person) _
+		)_
+	),_
+	select5(_
+		text("Choose -20 points from among the following disadvantages."),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Curious,_
+			#newitem(DI:Duty (Tribe), -2/-5/-10/-15, displaycost(-10), mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) #codes(upto 3, downto 3),_
+			DI:Easy to Read,_
+			DI:Impulsiveness,_
+			DI:Insomniac,_
+			DI:Light Sleeper,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Trickster _
+		)_
+	),_
+	select6(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 8pts, downto 8pts),_
+			SK:Tracking #codes(upto 8pts, downto 8pts),_
+			SK:Survival #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Arctic) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Desert) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Island/Beach) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Jungle) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Mountain) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Plains) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Swampland) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Woodlands) #codes(upto 8pts, downto 8pts),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Stealth #codes(upto 8pts, downto 8pts),_
+			SK:Hiking #codes(upto 8pts, downto 8pts)_
+		)_
+	),_
+	select7(_
+		text("Secondary Skills: choose 4 points from the following."),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Herb Lore #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 2pts, downto 2pts),_
+			SK:Weather Sense #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Swimming #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Cooking #codes(upto 1pts),_
+			SK:Falconry #codes(upto 1pts),_
+			SK:Packing #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Veterinary #codes(upto 1pts),_
+			SK:Axe/Mace #codes(upto 1pts),_
+			SK:Riding #codes(upto 1pts),_
+			SK:Running #codes(upto 1pts) _
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Tribal Visionary (Lands Out of Time), displaycost(104),_
+	cat(Character Templates),_
+	description(_
+				You saw the vision in your mind, clearly. You told the shaman, but he said it was a _
+				false vision and that you should not seek knowledge the spirits did not intend for _
+				you to have. No matter what he said, though, the vision kept pulling at you, until, _
+				one night, you went to follow it. You have traveled far from your home, pursuing your _
+				dream. You are a seeker, and you will do all you can to find what it is you seek. _
+	),_
+	page(LoT17),_
+	sets(_
+			ST:IQ = 12,_
+			ST:DX = 11,_
+			ST:HT = 13,_
+			ST:Hit Points = 11,_
+			ST:Perception = 12 _
+	),_
+	adds(_
+			AD:Higher Purpose _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Touch,_
+			AD:Acute Vision,_
+			AD:Animal Empathy,_
+			AD:Danger Sense,_
+			AD:Fearlessness #codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Flexibility,_
+			AD:Less Sleep,_
+			AD:Perfect Balance,_
+			AD:Reduced Consumption,_
+			AD:Outdoorsman _
+		)_
+	),_
+	select4(_
+		text("Choose -15 points from among the following disadvantages."),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			DI:Delusion,_
+			DI:Vow,_
+			DI:Phantom Voices _
+		)_
+	),_
+	select5(_
+		text("Choose -20 points from among the following disadvantages."),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Curious,_
+			#newitem(DI:Duty (Tribe), -2/-5/-10/-15, displaycost(-10), mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) #codes(upto 3, downto 3),_
+			DI:Easy to Read,_
+			DI:Impulsiveness,_
+			DI:Insomniac,_
+			DI:Light Sleeper,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Trickster _
+		)_
+	),_
+	select6(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 8pts, downto 8pts),_
+			SK:Tracking #codes(upto 8pts, downto 8pts),_
+			SK:Survival #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Arctic) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Desert) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Island/Beach) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Jungle) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Mountain) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Plains) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Swampland) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Woodlands) #codes(upto 8pts, downto 8pts),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Stealth #codes(upto 8pts, downto 8pts),_
+			SK:Hiking #codes(upto 8pts, downto 8pts)_
+		)_
+	),_
+	select7(_
+		text("Secondary Skills: choose 4 points from the following."),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Herb Lore #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 2pts, downto 2pts),_
+			SK:Weather Sense #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Swimming #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Cooking #codes(upto 1pts),_
+			SK:Falconry #codes(upto 1pts),_
+			SK:Packing #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Veterinary #codes(upto 1pts),_
+			SK:Axe/Mace #codes(upto 1pts),_
+			SK:Riding #codes(upto 1pts),_
+			SK:Running #codes(upto 1pts) _
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Timelost Explorer (Lands Out of Time), displaycost(97),_
+	cat(Character Templates),_
+	description(_
+				You are interested in exploration for its own sake. You may have been on an expedition _
+				to central Africa, the South Pole, or the heart of the Amazon, but you have found a _
+				world where primitive man and dinosaur still survive. While finding a way home may be _
+				a priority, you're going to explore this world as much as possible first. You rely on _
+				a mix of your tools and your training to survive, and you are driven by an urge to know _
+				what lies over the next hill. _
+	),_
+	page(LoT17),_
+	sets(_
+			ST:IQ = 12,_
+			ST:DX = 11,_
+			ST:HT = 12,_
+			ST:Will = 13,_
+			ST:Perception = 13 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Ally,_
+			AD:Animal Friend,_
+			AD:Charisma #codes(upto 2),_
+			AD:Cultural Adaptability,_
+			AD:Daredevil,_
+			AD:Fearlessness#codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Perfect Balance,_
+			AD:Rapid Healing,_
+			AD:Reduced Consumption,_
+			AD:Social Chameleon,_
+			AD:Outdoorsman,_
+			#newitem(AD:Resistant (Disease), 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), _
+						cat(Mundane, Physical), initmods( Degree: Immunity, *1, shortname(Immunity), group(Resistant) ) _
+					) #codes(upto 2, downto 2) _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Code of Honor (Gentleman's),_
+			DI:Curious,_
+			DI:Delusion,_
+			DI:Dependent,_
+			DI:Greed,_
+			DI:Impulsiveness,_
+			#newitem(DI:Intolerance (All 'Savages'), -5, page(B140), cat(Mundane, Mental)),_
+			DI:Obsession,_
+			DI:Overconfidence,_
+			DI:Stubbornness,_
+			DI:Xenophilia _
+		)_
+	),_
+	select5(_
+		text("Primary Skills Choose upto 16 points from 2 or 3 of the following skills."),_
+		pointswanted(16),_
+		itemswanted(atleast 2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Stealth #codes(upto 8pts, downto 8pts),_
+			SK:Hiking #codes(upto 8pts, downto 8pts),_
+			SK:Linguistics #codes(upto 8pts, downto 8pts),_
+			SK:Tracking #codes(upto 8pts, downto 8pts),_
+			SK:Survival #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Arctic) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Desert) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Island/Beach) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Jungle) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Mountain) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Plains) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Swampland) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Woodlands) #codes(upto 8pts, downto 8pts),_
+			SK:First Aid #codes(upto 4pts, downto 4pts),_
+			SK:Camouflage #codes(upto 4pts, downto 4pts),_
+			SK:Swimming #codes(upto 4pts, downto 4pts),_
+			SK:Brawling #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Traps #codes(upto 2pts, downto 2pts),_
+			SK:Weather Sense #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Grenade Launcher) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Gyroc) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Musket) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Rifle) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Submachine Gun) #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Large Powerboat) #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Motorboat) #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Sailboat) #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Unpowered) #codes(upto 2pts, downto 2pts),_
+			SK:Riding #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Gesture  #codes(upto 1pts),_
+			SK:Cooking  #codes(upto 1pts),_
+			SK:Packing  #codes(upto 1pts),_
+			SK:Poisons  #codes(upto 1pts),_
+			SK:Veterinary  #codes(upto 1pts),_
+			SK:Riding  #codes(upto 1pts),_
+			SK:Running  #codes(upto 1pts),_
+			SK:Parachuting #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Timelost Hunter (Lands Out of Time), displaycost(97),_
+	cat(Character Templates),_
+	description(_
+				This is your chance to bag the biggest game ever; the only tough bit will be figuring _
+				out how to get it home and mounted on the lodge wall. Perhaps you came here hunting _
+				dinos, or perhaps a trip into deepest darkest Africa went a wee bit wrong, but, either _
+				way, you are surrounded by more and better prey than you'd ever envisioned, and this _
+				prey has no fear of man. The risk is off the scale, and so is the thrill. You may be _
+				more concerned about staying alive or helping your friends than bagging the ultimate _
+				prize, or you may not. You know how to survive in the wilds and how to kill most anything you find there. _
+	),_
+	page(LoT18),_
+	sets(_
+			ST:IQ = 11,_
+			ST:DX = 12,_
+			ST:HT = 12,_
+			ST:Will = 12,_
+			ST:Perception = 12 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Ally,_
+			AD:Animal Friend,_
+			AD:Charisma #codes(upto 2),_
+			AD:Cultural Adaptability,_
+			AD:Daredevil,_
+			AD:Fearlessness#codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Perfect Balance,_
+			AD:Rapid Healing,_
+			AD:Reduced Consumption,_
+			AD:Social Chameleon,_
+			AD:Outdoorsman,_
+			#newitem(AD:Resistant (Disease), 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), _
+						cat(Mundane, Physical), initmods( Degree: Immunity, *1, shortname(Immunity), group(Resistant) ) _
+					) #codes(upto 2, downto 2) _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bully,_
+			DI:Bloodthirstyy,_
+			DI:Sadism,_
+			DI:Absent-Mindedness,_
+			DI:Code of Honor (Gentleman's),_
+			DI:Curious,_
+			DI:Delusion,_
+			DI:Dependent,_
+			DI:Greed,_
+			DI:Impulsiveness,_
+			#newitem(DI:Intolerance (All 'Savages'), -5, page(B140), cat(Mundane, Mental)),_
+			DI:Obsession,_
+			DI:Overconfidence,_
+			DI:Stubbornness,_
+			DI:Xenophilia _
+		)_
+	),_
+	select5(_
+		text("Choose 2 gun skills at 4 points each."),_
+		pointswanted(8),_
+		itemswanted(2),_
+		list(_
+			SK:Guns (Grenade Launcher) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Gyroc) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto4pts, downto 4pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Musket) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Pistol) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Rifle) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Shotgun) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Submachine Gun) #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Primary Skills Choose 1 of the following skills."),_
+		pointswanted(8),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Stealth #codes(upto 8pts, downto 8pts),_
+			SK:Hiking #codes(upto 8pts, downto 8pts),_
+			SK:Linguistics #codes(upto 8pts, downto 8pts),_
+			SK:Tracking #codes(upto 8pts, downto 8pts),_
+			SK:Survival #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Arctic) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Desert) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Island/Beach) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Jungle) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Mountain) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Plains) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Swampland) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Woodlands) #codes(upto 8pts, downto 8pts),_
+			SK:First Aid #codes(upto 8pts, downto 8pts),_
+			SK:Camouflage #codes(upto 8pts, downto 8pts),_
+			SK:Swimming #codes(upto 8pts, downto 8pts),_
+			SK:Brawling #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Traps #codes(upto 2pts, downto 2pts),_
+			SK:Weather Sense #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Grenade Launcher) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Gyroc) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Musket) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Rifle) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Submachine Gun) #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Large Powerboat) #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Motorboat) #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Sailboat) #codes(upto 2pts, downto 2pts),_
+			SK:Boating (Unpowered) #codes(upto 2pts, downto 2pts),_
+			SK:Riding #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Gesture  #codes(upto 1pts),_
+			SK:Cooking  #codes(upto 1pts),_
+			SK:Packing  #codes(upto 1pts),_
+			SK:Poisons  #codes(upto 1pts),_
+			SK:Veterinary  #codes(upto 1pts),_
+			SK:Riding  #codes(upto 1pts),_
+			SK:Running  #codes(upto 1pts),_
+			SK:Parachuting #codes(upto 1pts) _
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Timelost Scientist (Lands Out of Time), displaycost(52),_
+	cat(Character Templates),_
+	description(_
+				It's the field expedition of a lifetime, if you survive. Your specialty may be biology, _
+				ecology, paleontology, or just Science!, but no matter what, you have material for a _
+				thousand articles. Everything they thought was wrong, and its up to you to set them right. _
+				Eating patterns, mating dances, child-rearing techniques, whether you're interested in _
+				the dinosaurs or the cavemen, you've never had subjects like this before. Granted, it's _
+				a little hard to work out food web relationships from dental patterns when the teeth are _
+				chomping at you, but a true scientist lets nothing stop the pursuit of knowledge. _
+	),_
+	page(LoT18),_
+	sets(_
+			ST:ST = 9,_
+			ST:IQ = 13,_
+			ST:Perception = 12 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Artificer,_
+			AD:Common Sense,_
+			AD:Eidetic Memory,_
+			AD:Photographic Memory,_
+			AD:Gizmo,_
+			AD:Intuition,_
+			AD:Language Talent,_
+			AD:Lightning Calculator,_
+			AD:Mathematical Ability,_
+			AD:Intuitive Mathematician,_
+			AD:Single-Minded,_
+			AD:Extra Perception #codes(upto 1),_
+			AD:Unfazeable,_
+			AD:Versatile,_
+			AD:Extra Will #codes(upto 1) _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Bad Sight (Farsighted),_
+			DI:Bad Sight (Nearsighted),_
+			DI:Callous,_
+			DI:Clueless,_
+			DI:Code of Honor (Professional),_
+			DI:Curious,_
+			DI:Delusion,_
+			DI:Easy to Read,_
+			DI:Fearfulness #codes(upto 3),_
+			DI:Indecisive,_
+			DI:Klutz,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Post-Combat Shakes,_
+			DI:Unfit _
+		)_
+	),_
+	select5(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Biology (Earthlike) #codes(upto 8pts, downto 8pts),_
+			SK:Biology (Gas Giants) #codes(upto 8pts, downto 8pts),_
+			SK:Biology (Hostile Terrestrial) #codes(upto 8pts, downto 8pts),_
+			SK:Biology (Ice Dwarfs) #codes(upto 8pts, downto 8pts),_
+			SK:Biology (Ice Worlds) #codes(upto 8pts, downto 8pts),_
+			SK:Biology (Rock Worlds) #codes(upto 8pts, downto 8pts),_
+			SK:Physics #codes(upto 8pts, downto 8pts),_
+			SK:Anthropology #codes(upto 8pts, downto 8pts),_
+			SK:Astronomy #codes(upto 8pts, downto 8pts),_
+			SK:Chemistry #codes(upto 8pts, downto 8pts),_
+			SK:Diagnosis #codes(upto 8pts, downto 8pts),_
+			SK:Engineer ([Type]) #codes(upto 8pts, downto 8pts),_
+			SK:Geology (Earthlike) #codes(upto 8pts, downto 8pts),_
+			SK:Geology (Gas Giants) #codes(upto 8pts, downto 8pts),_
+			SK:Geology (Hostile Terrestrial) #codes(upto 8pts, downto 8pts),_
+			SK:Geology (Ice Dwarfs) #codes(upto 8pts, downto 8pts),_
+			SK:Geology (Ice Worlds) #codes(upto 8pts, downto 8pts),_
+			SK:Geology (Rock Worlds) #codes(upto 8pts, downto 8pts),_
+			SK:Linguistics #codes(upto 8pts, downto 8pts),_
+			SK:Naturalist #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Micropaleontology) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleoanthropology) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleobotany) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleozoology) #codes(upto 8pts, downto 8pts),_
+			SK:Pharmacy (Herbal) #codes(upto 8pts, downto 8pts),_
+			SK:Pharmacy (Synthetic) #codes(upto 8pts, downto 8pts),_
+			SK:Sociology #codes(upto 8pts, downto 8pts),_
+			SK:Veterinary #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Herb Lore #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts),_
+			SK:Survival #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Arctic) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Desert) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Island/Beach) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Jungle) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Plains) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Swampland) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Woodlands) #codes(upto 2pts, downto 2pts),_
+			SK:Hiking #codes(upto 2pts, downto 2pts),_
+			SK:Swimming #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Guns (Grenade Launcher) #codes(upto 1pts),_
+			SK:Guns (Gyroc) #codes(upto 1pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto 1pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 1pts),_
+			SK:Guns (Musket) #codes(upto 1pts),_
+			SK:Guns (Pistol) #codes(upto 1pts),_
+			SK:Guns (Rifle) #codes(upto 1pts),_
+			SK:Guns (Shotgun) #codes(upto 1pts),_
+			SK:Guns (Submachine Gun) #codes(upto 1pts),_
+			SK:Bicycling #codes(upto 1pts),_
+			SK:Jumping #codes(upto 1pts),_
+			SK:Knife #codes(upto 1pts),_
+			SK:Knot-Tying #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Riding #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Cooking #codes(upto 1pts),_
+			SK:Packing #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Timelost Kid (Lands Out of Time), displaycost(47),_
+	cat(Character Templates),_
+	description(_
+				Oh boy! Dinosaurs! Real live dinosaurs! You've read all about them in your Junior Scientist _
+				Big Book of Facts, and now you get to see them! Of course, Uncle Bob keeps screaming that _
+				they're dangerous, like you don't know that. You've been able to name them all since you _
+				were six, and that was years ago. You're eager to help out in any way you can, but you also _
+				have a penchant for getting into trouble. Fortunately, you're small and quick, and the _
+				dinosaurs and cavemen (and sometimes Uncle Bob) are big and slow. You are between 9 and 12 years old. _
+	),_
+	page(LoT18),_
+	sets(_
+			ST:ST = 8,_
+			ST:DX = 12,_
+			ST:HT = 11,_
+			ST:Hit Points = 9,_
+			ST:Will = 11,_
+			ST:Size Modifier = -1_
+	),_
+	adds(_
+			DI:Social Stigma (Minor) = 1 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 30 points from among the following advantages."),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Pitiable,_
+			AD:Ally,_
+			AD:Daredevil,_
+			AD:Empathy,_
+			AD:Fearlessness #codes(upto 2),_
+			AD:Gizmo,_
+			AD:High Manual Dexterity #codes(upto 2),_
+			AD:Intuition,_
+			AD:Perfect Balance,_
+			AD:Serendipity,_
+			AD:Slippery #codes(upto 3),_
+			AD:Wild Talent _
+		)_
+	),_
+	select4(_
+		text("Choose -30 points from among the following disadvantages."),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Chummy,_
+			DI:Combat Paralysis,_
+			DI:Curious,_
+			DI:Easy to Kill,_
+			DI:Easy to Read,_
+			DI:Extra Sleep,_
+			DI:Gullibility,_
+			DI:Impulsiveness,_
+			DI:Klutz,_
+			DI:Overconfidence,_
+			DI:Short Attention Span,_
+			DI:Shyness,_
+			DI:Squeamish _
+		)_
+	),_
+	select5(_
+		text("Primary skills: choose two  at 8 points from the following."),_
+		pointswanted(8),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Paleontology (Micropaleontology) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleoanthropology) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleobotany) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleozoology) #codes(upto 8pts, downto 8pts),_
+			SK:Filch #codes(upto 4pts, downto 4pts),_
+			SK:Hobby Skill ([DX-based]) #codes(upto 4pts, downto 4pts),_
+			SK:Hobby Skill ([IQ-based]) #codes(upto 4pts, downto 4pts),_
+			SK:Sports #codes(upto 4pts, downto 4pts),_
+			SK:Brawling #codes(upto 4pts, downto 4pts),_
+			SK:Acrobatics #codes(upto 4pts, downto 4pts),_
+			SK:Escape #codes(upto 4pts, downto 4pts),_
+			SK:Carousing #codes(upto 4pts, downto 4pts),_
+			SK:Running #codes(upto 4pts, downto 4pts),_
+			SK:Fast-Talk #codes(upto 4pts, downto 4pts),_
+			SK:Shadowing #codes(upto 4pts, downto 4pts),_
+			SK:Games #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Climbing #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Rifle) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knot-Tying #codes(upto 2pts, downto 2pts),_
+			SK:Hiking #codes(upto 2pts, downto 2pts),_
+			SK:Animal Handling #codes(upto 2pts, downto 2pts),_
+			SK:First Aid #codes(upto 2pts, downto 2pts),_
+			SK:Fishing #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose three background skills at 1 point from the following."),_
+		pointswanted(3),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Acting #codes(upto 1pts),_
+			SK:Artist #codes(upto 1pts),_
+			SK:Speed-Reading #codes(upto 1pts),_
+			SK:Makeup #codes(upto 1pts),_
+			SK:Bicycling #codes(upto 1pts),_
+			SK:knife #codes(upto 1pts),_
+			SK:Bow #codes(upto 1pts),_
+			SK:Dancing #codes(upto 1pts),_
+			SK:Disguise #codes(upto 1pts),_
+			SK:Stage Combat #codes(upto 1pts),_
+			SK:Singing #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Timelost Teen (Lands Out of Time), displaycost(57),_
+	cat(Character Templates),_
+	description(_
+				Dinosaurs. Like, whatever. The important thing is, you're missing Homecoming! Your pesky _
+				little brother and terminally nerdy uncle may be all excited, but for you, this is just _
+				one major annoyance. OK, maybe it was kinda exciting when you used those moves you learned _
+				at cheerleader camp to get away from that big one with all the teeth, and sure, that one _
+				caveman is sorta cute in a 'big and stupid' kinda way, but, even so, you just want to get home. _
+	),_
+	page(LoT18),_
+	sets(_
+			ST:ST = 9,_
+			ST:DX = 12,_
+			ST:HT = 11,_
+			ST:Hit Points = 10,_
+			ST:Will = 11 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 30 points from among the following advantages."),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Pitiable,_
+			AD:Charisma #codes(upto 2),_
+			AD:Ally,_
+			AD:Daredevil,_
+			AD:Empathy,_
+			AD:Fearlessness #codes(upto 2),_
+			AD:Gizmo,_
+			AD:High Manual Dexterity #codes(upto 2),_
+			AD:Intuition,_
+			AD:Perfect Balance,_
+			AD:Serendipity,_
+			AD:Slippery #codes(upto 3),_
+			AD:Wild Talent _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Chummy,_
+			DI:Social Stigma (Minor),_
+			DI:Combat Paralysis,_
+			DI:Curious,_
+			DI:Easy to Kill,_
+			DI:Easy to Read,_
+			DI:Extra Sleep,_
+			DI:Gullibility,_
+			DI:Impulsiveness,_
+			DI:Klutz,_
+			DI:Overconfidence,_
+			DI:Stubbornness,_
+			DI:Short Attention Span,_
+			DI:Shyness,_
+			DI:Squeamish,_
+			#newitem(DI:Odious Personal Habit (Sullen Teenager), -5/-10, upto(3), page(B22), cat(Mundane Social, Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction), noresync(yes)) #codes(upto1) _
+		)_
+	),_
+	select5(_
+		text("Primary skills: choose two  at 8 points from the following."),_
+		pointswanted(8),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Paleontology (Micropaleontology) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleoanthropology) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleobotany) #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology (Paleozoology) #codes(upto 8pts, downto 8pts),_
+			SK:Filch #codes(upto 4pts, downto 4pts),_
+			SK:Hobby Skill ([DX-based]) #codes(upto 4pts, downto 4pts),_
+			SK:Hobby Skill ([IQ-based]) #codes(upto 4pts, downto 4pts),_
+			SK:Sports #codes(upto 4pts, downto 4pts),_
+			SK:Brawling #codes(upto 4pts, downto 4pts),_
+			SK:Acrobatics #codes(upto 4pts, downto 4pts),_
+			SK:Escape #codes(upto 4pts, downto 4pts),_
+			SK:Carousing #codes(upto 4pts, downto 4pts),_
+			SK:Running #codes(upto 4pts, downto 4pts),_
+			SK:Fast-Talk #codes(upto 4pts, downto 4pts),_
+			SK:Shadowing #codes(upto 4pts, downto 4pts),_
+			SK:Games #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Climbing #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Rifle) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts, downto 2pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Knot-Tying #codes(upto 2pts, downto 2pts),_
+			SK:Hiking #codes(upto 2pts, downto 2pts),_
+			SK:Animal Handling #codes(upto 2pts, downto 2pts),_
+			SK:First Aid #codes(upto 2pts, downto 2pts),_
+			SK:Fishing #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose three background skills at 1 point from the following."),_
+		pointswanted(3),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Acting #codes(upto 1pts),_
+			SK:Artist #codes(upto 1pts),_
+			SK:Speed-Reading #codes(upto 1pts),_
+			SK:Makeup #codes(upto 1pts),_
+			SK:Bicycling #codes(upto 1pts),_
+			SK:knife #codes(upto 1pts),_
+			SK:Bow #codes(upto 1pts),_
+			SK:Dancing #codes(upto 1pts),_
+			SK:Disguise #codes(upto 1pts),_
+			SK:Stage Combat #codes(upto 1pts),_
+			SK:Singing #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Timelost Soldier (Lands Out of Time), displaycost(79),_
+	cat(Character Templates),_
+	description(_
+				They said the military would take you to exotic lands, but you're going to have words _
+				with your recruiter when you get back. Nothing in basic training talked about what to _
+				do when your camp is flattened by a bull triceratops or a bunch of hairy cavemen think _
+				you're a god. You may still be with the rest of your unit, or you might be the sole _
+				survivor who has joined up with some others. If you were sent here on a mission, you're _
+				going to carry it out; if you got here accidentally, you're determined to return and _
+				report. If there are enemy soldiers here as well, you may want to kill them or you may _
+				try to get them to work with you so you can all go home. _
+	),_
+	page(LoT19),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 11,_
+			ST:HT = 12,_
+			ST:Hit Points = 13,_
+			ST:Perception = 11,_
+			ST:Basic Move = 6 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from among the following advantages."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Touch,_
+			AD:Acute Vision,_
+			AD:Ambidexterity,_
+			AD:Combat Reflexes,_
+			AD:Danger Sense,_
+			AD:Fearlessness #codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill #codes(upto 3),_
+			AD:High Pain Threshold,_
+			AD:Perfect Balance,_
+			AD:Rapid Healing,_
+			AD:Recovery,_
+			AD:Voice _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Alcoholism,_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Code of Honor (Soldier's),_
+			#newitem(DI:Duty (Army), -2/-5/-10/-15, displaycost(-10), mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) #codes(upto 3, downto 3),_
+			DI:Fanaticism,_
+			DI:Hidebound,_
+			DI:Incurious,_
+			#newitem(DI:Intolerance (Enemy Soldiers), -5, page(B140), cat(Mundane, Mental)),_
+			DI:Nightmares,_
+			DI:On the Edge,_
+			DI:Post-Combat Shakes,_
+			DI:Sadism,_
+			#newitem(DI:Sense of Duty (Country), -10, levelnames(Large Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")) _
+		)_
+	),_
+	select5(_
+		text("Choose 2 gun skills at 4 points each."),_
+		pointswanted(8),_
+		itemswanted(2),_
+		list(_
+			SK:Guns (Grenade Launcher) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Gyroc) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto4pts, downto 4pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Musket) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Pistol) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Rifle) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Shotgun) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Submachine Gun) #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Primary Skills Choose 2 of the following skills."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Tactics #codes(upto 8pts, downto 8pts),_
+			SK:Explosives (Demolition) #codes(upto 8pts, downto 8pts),_
+			SK:Explosives (Explosive Ordnance Disposal) #codes(upto 8pts, downto 8pts),_
+			SK:Explosives (Fireworks) #codes(upto 8pts, downto 8pts),_
+			SK:Explosives (Nuclear Ordnance Disposal) #codes(upto 8pts, downto 8pts),_
+			SK:Explosives (Underwater Demolition) #codes(upto 8pts, downto 8pts),_
+			SK:Leadership #codes(upto 8pts, downto 8pts),_
+			SK:Soldier #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Knife) #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Sword) #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Ammo) #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Long Arm) #codes(upto 8pts, downto 8pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 8pts, downto 8pts),_
+			SK:Knife #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Arctic) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Desert) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Island/Beach) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Jungle) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Mountain) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Plains) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Swampland) #codes(upto 8pts, downto 8pts),_
+			SK:Survival (Woodlands) #codes(upto 8pts, downto 8pts),_
+			SK:Survival #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select7(_
+		text("Secondary skills: choose 4 points from the following."),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Brawling #codes(upto 4pts, downto 4pts),_
+			SK:Jumping #codes(upto 2pts, downto 2pts),_
+			SK:Climbing #codes(upto 2pts, downto 2pts),_
+			SK:Camouflage #codes(upto 2pts, downto 2pts),_
+			SK:First Aid #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Battlesuits) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Body Armor) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Force Shields) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Heavy Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Small Arms) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Vehicular Armor) #codes(upto 2pts, downto 2pts),_
+			SK:Interrogation #codes(upto 2pts, downto 2pts),_
+			SK:Carousing #codes(upto 2pts, downto 2pts),_
+			SK:Hiking #codes(upto 2pts, downto 2pts),_
+			SK:Intimidation #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Seamanship #codes(upto 1pts),_
+			SK:Administration #codes(upto 1pts),_
+			SK:Fast-Talk #codes(upto 1pts),_
+			SK:Gambling #codes(upto 1pts),_
+			SK:Mechanic([Type]) #codes(upto 1pts),_
+			SK:Traps #codes(upto 1pts),_
+			SK:Knot-Tying #codes(upto 1pts),_
+			SK:Boating (Large Powerboat) #codes(upto 1pts),_
+			SK:Boating (Motorboat) #codes(upto 1pts),_
+			SK:Boating (Sailboat) #codes(upto 1pts),_
+			SK:Boating (Unpowered) #codes(upto 1pts),_
+			SK:Boxing #codes(upto 1pts),_
+			SK:Riding #codes(upto 1pts),_
+			SK:Scrounging #codes(upto 1pts) _
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Tarn Warrior - People of Liquid Rock (Lands Out of Time), displaycost(72),_
+	cat(Character Templates),_
+	description(_
+				You wield weapons formed when the stones melt and become as water. You can prison words _
+				into tablets of baked clay, and you have walked in buildings nearly as tall as the swamp _
+				beasts' necks are long. Your main food comes from the ground where you wish it to, and you _
+				command the river to flow among the fields to nourish the grain. The lands you control _
+				are far greater than they were in your grandfather's day, and the priests and seers say they _
+				will be greater still. You may be an eager soldier working to expand the Empire of Tarn, _
+				or a slave forced into service. You have access to the most advanced technology imaginable: _
+				weapons of metal and armor of cured stegosaurus hide. With that kind of power on your side, _
+				who can stand against you?  _
+	),_
+	page(LoT19),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 11,_
+			ST:HT = 11,_
+			ST:Hit Points = 13,_
+			ST:Basic Move = 6,_
+			ST:Tech Level = ST:Tech Level +1 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 15 points from among the following advantages."),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Catfall,_
+			AD:Danger Sense,_
+			AD:Fearlessness #codes(upto 3),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill #codes(upto 3),_
+			AD:Hard to Subdue #codes(upto 3),_
+			AD:High Pain Threshold,_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing,_
+			AD:Recovery _
+		)_
+	),_
+	select4(_
+		text("Choose -35 points from among the following disadvantages."),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Code of Honor (Soldier's),_
+			#newitem(DI:Delusion (Tarn Weapons & Armor make you invincible), -5/-10/-15, upto(3), levelnames(Minor, Major, Severe), page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)) #codes(upto 1),_
+			#newitem(DI:Duty (Tarn), -2/-5/-10/-15, displaycost(-10), mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) #codes(upto 3, downto 3),_
+			#newitem(DI:Intolerance (Non Tarn), -10, page(B140), cat(Mundane, Mental)),_
+			DI:Missing Digit,_
+			DI:On the Edge,_
+			DI:One Eye,_
+			DI:Overconfidence,_
+			DI:Wounded _
+		)_
+	),_
+	select5(_
+		text("Choose one of the following."),_
+		pointswanted(8),_
+		itemswanted(1),_
+		list(_
+			SK:Broadsword #codes(upto 8pts, downto 8pts),_
+			SK:Shortsword #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(_
+		text("Choose two primary skills at 8 points from the following."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Brawling #codes(upto 8pts, downto 8pts),_
+			SK:Knife #codes(upto 8pts, downto 8pts),_
+			SK:Shield (Shield) #codes(upto 8pts, downto 8pts),_
+			SK:Shield (Buckler) #codes(upto 8pts, downto 8pts),_
+			SK:Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Bow #codes(upto 8pts, downto 8pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 8pts, downto 8pts),_
+			SK:Spear #codes(upto 8pts, downto 8pts),_
+			SK:Tactics #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select7(_
+		text("Choose two secondary skills at 2 points from the following."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Fast-Draw #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Knife) #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Sword) #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 2pts, downto 2pts),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Shield (Shield) #codes(upto 2pts, downto 2pts),_
+			SK:Shield (Buckler) #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Arctic) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Desert) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Island/Beach) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Jungle) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Plains) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Swampland) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Woodlands) #codes(upto 2pts, downto 2pts),_
+			SK:Survival #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(_
+		text("Choose two background skills at 1 point from the following."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 1pts),_
+			SK:Armoury (Body Armor) #codes(upto 1pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 1pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Throwing #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts),_
+			SK:Intimidation #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts) _
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<_Armor, Armor - Lands out of Time, Lands Out of Time - Shields, Lands Out of Time>
+Stegosaurus Plate, basecost(30), baseweight(3), dr(4/15), db(1), lc(4), techlvl(0), skillused(ST:DX-4, Shield (Buckler)-2, Shield (Force)-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(LoT20), mods(Equipment, Shield),_
+	description(TL:0 LC:- DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:6 HP:30 Skill:Shield (Shield) Notes: [S,N,C,T] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([S,N,C,T])
+Protoceratops Fringe, basecost(50), baseweight(10), dr(5/20), db(2), lc(4), techlvl(0), skillused(ST:DX-4, Shield (Buckler)-2, Shield (Force)-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(LoT20), mods(Equipment, Shield),_
+	description(TL:0 LC:- DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [S,C,T] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([S,C,T])
+Bronze Shield, basecost(60), baseweight(5), dr(7/40), db(2), lc(3), techlvl(1), skillused(ST:DX-4, Shield (Buckler)-2, Shield (Force)-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(LoT20), mods(Equipment, Shield),_
+	description(TL:1 LC:3 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [T] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([T])
+Bronze Buckler, basecost(40), baseweight(8), dr(5/20), db(1), lc(3), techlvl(1), skillused(ST:DX-4, Shield (Buckler), Shield (Force)-2, Shield (Shield)-2), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(LoT20), mods(Equipment, Shield),_
+	description(TL:0 LC:3 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:5 HP:20 Skill:Shield (Buckler) Notes: [T] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([T])
+Hide Shield, basecost(25), baseweight(5), dr(3/20), db(1), lc(4), techlvl(0), skillused(ST:DX-4, Shield (Buckler)-2, Shield (Force)-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(LoT20), mods(Equipment, Shield),_
+	description(TL:1 LC:- DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [S,C,T] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([S,C,T])
+
+<_Armor, _Armor - Lands Out of Time, Lands Out of Time - Armor - Low-Tech Body Armor, Lands Out of Time - Armor, Lands Out of Time>
+Heavy Hide Tunic, techlvl(0), location(torso, groin), dr(2), basecost(100), baseweight(10), lc(4), description(TL:0 LC:4 DR:2 Locations: torso, groin Notes: [C,T,S].), notes([C,T,S]), page(LoT21), mods(Equipment)
+Stegoplate, techlvl(0), location(torso, groin), dr(4), basecost(200), baseweight(25), lc(3), description(TL:0 LC:3 DR:4 Locations: torso, groin Notes: [T].), notes([T]), page(LoT21), mods(Equipment)
+
+<_Armor, _Armor - Lands Out of Time, Lands Out of Time, Lands Out of Time - Armor, Lands Out of Time - Armor - Low-Tech Limb Armor>
+Heavy Hide Sleeves, techlvl(0), location(arms), dr(2), basecost(40), baseweight(6), lc(4), description(TL:0 LC:4 DR:2 Locations: arms), notes([T]), page(LoT21), mods(Equipment)
+Heavy Hide Leggings, techlvl(0), location(legs), dr(2), basecost(50), baseweight(8), lc(4), description(TL:0 LC:4 DR:2 Locations: legs), notes([T]), page(LoT21), mods(Equipment)
+
+<Lands Out of Time, Lands Out of Time - Melee Weapons, _Melee Weapons - _Lands Out of Time, Melee Weapons>
+Hand Axe, techlvl(0), lc(4), basecost(20), baseweight(3), page(LoT21), mods(Equipment, Melee Quality, Cutting Class Quality), damage(sw-1), damtype(cut), reach(C), parry(No), minst(6), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3),_
+	description(TL:0 LC:4, Dam:sw-1 cut Reach:C Parry:No ST:6 Skill:Axe/Mace)
+Beak-Knife, techlvl(0), lc(4), basecost(25), baseweight(3), page(LoT21), mods(Equipment, Melee Quality, Cutting Class Quality), damage(sw-1), damtype(cut), reach(C), parry(No), minst(7), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3),_
+	description(TL:0 LC:4, Dam:sw-1 cut Reach:C Parry:No ST:7 Skill:Axe/Mace), Notes([1])
+Tail spike, techlvl(0), lc(4), basecost(40), baseweight(2), page(LoT21), mods(Equipment, Melee Quality, Cutting Class Quality), damage(thr), damtype(imp), reach(C), parry(-2), minst(9), skillused(SK:Sword!, SK:Knife, ST:DX-4, SK:Force Sword-3, SK:Main Gaughe-3, SK:Shortsword-3),_
+	description(TL:0 LC:4, Dam:thr cut Reach:C Parry:-2 ST:7 Skill:Knife)
+
+Club, techlvl(0), lc(4), basecost(5), baseweight(3), page(LoT21), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw+1), damtype(cr), reach(1), parry(0), minst(10), skillused(SK:Sword!, SK:Broadsword, ST:DX-5, SK:Force Sword-4, SK:Rapier-4, SK:Saber-4, SK:Shortsword-2, SK:Two-Handed Sword-4),_
+	description(TL:0 LC:4, Dam:sw+1 cr Reach:1 Parry:0 ST:10 Skill:Broadsword)
+Ankylosaurus Club, techlvl(0), lc(4), basecost(30), baseweight(14), page(LoT21), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw+3), damtype(cr), reach(0), parry(0U), minst(12), skillused(SK:Sword!, SK:Broadsword, ST:DX-5, SK:Force Sword-4, SK:Rapier-4, SK:Saber-4, SK:Shortsword-2, SK:Two-Handed Sword-4),_
+	description(TL:0 LC:4, Dam:sw+3 cr Reach:0 Parry:0U ST:12 Skill:Broadsword), Notes([N,C,T,S])
+Club w/Bone spike, techlvl(0), lc(4), basecost(35), baseweight(15), page(LoT21), mods(Equipment, Melee Quality, Crushing/Imp Class Quality),_
+	newmode(Swing, damage(sw+1), damtype(cr), reach(0), parry(1U), minst(12), skillused(SK:Sword!, SK:Broadsword, ST:DX-5, SK:Force Sword-4, SK:Rapier-4, SK:Saber-4, SK:Shortsword-2, SK:Two-Handed Sword-4)),_
+	newmode(Or swing, damage(sw), damtype(imp), reach(0), parry(1U), minst(12), skillused(SK:Sword!, SK:Broadsword, ST:DX-5, SK:Force Sword-4, SK:Rapier-4, SK:Saber-4, SK:Shortsword-2, SK:Two-Handed Sword-4)),_
+	description(TL:0 LC:4 \par [Mode:swing Dam:sw+1 cr Reach:0 Parry:1U ST:12 Skill:Broadsword] \par [Mode:or Swing Dam:sw imp Reach:0 Parry:0 ST:12 Skill:Broadsword]), Notes([N,C,T,S])
+
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Jungle Princess (Lands Out of Time)" with {replacetags(in "TE:Jungle Princess (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tarn Warrior - People of Liquid Rock (Lands Out of Time)" with {replacetags(in "TE:Tarn Warrior - People of Liquid Rock (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Timelost Explorer (Lands Out of Time)" with {replacetags(in "TE:Timelost Explorer (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Timelost Hunter (Lands Out of Time)" with {replacetags(in "TE:Timelost Hunter (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Timelost Kid (Lands Out of Time)" with {replacetags(in "TE:Timelost Kid (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Timelost Scientist (Lands Out of Time)" with {replacetags(in "TE:Timelost Scientist (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Timelost Soldier (Lands Out of Time)" with {replacetags(in "TE:Timelost Soldier (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Timelost Teen (Lands Out of Time)" with {replacetags(in "TE:Timelost Teen (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tribal Chief (Lands Out of Time)" with {replacetags(in "TE:Tribal Chief (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tribal Outcast (Lands Out of Time)" with {replacetags(in "TE:Tribal Outcast (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tribal Shaman (Lands Out of Time)" with {replacetags(in "TE:Tribal Shaman (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tribal Visionary (Lands Out of Time)" with {replacetags(in "TE:Tribal Visionary (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tribal Wanderer (Lands Out of Time)" with {replacetags(in "TE:Tribal Wanderer (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tribal Warrior (Lands Out of Time)" with {replacetags(in "TE:Tribal Warrior (Lands Out of Time)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

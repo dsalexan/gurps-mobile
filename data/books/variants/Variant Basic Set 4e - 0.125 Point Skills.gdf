@@ -1,0 +1,57 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+Description=04/02/2016. This file brings back [1/2] point skills as they appeared in GURPS 3e. _
+			In addition it continues the pattern, allowing you to buy skills at [1/4] and [1/8] point. _
+			[1/2] point in a skill will give a skill level -1 lower than [1] point normally gives; _
+			[1/4] point in a skill will give a skill level -2 lower than [1] point gives; _
+			[1/8] point in a skill will give a skill level -3 lower than [1] poing gives; _
+			I.e.  for Easy skills [1/2] gives Attribute-1, [1/4] gives Attrib-2, & [1/8] gives Attrib-3;
+			for Average skills [1/2] gives Attribute-2, [1/4] gives Attrib-3, & [1/8] gives Attrib-4;
+			for Hard skills [1/2] gives Attribute-3, [1/4] gives Attrib-4, & [1/8] gives Attrib-5;
+			for Very Hard skills [1/2] gives Attribute-4, [1/4] gives Attrib-5, & [1/8] gives Attrib-6;
+
+[AUTHOR]
+******************************************************************************************************\[START]
+*
+* GURPS® Character Assistant
+* Filename: GURPS Basic Set 4th Ed.--Characters.gdf
+* Created:  August 24, 2004
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Basic Set: Characters sourcebook. GURPS Basic Set:
+* Characters is Copyright © 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+* Steve Jackson Games Incorporated. All rights reserved.
+*
+******************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Equipment, Updates, Corrections, Skill Categories
+*******************************************************************************************************\[STOP]
+[SKILLTYPES]
+******************************************************************************************************\[START]
+DX/E, cost(0.125/0.25/0.5/1/2/4/8), base(-4), defaultstat(ST:DX), relname(DX)
+DX/A, cost(0.125/0.25/0.5/1/2/4/8), base(-5), defaultstat(ST:DX), relname(DX)
+DX/H, cost(0.125/0.25/0.5/1/2/4/8), base(-6), defaultstat(ST:DX), relname(DX)
+DX/VH, cost(0.125/0.25/0.5/1/2/4/8), base(-7), defaultstat(ST:DX), relname(DX)
+
+IQ/E, cost(0.125/0.25/0.5/1/2/4/8), base(-4), defaultstat(ST:IQ), relname(IQ)
+IQ/A, cost(0.125/0.25/0.5/1/2/4/8), base(-5), defaultstat(ST:IQ), relname(IQ)
+IQ/H, cost(0.125/0.25/0.5/1/2/4/8), base(-6), defaultstat(ST:IQ), relname(IQ)
+IQ/VH, cost(0.125/0.25/0.5/1/2/4/8), base(-7), defaultstat(ST:IQ), relname(IQ)
+
+HT/E, cost(0.125/0.25/0.5/1/2/4/8), base(-4), defaultstat(ST:HT), relname(HT)
+HT/A, cost(0.125/0.25/0.5/1/2/4/8), base(-5), defaultstat(ST:HT), relname(HT)
+HT/H, cost(0.125/0.25/0.5/1/2/4/8), base(-6), defaultstat(ST:HT), relname(HT)
+HT/VH, cost(0.125/0.25/0.5/1/2/4/8), base(-7), defaultstat(ST:HT), relname(HT)
+
+Will/E, cost(0.125/0.25/0.5/1/2/4/8), base(-4), defaultstat(ST:Will), relname(Will)
+Will/A, cost(0.125/0.25/0.5/1/2/4/8), base(-5), defaultstat(ST:Will), relname(Will)
+Will/H, cost(0.125/0.25/0.5/1/2/4/8), base(-6), defaultstat(ST:Will), relname(Will)
+Will/VH, cost(0.125/0.25/0.5/1/2/4/8), base(-7), defaultstat(ST:Will), relname(Will)
+
+Per/E, cost(0.125/0.25/0.5/1/2/4/8), base(-4), defaultstat(ST:Perception), relname(Per)
+Per/A, cost(0.125/0.25/0.5/1/2/4/8), base(-5), defaultstat(ST:Perception), relname(Per)
+Per/H, cost(0.125/0.25/0.5/1/2/4/8), base(-6), defaultstat(ST:Perception), relname(Per)
+Per/VH, cost(0.125/0.25/0.5/1/2/4/8), base(-7), defaultstat(ST:Perception), relname(Per)

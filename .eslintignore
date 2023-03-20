@@ -1,0 +1,8 @@
+dist
+src/packages
+
+src/lib/gca/data.js
+src/lib/gca/names.js
+old-src/**
+
+static/**/*

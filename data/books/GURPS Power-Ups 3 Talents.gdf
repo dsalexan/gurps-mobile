@@ -1,0 +1,1418 @@
+﻿Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Description=05/05/2021. _
+			This data file contains information taken from the GURPS Power-ups 3 - Talents sourcebook written by Sean Punch. _
+			Power-Ups 3 - Talents is Copyright © 2011 by Steve Jackson Games Incorporated. All rights reserved.
+Program=4.0.397
+Requires="GURPS Basic Set 4th Ed.--Characters.GDF"
+LoadAfter="GURPS Fantasy 4e.gdf",_
+			"GURPS Horror 4e.gdf",_
+			"GURPS Mysteries 4e.gdf",_
+			"GURPS Space 4e.gdf",_
+			"GURPS Action  1 - Heroes.gdf",_
+			"GURPS Banestorm 4e.gdf",_
+			"GURPS Dungeon Fantasy  1 - Adventurers.gdf",_
+			"GURPS Dungeon Fantasy  3 - Next Level.gdf",_
+			"GURPS Dungeon Fantasy  4 - Sages.gdf",_
+			"GURPS Dungeon Fantasy 12 - Ninja.gdf",_
+			"GURPS Monster Hunters  1 - Champions.gdf",_
+			"GURPS Transhuman Space Changing Times 4e.gdf",_
+			"GURPS Traveller Interstellar Wars 4e.gdf"
+Incomplete=YES
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Filename: GURPS Power-Ups 3 - Talents.GDF
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Power-ups 3 - Talents sourcebook written by Sean Punch.
+//  Power-ups 3 - Talents is Copyright © 2011 by
+//  Steve Jackson Games Incorporated. All rights reserved.
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Talents>
+Job Training, %costaliaslist%, displaycost(varies), upto(4), cat(Mundane, Mental, Physical, Mundane Mental, Mundane Physical), page(PU3:24),_
+	gives(%skillsaliaslist%), mods(_Talents),_
+	x(#InputToTagReplace("Please enter the job description for this Talent here:" , nameext, , "Job Training"),_
+	#ChoiceList(_
+			name(Cost),_
+			title(New Talent: Cost),_
+			text(Choose the point cost and number of affected skills for this talent.),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				" 1-2",_
+				" 3-4",_
+				" 5-6",_
+				" 7-8",_
+				" 9-10",_
+				"11-12",_
+				"13-14",_
+				"15-16",_
+				"17-18",_
+				"19-20",_
+				"21-22",_
+				"23-24",_
+				"25-26",_
+				"27-28",_
+				"29-30",_
+				"31-32",_
+				"33-34",_
+				"35-36",_
+				"37-38",_
+				"39-40",_
+				"41-42",_
+				"43-44",_
+				"45-46",_
+				"47-48",_
+				"49-50"_
+				),_
+			aliaslist(_
+				1/2,_
+				2/4,_
+				3/6,_
+				4/8,_
+				5/10,_
+				6/12,_
+				7/14,_
+				8/16,_
+				9/18,_
+				10/20,_
+				11/22,_
+				12/24,_
+				13/26,_
+				14/28,_
+				15/30,_
+				16/32,_
+				17/34,_
+				18/36,_
+				19/38,_
+				20/40,_
+				21/42,_
+				22/44,_
+				23/46,_
+				24/48,_
+				25/50_
+				),_
+			alt1list(_
+					1,_
+					3,_
+					5,_
+					7,_
+					9,_
+					11,_
+					13,_
+					15,_
+					17,_
+					19,_
+					21,_
+					23,_
+					25,_
+					27,_
+					29,_
+					31,_
+					33,_
+					35,_
+					37,_
+					39,_
+					41,_
+					43,_
+					45,_
+					47,_
+					49_
+					),_
+			alt2list(_
+					2,_
+					4,_
+					6,_
+					8,_
+					10,_
+					12,_
+					14,_
+					16,_
+					18,_
+					20,_
+					22,_
+					24,_
+					26,_
+					28,_
+					30,_
+					32,_
+					34,_
+					36,_
+					38,_
+					40,_
+					42,_
+					44,_
+					46,_
+					48,_
+					50_
+					),_
+			),_
+	#ChoiceList(_
+			name(skills),_
+			title(New Talent: Choose Skills),_
+			text(Choose which skills will receive a bonus from this Talent. NOTE: Additional skill specialties may be specified later by adding the appropriate modifier to this Talent.),_
+			picksallowed(atleast %costalt1list%, upto %costalt2list%),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSkills, flags(NoPrefix))_
+				),_
+			aliaslist(_
+				#grouplist(GR:AllSkills, prepend(+1 to "), append("))_
+					)_
+			),_
+	#edit)
+
+Academic, 5/10, page(PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Public Speaking, Research, Speed-Reading, Teaching and Writing),_
+	gives(_
+		+1 to "SK:Public Speaking",_
+		+1 to "SK:Research",_
+		+1 to "SK:Speed-Reading",_
+		+1 to "SK:Teaching",_
+		+1 to "SK:Writing"_
+		),_
+	conditional(+1 to ST:Reaction when "Students and teachers")
+
+Alien Friend, 5/10, page(S220, PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Diplomacy, Expert Skill (Xenology), Anthropology and History),_
+	gives(_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Expert Skill (Xenology)",_
+		+1 to "SK:Anthropology",_
+		+1 to "SK:History"_
+		),_
+	conditional(_
+				+1 to ST:Reaction when "Aliens",_
+				+1 to SK:Psychology when "pertaining to alien cultures and races"_
+				)
+
+Allure, 5/10, page(F130, DF11:20, PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Dancing, Erotic Art, Makeup, Sex Appeal and Singing),_
+	gives(_
+		+1 to "SK:Dancing",_
+		+1 to "SK:Erotic Art",_
+		+1 to "SK:Makeup",_
+		+1 to "SK:Sex Appeal",_
+		+1 to "SK:Singing"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone attracted to your specific combination of race and sex; people who might employ you as an actress courtesan or model")
+
+Animal Friend, 5/10, page(B90, PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Animal Handling, Falconry, Packing, Riding, Teamster and Veterinary),_
+	gives(_
+		+1 to "SK:Animal Handling",_
+		+1 to "SK:Falconry",_
+		+1 to "SK:Packing",_
+		+1 to "SK:Riding",_
+		+1 to "SK:Teamster",_
+		+1 to "SK:Veterinary"_
+		),_
+	conditional(+1 to ST:Reaction when "All ordinary animals")
+
+Antiquary, 5/10, page(H19, PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Architecture, Connoisseur, Heraldry, History, Literature and Research),_
+	gives(_
+		+1 to "SK:Architecture",_
+		+1 to "SK:Connoisseur",_
+		+1 to "SK:Heraldry",_
+		+1 to "SK:History",_
+		+1 to "SK:Literature",_
+		+1 to "SK:Research"_
+		),_
+	conditional(+1 to ST:Reaction when "Devotees of the old and beautiful")
+
+Artificer, 10/20, page(B90, PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Armoury, Carpentry, Electrician, Electronics Repair, Engineer, Machinist, Masonry, Mechanic and Smith),_
+	gives(_
+		+1 to "SK:Armoury",_
+		+1 to "SK:Carpentry",_
+		+1 to "SK:Electrician",_
+		+1 to "SK:Electronics Repair",_
+		+1 to "SK:Engineer",_
+		+1 to "SK:Machinist",_
+		+1 to "SK:Masonry",_
+		+1 to "SK:Mechanic",_
+		+1 to "SK:Smith"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone for whom you do work")
+
+Bard, 5/10, page(DF11:20, F130, PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Heraldry, Literature, Musical Influence, Poetry, Public Speaking and Singing),_
+	gives(_
+		+1 to "SK:Heraldry",_
+		+1 to "SK:Literature",_
+		+1 to "SK:Musical Influence",_
+		+1 to "SK:Poetry",_
+		+1 to "SK:Public Speaking",_
+		+1 to "SK:Singing"_
+		),_
+	conditional(+1 to ST:Reaction when "Audiences and fellow bards")
+
+Beastmaster, 10/20, page(PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Animal Handling, Disguise (Animals), Falconry, Flight, Hidden Lore (Lycanthropes), Mimicry (Animal Sounds), Mimicry (Bird Calls), Mount, Naturalist, Packing, Riding, Teamster and Veterinary),_
+	gives(_
+		+1 to "SK:Animal Handling",_
+		+1 to "SK:Disguise (Animals)",_
+		+1 to "SK:Falconry",_
+		+1 to "SK:Flight",_
+		+1 to "SK:Hidden Lore (Lycanthropes)",_
+		+1 to "SK:Mimicry (Animal Sounds)",_
+		+1 to "SK:Mimicry (Bird Calls)",_
+		+1 to "SK:Mount",_
+		+1 to "SK:Naturalist",_
+		+1 to "SK:Packing",_
+		+1 to "SK:Riding",_
+		+1 to "SK:Teamster",_
+		+1 to "SK:Veterinary"_
+		),_
+	conditional(+1 to ST:Reaction when "All animals, however extraordinary")
+
+Born Entertainer, 5/10, page(PU3:6), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acting, Dancing, Performance, Public Speaking, Singing and Stage Combat),_
+	gives(_
+		+1 to "SK:Acting",_
+		+1 to "SK:Dancing",_
+		+1 to "SK:Performance",_
+		+1 to "SK:Public Speaking",_
+		+1 to "SK:Singing",_
+		+1 to "SK:Stage Combat"_
+		),_
+	conditional(+1 to ST:Reaction when "Crowds – they love you!")
+
+Born Spacer, 5/10, page(TS:CT40, PU3:7), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Aerobatics, Free Fall, Navigation (Space), Piloting (Aerospace), Piloting (High-Performance Spacecraft), Piloting (Low-Performance Spacecraft), Spacer and Vacc Suit),_
+	gives(_
+		+1 to "SK:Aerobatics",_
+		+1 to "SK:Free Fall",_
+		+1 to "SK:Navigation (Space)",_
+		+1 to "SK:Piloting (Aerospace)",_
+		+1 to "SK:Piloting (High-Performance Spacecraft)",_
+		+1 to "SK:Piloting (Low-Performance Spacecraft)",_
+		+1 to "SK:Spacer",_
+		+1 to "SK:Vacc Suit"_
+		),_
+	conditional(+1 to ST:Reaction when "Professional spacers")
+
+Business Acumen, 10/20, page(B90, PU3:7), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Accounting, Administration, Economics, Finance, Gambling, Market Analysis, Merchant and Propaganda),_
+	gives(_
+		+1 to "SK:Accounting",_
+		+1 to "SK:Administration",_
+		+1 to "SK:Economics",_
+		+1 to "SK:Finance",_
+		+1 to "SK:Gambling",_
+		+1 to "SK:Market Analysis",_
+		+1 to "SK:Merchant",_
+		+1 to "SK:Propaganda"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone with whom you do business")
+
+Chi Talent, 15/30, page(DF1:22, PU3:7), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Autohypnosis, Blind Fighting, Body Control, Breaking Blow, Breath Control, Esoteric Medicine, Flying Leap, Immovable Stance, Invisibility Art, Kiai, Light Walk, Mental Strength, Mind Block, Parry Missile Weapons, Power Blow, Pressure Points, Pressure Secrets, Push, Throwing Art and Zen Archery),_
+	gives(_
+		+1 to "SK:Autohypnosis",_
+		+1 to "SK:Blind Fighting",_
+		+1 to "SK:Body Control",_
+		+1 to "SK:Breaking Blow",_
+		+1 to "SK:Breath Control",_
+		+1 to "SK:Esoteric Medicine",_
+		+1 to "SK:Flying Leap",_
+		+1 to "SK:Immovable Stance",_
+		+1 to "SK:Invisibility Art",_
+		+1 to "SK:Kiai",_
+		+1 to "SK:Light Walk",_
+		+1 to "SK:Mental Strength",_
+		+1 to "SK:Mind Block",_
+		+1 to "SK:Parry Missile Weapons",_
+		+1 to "SK:Power Blow",_
+		+1 to "SK:Pressure Points",_
+		+1 to "SK:Pressure Secrets",_
+		+1 to "SK:Push",_
+		+1 to "SK:Throwing Art",_
+		+1 to "SK:Zen Archery"_
+		)
+
+Forceful Chi, 15/30, page(MA:47, PU3:7), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Breaking Blow, Erotic Art, Flying Leap, Hypnotic Hands, Hypnotism, Invisibility Art, Kiai, Power Blow, Precognitive Parry, Pressure Points, Pressure Secrets, Push, Throwing Art and Zen Archery),_
+	gives(_
+		+1 to "SK:Breaking Blow",_
+		+1 to "SK:Erotic Art",_
+		+1 to "SK:Flying Leap",_
+		+1 to "SK:Hypnotic Hands",_
+		+1 to "SK:Hypnotism",_
+		+1 to "SK:Invisibility Art",_
+		+1 to "SK:Kiai",_
+		+1 to "SK:Power Blow",_
+		+1 to "SK:Precognitive Parry",_
+		+1 to "SK:Pressure Points",_
+		+1 to "SK:Pressure Secrets",_
+		+1 to "SK:Push",_
+		+1 to "SK:Throwing Art",_
+		+1 to "SK:Zen Archery"_
+		),_
+	conditional(+1 to ST:Reaction when "Honorable opponents, those who practice ''hard'' or ''external'' martial-arts styles (including potential students and masters) and lovers (past or present)")
+
+Inner Balance, 15/30, page(MA:47, PU3:7), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Autohypnosis, Blind Fighting, Body Control, Body Language, Body Sense, Breath Control, Dreaming, Immovable Stance, Light Walk, Lizard Climb, Meditation, Mental Strength, Mind Block and Sensitivity),_
+	gives(_
+		+1 to "SK:Autohypnosis",_
+		+1 to "SK:Blind Fighting",_
+		+1 to "SK:Body Control",_
+		+1 to "SK:Body Language",_
+		+1 to "SK:Body Sense",_
+		+1 to "SK:Breath Control",_
+		+1 to "SK:Dreaming",_
+		+1 to "SK:Immovable Stance",_
+		+1 to "SK:Light Walk",_
+		+1 to "SK:Lizard Climb",_
+		+1 to "SK:Meditation",_
+		+1 to "SK:Mental Strength",_
+		+1 to "SK:Mind Block",_
+		+1 to "SK:Sensitivity"_
+		),_
+	conditional(+1 to ST:Reaction when "Pacifists, ascetics, and those who practice ''soft'' or ''internal'' martial-arts styles")
+
+Ninja Talent, 5/10, page(DF12:4, PU3:7), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Blind Fighting, Hypnotism, Invisibility Art, Light Walk and Mental Strength),_
+	gives(_
+		+1 to "SK:Blind Fighting",_
+		+1 to "SK:Hypnotism",_
+		+1 to "SK:Invisibility Art",_
+		+1 to "SK:Light Walk",_
+		+1 to "SK:Mental Strength"_
+		)
+
+Strong Chi, 5/10, page(A3:14, PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Breaking Blow, Flying Leap, Power Blow, Pressure Points and Pressure Secrets),_
+	gives(_
+		+1 to "SK:Breaking Blow",_
+		+1 to "SK:Flying Leap",_
+		+1 to "SK:Power Blow",_
+		+1 to "SK:Pressure Points",_
+		+1 to "SK:Pressure Secrets"_
+		),_
+	conditional(+1 to ST:Reaction when "Other martial artists, especially potential masters or students")
+
+Circuit Sense, 5/10, page(A1:19, PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Electrician, Electronics Operation, Electronics Repair, Engineer (Electrical) and Engineer (Electronics)),_
+	gives(_
+		+1 to "SK:Electrician",_
+		+1 to "SK:Electronics Operation",_
+		+1 to "SK:Electronics Repair",_
+		+1 to "SK:Engineer (Electrical)",_
+		+1 to "SK:Engineer (Electronics)"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone for whom you use your skills")
+
+Close to Heaven, 5/10, page(BS184, DF11:22, MH1:25, PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Exorcism, Meditation, Religious Ritual and Theology),_
+	gives(_
+		+1 to "SK:Exorcism",_
+		+1 to "SK:Meditation",_
+		+1 to "SK:Religious Ritual",_
+		+1 to "SK:Theology"_
+		),_
+	conditional(+1 to ST:Reaction when "Any fellow ''religious professional''", +1 to SK:Ritual Magic when "a theurgic specialty", +1 to SK:Symbol Drawing when "a theurgic specialty")
+
+Close to Hell, 5/10, page(DF11:24, PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Exorcism, Hidden Lore (Demons), Occultism, Psychology (Demons), Religious Ritual and Theology),_
+	gives(_
+		+1 to "SK:Exorcism",_
+		+1 to "SK:Hidden Lore (Demons)",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Psychology (Demons)",_
+		+1 to "SK:Religious Ritual",_
+		+1 to "SK:Theology"_
+		),_
+	conditional(+1 to ST:Reaction when "Demons!")
+
+Close to the Earth, 5/10, page(DF11:25, PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Hidden Lore (Elementals), Hidden Lore (Faeries), Hidden Lore (Nature Spirits), Naturalist, Religious Ritual, Theology and Weather Sense),_
+	gives(_
+		+1 to "SK:Hidden Lore (Elementals)",_
+		+1 to "SK:Hidden Lore (Faeries)",_
+		+1 to "SK:Hidden Lore (Nature Spirits)",_
+		+1 to "SK:Naturalist",_
+		+1 to "SK:Religious Ritual",_
+		+1 to "SK:Theology",_
+		+1 to "SK:Weather Sense"_
+		),_
+	conditional(+1 to ST:Reaction when "Anybody who greatly respects or worships nature")
+
+Clown, 10/20, page(PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acrobatics, Dancing, Fire Eating, Hobby Skill (Juggling), Makeup, Mimicry, Performance, Singing, Sleight of Hand and Ventriloquism),_
+	gives(_
+		+1 to "SK:Acrobatics",_
+		+1 to "SK:Dancing",_
+		+1 to "SK:Fire Eating",_
+		+1 to "SK:Hobby Skill (Juggling)",_
+		+1 to "SK:Makeup",_
+		+1 to "SK:Mimicry",_
+		+1 to "SK:Performance",_
+		+1 to "SK:Singing",_
+		+1 to "SK:Sleight of Hand",_
+		+1 to "SK:Ventriloquism"_
+		),_
+	conditional(+1 to ST:Reaction when "Audiences circus performers, vaudevillians and fellow fools")
+
+Born to Be Wired, 5/10, page(A1:19, MH4:7-8, PU3:8), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers) and Expert Skill (Computer Security)),_
+	gives(_
+		+1 to "SK:Computer Hacking",_
+		+1 to "SK:Computer Operation",_
+		+1 to "SK:Computer Programming",_
+		+1 to "SK:Cryptography",_
+		+1 to "SK:Electronics Repair (Computers)",_
+		+1 to "SK:Expert Skill (Computer Security)"_
+		),_
+	conditional(+1 to ST:Reaction when "Hackers; people buying stock in your dot-com")
+
+Computer Wizard, 5/10, page(TS:CT40, PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Computer Operation, Computer Programming, Electronics Operation (Communications), Electronics Operation (Media), Electronics Repair (Computers), Expert Skill (Computer Security) and Psychology (AI)),_
+	gives(_
+		+1 to "SK:Computer Operation",_
+		+1 to "SK:Computer Programming",_
+		+1 to "SK:Electronics Operation (Communications)",_
+		+1 to "SK:Electronics Operation (Media)",_
+		+1 to "SK:Electronics Repair (Computers)",_
+		+1 to "SK:Expert Skill (Computer Security)",_
+		+1 to "SK:Psychology (AI)"_
+		),_
+	conditional(+1 to ST:Reaction when "Computer professionals and AIs")
+
+Cyberneticist, 5/10, page(S220, PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Computer Hacking, Computer Operation, Computer Programming, Computer Programming (AI) and Electronics Repair (Computers)),_
+	gives(_
+		+1 to "SK:Computer Hacking",_
+		+1 to "SK:Computer Operation",_
+		+1 to "SK:Computer Programming",_
+		+1 to "SK:Computer Programming (AI)",_
+		+1 to "SK:Electronics Repair (Computers)"_
+		),_
+	conditional(+1 to ST:Reaction when "Other computer professionals AI systems and robots")
+
+Evil Computer Talent, 5/10, page(H88, PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Computer Hacking, Computer Operation, Computer Programming, Cryptography, Expert Skill (Computer Security) and Research),_
+	gives(_
+		+1 to "SK:Computer Hacking",_
+		+1 to "SK:Computer Operation",_
+		+1 to "SK:Computer Programming",_
+		+1 to "SK:Cryptography",_
+		+1 to "SK:Expert Skill (Computer Security)",_
+		+1 to "SK:Research"_
+		)
+
+Craftiness, 5/10, page(A1:19, DF11:32, MH1:25, Psi5, PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acting, Camouflage, Disguise, Holdout, Shadowing and Stealth),_
+	gives(_
+		+1 to "SK:Acting",_
+		+1 to "SK:Camouflage",_
+		+1 to "SK:Disguise",_
+		+1 to "SK:Holdout",_
+		+1 to "SK:Shadowing",_
+		+1 to "SK:Stealth"_
+		)
+
+Cultural Chameleon, 5/10, page(PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Anthropology, Diplomacy, Gesture, Linguistics, Psychology and Sociology),_
+	gives(_
+		+1 to "SK:Anthropology",_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Gesture",_
+		+1 to "SK:Linguistics",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Sociology"_
+		),_
+	conditional(+1 to ST:Reaction when "People from outside your culture when met in their own lands")
+
+Cunning Folk, 10/20, page(H19, PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Animal Handling, Fortune-Telling, Herb Lore, Naturalist, Occultism, Poisons, Veterinary and Weather Sense),_
+	gives(_
+		+1 to "SK:Animal Handling",_
+		+1 to "SK:Fortune-Telling",_
+		+1 to "SK:Herb Lore",_
+		+1 to "SK:Naturalist",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Poisons",_
+		+1 to "SK:Veterinary",_
+		+1 to "SK:Weather Sense"_
+		),_
+	conditional(+1 to ST:Reaction when "Local peasantry clients and acolytes")
+
+Devotion, 5/10, page(F130, H19, PU3:9), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Autohypnosis, Exorcism, Meditation and Religious Ritual),_
+	gives(_
+		+1 to "SK:Autohypnosis",_
+		+1 to "SK:Exorcism",_
+		+1 to "SK:Meditation",_
+		+1 to "SK:Religious Ritual"_
+		),_
+	conditional(+1 to ST:Reaction when "Members of your faith and those sympathetic to it")
+
+Driver's Reflexes, 5/10, page(A1:19, MH4:6, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Boating, Driving, Piloting and Submarine),_
+	gives(_
+		+1 to "SK:Boating",_
+		+1 to "SK:Driving",_
+		+1 to "SK:Piloting",_
+		+1 to "SK:Submarine"_
+		),_
+	conditional(+1 to ST:Reaction when "Passengers; gamblers betting on you at the Grand Prix")
+
+Dungeon Artificer, 5/10, page(DF4:4, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Alchemy, Armoury, Engineer (Gadgets), Fast-Draw (Gadget), Scrounging and Traps),_
+	gives(_
+		+1 to "SK:Alchemy",_
+		+1 to "SK:Armoury",_
+		+1 to "SK:Engineer (Gadgets)",_
+		+1 to "SK:Fast-Draw (Gadget)",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Traps"_
+		),_
+	conditional(+1 to ST:Reaction when "Potential buyers of your creations")
+
+Elder Gift, 5/10, page(DF3:6, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Alchemy, Hidden Lore, Occultism and Thaumatology),_
+	gives(_
+		+1 to "SK:Alchemy",_
+		+1 to "SK:Hidden Lore",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Thaumatology"_
+		),_
+	conditional(+1 to ST:Reaction when "Elder Things (a.k.a. Things Man Was Not Meant To Know)")
+
+Empath, 5/10, page(P3/21:31, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Body Language, Detect Lies, Diplomacy, Fortune-Telling and Psychology),_
+	gives(_
+		+1 to "SK:Body Language",_
+		+1 to "SK:Detect Lies",_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Fortune-Telling",_
+		+1 to "SK:Psychology"_
+		)
+
+Explorer, 5/10, page(PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Area Knowledge, Cartography, Geography, Mathematics (Surveying) and Navigation),_
+	gives(_
+		+1 to "SK:Area Knowledge",_
+		+1 to "SK:Cartography",_
+		+1 to "SK:Geography",_
+		+1 to "SK:Mathematics (Surveying)",_
+		+1 to "SK:Navigation"_
+		),_
+	conditional(+1 to ST:Reaction when "Fellow explorers; anybody funding an exploratory voyage")
+
+Forest Guardian, 5/10, page(DF3:7, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Bow, Camouflage, Fast-Draw (Arrow), Stealth and Survival (Woodlands)),_
+	gives(_
+		+1 to "SK:Bow",_
+		+1 to "SK:Camouflage",_
+		+1 to "SK:Fast-Draw (Arrow)",_
+		+1 to "SK:Stealth",_
+		+1 to "SK:Survival (Woodlands)"_
+		),_
+	conditional(+1 to ST:Reaction when "Druids faeries and bunnies")
+
+Gifted Artist, 5/10, page(B90, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Artist, Jeweler, Leatherworking, Photography and Sewing),_
+	gives(_
+		+1 to "SK:Artist",_
+		+1 to "SK:Jeweler",_
+		+1 to "SK:Leatherworking",_
+		+1 to "SK:Photography",_
+		+1 to "SK:Sewing"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone buying or critiquing your work")
+
+Goodwife, 5/10, page(F130, PU3:10), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Cooking, Diagnosis, Gardening, Housekeeping and Sewing),_
+	gives(_
+		+1 to "SK:Cooking",_
+		+1 to "SK:Diagnosis",_
+		+1 to "SK:Gardening",_
+		+1 to "SK:Housekeeping",_
+		+1 to "SK:Sewing"_
+		),_
+	conditional(+1 to ST:Reaction when "People for whom you keep house, prospective spouses and other housewives")
+
+Green Thumb, 5/10, page(B90, PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Biology, Farming, Gardening, Herb Lore and Naturalist),_
+	gives(_
+		+1 to "SK:Biology",_
+		+1 to "SK:Farming",_
+		+1 to "SK:Gardening",_
+		+1 to "SK:Herb Lore",_
+		+1 to "SK:Naturalist"_
+		),_
+	conditional(+1 to ST:Reaction when "Gardeners and sentient plants")
+
+Halfling Marksmanship, 5/10, page(BS184, DF3:14, PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Bow, Sling, Throwing, Thrown Weapon (Dart), Thrown Weapon (Knife) and Thrown Weapon (Stick)),_
+	gives(_
+		+1 to "SK:Bow",_
+		+1 to "SK:Sling",_
+		+1 to "SK:Throwing",_
+		+1 to "SK:Thrown Weapon (Dart)",_
+		+1 to "SK:Thrown Weapon (Knife)",_
+		+1 to "SK:Thrown Weapon (Stick)"_
+		),_
+	conditional(+1 to ST:Reaction when "Archers and other ranged weapon users (and, in Dungeon Fantasy, mobsters)")
+
+Healer, 10/20, page(B90, PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Diagnosis, Esoteric Medicine, First Aid, Pharmacy, Physician, Physiology, Psychology, Surgery and Veterinary),_
+	gives(_
+		+1 to "SK:Diagnosis",_
+		+1 to "SK:Esoteric Medicine",_
+		+1 to "SK:First Aid",_
+		+1 to "SK:Pharmacy",_
+		+1 to "SK:Physician",_
+		+1 to "SK:Physiology",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Surgery",_
+		+1 to "SK:Veterinary"_
+		),_
+	conditional(+1 to ST:Reaction when "Patients, both past and present")
+
+Hot Pilot, 5/10, page(S220, PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Gunner, Navigation (Air), Navigation (Space) and Piloting),_
+	gives(_
+		+1 to "SK:Gunner",_
+		+1 to "SK:Navigation (Air)",_
+		+1 to "SK:Navigation (Space)",_
+		+1 to "SK:Piloting"_
+		),_
+	conditional(+1 to ST:Reaction when "Other pilots")
+
+Impersonator, 5/10, page(PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acting, Body Language, Disguise, Mimicry, Savoir-Faire and Streetwise),_
+	gives(_
+		+1 to "SK:Acting",_
+		+1 to "SK:Body Language",_
+		+1 to "SK:Disguise",_
+		+1 to "SK:Mimicry",_
+		+1 to "SK:Savoir-Faire",_
+		+1 to "SK:Streetwise"_
+		)
+
+Intuitive Statesman, 10/20, page(PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Administration, Current Affairs (Headline News), Current Affairs (People), Current Affairs (Politics), Diplomacy, Economics, Expert Skill (Political Science), Law, Leadership, Politics, Propaganda and Public Speaking),_
+	gives(_
+		+1 to "SK:Administration",_
+		+1 to "SK:Current Affairs (Headline News)",_
+		+1 to "SK:Current Affairs (People)",_
+		+1 to "SK:Current Affairs (Politics)",_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Economics",_
+		+1 to "SK:Expert Skill (Political Science)",_
+		+1 to "SK:Law",_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Politics",_
+		+1 to "SK:Propaganda",_
+		+1 to "SK:Public Speaking"_
+		),_
+	conditional(+1 to ST:Reaction when "Political parties seeking candidates; anyone who put you in power (campaign contributors, voters, etc.)")
+
+Master Builder, 5/10, page(F130, PU3:11), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Architecture, Carpentry, Engineer, Forced Entry and Masonry),_
+	gives(_
+		+1 to "SK:Architecture",_
+		+1 to "SK:Carpentry",_
+		+1 to "SK:Engineer",_
+		+1 to "SK:Forced Entry",_
+		+1 to "SK:Masonry"_
+		),_
+	conditional(+1 to ST:Reaction when "Workmen on your projects; prospective employers")
+
+Mathematical Ability, 10/20, page(B90, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Accounting, Astronomy, Cryptography, Engineer, Finance, Market Analysis, Mathematics and Physics),_
+	gives(_
+		+1 to "SK:Accounting",_
+		+1 to "SK:Astronomy",_
+		+1 to "SK:Cryptography",_
+		+1 to "SK:Engineer",_
+		+1 to "SK:Finance",_
+		+1 to "SK:Market Analysis",_
+		+1 to "SK:Mathematics",_
+		+1 to "SK:Physics"_
+		),_
+	conditional(+1 to ST:Reaction when "Engineers and scientists")
+
+Memetics, 10/20, page(TS:CT40, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Brainwashing, Diplomacy, Expert Skill (Memetics), Fast-Talk, Interrogation, Leadership, Merchant, Politics, Propaganda, Psychology, Sociology and Teaching),_
+	gives(_
+		+1 to "SK:Brainwashing",_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Expert Skill (Memetics)",_
+		+1 to "SK:Fast-Talk",_
+		+1 to "SK:Interrogation",_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Merchant",_
+		+1 to "SK:Politics",_
+		+1 to "SK:Propaganda",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Sociology",_
+		+1 to "SK:Teaching"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone else trained in memetics who can observe you using it")
+
+Mesmerist, 10/20, page(H19, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Autohypnosis, Brainwashing, Enthrallment (Captivate), Gesture, Hypnotism, Intimidation, Musical Influence, Enthrallment (Persuade), Enthrallment (Suggest) and Enthrallment (Sway Emotions)),_
+	gives(_
+		+1 to "SK:Autohypnosis",_
+		+1 to "SK:Brainwashing",_
+		+1 to "SK:Enthrallment (Captivate)",_
+		+1 to "SK:Gesture",_
+		+1 to "SK:Hypnotism",_
+		+1 to "SK:Intimidation",_
+		+1 to "SK:Musical Influence",_
+		+1 to "SK:Enthrallment (Persuade)",_
+		+1 to "SK:Enthrallment (Suggest)",_
+		+1 to "SK:Enthrallment (Sway Emotions)"_
+		),_
+	conditional(+1 to ST:Reaction when "The foolish and weak-minded")
+
+Born Soldier, 5/10, page(MA:FC17, SV15, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Leadership, Savoir-Faire (Military), Scrounging, Soldier and Tactics),_
+	gives(_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Savoir-Faire (Military)",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Soldier",_
+		+1 to "SK:Tactics"_
+		),_
+	conditional(+1 to ST:Reaction when "Other soldiers")
+
+Born Tactician, 10/20, page(T:IW135, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Expert Skill (Military Science), History (Military), Intelligence Analysis, Leadership, Savoir-Faire (Military), Soldier, Strategy and Tactics),_
+	gives(_
+		+1 to "SK:Expert Skill (Military Science)",_
+		+1 to "SK:History (Military)",_
+		+1 to "SK:Intelligence Analysis",_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Savoir-Faire (Military)",_
+		+1 to "SK:Soldier",_
+		+1 to "SK:Strategy",_
+		+1 to "SK:Tactics"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone you serve with or command")
+
+Born War-Leader, 5/10, page(BS184, DF1:14, MH1:25, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Intelligence Analysis, Leadership, Savoir-Faire (Military), Strategy and Tactics),_
+	gives(_
+		+1 to "SK:Intelligence Analysis",_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Savoir-Faire (Military)",_
+		+1 to "SK:Strategy",_
+		+1 to "SK:Tactics"_
+		),_
+	conditional(+1 to ST:Reaction when "Military officers, tribal war-leaders, soldiers and other professional warriors")
+
+Intuitive Admiral, 10/20, page(T:IW135, PU3:12), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Expert Skill (Military Science), History (Military), Intelligence Analysis, Leadership, Savoir-Faire (Military), Shiphandling (Spaceship), Shiphandling (Starship), Spacer and Strategy (Space)),_
+	gives(_
+		+1 to "SK:Expert Skill (Military Science)",_
+		+1 to "SK:History (Military)",_
+		+1 to "SK:Intelligence Analysis",_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Savoir-Faire (Military)",_
+		+1 to "SK:Shiphandling (Spaceship)",_
+		+1 to "SK:Shiphandling (Starship)",_
+		+1 to "SK:Spacer",_
+		+1 to "SK:Strategy (Space)"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone you serve with or command")
+
+Mr. Smash, 5/10, page(DF11:19, PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Polearm, Two-Handed Axe/Mace, Two-Handed Flail and Two-Handed Sword),_
+	gives(_
+		+1 to "SK:Polearm",_
+		+1 to "SK:Two-Handed Axe/Mace",_
+		+1 to "SK:Two-Handed Flail",_
+		+1 to "SK:Two-Handed Sword"_
+		),_
+	conditional(+1 to SK:Forced Entry when "roll is made with swung two-handed weapon")
+
+Musical Ability, 5/10, page(B91, PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Group Performance (Conducting), Musical Composition, Musical Influence, Musical Instrument and Singing),_
+	gives(_
+		+1 to "SK:Group Performance (Conducting)",_
+		+1 to "SK:Musical Composition",_
+		+1 to "SK:Musical Influence",_
+		+1 to "SK:Musical Instrument",_
+		+1 to "SK:Singing"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone listening to or critiquing your work")
+
+Natural Athlete, 10/20, page(PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Bicycling, Breath Control, Hiking, Jumping, Lifting, Running, Skating, Skiing, Sports, Swimming and Throwing),_
+	gives(_
+		+1 to "SK:Bicycling",_
+		+1 to "SK:Breath Control",_
+		+1 to "SK:Hiking",_
+		+1 to "SK:Jumping",_
+		+1 to "SK:Lifting",_
+		+1 to "SK:Running",_
+		+1 to "SK:Skating",_
+		+1 to "SK:Skiing",_
+		+1 to "SK:Sports",_
+		+1 to "SK:Swimming",_
+		+1 to "SK:Throwing"_
+		),_
+	conditional(+1 to ST:Reaction when "Sports fans coaches and recruiters")
+
+Natural Copper, 10/20, page(MA:FC17, PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Body Language, Criminology, Detect Lies, Intelligence Analysis, Interrogation, Observation, Savoir-Faire (Police), Search, Shadowing and Streetwise),_
+	gives(_
+		+1 to "SK:Body Language",_
+		+1 to "SK:Criminology",_
+		+1 to "SK:Detect Lies",_
+		+1 to "SK:Intelligence Analysis",_
+		+1 to "SK:Interrogation",_
+		+1 to "SK:Observation",_
+		+1 to "SK:Savoir-Faire (Police)",_
+		+1 to "SK:Search",_
+		+1 to "SK:Shadowing",_
+		+1 to "SK:Streetwise"_
+		),_
+	conditional(+1 to ST:Reaction when "Policemen and private investigators")
+
+Natural Diver, 5/10, page(TS:CT40, PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Aquabatics, Diving Suit, Scuba, Submarine (Free-Flooding Sub) and Swimming),_
+	gives(_
+		+1 to "SK:Aquabatics",_
+		+1 to "SK:Diving Suit",_
+		+1 to "SK:Scuba",_
+		+1 to "SK:Submarine (Free-Flooding Sub)",_
+		+1 to "SK:Swimming"_
+		),_
+	conditional(+1 to ST:Reaction when "Expert divers and aquatic beings")
+
+Natural Scientist, 10/20, page(PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Astronomy, Biology, Chemistry, Expert Skill (Hydrology), Expert Skill (Natural Philosophy), Geology, Mathematics (Applied), Mathematics (Statistics), Mathematics (Surveying), Metallurgy, Meteorology, Paleontology, Physics and Physiology),_
+	gives(_
+		+1 to "SK:Astronomy",_
+		+1 to "SK:Biology",_
+		+1 to "SK:Chemistry",_
+		+1 to "SK:Expert Skill (Hydrology)",_
+		+1 to "SK:Expert Skill (Natural Philosophy)",_
+		+1 to "SK:Geology",_
+		+1 to "SK:Mathematics (Applied)",_
+		+1 to "SK:Mathematics (Statistics)",_
+		+1 to "SK:Mathematics (Surveying)",_
+		+1 to "SK:Metallurgy",_
+		+1 to "SK:Meteorology",_
+		+1 to "SK:Paleontology",_
+		+1 to "SK:Physics",_
+		+1 to "SK:Physiology"_
+		),_
+	conditional(+1 to ST:Reaction when "Other scientists and anybody impressed by ''smart people''")
+
+Born Sailor, 5/10, page(MA:FC17, SC:AS11, SV14, PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Boating, Knot-Tying, Meteorology, Weather Sense, Navigation (Sea), Seamanship and Shiphandling),_
+	gives(_
+		+1 to "SK:Boating",_
+		+1 to "SK:Knot-Tying",_
+		+1 to "SK:Meteorology",_
+		+1 to "SK:Weather Sense",_
+		+1 to "SK:Navigation (Sea)",_
+		+1 to "SK:Seamanship",_
+		+1 to "SK:Shiphandling"_
+		),_
+	conditional(+1 to ST:Reaction when "All sailors")
+
+Mariner, 10/20, page(F130, PU3:13), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Boating, Freight Handling, Knot-Tying, Meteorology, Weather Sense, Navigation (Sea), Seamanship and Shiphandling),_
+	gives(_
+		+1 to "SK:Boating",_
+		+1 to "SK:Freight Handling",_
+		+1 to "SK:Knot-Tying",_
+		+1 to "SK:Meteorology",_
+		+1 to "SK:Weather Sense",_
+		+1 to "SK:Navigation (Sea)",_
+		+1 to "SK:Seamanship",_
+		+1 to "SK:Shiphandling"_
+		),_
+	conditional(+1 to ST:Reaction when "Seafarers")
+
+Seafarer, 10/20, page(DF11:19, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Boating, Fishing, Knot-Tying, Meteorology, Weather Sense, Navigation (Sea), Seamanship, Survival (Island/Beach), Swimming and Thrown Weapon (Harpoon)),_
+	gives(_
+		+1 to "SK:Boating",_
+		+1 to "SK:Fishing",_
+		+1 to "SK:Knot-Tying",_
+		+1 to "SK:Meteorology",_
+		+1 to "SK:Weather Sense",_
+		+1 to "SK:Navigation (Sea)",_
+		+1 to "SK:Seamanship",_
+		+1 to "SK:Survival (Island/Beach)",_
+		+1 to "SK:Swimming",_
+		+1 to "SK:Thrown Weapon (Harpoon)"_
+		),_
+	conditional(+1 to ST:Reaction when "Sailors, pirates, and aquatic races sympathetic to sea travel")
+
+Occultist, 10/20, page(H19, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Alchemy, Anthropology, Archaeology, Exorcism, Hidden Lore, History, Linguistics, Literature, Occultism, Research, Ritual Magic and Thaumatology),_
+	gives(_
+		+1 to "SK:Alchemy",_
+		+1 to "SK:Anthropology",_
+		+1 to "SK:Archaeology",_
+		+1 to "SK:Exorcism",_
+		+1 to "SK:Hidden Lore",_
+		+1 to "SK:History",_
+		+1 to "SK:Linguistics",_
+		+1 to "SK:Literature",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Research",_
+		+1 to "SK:Ritual Magic",_
+		+1 to "SK:Thaumatology"_
+		),_
+	conditional(+1 to ST:Reaction when "Students of the arcane, gullible college students, and monster-hunters")
+
+Outdoorsman, 10/20, page(B91, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Camouflage, Fishing, Mimicry, Naturalist, Navigation, Survival and Tracking),_
+	gives(_
+		+1 to "SK:Camouflage",_
+		+1 to "SK:Fishing",_
+		+1 to "SK:Mimicry",_
+		+1 to "SK:Naturalist",_
+		+1 to "SK:Navigation",_
+		+1 to "SK:Survival",_
+		+1 to "SK:Tracking"_
+		),_
+	conditional(+1 to ST:Reaction when "Explorers, nature lovers, and the like")
+
+Parapsychologist, 5/10, page(MH1:25, Psi5, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Electronics Operation (Medical), Electronics Operation (Psychotronics), Electronics Operation (Scientific), Expert Skill (Psionics), Hypnotism, Occultism, Physics (Paraphysics) and Psychology),_
+	gives(_
+		+1 to "SK:Electronics Operation (Medical)",_
+		+1 to "SK:Electronics Operation (Psychotronics)",_
+		+1 to "SK:Electronics Operation (Scientific)",_
+		+1 to "SK:Expert Skill (Psionics)",_
+		+1 to "SK:Hypnotism",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Physics (Paraphysics)",_
+		+1 to "SK:Psychology"_
+		),_
+	conditional(+1 to ST:Reaction when "Psis and true believers")
+
+Pickaxe Penchant, 5/10, page(DF3:6, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Axe/Mace, Forced Entry, Prospecting, Thrown Weapon (Axe/Mace) and Two-Handed Axe/Mace),_
+	gives(_
+		+1 to "SK:Axe/Mace",_
+		+1 to "SK:Forced Entry",_
+		+1 to "SK:Prospecting",_
+		+1 to "SK:Thrown Weapon (Axe/Mace)",_
+		+1 to "SK:Two-Handed Axe/Mace"_
+		),_
+	conditional(+1 to ST:Reaction when "Miners")
+
+Poet, 5/10, page(H19, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Connoisseur (Literature), Literature, Poetry, Public Speaking and Writing),_
+	gives(_
+		+1 to "SK:Connoisseur (Literature)",_
+		+1 to "SK:Literature",_
+		+1 to "SK:Poetry",_
+		+1 to "SK:Public Speaking",_
+		+1 to "SK:Writing"_
+		),_
+	conditional(+1 to ST:Reaction when "Readers and listeners of your work; literati")
+
+Pop Culture Maven, 5/10, page(TS:CT40, PU3:14), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Connoisseur (Virtual Reality Arts), Current Affairs (People), Current Affairs (Popular Culture), Current Affairs (Sports) and Expert Skill (Memetics)),_
+	gives(_
+		+1 to "SK:Connoisseur (Virtual Reality Arts)",_
+		+1 to "SK:Current Affairs (People)",_
+		+1 to "SK:Current Affairs (Popular Culture)",_
+		+1 to "SK:Current Affairs (Sports)",_
+		+1 to "SK:Expert Skill (Memetics)"_
+		),_
+	conditional(+1 to ST:Reaction when "Obsessive pop culture devotees")
+
+Psientist, 5/10, page(DF14:21, PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Hypnotism, Meditation, Mental Strength, Mind Block, Psychology, Expert Skill (Psionics) and Hidden Lore (Psionics)),_
+	gives(_
+		+1 to "SK:Hypnotism",_
+		+1 to "SK:Meditation",_
+		+1 to "SK:Mental Strength",_
+		+1 to "SK:Mind Block",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Expert Skill (Psionics)",_
+		+1 to "SK:Hidden Lore (Psionics)"_
+		),_
+	conditional(+1 to ST:Reaction when "Psis")
+
+Sage, 10/20, page(F130, PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Archaeology, Expert Skill, Geography, Heraldry, Hidden Lore, History, Law, Literature, Occultism, Philosophy, Research and Theology),_
+	gives(_
+		+1 to "SK:Archaeology",_
+		+1 to "SK:Expert Skill",_
+		+1 to "SK:Geography",_
+		+1 to "SK:Heraldry",_
+		+1 to "SK:Hidden Lore",_
+		+1 to "SK:History",_
+		+1 to "SK:Law",_
+		+1 to "SK:Literature",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Philosophy",_
+		+1 to "SK:Research",_
+		+1 to "SK:Theology"_
+		),_
+	conditional(+1 to ST:Reaction when "Scholars, students, and people who consult you")
+
+Smooth Operator, 15/30, page(B91, PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acting, Carousing, Detect Lies, Diplomacy, Fast-Talk, Intimidation, Leadership, Panhandling, Politics, Public Speaking, Savoir-Faire, Sex Appeal and Streetwise),_
+	gives(_
+		+1 to "SK:Acting",_
+		+1 to "SK:Carousing",_
+		+1 to "SK:Detect Lies",_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Fast-Talk",_
+		+1 to "SK:Intimidation",_
+		+1 to "SK:Leadership",_
+		+1 to "SK:Panhandling",_
+		+1 to "SK:Politics",_
+		+1 to "SK:Public Speaking",_
+		+1 to "SK:Savoir-Faire",_
+		+1 to "SK:Sex Appeal",_
+		+1 to "SK:Streetwise"_
+		),_
+	conditional(+1 to ST:Reaction when "Con artists, politicians, salesmen, etc.")
+
+Social Scientist, 10/20, page(PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Anthropology, Archaeology, Criminology, Economics, Expert Skill (Political Science), Geography, History, Philosophy, Psychology, Sociology and Theology (Comparative)),_
+	gives(_
+		+1 to "SK:Anthropology",_
+		+1 to "SK:Archaeology",_
+		+1 to "SK:Criminology",_
+		+1 to "SK:Economics",_
+		+1 to "SK:Expert Skill (Political Science)",_
+		+1 to "SK:Geography",_
+		+1 to "SK:History",_
+		+1 to "SK:Philosophy",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Sociology",_
+		+1 to "SK:Theology (Comparative)"_
+		),_
+	conditional(+1 to ST:Reaction when "Social and political thinkers, theorists, and activists")
+
+Spirit-Talker, 5/10, page(PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Exorcism, Fortune-Telling (Augury), Fortune-Telling (Dream Interpretation), Hidden Lore (Spirits), Meditation, Occultism and Theology),_
+	gives(_
+		+1 to "SK:Exorcism",_
+		+1 to "SK:Fortune-Telling (Augury)",_
+		+1 to "SK:Fortune-Telling (Dream Interpretation)",_
+		+1 to "SK:Hidden Lore (Spirits)",_
+		+1 to "SK:Meditation",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Theology"_
+		),_
+	conditional(+1 to ST:Reaction when "Spirits")
+
+Stalker, 5/10, page(MA:FC17, SV15, PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Camouflage, Hiking, Navigation (Land), Stealth and Tracking),_
+	gives(_
+		+1 to "SK:Camouflage",_
+		+1 to "SK:Hiking",_
+		+1 to "SK:Navigation (Land)",_
+		+1 to "SK:Stealth",_
+		+1 to "SK:Tracking"_
+		),_
+	conditional(+1 to ST:Reaction when "Hunters, trackers, etc.")
+
+Strangler, 5/10, page(DFM1:30, PU3:15), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Brawling, Stealth, Tracking and Wrestling),_
+	gives(_
+		+1 to "SK:Brawling",_
+		+1 to "SK:Stealth",_
+		+1 to "SK:Tracking",_
+		+1 to "SK:Wrestling"_
+		),_
+	conditional(+1 to ST:Reaction when "None. The whole point is sneaking up on and throttling your prey!")
+
+Street-Smart, 5/10, page(DF11:21, PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Merchant, Panhandling, Scrounging, Shadowing, Streetwise and Urban Survival),_
+	gives(_
+		+1 to "SK:Merchant",_
+		+1 to "SK:Panhandling",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Shadowing",_
+		+1 to "SK:Streetwise",_
+		+1 to "SK:Urban Survival"_
+		),_
+	conditional(+1 to ST:Reaction when "Shady characters in town")
+
+Street Smarts, 10/20, page(Th:UM17, PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Merchant, Panhandling, Scrounging, Shadowing, Streetwise and Urban Survival),_
+	gives(_
+		+1 to "SK:Merchant",_
+		+1 to "SK:Panhandling",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Shadowing",_
+		+1 to "SK:Streetwise",_
+		+1 to "SK:Urban Survival"_
+		),_
+	conditional(_
+				+1 to ST:Reaction when "Other street operators",_
+				+1 to SK:Area Knowledge when "an appropriate City specialty",_
+				+1 to SK:Current Affairs when "an appropriate City specialty",_
+				+1 to SK:Law when "an appropriate City specialty"_
+				)
+
+Super-Spy, 15/30, page(LFM4, PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acting, Current Affairs (Politics), Detect Lies, Disguise, Escape, Fast-Talk, Holdout, Interrogation, Observation, Pickpocket, Search, Shadowing, Sleight of Hand, Stealth and Tracking),_
+	gives(_
+		+1 to "SK:Acting",_
+		+1 to "SK:Current Affairs (Politics)",_
+		+1 to "SK:Detect Lies",_
+		+1 to "SK:Disguise",_
+		+1 to "SK:Escape",_
+		+1 to "SK:Fast-Talk",_
+		+1 to "SK:Holdout",_
+		+1 to "SK:Interrogation",_
+		+1 to "SK:Observation",_
+		+1 to "SK:Pickpocket",_
+		+1 to "SK:Search",_
+		+1 to "SK:Shadowing",_
+		+1 to "SK:Sleight of Hand",_
+		+1 to "SK:Stealth",_
+		+1 to "SK:Tracking"_
+		),_
+	conditional(+1 to ST:Reaction when "All members of the character's organization below his Rank as well as enemy agents of roughly equal Rank who are aware of his identity")
+
+Superior Equilibrioception, 5/10, page(PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Acrobatics, Aerobatics, Aquabatics, Body Sense, Climbing, Free Fall and Parachuting),_
+	gives(_
+		+1 to "SK:Acrobatics",_
+		+1 to "SK:Aerobatics",_
+		+1 to "SK:Aquabatics",_
+		+1 to "SK:Body Sense",_
+		+1 to "SK:Climbing",_
+		+1 to "SK:Free Fall",_
+		+1 to "SK:Parachuting"_
+		),_
+	conditional(+1 to ST:Reaction when "Acrobats, skydivers, and commandos who slide down ropes")
+
+Survivor, 5/10, page(PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(First Aid, Knot-Tying, Naturalist, Scrounging and Survival),_
+	gives(_
+		+1 to "SK:First Aid",_
+		+1 to "SK:Knot-Tying",_
+		+1 to "SK:Naturalist",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Survival"_
+		),_
+	conditional(+1 to ST:Reaction when "Boy Scouts, campers, and survivalists")
+
+Talker, 5/10, page(MY108, PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Detect Lies, Diplomacy, Fast-Talk, Psychology and Savoir-Faire),_
+	gives(_
+		+1 to "SK:Detect Lies",_
+		+1 to "SK:Diplomacy",_
+		+1 to "SK:Fast-Talk",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Savoir-Faire"_
+		),_
+	conditional(+1 to ST:Reaction when "Investigators and anybody hiring you to investigate")
+
+Thanatologist, 5/10, page(PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Exorcism, Expert Skill (Thanatology), Occultism, Professional Skill (Mortician), Religious Ritual and Theology),_
+	gives(_
+		+1 to "SK:Exorcism",_
+		+1 to "SK:Expert Skill (Thanatology)",_
+		+1 to "SK:Occultism",_
+		+1 to "SK:Professional Skill (Mortician)",_
+		+1 to "SK:Religious Ritual",_
+		+1 to "SK:Theology"_
+		),_
+	conditional(+1 to ST:Reaction when "Death-worshippers and sapient undead you don't try to exorcize or banish")
+
+Tough Guy, 5/10, page(MY108, PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Fast-Talk, Forced Entry, Intimidation, Shadowing and Streetwise),_
+	gives(_
+		+1 to "SK:Fast-Talk",_
+		+1 to "SK:Forced Entry",_
+		+1 to "SK:Intimidation",_
+		+1 to "SK:Shadowing",_
+		+1 to "SK:Streetwise"_
+		),_
+	conditional(+1 to ST:Reaction when "Most police officers and detectives, bouncers, gangsters and street thugs")
+
+Trivia Sponge, 5/10, page(PU3:16), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Area Knowledge, Current Affairs, Games and Hobby Skill),_
+	gives(_
+		+1 to "SK:Area Knowledge",_
+		+1 to "SK:Current Affairs",_
+		+1 to "SK:Games",_
+		+1 to "SK:Hobby Skill"_
+		),_
+	conditional(+1 to ST:Reaction when "Anybody who cares about trivia – cab drivers, game-show hosts, geeks, etc.")
+
+Truth-Seeker, 5/10, page(PU3:17), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Detect Lies, Expert Skill (Conspiracy Theory), Hidden Lore (Conspiracies), Intelligence Analysis, Interrogation and Research),_
+	gives(_
+		+1 to "SK:Detect Lies",_
+		+1 to "SK:Expert Skill (Conspiracy Theory)",_
+		+1 to "SK:Hidden Lore (Conspiracies)",_
+		+1 to "SK:Intelligence Analysis",_
+		+1 to "SK:Interrogation",_
+		+1 to "SK:Research"_
+		),_
+	conditional(+1 to ST:Reaction when "Anyone who is Curious or harbors Delusions about conspiracies")
+
+Unseelie Talent, 5/10, page(H83, PU3:17), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Camouflage, Disguise, Scrounging, Stealth, Survival (Swampland) and Urban Survival),_
+	gives(_
+		+1 to "SK:Camouflage",_
+		+1 to "SK:Disguise",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Stealth",_
+		+1 to "SK:Survival (Swampland)",_
+		+1 to "SK:Urban Survival"_
+		)
+
+Whiz Kid, 5/10, page(MY108, PU3:17), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Chemistry, Criminology, Diagnosis, Forensics, Psychology and Research),_
+	gives(_
+		+1 to "SK:Chemistry",_
+		+1 to "SK:Criminology",_
+		+1 to "SK:Diagnosis",_
+		+1 to "SK:Forensics",_
+		+1 to "SK:Psychology",_
+		+1 to "SK:Research"_
+		),_
+	conditional(+1 to ST:Reaction when "Crime-lab employers and detectives")
+
+Widget-Worker, 5/10, page(DF3:10, PU3:17), upto(4), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(Armoury (Missile Weapons), Forced Entry, Lockpicking, Scrounging and Traps),_
+	gives(_
+		+1 to "SK:Armoury (Missile Weapons)",_
+		+1 to "SK:Forced Entry",_
+		+1 to "SK:Lockpicking",_
+		+1 to "SK:Scrounging",_
+		+1 to "SK:Traps"_
+		),_
+	conditional(+1 to ST:Reaction when "Those who benefit directly from your skills")
+
+Jack of All Trades, 10/20, page(DF11:28, PU3:17), upto(3), cat(Mundane, Mental, Mundane Mental), mods(_Talents), description(bonus to all skill defaults),_
+	conditional(_
+				+1 to ST:DX when "making default skill rolls",_
+				+1 to ST:IQ when "making default skill rolls",_
+				+1 to ST:HT when "making default skill rolls",_
+				+1 to ST:Will when "making default skill rolls",_
+				+1 to ST:Perception when "making default skill rolls"_
+				)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Job Training
+AD:Driver's Reflexes
+AD:Dungeon Artificer
+AD:Elder Gift
+AD:Empath
+AD:Explorer
+AD:Forest Guardian
+AD:Gifted Artist
+AD:Goodwife
+AD:Green Thumb
+AD:Halfling Marksmanship
+AD:Healer
+AD:Impersonator
+AD:Intuitive Statesman
+AD:Master Builder
+AD:Born Soldier
+AD:Born Tactician
+AD:Born War-Leader
+AD:Intuitive Admiral
+AD:Mathematical Ability
+AD:Memetics
+AD:Mesmerist
+AD:Born Sailor
+AD:Mariner
+AD:Mr. Smash
+AD:Musical Ability
+AD:Natural Athlete
+AD:Natural Copper
+AD:Natural Diver
+AD:Natural Scientist
+AD:Occultist
+AD:Outdoorsman
+AD:Parapsychologist
+AD:Pickaxe Penchant
+AD:Poet
+AD:Pop Culture Maven
+AD:Seafarer
+AD:Psientist
+AD:Sage
+AD:Smooth Operator
+AD:Social Scientist
+AD:Spirit-Talker
+AD:Stalker
+AD:Strangler
+AD:Street Smarts
+AD:Street-Smart
+AD:Superior Equilibrioception
+AD:Super-Spy
+AD:Survivor
+AD:Talker
+AD:Thanatologist
+AD:Tough Guy
+AD:Trivia Sponge
+AD:Jack of All Trades
+AD:Truth-Seeker
+AD:Unseelie Talent
+AD:Whiz Kid
+AD:Widget-Worker
+AD:Academic
+AD:Allure
+AD:Animal Friend
+AD:Antiquary
+AD:Artificer
+AD:Bard
+AD:Beastmaster
+AD:Born Entertainer
+AD:Born Spacer
+AD:Business Acumen
+AD:Chi Talent
+AD:Forceful Chi
+AD:Inner Balance
+AD:Ninja Talent
+AD:Born to Be Wired
+AD:Circuit Sense
+AD:Close to Heaven
+AD:Close to Hell
+AD:Close to the Earth
+AD:Clown
+AD:Strong Chi
+AD:Computer Wizard
+AD:Craftiness
+AD:Cultural Chameleon
+AD:Cunning Folk
+AD:Devotion
+AD:Evil Computer Talent
+
+<AllAdvantagesMental>
+AD:Job Training
+AD:Driver's Reflexes
+AD:Dungeon Artificer
+AD:Elder Gift
+AD:Empath
+AD:Explorer
+AD:Forest Guardian
+AD:Gifted Artist
+AD:Goodwife
+AD:Green Thumb
+AD:Halfling Marksmanship
+AD:Healer
+AD:Impersonator
+AD:Intuitive Statesman
+AD:Master Builder
+AD:Born Soldier
+AD:Born Tactician
+AD:Born War-Leader
+AD:Intuitive Admiral
+AD:Mathematical Ability
+AD:Memetics
+AD:Mesmerist
+AD:Born Sailor
+AD:Mariner
+AD:Mr. Smash
+AD:Musical Ability
+AD:Natural Athlete
+AD:Natural Copper
+AD:Natural Diver
+AD:Natural Scientist
+AD:Occultist
+AD:Outdoorsman
+AD:Parapsychologist
+AD:Pickaxe Penchant
+AD:Poet
+AD:Pop Culture Maven
+AD:Seafarer
+AD:Psientist
+AD:Sage
+AD:Smooth Operator
+AD:Social Scientist
+AD:Spirit-Talker
+AD:Stalker
+AD:Strangler
+AD:Street Smarts
+AD:Street-Smart
+AD:Superior Equilibrioception
+AD:Super-Spy
+AD:Survivor
+AD:Talker
+AD:Thanatologist
+AD:Tough Guy
+AD:Trivia Sponge
+AD:Jack of All Trades
+AD:Truth-Seeker
+AD:Unseelie Talent
+AD:Whiz Kid
+AD:Widget-Worker
+AD:Academic
+AD:Allure
+AD:Animal Friend
+AD:Antiquary
+AD:Artificer
+AD:Bard
+AD:Beastmaster
+AD:Born Entertainer
+AD:Born Spacer
+AD:Business Acumen
+AD:Chi Talent
+AD:Forceful Chi
+AD:Inner Balance
+AD:Ninja Talent
+AD:Born to Be Wired
+AD:Circuit Sense
+AD:Close to Heaven
+AD:Close to Hell
+AD:Close to the Earth
+AD:Clown
+AD:Strong Chi
+AD:Computer Wizard
+AD:Craftiness
+AD:Cultural Chameleon
+AD:Cunning Folk
+AD:Devotion
+AD:Evil Computer Talent
+
+<AllAdvantagesPhysical>
+AD:Job Training

@@ -1,0 +1,57 @@
+{
+  "name": "__WEBPACK__MODULE_ID__",
+  "title": "__WEBPACK__MODULE_NAME__",
+  "description": "",
+  "version": "__WEBPACK__MODULE_VERSION__",
+  "manifestPlusVersion": "1.0.0",
+  "minimumCoreVersion": "9",
+  "compatibleCoreVersion": "9",
+  "author": "dsalexan",
+  "authors": [
+    {
+      "name": "dsalexan",
+      "url": "https://github.com/dsalexan",
+      "discord": "dsalexan#8004"
+    }
+  ],
+  "library": false,
+  "socket": true,
+  "dependencies": [
+    {
+      "name": "lib-wrapper",
+      "type": "module"
+    }
+  ],
+  "conflicts": [
+
+  ],
+  "esmodules": [
+    "__WEBPACK__MODULE_ID__.js"
+  ],
+  "scripts": [
+    "__WEBPACK__BUNDLE_FILES__",
+    "js/fast_index.js",
+    "js/fast.js",
+    "js/custom-elements-es5-adapter.js",
+    "js/lodash.bundle.js"
+  ],
+  "styles": [
+    "__WEBPACK__MODULE_ID__.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    }
+  ],
+  "url": "This is auto replaced",
+  "manifest": "This is auto replaced",
+  "download": "This is auto replaced",
+  "media": [
+    {
+      "type": "icon",
+      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
+    }
+  ]
+}

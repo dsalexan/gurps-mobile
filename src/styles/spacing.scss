@@ -1,0 +1,27 @@
+:root {
+  --spacing: 9px;
+  --s0-25: calc(var(--s1) * 0.25);
+  --s0-5: calc(var(--s1) * 0.5);
+  --s0-75: calc(var(--s1) * 0.75);
+  --s1: var(--spacing);
+  --s1-25: calc(var(--s1) * 1.25);
+  --s1-5: calc(var(--s1) * 1.5);
+  --s1-75: calc(var(--s1) * 1.75);
+  --s2: calc(var(--s1) * 2);
+  --s2-5: calc(var(--s1) * 2.5);
+  --s3: calc(var(--s1) * 3);
+  --s4: calc(var(--s1) * 4);
+  --s5: calc(var(--s1) * 5);
+  --s6: calc(var(--s1) * 6);
+  --s7: calc(var(--s1) * 7);
+  --s8: calc(var(--s1) * 8);
+  --s9: calc(var(--s1) * 9);
+  --s10: calc(var(--s1) * 10);
+  --s11: calc(var(--s1) * 11);
+  --s12: calc(var(--s1) * 12);
+  --s20: calc(var(--s1) * 20);
+  --s30: calc(var(--s1) * 30);
+  --s31: calc(var(--s1) * 31);
+  --s32: calc(var(--s1) * 32);
+  --s33: calc(var(--s1) * 33);
+}

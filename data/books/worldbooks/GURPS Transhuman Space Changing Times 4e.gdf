@@ -1,0 +1,4130 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+			This data file contains information taken from the Transhuman Space: Changing Times sourcebook. _
+			Transhuman Space: Changing Times is Copyright © 2006 by Steve Jackson Games _
+			Incorporated. All rights reserved.
+WorldBook=Transhuman Space
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter="GURPS Ultra-Tech 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Transhuman Space Changing Times.gdf
+//  Created: February 2, 2006
+//  Requires GCA v3 or later!
+// 
+//  This data file contains information taken from the Transhuman Space: Changing Times sourcebook.
+//  Transhuman Space: Changing Times is Copyright © 2006 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+//  Roger Burton West- Major Work
+//  Staffan Björk (bjork) - Additional Templates
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+#MergeTags in "AD:Visualization" with "mods(Visualization)"
+
+<Exotic Physical>
+Telecommunication (Cable Jack), 5, mods(Telecommunication), page(TS:CT41), cat(Exotic Physical, Exotic, Physical)
+
+<Exotic Mental>
+<Supernatural Physical>
+<Supernatural Mental>
+<Mundane Physical, Mundane, Physical>
+"Extra-Flexible Long Arm (+4 SM)", 45, page(TS:ST5, B53)
+
+<Mundane Mental, Mundane, Mental>
+//  Talents
+Born Spacer, 5/10, gives(+1 To GR:Born Spacer), page(TS:CT40), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Aerobatics, Free Fall, Navigation (Space), Piloting (any spacecraft), Spacer, Vacc Suit)
+
+Computer Wizard, 5/10, displaycost(5/10/+ or 10/20/+), gives(+1 To GR:Computer Wizard), page(TS:CT40), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Computer Hacking (if permitted in the campaign), Computer Operation, Computer Programming, Electronics Operation (Communications or Media), Electronics Repair (Computers), Expert Skill (Arachnoxenology or Computer Security), Psychology (AI)),_
+	mods(Computer Wizard), initmods(Includes Computer Hacking, *2, page(TS:CT40), gives(+owner::level to SK:Computer Hacking), group(Computer Wizard))
+
+Natural Diver, 5/10, gives(+1 To GR:Natural Diver), page(TS:CT40), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Aquabatics, Diving Suit, Scuba, Submarine (Free-Flooding Sub), Swimming)
+
+Pop Culture Maven, 5/10, gives(+1 To GR:Pop Culture Maven), page(TS:CT40), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description()
+
+Memetic Competence, 10/20, gives(+1 To GR:Memetic Competence), page(TS:CT40), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Expert Skill (Memetics), Brainwashing, Diplomacy, Fast-Talk, Interrogation, Leadership, Merchant, Politics, Propaganda, Psychology (all specialties), Sociology, and Teaching)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Accessory (Computer), 1, page(TS:CT41)
+Accessory (Tiny Computer), 1, page(TS:CT41)
+Accessory (Microframe Computer), 1, page(TS:CT41)
+Accessory (Micromanipulation Tools), 1, page(TS:CT41)
+Accessory (Molecular Manipulation Tools), 1, page(TS:CT41)
+Accessory (IFF Transponder), 1, page(TS:CT41)
+Downslink Implant, 1, page(TS:CT61)
+Immunity to Gas Narcosis, 1, page(TS:CT65)
+Lactonarcotic Bioreactors, 1, page(TS:CT65)
+No Degeneration in Zero-G, 1, page(TS:CT41)
+Reproductive Control, 1, page(TS:CT41)
+Upslink Implant, 1, page(TS:CT61)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+#MergeTags in "DI:No Legs (Aerial)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Aquatic)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Bounces)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Rolls)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Slithers)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Semi-Aquatic)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Sessile)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Tracked)" with "taboo(DI:No Legs (Portable))"
+#MergeTags in "DI:No Legs (Wheeled)" with "taboo(DI:No Legs (Portable))"
+
+<Exotic Physical>
+No Legs (Portable), -30, replacetags(in "ST:Basic Move" with "basevalue(0)"), page(TS:CT42), cat(Exotic, Physical), taboo(DI:No Legs (Aerial), DI:No Legs (Aquatic), DI:No Legs (Bounces), DI:No Legs (Rolls), DI:No Legs (Sessile), DI:No Legs (Slithers), DI:No Legs (Semi-Aquatic), DI:No Legs (Tracked), DI:No Legs (Wheeled))
+No Bite, 0, replacetags(in "ST:Bite" with "hide(yes)")
+
+<Exotic Mental>
+<Supernatural Physical>
+<Supernatural Mental>
+<Mundane Physical>
+
+#Delete "DI:Alcoholism"
+Addiction (Alcohol), -5, displaycost(-10), levelnames(Cheap),_
+	mods(Addiction), page(B122), cat(Mundane, Physical),_
+	initmods(_
+			Effect: Incapacitating, -10, shortname(Incapacitating), group(Addiction), page(B122) | _
+			Legality: Legal, +5, shortname(Legal), group(Addiction), page(B122) _
+			)
+
+<Mundane Mental>
+Phobia (Microbots), -10, displaycost(-10*), mods(Self-Control), page(TS:CT133), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+Phobia (Nanomachines), -10, displaycost(-10*), mods(Self-Control), page(TS:CT133), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+Phobia (Radiation), -10, displaycost(-10*), mods(Self-Control), page(TS:CT133), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Vehicle>
+Piloting (Plasma Sail Spacecraft), DX/A, tl(0-12), default(IQ - 6, SK:Piloting - 4), page(B214), cat(Vehicle)
+
+<Knowledge>
+Professional Skill (Aquaculture), IQ/A, default(IQ - 5), page(B215), cat(Knowledge)
+Expert Skill (Hydrology), IQ/H, page(B193), cat(Knowledge, Scholarly)
+Expert Skill (Oceanography), IQ/H, page(B193), cat(Knowledge, Scholarly)
+Expert Skill (Arachnoxenology), IQ/H, page(B193), cat(Knowledge, Scholarly)
+Expert Skill (Terraforming), IQ/H, page(B193), cat(Knowledge, Scholarly)
+Expert Skill (Memetics), IQ/H, page(B193), cat(Knowledge, Scholarly)
+
+Connoisseur (Virtual Reality Arts), IQ/A, default(IQ - 5), page(B185), cat(Arts/Entertainment, Knowledge, Social)
+
+<Wildcard!>
+Memetics!, IQ/WC, page(TS:CT46),_
+	description(Expert Skill (Memetics), Brainwashing, Diplomacy, Fast-Talk, Interrogation, Leadership, Merchant, Politics, Propaganda, Psychology (all specialties), Sociology, and Teaching),_
+	usernotes(Expert Skill (Memetics), Brainwashing, Diplomacy, Fast-Talk, Interrogation, Leadership, Merchant, Politics, Propaganda, Psychology (all specialties), Sociology, and Teaching)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllMetaTraits>
+TE:Andraste Biomod
+TE:Aquadude Nanosymbionts
+TE:Bacteriophage Nanosymbionts
+TE:Bioroid Body
+TE:Bio-Booster
+TE:Boosted Heart Biomod
+TE:Brain Booster Nanosymbionts
+TE:Carcinophage Nanosymbionts
+TE:Concealed Bioroid Body
+TE:Cybershell Body
+TE:DNA Repair Nanosymbionts
+TE:Electroreceptor Nanosymbionts
+TE:Eunuch Biomod
+TE:Eunuch Biomod (Emphasised)
+TE:Eunuch Biomod (Highly Emphasised)
+TE:Fisheyes Biomod
+TE:Flesh Pocket Biomod
+TE:Guan Di Biomod
+"TE:Guan Di Biomod (Female, Badly Botched)"
+"TE:Guan Di Biomod (Female, Botched)"
+"TE:Guan Di Biomod (Female, Fully Successful)"
+"TE:Guan Di Biomod (Male, Badly Botched)"
+"TE:Guan Di Biomod (Male, Botched)"
+"TE:Guan Di Biomod (Male, Fully Successful)"
+"TE:Guan Di Biomod (Male, Cheap, Badly Botched)"
+"TE:Guan Di Biomod (Male, Cheap, Botched)"
+"TE:Guan Di Biomod (Male, Cheap, Fully Successful)"
+TE:Guardian Nanosymbionts
+TE:Immune Machine Nanosymbionts (Cheaper)
+TE:Immune Machine Nanosymbionts (Advanced)
+TE:Lactonarcotic Bioreactors Biomod
+TE:Lateral Line Biomod
+TE:Liver Upgrade Biomod
+TE:Lung Cleaner Nanosymbionts
+TE:Mars-Adapted
+TE:Metabolic Regulator Nanosymbionts
+TE:Microgravity Biochemistry Nanosymbionts
+TE:NERV Drug Regimen (Badly Botched)
+TE:NERV Drug Regimen (Botched)
+TE:NERV Drug Regimen (Fully Successful)
+TE:Nerve Boosters Nanosymbionts
+TE:No-Shock Glands Biomod
+TE:Personal Cleanliness Treatments (inc. Pore and Tooth Cleaner Nanosymbionts)
+TE:Prehensile Tongue Biomod
+TE:Quadrupedal Retromorphosis Biomod
+TE:Quadrupedal Retromorphosis Biomod with Hooves
+TE:Respirocyte Nanosymbionts
+TE:Retinal Enchancement Biomod (Elective)
+TE:Ruanmao Biomod
+TE:Testicle Tuck Biomod
+TE:Testicle Tuck Biomod (Cheap)
+TE:Virus Hunter Nanosymbionts
+TE:Whirling Claws o' Death Biomod (Female)
+TE:Whirling Claws o' Death Biomod (Male)
+"TE:Whirling Claws o' Death Biomod (Male, Cheap)"
+TE:Taboo: Genetic Defects
+TE:Taboo: Physical Changes
+TE:Taboo: Self-Awareness
+TE:Taboo: Mental Instability
+
+<Born Spacer>
+SK:Aerobatics
+SK:Free Fall
+SK:Navigation (Space)
+SK:Piloting (Aerospace)
+SK:Piloting (Contragravity)
+SK:Piloting (High-Performance Spacecraft)
+SK:Piloting (Lightsail)
+SK:Piloting (Low-Performance Spacecraft)
+SK:Spacer
+SK:Vacc Suit
+
+<Computer Wizard>
+SK:Computer Operation
+SK:Computer Programming
+SK:Electronics Operation (Communications)
+SK:Electronics Operation (Media)
+SK:Electronics Repair (Computers)
+SK:Expert Skill (Arachnoxenology)
+SK:Expert Skill (Computer Security)
+SK:Psychology (AI)
+
+<Natural Diver>
+SK:Aquabatics
+SK:Diving Suit
+SK:Scuba
+SK:Submarine (Free-Flooding Sub)
+SK:Swimming
+
+<Pop Culture Maven>
+SK:Connoisseur (Virtual Reality Arts)
+SK:Current Affairs (People)
+SK:Current Affairs (Popular Culture)
+SK:Current Affairs (Sport)
+SK:Expert Skill (Memetics)
+
+<Memetic Competence>
+SK:Expert Skill (Memetics)
+SK:Brainwashing
+SK:Diplomacy
+SK:Fast-Talk
+SK:Interrogation
+SK:Leadership
+SK:Merchant
+SK:Politics
+SK:Propaganda
+SK:Psychology
+SK:Sociology
+SK:Teaching
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<_General>
+Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour)
+
+<Computer Wizard>
+Includes Computer Hacking, *2, page(TS:CT40), gives(+owner::level to SK:Computer Hacking), group(Computer Wizard)
+
+<Reduced Consumption>
+Includes Air, +200%, page(TS:CT41), group(Reduced Consumption)
+Air Only, +100%, page(TS:CT41), group(Reduced Consumption)
+
+<Telecommunication>
+Secure, +20%, page(TS:CT41), group(Telecommunication)
+Selective Area, +20%, page(TS:CT), group(Telecommunication)
+Sensie, +80%, page(TS:CT41), group(Telecommunication)
+
+<Visualization>
+Reliable, +5%/+10%, upto(10), page(TS:CT), group(Visualization), mods(_Talents)
+
+<Damage Resistance>
+Laminate, +10%, group(Damage Resistance), page(TS:CT129)
+Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)
+
+<Modular Ability>
+Limited Integration, -20%, group(Modular Ability), page(TS:CT40)
+Skills and Languages Only, -10%, group(Modular Ability), page(TS:CT)
+
+<Possession>
+Full Memory Access, +10%, group(Possession), page(TS:CT40)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Meta-Traits - Morphology>
+Andraste Biomod, displaycost(9), cost(0),_
+	description(),_
+	page(TS:CT64),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Filter Lungs _
+			with "CO2 only, -70%, group(Filter Lungs)" _
+			and "Temporary Disadvantage (Increased Consumption 1), -10%, group(_General)",_
+			AD:Reduced Consumption = 2 _
+			with "Air Only, +100%, page(TS:CT41), group(Reduced Consumption)" _
+		),_
+	features(Low-Pressure Lungs)
+
+Aquadude Nanosymbionts, displaycost(7), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra Fatigue Points = 1,_
+			AD:Breath-Holding = 2 _
+		)
+
+Bacteriophage Nanosymbionts, displaycost(5), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+					AD:Resistant = 1 _
+						with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+						respond {Known Bacteria} _
+		)
+
+Bioroid Body, displaycost(-4), cost(0),_
+	description(),_
+	page(TS:CT43),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			PE:No Degeneration in Zero-G,_
+			DI:Unusual Biochemistry _
+		),_
+	taboo(_
+		DI:Bad Grip,_
+		DI:Bad Sight,_
+		DI:Colorblindness,_
+		DI:Dwarfism,_
+		DI:Dyslexia,_
+		DI:Epilepsy,_
+		DI:Gigantism,_
+		DI:Hemophilia,_
+		DI:Hunchback,_
+		DI:Innumerate,_
+		DI:Neurological Disorder,_
+		DI:Night Blindness,_
+		DI:No Sense of Smell/Taste,_
+		DI:Non-Iconographic,_
+		DI:Numb,_
+		DI:Short Attention Span,_
+		DI:Slow Healing,_
+		DI:Susceptible to Disease _
+		),_
+	features(_
+			Early Maturation 4,_
+			Intron Messages,_
+			Sterile_
+			)
+
+Bio-Booster, displaycost(31),_
+	page(TS:CT66),_
+	owns(yes),_
+	hides(yes),_
+	adds(_
+		AD:Extra Basic Speed = 4 _
+			with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+			and {Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111)},_
+		AD:Lifting ST = 3 _
+			with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)},_
+		AD:Striking ST = 3 _
+			with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+		)
+
+Boosted Heart Biomod, displaycost(15), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra Fatigue Points = 1,_
+			AD:Extra HT = 1,_
+			AD:Hard to Kill = 1 _
+		)
+
+Brain Booster Nanosymbionts, displaycost(45), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Enhanced Time Sense _
+		)
+
+Carcinophage Nanosymbionts, displaycost(5), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+				AD:Resistant = 1 _
+					with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+					respond {Cancer} _
+		),_
+	features(Lifespan Enhancement)
+
+Concealed Bioroid Body, displaycost(-5), cost(0),_
+	description(),_
+	page(TS:CT43),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			PE:No Degeneration in Zero-G,_
+			DI:Maintenance (Tune-Up) = 3 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+		),_
+	taboo(_
+		DI:Bad Grip,_
+		DI:Bad Sight,_
+		DI:Colorblindness,_
+		DI:Dwarfism,_
+		DI:Dyslexia,_
+		DI:Epilepsy,_
+		DI:Gigantism,_
+		DI:Hemophilia,_
+		DI:Hunchback,_
+		DI:Innumerate,_
+		DI:Neurological Disorder,_
+		DI:Night Blindness,_
+		DI:No Sense of Smell/Taste,_
+		DI:Non-Iconographic,_
+		DI:Numb,_
+		DI:Short Attention Span,_
+		DI:Slow Healing,_
+		DI:Susceptible to Disease _
+		),_
+	features(_
+			Early Maturation 4,_
+			Sterile_
+			)
+
+Cybershell Body, displaycost(-15), cost(0),_
+	description(),_
+	page(TS:CT43),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	needs(_
+		TE:Machine_
+		),_
+	adds(_
+		DI:Electrical,_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)" _
+	),_
+	features(Sterile),_
+	taboo(_
+			1 DICAT:Physical,_
+			DI:Appearance,_
+			DI:Addiction,_
+			DI:Cannot Learn,_
+			DI:Dyslexia,_
+			DI:Gluttony,_
+			DI:Innumerate,_
+			DI:Non-Iconographic,_
+			DI:Post-Combat Shakes,_
+			DI:Short Attention Span,_
+			DI:Sleepwalker,_
+			DI:Unnatural Feature _
+		)
+
+DNA Repair Nanosymbionts, displaycost(4), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Regeneration _
+				with "Radiation Only, -60%, group(Regeneration), page(B80)" _
+		),_
+	features(Lifespan Enhancement)
+
+Electroreceptor Nanosymbionts, displaycost(10), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Detect = 2 respond "Electrical Fields" _
+		)
+
+Eunuch Biomod, displaycost(11), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra IQ = 2,_
+			AD:Fearlessness = 2,_
+			DI:Killjoy _
+				with "Will still seek revenge in a calm way, -20%",_
+			DI:Low Empathy,_
+			DI:Unnatural Feature (Bulging Forehead) = 1 _
+		)
+
+Eunuch Biomod (Emphasised), displaycost(10), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra IQ = 2,_
+			AD:Fearlessness = 2,_
+			DI:Killjoy _
+				with "Will still seek revenge in a calm way, -20%",_
+			DI:Low Empathy,_
+			DI:Unnatural Feature (Bulging Forehead, Shaven Head) = 2 _
+		)
+
+Eunuch Biomod (Highly Emphasised), displaycost(9), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra IQ = 2,_
+			AD:Fearlessness = 2,_
+			DI:Killjoy _
+				with "Will still seek revenge in a calm way, -20%",_
+			DI:Low Empathy,_
+			DI:Unnatural Feature (Bulging Sculpted Forehead, Shaven Head) = 3 _
+		)
+
+Fisheyes Biomod, displaycost(5), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Nictitating Membrane = 1,_
+			AD:Night Vision = 5,_
+			DI:Unnatural Feature (Reflective Eyes) = 1 _
+		)
+
+Flesh Pocket Biomod, displaycost(1), cost(0),_
+	description(),_
+	page(TS:CT64),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Payload = 1 _
+		)
+
+"Guan Di Biomod (Female, Badly Botched)", displaycost(25), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			DI:Ham-Fisted = 2 _
+		)
+
+"Guan Di Biomod (Female, Botched)", displaycost(30), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			DI:Ham-Fisted = 1 _
+		)
+
+"Guan Di Biomod (Female, Fully Successful)", displaycost(35), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1 _
+		)
+
+"Guan Di Biomod (Male, Badly Botched)", displaycost(27), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			DI:Ham-Fisted = 2,_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		)
+
+"Guan Di Biomod (Male, Botched)", displaycost(32), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			DI:Ham-Fisted = 1,_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		)
+
+"Guan Di Biomod (Male, Fully Successful)", displaycost(37), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		)
+
+"Guan Di Biomod (Male, Cheap, Badly Botched)", displaycost(27), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			DI:Ham-Fisted = 2,_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		),_
+	features(Sterile)
+
+"Guan Di Biomod (Male, Cheap, Botched)", displaycost(32), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			DI:Ham-Fisted = 1,_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		),_
+	features(Sterile)
+
+"Guan Di Biomod (Male, Cheap, Fully Successful)", displaycost(37), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			AD:Extra ST = 1,_
+			AD:Striking ST = 1,_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		),_
+	features(Sterile)
+
+Guardian Nanosymbionts, displaycost(2), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+				AD:Resistant = 1 _
+					with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+					respond {Nanomachines} _
+		)
+
+Immune Machine Nanosymbionts (Cheaper), displaycost(3), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+				AD:Resistant = 2 _
+					with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+					respond {Disease} _
+		)
+
+Immune Machine Nanosymbionts (Advanced), displaycost(5), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+				AD:Resistant = 2 _
+					with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+					respond {Disease} _
+		)
+
+Lactonarcotic Bioreactors Biomod, displaycost(1), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			PE:Lactonarcotic Bioreactors _
+		)
+
+Lateral Line Biomod, displaycost(10), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		AD:Vibration sense with "Water, +0%" _
+		)
+
+Liver Upgrade Biomod, displaycost(6), cost(0),_
+	description(),_
+	page(TS:CT64),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Resistant = 2 _
+				with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+				respond {Ingested Posion},_
+			PE:Alcohol Tolerance _
+		)
+
+Lung Cleaner Nanosymbionts, displaycost(5), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Filter Lungs _
+		)
+
+Mars-Adapted, displaycost(9), cost(0),_
+	description(),_
+	page(TS:CT43),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Filter Lungs _
+			with "CO2 only, -70%, group(Filter Lungs)" _
+			and "Temporary Disadvantage (Increased Consumption 1), -10%, group(_General)",_
+			AD:Reduced Consumption = 2 _
+			with "Air Only, +100%, page(TS:CT41), group(Reduced Consumption)" _
+		),_
+	features(Low-Pressure Lungs)
+
+Metabolic Regulator Nanosymbionts, displaycost(10), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Metabolism Control = 2 _
+		)
+
+Microgravity Biochemistry Nanosymbionts, displaycost(1), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			PE:No Degeneration in Zero-G _
+		)
+
+NERV Drug Regimen (Badly Botched), displaycost(10), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			DI:Ham-Fisted = 2 _
+		)
+
+NERV Drug Regimen (Botched), displaycost(15), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1,_
+			DI:Ham-Fisted = 1 _
+		)
+
+NERV Drug Regimen (Fully Successful), displaycost(20), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra DX = 1 _
+		)
+
+Nerve Boosters Nanosymbionts, displaycost(20), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra Basic Speed = 4 _
+		)
+
+No-Shock Glands Biomod, displaycost(3), cost(0),_
+	description(),_
+	page(TS:CT64),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:High Pain Threshold _
+			with "Limited Use (4/day), -20%, group(_General)" _
+			and "Temporary Disadvantage (-1 DX and -1 IQ until 1 hour after use ends), -50%, group(_General)" _
+		)
+
+Personal Cleanliness Treatments (inc. Pore and Tooth Cleaner Nanosymbionts), displaycost(1), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			PE:Sanitized Metabolism _
+		)
+
+Prehensile Tongue Biomod, displaycost(-6), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Extra Arms = 1 _
+				with "Extra-Flexible, +50%" _
+				and "Short, -50%" _
+				and "Weak (1/4 body ST), -50%" _
+				and "Nuisance Effect (Can't talk or eat while using, may convey dirt to mouth), -10%",_
+			DI:Disturbing Voice (Severe Lisp) _
+		)
+
+Quadrupedal Retromorphosis Biomod, displaycost(-25), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Enhanced Move (Ground) = 1,_
+			TE:Quadruped _
+		)
+
+Quadrupedal Retromorphosis Biomod with Hooves, displaycost(-22), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Claws (Hooves),_
+			AD:Enhanced Move (Ground) = 1,_
+			TE:Quadruped _
+		)
+
+Respirocyte Nanosymbionts, displaycost(16), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Doesn't Breathe _
+				with "Oxygen Storage, -10%/-20%, group(Doesn't Breathe), page(B49), upto(5), _
+					levelnames(x300, x200, x100, x50, x25), level(5)",_
+			AD:Extra Fatigue Points = 2 _
+		)
+
+Retinal Enchancement Biomod (Elective), displaycost(2), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Acute Vision = 1 _
+		)
+
+Ruanmao Biomod, displaycost(7), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Damage Resistance = 1 _
+				with "Flexible, -20%, group(Damage Resistance), page(B47)",_
+			AD:Temperature Tolerance = 2,_
+			PE:Fur _
+		)
+
+Testicle Tuck Biomod, displaycost(2), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		)
+
+Testicle Tuck Biomod (Cheap), displaycost(2), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Injury Tolerance _
+			with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+		and "Partial: Groin Only, -60%" _
+		),_
+	features(Sterile)
+
+Virus Hunter Nanosymbionts, displaycost(5), cost(0),_
+	description(),_
+	page(TS:CT66),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+					AD:Resistant = 1 _
+						with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+						respond {Known Viruses} _
+		)
+
+Whirling Claws o' Death Biomod (Female), displaycost(79), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Claws (Sharp Claws),_
+			AD:Extra Basic Speed = 4 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+				and {Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111)},_
+			AD:Extra Fatigue Points = 1,_
+			AD:Extra HT = 1,_
+			AD:Extra ST = 1,_
+			AD:Hard to Kill = 1,_
+			AD:Lifting ST = 1,_
+			AD:Lifting ST = 3 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)},_
+			AD:Striking ST = 3,_
+			AD:Striking ST = 3 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+		)
+
+Whirling Claws o' Death Biomod (Male), displaycost(81), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Claws (Sharp Claws),_
+			AD:Extra Basic Speed = 4 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+				and {Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111)},_
+			AD:Extra Fatigue Points = 1,_
+			AD:Extra HT = 1,_
+			AD:Extra ST = 1,_
+			AD:Hard to Kill = 1,_
+			AD:Injury Tolerance _
+				with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+			and "Partial: Groin Only, -60%",_
+			AD:Lifting ST = 1,_
+			AD:Lifting ST = 3 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)},_
+			AD:Striking ST = 3,_
+			AD:Striking ST = 3 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+		)
+
+"Whirling Claws o' Death Biomod (Male, Cheap)", displaycost(81), cost(0),_
+	description(),_
+	page(TS:CT65),_
+	race(),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Claws (Sharp Claws),_
+			AD:Extra Basic Speed = 4 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+				and {Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111)},_
+			AD:Extra Fatigue Points = 1,_
+			AD:Extra HT = 1,_
+			AD:Extra ST = 1,_
+			AD:Hard to Kill = 1,_
+			AD:Injury Tolerance _
+				with "No Vitals, +5, group(Injury Tolerance), page(B61)" _
+			and "Partial: Groin Only, -60%",_
+			AD:Lifting ST = 1,_
+			AD:Lifting ST = 3 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)},_
+			AD:Striking ST = 3,_
+			AD:Striking ST = 3 _
+				with {Cardiac Stress, -50%/-40%, group(_General), page(TS:CT64), upto(5), levelnames(HT roll every second, HT roll every 10 seconds, HT roll every minute, HT roll every 10 minutes, HT roll every hour), level(3)} _
+		),_
+	features(Sterile)
+
+<Meta-Traits - Features>
+
+Taboo: Genetic Defects, displaycost(0),_
+	page(TS:CT43),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease _
+		)
+
+Taboo: Physical Changes, displaycost(0),_
+	page(TS:CT44),_
+	taboo(_
+		1 DICAT:Physical, DI:Appearance, DI:Addiction, DI:Cannot Learn, DI:Dyslexia, DI:Gluttony, DI:Innumerate, DI:Non-Iconographic, DI:Post-Combat Shakes, DI:Short Attention Span, DI:Sleepwalker, DI:Unnatural Feature _
+		)
+
+Taboo: Self-Awareness, displaycost(0),_
+	page(TS:CT44),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile _
+		)
+
+Taboo: Mental Instability, displaycost(0),_
+	page(TS:CT44),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+<Racial Templates - Changing Times - Humans>
+
+Genefixed Human to 2035 (Changing Times), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(Genefixed Human to 2035),_
+	page(TS:CT48, TS115),_
+	race(Genefixed Human),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease _
+		)
+
+Genefixed Human 2035-2050 (Changing Times), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(Genefixed Human 2035-2050),_
+	page(TS:CT48, TS115),_
+	race(Genefixed Human),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance _
+		)
+
+Genefixed Human from 2050 (Changing Times), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(Genefixed Human from 2050),_
+	page(TS:CT48, TS115),_
+	race(Genefixed Human),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Floater (Changing Times), displaycost(-66), cost(-40),_
+	cat(Racial Templates),_
+	description(From 2028),_
+	page(TS:CT48, TS115),_
+	race(Floater),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-2 to ST:ST,_
+		-2 to ST:HT _
+		),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Free Fall",_
+			AD:3D Spatial Sense,_
+			DI:Social Stigma (Minority Group),_
+			DI:Vulnerability (Crushing Damage) _
+				with "Wounding Multiplier x2, *1, shortname(x2), group(Vulnerability)",_
+			SK:Free Fall==0pts#DoNotOwn _
+		)
+
+<Racial Templates - Changing Times - Human Genetic Upgrades>
+
+Alpha Upgrade (Changing Times), cost(30), displaycost(41),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2050),_
+	page(TS:CT48, TS115),_
+	race(Alpha Upgrade),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Appearance = 1,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Longevity _
+	),_
+	features(_
+		No Appendix _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Brownie (Changing Times), cost(5), displaycost(15),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2050),_
+	page(BT68),_
+	race(Brownie),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+2 to ST:HT,_
+		-1 to ST:Basic Move _
+	),_
+	adds(_
+		AD:Acute Vision = 1,_
+		AD:Acute Hearing = 2,_
+		AD:Catfall,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Longevity,_
+		PE:No Degeneration in Zero-G,_
+		DI:Disturbing Voice,_
+		DI:Appearance = 1 _
+	),_
+	features(_
+		Average 3 inches shorter than average for ST, 15 pounds heavier than average for that height _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Alpha Upgrade - Olympian (Changing Times), cost(30), displaycost(71),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2065),_
+	page(TS:CT48, TS115),_
+	race(Olympian),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Appearance = 1,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Longevity,_
+		AD:Combat Reflexes,_
+		AD:Very Fit _
+	),_
+	features(_
+		No Appendix _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Ishtar (Changing Times), cost(20), displaycost(33),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2064),_
+	page(TS:CT48, TS116),_
+	race(Ishtar),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Appearance = 2,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Voice,_
+		PE:Alcohol Tolerance,_
+		DI:Overconfidence _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)" _
+	),_
+	select1(text(Disadvantages: Choose -10 points from among the following:), pointswanted(-10), itemswanted(atleast 1), list(_
+		DI:Odious Personal Habit,_
+		DI:Jealousy,_
+		DI:Selfish,_
+		QU:Incompetence,_
+#NewItem(QU:Incompetence (%influenceskillslist%), -1, page(B164),_
+	gives(-4 to SK:%skillslist%), noresync(yes),_
+	x(#ChoiceList(_
+			name(influenceskills),_
+			title(Incompetence: Choose a Skill),_
+			text(Choose which skill the Incompetence is for:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Diplomacy",_
+				"Fast-Talk",_
+				"Intimidation",_
+				"Savoir-Faire",_
+				"Sex Appeal",_
+				"Streetwise"_
+				)_
+			)_
+		)),_
+		QU:Proud _
+	) ),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance _
+		)
+
+Ishtar - Siduri (Changing Times), cost(20), displaycost(44),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2079),_
+	page(TS:CT48, TS116),_
+	race(Siduri),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Appearance = 2,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Voice,_
+		AD:Longevity,_
+		PE:Alcohol Tolerance,_
+		DI:Overconfidence _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		QU:Proud _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance _
+		)
+
+Metanoia-Series Upgrade (Changing Times), cost(30), displaycost(51),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2065),_
+	page(TS:CT48, TS116),_
+	race(Metanoia-Series Upgrade),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:IQ,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Longevity,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Versatile,_
+		QU:Imaginative _
+	),_
+	select1(text(Advantages: Choose one of the following:), pointswanted(10), itemswanted(1), list(_
+		AD:Alien Friend #codes(upto 2, downto 2),_
+		AD:Animal Friend #codes(upto 2, downto 2),_
+		AD:Artificer #codes(upto 1, downto 1),_
+		AD:Born Spacer #codes(upto 2, downto 2),_
+		AD:Business Acumen #codes(upto 1, downto 1),_
+		AD:Computer Wizard #codes(upto 2, downto 2),_
+		AD:Cyberneticist #codes(upto 2, downto 2),_
+		AD:Gifted Artist #codes(upto 2, downto 2),_
+		AD:Green Thumb #codes(upto 2, downto 2),_
+		AD:Healer #codes(upto 1, downto 1),_
+		AD:Hot Pilot #codes(upto 2, downto 2),_
+		AD:Language Talent,_
+		AD:Mathematical Ability #codes(upto 1, downto 1),_
+		AD:Memetic Competence #codes(upto 1, downto 1),_
+		AD:Musical Ability #codes(upto 2, downto 2),_
+		AD:Natural Diver #codes(upto 2, downto 2),_
+		AD:Outdoorsman #codes(upto 1, downto 1),_
+		AD:Pop Culture Maven #codes(upto 2, downto 2) _
+	) ),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance _
+		)
+
+<Racial Templates - Changing Times - Parahumans and Bioroids>
+
+Aquamorph (Changing Times), cost(40), displaycost(73),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2075),_
+	page(TS:CT48, TS116),_
+	race(Aquamorph),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(DI:Appearance),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Amphibious,_
+		AD:Doesn't Breathe _
+			with "Oxygen Storage x50, -40%, group(Doesn't Breathe), page(B49)",_
+		AD:Pressure Support = 1,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Temperature Tolerance = 1 _
+	),_
+	features(_
+		Smooth gray black or mottled skin,_
+		Webbed fingers and toes _
+	)
+
+Aquamorph - Sea Shepherd (Changing Times), cost(40), displaycost(85),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2080),_
+	page(TS:CT48, TS116),_
+	race(Sea Shepherd),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(DI:Appearance),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Amphibious,_
+		AD:Doesn't Breathe _
+			with "Oxygen Storage x50, -40%, group(Doesn't Breathe), page(B49)",_
+		AD:Pressure Support = 1,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Temperature Tolerance = 1,_
+		AD:Combat Reflexes,_
+		AD:Enhanced Move (Water) = 1,_
+		AD:Teeth (Sharp Teeth),_
+		DI:Skinny,_
+		DI:Workaholic,_
+		TE:Bioroid Body _
+	),_
+	features(_
+		Smooth gray black or mottled skin,_
+		Webbed fingers and toes _
+	)
+
+Felicia (Changing Times), cost(60), displaycost(157),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2082),_
+	page(TS:CT48-49, TS116),_
+	race(Felicia),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(DI:Appearance),_
+	gives(_
+		-1 to ST:ST,_
+		+3 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Extra ST = 4 _
+			with "Costs 1 FP/Sec, -10%, mods(Costs Fatigue), group(_General), page(B111)" _
+			and "Temporary Disadvantage (Gluttony (9), Impulsiveness (12), Lecherousness (9)), -39%, group(_General), page(B115)",_
+		AD:Extra Basic Speed = 4 _
+			with "Costs 1 FP/Sec, -10%, mods(Costs Fatigue), group(_General), page(B111)" _
+			and "Temporary Disadvantage (Gluttony (9), Impulsiveness (12), Lecherousness (9)), -39%, group(_General), page(B115)",_
+		AD:Acute Hearing = 3,_
+		AD:Acute Taste and Smell = 2,_
+		AD:Appearance = 1,_
+		AD:Catfall,_
+		AD:Claws (Sharp Claws),_
+		AD:Combat Reflexes,_
+		AD:Flexibility,_
+		AD:Night Vision = 5,_
+		AD:Perfect Balance,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Teeth (Sharp Teeth),_
+		DI:Extra Sleep,_
+		DI:Overconfidence,_
+		PE:Fur,_
+		TE:Bioroid Body _
+	),_
+	features(_
+		Transgenic features (human-feline facial features with human hair and cat's fur claws and tail) _
+	)
+
+Felicia II (Changing Times), cost(60), displaycost(125),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2082),_
+	page(TS:CT48-49, TS116),_
+	race(Felicia),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	taboo(DI:Appearance),_
+	gives(_
+		-1 to ST:ST,_
+		+3 to ST:DX,_
+		+1 to ST:HT_
+	),_
+	adds(_
+		AD:Acute Hearing = 3,_
+		AD:Acute Taste and Smell = 2,_
+		AD:Appearance = 1,_
+		AD:Catfall,_
+		AD:Claws (Sharp Claws),_
+		AD:Combat Reflexes,_
+		AD:Flexibility,_
+		AD:Night Vision = 5,_
+		AD:Perfect Balance,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Teeth (Sharp Teeth),_
+		DI:Extra Sleep,_
+		DI:Overconfidence,_
+		PE:Fur,_
+		TE:Bioroid Body _
+	),_
+	features(_
+		Transgenic features (human-feline facial features with human hair and cat's fur claws and tail) _
+	)
+
+Tennin (Changing Times), cost(-10), displaycost(27),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2058),_
+	page(TS:CT49, TS117),_
+	race(Tennin),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 6 respond "Free Fall",_
+		AD:3D Spatial Sense,_
+		AD:Appearance = 1,_
+		AD:Extra Arms = 2 _
+			with "Foot Manipulators, -30%, group(Extra Arms), page(B53)" _
+			and "Short, -50%, group(Extra Arms), page(B53)",_
+		AD:Longevity,_
+		AD:Radiation Tolerance = 2,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		PE:No Degeneration in Zero-G,_
+		DI:Skinny,_
+		SK:Free Fall==0pts#DoNotOwn _
+	),_
+	features(_
+		Home gravity is 0 G,_
+		Height is typically 1' greater than normal for ST,_
+		Weight is 75% normal _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease _
+		)
+
+Tennin - Wu Tsao (Changing Times), cost(10), displaycost(51),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2084),_
+	page(TS:CT49, TS117),_
+	race(Wu Tsao),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:IQ _
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 6 respond "Free Fall",_
+		AD:3D Spatial Sense,_
+		AD:Appearance = 1,_
+		AD:Extra Arms = 2 _
+			with "Foot Manipulators, -30%, group(Extra Arms), page(B53)" _
+			and "Short, -50%, group(Extra Arms), page(B53)",_
+		AD:Longevity,_
+		AD:Radiation Tolerance = 2,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Versatile,_
+		PE:No Degeneration in Zero-G,_
+		DI:Skinny,_
+		QU:Imaginative,_
+		SK:Free Fall==0pts#DoNotOwn _
+	),_
+	features(_
+		Home gravity is 0 G,_
+		Height is typically 1' greater than normal for ST,_
+		Weight is 75% normal,_
+		Altered Sex Ratio (Female-only births),_
+		Parthenogenesis (can voluntarly become pregnant with a clone of herself),_
+		Sexual Orientation (Lesbian) _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease _
+		)
+
+Tennin - ZR-5 (Changing Times), cost(-10), displaycost(27),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2075),_
+	page(TS:CT49, TS117),_
+	race(ZR-5),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 6 respond "Free Fall",_
+		AD:3D Spatial Sense,_
+		AD:Appearance = 1,_
+		AD:Clinging _
+			with "Only in 0.2G or less, -40%, group(Clinging), page(B43)",_
+		AD:Extra Arms = 2 _
+			with "Foot Manipulators, -30%, group(Extra Arms), page(B53)" _
+			and "Short, -50%, group(Extra Arms), page(B53)",_
+		AD:Radiation Tolerance = 2,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		DI:Skinny,_
+		DI:Workaholic,_
+		SK:Free Fall==0pts#DoNotOwn,_
+		TE:Bioroid Body _
+	),_
+	features(_
+		Home gravity is 0 G,_
+		Height is typically 1' greater than normal for ST,_
+		Weight is 75% normal _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease _
+		)
+
+Tianyi (Changing Times), cost(20), displaycost(45),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2072),_
+	page(TS:CT49, TS117),_
+	race(Tianyi),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:Fit,_
+		AD:Appearance = 3 _
+			with "Off-the-Shelf Looks, -50%, conditional(*1/2 to GR:Appeal when "dealing with people from your own culture, you get only half the Appearance reaction bonus"), group(Attractive), page(B21)",_
+		AD:Less Sleep = 2,_
+		AD:Resistant = 2 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Sensitive,_
+		AD:Voice,_
+		PE:Deep Sleeper,_
+		PE:No Hangover,_
+		PE:Sanitized Metabolism,_
+		DI:Chummy,_
+		DI:Workaholic,_
+		DI:Xenophilia _
+			with "You resist on a roll of 15 or less (almost all the time), *0.5, shortname(15 or less), group(Self-Control), page(B121)",_
+		QU:Attentive,_
+		TE:Bioroid Body _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Tianyi - Incubus (Changing Times), cost(40), displaycost(68),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2084),_
+	page(TS:CT49, TS117),_
+	race(Incubus),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+2 to ST:HT _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 6 respond "Erotic Art",_
+		AD:Fit,_
+		AD:Appearance = 3 _
+			with "Off-the-Shelf Looks, -50%, conditional(*1/2 to GR:Appeal when "dealing with people from your own culture, you get only half the Appearance reaction bonus"), group(Attractive), page(B21)",_
+		AD:Breath-Holding,_
+		AD:Flexibility,_
+		AD:Hermaphromorph,_
+		AD:Less Sleep = 2,_
+		AD:Resistant = 2 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+			respond {Disease},_
+		AD:Sensitive,_
+		AD:Voice,_
+		PE:Deep Sleeper,_
+		PE:No Hangover,_
+		PE:Sanitized Metabolism,_
+		DI:Chummy,_
+		DI:Lecherousness,_
+		DI:Workaholic,_
+		DI:Xenophilia _
+			with "You resist on a roll of 15 or less (almost all the time), *0.5, shortname(15 or less), group(Self-Control), page(B121)",_
+		SK:Erotic Art==0pts#DoNotOwn,_
+		QU:Attentive,_
+		TE:Bioroid Body _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Yousheng (Changing Times), cost(30), displaycost(46),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2068),_
+	page(TS:CT49, TS117),_
+	race(Yousheng),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:Longevity,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		TE:Mars-Adapted _
+	),_
+	features(_
+		Altered Sex Ratio (2:1 female:male births),_
+		Increased Fecundity (75% of births are twins),_
+		Sexual Orientation (Heterosexual),_
+		Home gravity of 0.38 G _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster,_
+		DI:Appearance _
+		)
+
+Yousheng - Viking (Changing Times), cost(30), displaycost(46),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2080),_
+	page(TS:CT117),_
+	race(Viking),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:Longevity,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		TE:Mars-Adapted _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance _
+		)
+
+Youshang - ZR-3 (Changing Times), cost(30), displaycost(38),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2070),_
+	page(TS:CT49, TS117),_
+	race(ZR-3),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:Less Sleep = 2,_
+		AD:Resistant = 2 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Disease},_
+		DI:Workaholic,_
+		QU:Attentive,_
+		TE:Bioroid Body,_
+		TE:Mars-Adapted _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Appearance _
+		)
+
+Ziusudra (Changing Times), cost(50), displaycost(77),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2073),_
+	page(TS:CT49, TS118),_
+	race(Ziusudra),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+1 to ST:IQ,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Appearance = 1,_
+		AD:Extended Lifespan,_
+		AD:Less Sleep,_
+		AD:Longevity,_
+		AD:Rapid Healing,_
+		AD:Resistant = 2 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+			respond {Disease},_
+		PE:Reproductive Control,_
+		PE:Sanitized Metabolism _
+	),_
+	features(_
+		Early Maturation 1,_
+		No Appendix _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Ziusudra - Nyx (Changing Times), cost(40), displaycost(71),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2084),_
+	page(TS:CT49, TS118),_
+	race(Nyx),_
+	noresync(yes),_
+	locks(yes),_
+	hides(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+1 to ST:IQ _
+	),_
+	adds(_
+		AD:Appearance = 1,_
+		AD:Extended Lifespan,_
+		AD:Less Sleep = 4,_
+		AD:Rapid Healing,_
+		AD:Resistant = 2 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+			respond {Disease},_
+		PE:Reproductive Control,_
+		PE:Sanitized Metabolism _
+	),_
+	features(_
+		Early Maturation 1,_
+		No Appendix _
+	),_
+	taboo(_
+		DI:Bad Grip, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Epilepsy, DI:Gigantism, DI:Hemophilia, DI:Hunchback, DI:Innumerate, DI:Neurological Disorder, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Numb, DI:Short Attention Span, DI:Slow Healing, DI:Susceptible to Disease _
+		)
+
+<Racial Templates - Changing Times - Uplifted Animals>
+
+Astropus (Changing Times), displaycost(76), cost(31),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2085),_
+	page(TS:CT49, TS118),_
+	race(Astropus),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-2 to ST:ST,_
+		+3 to ST:DX,_
+		-2 to ST:IQ,_
+		+2 to ST:HT,_
+		-2 to ST:Hit Points,_
+		+3 to ST:Perception _
+	),_
+	adds(_
+		AD:Chameleon = 2,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance = 1 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Gills, -50%, group(Doesn't Breathe), page(B49)",_
+		AD:Extra Arms = 6 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Flight _
+			with "Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111), level(4)" _
+			and "Requires Low Gravity, -50%, group(Flight), page(TS:CT)",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Obscure = 10 _
+			with "Accessibility: only in water or zero-G, -30%, group(_General), page(TS:CT)" _
+			respond "Vision",_
+		AD:Peripheral Vision,_
+		AD:Teeth (Sharp Beak),_
+		PE:Sanitized Metabolism,_
+		DI:Bad Grip = 2,_
+		DI:Bad Sight (Nearsighted) _
+			with "Mitigator: Glasses, -60%, group(Bad Sight), page(B112), mitigator(yes), shortname(Glasses)",_
+		DI:Cold-Blooded,_
+		DI:Colorblindness,_
+		DI:Wealth = 3,_
+		DI:Fearfulness,_
+		DI:Hidebound,_
+		DI:Incurious _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		DI:Innumerate,_
+		DI:Invertebrate,_
+		DI:Mute _
+			with "Mitigator: computer interpreter, -60%, group(_General), page(TS:CT), mitigator(yes)",_
+		DI:Short Lifespan,_
+		DI:Social Stigma (Valuable Property),_
+		DI:Stress Atavism _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)" _
+	)
+
+K-10A Postcanine (Changing Times), displaycost(-24), cost(55),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(From 2033),_
+	page(TS:CT50, TS118),_
+	race(K-10A Postcanine),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+3 to ST:DX,_
+		-3 to ST:IQ,_
+		+2 to ST:HT,_
+		+7 to ST:Perception _
+	),_
+	adds(_
+		AD:Combat Reflexes,_
+		AD:Discriminatory Smell _
+			with "Emotion Sense, +50%, group(Discriminatory Smell), page(B49)",_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Ultrahearing,_
+		PE:Fur,_
+		DI:Chummy,_
+		DI:Colorblindness,_
+		DI:Wealth = 3,_
+		DI:Disturbing Voice,_
+		DI:Innumerate,_
+		LA:Language - Native (Written) = -2pts,_
+		DI:Sense of Duty (Master),_
+		DI:Short Arms (2 Arms),_
+		DI:Short Lifespan,_
+		DI:Sleepy = 1,_
+		DI:Social Stigma (Valuable Property),_
+		DI:Stress Atavism _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		QU:Proud,_
+		QU:Responsive,_
+		TE:Quadruped _
+	),_
+	features(_
+		Early Maturation 1 _
+	)
+
+<Racial Templates - Changing Times - Infomorphs>
+
+Minimal Software (Changing Times), displaycost(-255), cost(-200),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-4),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	sets(_
+		ST:IQ = 0 _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		DI:Wealth = 3,_
+		DI:Reprogrammable,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 1 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-4 (Changing Times), displaycost(29), cost(-40),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-4),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-2 to ST:IQ _
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 4 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-5 (Changing Times), displaycost(49), cost(-20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-5),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-1 to ST:IQ _
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 5 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-6 (Changing Times), displaycost(69), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-6),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 6 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-7 (Changing Times), displaycost(89), cost(20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-7),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+1 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 7 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-8 (Changing Times), displaycost(109), cost(40),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT119),_
+	race(TS:CT50, NAI-8),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+2 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 8 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-9 (Changing Times), displaycost(129), cost(60),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-9),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+3 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 9 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Nonsapient AI - NAI-10 (Changing Times), displaycost(149), cost(80),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT50, TS119),_
+	race(NAI-10),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+4 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Indomitable,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Single-Minded,_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Unfazeable,_
+		DI:Wealth = 3,_
+		DI:Social Stigma (Subjugated),_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI,_
+		TE:Automaton _
+	),_
+	features(_
+		Complexity 10 program _
+	),_
+	taboo(_
+		AD:Animal Empathy, AD:Common Sense, AD:Cultural Adaptability, AD:Danger Sense, AD:Empathy, AD:Fearlessness, AD:Gadgeteer, AD:Higher Purpose, AD:Intuition, AD:Language Talent, AD:Plant Empathy, AD:Rapier Wit, AD:Social Chameleon, 1 ADCAT:Talents, AD:Unfazeable, AD:Versatile,_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Low-sapient AI - LAI-6 (Changing Times), displaycost(82), cost(-20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT51, TS119),_
+	race(LAI-6),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-1 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 2,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		DI:Low Empathy,_
+		DI:Social Stigma (Valuable Property),_
+		QU:Attentive,_
+		QU:Broad-Minded,_
+		QU:Staid,_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 6 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Low-sapient AI - LAI-7 (Changing Times), displaycost(102), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT51, TS119),_
+	race(LAI-7),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 2,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		DI:Low Empathy,_
+		DI:Social Stigma (Valuable Property),_
+		QU:Attentive,_
+		QU:Broad-Minded,_
+		QU:Staid,_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 7 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Low-sapient AI - LAI-8 (Changing Times), displaycost(122), cost(20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT51, TS119),_
+	race(LAI-8),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+1 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 2,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		DI:Low Empathy,_
+		DI:Social Stigma (Valuable Property),_
+		QU:Attentive,_
+		QU:Broad-Minded,_
+		QU:Staid,_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 8 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Low-sapient AI - LAI-9 (Changing Times), displaycost(142), cost(40),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT51, TS119),_
+	race(LAI-9),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+2 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 2,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		DI:Low Empathy,_
+		DI:Social Stigma (Valuable Property),_
+		QU:Attentive,_
+		QU:Broad-Minded,_
+		QU:Staid,_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 9 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Low-sapient AI - LAI-10 (Changing Times), displaycost(162), cost(60),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT51, TS119),_
+	race(LAI-10),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+3 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 2,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		DI:Low Empathy,_
+		DI:Social Stigma (Valuable Property),_
+		QU:Attentive,_
+		QU:Broad-Minded,_
+		QU:Staid,_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 10 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+// ^^^^ Citizen AI, displaycost(25)
+// ^^^^ Emergent Intelligence, displaycost(25)
+
+Sapient AI - SAI-7 (Changing Times), displaycost(153), cost(-20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT52, TS120),_
+	race(SAI-7),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-1 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 1,_
+		AD:Memetic Competence = 1,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 7 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Sapient AI - SAI-8 (Changing Times), displaycost(173), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT52, TS120),_
+	race(SAI-8),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 1,_
+		AD:Memetic Competence = 1,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 8 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Sapient AI - SAI-9 (Changing Times), displaycost(193), cost(20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT52, TS120),_
+	race(SAI-8),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+1 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 1,_
+		AD:Memetic Competence = 1,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 9 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Sapient AI - SAI-10 (Changing Times), displaycost(213), cost(40),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT52, TS120),_
+	race(SAI-10),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+2 to ST:IQ _
+	),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 1,_
+		AD:Memetic Competence = 1,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		DI:Honesty _
+			with "You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121)",_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		TE:AI _
+	),_
+	features(_
+		Complexity 10 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Sapient AI - SAI-7 Emergent Intelligence (Changing Times), displaycost(178), cost(-20),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT52, TS120),_
+	race(SAI-7),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-1 to ST:IQ _
+		),_
+	adds(_
+			AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Computer Operation",_
+		AD:Enhanced Time Sense,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Fearlessness = 1,_
+		AD:Memetic Competence = 1,_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		AD:Visualization _
+			with "Reliable, +20%, level(4), group(Visualization), page(TS:CT)",_
+		SK:Computer Operation==0pts#DoNotOwn,_
+		AD:Absolute Timing,_
+		AD:Digital Mind,_
+		AD:Doesn't Sleep,_
+		AD:Intuitive Mathematician,_
+		AD:Photographic Memory _
+	),_
+	features(_
+		Complexity 7 program _
+	),_
+	taboo(_
+		DI:Berserk, DI:Chronic Depression, DI:Compulsive Behavior, DI:Delusion, DI:Fanaticism, DI:Fearfulness, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Nightmares, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Phobias, DI:Pyromania, DI:Sadism, DI:Split Personality, DI:Trickster _
+		)
+
+Ghost Mind Emulation (Changing Times), displaycost(86), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT53, TS120),_
+	race(Ghost),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		AD:Absolute Timing,_
+		AD:Digital Mind,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)" _
+	),_
+	features(_
+		Complexity 7 program _
+	)
+
+Ghost Mind Emulation - Fragment Mind Emulation (Changing Times), displaycost(76), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT52, TS120),_
+	race(Fragment),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		AD:Absolute Timing,_
+		AD:Digital Mind,_
+		AD:Extra Life _
+			with "Copy, -20%, group(Extra Life), page(B55)" _
+			and "Requires Body, -20%, group(Extra Life), page(B55)",_
+		AD:Possession _
+			with "Digital, -40%, group(Possession), page(B76)",_
+		AD:Unaging _
+			with "IQ only, -75%, group(Unaging), page(TS:CT)",_
+		DI:Partial Amnesia _
+	),_
+	features(_
+		Complexity 7 program _
+	)
+
+<Racial Templates - Changing Times - Cybershells>
+
+Domestibot, displaycost(85), cost(-14),_
+cat(Meta-Traits - Machine),_
+description(),_
+page(TS:CT58),_
+noresync(yes),_
+owns(yes),_
+locks(no),_
+hides(yes),_
+gives(_
+-2 to ST:ST,_
++1 to ST:HT,_
+-2 to ST:Hit Points,_
+-2 to ST:Size Modifier _
+),_
+needs(_
+TE:Machine,_
+TE:Cybershell Body _
+),_
+adds(_
+AD:Clinging,_
+AD:Damage Resistance = 3 _
+with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+AD:Doesn't Breathe,_
+AD:Extra Legs (6 Legs),_
+AD:Infravision,_
+AD:Payload = 5,_
+AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+AD:Telecommunication (Cable Jack) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Telecommunication (Infrared Communication),_
+AD:Telecommunication (Radio) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Temperature Tolerance = 2,_
+PE:Accessory (Small Computer),_
+PE:Accessory (Domestic cleaning tools),_
+PE:Accessory (Refrigeration system in payload bay),_
+DI:No Sense of Smell/Taste,_
+DI:Restricted Diet (power cells),_
+DI:Short Arms (2 Arms) _
+)
+
+Securibot, displaycost(141), cost(-4),_
+cat(Meta-Traits - Machine),_
+description(),_
+page(TS:CT58),_
+noresync(yes),_
+owns(yes),_
+locks(no),_
+hides(yes),_
+gives(_
+-2 to ST:ST,_
++1 to ST:HT,_
+-2 to ST:Hit Points,_
+-2 to ST:Size Modifier,_
++3 to ST:Basic Move _
+),_
+needs(_
+TE:Machine,_
+TE:Cybershell Body _
+),_
+adds(_
+AD:Clinging,_
+AD:Damage Resistance = 10 _
+with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+AD:Doesn't Breathe,_
+AD:Extra Arm _
+with "Weapon Mount, -80%, group(Extra Arms), page(B53)",_
+AD:Extra Legs (6 Legs),_
+AD:Infravision,_
+AD:Protected [Sense] respond "Vision",_
+AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+AD:Sealed,_
+AD:Telecommunication (Cable Jack) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Telecommunication (Infrared Communication),_
+AD:Telecommunication (Radio) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Temperature Tolerance = 2,_
+PE:Accessory (Small Computer),_
+DI:No Sense of Smell/Taste,_
+DI:Restricted Diet (power cells) _
+)
+
+Tech-Spider, displaycost(204), cost(-14),_
+cat(Meta-Traits - Machine),_
+description(),_
+page(TS:CT125),_
+noresync(yes),_
+owns(yes),_
+locks(no),_
+hides(yes),_
+gives(_
+-2 to ST:ST,_
++1 to ST:HT,_
+-2 to ST:Hit Points,_
+-2 to ST:Size Modifier _
+),_
+needs(_
+TE:Machine,_
+TE:Cybershell Body _
+),_
+adds(_
+AD:Claws (Sharp Claws),_
+AD:Clinging,_
+AD:Damage Resistance = 12 _
+with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+AD:Doesn't Breathe,_
+AD:Extra Legs (6 Legs),_
+AD:High Manual Dexterity = 4,_
+AD:Infravision,_
+AD:Microscopic Vision = 3,_
+AD:Pressure Support = 1,_
+AD:Protected [Sense] respond "Vision",_
+AD:Radiation Tolerance = 2,_
+AD:Reduced Consumption (Recharge/refuel once a week) = 3,_
+AD:Sealed,_
+AD:Sensitive Touch,_
+AD:Telecommunication (Cable Jack) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Telecommunication (Infrared Communication),_
+AD:Telecommunication (Radio) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Temperature Tolerance = 7,_
+AD:Vacuum Support,_
+PE:Accessory (Small Computer),_
+PE:Accessory (Built-in multi-purpose toolkit),_
+PE:Accessory (Micromanipulation tools),_
+DI:Colorblindness,_
+DI:No Sense of Smell/Taste,_
+DI:Restricted Diet (power cells) _
+)
+
+Bush Robot (Changing Times), displaycost(299), cost(0),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT53, TS121),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Ambidexterity,_
+		AD:Damage Resistance = 10 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Arms = 1 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Foot Manipulators, -30%, group(Extra Arms), page(B53)",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Flight _
+			with "Newtonian Space Flight, +25%, gives(+(2 * Basic Speed) To Space Move), group(Flight), page(B56)" _
+			and "Space Flight Only, -75%, gives(-(2 * Basic Speed) to Air Move), group(Flight), page(B56)",_
+		AD:High Manual Dexterity = 10,_
+		AD:Injury Tolerance _
+			with "No Brain, +5, group(Injury Tolerance), page(B61)",_
+		AD:Microscopic Vision = 6 _
+			with "Must physically touch subject, -10%",_
+		AD:Penetrating Vision _
+			with "Blockable by any surface with DR1+, -30%, group(Penetrating Vision), page(B74)" _
+			and "Must physically touch object to be viewed through, -30%",_
+		AD:Pressure Support = 2,_
+		AD:Reduced Consumption (Recharge power cells once a week) = 3,_
+		AD:Imaging Radar,_
+		AD:Sealed,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT53), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT53), group(Telecommunication)",_
+		AD:Temperature Tolerance = 20,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Micromanipulation Tools),_
+		PE:Accessory (Molecular Manipulation Tools),_
+		DI:Mistaken Identity,_
+		DI:One Arm _
+			with "Half Ground Move, -60%",_
+		DI:Restricted Diet (power cells),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Buzzbot (Changing Times), displaycost(-15), cost(-60),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT54, TS121),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-7 to ST:ST,_
+		+1 to ST:HT,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Damage Resistance = 2 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Filter Lungs,_
+		AD:Flight _
+			with "Temporary Disadvantage (Noisy 2), -4%",_
+		AD:Infravision,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT54), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT54), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Tiny Computer),_
+		DI:Increased Consumption (requires refuelling; 1 hour endurance) = 3,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aerial),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Arm,_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Buzzbot - Newshawk (Changing Times), displaycost(13), cost(-60),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT54, PF63),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-7 to ST:ST,_
+		+1 to ST:HT,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Damage Resistance = 2 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Filter Lungs,_
+		AD:Flight _
+			with "Temporary Disadvantage (Noisy 2), -4%",_
+		AD:Infravision,_
+		AD:Parabolic Hearing = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT54), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT54), group(Telecommunication)",_
+		AD:Telescopic Vision = 6,_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Tiny Computer),_
+		DI:Increased Consumption (requires refuelling; 1 hour endurance) = 3,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aerial),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Arm,_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Buzzbot - Wotatech Combat Buzzbot (Changing Times), displaycost(2), cost(-60),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT54, PF63),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-7 to ST:ST,_
+		+1 to ST:HT,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Damage Resistance = 2 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Extra Arm _
+			with "Weapon Mount, -80%, group(Extra Arms), page(B53)",_
+		AD:Filter Lungs,_
+		AD:Flight _
+			with "Temporary Disadvantage (Noisy 2), -4%",_
+		AD:Infravision,_
+		AD:Night Vision = 9,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Tiny Computer),_
+		PR:IFF Transponder,_
+		DI:Increased Consumption (requires refuelling; 1 hour endurance) = 3,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aerial),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Arm,_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Cryobot (Changing Times), displaycost(378), cost(50),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(see Transhuman Space p.122 and Changing Times p.54),_
+	race(Cryobot),_
+	page(TS:CT54;TS122),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+3 to ST:HT,_
+		+5 to ST:Hit Points _
+	),_
+	adds(_
+		AD:Amphibious,_
+		AD:Damage Resistance=30 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Extra Arms = 1 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Only in water or zero-G, -50%",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Extra Legs (3 legs),_
+		AD:High Manual Dexterity = 4,_
+		AD:Microscopic Vision = 3,_
+		AD:Permeation (Ice) = 2 _
+			with "Tunnel, +40%, group(Permeation), page(B75)" _
+			and "Very slow move only 1 yard/20 seconds, -70%",_
+		AD:Pressure Support=3,_
+		AD:Radiation Tolerance = 9,_
+		AD:Sealed,_
+		AD:Sensitive Touch,_
+		AD:Sonar _
+			with "Targeting, +20%, group(Scanning Sense), page(B82)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance=25,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Micromanipulation Tools),_
+		DI:Blindness,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Fine Manipulators _
+			with "Becomes One Arm if moving at half ground move and eliminated completely in water or zero-G, -70%",_
+		DI:No Bite,_
+		DI:No Sense of Smell/Taste,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	),_
+	usernotes(_
+		The cryobot can use all three limbs for manipulation when in water, walk around on all three, or use one as an arm and thereby count as having temporarily lost one of its legs (reducing its move by 50%) _
+	)
+
+Cyberdoc (Changing Times), displaycost(232), cost(36),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(see Transhuman Space p.122 and Changing Times p.54),_
+	race(Cyberdoc),_
+	page(TS:CT54;TS122),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points _
+	),_
+	adds(_
+		AD:Ambidexterity,_
+		AD:Claws (Sharp Claws),_
+		AD:Damage Resistance=5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Discriminatory Taste,_
+		AD:Doesn't Breathe,_
+		AD:High Manual Dexterity = 6,_
+		AD:Extra Arms = 3 _
+			with "Foot Manipulators, -30%, group(Extra Arms), page(B53)",_
+		AD:Microscopic Vision = 3,_
+		AD:Pressure Support=1,_
+		AD:Reduced Consumption (Recharge/refuel once a week)=3,_
+		AD:Sealed,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _ 
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance=3,_
+		AD:Vacuum Support,_
+		PE:Accessory (Drug synthesis and dispensing systems),_
+		PE:Accessory (Integral respiratory support - can keep a single patient breathing while remaining stationary),_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Micromanipulation Tools),_
+		PE:Accessory (Ultrasound scanner),_
+		PE:Sanitized Metabolism,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	)
+
+Cyberdoll (Changing Times), displaycost(127), cost(46),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT54, TS122),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+2 to ST:ST,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Damage Resistance = 2 _
+			with "Flexible, -20%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Appearance = 2 _
+			with "Off-the-Shelf Looks, -50%, conditional(*1/2 to GR:Appeal when "dealing with people from your own culture, you get only half the Appearance reaction bonus"), group(Attractive), page(B21)",_
+		AD:Reduced Consumption = 3,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		PE:Accessory (Computer),_
+		PE:Sanitized Metabolism,_
+		DI:Restricted Diet,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"QU:Has a Neck Hit Location but no special vulnerabilities there, -1, cat(Physical), noresync(yes)",_
+		"QU:Resembles a human until inspected closely (Prevents fully effective long-term disguise but can still lead to a hostile reaction from people who find that they've been deceived even accidentally), -1, cat(Physical), noresync(yes)" _
+	),_
+	features(_
+		Individuals of the same production run often resemble each other. _
+	)
+
+Humaniform (Changing Times), displaycost(12), cost(-8),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT55, BD123),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+1 to ST:Hit points _
+	),_
+	adds(_
+		AD:Damage Resistance = 3 _
+			with "Flexible, -20%, group(Damage Resistance), page(B47)",_
+		AD:Telecommunication (Cable Jack),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"QU:Has a Neck Hit Location but no special vulnerabilities there, -1, cat(Physical), noresync(yes)" _
+	),_
+	features(_
+		Individuals of the same production run often resemble each other. _
+	)
+
+Microframe (Changing Times), displaycost(-136), cost(-64),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT55, TS122),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+8 to ST:Hit Points,_
+		-3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Damage Resistance = 5 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		PE:Accessory (Computer),_
+		DI:Increased Consumption = 4,_
+		DI:No Legs (Sessile),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other. _
+	)
+
+Mainframe (Changing Times), displaycost(-128), cost(-56),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT55, TS122),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+12 to ST:Hit Points _
+	),_
+	adds(_
+		AD:Damage Resistance = 5 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		PE:Accessory (Computer),_
+		DI:Increased Consumption = 4,_
+		DI:No Legs (Sessile),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other. _
+	)
+
+Macroframe (Changing Times), displaycost(-104), cost(-32),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT55, TS122),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+30 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Damage Resistance = 5 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		PE:Accessory (Computer),_
+		DI:Increased Consumption = 4,_
+		DI:No Legs (Sessile),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other. _
+	)
+
+Mobile Helmet (Changing Times), displaycost(189), cost(-36),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(see Changing Times p.56),_
+	race(Mobile Helmet),_
+	page(TS:CT56),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-6 to ST:ST,_
+		+2 to ST:HT,_
+		+2 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Ambidexterity,_
+		AD:Compartmentalized Mind _
+			with "Dedicated Controls, *1/5, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance=25 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Flight _
+			with "Newtonian Space Flight, +25%, group(Flight), page(B56)" _
+			and "Space Flight Only, -75%, group(Flight), page(B56)",_
+		AD:Hyperspectral Vision,_
+		AD:Pressure Support=2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Vacuum Support,_
+		PE:Accessory (Small Computer),_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:Semi-Upright,_
+		DI:Short Arms (2 Arms),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"PE:Can latch onto standard spacesuits and provide wearers head with own full DR and vacuum protection, 1, cat(Perks), noresync(yes)"_
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	)
+
+Polypede - Spider (Changing Times), displaycost(419), cost(128),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(The ''base'' spider form of modular cybershell has four substantially different configurations; see Changing Times p.56),_
+	race(Polypede - Spider ),_
+	page(TS:CT56),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+12 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Alternate Form = 3 _
+				with "Reduced Time 2, +40%" _
+				respond "Rolling Hoop, Tunneling Worm and Work Arm",_
+		AD:Ambidexterity,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Ground) = 1,_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Extra Legs (6 Legs),_
+		AD:Pressure Support=2,_
+		AD:Radiation Tolerance = 1,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Vacuum Support,_
+		PE:Accessory (Distributed Microframe Computer),_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Sense of Smell/Taste,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	)
+
+Polypede - Rolling Hoop (Changing Times), displaycost(316), cost(128),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(The rolling hoop form of the Polypede cybershell which is not a stand-alone template - the base form ''Spider'' should be bought; see Changing Times p.56),_
+	race(Polypede - Rolling Hoop),_
+	page(TS:CT56),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+12 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Ambidexterity,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Ground) = 4,_
+		AD:Pressure Support=2,_
+		AD:Radiation Tolerance = 1,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Vacuum Support,_
+		PE:Accessory (Distributed Microframe Computer),_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Legs (Rolls),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	)
+
+Polypede - Tunneling Worm (Changing Times), displaycost(346), cost(128),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(The tunneling worm form of the Polypede cybershell which is not a stand-alone template - the base form ''Spider'' should be bought; see Changing Times p.56),_
+	race(Polypede - Tunneling Worm),_
+	page(TS:CT56),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+12 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Ambidexterity,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra-Flexible (1 Arm),_
+		AD:Pressure Support=2,_
+		AD:Radiation Tolerance = 1,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Tunneling _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Distributed Microframe Computer),_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Legs (Slithers),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Arm,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	)
+
+Polypede - Work Arm (Changing Times), displaycost(301), cost(128),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(The work arm form of the Polypede cybershell which is not a stand-alone template - the base form ''Spider'' should be bought; see Changing Times p.56),_
+	race(Polypede - Work Arm),_
+	page(TS:CT56),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+12 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Ambidexterity,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		"AD:Extra-Flexible Long Arm (+4 SM)",_
+		AD:Pressure Support=2,_
+		AD:Radiation Tolerance = 1,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Vacuum Support,_
+		PE:Accessory (Distributed Microframe Computer),_
+		DI:Restricted Diet (any one hydrocarbon fuel) = 2,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Legs (Sessile),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Arm,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	)
+
+RATS (Changing Times), displaycost(519), cost(77),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Changing Times - Cybershells),_
+	description(see Changing Times p. 56),_
+	race(RATS),_
+	page(TS:CT56),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+2 to ST:DX,_
+		+2 to ST:HT,_
+		+4 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Acute Hearing = 3,_
+		AD:Chameleon=4 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Claws (Sharp Claws),_
+		AD:Damage Resistance=60 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Extra Legs (4 legs),_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Payload = 5,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Recharge/refuel once a week) = 3,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Silence = 1,_
+		AD:Short Spines,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 10,_
+		AD:Tunneling = 1 _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)" _
+		and "Loose soil only, -50%",_
+		AD:Vacuum Support,_
+		AD:Vibration Sense,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Microframe Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Short Arms (2 Arms),_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Snakebot (Changing Times), displaycost(243), cost(85),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(Cybershell in the form of a snake; see Changing Times p.57),_
+	race(Snakebot),_
+	page(TS:CT57),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+3 to ST:DX,_
+		+2 to ST:HT,_
+		+1 to ST:Perception _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Damage Resistance=12 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground) = 3 _
+				with "Takes one second to become hoop or turn back, -5%" _
+				and "Temporary Disadvantage: One Arm becomes No Manipulators, -30%",_
+		AD:Infravision,_
+		AD:Pressure Support=2,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Tunneling _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)" _
+			and "Loose soil only, -50%",_
+		AD:Vacuum Support,_
+		PE:Accessory (Small Computer),_
+		DI:Invertebrate,_
+		DI:No Bite,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Legs (Slithers) replacetags(in "owner" with "nameext(Slithers/Rolls)"),_
+		DI:One Arm,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	),_
+	usernotes(_
+		Has a Vermiform shape but not the Vermiform template since it has a manipulator giving it One Arm _
+	)
+
+Snakebot - Combat Naga (Changing Times), displaycost(306), cost(85),_
+	cat(Racial Templates, Racial Templates - Changing Times, Racial Templates - Cybershells),_
+	description(Variant of the Snakebot; see Changing Times p.57),_
+	race(Snakebot - Combat Naga),_
+	page(TS:CT57;TS124),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+3 to ST:DX,_
+		+2 to ST:HT,_
+		+1 to ST:Perception _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Damage Resistance=25 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Laminate, +10%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Chameleon = 2 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Doesn't Breathe,_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground) = 3 _
+				with "Takes one second to become hoop or turn back, -5%" _
+				and "Temporary Disadvantage: One Arm becomes No Manipulators, -30%",_
+		AD:Extra Arms = 1 _
+			with "Weapon Mount, -80%, group(Extra Arms), page(B53)",_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Pressure Support=2,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Tunneling _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)" _
+			and "Loose soil only, -50%",_
+		AD:Vacuum Support,_
+		PE:Accessory (IFF Transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Invertebrate,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Legs (Slithers) replacetags(in "owner" with "nameext(Slithers/Rolls)"),_
+		DI:One Arm,_
+		DI:Social Stigma (Monster),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other _
+	),_
+	usernotes(_
+		Has a Vermiform shape but not the Vermiform template since it has a manipulator giving it One Arm _
+	)
+
+UCAV (Changing Times), displaycost(792), cost(60),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(see Changing Times p.57),_
+	race(UCAV),_
+	page(TS:CT58),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+6 to ST:ST,_
+		+2 to ST:HT,_
+		+9 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Chameleon = 6 _
+			with "Extended, +40%, group(Chameleon), page(B41)" _
+			and "Infrared and Radar",_
+		AD:Damage Resistance=100 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Flight _
+			with "Winged, -25%, group(Flight), page(B56)" _
+			and "Temporary Disadvantage: Noisy 5, -10%",_
+		AD:Enhanced Move (Air) = 12,_
+		AD:High Pain Threshold,_
+		AD:Hyperspectral Vision,_
+		AD:Injury Tolerance _
+			with "No Brain, +5, group(Injury Tolerance), page(B61)",_
+		AD:Payload = 130,_
+		AD:Radiation Tolerance  = 2,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _ 
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 12,_
+		AD:Temperature Tolerance = 20,_
+		PE:Accessory (IFF Transponder),_
+		PE:Accessory (Microframe Computer),_
+		"DI:Increased Consumption (Requires periodic recharging, 4 hour endurance)" = 1,_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _ 
+			respond "Multiple technical skills",_
+		DI:No Bite,_
+		DI:No Legs (Wheeled),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (jet fuel) = 3,_
+		DI:Social Stigma (Monster),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Virtual Interface Implant (Changing Times), displaycost(-100), cost(-58),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT57, TS125),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+4 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-9 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Compartmentalized Mind _
+			with "Dedicated Controls, *1/5, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance = 5 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Mind Reading _
+			with "Limited Reading Ability, -10%, group(Mind Probe/Reading), page(TS:CT)" _
+			and "Wearer only, -70%, group(Mind Probe/Reading), page(TS:CT)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT), group(Telecommunication)" _
+			and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)",_
+		PE:Accessory (Computer),_
+		DI:Increased Consumption = 4,_
+		DI:No Legs (Portable),_
+		DI:No Manipulators,_
+		DI:Restricted Diet,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"PE:Can monitor wearer's basic metabolic/medical state, 1, cat(Physical), noresync(yes)",_
+		"PE:Can feed speech and sensory inputs directly into wearer's nervous system, 1, cat(Physical), noresync(yes)" _
+	),_
+	features(_
+		Uses the wearer's senses. _
+	)
+
+Volkspider, displaycost(70), cost(-14),_
+cat(Meta-Traits - Machine),_
+description(),_
+page(TS:CT125),_
+noresync(yes),_
+owns(yes),_
+locks(no),_
+hides(yes),_
+gives(_
+-2 to ST:ST,_
++1 to ST:HT,_
+-2 to ST:Hit Points,_
+-3 to ST:Size Modifier _
+),_
+needs(_
+TE:Machine,_
+TE:Cybershell Body _
+),_
+adds(_
+AD:Clinging,_
+AD:Damage Resistance = 3 _
+with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+AD:Doesn't Breathe,_
+AD:Extra Legs (6 Legs),_
+AD:Infravision,_
+AD:Reduced Consumption (Recharge/refuel once a week) = 3,_
+AD:Telecommunication (Cable Jack) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Telecommunication (Infrared Communication),_
+AD:Telecommunication (Radio) _
+with "Video, +40%, page(), group(Telecommunication)",_
+AD:Temperature Tolerance = 2,_
+PE:Accessory (Small Computer),_
+DI:Colorblindness,_
+DI:No Sense of Smell/Taste,_
+DI:Restricted Diet (power cells),_
+DI:Short Arms (2 Arms) _
+)
+
+Wearable Virtual Interface (Changing Times), displaycost(-42), cost(-78),_
+	cat(Racial Templates, Racial Templates - Changing Times),_
+	description(),_
+	page(TS:CT58, TS125),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-6 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+		AD:Compartmentalized Mind _
+			with "Dedicated Controls, *1/5, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance = 5 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe,_
+		AD:Night Vision = 7,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Pressure Support = 1,_
+		AD:Reduced Consumption = 3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 2,_
+		PE:Accessory (Computer),_
+		DI:No Legs (Portable),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other. _
+	)
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Firearms - Ultra-Tech Firearms>
+//  "Firearms - Ultra-Tech Firearms"
+#Delete "EQ:Electrolaser Pistol"
+#Delete "EQ:Electrolaser Carbine"
+#Delete "EQ:Laser Sniper Rifle"
+#Delete "EQ:Electrolaser Pistol (Ammunition)"
+#Delete "EQ:Electrolaser Carbine (Ammunition)"
+#Delete "EQ:Laser Sniper Rifle (Ammunition)"
+#Delete "EQ:Blaster Pistol"
+#Delete "EQ:Blaster Rifle"
+#Delete "EQ:Heavy Blaster"
+#Delete "EQ:Omni-Blaster Pistol"
+#Delete "EQ:Omni-Blaster Rifle"
+#Delete "EQ:Blaster Pistol (Ammunition)"
+#Delete "EQ:Blaster Rifle (Ammunition)"
+#Delete "EQ:Heavy Blaster (Ammunition)"
+#Delete "EQ:Omni-Blaster Pistol (Ammunition)"
+#Delete "EQ:Omni-Blaster Rifle (Ammunition)"
+Electrolaser Pistol, techlvl(10), lc(4), baseweight(2.2), basecost(1200),_
+	newmode(Beam, damage(1d-3), damtype(burn), acc(2), rangehalfdam(60), rangemax(120), rof(3), shots(200(3)), minst(3), bulk(-1), rcl(1), notes([1,2,3]), skillused(SK:Gun!, SK:Beam Weapons (Pistol), ST:DX-4, SK:Beam Weapons (Pistol)-4, SK:Beam Weapons (Projector)-4, SK:Beam Weapons (Rifle)-4)),_
+	newmode(Linked, damage(HT-2), damtype(aff), acc(4), rangehalfdam(60), rangemax(120), rof(3), shots(180(3)), minst(4), bulk(-2), rcl(1), skillused(SK:Gun!, SK:Beam Weapons (Pistol), ST:DX-4, SK:Beam Weapons (Pistol)-4, SK:Beam Weapons (Projector)-4, SK:Beam Weapons (Rifle)-4)),_
+	description(TL:10 LC:4 Damage:1d-3 burn/HT-2 aff Acc:2 Range:10/20 RoF:3 Shots:200(3) ST:3 Bulk:-1 Rcl:1 Skill:Beam Weapons (Pistol) Notes: [1,2,3] Includes "smartgun" electronics (see p. B278). Weapon requires atmosphere to function. No effect in trace atmosphere or vacuum! Burn damage has the Surge damage modifier (p. B105). As well, whether or not all damage penetrates, the target must make a HT roll at -2, plus half the DR on the location struck (due to the armor divisor). On a failure, the electrical shock stuns him. He may roll against HT every turn at the same penalty (but without the DR bonus) to recover. Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 yards, a laser firing through 2,000 yards of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+
+Laser Pistol, techlvl(10), lc(3), baseweight(4.8), basecost(2800), damage(2d), armordivisor(2), damtype(burn), acc(6), rangehalfdam(460), rangemax(920), rof(10), shots(60(3)), minst(7), bulk(-3), rcl(1), notes([3]), skillused(SK:Gun!, SK:Beam Weapons (Pistol), ST:DX-4, SK:Beam Weapons (Pistol)-4, SK:Beam Weapons (Projector)-4, SK:Beam Weapons (Rifle)-4),_
+	description(TL:10 LC:3 Damage:2d(2) burn Acc:6 Range:460/920 RoF:10 Shots:60(3) ST:7 Bulk:-3 Rcl:1 Skill:Beam Weapons (Pistol) Notes: [3] Includes "smartgun" electronics (see p. B278). Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 yards, a laser firing through 2,000 yards of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+
+Electrolaser Rifle, techlvl(10), lc(4), baseweight(4.5), basecost(1800),_
+	newmode(Beam, damage(1d-3), damtype(burn), acc(8), rangehalfdam(100), rangemax(300), rof(1), shots(100(3)), minst(5), bulk(-3), rcl(1), notes([1,2,3]), skillused(SK:Gun!, SK:Beam Weapons (Rifle), ST:DX-4, SK:Beam Weapons (Pistol)-4, SK:Beam Weapons (Projector)-4, SK:Beam Weapons (Rifle)-4)),_
+	newmode(Linked, damage(HT-4), damtype(aff), acc(8), rangehalfdam(100), rangemax(300), rof(1), shots(100(3)), minst(5), bulk(-3), rcl(1), skillused(SK:Gun!, SK:Beam Weapons (Rifle), ST:DX-4, SK:Beam Weapons (Pistol)-4, SK:Beam Weapons (Projector)-4, SK:Beam Weapons (Rifle)-4)),_
+	description(TL:10 LC:4 Damage:1d-3 burn/HT-4(2) aff Acc:2 Range:10/20 RoF:3 Shots:200(3) ST:3 Bulk:-1 Rcl:1 Skill:Beam Weapons (Rifle) Notes: [1,2,3] Includes "smartgun" electronics (see p. B278). Weapon requires atmosphere to function. No effect in trace atmosphere or vacuum! Burn damage has the Surge damage modifier (p. B105). As well, whether or not all damage penetrates, the target must make a HT roll at -4, plus half the DR on the location struck (due to the armor divisor). On a failure, the electrical shock stuns him. He may roll against HT every turn at the same penalty (but without the DR bonus) to recover. Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 yards, a laser firing through 2,000 yards of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+
+Laser Rifle, techlvl(10), lc(2), baseweight(12), basecost(10000), damage(2d+2), armordivisor(2), damtype(burn), acc(12), rangehalfdam(1150), rangemax(2300), rof(1), shots(30(3)), minst(8†), bulk(-5), rcl(1), notes([3]), skillused(SK:Gun!, SK:Beam Weapons (Rifle), ST:DX-4, SK:Beam Weapons (Pistol)-4, SK:Beam Weapons (Projector)-4, SK:Beam Weapons (Rifle)-4),_
+	description(TL:10 LC:2 Damage:2d+2(2) burn Acc:12 Range:700/2100 RoF:1 Shots:30(3) ST:8† Bulk:-5 Rcl:1 Skill:Beam Weapons (Rifle) Notes: [3] Includes "smartgun" electronics (see p. B278). Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 yards, a laser firing through 2,000 yards of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+

@@ -1,0 +1,2220 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+        This data file contains information taken from the GURPS Martial Arts: Gladiators sourcebook. _
+		GURPS Martial Arts: Gladiators is Copyright © 2009 by Steve Jackson Games _
+		Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf", "GURPS Martial Arts 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Martial Arts - Gladiators.gdf
+//  Created: March 14, 2010
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Martial Arts - Gladiators sourcebook.
+//  GURPS Martial Arts - Gladiators is Copyright © 2009 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Martial Arts Styles
+*******************************************************************************************************************
+// 
+//  Eric B. Smith		- Data File Coordinator
+//  Andy Normansell		- Major Work
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Techniques, Techniques - Combat, Techniques - Realistic>
+Feint (Spear), Tech/H,default("SK:Spear::level"),needs(SK:Spear),upto(prereq + 4),page(MA73, B231),tl(),usernotes(),familiarities()
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Style Familiarity - Gladiator>
+Style Familiarity (Hoplomachus), 1, cat(Style Familiarities), page(MA:GL12)
+Style Familiarity (Murmillo), 1, cat(Style Familiarities), page(MA:GL12)
+Style Familiarity (Provocator), 1, cat(Style Familiarities), page(MA:GL13)
+Style Familiarity (Retiarius), 1, cat(Style Familiarities), page(MA:GL14)
+Style Familiarity (Thraex (Thracian)), 1, cat(Style Familiarities), page(MA:GL14)
+Style Familiarity (Andabata), 1, cat(Style Familiarities), page(MA:GL15)
+Style Familiarity (Crupellarius), 1, cat(Style Familiarities), page(MA:GL15)
+Style Familiarity (Dimachaerus ("Two-Sword Fighter")), 1, cat(Style Familiarities), page(MA:GL15)
+Style Familiarity (Eques (Horseman)), 1, cat(Style Familiarities), page(MA:GL16)
+Style Familiarity (Essedarius (Charioteer)), 1, cat(Style Familiarities), page(MA:GL16)
+Style Familiarity (Scissor (Cutter)), 1, cat(Style Familiarities), page(MA:GL17)
+
+<Style Perks - Realistic>
+Style Adaptation (Hoplomachus), 1, cat(Style Familiarities), page(MA:GL12)
+Style Adaptation (Murmillo), 1, cat(Style Familiarities), page(MA:GL12)
+Style Adaptation (Provocator), 1, cat(Style Familiarities), page(MA:GL13)
+Style Adaptation (Retiarius), 1, cat(Style Familiarities), page(MA:GL14)
+Style Adaptation (Thraex (Thracian)), 1, cat(Style Familiarities), page(MA:GL14)
+Style Adaptation (Andabata), 1, cat(Style Familiarities), page(MA:GL15)
+Style Adaptation (Crupellarius), 1, cat(Style Familiarities), page(MA:GL15)
+Style Adaptation (Dimachaerus (Two Sword Fighter)), 1, cat(Style Familiarities), page(MA:GL15)
+Style Adaptation (Eques (Horseman)), 1, cat(Style Familiarities), page(MA:GL16)
+Style Adaptation (Essedarius (Charioteer)), 1, cat(Style Familiarities), page(MA:GL16)
+Style Adaptation (Scissor (Cutter)), 1, cat(Style Familiarities), page(MA:GL17)
+Shoves and Tackles, 1, page(PU2:7), cat(Combat), x(#InputToTagReplace("Specify the Melee Weapon Skill:", nameext, , "Melee Weapon Skill needed"))
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllPerksStyleFamiliarity>
+PE:Style Adaptation (Hoplomachus)
+PE:Style Adaptation (Murmillo)
+PE:Style Familiarity (Hoplomachus)
+PE:Style Familiarity (Murmillo)
+PE:Style Adaptation (Provocator)
+PE:Style Familiarity (Provocator)
+PE:Style Adaptation (Retiarius)
+PE:Style Adaptation (Thraex (Thracian))
+PE:Style Familiarity (Retiarius)
+PE:Style Familiarity (Thraex (Thracian))
+PE:Style Adaptation (Andabata)
+PE:Style Adaptation (Crupellarius)
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter))
+PE:Style Familiarity (Andabata)
+PE:Style Familiarity (Crupellarius)
+PE:Style Familiarity (Dimachaerus ("Two-Sword Fighter"))
+PE:Style Adaptation (Eques (Horseman))
+PE:Style Adaptation (Essedarius (Charioteer))
+PE:Style Familiarity (Eques (Horseman))
+PE:Style Familiarity (Essedarius (Charioteer))
+PE:Style Adaptation (Scissor (Cutter))
+PE:Style Familiarity (Scissor (Cutter))
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Styles, Styles - Realistic Styles, Styles - Realistic Styles - Gladiators>
+Hoplomachus (Martial Arts - Gladiators), displaycost(4),familiarities(),_
+	description(The Hoplomachus,like the Thraex, was armoured with a crested helmet,long greaves on both legs, and a manica on the sword arm. He carried a thrusting spear as his main weapon and a small,deeply dished round shield on his left arm. His secondary weapon was a dagger or very short sword.),_
+	page(MA:GL12),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Hoplomachus),_
+			#buildlist(list(#list(Style Primary Skills Hoplomachus)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Hoplomachus)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills and Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Hoplomachus)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Hoplomachus)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Hoplomachus)_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Hoplomachus)_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Hoplomachus)_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Murmillo (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(The Murmillo was one of the most common armaturae,usually paired off against a Thraex. His weapon was the shortsword, and he wore a short metal greave on his left leg, a manica on his right arm, and a crested, broad-brimmed helmet with a fully enclosed faceplate. His shield was the large scutum.),_
+	page(MA:GL12),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Murmillo),_
+			#buildlist(list(#list(Style Primary Skills Murmillo)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Murmillo)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Murmillo)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Murmillo)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Murmillo)_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Murmillo)_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Murmillo)_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Samnes ''Samnite'' (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(Evidence for the Samnes is scanty. They seem to have been almost identical to Murmillo except that they wore an openfaced helmet and some type of torso armor. A Samnes was probably originally equipped like a Samnite warrior, with the scutum and gladius, and may be the ancestor of both Murmillo and Secutor.),_
+	page(MA:GL13),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Murmillo),_
+			#buildlist(list(#list(Style Primary Skills Samnes ''Samnite'')), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Samnes ''Samnite'')_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Samnes ''Samnite'')_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Samnes ''Samnite'')_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Samnes ''Samnite'')_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Samnes ''Samnite'')_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Samnes ''Samnite'')_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Secutor (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(The Secutor was a subtype of the Murmillo who specialized in fighting the Retiarius. He, too, used short sword and scutum and wore greave and manica, but his fully closed helmet had neither crest not brim, giving his opponent's net nothing to catch on.),_
+	page(MA:GL13),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Murmillo),_
+			#buildlist(list(#list(Style Primary Skills Secutor)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Secutor)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Secutor)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Secutor)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Secutor)_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Secutor)_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Secutor)_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Provocator (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(The Provocator, a traditional armatura known from Republican times, fought as a swordsman with the short sword and large scutum (though his was slightly smaller than that of the other scutum-wielding types). Along with a long greave on his left leg and a manica on his right arm, he was protected by a small breastplate (spongia) and a fully enclosed, crestless helmet with a wide neck guard.),_
+	page(MA:GL13),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Provocator),_
+			#buildlist(list(#list(Style Primary Skills Provocator)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Provocator)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Provocator)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Provocator)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Provocator)_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Provocator)_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Provocator)_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Retiarius (Martial Arts - Gladiators), displaycost(4),familiarities(),_
+	description(The Retiarius appeared in the first century A.D., possibly originally in naumachiae, and quickly became one of the most popular armaturae. He was unusual in being very lightly armored and wearing no helmet, Retiarii had to rely on their agility and speed to fight better-protected opponents. Their main weapons were a throwing net and a heavy trident, with a dagger carried as a secondary weapon. The only protection they had was a long manica with a galerus metal plate mounted on the left shoulder that protected the face when it was turned toward the opponent.),_
+	page(MA:GL14),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Retiarius),_
+			#buildlist(list(#list(Style Primary Skills Retiarius)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Retiarius)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Retiarius)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Retiarius)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Retiarius)_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Retiarius)_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Retiarius)_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Thraex ''Thracian'' (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(The Thraex goes back to Republican traditions. He is usually paired off against the scutum wielding Murmillo as a more agile and aggressive opponent. The distinctive, small, square parma and curved sword "sica" make him easily recognizable. Thraeces wear long greaves on both legs (usually with fabric armor underneath), a manica on their sword arm, and a fully enclosed helmet with a high crest and broad brim.),_
+	page(MA:GL14),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Thraex (Thracian)),_
+			#buildlist(list(#list(Style Primary Skills Thraex ''Thracian'')), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Thraex ''Thracian'')_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Thraex ''Thracian'')_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Thraex ''Thracian'')_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Thraex ''Thracian'')_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Thraex ''Thracian'')_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Thraex ''Thracian'')_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Andabata (Martial Arts - Gladiators), displaycost(2),familiarities(),_
+	description(Little is known about the equipment of this armatura except that they, uniquely, fought blind. Very likely, their helmets shut off all vision. Cicero mentions that Andabatae used swords, but gives no further detail. They may have fought unarmored, for the bloody spectacle, or heavily armored, to encourage their wild swinging.),_
+	page(MA:GL15),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Andabata),_
+			#buildlist(list(#list(Style Primary Skills Andabata)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Andabata)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Andabata)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Andabata)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Andabata)_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Andabata)_
+		)_
+	),_
+	select7(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Crupellarius (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(Crupellarii arementioned in the first century A.D. as a specifically Gallic armatura, notorious for their extremely heavy armor. A statuette from France shows a pot-shaped helmet and what appears to be segmented metal armor over the upper torso, arms, and legs. The Crupellarius probably carried a shield, though the type is unknown.),_
+	page(MA:GL15),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Crupellarius),_
+			#buildlist(list(#list(Style Primary Skills Crupellarius)), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Crupellarius)_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Crupellarius)_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Crupellarius)_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Secondary Characteristics:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			AD:Extra ST_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Crupellarius)_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Crupellarius)_
+		)_
+	),_
+	select8(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Crupellarius)_
+		)_
+	),_
+	select9(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Dimachaerus ''Two Sword Fighter'' (Martial Arts - Gladiators), displaycost(2),familiarities(),_
+	description(The Dimachaerus is poorly documented and may not have been a specific type at all. A relief from Turkey that shows a fighter with a round, enclosed helmet, short greaves on both legs and curved short swords in both hands. Little is known about the fighting style of the Dimachaerus.),_
+	page(MA:GL15),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Dimachaerus (Two Sword Fighter)),_
+			#buildlist(list(#list(Style Primary Skills Dimachaerus ''Two Sword Fighter'')), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Dimachaerus ''Two Sword Fighter'')_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Dimachaerus ''Two Sword Fighter'')_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Dimachaerus ''Two Sword Fighter'')_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Dimachaerus ''Two Sword Fighter'')_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Dimachaerus ''Two Sword Fighter'')_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Dimachaerus ''Two Sword Fighter'')_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Eques ''Horseman'' (Martial Arts - Gladiators), displaycost(5),familiarities(),_
+	description(The Eques fought on horseback, though it is likely that most bouts ended on foot after one or both opponents were unhorsed, staying mounted after throwing the opponent may have been against the rules. Unlike most gladiators, Equites wore tunics. During Republican times, they wore torso armor, but afterward, they went without protection. Their helmets were crestless and fully enclosed. A thrusting spear was their main weapon, and they carried a short sword for foot combat. Their shield was the traditional parma equestris, a small round leather shield.),_
+	page(MA:GL16),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Eques (Horseman)),_
+			#buildlist(list(#list(Style Primary Skills Eques ''Horseman'')), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#newitem(SK:Back Strike (Spear), Tech/H,default("SK:Spear::level" - 2),needs(SK:Spear),upto(prereq),page(MA67),noresync(yes), cat(Techniques - Realistic)),_
+			#newitem(SK:Combat Riding (Riding (Horse)), Tech/H,default("SK:Riding (Horse)::level"),needs(SK:Riding (Horse)),upto(prereq + 4),page(MA69), cat(Techniques - Realistic)),_
+			#newitem(SK:Hands-Free Riding (Riding (Horse)), Tech/H,default("SK:Riding (Horse)::level" - 3),needs(SK:Riding (Horse)),upto(prereq),page(MA73), cat(Techniques - Realistic)),_
+			#newitem(SK:Staying Seated (Riding (Horse)), Tech/A,default("SK:Riding (Horse)::level"),needs(SK:Riding (Horse)),upto(prereq + 4),page(MA81), cat(Techniques - Realistic))_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Eques ''Horseman'')_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Eques ''Horseman'')_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Eques ''Horseman'')_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Eques ''Horseman'')_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Eques ''Horseman'')_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Essedarius ''Charioteer'' (Martial Arts - Gladiators), displaycost(5),familiarities(),_
+	description(Despite the name, no evidence exists that Essedarii used chariots except possibly when this armatura was introduced in the first century A.D. The Britons, who used war chariots, may have inspired the equipment and fighting style. They wore no armor other than a manica on their sword arm and a round, crestless helmet, originally open-faced, later enclosed. Some images show them using javelins, but their main weapons were the short sword and large scutum. Essedarii mainly fought each other, though there is one depiction of a fight with a Retiarius),_
+	page(MA:GL16),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Essedarius (Charioteer)),_
+			#buildlist(list(#list(Style Primary Skills Essedarius ''Charioteer'')), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Essedarius ''Charioteer'')_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Essedarius ''Charioteer'')_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Essedarius ''Charioteer'')_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Essedarius ''Charioteer'')_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Essedarius ''Charioteer'')_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Essedarius ''Charioteer'')_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+
+Scissor ''Cutter'' (Martial Arts - Gladiators), displaycost(3),familiarities(),_
+	description(The Scissor was one of the creative armaturae that showed up in the early Empire. Although not an absolute certainty, good evidence exists that his main weapons were a short sword in the right hand and a metal tube that ended in a half-moon blade over the left hand. Unlike most traditional armaturae, Scissores used no shields, but they were heavily armored. They wore mail on their torso; round, fully enclosed helmets; greaves on both legs; and a manica on their sword arm. Their usual opponent was the Retiarius.),_
+	page(MA:GL17),_
+	cat(Styles),_
+	select1(_
+		text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			PE:Style Familiarity (Scissor (Cutter)),_
+			#buildlist(list(#list(Style Primary Skills Scissor ''Cutter'')), template(SK:%ListItem%))_
+		)_
+	),_
+	select2(_
+		text(You may select from among the following Techniques:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Realistic Techniques Scissor ''Cutter'')_
+		)_
+	),_
+	select3(_
+		text(You may select from among the following Cinematic Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Cinematic Skills Scissor ''Cutter'')_
+		)_
+	),_
+	select4(_
+		text(You may select from among the following Perks:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		list(_
+			#list(Style Perks Scissor ''Cutter'')_
+		)_
+	),_
+	select5(_
+		text(You may select from among the following Optional Advantages:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Advantages Scissor ''Cutter'')_
+		)_
+	),_
+	select6(_
+		text(You may select from among the following Optional Disadvantages:),_
+		pointswanted(atleast -1000, upto 0),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Disadvantages Scissor ''Cutter'')_
+		)_
+	),_
+	select7(_
+		text(You may select from among the following Optional Skills:),_
+		pointswanted(upto 1000),_
+		itemswanted(upto 1000),_
+		multitype(yes),_
+		list(_
+			#list(Style Optional Skills Scissor ''Cutter'')_
+		)_
+	),_
+	select8(_
+		text("All gladiators will have some form of Social Stigma. The rest of society looks down upon gladiators, whether slave or free. Please select one of these two disadvantages:"),_
+		pointswanted(downto -1000, upto 0),_
+		itemswanted(exactly 1),_
+		list(_
+			DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+			DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)_
+		)_
+	)
+	
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<Martial Arts Styles>
+{Hoplomachus}=3,_
+{Murmillo}=2,_
+{Samnes ''Samnite''}=2,_
+{Secutor}=2,_
+{Provocator}=2,_
+{Retiarius}=3,_
+{Thraex ''Thracian''}=2,_
+{Thraex ''Thracian''}=2,_
+{Andabata}=1,_
+{Crupellarius}=2,_
+{Dimachaerus ''Two Sword Fighter''}=1,_
+{Eques ''Horseman''}=4,_
+{Essedarius ''Charioteer''}=4,_
+{Scissor ''Cutter''}=2
+
+<Style Primary Skill Selection Message>
+,,,,,,,,,,,,_
+
+
+*****************************************************************
+<Style Primary Skills Andabata>
+Shortsword
+
+<Style Increase Primary Skills Andabata>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword))
+
+<Style Primary Skill Choice Andabata>
+
+<Style Realistic Techniques Andabata>
+
+<Style Cinematic Skills Andabata>
+SK:Blind Fighting,_
+SK:Power Blow
+
+<Style Perks Andabata>
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52)),_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Naval Training
+
+<Style Optional Advantages Andabata>
+AD:Acute Hearing,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Perception,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST
+
+<Style Optional Disadvantages Andabata>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1),_
+DI:Social Stigma (Valuable Property) #codes(upto 1, downto 1),_
+DI:Social Stigma (Second-Class Citizen) #codes(upto 1, downto 1)
+
+<Style Optional Skills Andabata>
+SK:Brawling,_
+SK:Performance,_
+SK:Wrestling
+
+*****************************************************************
+<Style Primary Skills Crupellarius>
+Shortsword,_
+Shield (Shield)
+
+<Style Increase Primary Skills Crupellarius>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword)),_
+#newitem(SK:_Increase Shield (Shield), type(var), existing(SK:Shield (Shield)))
+
+<Style Primary Skill Choice Crupellarius>
+
+<Style Realistic Techniques Crupellarius>
+,#newitem(SK:Feint (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Feint (Shortsword), Tech/H,default("SK:Shortsword::level"),needs(SK:Shortsword),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+<Style Cinematic Skills Crupellarius>
+SK:Immovable Stance,_
+SK:Power Blow_
+
+<Style Perks Crupellarius>
+PE:Naval Training,_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+#newitem(PE:Special Exercises (Lifting ST +1), 1, cat(Style Perks - Realistic), page(MA51)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Crupellarius>
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Crupellarius>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Crupellarius>
+SK:Brawling,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling_
+
+*****************************************************************
+<Style Primary Skills Dimachaerus ''Two Sword Fighter''>
+Shortsword
+
+<Style Increase Primary Skills Dimachaerus ''Two Sword Fighter''>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword))
+
+<Style Primary Skill Choice Dimachaerus ''Two Sword Fighter''>
+
+<Style Realistic Techniques Dimachaerus ''Two Sword Fighter''>
+,#newitem(SK:Feint (Shortsword), Tech/H,default("SK:Shortsword::level"),needs(SK:Shortsword),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+<Style Cinematic Skills Dimachaerus ''Two Sword Fighter''>
+SK:Power Blow,_
+#newitem(SK:Dual-Weapon Attack (Shortsword), Tech/H,default("SK:Shortsword::level" - 4),needs(SK:Shortsword),upto(prereq),page(MA83, B230),noresync(yes), cat(Combat Techniques, Cinematic Techniques))_
+
+<Style Perks Dimachaerus ''Two Sword Fighter''>
+PE:Naval Training,_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Unusual Training (Dual-Weapon Attack, Both attacks must target the same foe), 1, cat(Style Perks - Realistic), page(MA52)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Dimachaerus ''Two Sword Fighter''>
+AD:Extra Basic Move,_
+AD:Extra Basic Speed,_
+AD:Enhanced Dodge,_
+#newitem(AD:Enhanced Parry (Shortsword), 5/10,page(B51),gives(+1 to "SK:Shortsword::parryat" listAs "Enhanced Parry (Shortsword)"),noresync(yes), cat(Mundane, Mental, Mundane Mental)),_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Dimachaerus ''Two Sword Fighter''>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Dimachaerus ''Two Sword Fighter''>
+SK:Brawling,_
+#newitem(SK:Spinning Strike (Shortsword), Tech/H,default("SK:Shortsword::level" -2),needs(SK:Shortsword),upto(prereq),page(MA79),noresync(yes), cat(Techniques - Realistic)),_
+SK:Performance,_
+SK:Shortsword Art,_
+SK:Wrestling_
+
+*****************************************************************
+<Style Primary Skills Eques ''Horseman''>
+Shortsword,_
+Shield (Shield),_
+Spear,_
+Riding (Equines)
+
+<Style Increase Primary Skills Eques ''Horseman''>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword)),_
+#newitem(SK:_Increase Shield (Shield), type(var), existing(SK:Shield (Shield))),_
+#newitem(SK:_Increase Spear, type(var), existing(SK:Spear)),_
+#newitem(SK:_Increase Riding (Equines), type(var), existing(SK:Riding (Equines)))
+
+<Style Primary Skill Choice Eques ''Horseman''>
+
+<Style Realistic Techniques Eques ''Horseman''>
+
+<Style Cinematic Skills Eques ''Horseman''>
+SK:Power Blow_
+
+<Style Perks Eques ''Horseman''>
+PE:Style Adaptation (Hoplomachus),_
+#newitem(PE:Grip Mastery (Spear), 1,page(MA50, PU2:6), cat(Style Perks - Realistic, Perks, Combat)),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter))_
+
+<Style Optional Advantages Eques ''Horseman''>
+AD:Animal Friend,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Eques ''Horseman''>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth_
+
+<Style Optional Skills Eques ''Horseman''>
+SK:Brawling,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Spear Art,_
+SK:Wrestling_
+
+*****************************************************************
+<Style Primary Skills Essedarius ''Charioteer''>
+Shortsword,_
+Shield (Shield),_
+Teamster (Equines),_
+Thrown Weapon (Spear)
+
+
+<Style Increase Primary Skills Essedarius ''Charioteer''>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword)),_
+#newitem(SK:_Increase Shield (Shield), type(var), existing(SK:Shield (Shield))),_
+#newitem(SK:_Increase Teamster (Equines), type(var), existing(SK:Teamster (Equines))),_
+#newitem(SK:_Increase Thrown Weapon (Spear), type(var), existing(SK:Thrown Weapon (Spear)))
+
+<Style Primary Skill Choice Essedarius ''Charioteer''>
+
+<Style Realistic Techniques Essedarius ''Charioteer''>
+,#newitem(SK:Mounted Shooting (Thrown Weapon (Spear)/Chariot), Tech/H,default("SK:Thrown Weapon (Spear)::level" - 4),needs(SK:Thrown Weapon (Spear), SK:Teamster (Chariot)),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Targeted Attack (Shortsword Swing/Skull), Tech/H,needs(SK:Shortsword),page(MA68),default("SK:Shortsword::level" + (0 + -7), "SK:Swing (Shortsword)::level" + -7),upto(@max("SK:Shortsword" - @int(-0.5 * (0 + -7)), "SK:Swing (Shortsword)" -  @int(-0.5 * -7))),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Realistic)),_
+#newitem(SK:Targeted Attack (Shortsword Swing/Face), Tech/H,needs(SK:Shortsword),page(MA68),default("SK:Shortsword::level" + (0 + -5), "SK:Swing (Shortsword)::level" + -5),upto(@max("SK:Shortsword" - @int(-0.5 * (0 + -5)), "SK:Swing (Shortsword)" -  @int(-0.5 * -5))),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Realistic)),_
+#newitem(SK:Targeted Attack (Shortsword Swing/Neck), Tech/H,needs(SK:Shortsword),page(MA68),default("SK:Shortsword::level" + (0 + -5), "SK:Swing (Shortsword)::level" + -5),upto(@max("SK:Shortsword" - @int(-0.5 * (0 + -5)), "SK:Swing (Shortsword)" -  @int(-0.5 * -5))),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Essedarius ''Charioteer''>
+SK:Power Blow_
+
+<Style Perks Essedarius ''Charioteer''>
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Scissor (Cutter))_
+
+<Style Optional Advantages Essedarius ''Charioteer''>
+AD:Enhanced Dodge,_
+AD:Enhanced Block,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Essedarius ''Charioteer''>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Essedarius ''Charioteer''>
+SK:Brawling,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling,_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic))_
+
+*****************************************************************
+<Style Primary Skills Hoplomachus>
+Knife ,_
+Shield (Buckler) ,_
+Spear
+
+<Style Increase Primary Skills Hoplomachus>
+,#newitem(SK:_Increase Knife , type(var), existing(SK:Knife )),_
+#newitem(SK:_Increase Shield (Buckler) , type(var), existing(SK:Shield (Buckler) )),_
+#newitem(SK:_Increase Spear, type(var), existing(SK:Spear))
+
+<Style Primary Skill Choice Hoplomachus>
+
+<Style Realistic Techniques Hoplomachus>
+,#newitem(SK:Feint (Spear), Tech/H,default("SK:Spear::level"),needs(SK:Spear),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+<Style Cinematic Skills Hoplomachus>
+SK:Immovable Stance,_
+SK:Power Blow_
+
+<Style Perks Hoplomachus>
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52)),_
+#newitem(PE:Off-Hand Weapon Training (Spear), 1,page(MA50),needs(SK:Spear),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Naval Training_
+
+<Style Optional Advantages Hoplomachus>
+AD:Extra Basic Speed,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Hoplomachus>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Hoplomachus>
+SK:Brawling,_
+SK:Performance,_
+SK:Shield Art (Buckler),_
+SK:Shortsword,_
+SK:Spear Art,_
+SK:Wrestling,_
+#newitem(SK:Retain Weapon (Spear), Tech/H,default("SK:Spear::level"),needs(SK:Spear),upto(prereq + 5),page(MA78, B232),noresync(yes), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Retain Weapon (Shield (Buckler)), Tech/H,default("SK:Shield (Buckler)::level"),needs(SK:Shield (Buckler)),upto(prereq + 5),page(MA78, B232),noresync(yes), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+*****************************************************************
+<Style Primary Skills Murmillo>
+Shield (Shield),_
+Shortsword
+
+<Style Increase Primary Skills Murmillo>
+,#newitem(SK:_Increase Shield (Shield) , type(var), existing(SK:Shield (Shield) )),_
+#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword))
+
+<Style Primary Skill Choice Murmillo>
+
+<Style Realistic Techniques Murmillo>
+,#newitem(SK:Close Combat (Shortsword), Tech/H,default("SK:Shortsword::level" -4),needs(SK:Shortsword),upto(prereq - (-4 / -2)),page(MA69),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Feint (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Murmillo>
+SK:Immovable Stance,_
+SK:Kiai,_
+SK:Power Blow,_
+SK:Dual-Weapon Defense (Shield (Shield)),_
+#newitem(SK:Springing Attack (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA87),noresync(yes), cat(Cinematic Techniques)),_
+#newitem(SK:Springing Attack (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA87),noresync(yes), cat(Cinematic Techniques))_
+
+<Style Perks Murmillo>
+PE:Shield-Wall Training,_
+PE:Special Exercises (Striking ST +1),_
+PE:Technique Adaptation,_
+#newitem(PE:Shoves and Tackles (Shield), 1,page(PU2:7), cat(Combat)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52)),_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Naval Training_
+
+<Style Optional Advantages Murmillo>
+AD:Extra ST,_
+AD:Extra Hit Points,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Murmillo>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Murmillo>
+SK:Brawling,_
+SK:Knife,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling_
+#newitem(SK:Counterattack (Shortsword), Tech/H,default("SK:Shortsword::level" - 5),needs(SK:Shortsword),upto(prereq),page(MA70),noresync(yes), cat(Techniques - Realistic))_
+
+*****************************************************************
+<Style Primary Skills Provocator>
+Shield (Shield) ,_
+Shortsword
+
+<Style Increase Primary Skills Provocator>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword)),_
+#newitem(SK:_Increase Shield (Shield), type(var), existing(SK:Shield (Shield)))
+
+<Style Primary Skill Choice Provocator>
+
+<Style Realistic Techniques Provocator>
+,#newitem(SK:Counterattack (Shortsword), Tech/H,default("SK:Shortsword::level" - 5),needs(SK:Shortsword),upto(prereq),page(MA70),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Feint (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Feint (Shortsword), Tech/H,default("SK:Shortsword::level"),needs(SK:Shortsword),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+<Style Cinematic Skills Provocator>
+SK:Immovable Stance,_
+SK:Kiai,_
+SK:Power Blow,_
+SK:Dual-Weapon Defense (Shield (Shield)),_
+#newitem(SK:Dual-Weapon Attack (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 4),needs(SK:Shield (Shield)),upto(prereq),page(MA83, B230),noresync(yes), cat(Combat Techniques, Cinematic Techniques)),_
+#newitem(SK:Dual-Weapon Attack (Shortsword), Tech/H,default("SK:Shortsword::level" - 4),needs(SK:Shortsword),upto(prereq),page(MA83, B230),noresync(yes), cat(Combat Techniques, Cinematic Techniques))_
+
+<Style Perks Provocator>
+PE:Shield-Wall Training,_
+#newitem(PE:Shoves and Tackles (Shield), 1,page(PU2:7), cat(Combat)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52)),_
+#newitem(PE:Unusual Training (Dual-Weapon Attack, Both attacks must target the same foe), 1, cat(Style Perks - Realistic), page(MA52)),_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Naval Training_
+
+<Style Optional Advantages Provocator>
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Provocator>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Provocator>
+SK:Brawling,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling,_
+#newitem(SK:Retain Weapon (Shortsword), Tech/H,default("SK:Shortsword::level"),needs(SK:Shortsword),upto(prereq + 5),page(MA78, B232),noresync(yes), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+*****************************************************************
+<Style Primary Skills Retiarius>
+Knife,_
+Net ,_
+Spear
+
+<Style Increase Primary Skills Retiarius>
+,#newitem(SK:_Increase Knife, type(var), existing(SK:Knife)),_
+#newitem(SK:_Increase Net , type(var), existing(SK:Net )),_
+#newitem(SK:_Increase Spear, type(var), existing(SK:Spear))
+
+<Style Primary Skill Choice Retiarius>
+
+<Style Realistic Techniques Retiarius>
+,#newitem(SK:Armed Grapple (Net), Tech/H,default("SK:Net::level" -2),needs(SK:Net),upto(prereq),page(MA67),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Counterattack (Spear), Tech/H,default("SK:Spear::level" -5),needs(SK:Spear),upto(prereq),page(MA70),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Counterattack (Net), Tech/H,default("SK:Net::level" -5),needs(SK:Net),upto(prereq),page(MA70),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Hook (Spear), Tech/H,default("SK:Spear::level" -5),needs(SK:Spear),upto(prereq),page(MA74),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Sweep (Net), Tech/H,default("SK:Net::level" -3),needs(SK:Net),upto(prereq),page(MA81, B232),noresync(yes), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Targeted Attack (Spear Thrust/Vitals), Tech/H,needs(SK:Spear),page(MA68),default("SK:Spear::level" + (0 + -3), "SK:Thrust (Spear)::level" + -3),upto(@max("SK:Spear" - @int(-0.5 * (0 + -3)), "SK:Thrust (Spear)" -  @int(-0.5 * -3))),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Realistic)),_
+#newitem(SK:Targeted Attack (Spear Thrust/Neck), Tech/H,needs(SK:Spear),page(MA68),default("SK:Spear::level" + (0 + -5), "SK:Thrust (Spear)::level" + -5),upto(@max("SK:Spear" - @int(-0.5 * (0 + -5)), "SK:Thrust (Spear)" -  @int(-0.5 * -5))),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Retiarius>
+SK:Power Blow_
+
+<Style Perks Retiarius>
+PE:Style Familiarity (Murmillo),_
+PE:Style Familiarity (Thraex (Thracian)),_
+PE:Naval Training,_
+#newitem(PE:Exotic Weapon Training (Trident), 1,page(MA50, PU2:5), cat(Style Perks - Realistic, Perks, Combat)),_
+#newitem(PE:Grip Mastery (Spear), 1,page(MA50, PU2:6), cat(Style Perks - Realistic, Perks, Combat)),_
+PE:Technique Mastery,_
+#newitem(PE:Off-Hand Weapon Training (Net), 1,page(MA50),needs(SK:Net),noresync(yes), cat(Style Perks - Realistic)),_
+#newitem(PE:Off-Hand Weapon Training (Knife), 1,page(MA50),needs(SK:Knife),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Retiarius>
+AD:Extra Basic Move,_
+AD:Extra Basic Speed,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Retiarius>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Retiarius>
+SK:Brawling,_
+SK:Performance,_
+SK:Net Art,_
+SK:Spear Art,_
+SK:Wrestling_
+
+*****************************************************************
+<Style Primary Skills Samnes ''Samnite''>
+Shield (Shield) ,_
+Shortsword,_
+Thrown Weapon (Spear)
+
+<Style Increase Primary Skills Samnes ''Samnite''>
+,#newitem(SK:_Increase Shield (Shield) , type(var), existing(SK:Shield (Shield) )),_
+#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword)),_
+#newitem(SK:_Increase Thrown Weapon (Spear), type(var), existing(SK:Thrown Weapon (Spear)))
+
+<Style Primary Skill Choice Samnes ''Samnite''>
+
+<Style Realistic Techniques Samnes ''Samnite''>
+,#newitem(SK:Close Combat (Shortsword), Tech/H,default("SK:Shortsword::level" -4),needs(SK:Shortsword),upto(prereq - (-4 / -2)),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Feint (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Samnes ''Samnite''>
+SK:Immovable Stance,_
+SK:Kiai,_
+SK:Power Blow,_
+SK:Dual-Weapon Defense (Shield (Shield)),_
+#newitem(SK:Springing Attack (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA87),noresync(yes), cat(Cinematic Techniques)),_
+#newitem(SK:Springing Attack (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA87),noresync(yes), cat(Cinematic Techniques))_
+
+<Style Perks Samnes ''Samnite''>
+PE:Naval Training,_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Shield-Wall Training,_
+PE:Special Exercises (Striking ST +1),_
+PE:Technique Adaptation,_
+#newitem(PE:Shoves and Tackles (Shield), 1,page(PU2:7), cat(Combat)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Samnes ''Samnite''>
+AD:Extra ST,_
+AD:Extra Hit Points,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Samnes ''Samnite''>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Samnes ''Samnite''>
+SK:Brawling,_
+SK:Knife,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling,_
+#newitem(SK:Counterattack (Shortsword), Tech/H,default("SK:Shortsword::level" - 5),needs(SK:Shortsword),upto(prereq),page(MA70),noresync(yes), cat(Techniques - Realistic))_
+
+*****************************************************************
+<Style Primary Skills Scissor ''Cutter''>
+Boxing,_
+Shortsword
+
+<Style Increase Primary Skills Scissor ''Cutter''>
+,#newitem(SK:_Increase Boxing, type(var), existing(SK:Boxing)),_
+#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword))
+
+<Style Primary Skill Choice Scissor ''Cutter''>
+
+<Style Realistic Techniques Scissor ''Cutter''>
+,#newitem(SK:Close Combat (Shortsword), Tech/H,default("SK:Shortsword::level" -4),needs(SK:Shortsword),upto(prereq - (-4 / -2)),noresync(yes), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Scissor ''Cutter''>
+SK:Power Blow_
+
+<Style Perks Scissor ''Cutter''>
+PE:Style Familiarity (Retiarius),_
+PE:Naval Training,_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Scissor ''Cutter''>
+AD:Extra ST,_
+AD:Enhanced Dodge,_
+#newitem(AD:Enhanced Parry (Shortsword), 5/10,page(B51),gives(+1 to "SK:Shortsword::parryat" listAs "Enhanced Parry (Shortsword)"),noresync(yes), cat(Mundane, Mental, Mundane Mental)),_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Scissor ''Cutter''>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Scissor ''Cutter''>
+SK:Brawling,_
+SK:Boxing Art,_
+SK:Performance,_
+SK:Shortsword Art,_
+SK:Wrestling_
+
+*****************************************************************
+<Style Primary Skills Secutor>
+Shield (Shield) ,_
+Shortsword
+
+<Style Increase Primary Skills Secutor>
+,#newitem(SK:_Increase Shield (Shield) , type(var), existing(SK:Shield (Shield) )),_
+#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword))
+
+<Style Primary Skill Choice Secutor>
+
+<Style Realistic Techniques Secutor>
+,#newitem(SK:Close Combat (Shortsword), Tech/H,default("SK:Shortsword::level" -4),needs(SK:Shortsword),upto(prereq - (-4 / -2)),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Feint (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Secutor>
+SK:Immovable Stance,_
+SK:Kiai,_
+SK:Power Blow,_
+SK:Dual-Weapon Defense (Shield (Shield)),_
+#newitem(SK:Springing Attack (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA87),noresync(yes), cat(Cinematic Techniques)),_
+#newitem(SK:Springing Attack (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA87),noresync(yes), cat(Cinematic Techniques))_
+
+<Style Perks Secutor>
+PE:Naval Training,_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Shield-Wall Training,_
+PE:Special Exercises (Striking ST +1),_
+PE:Technique Adaptation,_
+#newitem(PE:Shoves and Tackles (Shield), 1,page(PU2:7), cat(Combat)),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Thraex (Thracian)),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Secutor>
+AD:Extra ST,_
+AD:Extra Hit Points_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Secutor>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Secutor>
+SK:Brawling,_
+SK:Knife,_
+SK:Performance,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling,_
+#newitem(SK:Counterattack (Shortsword), Tech/H,default("SK:Shortsword::level" - 5),needs(SK:Shortsword),upto(prereq),page(MA70),noresync(yes), cat(Techniques - Realistic))_
+
+*****************************************************************
+<Style Primary Skills Thraex ''Thracian''>
+Shortsword,_
+Shield (Shield)
+
+<Style Increase Primary Skills Thraex ''Thracian''>
+,#newitem(SK:_Increase Shortsword, type(var), existing(SK:Shortsword)),_
+#newitem(SK:_Increase Shield (Shield), type(var), existing(SK:Shield (Shield)))
+
+<Style Primary Skill Choice Thraex ''Thracian''>
+
+<Style Realistic Techniques Thraex ''Thracian''>
+,#newitem(SK:Feint (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Feint (Shortsword), Tech/H,default("SK:Shortsword::level"),needs(SK:Shortsword),upto(prereq + 4),page(MA73, B231),noresync(yes),tl(),usernotes(),familiarities(), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shortsword), Tech/H,default("SK:Shortsword::level" - 2),needs(SK:Shortsword),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic)),_
+#newitem(SK:Low Fighting (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level" - 2),needs(SK:Shield (Shield)),upto(prereq),page(MA77),noresync(yes), cat(Techniques - Realistic))_
+
+<Style Cinematic Skills Thraex ''Thracian''>
+SK:Power Blow_
+
+<Style Perks Thraex ''Thracian''>
+PE:Naval Training,_
+#newitem(PE:Off-Hand Weapon Training (Shortsword), 1,page(MA50),needs(SK:Shortsword),noresync(yes), cat(Style Perks - Realistic)),_
+PE:Style Familiarity (Murmillo),_
+PE:Style Adaptation (Hoplomachus),_
+PE:Style Adaptation (Murmillo),_
+PE:Style Adaptation (Provocator),_
+PE:Style Adaptation (Retiarius),_
+PE:Style Adaptation (Andabata),_
+PE:Style Adaptation (Crupellarius),_
+PE:Style Adaptation (Dimachaerus (Two Sword Fighter)),_
+PE:Style Adaptation (Eques (Horseman)),_
+PE:Style Adaptation (Essedarius (Charioteer)),_
+PE:Style Adaptation (Scissor (Cutter)),_
+#newitem(PE:Sure-Footed (Sand), 1, cat(Style Perks - Realistic), page(MA52))_
+
+<Style Optional Advantages Thraex ''Thracian''>
+AD:Extra DX,_
+AD:Extra Basic Move,_
+AD:Extra Basic Speed,_
+AD:Enhanced Dodge,_
+AD:Charisma,_
+AD:Combat Reflexes,_
+AD:Fearlessness,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Rank #codes(upto 5, downto 1),_
+AD:Hard to Kill,_
+AD:Hard to Subdue,_
+AD:High Pain Threshold,_
+AD:Patron,_
+AD:Rapid Healing,_
+AD:Reputation,_
+AD:Wealth,_
+AD:Extra Attack,_
+AD:Luck,_
+AD:Lifting ST,_
+AD:Striking ST_
+
+<Style Optional Disadvantages Thraex ''Thracian''>
+DI:Appearance,_
+DI:Bully,_
+DI:Callous,_
+DI:Compulsive Carousing,_
+DI:Greed,_
+DI:Lecherousness,_
+DI:Overconfidence,_
+DI:Reputation,_
+DI:Status,_
+DI:Stubbornness,_
+#newitem(DI:Compulsive Behavior (Fighting), -5/-10, displaycost(-5/-10/-15*), mods(Self-Control),page(B128),upto(3),levelnames(,,), cat(Mundane, Mental, Mundane Mental)),_
+DI:Duty,_
+#newitem(DI:Odious Personal Habit (Arrogance), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Odious Personal Habit (Vanity), -5/-10,upto(3),page(B22),conditional(-1 to ST:Reaction when "people notice your problem"), cat(Mundane, Social, Other Physical Features, Mundane Social)),_
+#newitem(DI:Enemy (A Rival Gladiator), -5/-10/-20,upto(3),mods(Enemy, Evil Twin, Frequency of Appearance),page(B135),levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"), cat(Mundane, Social, Mundane Social)),_
+DI:Wealth #codes(upto 3, downto 1)_
+
+<Style Optional Skills Thraex ''Thracian''>
+SK:Brawling,_
+SK:Shield Art (Shield),_
+SK:Shortsword Art,_
+SK:Wrestling,_
+#newitem(SK:Retain Weapon (Shortsword), Tech/H,default("SK:Shortsword::level"),needs(SK:Shortsword),upto(prereq + 5),page(MA78, B232),noresync(yes), cat(Techniques - Combat, Techniques, Techniques - Realistic)),_
+#newitem(SK:Retain Weapon (Shield (Shield)), Tech/H,default("SK:Shield (Shield)::level"),needs(SK:Shield (Shield)),upto(prereq + 5),page(MA78, B232),noresync(yes), cat(Techniques - Combat, Techniques, Techniques - Realistic))_
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Andabata (Martial Arts - Gladiators)" with {replacetags(in "TE:Andabata (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Crupellarius (Martial Arts - Gladiators)" with {replacetags(in "TE:Crupellarius (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Dimachaerus ''Two Sword Fighter'' (Martial Arts - Gladiators)" with {replacetags(in "TE:Dimachaerus ''Two Sword Fighter'' (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Eques ''Horseman'' (Martial Arts - Gladiators)" with {replacetags(in "TE:Eques ''Horseman'' (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Essedarius ''Charioteer'' (Martial Arts - Gladiators)" with {replacetags(in "TE:Essedarius ''Charioteer'' (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Hoplomachus (Martial Arts - Gladiators)" with {replacetags(in "TE:Hoplomachus (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Murmillo (Martial Arts - Gladiators)" with {replacetags(in "TE:Murmillo (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Provocator (Martial Arts - Gladiators)" with {replacetags(in "TE:Provocator (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Retiarius (Martial Arts - Gladiators)" with {replacetags(in "TE:Retiarius (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Samnes ''Samnite'' (Martial Arts - Gladiators)" with {replacetags(in "TE:Samnes ''Samnite'' (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scissor ''Cutter'' (Martial Arts - Gladiators)" with {replacetags(in "TE:Scissor ''Cutter'' (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Secutor (Martial Arts - Gladiators)" with {replacetags(in "TE:Secutor (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Thraex ''Thracian'' (Martial Arts - Gladiators)" with {replacetags(in "TE:Thraex ''Thracian'' (Martial Arts - Gladiators)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

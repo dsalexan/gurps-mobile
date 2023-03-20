@@ -1,0 +1,2812 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+		Training templates and equipment from Gurps Klingons
+Worldbook="Prime Directive"
+Requires=GURPS Prime Directive 4e.gdf
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 01-31-2009
+//  Requires GCA v4 or later!
+//  Created by Richard Brown
+// 
+//  This data file is for use with GURPS Prime Directive 4th edition version.
+//  It also contains information from GURPS Klingons and GURPS Romulans.
+//  These books are published by Amarillo Designs Bureau Inc. 
+//  
+//  
+// 
+// 
+//  GURPS Basic Set: Characters is copyright 1986, 1987, 1989, 1991, 1992,_
+// 					1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+// 					Steve Jackson Games Incorporated.
+//  GURPS Prime Directive 4e is copyright © 2005 by Amarillo Design Bureau, Inc.
+//  GURPS Prime Directive Klingons 4e is copyright © 2003 & 2005 by Amarillo Design Bureau, Inc.
+//  GURPS Prime Directive Romulans 4e is copyright © 2005 by Amarillo Design Bureau, Inc.
+//  
+//  
+//  
+// 
+// 
+//  Information in this file includes:
+// 	Racial Templates
+// 	New Talents created for the races
+// 
+***************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator
+// 
+//   Richard Brown - Major Work
+// 
+// 
+***************************************************************************
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated,_
+//  used with GCA by permission of Steve Jackson Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson
+//  Games Incorporated. This product includes copyrighted material from the
+//  GURPS game, which is used by permission of Steve Jackson Games
+//  Incorporated. All rights reserved by Steve Jackson Games Incorporated.
+*******************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<GPD>
+Code of Honor (Klingon), -10,page(PD:K84),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental)
+
+*******************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<GPD>
+Operations (Space), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Operations (Air), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Operations (Land), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Operations (Sea), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Tactics (Infantry), IQ/H,default(IQ - 6, SK:Strategy - 6),page(B224),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Military, Police)
+
+Tactics (Space), IQ/H,default(IQ - 6, SK:Strategy - 6),page(B224),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Military, Police)
+
+Klingon Two-Handed Sword, DX/H,page(B175),noresync(yes),parryat(@int(%level/2)+3+2),blockat(),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_GPD, Combat/Weapons - Melee Combat)
+
+*******************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Prime Directive, Prime Directive - Klingon Daggers>
+Klingon Kov-Ree Dagger,armordivisor(),basecost(45),baseweight(1),mode(swing|thrust), charminst(8 |8),damage(sw-2 |thr+1),damagebasedon(ST:Striking ST),damtype(cut |imp),dmg(sw |thr),familiarities(),lc(4),minst(8 |8),mods(Equipment),noresync(yes),parry(-1),precountcost(45),precountweight(1),reach(c |c,1),skillused(Knife, Shortsword-3, DX-5),techlvl(8),tl(),usernotes(a knife with spring out guard blades badly ballanced, sensationalized in trivids), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Zoolie "Claw"Dagger,noresync(yes),techlvl(8),basecost(30),baseweight(0.5),lc(4),damage(sw-2|thr),damtype(cut|imp),armordivisor( ),reach(c,1|c),parry(-1),minst(5),skillused(Knife, DX-4),mods(Equipment),tl(),usernotes(gives +1 to climbing skill),familiarities(),precountcost(30),precountweight(0.5),charminst(5),dmg(sw|thr),mode(swing|thrust),damagebasedon(ST:Striking ST), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Klingon Engineer Dagger,noresync(yes),techlvl(8),basecost(30),baseweight(0.5),lc(5),damage(sw-2),damtype(cut),armordivisor( ),reach(c,1),parry(-1),minst(5),skillused(Knife, DX-4),mods(Equipment),tl(),usernotes(gives +1 to Engeneer (Combat) skill),familiarities(),precountcost(30),precountweight(0.5),charminst(5),dmg(sw), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Klingon Sangroid Dagger,noresync(yes),techlvl(8),basecost(20),baseweight(0.25),lc(4),damage(sw-2|thr),damtype(cut|imp),armordivisor( ),reach(c,1|c),parry(-1),minst(5),skillused(Knife, DX-4),mods(Equipment),tl(),usernotes(),familiarities(),mode(swing|thrust),precountcost(20),precountweight(0.25),charminst(5),dmg(sw|thr), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Sildarian Push-Dagger,noresync(yes),techlvl(8),basecost(55),baseweight(1.5),lc(4),damage(sw-2|thr+2),damtype(cut|imp),armordivisor( ),reach(c),parry(-1),minst(10),skillused(Knife, DX-4),mods(Equipment),tl(),usernotes(),familiarities(),mode(swing|thrust),precountcost(55),precountweight(1.5),charminst(10),dmg(sw|thr), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Hildarian Claw Dagger,noresync(yes),techlvl(8),basecost(30),baseweight(1),lc(4),damage(sw-2|thr),damtype(cut|imp),armordivisor( ),reach(c,1|c,1),parry(-1),minst(8),skillused(Knife, DX-4),mods(Equipment),tl(),usernotes(),familiarities(),mode(swing|thrust),precountcost(30),precountweight(1),charminst(8),dmg(sw|thr), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Dunkar Slashing Wheel,armordivisor(),basecost(60),baseweight(1),charminst(5),damage(thr+2),damtype(cut),dmg(thr),familiarities(),lc(4),minst(5),mods(Equipment),noresync(yes),parry(+1),precountcost(60),precountweight(1),reach(c),skillused(knife, DX-4, Main-Gauche),techlvl(8),tl(),usernotes(), cat(Klingon Daggers, Melee Weapons, GPD)
+
+Klingon Bayonet,noresync(yes),techlvl(8),basecost(30),baseweight(1),lc(4),damage(sw-2|thr),damtype(cut|imp),armordivisor( ),reach(c,1|c,1),parry(-1),minst(8),skillused(Knife, DX-4),mods(Equipment),tl(),usernotes(can be fitted to most klingon disruptor and phaser rifles),familiarities(),mode(swing|thrust),precountcost(30),precountweight(1),charminst(8),dmg(sw|thr), cat(Klingon Daggers, Melee Weapons, GPD)
+
+<Prime Directive, Prime Directive - Klingon Ranged Weapons>
+Energy Rifle,noresync(yes),techlvl(9),basecost(4000),baseweight(9),lc(1),damage(5d),damtype(burn),armordivisor(2),acc(8),rangehalfdam(400),rangemax(800),rof(3),shots(60/C),minst(-†),bulk(-2),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(4000),precountweight(9),charminst(0),dmg(5), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Energy Pistol,noresync(yes),techlvl(9),basecost(1000),baseweight(3),lc(1),damage(3d),damtype(burn),armordivisor(2),acc(5),rangehalfdam(150),rangemax(300),rof(3),shots(30/C),minst(0),bulk(-6),rcl(1),skillused(Beam Weapons (Pistol)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1000),precountweight(3),charminst(0),dmg(3), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Disruptor Carbine,noresync(yes),techlvl(10),basecost(3800),baseweight(4),lc(0),damage(5d),damtype(burn),armordivisor(3),acc(7),rangehalfdam(400),rangemax(800),rof(5),shots(200/D),minst(0†),bulk(-4),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(3800),precountweight(4),charminst(0†),dmg(5), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Infantry Support Disruptor,noresync(yes),techlvl(10),basecost(9000),baseweight(16),lc(0),damage(10d+1),damtype(burn),armordivisor(5),acc(12),rangehalfdam(900),rangemax(1800),rof(12),shots(300/D),minst(9B†),bulk(-8),rcl(2),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(9000),precountweight(16),charminst(9B†),dmg(10), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Medium Grenade Launcher,noresync(yes),techlvl(10),basecost(4500),baseweight(6),lc(0),damage(Grenade),damtype(var),armordivisor( ),acc(6),rangehalfdam(-),rangemax(1200),rof(1),shots(30/C),minst(10†),bulk(-4),rcl(3),skillused( Guns (Grenade Launcher)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(4500),precountweight(6),charminst(10†),dmg(0), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Klingon Military Uniform,noresync(yes),techlvl(10),basecost(325),baseweight(6),lc(5),location(torso, arms, legs, feet, groin),dr(8/2),mods(Equipment),precountcost(325),precountweight(6),tl(),usernotes(),familiarities(),notes(dr 8, 2 vs Imp), cat(Armor - High- & Ultra- Tech Body Armor, Clothing, GPD)
+
+Under-Barrel GL,noresync(yes),techlvl(10),basecost(1250),baseweight(0.75),lc(0),damage(Grenade),damtype(var),armordivisor( ),acc(2),rangehalfdam(-),rangemax(600),rof(1),shots(12/C),minst(11†),bulk(0),rcl(2),skillused( Guns (Grenade Launcher)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1250),precountweight(0.75),charminst(11†),dmg(0), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Heavy Disruptor Pistol,noresync(yes),techlvl(11),basecost(2900),baseweight(2.5),lc(0),damage(4d+1),damtype(burn),armordivisor(3),acc(5),rangehalfdam(300),rangemax(600),rof(4),shots(240/D),minst(-),bulk(-1),rcl(1),skillused(Beam Weapons (Pistol)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(2900),precountweight(2.5),charminst(-),dmg(4), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Heavy Disruptor Rifle,noresync(yes),techlvl(11),basecost(5500),baseweight(7),lc(0),damage(6d),damtype(burn),armordivisor(3),acc(8),rangehalfdam(700),rangemax(1200),rof(6),shots(250/C),minst(-†),bulk(-6),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5500),precountweight(7),charminst(-†),dmg(6), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Heavy Suppourt Disruptor,noresync(yes),techlvl(11),basecost(11000),baseweight(25),lc(0),damage(13d+2),damtype(burn),armordivisor(5),acc(13),rangehalfdam(1100),rangemax(2200),rof(10!),shots(500/D),minst(12R†),bulk(-12),rcl(3),skillused(Gunner (Disruptors)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(11000),precountweight(25),charminst(12R†),dmg(13), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Disruptor Shotgun,noresync(yes),techlvl(11),basecost(6000),baseweight(7),lc(0),damage(80d),damtype(burn cone),armordivisor(3),acc(5),rangehalfdam(-),rangemax(80),rof(1),shots(40/D),minst(12†),bulk(-8),rcl(2),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(6000),precountweight(7),charminst(12†),dmg(80), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Concussion Mortar Round,noresync(yes),techlvl(10),basecost(40),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(40),precountweight(1),description(6dx6 burn dmg explosion range depends on launcher.), cat(GPD, Heavy Weapons, Klingon Weapons)
+
+Weapon Harness,noresync(yes),techlvl(9),basecost(500),baseweight(5),lc(4),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(500),precountweight(5), cat(GPD, Klingon Equipment)
+
+Klingon Blackout Gas,noresync(yes),techlvl(9),basecost(3),baseweight(0.5),lc(4),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(3),precountweight(0.5), cat(GPD, Klingon Equipment)
+
+Klingon Nerve Agent,noresync(yes),techlvl(9),basecost(5),baseweight(0.5),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(0.5),description(contact agent HT-4 to resist or suffer paralysis for 30-HT min and 4d toxic damage), cat(GPD, Klingon Equipment)
+
+Klingon Sleep Gas,noresync(yes),techlvl(9),basecost(5),baseweight(0.5),lc(2),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(0.5),description(roll HT-4 to resist ST drop to 0 and fall asleep sucess means lose 1 fatigue.  Sleep lasts 30-HT min), cat(GPD, Klingon Equipment)
+
+Klingon Paralysis Gas,noresync(yes),techlvl(9),basecost(10),baseweight(0.5),lc(2),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(10),precountweight(0.5), cat(GPD, Klingon Equipment)
+
+Klingon Kral Modular Vehicle,noresync(yes),techlvl(10),basecost(3500000),baseweight(vehicle),lc(4),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(3500000),precountweight(0), cat(GPD, Klingon Equipment, Vehicles - Ground)
+
+Heavy Disruptor Cannon,noresync(yes),techlvl(10),basecost(5600000),baseweight(3200),lc(0),damage(170d),damtype(burn),armordivisor(5),acc(0),rangehalfdam(12700),rangemax(38100),rof(8),shots(plant),minst(turret†),bulk(turret),rcl(1),skillused(Gunner (Disruptor)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5600000),precountweight(3200),charminst(turret†),dmg(170), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Medium Disruptor Cannon,noresync(yes),techlvl(10),basecost(4400000),baseweight(2000),lc(0),damage(120d),damtype(burn),armordivisor(5),acc(na),rangehalfdam(9000),rangemax(27000),rof(10),shots(plant),minst(turret†),bulk(turret),rcl(1),skillused(Gunner (Disruptors)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(4400000),precountweight(2000),charminst(turret†),dmg(120), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Light Disruptor Cannon,noresync(yes),techlvl(10),basecost(2800000),baseweight(800),lc(0),damage(76d),damtype(burn),armordivisor(5),acc(na),rangehalfdam(5700),rangemax(17100),rof(10),shots(power),minst(turret†),bulk(turret),rcl(1),skillused(Gunner (disruptors)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(2800000),precountweight(800),charminst(turret†),dmg(76), cat(GPD, Firearms - Ultra-Tech Firearms, Klingon Weapons)
+
+Klingon Kraz'nik Gravtank,noresync(yes),techlvl(10),basecost(16700000),baseweight(vehicle),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(16700000),precountweight(0), cat(GPD, Klingon Equipment, Vehicles - Ground)
+
+Klingon Two-Handed Sword,noresync(yes),techlvl(9),basecost(650),baseweight(4),lc(3),damage(sw+2),damtype(cut),armordivisor( ),reach(1, 2),parry(+2),minst(10†),skillused(Klingon Two-Handed Sword),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(650),precountweight(4),charminst(10†),dmg(sw), cat(Klingon Swords, Melee Weapons, GPD)
+
+Hilidarian Thrust Sword,noresync(yes),techlvl(9),basecost(400),baseweight(2),lc(4),damage(sw| thr),damtype(cut| imp),armordivisor( ),reach(1| 1),parry(+2),minst(7),skillused(Shortsword),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(400),precountweight(2),charminst(7),dmg(sw|thr),mode(swing| thrust), cat(Klingon Swords, Melee Weapons, GPD)
+
+Sildarian Combat Dagger,noresync(yes),techlvl(9),basecost(100),baseweight(2),lc(4),damage(sw| thr+2),damtype(cut| imp),armordivisor( ),reach(1| 1),parry(0),minst(7),skillused(Shortsword),mods(Equipment),tl(),usernotes(),familiarities(),mode(swing| thrust),precountcost(100),precountweight(2),charminst(7),dmg(sw|thr), cat(Klingon Swords, Melee Weapons, GPD)
+
+Agonizer,noresync(yes),techlvl(9),basecost(25),baseweight(0.5),lc(4),damage(HT-3),damtype(aff),armordivisor( ),reach(c),parry(none),minst(1),skillused(SK:Brawling),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(25),precountweight(0.5),charminst(1),dmg(),shots(40/B),description(victim rolls HT-3 to avoid physical stun and Will to avoid mental stun if phisicaly stunned victim looses 1d fat per second of contact and remains stunned for 20-HT seconds longer. If mentaly stunned must make a fright check), cat(Klingon Equipment, Melee Weapons, GPD)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Racial Templates, Racial Templates - Klingon Empire>
+Vergarians (Prime Directive), displaycost(42), cost(-10), cat(Racial Templates),_
+	description(),_
+	page(PD:K58),_
+	race(Vergarian),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:HT,_
+			+1 to ST:Perception,_
+			-1 to Tech Level _
+			),_
+		adds( _
+			AD:Ambidexterity,_
+			AD:Claws (Blunt Claws),_
+			AD:Clinging,_
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Enhanced Tracking,_
+			AD:Extra Legs (7+ Legs),_
+			AD:Improved G-Tolerance=2,_
+			AD:Infravision _
+				with "Unswitchable, -10, group(Infravision)",_
+			AD:Sealed,_
+			AD:Temperature Tolerance=15,_
+			AD:Vacuum Support,_
+			LA:Language (Spoken)=3 _
+				with "Native Speaker, -3, group(Language)",_
+			LA:Language (Written)=1 _
+				with "Native Speaker, -3, group(Language)",_
+			DI:Horizontal,_
+			DI:Intolerance (Klingons)=2,_
+			DI:Social Stigma (subjugated),_
+			DI:Social Stigma (Uneducated) _
+			)
+
+
+<Character Templates, Character Templates - Klingon Training>
+Klingon Paladin (Prime Directive),_
+	displaycost(207), cost(0),_
+	description(An Imperial apointee),_
+	page(PD:K32),_
+	noresync(yes),_
+	adds(_
+		{AD:Charisma}=3,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Higher Purpose (Emperor's Will)},_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Administrative Rank}=6,_
+		{AD:Security Clearance (Imperial)}=2,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Law (Klingon)}=8pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Savoir-Faire (Government)}=1pts_
+	),_
+	creates(_
+		{AD:Ally (Followers), 1/2/3/5/10,upto(5),levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points),mods(Ally, Frequency of Appearance, Favor),page(B36),tl(),usernotes(),familiarities(), cat(Mundane, Social, Mundane Social)}=3 _
+				with {"Frequency: roll of 15 or less (Almost all the time)", *3,shortname(15 or less),group(Frequency of Appearance),page(B36),level(1),valuenum(3)} _
+				and {"Group Size", *6/*8,levelnames(6-10, 11-20, 21-50, 51-100, 101-200, 201-500, "501-1,000", "1,001-2,000", "2,001-5,000", "5,001-10,000", "10,001-20,000", "20,001-50,000", "50,001-10,0000", "100,001-200,000", "200,001-500,000", "500,001-1,000,000"),group(Ally),page(B37),level(3),valuenum(10)},_
+		{AD:Patron (The Emperor), 10/15/20/25/30,mods(Frequency of Appearance, Patron, Favor),page(B72),upto(5),levelnames(,,,,),tl(),usernotes(),familiarities(),description(A powerful individual (usually built on at least 150% of the PC's starting points) or a fairly powerful organization (assets of at least 1,000 times starting wealth for the world): 10 POINTS An extremely powerful individual (built on at least twice the PC's starting points) or a powerful organization (assets of at least 10,000 times starting wealth): 15 POINTS An ultra-powerful individual (based on as many points as the GM wants!) or a very powerful organization (assets of at least 100,000 times starting wealth): 20 POINTS An extremely powerful organization (assets of at least 1 million times starting wealth): 25 POINTS A national government or giant multinational organization (net worth incalculable), or a true god who appears personally to intervene on your behalf: 30 POINTS ), cat(Mundane, Social, Mundane Social)}=5 _
+				with {"Equipment: no more than starting wealth", +50%,group(Patron),page(B73),level(1),valuenum(50)} _
+				and {"Frequency: roll of  9 or less (Fairly often)", *1,shortname(9 or less),group(Frequency of Appearance),level(1),valuenum(1)},_
+		{DI:Duty (Emperors Will), -2/-5/-10/-15,mods(Duty),page(B134),upto(4),levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"),tl(),usernotes(),familiarities(), cat(Mundane, Social, Mundane Social)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	)
+
+Klingon Fleet Warrior Basic Training (Prime Directive),_
+	displaycost(21), cost(0),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Security Clearance (military)}=1,_
+		{AD:Status}=1,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Astronomy}=1pts,_
+		{SK:Mathematics (Applied)}=1,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=2pts,_
+		{SK:Survival}=2pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose one Armory skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose one"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic Skill for 1 pt"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose a sword skill for two points Ethnic Klingons usually take Klingon Two-Handed Sword, Subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	)
+
+Klingon DSF Academy (Prime Directive),_
+	displaycost(60), cost(0),_
+	description(includes Basic training),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Security Clearance (military)}=2,_
+		{AD:Status}=2,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Astronomy}=1pts,_
+		{SK:Mathematics (Applied)}=1,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=2pts,_
+		{SK:Survival}=2pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Legal Enforcement Powers}=1,_
+		{SK:Administration}=1pts,_
+		{SK:History (Empire)}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Navigation (Space)}=1pts,_
+		{SK:Forward Observer}=1pts,_
+		{SK:Piloting (Shuttlecraft)}=2pts_
+	),_
+	select1(_
+		text("Chose one Armory skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose one"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic Skill for 1 pt"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose a sword skill for two points Ethnic Klingons usually take Klingon Two-Handed Sword, Subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	),_
+	select6(_
+		text("Chose a Gunner Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Disruptors),_
+			SK:Gunner (Drones/Missiles),_
+			SK:Gunner (Personal Phasers),_
+			SK:Gunner (Rockets),_
+			SK:Gunner (Shipboard Phasers),_
+			SK:Gunner (Stasis Field Device)_
+		)_
+	),_
+	select7(_
+		text("Chose a Tactics skill for four points"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	),_
+	select8(_
+		text("Choose an Engeneer Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	)
+
+Klingon DSF Command School (Prime Directive),_
+	displaycost(73), cost(0),_
+	description(A qualified watch officer includes basic training and accademy),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Security Clearance (Military)}=3,_
+		{AD:Status}=3,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Administration}=2pts,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=8pts,_
+		{SK:Leadership}=4pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Astronomy}=1pts,_
+		{SK:Navigation (Space)}=2pts,_
+		{SK:Operations (Space)}=4pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=4pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Beam Weapons skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Pick two electronics operations skills for 2 points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Pick a sword skill for two points.  Ethnic Klingons usualy take Klingon Two-Handed Sword, subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	)
+
+Klingon Marine Command School (Prime Directive),_
+	displaycost(69), cost(0),_
+	description(A Klingon marine major or higher rank includes the fleet basic training and DSF academy),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Security Clearance (military)}=3,_
+		{AD:Status}=3,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Administration}=2pts,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=8pts,_
+		{SK:Leadership}=4pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Astronomy}=1pts,_
+		{SK:Operations (Land)}=4pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Navigation (Land)}=2pts_
+	),_
+	select1(_
+		text("Chose an Armoury Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Beam Weapons skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Pick two electronics operations skills for 2 points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Pick a sword skill for two points.  Ethnic Klingons usualy take Klignon Two-Handed Sword, subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	)
+
+Klingon Army Basic Training (Prime Directive),_
+	displaycost(22), cost(0),_
+	description(A member of the Klingon defensive forces.),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Seniority}=1,_
+		{AD:Security Clearance (military)}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Brawling}=1pts,_
+		{SK:Camouflage}=1pts,_
+		{SK:Climbing}=2pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Swimming}=1pts_
+	),_
+	select1(_
+		text("Chose an Armory Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select3(_
+		text("Chose an electronics skil for at least two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose one of the following"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Guns (Submachine Gun),_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select5(_
+		text("Chose a Gunner skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Disruptors),_
+			SK:Gunner (Drones/Missiles),_
+			SK:Gunner (Personal Phasers),_
+			SK:Gunner (Rockets),_
+			SK:Gunner (Shipboard Phasers),_
+			SK:Gunner (Stasis Field Device)_
+		)_
+	),_
+	select6(_
+		text("Chose a mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select7(_
+		text("Chose a sword skill for two points.  Ethnic Klingons usualy take Klingon Two-Handed Sword, subject races rarely do"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	)
+
+Klingon Army NCO Training (Prime Directive),_
+	displaycost(31), cost(0),_
+	description(A member of the Klingon defensive forces. Includes the basic training template),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=2,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Seniority}=1,_
+		{AD:Security Clearance (military)}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Brawling}=1pts,_
+		{SK:Camouflage}=1pts,_
+		{SK:Climbing}=2pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Navigation (Land)}=1pts_
+	),_
+	select1(_
+		text("Chose an Armory Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select3(_
+		text("Chose an electronics skil for at least two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose one of the following"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Guns (Submachine Gun),_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select5(_
+		text("Chose a Gunner skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Disruptors),_
+			SK:Gunner (Drones/Missiles),_
+			SK:Gunner (Personal Phasers),_
+			SK:Gunner (Rockets),_
+			SK:Gunner (Shipboard Phasers),_
+			SK:Gunner (Stasis Field Device)_
+		)_
+	),_
+	select6(_
+		text("Chose a mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select7(_
+		text("Chose a sword skill for two points.  Ethnic Klingons usualy take Klingon Two-Handed Sword, subject races rarely do"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	),_
+	select8(_
+		text("Chose a ground tactics skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry)_
+		)_
+	)
+
+Klingon Army Academy (Prime Directive),_
+	displaycost(62), cost(0),_
+	description(A officer of the Klingon defensive forces. Includes the basic training template.),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Seniority}=1,_
+		{AD:Security Clearance (military)}=2,_
+		{AD:Status}=2,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Brawling}=1pts,_
+		{SK:Camouflage}=1pts,_
+		{SK:Climbing}=2pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=2pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Leadership}=2pts,_
+		{SK:Navigation (Land)}=1pts,_
+		{AD:Legal Enforcement Powers}=1,_
+		{SK:Administration}=1pts,_
+		{SK:Forward Observer}=1pts,_
+		{SK:History (Empire)}=1pts,_
+		{SK:Soldier}=4pts_
+	),_
+	select1(_
+		text("Chose an Armory Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select3(_
+		text("Chose an electronics skil for at least two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose one of the following"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Guns (Submachine Gun),_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select5(_
+		text("Chose a Gunner skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Disruptors),_
+			SK:Gunner (Drones/Missiles),_
+			SK:Gunner (Personal Phasers),_
+			SK:Gunner (Rockets),_
+			SK:Gunner (Shipboard Phasers),_
+			SK:Gunner (Stasis Field Device)_
+		)_
+	),_
+	select6(_
+		text("Chose a mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select7(_
+		text("Chose a sword skill for two points.  Ethnic Klingons usualy take Klingon Two-Handed Sword, subject races rarely do"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	),_
+	select8(_
+		text("Chose a ground tactics skill for four points"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry)_
+		)_
+	)
+
+Klingon Army Command School (Prime Directive),_
+	displaycost(86), cost(0),_
+	description(A senior officer of the Klingon defensive forces. Includes the basic training and academy templates.),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Military Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (military)}=1,_
+		{AD:Seniority}=1,_
+		{AD:Security Clearance (military)}=3,_
+		{AD:Status}=3,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Brawling}=1pts,_
+		{SK:Camouflage}=1pts,_
+		{SK:Climbing}=2pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=4pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Leadership}=4pts,_
+		{SK:Navigation (Land)}=2pts,_
+		{AD:Legal Enforcement Powers}=1,_
+		{SK:Administration}=2pts,_
+		{SK:Forward Observer}=1pts,_
+		{SK:History (Empire)}=1pts,_
+		{SK:Soldier}=8pts,_
+		{SK:Operations (Land)}=4pts_
+	),_
+	select1(_
+		text("Chose an Armory Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select3(_
+		text("Chose an electronics skil for at least two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose one of the following"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Guns (Submachine Gun),_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select5(_
+		text("Chose a Gunner skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Disruptors),_
+			SK:Gunner (Drones/Missiles),_
+			SK:Gunner (Personal Phasers),_
+			SK:Gunner (Rockets),_
+			SK:Gunner (Shipboard Phasers),_
+			SK:Gunner (Stasis Field Device)_
+		)_
+	),_
+	select6(_
+		text("Chose a mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select7(_
+		text("Chose a sword skill for two points.  Ethnic Klingons usualy take Klingon Two-Handed Sword, subject races rarely do"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	),_
+	select8(_
+		text("Chose a ground tactics skill for four points"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry)_
+		)_
+	)
+
+Klingon Technician Basic Training - Fleet (Prime Directive),_
+	displaycost(17), cost(0),_
+	description(a member of the Klingon military who isn't part of the warior caste.  The character should also increase skills on this template or add new usefull skills worth up to 10 points, this can often be accomplished by adding a professional certification),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Military Rank}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Security Clearance (military)}=1,_
+		{AD:Status}=1,_
+		{AD:Seniority}=1,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Astronomy}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an infantry weapon"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Rifle),_
+			SK:Guns (Pistol),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Light Anti-Armor Weapon)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each."),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose an Electronics Repair skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Repair (Communications),_
+			SK:Electronics Repair (Computers),_
+			SK:Electronics Repair (Disruptors),_
+			SK:Electronics Repair (Drones/Missiles),_
+			SK:Electronics Repair (Electronic Warfare),_
+			SK:Electronics Repair (Media),_
+			SK:Electronics Repair (Medical),_
+			SK:Electronics Repair (Personal Phasers),_
+			SK:Electronics Repair (Scientific),_
+			SK:Electronics Repair (Security),_
+			SK:Electronics Repair (Sensors),_
+			SK:Electronics Repair (Shields),_
+			SK:Electronics Repair (Stasis Field Device),_
+			SK:Electronics Repair (Surveillance),_
+			SK:Electronics Repair (Tractor Beam),_
+			SK:Electronics Repair (Transporter),_
+			SK:Electronics Repair (Tricorder)_
+		)_
+	),_
+	select5(_
+		text("Chose a mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	)
+
+Klingon Technician Basic Training - Army (Prime Directive),_
+	displaycost(8), cost(0),_
+	description(a member of the Klingon military who isn't part of the warior caste.  The character should also increase skills on this template or add new usefull skills worth up to 10 points, this can often be acomplished by adding a profesional certification),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Military Rank}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Security Clearance (military)}=1,_
+		{AD:Status}=1,_
+		{AD:Seniority}=1,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Scrounging}=1pts,_
+		{SK:Soldier}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an infantry weapon"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Rifle),_
+			SK:Guns (Pistol),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Light Anti-Armor Weapon)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each."),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose an Electronics Repair skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Repair (Communications),_
+			SK:Electronics Repair (Computers),_
+			SK:Electronics Repair (Disruptors),_
+			SK:Electronics Repair (Drones/Missiles),_
+			SK:Electronics Repair (Electronic Warfare),_
+			SK:Electronics Repair (Media),_
+			SK:Electronics Repair (Medical),_
+			SK:Electronics Repair (Personal Phasers),_
+			SK:Electronics Repair (Scientific),_
+			SK:Electronics Repair (Security),_
+			SK:Electronics Repair (Sensors),_
+			SK:Electronics Repair (Shields),_
+			SK:Electronics Repair (Stasis Field Device),_
+			SK:Electronics Repair (Surveillance),_
+			SK:Electronics Repair (Tractor Beam),_
+			SK:Electronics Repair (Transporter),_
+			SK:Electronics Repair (Tricorder)_
+		)_
+	),_
+	select5(_
+		text("Chose a mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	)
+
+Klingon Technician Academy - Army (Prime Directive),_
+	displaycost(35), cost(0),_
+	description(a Warrant Officer of the Klingon military who isn't part of the warior caste.  The character should also increase skills on this template or add new usefull skills worth up to 20 points often accomplished by adding a profesinal certification),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Military Rank}=3,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Security Clearance (military)}=2,_
+		{AD:Status}=2,_
+		{AD:Seniority}=1,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Scrounging}=1pts,_
+		{SK:Soldier}=1pts,_
+		{AD:Legal Enforcement Powers}=1,_
+		{SK:Administration}=1pts,_
+		{SK:History (Empire)}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an infantry weapon"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Rifle),_
+			SK:Guns (Pistol),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Light Anti-Armor Weapon)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each."),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose an Electronics Repair skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Repair (Communications),_
+			SK:Electronics Repair (Computers),_
+			SK:Electronics Repair (Disruptors),_
+			SK:Electronics Repair (Drones/Missiles),_
+			SK:Electronics Repair (Electronic Warfare),_
+			SK:Electronics Repair (Media),_
+			SK:Electronics Repair (Medical),_
+			SK:Electronics Repair (Personal Phasers),_
+			SK:Electronics Repair (Scientific),_
+			SK:Electronics Repair (Security),_
+			SK:Electronics Repair (Sensors),_
+			SK:Electronics Repair (Shields),_
+			SK:Electronics Repair (Stasis Field Device),_
+			SK:Electronics Repair (Surveillance),_
+			SK:Electronics Repair (Tractor Beam),_
+			SK:Electronics Repair (Transporter),_
+			SK:Electronics Repair (Tricorder)_
+		)_
+	),_
+	select5(_
+		text("Chose a mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	)
+
+Klingon Technician Academy - Fleet (Prime Directive),_
+	displaycost(37), cost(0),_
+	description(a Warrant Officer of the Klingon military who isn't part of the warior caste.  The character should also increase skills on this template or add new usefull skills worth up to 20 points usualy accomplished by adding a profesional certification),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Military Rank}=3,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Security Clearance (military)}=2,_
+		{AD:Status}=2,_
+		{AD:Seniority}=1,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{AD:Legal Enforcement Powers}=1,_
+		{SK:Administration}=1pts,_
+		{SK:History (Empire)}=1pts,_
+		{SK:Astronomy}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an infantry weapon"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Rifle),_
+			SK:Guns (Pistol),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Light Anti-Armor Weapon)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each."),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose an Electronics Repair skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Repair (Communications),_
+			SK:Electronics Repair (Computers),_
+			SK:Electronics Repair (Disruptors),_
+			SK:Electronics Repair (Drones/Missiles),_
+			SK:Electronics Repair (Electronic Warfare),_
+			SK:Electronics Repair (Media),_
+			SK:Electronics Repair (Medical),_
+			SK:Electronics Repair (Personal Phasers),_
+			SK:Electronics Repair (Scientific),_
+			SK:Electronics Repair (Security),_
+			SK:Electronics Repair (Sensors),_
+			SK:Electronics Repair (Shields),_
+			SK:Electronics Repair (Stasis Field Device),_
+			SK:Electronics Repair (Surveillance),_
+			SK:Electronics Repair (Tractor Beam),_
+			SK:Electronics Repair (Transporter),_
+			SK:Electronics Repair (Tricorder)_
+		)_
+	),_
+	select5(_
+		text("Chose a mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	)
+
+Klingon ISF Space & Orbital Division Low ranking (Prime Directive),_
+	displaycost(4), cost(0),_
+	description(a member of the Klingon Internal Security Forces and the fleet. must also have a fleet enlisted officer or command template below NCO rank),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{SK:Criminology}=1pts,_
+		{SK:Professional Skill (Law Enforcement)}=1pts_
+	)
+
+Klingon ISF Space & Orbital Division (Prime Directive),_
+	displaycost(4), cost(0),_
+	description(a member of the Klingon Internal Security Forces and the fleet. must also have a fleet enlisted officer or command template rank NCO or higher),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{SK:Criminology}=2pts,_
+		{SK:Professional Skill (Law Enforcement)}=2pts_
+	)
+
+Klingon Police Basic Training (Prime Directive),_
+	displaycost(15), cost(0),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance (police)}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (police)}=2,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Forensics}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Criminal)}=2pts,_
+		{SK:Professional Skill (Law Enforcement)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an electronics operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Klingon Police Officer Training (Prime Directive),_
+	displaycost(27), cost(0),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance (police)}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (police)}=2,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Forensics}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Criminal)}=12pts,_
+		{SK:Professional Skill (Law Enforcement)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Administration}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an electronics operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Klingon Ordinance Police Officer Training (Prime Directive),_
+	displaycost(22), cost(0),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance (police)}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (police)}=2,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Criminal)}=16pts,_
+		{SK:Professional Skill (Law Enforcement)}=2pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Administration}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an electronics operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Klingon Ordinance Police Basic Training (Prime Directive),_
+	displaycost(10), cost(0),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance (police)}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (police)}=2,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Criminal)}=2pts,_
+		{SK:Professional Skill (Law Enforcement)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an electronics operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Klingon Enlisted Merchant Marine Veteran (Prime Directive),_
+	displaycost(16), cost(0),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Merchant Rank}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (Merchant Marine)}=1,_
+		{AD:Status}=1,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Astronomy}=1pts,_
+		{SK:Mathematics (Applied)}=1,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=2pts,_
+		{SK:Survival}=2pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose one Armory skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose one"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic Skill for 1 pt"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose a sword skill for two points Ethnic Klingons usually take Klingon Two-Handed Sword, Subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	)
+
+Klingon Merchant Marine Veteran Officer (Prime Directive),_
+	displaycost(49), cost(0),_
+	description(A Klingon Vetran now serving as a Merchant Marine),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Merchant Rank}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (merchant marine)}=1,_
+		{AD:Status}=2,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Astronomy}=1pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Accounting}=4pts,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=2pts,_
+		{SK:Survival}=2pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=1pts,_
+		{SK:History (Empire)}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Navigation (Space)}=1pts,_
+		{SK:Forward Observer}=1pts,_
+		{SK:Piloting (Shuttlecraft)}=2pts_
+	),_
+	select1(_
+		text("Chose one Armory skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose one"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic Skill for 1 pt"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose a sword skill for two points Ethnic Klingons usually take Klingon Two-Handed Sword, Subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	),_
+	select6(_
+		text("Chose a Gunner Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Disruptors),_
+			SK:Gunner (Drones/Missiles),_
+			SK:Gunner (Personal Phasers),_
+			SK:Gunner (Rockets),_
+			SK:Gunner (Shipboard Phasers),_
+			SK:Gunner (Stasis Field Device)_
+		)_
+	),_
+	select7(_
+		text("Chose a Tactics skill for four points"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	),_
+	select8(_
+		text("Choose an Engeneer Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	)
+
+Klingon Merchant Marine Command Veteran (Prime Directive),_
+	displaycost(67), cost(0),_
+	description(A qualified watch officer in the Klingon Merchant marines, also a military vetran),_
+	page(PD:K80),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=2,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Merchant Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Reputation (Merchant Marine)}=1,_
+		{AD:Status}=3,_
+		{AD:Seniority}=1,_
+		{DI:Code of Honor (Klingon)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Administration}=2pts,_
+		{SK:Brawling}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Engineer (Electronics)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Klingon)}=8pts,_
+		{SK:Leadership}=4pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Accounting}=4pts,_
+		{SK:Astronomy}=1pts,_
+		{SK:Navigation (Space)}=2pts,_
+		{SK:Operations (Space)}=4pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Shortsword}=1pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=4pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury Skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Beam Weapons skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle)_
+		)_
+	),_
+	select3(_
+		text("Pick two electronics operations skills for 2 points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Pick a sword skill for two points.  Ethnic Klingons usualy take Klingon Two-Handed Sword, subject races rarely do."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Broadsword,_
+			SK:Rapier,_
+			SK:Saber,_
+			SK:Smallsword,_
+			SK:Klingon Two-Handed Sword,_
+			SK:Two-Handed Sword_
+		)_
+	)
+
+Klingon Merchant Marine Basic Training - Non-Vet (Prime Directive),_
+	displaycost(10), cost(0),_
+	description(a enlisted member of the Klingon Merchant marines who never served in the military),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Merchant Rank}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Security Clearance (military)}=1,_
+		{AD:Status}=1,_
+		{AD:Seniority}=1,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Astronomy}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an infantry weapon"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Rifle),_
+			SK:Guns (Pistol),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Light Anti-Armor Weapon)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each."),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose an Electronics Repair skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Repair (Communications),_
+			SK:Electronics Repair (Computers),_
+			SK:Electronics Repair (Disruptors),_
+			SK:Electronics Repair (Drones/Missiles),_
+			SK:Electronics Repair (Electronic Warfare),_
+			SK:Electronics Repair (Media),_
+			SK:Electronics Repair (Medical),_
+			SK:Electronics Repair (Personal Phasers),_
+			SK:Electronics Repair (Scientific),_
+			SK:Electronics Repair (Security),_
+			SK:Electronics Repair (Sensors),_
+			SK:Electronics Repair (Shields),_
+			SK:Electronics Repair (Stasis Field Device),_
+			SK:Electronics Repair (Surveillance),_
+			SK:Electronics Repair (Tractor Beam),_
+			SK:Electronics Repair (Transporter),_
+			SK:Electronics Repair (Tricorder)_
+		)_
+	),_
+	select5(_
+		text("Chose a mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	)
+
+Klingon Merchant Marine Academy - Non-Vet (Prime Directive),_
+	displaycost(36), cost(0),_
+	description(A officer of the Klingon merchant marine service who never served in the millitary),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Merchant Rank}=3,_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Security Clearance (military)}=2,_
+		{AD:Status}=2,_
+		{AD:Seniority}=1,_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Law (Klingon)}=1pts,_
+		{SK:Accounting}=4pts,_
+		{SK:Administration}=1pts,_
+		{SK:History (Empire)}=1pts,_
+		{SK:Astronomy}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Spacer}=1pts,_
+		{SK:Vacc Suit}=1pts_
+	),_
+	select1(_
+		text("Chose an Armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Drones/Missles),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Stasis Field Device),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an infantry weapon"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Beam Weapons (Pistol),_
+			SK:Beam Weapons (Rifle),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Rifle),_
+			SK:Guns (Pistol),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Light Anti-Armor Weapon)_
+		)_
+	),_
+	select3(_
+		text("Chose two Electronics Operation skills for two points each."),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select4(_
+		text("Chose an Electronics Repair skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Repair (Communications),_
+			SK:Electronics Repair (Computers),_
+			SK:Electronics Repair (Disruptors),_
+			SK:Electronics Repair (Drones/Missiles),_
+			SK:Electronics Repair (Electronic Warfare),_
+			SK:Electronics Repair (Media),_
+			SK:Electronics Repair (Medical),_
+			SK:Electronics Repair (Personal Phasers),_
+			SK:Electronics Repair (Scientific),_
+			SK:Electronics Repair (Security),_
+			SK:Electronics Repair (Sensors),_
+			SK:Electronics Repair (Shields),_
+			SK:Electronics Repair (Stasis Field Device),_
+			SK:Electronics Repair (Surveillance),_
+			SK:Electronics Repair (Tractor Beam),_
+			SK:Electronics Repair (Transporter),_
+			SK:Electronics Repair (Tricorder)_
+		)_
+	),_
+	select5(_
+		text("Chose a mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	)
+
+GRU - Klingon Military inteligence (Prime Directive),_
+	displaycost(10), cost(0),_
+	description(Add this template to Any fleet Marine or army template.),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Security Clearance (military)}=4,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Research}=1pts_
+	)
+
+KGB - Klingon Galactic Beureau foreign intelligence (Prime Directive),_
+	displaycost(29), cost(0),_
+	description(Add this template to Any fleet, Marine, army, ESS, or Police  template.),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Security Clearance (military)}=4,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Research}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Shadowing}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Streetwise}=1pts_
+	)
+
+MVD - Klingon Police Inteligence (Prime Directive),_
+	displaycost(29), cost(0),_
+	description(Add this template to Any Police  template.),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Security Clearance (military)}=4,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Research}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Shadowing}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Streetwise}=1pts_
+	)
+
+ESS - Klingon Secret Police (Prime Directive),_
+	displaycost(22), cost(0),_
+	description(Add this template to Any Fleet, Marine or Police  template.),_
+	page(PD:K81),_
+	noresync(yes),_
+	adds(_
+		{AD:Security Clearance (military)}=4,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Research}=1pts,_
+		{DI:Reputation (Feared)}=2,_
+		{SK:Intimidation}=2pts_
+	)
+
+*******************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:ESS - Klingon Secret Police (Prime Directive)" with {replacetags(in "TE:ESS - Klingon Secret Police (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:GRU - Klingon Military inteligence (Prime Directive)" with {replacetags(in "TE:GRU - Klingon Military inteligence (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:KGB - Klingon Galactic Beureau foreign intelligence (Prime Directive)" with {replacetags(in "TE:KGB - Klingon Galactic Beureau foreign intelligence (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Army Academy (Prime Directive)" with {replacetags(in "TE:Klingon Army Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Army Basic Training (Prime Directive)" with {replacetags(in "TE:Klingon Army Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Army Command School (Prime Directive)" with {replacetags(in "TE:Klingon Army Command School (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Army NCO Training (Prime Directive)" with {replacetags(in "TE:Klingon Army NCO Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon DSF Academy (Prime Directive)" with {replacetags(in "TE:Klingon DSF Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon DSF Command School (Prime Directive)" with {replacetags(in "TE:Klingon DSF Command School (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Enlisted Merchant Marine Veteran (Prime Directive)" with {replacetags(in "TE:Klingon Enlisted Merchant Marine Veteran (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Fleet Warrior Basic Training (Prime Directive)" with {replacetags(in "TE:Klingon Fleet Warrior Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon ISF Space & Orbital Division (Prime Directive)" with {replacetags(in "TE:Klingon ISF Space & Orbital Division (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon ISF Space & Orbital Division Low ranking (Prime Directive)" with {replacetags(in "TE:Klingon ISF Space & Orbital Division Low ranking (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Marine Command School (Prime Directive)" with {replacetags(in "TE:Klingon Marine Command School (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Merchant Marine Academy - Non-Vet (Prime Directive)" with {replacetags(in "TE:Klingon Merchant Marine Academy - Non-Vet (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Merchant Marine Basic Training - Non-Vet (Prime Directive)" with {replacetags(in "TE:Klingon Merchant Marine Basic Training - Non-Vet (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Merchant Marine Command Veteran (Prime Directive)" with {replacetags(in "TE:Klingon Merchant Marine Command Veteran (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Merchant Marine Veteran Officer (Prime Directive)" with {replacetags(in "TE:Klingon Merchant Marine Veteran Officer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Ordinance Police Basic Training (Prime Directive)" with {replacetags(in "TE:Klingon Ordinance Police Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Ordinance Police Officer Training (Prime Directive)" with {replacetags(in "TE:Klingon Ordinance Police Officer Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Paladin (Prime Directive)" with {replacetags(in "TE:Klingon Paladin (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Police Basic Training (Prime Directive)" with {replacetags(in "TE:Klingon Police Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Police Officer Training (Prime Directive)" with {replacetags(in "TE:Klingon Police Officer Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Technician Academy - Army (Prime Directive)" with {replacetags(in "TE:Klingon Technician Academy - Army (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Technician Academy - Fleet (Prime Directive)" with {replacetags(in "TE:Klingon Technician Academy - Fleet (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Technician Basic Training - Army (Prime Directive)" with {replacetags(in "TE:Klingon Technician Basic Training - Army (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Klingon Technician Basic Training - Fleet (Prime Directive)" with {replacetags(in "TE:Klingon Technician Basic Training - Fleet (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:MVD - Klingon Police Inteligence (Prime Directive)" with {replacetags(in "TE:MVD - Klingon Police Inteligence (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

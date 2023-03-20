@@ -1,0 +1,2049 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		This data file contains information taken from the GURPS Gun Fu sourcebook. _
+		Gun Fu is Copyright © 2011 by Steve Jackson Games _
+		Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+Incomplete=Yes
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Gun Fu 4e.gdf
+//  Created: April 24, 2011
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Gun Fu sourcebook.
+//  GURPS Gun Fu is Copyright © 2009 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+//  
+//  Information in this file includes:
+// 	New Perks
+// 	New Skills
+// 	New Styles
+// 	New Equipment
+// 
+*******************************************************************************************************************
+// 
+//  Alex Camacho	- Any mistakes can be blamed on him (Data File Coordinator)
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  quietlyscheming@gmail.com or Alex1976 on http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is copyright (c) 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Gun Perks>
+Style Familiarity (Double Trouble), 1, cat(Style Familiarities), page(GF31)
+Style Familiarity (Future Kill), 1, cat(Style Familiarities), page(GF32)
+Style Familiarity (One-Man Army), 1, cat(Style Familiarities), page(GF32)
+Style Familiarity (Sniper), 1, cat(Style Familiarities), page(GF32)
+Style Familiarity (Ultimate Shootist), 1, cat(Style Familiarities), page(GF32)
+Style Familiarity (Way of the West), 1, cat(Style Familiarities), page(GF32)
+Style Familiarity (Way of the Galaxy), 1, cat(Style Familiarities), page(GF35)
+
+Akimbo (%Gun Skill%), 1, cat(Gun Perks), page(GF17), needs(SK:%Gun SkillList%, AD:Gunslinger),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Akimbo: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Area Defense, 1, cat(Gun Perks), page(GF17), needs(AD:Gunslinger), usernotes(Your basic Parry is (shooting skill/2) + 3.), description(You can shoot down incoming projectiles! You must specialize by shooting skill. Your basic Parry is (shooting skill/2) + 3. Modifiers: -15 for the small target and short time window; +1 for Combat Reflexes or +6 for Enhanced Time Sense; Enhanced Parry (Area Defense), if the GM permits that advantage; full Accuracy, regardless of weapon, if you have Gunslinger; any rapid-fire bonus (you may fire up to your gun's RoF). Any success stops the projectile. Any failure doesn't! This perk is highly cinematic – don't sweat details like where misses go or the target's exact SM and speed. However, the GM is free to make rockets and missiles (rather than bullets, daggers, or arrows) easier to hit, or to limit this perk to such targets only.),_
+	x(#InputToTagReplace("Please specialize: Ex. Pistol, Shotgun, Submachine Gun, etc." , nameext, ,"Area Defense"))
+Armorer's Gift, 1, page(HT249, GF17), cat(Gun Perks),_
+	x(#InputToTagReplace("Please specialize:" , nameext, ,"Armorer's Gift"))
+Army of One, 1, page(GF17), cat(Gun Perks), needs(AD:Gunslinger), description(You can shoot machine guns fromthe hip and fire shoulder-launched missiles while steering a car with the other hand. When wielding a heavy weapon with any Artillery or Gunner skill – or with the GL, LAW, or LMG specialty of Guns – you may ignore any † (two-handed) or M (mounted) note on its ST, and all extra crew requirements, as long as you meet the ST listed for it in the table. This lets you use it one-handed, sans loaders or assistants.)
+Bank shot (%Gun Skill%), 1, cat(Gun Perks), page(GF17), needs(SK:%Gun SkillList%, AD:Gunslinger), description(You can ricochet bullets off surfaces to hit a target behind a hostage, around a corner, etc. The DR and HP of the things you're bouncing shots off aren't important – what matters is that these objects are convincingly hard. Roll to hit as usual, using the full range along the indirect path to the target, and add -2 per ricochet. You must specialize by shooting skill.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Bank shot: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Bend the Bullet (%Gun Skill%), 1, cat(Gun Perks), page(GF17), needs(SK:%Gun SkillList%, AD:Gunslinger), description(With a flick of the wrist, you can give your bullets a curving trajectory much like that of a spinning bowling ball or cue ball. This allows you to ignore -2 of the total penalty for cover, intervening figures, and target posture (see Target, p. B548). You must specialize by shooting skill. The GM decides whether beams can curve!),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Bend the Bullet: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Cinematic Knockback, 1, page(HT249, GF17), needs(AD:Gunslinger), Description(If the campaign doesn't generally use Cinematic Knockback (p. B417), being able to produce that effect is a perk. Note that movies are the only place you'll see this perk in action, because it's totally unrealistic! Even large-caliber rifles and autocannon can't push around a human. The "knockback" some people claim to have witnessed is the victim jumping in surprise or staggering from injuries. You must specialize by shooting skill. Not just any gun will do, though! The weaponmust be covered by your specialty and suitably imposing: a 12-gauge, not a runty .410; a .44Magnum, not a dinky .22.), cat(Gun Perks),_
+	x(#InputToTagReplace("Please specialize: Ex. Pistol, Shotgun, Rifle, etc." , nameext, ,"Cinematic Knockback"))
+Cinematic Option, 1, page(HT249, GF17), needs(AD:Gunslinger), Description(The alternatives described under Cinematic Combat Rules (p. B417) generally don't cost points because they're campaign options: Everybody uses them or nobody does. The GM may wish to allow certain rules that normally aren't used in the campaign on a PC-by-PC basis, however. Access to each of these is a perk. Suitable choices for individual character abilities are Bulletproof Nudity, Cinematic Knockback, Flesh Wounds, Infinite Ammunition, and TV Action Violence. The GM should require specialization by skill for perks that modify attacks; e.g., Cinematic Knockback. For detailed examples, see Cinematic Knockback (above) and Infinite Ammunition (p. 19-20). However, any perk marked ‡ could work this way.), cat(Gun Perks),_
+	x(#InputToTagReplace("Please specialize:" , nameext, ,"Cinematic Option"))
+Cinematic Option (Bulletproof Nudity), 1, page(417, GF17), cat(Gun Perks), description(The alternatives described under Cinematic Combat Rules (p. B417) generally don't cost points because they're campaign options: Everybody uses them or nobody does. The GM may wish to allow certain rules that normally aren't used in the campaign on a PC-by-PC basis, however. Access to each of these is a perk. Suitable choices for individual character abilities are Bulletproof Nudity, Cinematic Knockback, Flesh Wounds, Infinite Ammunition, and TV Action Violence. The GM should require specialization by skill for perks that modify attacks; e.g., Cinematic Knockback. For detailed examples, see Cinematic Knockback (above) and Infinite Ammunition (p. 19-20). However, any perk marked ‡ could work this way. PCs with Attractive or better appearance can get a bonus to active defenses simply by undressing! Any outfit that bares legs, chest, or midriff is +1. Just a loincloth or skimpy swimwear is +2. Topless females get an extra +1. Total nudity gives no further bonus to defense, but adds +1 to Move and +2 water Move.)
+Cinematic Option (TV Action Violence), 1, page(417, GF17), cat(Gun Perks), description(The alternatives described under Cinematic Combat Rules (p. B417) generally don't cost points because they're campaign options: Everybody uses them or nobody does. The GM may wish to allow certain rules that normally aren't used in the campaign on a PC-by-PC basis, however. Access to each of these is a perk. Suitable choices for individual character abilities are Bulletproof Nudity, Cinematic Knockback, Flesh Wounds, Infinite Ammunition, and TV Action Violence. The GM should require specialization by skill for perks that modify attacks; e.g., Cinematic Knockback. For detailed examples, see Cinematic Knockback (above) and Infinite Ammunition (p. 19-20). However, any perk marked ‡ could work this way. If struck by a potentially lethal attack (including a rapid-fire attack that inflicts multiple hits), the hero can choose to convert his failed defense roll into a success. This costs him 1 FP and he loses his next turn. The hero cannot spend FP to avoid unarmed attacks or melee or thrown weapon attacks that inflict crushing damage (or no damage, such as a grapple), unless they would hit the skull or neck. Likewise, he cannot avert attacks on his weapons or nonliving possessions. With this rule in effect, those involved in a fight with lethal weapons "duck for cover" and are forced "onto the defensive" until they're exhausted.)
+Cinematic Option (Cinematic Explosions), 1, page(417, GF17), cat(Gun Perks), description(The alternatives described under Cinematic Combat Rules (p. B417) generally don't cost points because they're campaign options: Everybody uses them or nobody does. The GM may wish to allow certain rules that normally aren't used in the campaign on a PC-by-PC basis, however. Access to each of these is a perk. Suitable choices for individual character abilities are Bulletproof Nudity, Cinematic Knockback, Flesh Wounds, Infinite Ammunition, and TV Action Violence. The GM should require specialization by skill for perks that modify attacks; e.g., Cinematic Knockback. For detailed examples, see Cinematic Knockback (above) and Infinite Ammunition (p. 19-20). However, any perk marked ‡ could work this way. In reality, a grenade or anti-tank rocket will almost certainly kill an unarmored man. In cinematic combat, explosions do no direct damage! Ignore fragmentation, too. All a blast does is disarray clothing, blacken faces, and (most importantly) cause knockback. Every yard of knockback from a cinematic explosion causes a token 1 HP of crushing damage.)
+Cinematic Option (Flesh Wounds), 1, page(417, GF17), cat(Gun Perks), description(The alternatives described under Cinematic Combat Rules (p. B417) generally don't cost points because they're campaign options: Everybody uses them or nobody does. The GM may wish to allow certain rules that normally aren't used in the campaign on a PC-by-PC basis, however. Access to each of these is a perk. Suitable choices for individual character abilities are Bulletproof Nudity, Cinematic Knockback, Flesh Wounds, Infinite Ammunition, and TV Action Violence. The GM should require specialization by skill for perks that modify attacks; e.g., Cinematic Knockback. For detailed examples, see Cinematic Knockback (above) and Infinite Ammunition (p. 19-20). However, any perk marked ‡ could work this way. Immediately after you suffer damage, you may declare that the attack that damaged you (which can include multiple hits, if the foe used rapid fire) was a glancing blow or "just a flesh wound." This lets you ignore all but 1 HP (or FP) of damage . . . at the cost of one unspent character point. If you have no unspent points, the GM might let you go into "debt": he will subtract these points from those you earn for the adventure.)
+Cinematic Option (Melee Etiquette), 1, page(417, GF17), cat(Gun Perks), description(The alternatives described under Cinematic Combat Rules (p. B417) generally don't cost points because they're campaign options: Everybody uses them or nobody does. The GM may wish to allow certain rules that normally aren't used in the campaign on a PC-by-PC basis, however. Access to each of these is a perk. Suitable choices for individual character abilities are Bulletproof Nudity, Cinematic Knockback, Flesh Wounds, Infinite Ammunition, and TV Action Violence. The GM should require specialization by skill for perks that modify attacks; e.g., Cinematic Knockback. For detailed examples, see Cinematic Knockback (above) and Infinite Ammunition (p. 19-20). However, any perk marked ‡ could work this way. If a PC chooses to fight unarmed or with melee weapons, his opponents always face him one-on-one, one at a time. Unengaged NPCs can dance around the fight uttering shrill cries of encouragement, but wait their turn to attack. If the foe is a super-strong monster that could kill or maim the hero with a single blow, it rarely strikes to inflict damage directly. Instead it slams the hero, or grabs him and tosses him around!)
+Concealed Carry Permit, 1, page(GF17), cat(Gun Perks), description(In Gun Fu campaigns that pay lip service to legal niceties, it's usually illegal to carry concealed firearms without suitable Legal Enforcement Powers and/or Rank. People who lack those advantages need a permit for this, which counts as a perk. Optionally, action-movie cops who have Legal Enforcement Powers can obtain a "Heavy Weapons Permit" perk to legitimize assault weapons and explosives for police work!)
+Heavy Weapons Permit, 1, page(GF17), cat(Gun Perks), description(In Gun Fu campaigns that pay lip service to legal niceties, it's usually illegal to carry concealed firearms without suitable Legal Enforcement Powers and/or Rank. People who lack those advantages need a permit for this, which counts as a perk. Optionally, action-movie cops who have Legal Enforcement Powers can obtain a "Heavy Weapons Permit" perk to legitimize assault weapons and explosives for police work!)
+Cookie Cutter (%Gun Skill%), 1, cat(Gun Perks), page(GF17), needs(SK:%Gun SkillList%, AD:Gunslinger), description(You can use a full-automatic weapon (optionally, even a shotgun!) to cut holes through walls, floors, and ceilings – like a jigsaw through plywood. Each magazine emptied creates an opening big enough to admit one SM 0 person (or two people clinging to each other). You must specialize by shooting skill. The weapon matters less and need not be one that could actually chew through the target's DR or HP. In the movies, this perk works fine with everything from 9mm machine pistols to powerful science-fiction assault rifles. Cookie Cutter only allows dramatic exits and entries, though. You can't use it to bypass armor or the plot – no destroying vault doors in crime stories!),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Cookie Cutter: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Cool Under Fire, 1, page(GF18), cat(Gun Perks), description(You don't experience "tunnel vision" under fire and can quickly update your mental picture of the battlefield. When making pop-up attacks (p. B390), you don't suffer the -2 to hit provided that the target is no further away in yards than your Per plus Acute Vision (if any). This perk is redundant if you have Enhanced Time Sense or Gunslinger.)
+Cross-Trained, 1, page(HT249, GF18), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger), description(You're familiar with every make and model of gun within a particular shooting skill specialty. You can pick up any such weapon and fire it with no unfamiliarity penalty (see p. B169). If the Gun! or Shooter! wildcard skill (p. 24) is used in the campaign, this perk becomes superfluous – if you are capable of using all Guns specialties, there's no need for familiarity with specific makes and models . . . This perk is cinematic, but a version that covers a large-but finite list is realistic for spies and soldiers who receive lavish training. The GM decides what constitutes such training and which models it covers. Alternatively, the GM may see familiarity as fussy and ignore it; in effect, everybody is Cross-Trained for free.),_
+	x(#InputToTagReplace("Choose your gun specialization: Pistol, Rifle, etc." , nameext, ,"Cross-Trained"))
+Deadeye, 1/2, upto(3), page(GF18), cat(Gun Perks), description(You're a natural sniper. You can accurately gauge range, windage, thermal effects, and so on, allowing you to attempt Precision Aiming (p. 12) without special equipment. Since you aren't fooling with ballistics tables, spotting scopes, etc., you may reduce the total time required to claim your Precision Aiming bonus by 10% (round up) after all other calculations. You may buy this perk several times; each level improves your margin by 10% (to a maximum of Deadeye 3, with a 30% reduction).)
+Dial-a-Round (%Gun Skill%), 1, cat(Gun Perks), page(GF17), needs(SK:%Gun SkillList%, AD:Gunslinger), description(If you use a weapon loaded with two ormore different types of projectiles, you can always fire a type of your choice, as long as there's still one remaining in the weapon. This is entirely cinematic, of course, as there's no way the cartridges can rearrange the order in which they are loaded! For extra fun, the GM can demand that, similar to a cinematic martial artist announcing the name of his next maneuver, the PC has to shout out loud which round he's going to shoot! You must specialize by shooting skill.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Dial-a-Round: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Dramatic Death, 1, page(GF18), cat(Gun Perks), needs(AD:Gunslinger), description(You're guaranteed to go out with a bang! If the dice sentence you to death but not to instant death (like an execution or a nuclear blast), roll 1d+1 for the number of seconds you get for a dying action (see Dying Actions, p. B423). During this time, you suffer all injury effects except unconsciousness or death, but you can otherwise do whatever you want. Then you die.)
+Dual Ready, 1, page(HT249, GF18), needs(AD:Gunslinger), Description(You can use one Ready maneuver to draw two items, one in either hand. Specialize by particular left hand/right hand combination; e.g., Dual Ready (Detonator/Bomb) lets you ready an explosive in your right hand and its radio control in your left hand. Dual Ready is redundant for items you can Fast-Draw – but not everything allows Fast-Draw.), cat(Gun Perks),_
+	x(#InputToTagReplace("Please specialize: LEFT HAND/RIGHT HAND" , nameext, ,"Dual Ready"))
+Early Adopter, 1, page(HT249, GF18), Description(You have access to firearms that haven't entered production (see High-Tech and similar sources for introduction dates). In a more realistic campaign, this means prototypes; the GM may limit you to guns a year or two down the road. In a cinematic game, if even one weapon of a given type (e.g., "belt-fed machine guns") already exists, you can have any gun like that from your TL! You must pay for this hardware with starting money – or, more likely, as Signature Gear. Each broad category of weapons has its own specialty: Early Adopter (Pistols), Early Adopter (Rifles), etc.), cat(Gun Perks),_
+	x(#InputToTagReplace("Please specialize. Ex. Pistols" , nameext, ,"Early Adopter"))
+Fastest Gun in the West, 1/2, page(GF18), Description(Your fast-draw is really fast. In any Quick Contest of Fast-Draw to see who draws first, add 1 to your margin; e.g., failure by 1 becomes success by 0. This perk also gives you a chance to outdraw a rival who has Enhanced Time Sense: If you beat him by 10+ in the Quick Contest, or roll a critical success and he doesn't, you win! You may buy this perk several times. Each level improves your margin by 1. The GM sets the limit, if any – perhaps two levels in a realistic campaign. Specialties match those for Fast-Draw.),_
+	x(#InputToTagReplace("Please specialize. Ex. Pistols, Submachine Gun, etc." , nameext, ,"Early Adopter"))
+Fireball Shot, 1, page(GF19), cat(Gun Perks), needs(AD:Gunslinger), description(You're not limited to the meager effects of buckshot when firing a scattergun – your shotgun blasts actually explode! When shooting at inanimate targets (cars, ground, etc.), each shotshell round acts as a small grenade: Damage becomes 3d cr ex, RoF and Rcl are as for firing slugs, and other stats are unchanged. When shooting directly at people, your shells still deliver shot. This trait only suits over-the-top campaigns, but it is just a perk – you could achieve comparable results for 0 points by buying exotic ammo. It's inspired by action movies where heroes without military weapons can blow up things simply because it's dramatic.)
+Flimsy Cover, 1, page(GF19), cat(Gun Perks), needs(AD:Gunslinger), description(They can't hit what they can't see! Whenever you take cover behind anything large enough to hide you, ignore Cover (p. B407) and Overpenetration (p. B408). Lampposts, trees, car doors, stacks of cardboard boxes, sofas, and the ever-popular overturned saloon table will shed enemy bullets like tank armor, regardless of DR and HP. This only works against small arms – and only while you hide. As soon as you expose yourself, the world works normally again.)
+Grip Mastery, 1, cat(Style Perks - Realistic), page(MA50, GF19),_
+	x(#InputToTagReplace("please enter the weapon you have Grip Mastery with:" , nameext, ,"Grip Mastery"))
+Gun Sense, 1, page(GF19), cat(Gun Perks), needs(AD:Gunslinger), description(You have a sixth sense about guns pointed at you. You must specialize by shooting skill. Whenever somebody has you in the sights of a gun used with that skill and you can see him, make a Per-based skill roll. Success lets you know whether his gun is loaded and functional, or whether it's jammed, safetied, or otherwise can't shoot you. You can also use this perk to detect the status of a weapon carried by any ally within arm's reach.)
+Gun Shtick - Next Time It's Your Head, 1, cat(Gun Perks), page(B101, MA51, GF19), needs(AD:Gunslinger), description(You're adept at intimidating rivals by shooting at their clothing or minor personal accessories. Make a standard attack at -2 or the penalty for the nearest body part, whichever is more severe. A hit does no damage, but lets you try Intimidation (p. B202) against that foe as a free action, at a bonus equal in size to half the attack penalty, rounded up. Some examples: Severing a belt or a necktie is a torso shot (no penalty), and gives -2 to hit and +1 to Intimidation. Cutting a cigar in half is a face hit, at -5 to hit and +3 to Intimidation. Shooting off a hat would be a skull attack, for -7 to hit and +4 to Intimidation. The GM may also assess your victim minor penalties for being without his belt, hat, etc.),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Gun Shtick - Next Time, It's Your Head"))
+Gun Shtick - Stone-Cold Killer, 1, cat(Gun Perks), page(B101, MA51, GF19), needs(AD:Gunslinger), description(Every shot you fire is an instrument of intimidation! You don't just shoot enemies – you blast them through windows, blow off their limbs, and produce fountains of gore. On any turn during which you shoot someone and inflict a wounding effect beyond mere injury – crippling, knockdown, death, etc. – make an immediate shooting skill roll. Success lets you try Intimidation against any witnesses as a free action.),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Gun Shtick - Stone-Cold Killer"))
+Gun Shtick - Trick Reload, 1, cat(Gun Perks), page(B101, MA51, GF19), needs(AD:Gunslinger), description(You can reload a gun using a complicated trick. Describe this when you buy the perk; you might drop a magazine and kick it into the magazine well, or toss two shells into the open breech of a double-barreled shotgun. Your Fast-Draw (Ammo) roll doubles as an Influence roll (p. B359) for the purpose of impressing (not intimidating or asking help from) onlookers.),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Gun Shtick - Trick Reload"))
+Gun Shtick - Twirl, 1, cat(Gun Perks), page(B101, MA51, GF19), needs(AD:Gunslinger), description(You can present a gun butt-first as if to surrender it... and thenmake a shooting skill roll to ready it instantly, with time left to attack.When using a single-action revolver, you can fire it after this move – the spin cocks the hammer! In the Old West, this was called the "Road Agent Spin." This perk is cinematic for any firearmbut a handgun (one-handed weapon with Bulk no worse than -3).),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Gun Shtick - Twirl"))
+Gun Shtick - Wall o' Lead, 1, cat(Gun Perks), page(B101, MA51, GF19), needs(AD:Gunslinger), description(You know how to keep heads down by shooting up the scenery! On your turn, state that this is your goal and make any attack or series of attacks that your abilities allow. However, you don't wound those whom you "hit." Instead, make a group Intimidation attempt against everyone you would have hit. Apply the penalty for group size for the total number of foes fired on, but add the rapid-fire bonus for all shots fired. For instance, if you spray two RoF 10 machine pistols at 10 mooks and "hit" six men, you get -2 for trying to intimidate 10 people but you also get +4 for RoF 17-24, since your total RoF is 20!),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Gun Shtick - Wall o' Lead"))
+Gun Whisperer (%Gun Skill%), 1, cat(Gun Perks), page(GF19), needs(SK:%Gun SkillList%, AD:Gunslinger), description(You know the exact state of the gun you're using. It's almost as though it speaks to you! You must specialize by shooting skill. Whenever you pick up a gun covered by that skill, you immediately know whether the safety is on, whether it's jammed, and whether there's a bullet in the chamber (handy for Russian roulette). You also know how much ammo is left, and of what type, should you not already know that for some reason.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Gun Whisperer: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Hand Cannon, 1/2, page(GF18), cat(Gun Perks), description(You can fire big freakin' guns. Add +1 to your ST for the sole purpose of avoiding penalties for insufficient ST to wield firearms. You may buy this perk twice, for double the benefit, in a realistic campaign – or as many times as the GM is willing to allow in a cinematic game! This ST does count for the purpose of Army of One (p. 17), and it stacks with levels of HugeWeapons (ST) (see Power-Ups 2: Perks, p. 6).)
+Infinite Ammunition (Over-the-Top Ammo), 1, page(GF19), taboo(PE:Infinite Ammunition (Quasi-Realistic Ammo)), cat(Gun Perks), needs(AD:Gunslinger), description(This version is the least realistic but also the most common: You truly have infinite ammo! You can go on shooting forever without reloading, and you have no need to carry or even pretend to carry ammunition, much less buy it or worry about it as encumbrance. Gunslingers inWesterns use this option: Every moviegoer knows why a "six-shooter" is called that, but most directors regard the painfully slow reload times for 19th-century weapons as a deadlier threat to drama than the jarring fiction of bottomless revolvers. Cheesy military action movies also use this variant – the worst B movies give even disposable antitank weapons multiple shots. The GM decides what version to use, and he may wish to make it a campaign option.)
+Infinite Ammunition (Quasi-Realistic Ammo), 1, page(GF19), taboo(PE:Infinite Ammunition (Over-the-Top Ammo)), cat(Gun Perks), needs(AD:Gunslinger), description(This version adds a veneer of realism. You might carry spare ammo and reload during lulls in the shooting, but you never have to pause to reload in a gunfight. The GM may require you to pay for ammo and magazines – and perhaps limit you to thatmany shots total – but you can still ignore their encumbrance. For example, in Last Man Standing, gunman "John Smith" fills some two dozen magazines and frequently reloads his Colt .45s, but in action, he often fires more shots than the 16 rounds his two pistols could hold – and he doesn't seem to be carrying all those magazines! Those magazine-filling scenes, however, help the viewer suspend disbelief. The GM decides what version to use, and he may wish to make it a campaign option.)
+Intuitive Armorer, 1, page(GF20), cat(Gun Perks), needs(AD:Gunslinger), description(You can maintain one personal weapon without needing the Armoury skill. You must specialize by gun, which is often Signature Gear. Roll against IQ instead of Armoury to fix that firearm or install standard accessories. For two or more guns that require a given Armoury specialty, it's more efficient to spend 2 points for Armoury at IQ level than to buy multiple copies of this perk.)
+Just Winged Him, 1, page(GF20), cat(Gun Perks), description(You’re adept at deliberately grazing foes – perhaps to take prisoners or live up to the Pacifismdisadvantage. You must specialize by shooting skill.),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Lightning Fingers"))
+Lightning Fingers, 1, cat(Gun Perks), page(GF20), needs(AD:Gunslinger), description(You're adept at operating your gun's controls. If manipulating a safety, selector switch, or anything similar normally takes a Ready maneuver, you can do so as a free action by making a successful shooting skill roll at the start of your turn; any failure simply means the task takes its usual turn. If such a task works this way for everyone, you roll at +4. In a cinematic campaign, Lightning Fingers (Pistol) even lets you spin a revolver's cylinder to the exact chamber you want – useful if the gun is loaded with different ammo types or has one round left, or when you want that chamber to be empty. You must specialize by shooting skill.),_
+	x(#InputToTagReplace("Please Specialize by weapon skill. Ex. Pistol, Submachine Gun, etc." , nameext, ,"Lightning Fingers"))
+Motorized Training, 1/2, upto(2), page(GF20), cat(Gun Perks), description(You use only half your vehicle's speed, where favorable, when assessing speed/range penalties (pp. B469, 550). You may take this perk a second time, in which case vehicle speed doesn't count at all where unfavorable. You must specialize by shooting skill.)
+Muzzle Flamethrower, 1, page(GF20), cat(Gun Perks), needs(AD:Gunslinger), description(When you fire a weapon for which you have bought the appropriate specialty of this perk, it will spew forth a yard-long flame from the muzzle. This gives a +2 bonus to Intimidation (p. B202). If you're in close combat (pp. B391-392), the attack also becomes incendiary (inc)! Others are at +3 Vision to spot you firing in the dark. In actual movie-making, this is the result of special blank loadings, which are used to make the guns look more impressive. Sometimes they are even required because otherwise the muzzle flash can't be seen at all, due to how a camera only captures a limited number of frames.)
+No Friendly Fire, 1, page(GF20), cat(Gun Perks), needs(AD:Gunslinger), description(Yours is a video-game world where guns only hurt enemies. Whenever you accidentally hit another PC, a friendly or neutral NPC, or anybody but a genuine opponent, you inflict no injury – even with automatic fire or explosives! Depending on the campaign, knockback may still occur (making friendly explosives a handy means of travel), and deliberate shots may still hurt (if not, then you can even shoot allies to signal them).)
+Off-Hand Weapon Training (%Gun Skill%), 1, cat(Gun Perks), page(MA50, GF20), needs(SK:%Gun SkillList%),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Off-Hand Weapon Training: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Fast-Draw Opponent's Weapon (%Fast Draw Skill%)",_
+				"Fast-Draw",_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+			)_
+			)_
+	), noresync(yes)
+One-Armed Bandit (%One Armed Gun Skill%), 1, cat(Gun Perks), page(HT249, GF21),_
+	needs(SK:%One Armed Gun SkillList%, AD:Gunslinger), description(You can operate a lever- or pump-action long armone-handed and without changing grips. The gun's RoF becomes 1. Roll against the appropriate Guns specialty before each shot. Failure wastes your turn; treat it as a Do Nothing maneuver. Critical failure means an immediate roll on the Critical Miss Table (p. B556)! In anything but an over-the-top game, this perk works only for lever-action weapons, as these can be spun around the lever loop – which generally requires modification to enlarge it to avoid breaking your fingers! You must specialize by Guns skill.),_
+	x(#ChoiceList(_
+			name(One Armed Gun SkillList),_
+			title(One-Armed Bandit: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Guns (Rifle),_
+				Guns (Shotgun) _
+			)_
+		)_
+	), noresync(yes)
+Pants-Positive Safety, 1, page(HT249, GF21), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger), description(You can carry a loaded, cocked firearm shoved through your waistband without any risk of accidental discharge – even if you leave the safety off!)
+Pistol-Fist, 1, cat(Gun Perks), page(GF21), needs(AD:Gunslinger), usernotes(Your basic Parry is (shooting skill/2) + 3.), description(You can roll against Beam Weapons (Pistol) or Guns (Pistol) – you must specialize – to pistol-whip people. Treat this as a punch with brass knuckles. You can also parrymelee attacks at (shooting skill/2) + 3, and even use this parry when slapping aside guns in close combat (see p. B376).)
+Quick Reload (%Gun Reload%), 1, cat(Gun Perks), page(GF21), description(You can reload in record time! You must specialize by reloading scheme: Belt (for machine guns), Breechloader (for double-barreled shotguns), Detachable Magazine (for most modern automatics), Muzzleloader (for black-powder guns), Swing-Out Revolver (formodern revolvers), etc. See High-Tech for a full list. A successful Fast-Draw (Ammo) roll lets you reload as a free action for Detachable Magazine or for Swing-Out Revolver (with a speedloader), or with a single Ready maneuver for every other specialty but Muzzleloader. For the Muzzleloader specialty, you can take several levels of this perk, and a successful Fast-Draw roll chops 25% per level off reload time, to a minimum of three seconds. This perk only seems cinematic. World-class competition shooters have demonstrated similar feats on high-speed film!),_
+	x(#ChoiceList(_
+			name(Gun Reload),_
+			title(Quick Reload: Choose a gun type to specialize),_
+			text(Choose a gun type to specialize from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Breechloader,_
+				Gate-Loading Revolver,_
+				Break-Open Revolver,_
+				Swing-Out Revolver,_
+				Internal Magazine,_
+				Detachable Magazine,_
+				Belt or Strip Feed _
+			)_
+			)_
+	), noresync(yes)
+Quick-Sheathe, 1, page(HT249, GF21), Description(Unslinging or slinging any long arm requires two Ready maneuvers. A successful Fast-Draw (Long Arm) roll gets the gun out in just one second. This perk lets you roll against Fast-Draw (Long Arm) to sling it in one second as well. (Add a second to all times if the slung position is on the back.)), cat(Gun Perks),_
+	x(#InputToTagReplace("Please specialize. Ex. Pistol, Long Arm, etc." , nameext, ,"Quick-Sheathe"))
+Quick-Swap, 1, page(HT249, GF21), Description(You've perfected the art of juggling one-handed weapons between hands. Shifting a weapon to an empty receiving hand normally demands a Ready maneuver, but becomes a free action with this perk. Swapping two weapons between full hands normally takes two Ready maneuvers, but requires just one with Quick-Swap. (OldWest shootists, who often drew two pistols but only fired the one in their dominant hand, called this trick "crossing the border.") You can use this perk once per turn, on your turn. You must specialize by one-handed weapon skill: Quick-Swap (Pistol), Quick-Swap (Throwing) for grenades, and so on. If two different weapons are involved, you need the perk for both skills.), cat(Gun Perks),_
+	x(#InputToTagReplace("Choose your specialization: Pistol, Throwing for grenades, etc. If two different weapons are involved, you need the perk for both skills." , nameext, ,"Quick-Swap"))
+Recoil Rocket, 1, page(GF21), cat(Gun Perks), description(Whenever you shoot, you can opt to let your weapon to blast you straight back. This is Cinematic Knockback (p. 17) in reverse: Apply any knockback for your damage roll to yourself. This movement is in addition to anything allowed by your maneuver. Without Gunslinger, you're at -2 to DX rolls, can't retreat, and can't use Acrobatic Dodge – just as for a Move and Attack. With Gunslinger, this is free, unpenalized movement!)
+Rope Shooter, 1, page(GF21), cat(Gun Perks), needs(AD:Gunslinger), Description(You have practiced shooting cleanly through a rope; for example, to save a man from being hanged or to shoot down a chandelier. In reality, this is very difficult, not only because of the size of the target (SM -13 or worse), but also due to rope being Unliving (p. B380) and piercing attacks doing little damage because of that. This perk lets any hit with a bullet cut a rope, regardless of such details as damage, DR, and HP. Range and size modifiers apply as usual!),_
+	x(#InputToTagReplace("Choose your specialization: Pistol, Rifle, Submachine Gun, etc." , nameext, ,"Rope Shooter"))
+Scattergun, 1, page(GF21), cat(Gun Perks), needs(AD:Gunslinger), description(This perk models the common myth that a shotgun blast spreads enough to wound multiple targets, especially at close range.When you fire a shotgun loaded with multiple-projectile rounds (shot or flechettes, not beanbag, slug, etc.), you may use Spraying Fire (p. B409) just as if you had a full-automatic weapon. Multiply out RoF – e.g., RoF 3x9 behaves like RoF 27 – but keep Rcl fixed at 1 for all targets)
+Silencer, 1, page(HT249, GF21), needs(AD:Gunslinger), Description(You can add a silencer to any weapon for which you have bought the appropriate specialty of this perk (following the usual Guns specialties). Silencer (Pistol) is probably most common. In keeping with traditional movie conventions, the weapon does not need to be prepared for attachment! You can also silence ordinary revolvers or other firearms that are realistically unsuitable for sound suppression. You still have to buy the suppressor as usual. However, its Hearing penalty is doubled as per the Cinematic Silencers rules (High-Tech, p. 159).), cat(Gun Perks),_
+	x(#InputToTagReplace("Choose your gun specialization: Pistol, Rifle, etc." , nameext, ,"Silencer"))
+Standard Operating Procedure (Back to the Wall), 1, page(GF22), cat(Gun Perks), description(Each Standard Operating Procedure exempts you from having to inform the GM that your PC is doing something that's second-nature for him. You always get the benefit of the doubt. You always sit with your back to the wall and keep aminimumof one piece of improvised cover between you and the exits. This is most useful when you have the Flimsy Cover perk (p. 19)!)
+Standard Operating Procedure (Off-Screen Reload), 1, page(GF22), cat(Gun Perks), description(Each Standard Operating Procedure exempts you from having to inform the GM that your PC is doing something that's second-nature for him. You always get the benefit of the doubt. You always reload between action scenes. You must have had access to reloads while "off screen," and the GMis free to debit your ammo supply or bank account whenever you claim this perk's benefits.)
+Standard Operating Procedure (On Alert), 1, page(GF22), cat(Gun Perks), description(Each Standard Operating Procedure exempts you from having to inform the GM that your PC is doing something that's second-nature for him. You always get the benefit of the doubt. You always have full kit packed and ready to go in case of emergency. This doesn't mean you react faster (get Combat Reflexes for that) – it just means always being able to scoop up all your gear without wasting valuable time.)
+Standard Operating Procedure (Sleep with One Eye Open), 1, page(GF22), cat(Gun Perks), description(Each Standard Operating Procedure exempts you from having to inform the GM that your PC is doing something that's second-nature for him. You always get the benefit of the doubt. When visible movement occurs around you as you sleep, even activity that wouldn't be loud or startling enough to rouse most people, you'll awaken on a successful Vision roll. You'll still be stunned (see p. B393) unless you also have Combat Reflexes!)
+Supplier, 1, page(GF22), cat(Gun Perks), description(Thanks to personal ties to a gun shop owner, an arms dealer, or a manufacturer, you get a discount on certain gear. You have to be able to contact your supplier to capitalize on this perk. You must specialize by category, which determines the markdown: All guns, ammo, and accessories: 10%. Category (e.g., guns, ammo, or accessories): 20%. Subcategory (e.g., rifles, rifle ammo, or scopes) or Manufacturer (e.g., H&K, Federal, or Bushnell): 30%. Anything more specific (e.g., H&K submachine guns): 40%. Halve the discount on items whose base cost exceeds campaign starting money.)
+Sure-Footed, 1, cat(Gun Perks), page(MA52, GF22), discription(You've studied stable stances that let you ignore the -2 to attack and -1 to defend for one specific type of bad footing. Specialties include Ice, Naval (rocking ships and boats), Sand, Slippery (like blood), Snow, Uneven (including piles of corpses), and Water (up to waist-deep). This doesn't aid DX in general, or Move.),_
+	x(#InputToTagReplace("You must specialize by type of ground: Ex. Ice, Naval, Sand, Slippery, Snow, etc.", nameext, , "Sure-Footed"))
+Tacticool, 1, page(GF22), cat(Gun Perks), needs(AD:Gunslinger), description(You're a master at pimping-out "tactical" gear. All of your equipment is either matte black or camouflage, and sports numerous after-market add-ons. Whenever you wield a weapon or wear armor that you've personally customized, you get a bonus to all Influence rolls and reaction rolls made in combat: +1 if you've added one to three custom accessories (a paint job counts as one), +2 for four to eight, +3 for nine to 15, and +4 for 16 or more. Useless accessories (like any of the Tacticool Gadgets, p. 42) count as two. This perk doesn't grantyou the accessories – you must buy those as usual! Example: Bubba Lee Jones has the Tacticool perk. He totes a Colt M4A1 carbine (High-Tech, p. 119) to which he has added a twin-drum magazine (High-Tech, p. 155), a reflex sight (High-Tech, p. 156), a night sight (High-Tech, p. 156), a tactical light (High-Tech, p. 156), a targeting laser (High-Tech, p. 156), and a set of accessory rails (High-Tech, p. 161) to actually mount all the stuff. That's six items, so he gets +2 to his Intimidation roll when he busts through the door with this baby – he calls her "Dita." You need only take this perk once, but you only get the single largest bonus for your most-accessorized item, no matter how much "tactical" gear you shlep. (In the example, Bubba would still get +2, not +4, if he brought along Dita's sexy twin, Rita, and held one in each hand.) This isn't tied to any specific item, but tweaked-out configurations are personal – the bonus isn't transferable if you lend your friends your kit, and another user's hardware never gives you a bonus.)
+Tap-Rack-Bang (%Gun Skill%), 1, cat(Gun Perks), page(GF22), description(You're adept at getting your weapon back into action. If a malfunction occurs, you can attempt Immediate Action (p. 28) as a free action on any later turn. You must specialize by shooting skill, and you have to be familiar (p. B169) with the specific weapon to use this perk.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Tap-Rack-Bang: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Tracer Eyes, 1, page(GF22), cat(Gun Perks), needs(AD:Gunslinger), description(You can see the paths of your bullets as they speed toward their target! Whenever you fire more than one shot at a target per turn, you get a noncumulative +1 to skill. This becomes a realistic perk for experienced shooters (Guns at DX+2 or better) with Acute Vision.)
+Trick Shooter - Aerial Target Shooter (%Gun Skill%), 1, cat(Gun Perks), page(GF22), description(You can pull off difficult noncombat shooting tricks that allow you to performin a gun show, a circus, or a similar event. Make a skill roll at -4 whenever you attempt a trick. You must specialize both by shooting skill and by a general class of tricks. You can shoot glass marbles, coins,etc. thrown into the air. Some targets will be destroyed; others, neatly holed. Alternatively, you can put six shots into a can before it drops down, or split flying playing cards lengthwise. This also requires a successful Throwing roll by either yourself or your assistant. Trick Shooter only works in noncombat situations, on inanimate objects. Maximum range is Per, plus any levels of Acute Vision, in yards. Penalties for restricted vision are doubled.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Trick Shooter: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Trick Shooter - Chicago Typewriter (%Gun Skill%), 1, cat(Gun Perks), page(GF22), description(You can pull off difficult noncombat shooting tricks that allow you to performin a gun show, a circus, or a similar event. Make a skill roll at -4 whenever you attempt a trick. You must specialize both by shooting skill and by a general class of tricks. You can use bullet holes (or laser beam marks) to "write" or "draw" on a wall, car door, etc. How fast you can write depends on RoF. You need on average eight shots per letter. However, shotguns, mechanical machine guns, miniguns, grenade launchers, and other inaccurate weaponry will only work in a cinematic campaign. Trick Shooter only works in noncombat situations, on inanimate objects. Maximum range is Per, plus any levels of Acute Vision, in yards. Penalties for restricted vision are doubled.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Trick Shooter: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Trick Shooter - Tack Driver (%Gun Skill%), 1, cat(Gun Perks), page(GF22), description(You can pull off difficult noncombat shooting tricks that allow you to performin a gun show, a circus, or a similar event. Make a skill roll at -4 whenever you attempt a trick. You must specialize both by shooting skill and by a general class of tricks. You can hit a nail with a bullet, driving it into the wood. Alternatively, you can shoot out all markings on a playing card pinned to a target, or shoot off the cigarette from the mouth of an assistant. Trick Shooter only works in noncombat situations, on inanimate objects. Maximum range is Per, plus any levels of Acute Vision, in yards. Penalties for restricted vision are doubled.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Trick Shooter: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Gunner (Beams),_
+				Gunner (Machine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Upside-Down Shooting, 1, page(GF23), cat(Gun Perks), description(You have practiced shooting a handgun with the grip up, using the ring finger (or even the pinkie) to squeeze the trigger. You can ignore the -2 penalty to Guns (Pistol) that would ordinarily result from holding the weapon wrongly. As you can't see the sights, you can't take Aim or All-Out Attack (Determined) maneuvers – only Attack or Move and Attack. Upside-Down Shooting is today more at home with cinematic shooters, but it was developed to deal with a specific tactical problem – that you have to draw your handgun from the belt or a cross-draw or hip holster with the off-hand (because the opposite hand is otherwise engaged or out of commission). In such a case, it is faster to use Upside-Down Shooting than to try to reverse the weapon first (the latter gives a -2 Fast-Draw penalty; the former gives no penalty). Don't forget to match this with Ambidexterity (p. 13) or Off-Hand Weapon Training (pp. 20-21), or you will also suffer the -4 penalty for using the off-hand.)
+Walking Armory, 1, page(GF23), cat(Gun Perks), needs(AD:Gunslinger), description(No matter how many guns you carry, their weight never counts as encumbrance.Moreover, you need not concern yourself with the practicalities of how and where you carry them all. The weapons are still there, though – get Gizmos (p. 15) for undetectable guns.)
+Weapon Bond (%Weapon%), 1, page(F132, HT250, MA53, PU2:9, DF1:14),_
+	conditional(+1 to "SK:%WeaponList%"),_
+	x(#message(_
+			"Note: You will need to add the '_Perk: Weapon Bond' modifier to the specific weapon which recieves _
+			a bonus from Weapon Bond in order for the skill level to be increased on the Weapon Table." _
+			),_
+		#ChoiceList(_
+			name(Weapon),_
+			title(Weapon Bond: Choose a Weapon Skill),_
+			text(Choose a Weapon skill from the list. If the weapon has more than one mode, using more than one skill, select them all:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:ShieldSkill, flags(NoPrefix)),_
+				#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)),_
+				#grouplist(GR:Ranged Weapon Skill, flags(NoPrefix))_
+				)_
+			)_
+	), noresync(yes)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+
+<Combat/Weapons - Ranged Combat>
+Fast-Draw (Submachine Gun), DX/E, page(B194), cat(_General, Combat/Weapons - Ranged Combat)
+Fast-Draw (Long Arm), DX/E, page(B194), cat(_General, Combat/Weapons - Ranged Combat)
+
+<Gun Fu>
+Guns Art (%Gun Skill%), 1, cat(Athletic - Combat Art/Sport), page(GF22), description(You can pull off difficult noncombat shooting tricks that allow you to performin a gun show, a circus, or a similar event. Make a skill roll at -4 whenever you attempt a trick. You must specialize both by shooting skill and by a general class of tricks. You can hit a nail with a bullet, driving it into the wood. Alternatively, you can shoot out all markings on a playing card pinned to a target, or shoot off the cigarette from the mouth of an assistant. Trick Shooter only works in noncombat situations, on inanimate objects. Maximum range is Per, plus any levels of Acute Vision, in yards. Penalties for restricted vision are doubled.),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Guns Art: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Grenade Launcher,_
+				Gyroc,_
+				Light Anti-Armor Weapon,_
+				Light Machine Gun,_
+				Musket,_
+				Pistol,_
+				Rifle,_
+				Shotgun,_
+				Submachine Gun _
+			)_
+			)_
+	), noresync(yes)
+
+Zen Marksmanship (%Gun Skills%), IQ/VH, page(HT250, GF24), needs((AD:Gunslinger | AD:Trained by a Master), SK:%Gun SkillsList%), cat(_General, Esoteric),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Zen Marskmanship: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				)_
+			)_
+		), noresync(yes)
+
+Breaking Blow (Guns), IQ/H, needs(AD:Trained By A Master), page(B182), cat(_General, Esoteric)
+
+//  Techniques
+
+<Techniques, Techniques - Gun Fu>
+Behind-the-Back Shot (%Gun Skill%), Tech/H, default("SK:%Gun SkillList%::level" -7), needs(SK:%Gun SkillList%), upto(prereq), page(GF25),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Behind-the-Back: Choose a shooting skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Cavalry Training (%Gun Skill%), Tech/H, default("SK:%Gun SkillList%::level" - 2), needs(SK:%Gun SkillList%, SK:Riding), upto(prereq), page(GF25),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Cavalry Training: Choose a shooting skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Close-Hip Shooting (%Gun Skill%), Tech/A, default("SK:%Gun SkillList%::level"), needs(SK:%Gun SkillList%), upto(prereq +3), page(GF26),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Close-Hip Shooting: Choose a shooting skill),_
+			text(Choose a shooting skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+		)_
+	), noresync(yes)
+Close-Quarters Battle (%Gun Skills%), Tech/A, page(HT250, GF26), default("SK:%Gun SkillsList%::level"), needs(SK:%Gun SkillsList%), upto(Prereq + 4), tl(0-12),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Close-Quarters Battle: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				)_
+			)_
+		), noresync(yes)
+
+Combat Driving (Automobile), Tech/H, page(HT251, GF26), default("SK:Driving (Automobile)::level"), needs(SK:Driving (Automobile)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Construction Equipment), Tech/H, page(HT251, GF26), default("SK:Driving (Construction Equipment)::level"), needs(SK:Driving (Construction Equipment)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Halftrack), Tech/H, page(HT251, GF26), default("SK:Driving (Halftrack)::level"), needs(SK:Driving (Halftrack)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Heavy Wheeled), Tech/H, page(HT251, GF26), default("SK:Driving (Heavy Wheeled)::level"), needs(SK:Driving (Heavy Wheeled)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Hovercraft), Tech/H, page(HT251, GF26), default("SK:Driving (Hovercraft)::level"), needs(SK:Driving (Hovercraft)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Locomotive), Tech/H, page(HT251, GF26), default("SK:Driving (Locomotive)::level"), needs(SK:Driving (Locomotive)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Mecha), Tech/H, page(HT251, GF26), default("SK:Driving (Mecha)::level"), needs(SK:Driving (Mecha)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Motorcycle), Tech/H, page(HT251, GF26), default("SK:Driving (Motorcycle)::level"), needs(SK:Driving (Motorcycle)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Driving (Tracked), Tech/H, page(HT251, GF26), default("SK:Driving (Tracked)::level"), needs(SK:Driving (Tracked)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Aerospace), Tech/H, page(HT251, GF26), default("SK:Piloting (Aerospace)::level"), needs(SK:Piloting (Aerospace)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Autogyro), Tech/H, page(HT251, GF26), default("SK:Piloting (Autogyro)::level"), needs(SK:Piloting (Autogyro)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Contragravity), Tech/H, page(HT251, GF26), default("SK:Piloting (Contragravity)::level"), needs(SK:Piloting (Contragravity)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Flight Pack), Tech/H, page(HT251, GF26), default("SK:Piloting (Flight Pack)::level"), needs(SK:Piloting (Flight Pack)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Glider), Tech/H, page(HT251, GF26), default("SK:Piloting (Glider)::level"), needs(SK:Piloting (Glider)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Heavy Airplane), Tech/H, page(HT251, GF26), default("SK:Piloting (Heavy Airplane)::level"), needs(SK:Piloting (Heavy Airplane)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Helicopter), Tech/H, page(HT251, GF26), default("SK:Piloting (Helicopter)::level"), needs(SK:Piloting (Helicopter)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (High-Performance Airplane), Tech/H, page(HT251, GF26), default("SK:Piloting (High-Performance Airplane)::level"), needs(SK:Piloting (High-Performance Airplane)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (High-Performance Spacecraft), Tech/H, page(HT251, GF26), default("SK:Piloting (High-Performance Spacecraft)::level"), needs(SK:Piloting (High-Performance Spacecraft)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Light Airplane), Tech/H, page(HT251, GF26), default("SK:Piloting (Light Airplane)::level"), needs(SK:Piloting (Light Airplane)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Lighter-Than-Air), Tech/H, page(HT251, GF26), default("SK:Piloting (Lighter-Than-Air)::level"), needs(SK:Piloting (Lighter-Than-Air)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Lightsail), Tech/H, page(HT251, GF26), default("SK:Piloting (Lightsail)::level"), needs(SK:Piloting (Lightsail)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Low-G Wings), Tech/H, page(HT251, GF26), default("SK:Piloting (Low-G Wings)::level"), needs(SK:Piloting (Low-G Wings)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Low-Performance Spacecraft), Tech/H, page(HT251, GF26), default("SK:Piloting (Low-Performance Spacecraft)::level"), needs(SK:Piloting (Low-Performance Spacecraft)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Ultralight), Tech/H, page(HT251, GF26), default("SK:Piloting (Ultralight)::level"), needs(SK:Piloting (Ultralight)), upto(Prereq +4), cat(_General, Vehicle)
+Combat Piloting (Vertol), Tech/H, page(HT251, GF26), default("SK:Piloting (Vertol)::level"), needs(SK:Piloting (Vertol)), upto(Prereq +4), cat(_General, Vehicle)
+
+Combat Riding, Tech/H, page(HT251, GF26), default("SK:Riding::level"), needs(SK:Riding), upto(Prereq +4)
+Double-Loading, Tech/A, page(HT251, GF27), default("SK:Fast-Draw (Ammo)::level" - 2), needs(SK:Fast-Draw (Ammo)), upto(Prereq)
+Dual-Weapon Attack (%One Handed Guns Skill%), Tech/H, default("SK:%One Handed Guns Skill%::level" - 4), needs(SK:%One Handed Guns Skill%), upto(prereq), page(MA83, B230),_
+	x(#ChoiceList(_
+			name(One Handed Guns Skill),_
+			title(Dual-Weapon Attack: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+			)_
+			)_
+	), noresync(yes)
+Fanning, Tech/H, page(GF27), default("SK:Guns (Pistol)::level" - 4), needs(SK:Guns (Pistol)), upto(Prereq)
+Fast-Draw Opponent's Weapon (%Fast Draw Skill%), Tech/H, default("SK:%Fast Draw Skill%::level" -5, "SK:Judo::level"-5), needs(SK:%Fast Draw Skill%), upto(prereq), page(GF27),_
+	x(#ChoiceList(_
+			name(Fast Draw Skill),_
+			title(Fast-Draw Opponent's Weapon: Choose a Fast-Draw skill),_
+			text(Choose a Fast-Draw skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Fast-Draw (Ammo),_
+				Fast-Draw (Arrow),_
+				Fast-Draw (Long Arm),_
+				Fast-Draw (Pistol),_
+				Fast-Draw (Force Sword),_
+				Fast-Draw (Knife),_
+				Fast-Draw (Sword),_
+				Fast-Draw (Two-Handed Sword) _
+			)_
+			)_
+	), noresync(yes)
+Fast-Draw Opponent's Weapon - Judo (%Fast Draw Skill%), Tech/H, default("SK:Judo::level"-5), needs(SK:Judo, SK:%Fast Draw Skill%), upto(prereq), page(GF27),_
+	x(#ChoiceList(_
+			name(Fast Draw Skill),_
+			title(Fast-Draw Opponent's Weapon: Choose a Fast-Draw skill),_
+			text(Choose a Fast-Draw skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Fast-Draw (Ammo),_
+				Fast-Draw (Arrow),_
+				Fast-Draw (Long Arm),_
+				Fast-Draw (Pistol),_
+				Fast-Draw (Force Sword),_
+				Fast-Draw (Knife),_
+				Fast-Draw (Sword),_
+				Fast-Draw (Two-Handed Sword) _
+			)_
+			)_
+	), noresync(yes)
+Fast-Draw Opponent's Weapon - Wrestling(%Fast Draw Skill%), Tech/H, default("SK:Wrestling::level"-5), needs(SK:Wrestling, SK:%Fast Draw Skill%), upto(prereq), page(GF27),_
+	x(#ChoiceList(_
+			name(Fast Draw Skill),_
+			title(Fast-Draw Opponent's Weapon: Choose a Fast-Draw skill),_
+			text(Choose a Fast-Draw skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Fast-Draw (Ammo),_
+				Fast-Draw (Arrow),_
+				Fast-Draw (Long Arm),_
+				Fast-Draw (Pistol),_
+				Fast-Draw (Force Sword),_
+				Fast-Draw (Knife),_
+				Fast-Draw (Sword),_
+				Fast-Draw (Two-Handed Sword) _
+			)_
+			)_
+	), noresync(yes)
+Fast-Firing (%Gun Skills%), Tech/H, page(HT251, GF27), default("SK:%Gun SkillsList%::level" - 4), needs(SK:%Gun SkillsList%), upto(Prereq),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Fast-Firing: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				)_
+			)_
+		), noresync(yes)
+Feint (%Gun Skill%), Tech/H, default("SK:%Gun SkillList%::level"), needs(SK:%Gun SkillList%), upto(prereq + 4), page(MA73, B231, GF27),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Feint: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Flank Shot (%Gun Skill%), Tech/H, default("SK:%Gun SkillList%::level" -2), needs(SK:%Gun SkillList%), upto(prereq), page(GF27),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Flank Shot: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Hands-Free Riding (Riding ([Mount])), Tech/H, default("SK:Riding ([Mount])::level" - 3), needs(SK:Riding ([Mount])), upto(prereq), page(MA73, GF28),_
+	x(#InputReplace("You must specialize by type of Mount:", "[Mount]", "Equines", "Hands-Free Riding"))
+
+Hands-Free Driving (Driving ([Vehicle])), Tech/H, default("SK:Driving ([Vehicle])::level" - 3), needs(SK:Driving ([Vehicle])), upto(prereq), page(MA73, GF28),_
+	x(#InputReplace("You must specialize by type of Vehicle:", "[Vehicle]", "Automobile", "Hands-Free Driving"))
+
+Immediate Action (%Gun Skills%), Tech/A, page(HT251, GF28), default("SK:%Gun SkillsList%::level" - 4 + ST:IQ - ST:DX, "SK:Armoury (%Gun SkillsAliasList%)" - 4), needs((SK:%Gun SkillsList% | SK:Armoury (%Gun SkillsAliasList%))), upto(@max("SK:%Gun SkillsList%::level" + ST:IQ - ST:DX, "SK:Armoury (%Gun SkillsAliasList%)")),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Fast-Firing: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Gunner (Cannon)",_
+				"Gunner (Catapult)",_
+				"Gunner (Machine Gun)",_
+				"Gunner (Rockets)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				),_
+			Aliaslist(_
+				Heavy Weapons,_
+				Heavy Weapons,_
+				Heavy Weapons,_
+				Heavy Weapons,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms,_
+				Small Arms _
+				)_
+			)_
+		), noresync(yes)
+Instant Arsenal Disarm (Armoury (Small Arms)/%Gun Skill%), Tech/H, page(GF28), default("SK:Armoury (Small Arms)::level" - 5), needs(SK:Armoury (Small Arms)), upto(Prereq), Description(Prerequisites: Armoury (Small Arms) and any unarmed grappling skill),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Flank Shot: Choose a gun skill),_
+			text(Choose a gun skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+Mounted Shooting ([Ranged Weapon]/[Mount/Vehicle]), Tech/H, default("SK:[Ranged Weapon]::level" - 4), needs(SK:[Ranged Weapon], SK:[Mount/VehicleSkill]), upto(prereq), page(MA77, GF28),_
+	x(_
+		#InputReplace("You must specify the type of Mount or Vehicle (i.e. Car or Horse):", "[Mount/Vehicle]", "", "Mounted Shooting"),_
+		#InputReplace("You must specialize by Mount or Vehicle skill (i.e. Driving (Automobile) or Riding (Horse)):", "[Mount/VehicleSkill]", "", "Mounted Shooting"),_
+		#InputReplace("You must specialize by Ranged Weapon skill:", "[Ranged Weapon]", "", "Mounted Shooting")_
+	)
+Mounted Shooting (%RangedWeaponList%/[Mount/Vehicle]), Tech/H, default("SK:%RangedWeaponList%::level" - 4), needs(SK:%RangedWeaponList%, SK:%MountVehicleSkillList%), upto(prereq), page(MA77, GF28),_
+	x(_
+	#InputReplace("You must specialize by type of Mount or Vehicle (i.e. Car or Horse):", "[Mount/Vehicle]", "", "Mounted Shooting"),_
+	#ChoiceList(_
+			name(MountVehicleSkill),_
+			title(Mounted Shooting: Choose a Mount or Vehicle skill),_
+			text(Choose a Mount or Vehicle skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Boating (Large Powerboat),_
+				Boating (Motorboat),_
+				Boating (Sailboat),_
+				Boating (Unpowered),_
+				Driving (Automobile),_
+				Driving (Construction Equipment),_
+				Driving (Halftrack),_
+				Driving (Heavy Wheeled),_
+				Driving (Hovercraft),_
+				Driving (Locomotive),_
+				Driving (Mecha),_
+				Driving (Motorcycle),_
+				Driving (Tracked),_
+				Piloting (Aerospace),_
+				Piloting (Autogyro),_
+				Piloting (Contragravity),_
+				Piloting (Flight Pack),_
+				Piloting (Glider),_
+				Piloting (Heavy Airplane),_
+				Piloting (Helicopter),_
+				Piloting (High-Performance Airplane),_
+				Piloting (High-Performance Spacecraft),_
+				Piloting (Light Airplane),_
+				Piloting (Lighter-Than-Air),_
+				Piloting (Lightsail),_
+				Piloting (Low-G Wings),_
+				Piloting (Low-Performance Spacecraft),_
+				Piloting (Ultralight),_
+				Piloting (Vertol),_
+				Seamanship,_
+				Shiphandling (Airship),_
+				Shiphandling (Ship),_
+				Shiphandling (Spaceship),_
+				Shiphandling (Starship),_
+				Shiphandling (Submarine),_
+				Spacer,_
+				Submarine (Free-Flooding Sub),_
+				Submarine (Large Sub),_
+				Submarine (Mini-Sub),_
+				Submariner,_
+				Riding ([Mount/Vehicle]),_
+				Teamster ([Mount/Vehicle]),_
+				Bicycling,_
+				Parachuting_
+			)_
+			),_
+	#ChoiceList(_
+			name(RangedWeapon),_
+			title(Mounted Shooting: Choose a Ranged Weapon skill),_
+			text(Choose a Ranged Weapon skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Artillery (Beams),_
+				Artillery (Bombs),_
+				Artillery (Cannon),_
+				Artillery (Catapult),_
+				Artillery (Guided Missile),_
+				Artillery (Torpedoes),_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Blowpipe,_
+				Bolas,_
+				Bow,_
+				Crossbow,_
+				Dropping,_
+				Gunner (Beams),_
+				Gunner (Cannon),_
+				Gunner (Catapult),_
+				Gunner (Machine Gun),_
+				Gunner (Rockets),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Innate Attack (Beam),_
+				Innate Attack (Breath),_
+				Innate Attack (Gaze),_
+				Innate Attack (Projectile),_
+				Lasso,_
+				Liquid Projector (Flamethrower),_
+				Liquid Projector (Sprayer),_
+				Liquid Projector (Squirt Gun),_
+				Liquid Projector (Water Cannon),_
+				Net,_
+				Sling,_
+				Spear Thrower,_
+				Thrown Weapon (Axe/Mace),_
+				Thrown Weapon (Dart),_
+				Thrown Weapon (Harpoon),_
+				Thrown Weapon (Knife),_
+				Thrown Weapon (Shuriken),_
+				Thrown Weapon (Spear),_
+				Thrown Weapon (Stick)_
+			)_
+		)_
+	), noresync(yes)
+Precision Aiming (%Gun Skills%), Tech/A, page(HT251, GF28), default("SK:%Gun SkillsList%::level" + ST:IQ - (ST:DX + 6)), needs(SK:%Gun SkillsList%, SK:Observation), upto("SK:%Gun SkillsList%" + ST:IQ - ST:DX), tl(0-12),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Fast-Firing: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				)_
+			)_
+		), noresync(yes)
+Quick Mount (Acrobatics), Tech/A, page(GF29), default("SK:Acrobatics::level" - 3), needs(SK:Acrobatics), upto(Prereq)
+Quick Mount (Jumping), Tech/A, page(GF29), default("SK:Jumping::level" - 3), needs(SK:Jumping), upto(Prereq)
+Quick Mount (Riding), Tech/A, page(GF29), default("SK:Riding::level" - 3), needs(SK:Riding), upto(Prereq)
+Quick-Shot (%Gun Skills%), Tech/A, page(HT252, GF29), default("SK:%Gun SkillsList%::level" - 6), needs(SK:%Gun SkillsList%), upto(Prereq), tl(0-12),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Fast-Firing: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				)_
+			)_
+		), noresync(yes)
+Retain Weapon (%Gun Skill%), Tech/H, default("ST:DX::score"), needs(ST:DX > 0, SK:%Gun SkillList%), upto(ST:DX::score + 5), page(MA78, B232),_
+	x(_
+	#ChoiceList(_
+			name(Gun Skill),_
+			title(Retain Weapon: Choose a Weapon skill),_
+			text(Choose a Weapon skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Gunner (Beams),_
+				Gunner (Cannon),_
+				Gunner (Catapult),_
+				Gunner (Machine Gun),_
+				Gunner (Rockets),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Liquid Projector (Flamethrower),_
+				Liquid Projector (Sprayer),_
+				Liquid Projector (Squirt Gun),_
+				Liquid Projector (Water Cannon),_
+			)_
+		)_
+	), noresync(yes)
+Staying Seated (Riding ([Mount])), Tech/A, default("SK:Riding ([Mount])::level"), needs(SK:Riding ([Mount])), upto(prereq + 4), page(MA81, GF29),_
+	x(#InputReplace("You must specialize by type of Mount:", "[Mount]", "Equines", "Staying Seated"))
+Targeted Attack ([Ranged Weapon Skill]/[Target]), Tech/H, needs(SK:[Ranged Weapon Skill]), page(HT252, GF29), tl(0-12),_
+	default("SK:[Ranged Weapon Skill]::level" + [Hit Location Penalty], "SK:[Attack] ([Ranged Weapon Skill])::level" + [Hit Location Penalty]),_
+	upto("SK:[Ranged Weapon Skill]" - @int(-0.5 * [Hit Location Penalty])),_
+	x(_
+		#InputReplace("Please specify the Skill:", "[Ranged Weapon Skill]", "", "Targeted Attack"),_
+		#InputReplace("Please specify the Hit Location targeted by this Attack:", "[Target]", "", "Targeted Attack"),_
+		#InputReplace("Please specify the Hit Location Penalty:", "[Hit Location Penalty]", "-0", "Targeted Attack"),_
+		#Edit _
+		)
+Targeted Attack (%Gun Skills%/%TargetAlias%), Tech/H, needs(SK:%Gun SkillsList%), page(HT252), tl(0-12),_
+	default("SK:%Gun SkillsList%::level" + %TargetCostList%),_
+	upto("SK:%Gun SkillsList%" - @int(-0.5 * %TargetCostList%)),_
+	x(#ChoiceList(_
+			name(Gun Skills),_
+			title(Fast-Firing: Choose a Guns specialty),_
+			text(Choose a Guns specialty from the list provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)" _
+				)_
+			),_
+	#ChoiceList(_
+			name(Target),_
+			title(Targeted Attack: Choose a Target),_
+			text(Choose a Target from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"_Arm"=-2,_
+				"_Leg"=-2,_
+				"_Groin"=-3,_
+				"_Vitals"=-3,_
+				"_Hand"=-4,_
+				"_Foot"=-4,_
+				"_Face"=-5,_
+				"_Neck"=-5,_
+				"_Skull"=-7,_
+				"_Eyes"=-9,_
+				"_Ear"=-7,_
+				"_Nose"=-7,_
+				"_Jaw"=-6,_
+				"_Spine"=-8,_
+				"_Limb Vein/Artery"=-5,_
+				"_Neck Vein/Artery"=-8,_
+				"_Arm Joint"=-5,_
+				"_Leg Joint"=-5,_
+				"_Hand Joint"=-7,_
+				"_Foot Joint"=-7,_
+				"_Weapon"=-4,_
+				"Chinks in Arm Armor"=-10,_
+				"Chinks in Leg Armor"=-10,_
+				"Chinks in Groin Armor"=-10,_
+				"Chinks in Vitals Armor"=-10,_
+				"Chinks in Hand Armor"=-10,_
+				"Chinks in Foot Armor"=-10,_
+				"Chinks in Face Armor"=-10,_
+				"Chinks in Neck Armor"=-10,_
+				"Chinks in Skull Armor"=-10,_
+				"Chinks in Eye Armor"=-10,_
+				"Chinks in Torso Armor"=-8,_
+				"Chinks in Ear Armor"=-10,_
+				"Chinks in Nose Armor"=-10,_
+				"Chinks in Jaw Armor"=-10,_
+				"Chinks in Spine Armor"=-10,_
+				"Chinks in Limb Vein/Artery Armor"=-10,_
+				"Chinks in Neck Vein/Artery Armor"=-10,_
+				"Chinks in Arm Joint Armor"=-10,_
+				"Chinks in Leg Joint Armor"=-10,_
+				"Chinks in Hand Joint Armor"=-10,_
+				"Chinks in Foot Joint Armor"=-10 _
+			),_
+		aliaslist(_
+				"Arm",_
+				"Leg",_
+				"Groin",_
+				"Vitals",_
+				"Hand",_
+				"Foot",_
+				"Face",_
+				"Neck",_
+				"Skull",_
+				"Eyes",_
+				"Ear",_
+				"Nose",_
+				"Jaw",_
+				"Spine",_
+				"Limb Vein/Artery",_
+				"Neck Vein/Artery",_
+				"Arm Joint",_
+				"Leg Joint",_
+				"Hand Joint",_
+				"Foot Joint",_
+				"Weapon",_
+				"Chinks in Arm Armor",_
+				"Chinks in Leg Armor",_
+				"Chinks in Groin Armor",_
+				"Chinks in Vitals Armor",_
+				"Chinks in Hand Armor",_
+				"Chinks in Foot Armor",_
+				"Chinks in Face Armor",_
+				"Chinks in Neck Armor",_
+				"Chinks in Skull Armor",_
+				"Chinks in Eye Armor",_
+				"Chinks in Torso Armor",_
+				"Chinks in Ear Armor",_
+				"Chinks in Nose Armor",_
+				"Chinks in Jaw Armor",_
+				"Chinks in Spine Armor",_
+				"Chinks in Limb Vein/Artery Armor",_
+				"Chinks in Neck Vein/Artery Armor",_
+				"Chinks in Arm Joint Armor",_
+				"Chinks in Leg Joint Armor",_
+				"Chinks in Hand Joint Armor",_
+				"Chinks in Foot Joint Armor" _
+			)_
+			),_
+		#Edit _
+	), noresync(yes)
+Thumbing, Tech/H, page(HT252), default("SK:Guns (Pistol)" - 2), needs(SK:Guns (Pistol)), upto(Prereq), tl(0-12)
+Timed Dodge, Tech/H, default("ST:Dodge::score" - 2), upto(ST:Dodge), page(GF30)
+Two-Handed Thumbing, Tech/H, page(HT252, GF29), default("SK:Guns (Pistol)" - 2), needs(SK:Guns (Pistol)), upto(Prereq), tl(0-12)
+Whirlwind Attack ([Gun Skill]), Tech/H, default("SK:[Gun Skill]::level" - 5), needs(SK:[Gun Skill]), upto(prereq), page(MA89, B232, GF30),_
+	x(#InputReplace("You must specialize by gun Combat Skill:", "[Gun Skill]", "", "Whirlwind Attack"))
+Whirlwind Attack (%Gun Skill%), Tech/H, default("SK:%Gun SkillList%::level" - 5), needs(SK:%Gun SkillList%), upto(prereq), page(MA89, B232, GF30),_
+	x(#ChoiceList(_
+			name(Gun Skill),_
+			title(Whirlwind Attack: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun) _
+			)_
+			)_
+	), noresync(yes)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Styles>
+<Styles - Gun Fu>
+Double Trouble (Gun Fu), displaycost(5),_
+	description(You walk in the footsteps of Miyamoto Musashi, with a deadly weapon in each hand. You have mastered techniques to create a deadly rhythm: "two drumsticks, one sound". Double Trouble stylists have become a staple of modern gun fu cinema, and are the signature shooting specialists of director John Woo and his admirers. Woo's Hong Kong noir films produced a distinctive "bullet ballet" featuring dual-pistol wielding gunfighters in highly choreographed fight scenes, combining physical artistry and finesse with gunplay – in stark contrast to the bulging muscles and fiery explosions of the One-Man Army stylists (pp. 32-33) of earlier action films.),_
+	page(GF31),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select your Primary Weapon skill and appropriete Fast-Draw. Select your Primary Weapon for all future selections.), pointswanted(upto 1000), itemswanted(upto 2), list(_
+		SK:Fast-Draw (Pistol),_
+		SK:Guns (Pistol),_
+		SK:Fast-Draw (Submachine Gun),_
+		SK:Guns (Submachine Gun) _
+			)_
+		),_
+	select2(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (Double Trouble),_
+		SK:Acrobatics,_
+		SK:Fast-Draw (Ammo) _
+			)_
+		),_
+	select3(text(You may select from among the following Techniques, specializing in your Primary Weapon. For Targeted Attack, select "Skull".), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Close-Hip Shooting (%Gun Skill%),_
+		SK:Close-Quarters Battle (%Gun Skills%),_
+		SK:Dual-Weapon Attack (%One Handed Guns Skill%),_
+		SK:Fast-Firing (%Gun Skills%),_
+		SK:Flank Shot (%Gun Skill%),_
+		SK:Quick-Shot (%Gun Skills%),_
+		SK:Targeted Attack (%Gun Skills%/%TargetAlias%) _
+			)_
+		),_
+	select4(text(You may select from among the following Cinematic Skills and Techniques. When selecting Zen Marksmanship and Whirlwind Attack, specializing in your Primary Weapon.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Blind Fighting,_
+		SK:Flying Leap,_
+		SK:Zen Marksmanship (%Gun Skills%),_
+		SK:Timed Dodge,_
+		SK:Whirlwind Attack (%Gun Skill%) _
+			)_
+		),_
+	select5(text(You may select from among the following Perks.  When selecting Off-Hand Weapon Training or Weapon Bond, specialize in your Primary Weapon.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Gun Shtick - Stone-Cold Killer,_
+		PE:Gun Shtick - Twirl,_
+		PE:Gun Shtick - Wall o' Lead,_
+		PE:Infinite Ammunition (Over-the-Top Ammo),_
+		PE:Infinite Ammunition (Quasi-Realistic Ammo),_
+		PE:Off-Hand Weapon Training (%Gun Skill%),_
+		PE:Quick Reload (%Gun Reload%),_
+		PE:Quick-Sheathe,_
+		PE:Quick-Swap,_
+		PE:Weapon Bond (%Weapon%) _
+			)_
+		),_
+	select6(text(You may select from among the following Optional Traits. Specialize in your Primary Weapon.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra Basic Speed,_
+		AD:Extra Perception,_
+		AD:360° Vision,_
+		AD:Ambidexterity,_
+		AD:Danger Sense,_
+		AD:Enhanced Dodge,_
+		AD:Enhanced Time Sense,_
+		AD:Enhanced Tracking,_
+		AD:Extra Attack,_
+		AD:Gunslinger,_
+		AD:Peripheral Vision,_
+		AD:Signature Gear,_
+		DI:Bloodlust,_
+		DI:Impulsiveness,_
+		DI:Overconfidence,_
+		SK:Armoury (Small Arms),_
+		SK:Connoisseur,_
+		SK:Guns Art (%Gun Skill%),_
+		SK:Holdout,_
+		SK:Jumping,_
+		PE:Behind-the-Back Shot (%Gun Skill%),_
+		PE:Cinematic Knockback,_
+		PE:Cookie Cutter (%Gun Skill%),_
+		PE:Fastest Gun in the West,_
+		PE:Hand Cannon,_
+		PE:Pistol-Fist,_
+		PE:Recoil Rocket,_
+		PE:Supplier _
+			)_
+		)
+Future Kill (Gun Fu), displaycost(4), description(The Future Kill style is a full-on science-fiction combat style used by gunmen such as Neo in The Matrix, the scientifically trained "clerics" of Equilibrium, or the legendary assassins from the film Wanted. The style's major shtick is not just highly cinematic gun tricks, but impossible feats, such as semi-guided bullets, inhuman accuracy, and blindingly fast draws.),_
+	page(GF32),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (Future Kill),_
+		SK:Fast-Draw (Ammo),_
+		SK:Fast-Draw (Pistol),_
+		SK:Guns ( Pistol) _
+			)_
+		),_
+	select2(text(You may select from among the following Techniques, specializing in "Guns (Pistol)". For Targeted Attack, select "Skull".), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Dual-Weapon Attack (%One Handed Guns Skill%),_
+		SK:Fast-Firing (%Gun Skills%),_
+		SK:Flank Shot (%Gun Skill%),_
+		SK:Immediate Action (%Gun Skills%),_
+		SK:Precision Aiming (%Gun Skills%),_
+		SK:Quick-Shot (%Gun Skills%),_
+		SK:Targeted Attack (%Gun Skills%/%TargetAlias%) _
+			)_
+		),_
+	select3(text(You may select from among the following Cinematic Skills and Techniques. When selecting Zen Marksmanship and Whirlwind Attack, select "Guns (Pistol)".), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Blind Fighting,_
+		SK:Body Control,_
+		SK:Breaking Blow (Guns),_
+		SK:Flying Leap,_
+		SK:Invisibility Art,_
+		SK:Light Walk,_
+		SK:Mental Strength,_
+		SK:Zen Marksmanship (%Gun Skills%),_
+		SK:Timed Dodge,_
+		SK:Whirlwind Attack (%Gun Skill%) _
+			)_
+		),_
+	select4(text(You may select from among the following Perks:), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Area Defense,_
+		PE:Bank Shot (%Gun Skill%),_
+		PE:Bend the Bullet (%Gun Skill%),_
+		PE:Cinematic Knockback,_
+		PE:Cool Under Fire,_
+		PE:Cross-Trained,_
+		PE:Deadeye,_
+		PE:Early Adopter,_
+		PE:Gun Whisperer (%Gun Skill%),_
+		PE:Infinite Ammunition (Over-the-Top Ammo),_
+		PE:Infinite Ammunition (Quasi-Realistic Ammo),_
+		PE:Off-Hand Weapon Training (%Gun Skill%),_
+		PE:Pistol-Fist,_
+		PE:Quick Reload (%Gun Reload%),_
+		PE:Weapon Bond (%Weapon%) _
+			)_
+		),_
+	select5(text(You may select from among the following Optional Traits:), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra Basic Speed,_
+		AD:Extra Perception,_
+		AD:Acute Vision,_
+		AD:Ambidexterity,_
+		AD:Combat Reflexes,_
+		AD:Enhanced Dodge,_
+		AD:Enhanced Time Sense,_
+		AD:Extra Attack,_
+		AD:Gunslinger,_
+		AD:Signature Gear,_
+		SK:Acrobatics,_
+		SK:Armoury (Small Arms),_
+		SK:Connoisseur,_
+		SK:Gunner,_
+		SK:Guns (Grenade Launcher),_
+		SK:Guns (Gyroc),_
+		SK:Guns (Light Anti-Armor Weapon),_
+		SK:Guns (Light Machine Gun),_
+		SK:Guns (Musket),_
+		SK:Guns (Pistol),_
+		SK:Guns (Rifle),_
+		SK:Guns (Shotgun),_
+		SK:Guns (Submachine Gun),_
+		SK:Guns Art (%Gun Skill%),_
+		SK:Holdout,_
+		SK:Jumping,_
+		SK:Meditation,_
+		SK:Observation,_
+		SK:Stealth,_
+		PE:Immediate Action (%Gun Skills%),_
+		PE:Armorer's Gift,_
+		PE:Supplier,_
+		PE:Walking Armory _
+			)_
+		)
+One-Man Army (Gun Fu), displaycost(5), description(You are the lone commando, a super soldier, a master of mass-destruction; youmaimand kill with heavy weapons; your enemies perish in a fiery blast or a "pink mist." You deal death with big guns, big arms, and lots of explosions and mayhem. Outfitted with an arsenal of weapons, including machine guns, rocket launchers, grenades and grenade launchers, etc., the One-Man Army practitioner is a formidable opponent.),_
+	page(GF32),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select your Primary Weapon skill. Select your Primary Weapon for all future selections.), pointswanted(upto 1000), itemswanted(upto 1), list(_
+		SK:Gunner (Cannon),_
+		SK:Gunner (Machine Gun) _
+			)_
+		),_
+	select2(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (One-Man Army),_
+		SK:Guns (Grenade Launcher),_
+		SK:Guns (Light Machine Gun),_
+		SK:Throwing _
+			)_
+		),_
+	select3(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills. When selecting Immediate Action, select Grenade Launcher or Light Machine Gun.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Immediate Action (%Gun Skills%),_
+		SK:Quick-Shot (%Gun Skills%) _
+			)_
+		),_
+	select4(text(You may select from among the following Cinematic Skills and Techniques.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Breaking Blow (Guns) _
+			)_
+		),_
+	select5(text(You may select from among the following Perks. When selecting Cinematic Knockback select Light Machinegun or Machinegun.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Armorer's Gift,_
+		PE:Army of One,_
+		PE:Cinematic Knockback,_
+		PE:Cinematic Option (Bulletproof Nudity),_
+		PE:Cinematic Option (TV Action Violence),_
+		PE:Early Adopter,_
+		PE:Flimsy Cover,_
+		PE:Gun Shtick - Wall o' Lead,_
+		PE:Gun Whisperer (%Gun Skill%),_
+		PE:Hand Cannon,_
+		PE:Infinite Ammunition (Over-the-Top Ammo),_
+		PE:Infinite Ammunition (Quasi-Realistic Ammo),_
+		PE:Lightning Fingers,_
+		PE:Standard Operating Procedure (On Alert),_
+		PE:Tacticool,_
+		PE:Walking Armory _
+			)_
+		),_
+	select6(text(You may select from among the following Optional Traits. When selecting Connoisseur, select Guns. When selecting Expert Skill, select Military Science.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra ST,_
+		AD:Extra Basic Speed,_
+		AD:Combat Reflexes,_
+		AD:Courtesy Rank,_
+		AD:Danger Sense,_
+		AD:Enhanced Dodge,_
+		AD:Gunslinger,_
+		AD:Night Vision,_
+		AD:Rank,_
+		DI:Bloodlust,_
+		DI:Code of Honor,_
+		DI:Duty,_
+		SK:Armoury (Small Arms),_
+		SK:Artillery (Beams),_
+		SK:Artillery (Bombs),_
+		SK:Artillery (Cannon),_
+		SK:Artillery (Catapult),_
+		SK:Artillery (Guided Missile),_
+		SK:Artillery (Torpedoes),_
+		SK:Connoisseur,_
+		SK:Expert Skill,_
+		SK:Explosives (Demolition),_
+		SK:Fast-Draw (Pistol),_
+		SK:Gunner (Beams),_
+		SK:Gunner (Cannon),_
+		SK:Gunner (Catapult),_
+		SK:Gunner (Machine Gun),_
+		SK:Gunner (Rockets),_
+		SK:Guns (Grenade Launcher),_
+		SK:Guns (Gyroc),_
+		SK:Guns (Light Anti-Armor Weapon),_
+		SK:Guns (Light Machine Gun),_
+		SK:Guns (Musket),_
+		SK:Guns (Pistol),_
+		SK:Guns (Rifle),_
+		SK:Guns (Shotgun),_
+		SK:Guns (Submachine Gun),_
+		SK:Intimidation,_
+		SK:Knife,_
+		SK:Shortsword,_
+		SK:Soldier,_
+		SK:Immediate Action (%Gun Skills%),_
+		PE:Cross-Trained,_
+		PE:Gun Sense,_
+		PE:Gun Shtick - Stone-Cold Killer,_
+		PE:Scattergun,_
+		PE:Supplier _
+			)_
+		)
+Sniper (Gun Fu), displaycost(5), description(Stalking death, they call you. "An outcast profession," some say. Your stock in trade is patience, steel-edged nerves, and inhuman physical and mental discipline. You don't use acrobatics or chromed automatics or showy moves. Just a single bullet, and the world shudders. One shot. One kill.),_
+	page(GF32),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills. ), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (Sniper),_
+		SK:Camouflage,_
+		SK:Guns (Rifle),_
+		SK:Observation,_
+		SK:Stealth _
+			)_
+		),_
+	select2(text(You may select from among the following Techniques. Select Rifle as your primary weapon and Rifle/Skull or Rifle/Vitals for Targeted Attack.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Feint (%Gun Skill%),_
+		SK:Precision Aiming (%Gun Skills%),_
+		SK:Quick-Shot (%Gun Skills%),_
+		SK:Targeted Attack (%Gun Skills%/%TargetAlias%) _
+			)_
+		),_
+	select3(text(You may select from among the following Cinematic Skills and Techniques. When selecting Zen Marksmanship, select Rifle as your weapon.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Breaking Blow (Guns),_
+		SK:Invisibility Art,_
+		SK:Light Walk,_
+		SK:Zen Marksmanship (%Gun Skills%) _
+			)_
+		),_
+	select4(text(You may select from among the following Perks.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Bend the Bullet (%Gun Skill%),_
+		PE:Cinematic Knockback,_
+		PE:Cool Under Fire,_
+		PE:Cross-Trained,_
+		PE:Deadeye,_
+		PE:Early Adopter,_
+		PE:Gun Shtick - Next Time It's Your Head,_
+		PD:Gun Shtick - Stone-Cold Killer,_
+		PE:Gun Whisperer (%Gun Skill%),_
+		PE:Intuitive Armorer,_
+		PE:Lightning Fingers,_
+		PE:Supplier,_
+		PE:Weapon Bond (%Weapon%) _
+			)_
+		),_
+	select5(text(You may select from among the following Optional Traits.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra Perception,_
+		AD:Acute Vision,_
+		AD:Combat Reflexes,_
+		AD:Danger Sense,_
+		AD:Enhanced Tracking,_
+		AD:Extra Attack,_
+		AD:Gunslinger,_
+		AD:Night Vision,_
+		AD:Signature Gear,_
+		DI:Bloodlust,_
+		SK:Armoury (Small Arms),_
+		SK:Breath Control,_
+		SK:Connoisseur,_
+		SK:Fast-Draw (Long Arm),_
+		SK:Guns (Grenade Launcher),_
+		SK:Guns (Gyroc),_
+		SK:Guns (Light Anti-Armor Weapon),_
+		SK:Guns (Light Machine Gun),_
+		SK:Guns (Musket),_
+		SK:Guns (Pistol),_
+		SK:Guns (Rifle),_
+		SK:Guns (Shotgun),_
+		SK:Guns (Submachine Gun),_
+		SK:Knife,_
+		SK:Survival,_
+		SK:Tracking,_
+		SK:Immediate Action (%Gun Skills%),_
+		PE:Armorer's Gift,_
+		PE:Bank shot (%Gun Skill%) _
+			)_
+		)
+Ultimate Shootist (Gun Fu), displaycost(7), description(To you, it is daisho . . . a bow of yew . . . a victory-bright blade. It is an extension of body and spirit with which you sow devastation unknown in simpler times. It is your gun – the modern embodiment of martial spirit.),_
+	page(GF32),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills. ), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (Ultimate Shootist),_
+		SK:Fast-Draw (Ammo),_
+		SK:Fast-Draw (Pistol),_
+		SK:Guns (Pistol),_
+		SK:Guns (Rifle),_
+		SK:Guns (Shotgun),_
+		SK:Guns (Submachine Gun) _
+			)_
+		),_
+	select2(text(You may select from among the following Techniques:), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Close-Hip Shooting (%Gun Skill%),_
+		SK:Close-Quarters Battle (%Gun Skills%),_
+		SK:Fast-Firing (%Gun Skills%),_
+		SK:Precision Aiming (%Gun SkillsList%/%TargetAliasList%),_
+		SK:Quick-Shot (%Gun Skills%),_
+		SK:Retain Weapon (%Gun Skills%),_
+		SK:Targeted Attack (%Gun Skills%/%TargetAlias%) _
+			)_
+		),_
+	select3(text(You may select from among the following Cinematic Skills and Techniques.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Blind Fighting,_
+		SK:Breaking Blow (Guns),_
+		SK:Invisibility Art,_
+		SK:Light Walk,_
+		SK:Zen Marksmanship (%Gun Skills%),_
+		SK:Timed Dodge,_
+		SK:Whirlwind Attack (%Gun Skills%) _
+			)_
+		),_
+	select4(text(You may select from among the following Perks.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Cool Under Fire,_
+		PE:Cross-Trained,_
+		PE:Fastest Gun in the West,_
+		PE:Fireball Shot,_
+		PE:Gun Shtick - Next Time It's Your Head,_
+		PE:Gun Shtick - Stone-Cold Killer,_
+		PE:Gun Shtick - Trick Reload,_
+		PE:Gun Shtick - Twirl,_
+		PE:Gun Shtick - Wall o' Lead,_
+		PE:Gun Whisperer (%Gun Skill%),_
+		PE:Infinite Ammunition (Over-the-Top Ammo),_
+		PE:Infinite Ammunition (Quasi-Realistic Ammo),_
+		PE:Quick Reload (%Gun Reload%),_
+		PE:Quick-Sheathe,_
+		PE:Quick-Swap _
+			)_
+		),_
+	select5(text(You may select from among the following Optional Traits.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra Basic Speed,_
+		AD:Extra Perception,_
+		AD:Ambidexterity,_
+		AD:Combat Reflexes,_
+		AD:Extra Attack,_
+		AD:Gunslinger,_
+		DI:Code of Honor,_
+		DI:Duty,_
+		DI:Bloodlust,_
+		SK:Armoury (Small Arms),_
+		SK:Boating (Large Powerboat),_
+		SK:Boating (Motorboat),_
+		SK:Boating (Sailboat),_
+		SK:Boating (Unpowered),_
+		SK:Breath Control,_
+		SK:Driving (Automobile),_
+		SK:Driving (Construction Equipment),_
+		SK:Driving (Halftrack),_
+		SK:Driving (Heavy Wheeled),_
+		SK:Driving (Hovercraft),_
+		SK:Driving (Locomotive),_
+		SK:Driving (Mecha),_
+		SK:Driving (Motorcycle),_
+		SK:Driving (Tracked),_
+		SK:Fast-Draw (Long Arm),_
+		SK:Gunner (Beams),_
+		SK:Gunner (Cannon),_
+		SK:Gunner (Catapult),_
+		SK:Gunner (Machine Gun),_
+		SK:Gunner (Rockets),_
+		SK:Guns (Grenade Launcher),_
+		SK:Guns (Gyroc),_
+		SK:Guns (Light Anti-Armor Weapon),_
+		SK:Guns (Light Machine Gun),_
+		SK:Guns (Musket),_
+		SK:Guns (Pistol),_
+		SK:Guns (Rifle),_
+		SK:Guns (Shotgun),_
+		SK:Guns (Submachine Gun),_
+		SK:Piloting (Aerospace),_
+		SK:Piloting (Autogyro),_
+		SK:Piloting (Contragravity),_
+		SK:Piloting (Flight Pack),_
+		SK:Piloting (Glider),_
+		SK:Piloting (Heavy Airplane),_
+		SK:Piloting (Helicopter),_
+		SK:Piloting (High-Performance Airplane),_
+		SK:Piloting (High-Performance Spacecraft),_
+		SK:Piloting (Light Airplane),_
+		SK:Piloting (Lighter-Than-Air),_
+		SK:Piloting (Lightsail),_
+		SK:Piloting (Low-G Wings),_
+		SK:Piloting (Low-Performance Spacecraft),_
+		SK:Piloting (Ultralight),_
+		SK:Piloting (Vertol),_
+		SK:Stealth,_
+		SK:Combat Driving (Automobile),_
+		SK:Combat Driving (Construction Equipment),_
+		SK:Combat Driving (Halftrack),_
+		SK:Combat Driving (Heavy Wheeled),_
+		SK:Combat Driving (Hovercraft),_
+		SK:Combat Driving (Locomotive),_
+		SK:Combat Driving (Mecha),_
+		SK:Combat Driving (Motorcycle),_
+		SK:Combat Driving (Tracked),_
+		SK:Hands-Free Driving (Driving ([Vehicle])),_
+		SK:Mounted Shooting ([Ranged Weapon]/[Mount/Vehicle]),_
+		SK:Quick Mount (Acrobatics),_
+		SK:Quick Mount (Jumping),_
+		SK:Quick Mount (Riding),_
+		PE:Bend the Bullet (%Gun Skill%),_
+		PE:Cinematic Knockback,_
+		PE:Gun Sense,_
+		PE:Motorized Training,_
+		PE:No Friendly Fire,_
+		PE:Pants-Positive Safety,_
+		PE:Supplier,_
+		PE:No Friendly Fire,_
+		PE:Weapon Bond (%Weapon%) _
+			)_
+		)
+Way of the West (Gun Fu), displaycost(6), description(Whether law dog, cowpoke, or desperado, you handle a Peacemaker, Winchester, and street howitzer with stunning proficiency. You can ride fast and draw even faster. The notches in your gun handles tell the tale: When you slap leather, men die.),_
+	page(GF35),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills. ), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (Way of the West),_
+		SK:Fast-Draw (Pistol),_
+		SK:Guns (Pistol),_
+		SK:Guns (Rifle),_
+		SK:Guns (Shotgun),_
+		SK:Riding _
+			)_
+		),_
+	select2(text(You may select from among the following Techniques. Whena asked to select a Weapon, select any of the following: Pistol, Rifle, or Shotgun. For Targeted Attack target, select Pistol, Rifle/Hand or Weapon), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Double-Loading,_
+		SK:Dual-Weapon Attack (%One Handed Guns Skill%),_
+		SK:Fanning,_
+		SK:Fast-Firing (%Gun Skills%),_
+		SK:Quick-Shot (%Gun Skills%),_
+		SK:Targeted Attack (%Gun Skills%/%TargetAlias%),_
+		SK:Thumbing,_
+		SK:Two-Handed Thumbing _
+			)_
+		),_
+	select3(text(You may select from among the following Cinematic Skills and Techniques. When selecting Zen Marksmanship, select either Pistol or Rifle. When selecting Whirlwind attack, select Pistol.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Blind Fighting,_
+		SK:Zen Marksmanship (%Gun Skills%),_
+		SK:Whirlwind Attack (%Gun Skill%) _
+			)_
+		),_
+	select4(text(You may select from among the following Perks.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Deadeye,_
+		PE:Fastest Gun in the West,_
+		PE:Gun Shtick - Next Time It's Your Head,_
+		PE:Gun Shtick - Stone-Cold Killer,_
+		PE:Gun Shtick - Trick Reload,_
+		PE:Gun Shtick - Twirl,_
+		PE:Gun Shtick - Wall o' Lead,_
+		PE:Gun Whisperer (%Gun Skill%),_
+		PE:Infinite Ammunition (Over-the-Top Ammo),_
+		PE:Infinite Ammunition (Quasi-Realistic Ammo),_
+		PE:Lightning Fingers,_
+		PE:Off-Hand Weapon Training (%Gun Skill%),_
+		PE:One-Armed Bandit (%One Armed Gun Skill%),_
+		PE:Pistol-Fist,_
+		PE:Quick Reload (%Gun Reload%),_
+		PE:Quick-Sheathe,_
+		PE:Quick-Swap,_
+		PE:Rope Shooter,_
+		PE:Scattergun,_
+		PE:Weapon Bond (%Weapon%) _
+			)_
+		),_
+	select5(text(You may select from among the following Optional Traits.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra Basic Speed,_
+		AD:Extra Perception,_
+		AD:Ambidexterity,_
+		AD:Enhanced Time Sense,_
+		AD:Gunslinger,_
+		AD:Hard to Kill,_
+		AD:High Pain Threshold,_
+		AD:Luck,_
+		DI:Bad Temper,_
+		DI:Code of Honor,_
+		DI:Sense of Duty,_
+		SK:Armoury (Small Arms),_
+		SK:Axe/Mace,_
+		SK:Brawling,_
+		SK:Fast-Draw (Long Arm),_
+		SK:Gunner (Machine Gun),_
+		SK:Knife,_
+		SK:Lasso,_
+		SK:Teamster,_
+		SK:Cavalry Training (%Gun Skill%),_
+		SK:Close-Hip Shooting (%Gun Skill%),_
+		SK:Combat Riding,_
+		SK:Hands-Free Riding (Riding ([Mount])),_
+		SK:Mounted Shooting ([Ranged Weapon]/[Mount/Vehicle]),_
+		SK:Quick Mount (Acrobatics),_
+		SK:Quick Mount (Jumping),_
+		SK:Quick Mount (Riding),_
+		SK:Staying Seated (Riding ([Mount])),_
+		PE:Bank shot (%Gun Skill%),_
+		PE:Cinematic Knockback,_
+		PE:Deadeye,_
+		PE:Precision Aiming (%Gun Skills%),_
+		PE:Supplier _
+			)_
+		)
+Way of the Galaxy (Gun Fu), displaycost(4), description(Way of the West is the classic model for the styles of many gunfighters in science fiction and space operas – Han Solo in Star Wars probably being the most famous archetype. For these, use the following modified style template.),_
+	page(GF35),_
+	cat(Styles, Styles - Fictional Styles, Styles - Gun Fu),_
+	select1(text(Primary Skills: Select from the following skills and Style Familiarity Perk. In order to take the Style Familiarity Perk you must take at least 1 point in each of the skills. ), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Style Familiarity (Way of the Galaxy),_
+		SK:Fast-Draw (Pistol),_
+		SK:Beam Weapons (Pistol),_
+		SK:Beam Weapons (Rifle) _
+			)_
+		),_
+	select2(text(You may select from among the following Techniques. Whena asked to select a Weapon, select any of the following:), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Double-Loading,_
+		SK:Dual-Weapon Attack (%One Handed Guns Skill%),_
+		SK:Quick-Shot (%Gun Skills%),_
+		SK:Targeted Attack (%Gun Skills%/%TargetAlias%) _
+			)_
+		),_
+	select3(text(You may select from among the following Cinematic Skills and Techniques. When selecting Whirlwind attack, select Pistol.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		SK:Whirlwind Attack (%Gun Skill%) _
+			)_
+		),_
+	select4(text(You may select from among the following Perks.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		PE:Fastest Gun in the West,_
+		PE:Gun Shtick - Twirl,_
+		PE:Gun Whisperer (%Gun Skill%),_
+		PE:Infinite Ammunition (Over-the-Top Ammo),_
+		PE:Infinite Ammunition (Quasi-Realistic Ammo),_
+		PE:Lightning Fingers,_
+		PE:Off-Hand Weapon Training (%Gun Skill%),_
+		PE:Quick Reload (%Gun Reload%),_
+		PE:Quick-Sheathe,_
+		PE:Weapon Bond (%Weapon%) _
+			)_
+		),_
+	select5(text(You may select from among the following Optional Traits.), pointswanted(upto 1000), itemswanted(upto 1000), list(_
+		AD:Extra Basic Speed,_
+		AD:Extra Perception,_
+		AD:Ambidexterity,_
+		AD:Enhanced Time Sense,_
+		AD:Gunslinger,_
+		AD:Hard to Kill,_
+		AD:High Pain Threshold,_
+		AD:Luck,_
+		DI:Bad Temper,_
+		DI:Code of Honor,_
+		DI:Sense of Duty,_
+		SK:Armoury (Small Arms),_
+		SK:Fast-Draw (Long Arm),_
+		SK:Gunner (Machine Gun),_
+		SK:Close-Hip Shooting (%Gun Skill%),_
+		SK:Combat Driving (Automobile),_
+		SK:Combat Driving (Construction Equipment),_
+		SK:Combat Driving (Halftrack),_
+		SK:Combat Driving (Heavy Wheeled),_
+		SK:Combat Driving (Hovercraft),_
+		SK:Combat Driving (Locomotive),_
+		SK:Combat Driving (Mecha),_
+		SK:Combat Driving (Motorcycle),_
+		SK:Combat Driving (Tracked),_
+		SK:Combat Piloting (Aerospace),_
+		SK:Combat Piloting (Autogyro),_
+		SK:Combat Piloting (Contragravity),_
+		SK:Combat Piloting (Flight Pack),_
+		SK:Combat Piloting (Glider),_
+		SK:Combat Piloting (Heavy Airplane),_
+		SK:Combat Piloting (Helicopter),_
+		SK:Combat Piloting (High-Performance Airplane),_
+		SK:Combat Piloting (High-Performance Spacecraft),_
+		SK:Combat Piloting (Light Airplane),_
+		SK:Combat Piloting (Lighter-Than-Air),_
+		SK:Combat Piloting (Lightsail),_
+		SK:Combat Piloting (Low-G Wings),_
+		SK:Combat Piloting (Low-Performance Spacecraft),_
+		SK:Combat Piloting (Ultralight),_
+		SK:Combat Piloting (Vertol),_
+		SK:Mounted Shooting ([Ranged Weapon]/[Mount/Vehicle]),_
+		PE:Bank shot (%Gun Skill%),_
+		PE:Cinematic Knockback,_
+		PE:Gun Shtick - Next Time It's Your Head,_
+		PE:Gun Shtick - Stone-Cold Killer,_
+		PE:Gun Shtick - Trick Reload,_
+		PE:Gun Shtick - Twirl,_
+		PE:Gun Shtick - Wall o' Lead,_
+		PE:Motorized Training,_
+		PE:Supplier _
+			)_
+		)
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+//  Weapons
+*******************************************************************************************************\[START]
+<Gun Fu, Gun Fu - Weapons, Gun Fu - Weapons - Revolvers>
+
+<Gun Fu, Gun Fu - Weapons, Gun Fu - Weapons - Semiautomatic Pistols, _Firearms, _Firearms - High-Tech>
+"CZ Model 75, 9x19mm",acc(2),ammo(0.6 lb.),basecost(500),baseweight(2.9),bulk(-2),charminst(9),damage(2d+2),damtype(pi),dmg(2),familiarities(),lc(3),minst(9),mods(Guns, Equipment),page(GF37),precountcost(500),precountweight(2.9),rangehalfdam(160),rangemax(1800),rcl(2),rof(3),shots(15+1(3)),skillused(SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(7),tl(),usernotes(),description(),notes([1],[2])
+"Ruger KP90, .45 ACP",acc(2),ammo(0.5 lb.),basecost(490),baseweight(2.6),bulk(-2),charminst(10),damage(2d),damtype(pi+),dmg(2),familiarities(),lc(3),minst(10),mods(Guns, Equipment),page(GF37),precountcost(490),precountweight(2.6),rangehalfdam(150),rangemax(1600),rcl(3),rof(3),shots(7+1(3)),skillused(SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(8),tl(),usernotes(),description(),notes([1])
+"H&K USP Match, 9x19mm",acc(1),ammo(0.5 lb.),basecost(1350),baseweight(3),bulk(-3),charminst(9),damage(2d+2),damtype(pi),dmg(2),familiarities(),lc(3),minst(9),mods(Guns, Equipment),page(GF37),precountcost(1350),precountweight(3),rangehalfdam(165),rangemax(1850),rcl(2),rof(3),shots(15+1(3)),skillused(SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(8),tl(),usernotes(),description(),notes([1] [2] [3])
+"Remington 2-Shot, .41",noresync(yes),techlvl(6),basecost(10),baseweight(.5),lc(4),damage(1d),damtype(pi+),armordivisor( ),acc(1),rangehalfdam(80),rangemax(650),rof(1),shots(2),minst(9),bulk( -1),rcl( -1),mods(Equipment),tl(),usernotes(),familiarities(),page(Old West 87),precountcost(10),precountweight(0.5),charminst(9),dmg(1),load(Personal), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2)
+
+<Gun Fu, Gun Fu - Weapons, Gun Fu - Weapons - Shotguns, _Firearms, _Firearms - High-Tech>
+"Miroku-Browning BPS, 12G 3''",acc(3),ammo(0.33 lb.),basecost(525),baseweight(8.3),bulk(-6),charminst(10†),damage(1d+1),damtype(pi),dmg(1),familiarities(),lc(3),minst(10†),mods(Guns, Equipment),page(GF37),precountcost(525),precountweight(8.3),rangehalfdam(40),rangemax(800),rcl(1/5),rof(3x12),shots(7+1(2i)),skillused(SK:Guns (Shotgun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(8),tl(),usernotes(),description(),notes([1])
+"Franchi PA3, 12G 2.75''",acc(2),ammo(0.33 lb.),basecost(500),baseweight(5.4),bulk(-3),charminst(11†),damage(1d+1),damtype(pi),dmg(1),familiarities(),lc(3),minst(10†),mods(Guns, Equipment),page(GF37),precountcost(500),precountweight(5.4),rangehalfdam(40),rangemax(800),rcl(1/6),rof(2x9),shots(3+1(2i)),skillused(SK:Guns (Shotgun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(8),tl(),usernotes(),description(),notes([1])
+"Mossberg Model 500 Cruiser, 12G 3''",acc(2),ammo(0.55 lb.),basecost(415),baseweight(6.3),bulk(-4),charminst(12†),damage(1d+2),damtype(pi),dmg(1),familiarities(),lc(3),minst(12†),mods(Guns, Equipment),page(GF37),precountcost(415),precountweight(6.3),rangehalfdam(40),rangemax(800),rcl(1/6),rof(2x12),shots(5+1(2i)),skillused(SK:Guns (Shotgun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(7),tl(),usernotes(),description(),notes([1])
+
+<Gun Fu, Gun Fu - Weapons, Gun Fu - Weapons - Muskets and Rifles, _Firearms, _Firearms - High-Tech>
+"IMI Galil MAR, 5.56x45mm",acc(4),ammo(1.8 lb.),basecost(1100),baseweight(8.3),bulk(-4*),charminst(9†),damage(4d),damtype(pi),dmg(1),familiarities(),lc(2),minst(9†),mods(Guns, Equipment),page(GF37),precountcost(1100),precountweight(8.3),rangehalfdam(600),rangemax(2500),rcl(2),rof(9/11),shots(35+1(3)),skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!),techlvl(8),tl(),usernotes(),description(),notes()
+
+//  Equipment
+
+<Gun Fu, Gun Fu - Miscellaneous Equipment - Weapon & Combat Accessories>
+"Holster, Concealed Back", techlvl(6), basecost(50), baseweight(1), description(-1 Fast-Draw (Pistol). -1 Holdout (but +5 if the person you're trying to fool can only see you front-on, and can't actually search you)), page(GF42), mods(Equipment),lc(4)
+"Holster, Fast-Draw Back Scabbard", techlvl(6), basecost(100), baseweight(2), description(-1 Fast-Draw (Long Arm)), page(GF43), mods(Equipment),lc(4)
+"Holster, Sleeve", techlvl(6), basecost(500), baseweight(.5), description(This is a spring-loaded holster strapped to the forearm. The wearer activates it via a lever near the elbow, typically by pressing the elbow against the body.), page(GF43), mods(Equipment),lc(4)
+"Holster, Fast-Draw Rig", techlvl(6), basecost(500), baseweight(3), gives(+2 to SK:Fast-Draw (Pistol)),description(A holster and belt can be custom-built for speed. The drop hip belt with its low-slung, smooth-drawing, steel-lined holster was patented in 1954 for Hollywood gunslingers. Although used in most Western movies, authentic Old West gunfighters never equipped themselves with it. Nevertheless, it is fast! +2 Fast-Draw (Pistol).), page(GF43), mods(Equipment),lc(4)
+Machine Gun Case, techlvl(7), basecost( ), baseweight( ), description(Costs and weighs twice the gun's cost and weight for a mass-produced case; triple cost for a custom design.), page(GF43), mods(Equipment),lc(2)
+Speedload Magazine Holder, techlvl(8), basecost(50), baseweight(.5), description(This is a reloading aid worn on the upper thigh, with one or more magazines stored in loops in such a way as to allow a one-handed (!) quick reload by pressing the empty magazine funnel in the pistol butt on the thigh. It reduces reloading time from three to two Ready maneuvers on a successful Fast-Draw (Ammo) roll. In a realistic campaign, carrying the magazines exposed in this way invites dirt to enter the magazines or can even damage the feed lips. This will give -1 to Malf.), page(GF43), mods(Equipment),lc(4)
+Sleeve Magazine Loader, techlvl(8), basecost(100), baseweight(.5), description(This is a cinematic reloading aid worn as a bracelet on the lower arm. On activation using Fast-Draw (Ammo), it shoves a fresh magazine into the butt of a pistol held in the same hand, reducing reloading from three to one Ready maneuver. Cleric John Preston in Equilibrium shows this in action.), page(GF43), mods(Equipment),lc(4)
+
+//  Located in High-Tech
+Scabbard (Long Arm),noresync(yes),techlvl(5),basecost(25),baseweight(1),lc(4),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(25),precountweight(1),page(High-Tech 154),description(This is a sheath or a covering for a carbine, shotgun, or other shoulder arm. A scabbard is a common accessory among those who ride animals, motorcycles, and open topped vehicles (for examples, see WWII Jeep, pp. 236-237). It protects a long arm in the same way that a military holster (see above) protects a handgun. $25, 1 lb. LC4.)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllPerks>
+PE:Akimbo (%Gun Skill%)
+PE:Area Defense
+PE:Army of One
+PE:Bank shot (%Gun Skill%)
+PE:Bend the Bullet (%Gun Skill%)
+PE:Concealed Carry Permit
+PE:Cookie Cutter (%Gun Skill%)
+PE:Dial-a-Round (%Gun Skill%)
+PE:Heavy Weapons Permit
+PE:Cinematic Knockback
+PE:Cinematic Option
+PE:Cinematic Option (Bulletproof Nudity)
+PE:Cinematic Option (Cinematic Explosions)
+PE:Cinematic Option (Flesh Wounds)
+PE:Cinematic Option (Melee Etiquette)
+PE:Cinematic Option (TV Action Violence)
+PE:Cool Under Fire
+PE:Deadeye
+PE:Fastest Gun in the West
+PE:Hand Cannon
+PE:Dual Ready
+PE:Early Adopter
+PE:Fireball Shot
+PE:Flimsy Cover
+PE:Gun Sense
+PE:Gun Whisperer (%Gun Skill%)
+PE:Infinite Ammunition (Over-the-Top Ammo)
+PE:Infinite Ammunition (Quasi-Realistic Ammo)
+PE:Gun Shtick - Next Time It's Your Head
+PE:Gun Shtick - Stone-Cold Killer
+PE:Gun Shtick - Trick Reload
+PE:Gun Shtick - Twirl
+PE:Gun Shtick - Wall o' Lead
+PE:Intuitive Armorer
+PE:Just Winged Him
+PE:Lightning Fingers
+PE:Motorized Training
+PE:Muzzle Flamethrower
+PE:No Friendly Fire
+PE:Off-Hand Weapon Training (%Gun Skill%)
+PE:Pistol-Fist
+PE:Quick Reload (%Gun Reload%)
+PE:Recoil Rocket
+PE:Rope Shooter
+PE:Scattergun
+PE:One-Armed Bandit (%One Armed Gun Skill%)
+PE:Silencer
+PE:Standard Operating Procedure (Back to the Wall)
+PE:Standard Operating Procedure (Off-Screen Reload)
+PE:Standard Operating Procedure (On Alert)
+PE:Standard Operating Procedure (Sleep with One Eye Open)
+PE:Supplier
+PE:Tacticool
+PE:Tap-Rack-Bang (%Gun Skill%)
+PE:Tracer Eyes
+PE:Trick Shooter - Aerial Target Shooter (%Gun Skill%)
+PE:Trick Shooter - Chicago Typewriter (%Gun Skill%)
+PE:Trick Shooter - Tack Driver (%Gun Skill%)
+PE:Upside-Down Shooting
+PE:Walking Armory
+
+<AllPerksStyleFamiliarity>
+PE:Style Familiarity (Double Trouble)
+PE:Style Familiarity (Future Kill)
+PE:Style Familiarity (One-Man Army)
+PE:Style Familiarity (Sniper)
+PE:Style Familiarity (Ultimate Shootist)
+PE:Style Familiarity (Way of the West)
+PE:Style Familiarity (Way of the Galaxy)
+
+<ShieldSkill>
+SK:Shield (Shield)
+SK:Shield (Buckler)
+SK:Shield (Force)
+
+<Melee Weapon Skill>
+SK:Axe/Mace
+SK:Broadsword
+SK:Cloak
+SK:Flail
+SK:Force Sword
+SK:Force Whip
+SK:Garrote
+SK:Jitte/Sai
+SK:Knife
+SK:Kusari
+SK:Lance
+SK:Main-Gauche
+SK:Monowire Whip
+SK:Parry Missile Weapons
+SK:Polearm
+SK:Rapier
+SK:Saber
+SK:Shortsword
+SK:Smallsword
+SK:Spear
+SK:Staff
+SK:Tonfa
+SK:Two-Handed Axe/Mace
+SK:Two-Handed Flail
+SK:Two-Handed Sword
+SK:Whip
+
+<Ranged Weapon Skill>
+SK:Artillery (Beams)
+SK:Artillery (Bombs)
+SK:Artillery (Cannon)
+SK:Artillery (Catapult)
+SK:Artillery (Guided Missile)
+SK:Artillery (Torpedoes)
+SK:Beam Weapons (Pistol)
+SK:Beam Weapons (Projector)
+SK:Beam Weapons (Rifle)
+SK:Blowpipe
+SK:Bolas
+SK:Bow
+SK:Crossbow
+SK:Dropping
+SK:Gunner (Beams)
+SK:Gunner (Cannon)
+SK:Gunner (Catapult)
+SK:Gunner (Machine Gun)
+SK:Gunner (Rockets)
+SK:Guns (Grenade Launcher)
+SK:Guns (Gyroc)
+SK:Guns (Light Anti-Armor Weapon)
+SK:Guns (Light Machine Gun)
+SK:Guns (Musket)
+SK:Guns (Pistol)
+SK:Guns (Rifle)
+SK:Guns (Shotgun)
+SK:Guns (Submachine Gun)
+SK:Innate Attack (Beam)
+SK:Innate Attack (Breath)
+SK:Innate Attack (Gaze)
+SK:Innate Attack (Projectile)
+SK:Lasso
+SK:Liquid Projector (Flamethrower)
+SK:Liquid Projector (Sprayer)
+SK:Liquid Projector (Squirt Gun)
+SK:Liquid Projector (Water Cannon)
+SK:Net
+SK:Sling
+SK:Spear Thrower
+SK:Thrown Weapon (Axe/Mace)
+SK:Thrown Weapon (Dart)
+SK:Thrown Weapon (Harpoon)
+SK:Thrown Weapon (Knife)
+SK:Thrown Weapon (Shuriken)
+SK:Thrown Weapon (Spear)
+SK:Thrown Weapon (Stick)

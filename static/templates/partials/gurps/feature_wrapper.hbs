@@ -1,0 +1,12 @@
+
+{{#if (contains _template 'wrapper-feature')}}
+  <div class="feature-wrapper {{join classes}}" data-id="{{id}}" data-index="{{index}}">
+    <div class="children">
+      {{#each children}}
+        {{> gurps/feature_wrapper this}}
+      {{/each}}
+    </div>
+  </div>
+{{else}}
+  {{> gurps/feature this}}
+{{/if}}

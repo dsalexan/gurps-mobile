@@ -1,0 +1,211 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file converts all of the Imbuement skills into IQ/VH skills.
+Requires="GURPS Power-Ups 1 Imbuements 4e.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: GURPS Power-Ups 1 Imbuements 4e.gdf
+* Created: June 2, 2008
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS  sourcebook.
+* GURPS GURPS Power-Ups 1 Imbuements is Copyright © 2008 by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*	New Skills & Advantages
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[SKILLS]
+************************************************************************************************************************
+
+#ReplaceTags in "SK:Annihilating Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Annihilating Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Arching Shot (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Arching Shot ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Bank Shot (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Bank Shot ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Binding Shot (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Binding Shot ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Burning Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Burning Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Burning Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Chilling Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Chilling Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Chilling Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Conic Blast (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Conic Blast ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Continuing Attack (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Continuing Attack (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Continuing Attack ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Corrosive Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Corrosive Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Corrosive Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crippling Blow (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crippling Blow (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crippling Blow ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crushing Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crushing Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crushing Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Cutting Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Cutting Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Cutting Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dancing Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dancing Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dancing Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dazzling Display (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dazzling Display (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dazzling Display ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Deafening Display (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Deafening Display (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Deafening Display ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Drugged Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Drugged Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Drugged Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Electric Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Electric Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Electric Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Envenomed Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Envenomed Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Envenomed Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Far Shot (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Far Shot ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Fatiguing Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Fatiguing Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Fatiguing Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Forceful Blow (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Forceful Blow (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Forceful Blow ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Ghostly Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Ghostly Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Ghostly Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Guided Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Guided Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Homing Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Homing Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Impaling Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Impaling Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Impaling Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Incendiary Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Incendiary Weapon (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Incendiary Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Multi-Shot (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Multi-Shot ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Penetrating Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Penetrating Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Penetrating Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Piercing Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Piercing Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Piercing Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Project Blow (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Project Blow ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shattershot (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shattershot ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shockwave (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shockwave (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shockwave ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stealthy Attack (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stealthy Attack (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stealthy Attack ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Strike of Negation (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Strike of Negation ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stupefying Blow (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stupefying Blow (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stupefying Blow ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Sudden Death (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Sudden Death (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Sudden Death ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Supreme Control (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Supreme Control (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Supreme Control ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Telescoping Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Telescoping Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Toxic Attack (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Toxic Attack (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Toxic Attack ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Traumatic Blow (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Traumatic Blow (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Traumatic Blow ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Vampiric Weapon (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Vampiric Weapon ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Withering Strike (%MeleeWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Withering Strike (%RangedWeaponSkillList%)" with "type(IQ/VH)"
+#ReplaceTags in "SK:Withering Strike ([Skill])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Annihilating Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Arching Shot ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Bank Shot ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Binding Shot ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Burning Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Chilling Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Conic Blast ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Continuing Attack ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Corrosive Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crippling Blow ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Crushing Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Cutting Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dancing Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Dazzling Display ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Deafening Display ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Drugged Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Electric Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Envenomed Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Far Shot ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Fatiguing Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Forceful Blow ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Ghostly Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Guided Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Homing Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Impaling Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Incendiary Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Multi-Shot ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Penetrating Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Piercing Strike ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Project Blow ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shattershot ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Shockwave ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stealthy Attack ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Strike of Negation ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Stupefying Blow ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Sudden Death ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Supreme Control ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Telescoping Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Toxic Attack ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Traumatic Blow ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Vampiric Weapon ([Spell])" with "type(IQ/VH)"
+#ReplaceTags in "SK:Withering Strike ([Spell])" with "type(IQ/VH)"
+
+************************************************************************************************************************
+[MODIFIERS]
+************************************************************************************************************************
+
+<Imbue IQ-Based>
+DX-Based, 0, addmode(Primary, type(DX/VH))
+
+<Imbue IQ-Based WC>
+DX-Based, 0, addmode(Primary, type(DX/WC))

@@ -1,0 +1,1396 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2022 September 6. _
+        This data file contains information taken from the GURPS Thaumatology sourcebook. _
+			GURPS Thaumatology is Copyright © 2008 by Steve Jackson Games _
+			Incorporated. Al rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadBefore="GURPS Banestorm 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Thaumatology 4e.gdf
+//  Created: July 4, 2008
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Thaumatology sourcebook.
+//  GURPS Thaumatology is Copyright © 2008 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+Threshold, basevalue(@int(240/ST:Recovery Rate::basescore)), display(no),_
+	maxscore(240), minscore(1)
+Recovery Rate, basevalue(8), step(1), display(no),_
+	maxscore(240), minscore(1), up(0), down(0),_
+	damage(2d+1), gives(=+(me::score-8) to me::damage)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+// #ReplaceTags in "AD:Magery" with "needs(AD:Magery 0 | @itemhasmod(AD:Magery, Magery 0) > 0 | @itemhasmod(AD:Magery, Magery 0 - not affected by Limitations) > 0 )"
+
+<Exotic Physical>
+Energy Reserve, 3/6, mods(Energy Reserve), cat(Attributes, Exotic, Physical), page(P119, Th50),_
+	x(#InputToTag("Please specify power source to which the Energy Reserve applies (Magical, Psi, etc.):", NameExt, , "Energy Reserve"))
+
+<Supernatural Mental>
+Wild Mana Generator, 100, cat(Supernatural, Mental), page(Th61), mods(Mana Damper/Enhancer)
+
+Twisted Mana Generator, 15, cat(Supernatural, Mental), page(Th61), mods(Twisted Mana Generator), radius(2), taboo(DI:Twisted Mana Generator),_
+	conditional(-3 to ST:Reaction when "others can see your aura")
+
+<Threshold-Limited Magic>
+#Clone "AD:Magery" as "AD:Threshold Magery"
+#MergeTags in "AD:Threshold Magery" with "page(Th76), mods(Threshold Magery), cat(Threshold-Limited Magic)"
+#ReplaceTags in "AD:Threshold Magery" with "needs(AD:Threshold Magery 0), replacetags(in ST:Threshold with {display(yes), mainwin(20), noresync(yes)}, in ST:Recovery Rate with {display(yes), mainwin(21), noresync(yes)})"
+
+#Clone "AD:Magery 0" as "AD:Threshold Magery 0"
+#MergeTags in "AD:Threshold Magery 0" with "page(Th76), mods(Threshold Magery), cat(Threshold-Limited Magic)"
+#ReplaceTags in "AD:Threshold Magery 0" with "replacetags(in ST:Threshold with {display(yes), mainwin(20), noresync(yes)}, in ST:Recovery Rate with {display(yes), mainwin(21), noresync(yes)})"
+
+#Clone "AD:Power Investiture" as "AD:Threshold Power Investiture"
+#MergeTags in "AD:Threshold Power Investiture" with "page(Th76), mods(Threshold Magery), cat(Threshold-Limited Magic)"
+#ReplaceTags in "AD:Threshold Power Investiture" with "replacetags(in ST:Threshold with {display(yes), mainwin(20)}, in ST:Recovery Rate with {display(yes), mainwin(21)})"
+
+Increased Threshold (Partial), 1/2, page(Th78), gives(=+@int(me::level * 0.04 * ST:Threshold::basescore) to ST:Threshold), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	taboo(@itemhasmod(AD:Threshold Magery, Reduced Threshold), @itemhasmod(AD:Threshold Power Investiture, Reduced Threshold))
+Increased Threshold, 5/10, page(Th78), gives(=+@int(me::level * 0.2 * ST:Threshold::basescore) to ST:Threshold), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	taboo(@itemhasmod(AD:Threshold Magery, Reduced Threshold), @itemhasmod(AD:Threshold Power Investiture, Reduced Threshold))
+Rapid Magical Recovery (Partial), 1/2, page(Th79), gives(=+@int(me::level * 0.05 * ST:Recovery Rate::basescore) to ST:Recovery Rate), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	taboo(@itemhasmod(AD:Threshold Magery, Slower Magical Recovery), @itemhasmod(AD:Threshold Power Investiture, Slower Magical Recovery))
+Rapid Magical Recovery, 5/10, page(Th79), gives(=+@int(me::level * 0.25 * ST:Recovery Rate::basescore) to ST:Recovery Rate), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	taboo(@itemhasmod(AD:Threshold Magery, Slower Magical Recovery), @itemhasmod(AD:Threshold Power Investiture, Slower Magical Recovery))
+Safer Excess, 10/20, upto(10), page(Th79), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	levelnames([+1 per 5pts], "+1 per 10pts", "+1 per 20pts", "+1 per 40pts", "+1 per 80pts", "+1 per 160pts", "+1 per 320pts", "+1 per 640pts", "+1 per 1,280pts", "+1 per 2,560pts", "+1 per 5,120pts")
+
+Variable Energy Access, 50, page(Th79), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	replacetags(in ST:Threshold with {display(yes), mainwin(20), noresync(yes)}, in ST:Recovery Rate with {display(yes), mainwin(21), noresync(yes)})
+Unusual Background (Emergency Use of Threshold Casting), 10, page(Th79), cat(Threshold-Limited Magic, Supernatural, Mental, Supernatural Mental),_
+	gives(=-ST:Threshold::basescore to ST:Threshold),_
+	replacetags(in ST:Threshold with {display(yes), mainwin(20), noresync(yes)}, in ST:Recovery Rate with {display(yes), mainwin(21), noresync(yes)})
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Supernatural Mental>
+Flagrant Aura, -1/-2, upto(5), cat(Supernatural, Mental), levelnames(+0 to detect, +3 to detect, +6 to detect, +9 to detect, +12 to detect), page(Th25),_
+	conditional(=+1 to ST:Reaction when "a wizard is impressed", =-1 to ST:Reaction when " a wizard regards you as sloppy or undisciplined")
+Unmistakable Power, -5/-10, upto(2), cat(Supernatural, Mental), levelnames(Concealable, Unconcealable), page(Th25),_
+	needs(DI:Unnatural Feature),_
+	conditional(=-2 to ST:Reaction when "others notice your unnatural features", =+1 to ST:Reaction when "a wizard is impressed", =-1 to ST:Reaction when " a wizard regards you as sloppy or undisciplined")
+Spell Signature, 0/-1/-5, upto(2), cat(Supernatural, Mental), levelnames(trivial feature, inconvenient, easy to trace),_
+	x(#InputToTagReplace("Please describe the signature:", nameext, , "Spell Signature"))
+Twisted Mana Generator, -15/0, upto(2), levelnames(,Magic is Rare), cat(Supernatural, Mental), page(Th61), radius(2), taboo(AD:Twisted Mana Generator),_
+	conditional(-3 to ST:Reaction when "others can see your aura")
+Spiritual Distortion, -3/-6, upto(10), page(Th94), cat(Supernatural, Mental),_
+	conditional(-1 to Spells when "not casting with spiritual assistance")
+
+<Supernatural Physical>
+No-Mana Shutdown, -20, page(Th119), cat(Supernatural, Physical)
+
+<Exotic Physical>
+No Legs (Portable), -30, page(Th119), cat(Exotic, Physical),_
+	replacetags(in "ST:Basic Move" with "basevalue(0)"), gives(=nobase to ST:Kick::reach)
+
+********************************************************************************************************\[STOP]
+[SPELLS]
+*******************************************************************************************************\[START]
+<Meta-Spells:MS>
+Sacrifice, type(IQ/H), CountAsNeeds(Magical), ident(Magical), needs((6 Necromancy | 6 Meta-Spells)), page(Th54), mods(Spells), cat(Meta-Spells, Necromancy), shortcat(MS, Ne), prereqcount(6), magery(0), class(Spec.), time(1), duration(Spec.), castingcost(1), description(Prereq Count: 6 Prerequisites: 6 Meta-Spells or 6 Necromancy)
+
+<~Clerical - Meta-Spells:MS>
+Sacrifice (Clerical), type(IQ/H), CountAsNeed(Clerical), ident(Clerical), mods(Spells), page(Th54), cat(~Clerical, ~Clerical - Meta-Spells, ~Clerical - Necromancy), shortcat(CL, MS, Ne), magery(PI), class(Spec.), time(1), duration(Spec.), castingcost(1)
+
+<~Ritual - Meta-Spells:MS>
+Sacrifice (Ritual), type(Tech/H), CountAsNeed(Ritual), needs("SK:Path of Meta-Spells" = 0pts | "SK:Meta-Spells College!" = 3pts | "SK:Magic!" = 3pts), default("SK:Path of Meta-Spells::level" - 6, "SK:Meta-Spells!::level" - 6, "SK:Magic!::Level" - 6), upto(prereq), page(Th54), cat(~Ritual, ~Ritual - Meta-Spells, ~Ritual - Necromancy), shortcat(Ri, MS, Ne), prereqcount(6), class(Spec.), time(1), duration(Spec.), castingcost(1), description(Prereq Count: 6)
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+#ReplaceTags in "AD:Magic Resistance" with "taboo(DI:Magic Susceptibility, AD:Magery 0::level > @if(@hasmod(Improved) THEN 1 ELSE @if(@hasmod(Switchable) THEN 1 ELSE 0)))"
+#ReplaceTags in "AD:Magery" with "taboo(@if(@itemhasmod(AD:Magic Resistance, Improved) THEN 0 ELSE @if(@itemhasmod(AD:Magic Resistance, Switchable) THEN 0 ELSE AD:Magic Resistance)), AD:Mana Damper)"
+#ReplaceTags in "AD:Magery 0" with "taboo(@if(@itemhasmod(AD:Magic Resistance, Improved) THEN 0 ELSE @if(@itemhasmod(AD:Magic Resistance, Switchable) THEN 0 ELSE AD:Magic Resistance)), AD:Mana Damper)"
+
+<Magery 0>
+Can't Maintain Spells, -30%, round(up), group(Magery 0), page(Th23)
+Can't Use External Energy, -15%, round(up), group(Magery 0), page(Th23)
+Ceremonial Magery, -40%, round(up), group(Magery 0), page(Th23)
+Cyclical Magery, -5%/-10%, round(up), upto(16), group(Magery 0), page(Th23)
+Easily Resisted Magery, -5%/-10%, round(up), group(Magery 0), page(Th24)
+Enchantment-Only Magery, -30%, round(up), group(Magery 0), page(Th24)
+External Sources Only, -5%/-10%, round(up), upto(16), group(Magery 0), page(Th24)
+External Energy Only, -60%, round(up), group(Magery 0), page(Th24)
+External Energy Sources Only, -60%, round(up), group(Magery 0), page(Th24)
+Extravagant Rituals, -10/-20%, round(up), group(Magery 0), page(Th24)
+Fading Spell Effects, -20%, round(up), group(Magery 0), page(Th24)
+Injurious Magic, -30%/-50%, round(up), upto(2), levelnames(First energy is HP, All energy is HP), group(Magery 0), page(Th25)
+Limited Colleges (%CollegesList%), -40%/-30%, round(up), upto(1), levelnames(,), group(Magery 0), page(Th24), formula(-10% * (5 - (%CollegesCost4% + %CollegesCost3% + %CollegesCost2% + %CollegesCost1%))), forceformula(yes),_
+	x(_
+		#ChoiceList(_
+			name(Colleges),_
+			title(Limited College Magery),_
+			text(Choose up to four colleges which your Magery is limited to:),_
+			picksallowed(atleast 1, upto 4),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllCollegesMagical, flags(NoPrefix), prepend("), append("=1))_
+			)_
+		)_
+	), noresync(yes)
+
+One-Spell Magery, -80%/-75%, round(up), group(Magery 0), upto(16), page(Th25), mods(One-Spell Magery Magery),_
+	levelnames(, Two-Spells, Three-Spells, Four-Spells, Five-Spells, Six-Spells, Seven-Spells, Eight-Spells, Nine-Spells, Ten-Spells, Eleven-Spells, Twelve-Spells, Thirteen-Spells, Fourteen-Spells, Fifteen-Spells, Sixteen-Spells)
+
+One-Spell Magery (%SpellsList%), -80%/-75%, round(up), upto(1), levelnames(,), group(Magery 0), page(Th25), formula(-85 + (5 * ((%SpellsCost16% + %SpellsCost15% + %SpellsCost14% + %SpellsCost13% + %SpellsCost12% + %SpellsCost11% + %SpellsCost10% + %SpellsCost9% + %SpellsCost8% + %SpellsCost7% + %SpellsCost6% + %SpellsCost5% + %SpellsCost4% + %SpellsCost3% + %SpellsCost2% + %SpellsCost1%)))), forceformula(yes),_
+	x(_
+		#ChoiceList(_
+			name(Spells),_
+			title(One-Spell Magery),_
+			text(Choose up to sixteen spells which your Magery is limited to:),_
+			picksallowed(atleast 1, upto 16),_
+			method(bynumber),_
+			list(_
+					#grouplist(GR:AllSpellsMagical, flags(NoPrefix), prepend("), append("=1))_
+					),_
+			aliaslist(_
+					#grouplist(GR:AllSpellsMagical)_
+			)_
+		)_
+	), noresync(yes)
+
+Radically Unstable Magery, -10%/-30%/-50%, round(up), upto(3), levelnames(Stabilization Roll, Every failure is a critical failure, Every failure is a critical failure; GM rolls 3 times on crit. table), group(Magery 0), page(Th26)
+Easy Casting, +40%/+80%, round(up), group(Magery 0), page(Th28)
+Solitary Ceremonial, +10%, round(up), group(Magery 0), page(Th28)
+Stable Casting, +40%, round(up), group(Magery 0), page(Th28)
+Suffers Encumbrance Penalty, -20%/-25%, round(up), upto(2), levelnames(Enc Level,Enc Level x2), group(Magery 0), page(Th28)
+Suffers Metal Penalties, -20%, round(up), group(Magery 0), page(Th28)
+Subtle Aura, +20%/+40%, round(up), levelnames(-5 to rolls to detect you're a mage, Cannot be detected as a mage), upto(2), group(Magery 0), page(Th29)
+Switchable, +10%, round(up), group(Magery 0), page(Th29)
+
+<Magery>
+// Magery 0, +5, group(Magery), page(B66)
+// Magery 0 - not affected by Limitations, +5, shortname(Magery 0), group(Magery), page(B66), tier(1)
+Can't Maintain Spells, -30%, group(Magery), page(Th23)
+Can't Use External Energy, -15%, group(Magery), page(Th23)
+Ceremonial magery, -40%, group(Magery), page(Th23)
+Cyclical Magery, -5%/-10%, upto(16), group(Magery), page(Th23)
+Easily Resisted Magery, -5%/-10%, group(Magery), page(Th24)
+Enchantment-Only Magery, -30%, group(Magery), page(Th24)
+External Sources Only, -5%/-10%, upto(16), group(Magery), page(Th24)
+External Energy Only, -60%, group(Magery), page(Th24)
+External Energy Sources Only, -60%, group(Magery), page(Th24)
+Extravagant Rituals, -10/-20%%, group(Magery), page(Th24)
+Fading Spell Effects, -20%, group(Magery), page(Th24)
+Injurious Magic, -30%/-50%, upto(2), levelnames(First energy is HP, All energy is HP), group(Magery), page(Th25)
+
+Limited Colleges (%CollegesList%), -40%/-30%, upto(1), levelnames(,), group(Magery), page(Th24), formula(-10% * (5 - (%CollegesCost4% + %CollegesCost3% + %CollegesCost2% + %CollegesCost1%))), forceformula(yes),_
+	gives(_
+		-Owner::Level to ST:Magery,_
+		+Owner::Level to (%CollegesAliasList%, CO:%Colleges1%, CO:%Colleges2%, CO:%Colleges3%, CO:%Colleges4%, SP:Recover Energy)_
+		),_
+	x(_
+		#Message(Use this limitation *ONLY* on the Magery advantage. It will cause errors if used on any other trait (including the Magery 0 advantage).),_
+		#ChoiceList(_
+			name(Colleges),_
+			title(Limited Colleges Magery),_
+			text(Choose up to four colleges which your Magery is limited to:),_
+			picksallowed(atleast 1, upto 4),_
+			method(bynumber),_
+			list(_
+				"Air"=1,_
+				"Animal"=1,_
+				"Body Control"=1,_
+				"Communication & Empathy"=1,_
+				"Earth"=1,_
+				"Enchantment"=1,_
+				"Fire"=1,_
+				"Food"=1,_
+				"Gate"=1,_
+				"Healing"=1,_
+				"Illusion & Creation"=1,_
+				"Knowledge"=1,_
+				"Light & Darkness"=1,_
+				"Making & Breaking"=1,_
+				"Meta-Spells"=1,_
+				"Mind Control"=1,_
+				"Movement"=1,_
+				"Necromancy"=1,_
+				"Plant"=1,_
+				"Protection & Warning"=1,_
+				"Sound"=1,_
+				"Technological"=1,_
+				"Water"=1,_
+				"Weather"=1 _
+			),_
+			aliaslist(_
+				"ST:Magery Air",_
+				"ST:Magery Animal",_
+				"ST:Magery Body Control",_
+				"ST:Magery Communication & Empathy",_
+				"ST:Magery Earth",_
+				"ST:Magery Enchantment",_
+				"ST:Magery Fire",_
+				"ST:Magery Food",_
+				"ST:Magery Gate",_
+				"ST:Magery Healing",_
+				"ST:Magery Illusion & Creation",_
+				"ST:Magery Knowledge",_
+				"ST:Magery Light & Darkness",_
+				"ST:Magery Making & Breaking",_
+				"ST:Magery Meta-Spells",_
+				"ST:Magery Mind Control",_
+				"ST:Magery Movement",_
+				"ST:Magery Necromancy",_
+				"ST:Magery Plant",_
+				"ST:Magery Protection & Warning",_
+				"ST:Magery Sound",_
+				"ST:Magery Technological",_
+				"ST:Magery Water",_
+				"ST:Magery Weather" _
+			)_
+		)_
+	), noresync(yes)
+
+One-Spell Magery, -80%/-75%, group(Magery), upto(16), page(Th25), mods(One-Spell Magery Magery), ownerlevel(owner::level),_
+	levelnames(, Two-Spells, Three-Spells, Four-Spells, Five-Spells, Six-Spells, Seven-Spells, Eight-Spells, Nine-Spells, Ten-Spells, Eleven-Spells, Twelve-Spells, Thirteen-Spells, Fourteen-Spells, Fifteen-Spells, Sixteen-Spells),_
+	gives(=-owner::level to ST:Magery, =+owner::level to "ST:One-Spell Magery Magery"),_
+	x(_
+		#message(Use this limitation *ONLY* on the Magery advantage. It will cause errors if used on any other trait.),_
+		#message(In order for the Magery level to be added to the individual spells you will need to add modifiers to this modifier selecting which spell(s) it affects.),_
+		#buildit _
+		)
+
+One-Spell Magery (%SpellsList%), -80%/-75%, upto(1), levelnames(,), group(Magery), page(Th25), formula(-85 + (5 * ((%SpellsCost16% + %SpellsCost15% + %SpellsCost14% + %SpellsCost13% + %SpellsCost12% + %SpellsCost11% + %SpellsCost10% + %SpellsCost9% + %SpellsCost8% + %SpellsCost7% + %SpellsCost6% + %SpellsCost5% + %SpellsCost4% + %SpellsCost3% + %SpellsCost2% + %SpellsCost1%)))), forceformula(yes),_
+	gives(_
+		-Owner::Level to ST:Magery,_
+		+Owner::Level to (%SpellsAliasList%)_
+		),_
+	x(_
+		#Message(Use this limitation *ONLY* on the Magery advantage. It will cause errors if used on any other trait (including the Magery 0 advantage).),_
+		#Message(If you choose any spells which require specialization you will need to manually edit the gives() tag of this modifier to correctly give a bonus to those spell(s).),_
+		#ChoiceList(_
+			name(Spells),_
+			title(One-Spell Magery),_
+			text(Choose up to sixteen spells which your Magery is limited to:),_
+			picksallowed(atleast 1, upto 16),_
+			method(bynumber),_
+			list(_
+					#grouplist(GR:AllSpellsMagical, flags(NoPrefix), prepend("), append("=1))_
+					),_
+			aliaslist(_
+					#grouplist(GR:AllSpellsMagical)_
+			)_
+		)_
+	), noresync(yes)
+
+Radically Unstable Magery, -10%/-30%/-50%, upto(3), levelnames(Stabilization Roll, Every failure is a critical failure, Every failure is a critical failure; GM rolls 3 times on crit. table), group(Magery), page(Th26)
+Easy Casting, +40%/+80%, group(Magery), page(Th28)
+Solitary Ceremonial, +10%, group(Magery), page(Th28)
+Stable Casting, +40%, group(Magery), page(Th28)
+Suffers Encumbrance Penalty, -20%/-25%, upto(2), levelnames(Enc Level,Enc Level x2), group(Magery), page(Th28)
+Suffers Metal Penalties, -20%, group(Magery), page(Th28)
+Subtle Aura, +20%/+40%, levelnames(-5 to rolls to detect you're a mage, Cannot be detected as a mage), upto(2), group(Magery), page(Th29)
+Switchable, +10%, group(Magery), page(Th29)
+
+<Magic Resistance>
+Switchable, +100%, group(Magic Resistance), page(Th63)
+Flawed (%CollegesList%), -10%/-15%, upto(1), levelnames(,), group(Magic Resistance), page(Th63), formula(-5% + (-5% * (%CollegesCost5% + %CollegesCost4% + %CollegesCost3% + %CollegesCost2% + %CollegesCost1%))), forceformula(yes),_
+	x(_
+		#ChoiceList(_
+			name(Colleges),_
+			title(Flawed Magic Resistance),_
+			text(Choose up to 5 colleges your Magic Resistance doesn't protect against:),_
+			picksallowed(atleast 1, upto 5),_
+			method(bynumber),_
+			list(_
+				"Air"=1,_
+				"Animal"=1,_
+				"Body Control"=1,_
+				"Communication & Empathy"=1,_
+				"Earth"=1,_
+				"Enchantment"=1,_
+				"Fire"=1,_
+				"Food"=1,_
+				"Gate"=1,_
+				"Illusion & Creation"=1,_
+				"Knowledge"=1,_
+				"Light & Darkness"=1,_
+				"Making & Breaking"=1,_
+				"Meta-Spells"=1,_
+				"Mind Control"=1,_
+				"Movement"=1,_
+				"Necromancy"=1,_
+				"Plant"=1,_
+				"Protection & Warning"=1,_
+				"Sound"=1,_
+				"Technological"=1,_
+				"Water"=1,_
+				"Weather"=1 _
+			)_
+		)_
+	), noresync(yes)
+
+<Regeneration>
+Fatigue Recovery, +100%, group(Regeneration), page(P70)
+Fatigue Only, -0%, group(Regeneration), page(P70)
+
+<Threshold Magery>
+Reduced Threshold, -10%/-20%, page(Th79), upto(5), gives(=-@int(0.98 + (me::level * 0.2 * ST:Threshold::basescore)) to ST:Threshold),_
+	levelnames(-20%, -40%, -60%, -80%, -100%)
+Slower Magical Recovery, -10%/-20%, page(Th79), upto(4), gives(=-@int(0.98 + (me::level * 0.25 * ST:Recovery Rate::basescore)) to ST:Recovery Rate),_
+	levelnames(-25%, -50%, -75%, -100%)
+Seriously Calamity-Prone, -10%/-20%, page(Th79), upto(4), levelnames([+1 per 5pts], +1 per 4pts, +1 per 3pts, +1 per 2pts, +1 per 1pts)
+
+<Twisted Mana Generator>
+Area Effect, +50%/+100%, group(_Attack Enhancements), page(B102), upto(25), shortname(Area Effect),_
+	levelnames("2 yd", #list(LevelName Area Effect)),_
+	gives(=+@if(owner::radius = 0 THEN (2^me::level)) to owner::radius, =*@if(owner::radius > 0 THEN (2^me::level)) to owner::radius)
+
+Switchable, +100%, group(Mana Damper/Enhancer), page(B67)
+
+<One-Spell Magery Magery>
+_New Spell, +0, gives(=+"owner::ownerlevel" to SP:_New Spell),_
+	x(#InputReplace("Please enter the name of the spell:", "_New Spell", "name (extension)", "One-Spell Magery Magery"))
+Purify Air, +0, gives(=+"owner::ownerlevel" to SP:Purify Air)
+Seek Air, +0, gives(=+"owner::ownerlevel" to SP:Seek Air)
+Create Air, +0, gives(=+"owner::ownerlevel" to SP:Create Air)
+No-Smell, +0, gives(=+"owner::ownerlevel" to SP:No-Smell)
+Stench, +0, gives(=+"owner::ownerlevel" to SP:Stench)
+Destroy Air, +0, gives(=+"owner::ownerlevel" to SP:Destroy Air)
+Odor, +0, gives(=+"owner::ownerlevel" to SP:Odor)
+Shape Air, +0, gives(=+"owner::ownerlevel" to SP:Shape Air)
+Air Jet, +0, gives(=+"owner::ownerlevel" to SP:Air Jet)
+Air Vision, +0, gives(=+"owner::ownerlevel" to SP:Air Vision)
+Body of Air, +0, gives(=+"owner::ownerlevel" to SP:Body of Air)
+Devitalize Air, +0, gives(=+"owner::ownerlevel" to SP:Devitalize Air)
+Walk on Air, +0, gives(=+"owner::ownerlevel" to SP:Walk on Air)
+Wall of Wind, +0, gives(=+"owner::ownerlevel" to SP:Wall of Wind)
+Windstorm, +0, gives(=+"owner::ownerlevel" to SP:Windstorm)
+Earth to Air, +0, gives(=+"owner::ownerlevel" to SP:Earth to Air)
+Concussion, +0, gives(=+"owner::ownerlevel" to SP:Concussion)
+Breathe Air, +0, gives(=+"owner::ownerlevel" to SP:Breathe Air)
+Essential Air, +0, gives(=+"owner::ownerlevel" to SP:Essential Air)
+Air Vortex, +0, gives(=+"owner::ownerlevel" to SP:Air Vortex)
+Sandstorm, +0, gives(=+"owner::ownerlevel" to SP:Sandstorm)
+Body of Wind, +0, gives(=+"owner::ownerlevel" to SP:Body of Wind)
+Summon Air Elemental, +0, gives(=+"owner::ownerlevel" to SP:Summon Air Elemental)
+Control Air Elemental, +0, gives(=+"owner::ownerlevel" to SP:Control Air Elemental)
+Create Air Elemental, +0, gives(=+"owner::ownerlevel" to SP:Create Air Elemental)
+
+Beast-Soother, +0, gives(=+"owner::ownerlevel" to SP:Beast-Soother)
+Beast-Rouser, +0, gives(=+"owner::ownerlevel" to SP:Beast-Rouser)
+Vermin Control, +0, gives(=+"owner::ownerlevel" to SP:Vermin Control)
+Fish Control, +0, gives(=+"owner::ownerlevel" to SP:Fish Control)
+Reptile Control, +0, gives(=+"owner::ownerlevel" to SP:Reptile Control)
+Bird Control, +0, gives(=+"owner::ownerlevel" to SP:Bird Control)
+Mammal Control, +0, gives(=+"owner::ownerlevel" to SP:Mammal Control)
+Hybrid Control, +0, gives(=+"owner::ownerlevel" to SP:Hybrid Control)
+Beast Summoning, +0, gives(=+"owner::ownerlevel" to SP:Beast Summoning)
+Master, +0, gives(=+"owner::ownerlevel" to SP:Master)
+Beast Link, +0, gives(=+"owner::ownerlevel" to SP:Beast Link)
+Beast Speech, +0, gives(=+"owner::ownerlevel" to SP:Beast Speech)
+Repel Vermin, +0, gives(=+"owner::ownerlevel" to SP:Repel Vermin)
+Repel Fish, +0, gives(=+"owner::ownerlevel" to SP:Repel Fish)
+Repel Reptile, +0, gives(=+"owner::ownerlevel" to SP:Repel Reptile)
+Repel Bird, +0, gives(=+"owner::ownerlevel" to SP:Repel Bird)
+Repel Mammal, +0, gives(=+"owner::ownerlevel" to SP:Repel Mammal)
+Repel Hybrids, +0, gives(=+"owner::ownerlevel" to SP:Repel Hybrids)
+Rider, +0, gives(=+"owner::ownerlevel" to SP:Rider)
+Rider Within, +0, gives(=+"owner::ownerlevel" to SP:Rider Within)
+Spider Silk, +0, gives(=+"owner::ownerlevel" to SP:Spider Silk)
+Beast Seeker, +0, gives(=+"owner::ownerlevel" to SP:Beast Seeker)
+Beast Possession, +0, gives(=+"owner::ownerlevel" to SP:Beast Possession)
+Permanent Beast Possession, +0, gives(=+"owner::ownerlevel" to SP:Permanent Beast Possession)
+Protect Animal, +0, gives(=+"owner::ownerlevel" to SP:Protect Animal)
+Shapeshifting ([Animal]), +0, gives(+owner::ownerlevel to SP:Shapeshifting ([Animal)),_
+		x( #InputReplace("Select the animal form you can Shapeshift into:", "[Animal]", , "Shapeshifting") )
+Shapeshift Others ([Animal]), +0, gives(+owner::ownerlevel to SP:Shapeshift Others ([Animal])),_
+		x( #InputReplace("Select the animal form you can Shapeshift Others into:", "[Animal]", , "Shapeshift Others") )
+Permanent Shapeshifting ([Animal]), +0, gives(+owner::ownerlevel to SP:Permanent Shapeshifting ([Animal])),_
+		x( #InputReplace("Select the animal form you can Permanently Shapeshift into:", "[Animal]", , "Permanent Shapeshifting") )
+Partial Shapeshifting, +0, gives(=+"owner::ownerlevel" to SP:Partial Shapeshifting),_
+		x( #InputReplace("Select the variation you can Partially Shapeshift into:", "[Variant]", , "Partial Shapeshifting") )
+Partial Shapeshifting (Chameleon Eyes), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Chameleon Eyes))
+Partial Shapeshifting (Crocodile Jaws), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Crocodile Jaws))
+Partial Shapeshifting (Elephant Trunk), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Elephant Trunk))
+Partial Shapeshifting (Feathered Arms), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Feathered Arms))
+Partial Shapeshifting (Fish Tail), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Fish Tail))
+Partial Shapeshifting (Mountain Goat Hooves), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Mountain Goat Hooves))
+Partial Shapeshifting (Saber Teeth), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Saber Teeth))
+Partial Shapeshifting (Scorpion Tail), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Scorpion Tail))
+Partial Shapeshifting (Serpent's Fangs), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Serpent's Fangs))
+Partial Shapeshifting (Skunk Tail), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Skunk Tail))
+Partial Shapeshifting (Spider Arms), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Spider Arms))
+Partial Shapeshifting (Tiger Paws), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Tiger Paws))
+Partial Shapeshifting (Toad Tongue), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Toad Tongue))
+Partial Shapeshifting (Turtle Shell), +0, gives(+owner::ownerlevel to SP:Partial Shapeshifting (Turtle Shell))
+Great Shapeshift, +0, gives(=+"owner::ownerlevel" to SP:Great Shapeshift)
+
+Climbing, +0, gives(=+"owner::ownerlevel" to SP:Climbing)
+Itch, +0, gives(=+"owner::ownerlevel" to SP:Itch)
+Touch, +0, gives(=+"owner::ownerlevel" to SP:Touch)
+Perfume, +0, gives(=+"owner::ownerlevel" to SP:Perfume)
+Spasm, +0, gives(=+"owner::ownerlevel" to SP:Spasm)
+Stop Spasm, +0, gives(=+"owner::ownerlevel" to SP:Stop Spasm)
+Tickle, +0, gives(=+"owner::ownerlevel" to SP:Tickle)
+Pain, +0, gives(=+"owner::ownerlevel" to SP:Pain)
+Clumsiness, +0, gives(=+"owner::ownerlevel" to SP:Clumsiness)
+Hinder, +0, gives(=+"owner::ownerlevel" to SP:Hinder)
+Rooted Feet, +0, gives(=+"owner::ownerlevel" to SP:Rooted Feet)
+Tanglefoot, +0, gives(=+"owner::ownerlevel" to SP:Tanglefoot)
+Roundabout, +0, gives(=+"owner::ownerlevel" to SP:Roundabout)
+Debility, +0, gives(=+"owner::ownerlevel" to SP:Debility)
+Frailty, +0, gives(=+"owner::ownerlevel" to SP:Frailty)
+Might, +0, gives(=+"owner::ownerlevel" to SP:Might)
+Grace, +0, gives(=+"owner::ownerlevel" to SP:Grace)
+Vigor, +0, gives(=+"owner::ownerlevel" to SP:Vigor)
+Boost Dexterity, +0, gives(=+"owner::ownerlevel" to SP:Boost Dexterity)
+Boost Health, +0, gives(=+"owner::ownerlevel" to SP:Boost Health)
+Boost Strength, +0, gives(=+"owner::ownerlevel" to SP:Boost Strength)
+Boost Intelligence, +0, gives(=+"owner::ownerlevel" to SP:Boost Intelligence)
+Stun, +0, gives(=+"owner::ownerlevel" to SP:Stun)
+Nauseate, +0, gives(=+"owner::ownerlevel" to SP:Nauseate)
+Retch, +0, gives(=+"owner::ownerlevel" to SP:Retch)
+Fumble, +0, gives(=+"owner::ownerlevel" to SP:Fumble)
+Strike Dumb, +0, gives(=+"owner::ownerlevel" to SP:Strike Dumb)
+Strike Blind, +0, gives(=+"owner::ownerlevel" to SP:Strike Blind)
+Strike Deaf, +0, gives(=+"owner::ownerlevel" to SP:Strike Deaf)
+Hunger, +0, gives(=+"owner::ownerlevel" to SP:Hunger)
+Thirst, +0, gives(=+"owner::ownerlevel" to SP:Thirst)
+Resist Pain, +0, gives(=+"owner::ownerlevel" to SP:Resist Pain)
+Hold Breath, +0, gives(=+"owner::ownerlevel" to SP:Hold Breath)
+Ambidexterity, +0, gives(=+"owner::ownerlevel" to SP:Ambidexterity)
+Balance, +0, gives(=+"owner::ownerlevel" to SP:Balance)
+Reflexes, +0, gives(=+"owner::ownerlevel" to SP:Reflexes)
+Cadence, +0, gives(=+"owner::ownerlevel" to SP:Cadence)
+Hair Growth, +0, gives(=+"owner::ownerlevel" to SP:Hair Growth)
+Haircut, +0, gives(=+"owner::ownerlevel" to SP:Haircut)
+Sensitize, +0, gives(=+"owner::ownerlevel" to SP:Sensitize)
+Agonize, +0, gives(=+"owner::ownerlevel" to SP:Agonize)
+Weaken Blood, +0, gives(=+"owner::ownerlevel" to SP:Weaken Blood)
+Strike Numb, +0, gives(=+"owner::ownerlevel" to SP:Strike Numb)
+Choke, +0, gives(=+"owner::ownerlevel" to SP:Choke)
+Control Limb, +0, gives(=+"owner::ownerlevel" to SP:Control Limb)
+Paralyze Limb, +0, gives(=+"owner::ownerlevel" to SP:Paralyze Limb)
+Total Paralysis, +0, gives(=+"owner::ownerlevel" to SP:Total Paralysis)
+Wither Limb, +0, gives(=+"owner::ownerlevel" to SP:Wither Limb)
+Strike Barren, +0, gives(=+"owner::ownerlevel" to SP:Strike Barren)
+Deathtouch, +0, gives(=+"owner::ownerlevel" to SP:Deathtouch)
+Alter Voice, +0, gives(=+"owner::ownerlevel" to SP:Alter Voice)
+Alter Visage, +0, gives(=+"owner::ownerlevel" to SP:Alter Visage)
+Alter Body, +0, gives(=+"owner::ownerlevel" to SP:Alter Body)
+Lengthen Limb, +0, gives(=+"owner::ownerlevel" to SP:Lengthen Limb)
+Decapitation, +0, gives(=+"owner::ownerlevel" to SP:Decapitation)
+Shrink, +0, gives(=+"owner::ownerlevel" to SP:Shrink)
+Shrink Other, +0, gives(=+"owner::ownerlevel" to SP:Shrink Other)
+Enlarge, +0, gives(=+"owner::ownerlevel" to SP:Enlarge)
+Enlarge Other, +0, gives(=+"owner::ownerlevel" to SP:Enlarge Other)
+Corpulence, +0, gives(=+"owner::ownerlevel" to SP:Corpulence)
+Gauntness, +0, gives(=+"owner::ownerlevel" to SP:Gauntness)
+Transform Body, +0, gives(=+"owner::ownerlevel" to SP:Transform Body)
+Transform Other, +0, gives(=+"owner::ownerlevel" to SP:Transform Other)
+Transmogrification, +0, gives(=+"owner::ownerlevel" to SP:Transmogrification)
+
+Sense Foes, +0, gives(=+"owner::ownerlevel" to SP:Sense Foes)
+Sense Life, +0, gives(=+"owner::ownerlevel" to SP:Sense Life)
+Sense Emotion, +0, gives(=+"owner::ownerlevel" to SP:Sense Emotion)
+Hide Emotion, +0, gives(=+"owner::ownerlevel" to SP:Hide Emotion)
+Persuasion, +0, gives(=+"owner::ownerlevel" to SP:Persuasion)
+Vexation, +0, gives(=+"owner::ownerlevel" to SP:Vexation)
+Truthsayer, +0, gives(=+"owner::ownerlevel" to SP:Truthsayer)
+Dream Viewing, +0, gives(=+"owner::ownerlevel" to SP:Dream Viewing)
+Dream Sending, +0, gives(=+"owner::ownerlevel" to SP:Dream Sending)
+Dream Projection, +0, gives(=+"owner::ownerlevel" to SP:Dream Projection)
+Hide Thoughts, +0, gives(=+"owner::ownerlevel" to SP:Hide Thoughts)
+Lend Language, +0, gives(=+"owner::ownerlevel" to SP:Lend Language)
+Borrow Language, +0, gives(=+"owner::ownerlevel" to SP:Borrow Language)
+Gift of Tongues, +0, gives(=+"owner::ownerlevel" to SP:Gift of Tongues)
+Gift of Letters, +0, gives(=+"owner::ownerlevel" to SP:Gift of Letters)
+Mind-Reading, +0, gives(=+"owner::ownerlevel" to SP:Mind-Reading)
+Mind-Search, +0, gives(=+"owner::ownerlevel" to SP:Mind-Search)
+Mind-Sending, +0, gives(=+"owner::ownerlevel" to SP:Mind-Sending)
+Telepathy, +0, gives(=+"owner::ownerlevel" to SP:Telepathy)
+Retrogression, +0, gives(=+"owner::ownerlevel" to SP:Retrogression)
+Lend Skill, +0, gives(=+"owner::ownerlevel" to SP:Lend Skill)
+Borrow Skill, +0, gives(=+"owner::ownerlevel" to SP:Borrow Skill)
+Compel Truth, +0, gives(=+"owner::ownerlevel" to SP:Compel Truth)
+Insignificance, +0, gives(=+"owner::ownerlevel" to SP:Insignificance)
+Presence, +0, gives(=+"owner::ownerlevel" to SP:Presence)
+Communication, +0, gives(=+"owner::ownerlevel" to SP:Communication)
+Soul Rider, +0, gives(=+"owner::ownerlevel" to SP:Soul Rider)
+Control Person, +0, gives(=+"owner::ownerlevel" to SP:Control Person)
+Possession, +0, gives(=+"owner::ownerlevel" to SP:Possession)
+Dispel Possession, +0, gives(=+"owner::ownerlevel" to SP:Dispel Possession)
+Permanent Possession, +0, gives(=+"owner::ownerlevel" to SP:Permanent Possession)
+Exchange Bodies, +0, gives(=+"owner::ownerlevel" to SP:Exchange Bodies)
+
+Seek Earth, +0, gives(=+"owner::ownerlevel" to SP:Seek Earth)
+Shape Earth, +0, gives(=+"owner::ownerlevel" to SP:Shape Earth)
+Shape Stone, +0, gives(=+"owner::ownerlevel" to SP:Shape Stone)
+Seek Pass, +0, gives(=+"owner::ownerlevel" to SP:Seek Pass)
+Earth Vision, +0, gives(=+"owner::ownerlevel" to SP:Earth Vision)
+Earth to Stone, +0, gives(=+"owner::ownerlevel" to SP:Earth to Stone)
+Create Earth, +0, gives(=+"owner::ownerlevel" to SP:Create Earth)
+Flesh to Stone, +0, gives(=+"owner::ownerlevel" to SP:Flesh to Stone)
+Stone to Earth, +0, gives(=+"owner::ownerlevel" to SP:Stone to Earth)
+Predict Earth Movement, +0, gives(=+"owner::ownerlevel" to SP:Predict Earth Movement)
+Sand Jet, +0, gives(=+"owner::ownerlevel" to SP:Sand Jet)
+Mud Jet, +0, gives(=+"owner::ownerlevel" to SP:Mud Jet)
+Stone Missile, +0, gives(=+"owner::ownerlevel" to SP:Stone Missile)
+Walk Through Earth, +0, gives(=+"owner::ownerlevel" to SP:Walk Through Earth)
+Earth to Water, +0, gives(=+"owner::ownerlevel" to SP:Earth to Water)
+Partial Petrifaction, +0, gives(=+"owner::ownerlevel" to SP:Partial Petrifaction)
+Rain of Stones, +0, gives(=+"owner::ownerlevel" to SP:Rain of Stones)
+Entombment, +0, gives(=+"owner::ownerlevel" to SP:Entombment)
+Essential Earth, +0, gives(=+"owner::ownerlevel" to SP:Essential Earth)
+Stone to Flesh, +0, gives(=+"owner::ownerlevel" to SP:Stone to Flesh)
+Body of Stone, +0, gives(=+"owner::ownerlevel" to SP:Body of Stone)
+Steelwraith, +0, gives(=+"owner::ownerlevel" to SP:Steelwraith)
+Purify Earth, +0, gives(=+"owner::ownerlevel" to SP:Purify Earth)
+Earthquake, +0, gives(=+"owner::ownerlevel" to SP:Earthquake)
+Volcano, +0, gives(=+"owner::ownerlevel" to SP:Volcano)
+Alter Terrain, +0, gives(=+"owner::ownerlevel" to SP:Alter Terrain)
+Move Terrain, +0, gives(=+"owner::ownerlevel" to SP:Move Terrain)
+Summon Earth Elemental, +0, gives(=+"owner::ownerlevel" to SP:Summon Earth Elemental)
+Control Earth Elemental, +0, gives(=+"owner::ownerlevel" to SP:Control Earth Elemental)
+Create Earth Elemental, +0, gives(=+"owner::ownerlevel" to SP:Create Earth Elemental)
+
+Enchant, +0, gives(=+"owner::ownerlevel" to SP:Enchant)
+Temporary Enchantment, +0, gives(=+"owner::ownerlevel" to SP:Temporary Enchantment)
+Scroll, +0, gives(=+"owner::ownerlevel" to SP:Scroll)
+Hex, +0, gives(=+"owner::ownerlevel" to SP:Hex)
+Power, +0, gives(=+"owner::ownerlevel" to SP:Power)
+Speed, +0, gives(=+"owner::ownerlevel" to SP:Speed)
+Remove Enchantment, +0, gives(=+"owner::ownerlevel" to SP:Remove Enchantment)
+Suspend Enchantment, +0, gives(=+"owner::ownerlevel" to SP:Suspend Enchantment)
+Resist Enchantment, +0, gives(=+"owner::ownerlevel" to SP:Resist Enchantment)
+Lesser Wish, +0, gives(=+"owner::ownerlevel" to SP:Lesser Wish)
+Talisman, +0, gives(=+"owner::ownerlevel" to SP:Talisman)
+Amulet, +0, gives(=+"owner::ownerlevel" to SP:Amulet)
+Adjustable Clothing, +0, gives(=+"owner::ownerlevel" to SP:Adjustable Clothing)
+Golem, +0, gives(=+"owner::ownerlevel" to SP:Golem)
+Impression Blocker, +0, gives(=+"owner::ownerlevel" to SP:Impression Blocker)
+Malefice, +0, gives(=+"owner::ownerlevel" to SP:Malefice)
+Ensorcel, +0, gives(=+"owner::ownerlevel" to SP:Ensorcel)
+Spell Stone, +0, gives(=+"owner::ownerlevel" to SP:Spell Stone)
+Wish, +0, gives(=+"owner::ownerlevel" to SP:Wish)
+Hideaway, +0, gives(=+"owner::ownerlevel" to SP:Hideaway)
+Leak, +0, gives(=+"owner::ownerlevel" to SP:Leak)
+Simulacrum, +0, gives(=+"owner::ownerlevel" to SP:Simulacrum)
+Doppelgänger, +0, gives(=+"owner::ownerlevel" to SP:Doppelgänger)
+Great Wish, +0, gives(=+"owner::ownerlevel" to SP:Great Wish)
+
+//  Weapon Enchantments
+Bane, +0, gives(=+"owner::ownerlevel" to SP:Bane)
+Graceful Weapon, +0, gives(=+"owner::ownerlevel" to SP:Graceful Weapon)
+Loyal Sword, +0, gives(=+"owner::ownerlevel" to SP:Loyal Sword)
+Quick-Draw, +0, gives(=+"owner::ownerlevel" to SP:Quick-Draw)
+Penetrating Weapon, +0, gives(=+"owner::ownerlevel" to SP:Penetrating Weapon)
+Dancing Weapon, +0, gives(=+"owner::ownerlevel" to SP:Dancing Weapon)
+Defending Weapon, +0, gives(=+"owner::ownerlevel" to SP:Defending Weapon)
+Weapon Spirit, +0, gives(=+"owner::ownerlevel" to SP:Weapon Spirit)
+Cornucopia, +0, gives(=+"owner::ownerlevel" to SP:Cornucopia)
+Quick-Aim, +0, gives(=+"owner::ownerlevel" to SP:Quick-Aim)
+Accuracy, +0, gives(=+"owner::ownerlevel" to SP:Accuracy)
+Puissance, +0, gives(=+"owner::ownerlevel" to SP:Puissance)
+Ghost Weapon, +0, gives(=+"owner::ownerlevel" to SP:Ghost Weapon)
+Spell Arrow, +0, gives(=+"owner::ownerlevel" to SP:Spell Arrow)
+Blank Spell Arrow, +0, gives(=+"owner::ownerlevel" to SP:Blank Spell Arrow)
+Speed Spell Arrow, +0, gives(=+"owner::ownerlevel" to SP:Speed Spell Arrow)
+
+//  Armor Enchantments
+Fortify, +0, gives(=+"owner::ownerlevel" to SP:Fortify)
+Deflect, +0, gives(=+"owner::ownerlevel" to SP:Deflect)
+Lighten, +0, gives(=+"owner::ownerlevel" to SP:Lighten)
+Dancing Shield, +0, gives(=+"owner::ownerlevel" to SP:Dancing Shield)
+Defending Shield, +0, gives(=+"owner::ownerlevel" to SP:Defending Shield)
+
+//  Limiting Enchantments
+Limit, +0, gives(=+"owner::ownerlevel" to SP:Limit)
+Name, +0, gives(=+"owner::ownerlevel" to SP:Name)
+Password, +0, gives(=+"owner::ownerlevel" to SP:Password)
+Attune, +0, gives(=+"owner::ownerlevel" to SP:Attune)
+
+//  Wizardly Tools
+Powerstone, +0, gives(=+"owner::ownerlevel" to SP:Powerstone)
+Manastone, +0, gives(=+"owner::ownerlevel" to SP:Manastone)
+Staff, +0, gives(=+"owner::ownerlevel" to SP:Staff)
+Homunculus, +0, gives(=+"owner::ownerlevel" to SP:Homunculus)
+Effigy, +0, gives(=+"owner::ownerlevel" to SP:Effigy)
+Soul Stone, +0, gives(=+"owner::ownerlevel" to SP:Soul Stone)
+Crystal Ball, +0, gives(=+"owner::ownerlevel" to SP:Crystal Ball)
+
+Ignite Fire, +0, gives(=+"owner::ownerlevel" to SP:Ignite Fire)
+Seek Fire, +0, gives(=+"owner::ownerlevel" to SP:Seek Fire)
+Create Fire, +0, gives(=+"owner::ownerlevel" to SP:Create Fire)
+Extinguish Fire, +0, gives(=+"owner::ownerlevel" to SP:Extinguish Fire)
+Shape Fire, +0, gives(=+"owner::ownerlevel" to SP:Shape Fire)
+Phantom Flame, +0, gives(=+"owner::ownerlevel" to SP:Phantom Flame)
+Fireproof, +0, gives(=+"owner::ownerlevel" to SP:Fireproof)
+Slow Fire, +0, gives(=+"owner::ownerlevel" to SP:Slow Fire)
+Fast Fire, +0, gives(=+"owner::ownerlevel" to SP:Fast Fire)
+Deflect Energy, +0, gives(=+"owner::ownerlevel" to SP:Deflect Energy)
+Flame Jet, +0, gives(=+"owner::ownerlevel" to SP:Flame Jet)
+Smoke, +0, gives(=+"owner::ownerlevel" to SP:Smoke)
+Heat, +0, gives(=+"owner::ownerlevel" to SP:Heat)
+Cold, +0, gives(=+"owner::ownerlevel" to SP:Cold)
+Rain of Fire, +0, gives(=+"owner::ownerlevel" to SP:Rain of Fire)
+Resist Fire, +0, gives(=+"owner::ownerlevel" to SP:Resist Fire)
+Resist Cold, +0, gives(=+"owner::ownerlevel" to SP:Resist Cold)
+Warmth, +0, gives(=+"owner::ownerlevel" to SP:Warmth)
+Fireball, +0, gives(=+"owner::ownerlevel" to SP:Fireball)
+Explosive Fireball, +0, gives(=+"owner::ownerlevel" to SP:Explosive Fireball)
+Essential Flame, +0, gives(=+"owner::ownerlevel" to SP:Essential Flame)
+Flaming Weapon, +0, gives(=+"owner::ownerlevel" to SP:Flaming Weapon)
+Flaming Missiles, +0, gives(=+"owner::ownerlevel" to SP:Flaming Missiles)
+Flaming Armor, +0, gives(=+"owner::ownerlevel" to SP:Flaming Armor)
+Fire Cloud, +0, gives(=+"owner::ownerlevel" to SP:Fire Cloud)
+Breathe Fire, +0, gives(=+"owner::ownerlevel" to SP:Breathe Fire)
+Burning Touch, +0, gives(=+"owner::ownerlevel" to SP:Burning Touch)
+Body of Flames, +0, gives(=+"owner::ownerlevel" to SP:Body of Flames)
+Burning Death, +0, gives(=+"owner::ownerlevel" to SP:Burning Death)
+Summon Fire Elemental, +0, gives(=+"owner::ownerlevel" to SP:Summon Fire Elemental)
+Control Fire Elemental, +0, gives(=+"owner::ownerlevel" to SP:Control Fire Elemental)
+Create Fire Elemental, +0, gives(=+"owner::ownerlevel" to SP:Create Fire Elemental)
+
+Seek Food, +0, gives(=+"owner::ownerlevel" to SP:Seek Food)
+Test Food, +0, gives(=+"owner::ownerlevel" to SP:Test Food)
+Decay, +0, gives(=+"owner::ownerlevel" to SP:Decay)
+Season, +0, gives(=+"owner::ownerlevel" to SP:Season)
+Far-Tasting, +0, gives(=+"owner::ownerlevel" to SP:Far-Tasting)
+Mature, +0, gives(=+"owner::ownerlevel" to SP:Mature)
+Purify Food, +0, gives(=+"owner::ownerlevel" to SP:Purify Food)
+Cook, +0, gives(=+"owner::ownerlevel" to SP:Cook)
+Prepare Game, +0, gives(=+"owner::ownerlevel" to SP:Prepare Game)
+Know Recipe, +0, gives(=+"owner::ownerlevel" to SP:Know Recipe)
+Poison Food, +0, gives(=+"owner::ownerlevel" to SP:Poison Food)
+Preserve Food, +0, gives(=+"owner::ownerlevel" to SP:Preserve Food)
+Create Food, +0, gives(=+"owner::ownerlevel" to SP:Create Food)
+Essential Food, +0, gives(=+"owner::ownerlevel" to SP:Essential Food)
+Water to Wine, +0, gives(=+"owner::ownerlevel" to SP:Water to Wine)
+Distill, +0, gives(=+"owner::ownerlevel" to SP:Distill)
+Fool's Banquet, +0, gives(=+"owner::ownerlevel" to SP:Fool's Banquet)
+Monk's Banquet, +0, gives(=+"owner::ownerlevel" to SP:Monk's Banquet)
+
+Timeport, +0, gives(=+"owner::ownerlevel" to SP:Timeport)
+Timeport Other, +0, gives(=+"owner::ownerlevel" to SP:Timeport Other)
+Timeslip, +0, gives(=+"owner::ownerlevel" to SP:Timeslip)
+Timeslip Other, +0, gives(=+"owner::ownerlevel" to SP:Timeslip Other)
+Rapid Journey, +0, gives(=+"owner::ownerlevel" to SP:Rapid Journey)
+Planar Summons ([Plane]), +0, gives(+owner::ownerlevel to SP:Planar Summons),_
+		x( #InputReplace("Select the Plane of existence from which you can Summon a being:", "[Plane]", , "Planar Summons") )
+Planar Visit ([Plane]), +0, gives(+owner::ownerlevel to SP:Planar Visit),_
+		x( #InputReplace("Select the Plane of existence which you can Visit:", "[Plane]", ,"Planar Visit") )
+Plane Shift ([Plane]), +0, gives(+owner::ownerlevel to SP:Plane Shift ([plane])),_
+		x( #InputReplace("Select the Plane of existence which you can Shift to:", "[plane]",  , "Plane Shift") )
+Plane Shift Other ([Plane]), +0, gives(+owner::ownerlevel to SP:Plane Shift Other ([plane])),_
+		x( #InputReplace("Select the Plane of existence which you can Shift Others to:", "[plane]", , "Plane Shift Other") )
+Phase, +0, gives(=+"owner::ownerlevel" to SP:Phase)
+Phase Other, +0, gives(=+"owner::ownerlevel" to SP:Phase Other)
+Beacon, +0, gives(=+"owner::ownerlevel" to SP:Beacon)
+Trace Teleport, +0, gives(=+"owner::ownerlevel" to SP:Trace Teleport)
+Divert Teleport, +0, gives(=+"owner::ownerlevel" to SP:Divert Teleport)
+Create Door, +0, gives(=+"owner::ownerlevel" to SP:Create Door)
+Seek Gate, +0, gives(=+"owner::ownerlevel" to SP:Seek Gate)
+Scry Gate, +0, gives(=+"owner::ownerlevel" to SP:Scry Gate)
+Control Gate, +0, gives(=+"owner::ownerlevel" to SP:Control Gate)
+Create Gate, +0, gives(=+"owner::ownerlevel" to SP:Create Gate)
+Slow Time, +0, gives(=+"owner::ownerlevel" to SP:Slow Time)
+Accelerate Time, +0, gives(=+"owner::ownerlevel" to SP:Accelerate Time)
+Hide Object, +0, gives(=+"owner::ownerlevel" to SP:Hide Object)
+Sanctuary, +0, gives(=+"owner::ownerlevel" to SP:Sanctuary)
+Suspend Time, +0, gives(=+"owner::ownerlevel" to SP:Suspend Time)
+Time Out, +0, gives(=+"owner::ownerlevel" to SP:Time Out)
+
+Body-Reading, +0, gives(=+"owner::ownerlevel" to SP:Body-Reading)
+Final Rest, +0, gives(=+"owner::ownerlevel" to SP:Final Rest)
+Lend Energy, +0, gives(=+"owner::ownerlevel" to SP:Lend Energy)
+Lend Vitality, +0, gives(=+"owner::ownerlevel" to SP:Lend Vitality)
+Share Energy, +0, gives(=+"owner::ownerlevel" to SP:Share Energy)
+Recover Energy, +0, gives(=+"owner::ownerlevel" to SP:Recover Energy)
+Remove Contagion, +0, gives(=+"owner::ownerlevel" to SP:Remove Contagion)
+Awaken, +0, gives(=+"owner::ownerlevel" to SP:Awaken)
+Relieve Sickness, +0, gives(=+"owner::ownerlevel" to SP:Relieve Sickness)
+Share Vitality, +0, gives(=+"owner::ownerlevel" to SP:Share Vitality)
+Resist Disease, +0, gives(=+"owner::ownerlevel" to SP:Resist Disease)
+Resist Poison, +0, gives(=+"owner::ownerlevel" to SP:Resist Poison)
+Stop Bleeding, +0, gives(=+"owner::ownerlevel" to SP:Stop Bleeding)
+Minor Healing, +0, gives(=+"owner::ownerlevel" to SP:Minor Healing)
+Major Healing, +0, gives(=+"owner::ownerlevel" to SP:Major Healing)
+Great Healing, +0, gives(=+"owner::ownerlevel" to SP:Great Healing)
+Cure Disease, +0, gives(=+"owner::ownerlevel" to SP:Cure Disease)
+Neutralize Poison, +0, gives(=+"owner::ownerlevel" to SP:Neutralize Poison)
+Instant Neutralize Poison, +0, gives(=+"owner::ownerlevel" to SP:Instant Neutralize Poison)
+Relieve Addiction, +0, gives(=+"owner::ownerlevel" to SP:Relieve Addiction)
+Relieve Madness, +0, gives(=+"owner::ownerlevel" to SP:Relieve Madness)
+Restore Sight, +0, gives(=+"owner::ownerlevel" to SP:Restore Sight)
+Restore Hearing, +0, gives(=+"owner::ownerlevel" to SP:Restore Hearing)
+Restore Memory, +0, gives(=+"owner::ownerlevel" to SP:Restore Memory)
+Restore Speech, +0, gives(=+"owner::ownerlevel" to SP:Restore Speech)
+Stop Paralysis, +0, gives(=+"owner::ownerlevel" to SP:Stop Paralysis)
+Relieve Paralysis, +0, gives(=+"owner::ownerlevel" to SP:Relieve Paralysis)
+Restoration, +0, gives(=+"owner::ownerlevel" to SP:Restoration)
+Instant Restoration, +0, gives(=+"owner::ownerlevel" to SP:Instant Restoration)
+Regeneration, +0, gives(=+"owner::ownerlevel" to SP:Regeneration)
+Instant Regeneration, +0, gives(=+"owner::ownerlevel" to SP:Instant Regeneration)
+Cleansing, +0, gives(=+"owner::ownerlevel" to SP:Cleansing)
+Suspended Animation, +0, gives(=+"owner::ownerlevel" to SP:Suspended Animation)
+Healing Slumber, +0, gives(=+"owner::ownerlevel" to SP:Healing Slumber)
+Halt Aging, +0, gives(=+"owner::ownerlevel" to SP:Halt Aging)
+Youth, +0, gives(=+"owner::ownerlevel" to SP:Youth)
+Resurrection, +0, gives(=+"owner::ownerlevel" to SP:Resurrection)
+
+Simple Illusion, +0, gives(=+"owner::ownerlevel" to SP:Simple Illusion)
+Complex Illusion, +0, gives(=+"owner::ownerlevel" to SP:Complex Illusion)
+Perfect Illusion, +0, gives(=+"owner::ownerlevel" to SP:Perfect Illusion)
+Illusion Shell, +0, gives(=+"owner::ownerlevel" to SP:Illusion Shell)
+Illusion Disguise, +0, gives(=+"owner::ownerlevel" to SP:Illusion Disguise)
+Independence, +0, gives(=+"owner::ownerlevel" to SP:Independence)
+Know Illusion, +0, gives(=+"owner::ownerlevel" to SP:Know Illusion)
+Control Illusion, +0, gives(=+"owner::ownerlevel" to SP:Control Illusion)
+Dispel Illusion, +0, gives(=+"owner::ownerlevel" to SP:Dispel Illusion)
+Inscribe, +0, gives(=+"owner::ownerlevel" to SP:Inscribe)
+Phantom, +0, gives(=+"owner::ownerlevel" to SP:Phantom)
+Initiative, +0, gives(=+"owner::ownerlevel" to SP:Initiative)
+Create Object, +0, gives(=+"owner::ownerlevel" to SP:Create Object)
+Duplicate, +0, gives(=+"owner::ownerlevel" to SP:Duplicate)
+Create Servant, +0, gives(=+"owner::ownerlevel" to SP:Create Servant)
+Create Warrior, +0, gives(=+"owner::ownerlevel" to SP:Create Warrior)
+Create Animal, +0, gives(=+"owner::ownerlevel" to SP:Create Animal)
+Create Mount, +0, gives(=+"owner::ownerlevel" to SP:Create Mount)
+Control Creation, +0, gives(=+"owner::ownerlevel" to SP:Control Creation)
+Dispel Creation, +0, gives(=+"owner::ownerlevel" to SP:Dispel Creation)
+
+Measurement, +0, gives(=+"owner::ownerlevel" to SP:Measurement)
+Tell Time, +0, gives(=+"owner::ownerlevel" to SP:Tell Time)
+Alarm, +0, gives(=+"owner::ownerlevel" to SP:Alarm)
+Far-Feeling, +0, gives(=+"owner::ownerlevel" to SP:Far-Feeling)
+Find Direction, +0, gives(=+"owner::ownerlevel" to SP:Find Direction)
+Tell Position, +0, gives(=+"owner::ownerlevel" to SP:Tell Position)
+Test Load, +0, gives(=+"owner::ownerlevel" to SP:Test Load)
+Detect Magic, +0, gives(=+"owner::ownerlevel" to SP:Detect Magic)
+Sense Mana, +0, gives(=+"owner::ownerlevel" to SP:Sense Mana)
+Aura, +0, gives(=+"owner::ownerlevel" to SP:Aura)
+Identify Spell, +0, gives(=+"owner::ownerlevel" to SP:Identify Spell)
+Mage Sight, +0, gives(=+"owner::ownerlevel" to SP:Mage Sight)
+Mage Sense, +0, gives(=+"owner::ownerlevel" to SP:Mage Sense)
+Seek Magic, +0, gives(=+"owner::ownerlevel" to SP:Seek Magic)
+Analyze Magic, +0, gives(=+"owner::ownerlevel" to SP:Analyze Magic)
+Summon Shade, +0, gives(=+"owner::ownerlevel" to SP:Summon Shade)
+Glass Wall, +0, gives(=+"owner::ownerlevel" to SP:Glass Wall)
+Know Location, +0, gives(=+"owner::ownerlevel" to SP:Know Location)
+Wizard Eye, +0, gives(=+"owner::ownerlevel" to SP:Wizard Eye)
+Invisible Wizard Eye, +0, gives(=+"owner::ownerlevel" to SP:Invisible Wizard Eye)
+Wizard Mouth, +0, gives(=+"owner::ownerlevel" to SP:Wizard Mouth)
+Wizard Nose, +0, gives(=+"owner::ownerlevel" to SP:Wizard Nose)
+Wizard Hand, +0, gives(=+"owner::ownerlevel" to SP:Wizard Hand)
+Astral Vision, +0, gives(=+"owner::ownerlevel" to SP:Astral Vision)
+Memorize, +0, gives(=+"owner::ownerlevel" to SP:Memorize)
+Pathfinder, +0, gives(=+"owner::ownerlevel" to SP:Pathfinder)
+Projection, +0, gives(=+"owner::ownerlevel" to SP:Projection)
+Seeker, +0, gives(=+"owner::ownerlevel" to SP:Seeker)
+Trace, +0, gives(=+"owner::ownerlevel" to SP:Trace)
+History, +0, gives(=+"owner::ownerlevel" to SP:History)
+Ancient History, +0, gives(=+"owner::ownerlevel" to SP:Ancient History)
+Prehistory, +0, gives(=+"owner::ownerlevel" to SP:Prehistory)
+Reconstruct Spell, +0, gives(=+"owner::ownerlevel" to SP:Reconstruct Spell)
+Know True Shape, +0, gives(=+"owner::ownerlevel" to SP:Know True Shape)
+Recall, +0, gives(=+"owner::ownerlevel" to SP:Recall)
+Remember Path, +0, gives(=+"owner::ownerlevel" to SP:Remember Path)
+See Secrets, +0, gives(=+"owner::ownerlevel" to SP:See Secrets)
+Scents of the Past, +0, gives(=+"owner::ownerlevel" to SP:Scents of the Past)
+Images of the Past, +0, gives(=+"owner::ownerlevel" to SP:Images of the Past)
+Echoes of the Past, +0, gives(=+"owner::ownerlevel" to SP:Echoes of the Past)
+Divination (Astrology), +0, gives(+owner::ownerlevel to SP:Divination (Astrology))
+Divination (Augury), +0, gives(+owner::ownerlevel to SP:Divination (Augury))
+Divination (Cartomancy), +0, gives(+owner::ownerlevel to SP:Divination (Cartomancy))
+Divination (Crystal-Gazing), +0, gives(+owner::ownerlevel to SP:Divination (Crystal-Gazing))
+Divination (Dactylomancy), +0, gives(+owner::ownerlevel to SP:Divination (Dactylomancy))
+Divination (Extispicy), +0, gives(+owner::ownerlevel to SP:Divination (Extispicy))
+Divination (Gastromancy), +0, gives(+owner::ownerlevel to SP:Divination (Gastromancy))
+Divination (Geomancy), +0, gives(+owner::ownerlevel to SP:Divination (Geomancy))
+Divination (Lecanomancy), +0, gives(+owner::ownerlevel to SP:Divination (Lecanomancy))
+Divination (Numerology), +0, gives(+owner::ownerlevel to SP:Divination (Numerology))
+Divination (Oneiromancy), +0, gives(+owner::ownerlevel to SP:Divination (Oneiromancy))
+Divination (Physiognomy), +0, gives(+owner::ownerlevel to SP:Divination (Physiognomy))
+Divination (Pyromancy), +0, gives(+owner::ownerlevel to SP:Divination (Pyromancy))
+Divination (Sortilege), +0, gives(+owner::ownerlevel to SP:Divination (Sortilege))
+Divination (Symbol-Casting), +0, gives(+owner::ownerlevel to SP:Divination (Symbol-Casting))
+
+Light, +0, gives(=+"owner::ownerlevel" to SP:Light)
+Continual Light, +0, gives(=+"owner::ownerlevel" to SP:Continual Light)
+Colors, +0, gives(=+"owner::ownerlevel" to SP:Colors)
+Remove Shadow, +0, gives(=+"owner::ownerlevel" to SP:Remove Shadow)
+Shape Light, +0, gives(=+"owner::ownerlevel" to SP:Shape Light)
+Bright Vision, +0, gives(=+"owner::ownerlevel" to SP:Bright Vision)
+Infravision, +0, gives(=+"owner::ownerlevel" to SP:Infravision)
+Night Vision, +0, gives(=+"owner::ownerlevel" to SP:Night Vision)
+Hawk Vision, +0, gives(=+"owner::ownerlevel" to SP:Hawk Vision)
+Small Vision, +0, gives(=+"owner::ownerlevel" to SP:Small Vision)
+Dark Vision, +0, gives(=+"owner::ownerlevel" to SP:Dark Vision)
+Darkness, +0, gives(=+"owner::ownerlevel" to SP:Darkness)
+Blackout, +0, gives(=+"owner::ownerlevel" to SP:Blackout)
+Glow, +0, gives(=+"owner::ownerlevel" to SP:Glow)
+Flash, +0, gives(=+"owner::ownerlevel" to SP:Flash)
+Gloom, +0, gives(=+"owner::ownerlevel" to SP:Gloom)
+Light Jet, +0, gives(=+"owner::ownerlevel" to SP:Light Jet)
+Mirror, +0, gives(=+"owner::ownerlevel" to SP:Mirror)
+Remove Reflection, +0, gives(=+"owner::ownerlevel" to SP:Remove Reflection)
+Wall of Light, +0, gives(=+"owner::ownerlevel" to SP:Wall of Light)
+Blur, +0, gives(=+"owner::ownerlevel" to SP:Blur)
+Shape Darkness, +0, gives(=+"owner::ownerlevel" to SP:Shape Darkness)
+Hide, +0, gives(=+"owner::ownerlevel" to SP:Hide)
+See Invisible, +0, gives(=+"owner::ownerlevel" to SP:See Invisible)
+Mage Light, +0, gives(=+"owner::ownerlevel" to SP:Mage Light)
+Continual Mage Light, +0, gives(=+"owner::ownerlevel" to SP:Continual Mage Light)
+Sunlight, +0, gives(=+"owner::ownerlevel" to SP:Sunlight)
+Continual Sunlight, +0, gives(=+"owner::ownerlevel" to SP:Continual Sunlight)
+Invisibility, +0, gives(=+"owner::ownerlevel" to SP:Invisibility)
+Body of Shadow, +0, gives(=+"owner::ownerlevel" to SP:Body of Shadow)
+Sunbolt, +0, gives(=+"owner::ownerlevel" to SP:Sunbolt)
+
+Inspired Creation, +0, gives(=+"owner::ownerlevel" to SP:Inspired Creation)
+Awaken Craft Spirit, +0, gives(=+"owner::ownerlevel" to SP:Awaken Craft Spirit)
+Find Weakness, +0, gives(=+"owner::ownerlevel" to SP:Find Weakness)
+Weaken, +0, gives(=+"owner::ownerlevel" to SP:Weaken)
+Restore, +0, gives(=+"owner::ownerlevel" to SP:Restore)
+Clean, +0, gives(=+"owner::ownerlevel" to SP:Clean)
+Soilproof, +0, gives(=+"owner::ownerlevel" to SP:Soilproof)
+Dye, +0, gives(=+"owner::ownerlevel" to SP:Dye)
+Copy, +0, gives(=+"owner::ownerlevel" to SP:Copy)
+Rejoin, +0, gives(=+"owner::ownerlevel" to SP:Rejoin)
+Shatter, +0, gives(=+"owner::ownerlevel" to SP:Shatter)
+Animate Object, +0, gives(=+"owner::ownerlevel" to SP:Animate Object)
+Stiffen, +0, gives(=+"owner::ownerlevel" to SP:Stiffen)
+Knot, +0, gives(=+"owner::ownerlevel" to SP:Knot)
+Reshape, +0, gives(=+"owner::ownerlevel" to SP:Reshape)
+Rive, +0, gives(=+"owner::ownerlevel" to SP:Rive)
+Ruin, +0, gives(=+"owner::ownerlevel" to SP:Ruin)
+Explode, +0, gives(=+"owner::ownerlevel" to SP:Explode)
+Fasten, +0, gives(=+"owner::ownerlevel" to SP:Fasten)
+Mapmaker, +0, gives(=+"owner::ownerlevel" to SP:Mapmaker)
+Repair, +0, gives(=+"owner::ownerlevel" to SP:Repair)
+Shatterproof, +0, gives(=+"owner::ownerlevel" to SP:Shatterproof)
+Sharpen, +0, gives(=+"owner::ownerlevel" to SP:Sharpen)
+Toughen, +0, gives(=+"owner::ownerlevel" to SP:Toughen)
+Transparency, +0, gives(=+"owner::ownerlevel" to SP:Transparency)
+Mystic Mark, +0, gives(=+"owner::ownerlevel" to SP:Mystic Mark)
+Weapon Self, +0, gives(=+"owner::ownerlevel" to SP:Weapon Self)
+Transform Object, +0, gives(=+"owner::ownerlevel" to SP:Transform Object)
+Contract Object, +0, gives(=+"owner::ownerlevel" to SP:Contract Object)
+Extend Object, +0, gives(=+"owner::ownerlevel" to SP:Extend Object)
+Shrink Object, +0, gives(=+"owner::ownerlevel" to SP:Shrink Object)
+Enlarge Object, +0, gives(=+"owner::ownerlevel" to SP:Enlarge Object)
+Disintegrate, +0, gives(=+"owner::ownerlevel" to SP:Disintegrate)
+
+Counterspell, +0, gives(=+"owner::ownerlevel" to SP:Counterspell)
+Scryguard, +0, gives(=+"owner::ownerlevel" to SP:Scryguard)
+Suspend Spell, +0, gives(=+"owner::ownerlevel" to SP:Suspend Spell)
+Ward, +0, gives(=+"owner::ownerlevel" to SP:Ward)
+Conceal Magic, +0, gives(=+"owner::ownerlevel" to SP:Conceal Magic)
+Reflect, +0, gives(=+"owner::ownerlevel" to SP:Reflect)
+Scrywall, +0, gives(=+"owner::ownerlevel" to SP:Scrywall)
+Great Ward, +0, gives(=+"owner::ownerlevel" to SP:Great Ward)
+False Aura, +0, gives(=+"owner::ownerlevel" to SP:False Aura)
+Magic Resistance, +0, gives(=+"owner::ownerlevel" to SP:Magic Resistance)
+Scryfool, +0, gives(=+"owner::ownerlevel" to SP:Scryfool)
+Penetrating Spell, +0, gives(=+"owner::ownerlevel" to SP:Penetrating Spell)
+Catch Spell, +0, gives(=+"owner::ownerlevel" to SP:Catch Spell)
+Suspend Magic, +0, gives(=+"owner::ownerlevel" to SP:Suspend Magic)
+Displace Spell, +0, gives(=+"owner::ownerlevel" to SP:Displace Spell)
+Spell Shield, +0, gives(=+"owner::ownerlevel" to SP:Spell Shield)
+Spell Wall, +0, gives(=+"owner::ownerlevel" to SP:Spell Wall)
+Pentagram, +0, gives(=+"owner::ownerlevel" to SP:Pentagram)
+Suspend Curse, +0, gives(=+"owner::ownerlevel" to SP:Suspend Curse)
+Suspend Mana, +0, gives(=+"owner::ownerlevel" to SP:Suspend Mana)
+Dispel Magic, +0, gives(=+"owner::ownerlevel" to SP:Dispel Magic)
+Lend Spell, +0, gives(=+"owner::ownerlevel" to SP:Lend Spell)
+Remove Curse, +0, gives(=+"owner::ownerlevel" to SP:Remove Curse)
+Charge Powerstone, +0, gives(=+"owner::ownerlevel" to SP:Charge Powerstone)
+Spellguard, +0, gives(=+"owner::ownerlevel" to SP:Spellguard)
+Remove Aura, +0, gives(=+"owner::ownerlevel" to SP:Remove Aura)
+Drain Mana, +0, gives(=+"owner::ownerlevel" to SP:Drain Mana)
+Restore Mana, +0, gives(=+"owner::ownerlevel" to SP:Restore Mana)
+Steal Spell, +0, gives(=+"owner::ownerlevel" to SP:Steal Spell)
+Telecast, +0, gives(=+"owner::ownerlevel" to SP:Telecast)
+Hang Spell, +0, gives(=+"owner::ownerlevel" to SP:Hang Spell)
+Maintain Spell, +0, gives(=+"owner::ownerlevel" to SP:Maintain Spell)
+Throw Spell, +0, gives(=+"owner::ownerlevel" to SP:Throw Spell)
+Bless, +0, gives(=+"owner::ownerlevel" to SP:Bless)
+Curse, +0, gives(=+"owner::ownerlevel" to SP:Curse)
+Suspend Magery, +0, gives(=+"owner::ownerlevel" to SP:Suspend Magery)
+Drain Magery, +0, gives(=+"owner::ownerlevel" to SP:Drain Magery)
+
+//  Linking Spells
+Delay, +0, gives(=+"owner::ownerlevel" to SP:Delay)
+Link, +0, gives(=+"owner::ownerlevel" to SP:Link)
+Reflex, +0, gives(=+"owner::ownerlevel" to SP:Reflex)
+
+Keen Hearing, +0, gives(=+"owner::ownerlevel" to SP:Keen Hearing)
+Keen Vision, +0, gives(=+"owner::ownerlevel" to SP:Keen Vision)
+Keen Taste and Smell, +0, gives(=+"owner::ownerlevel" to SP:Keen Taste and Smell)
+Keen [Sense], +0, gives(=+"owner::ownerlevel" to SP:Keen [Sense]),_
+		x( #InputReplace("Select the sense you can improve:", "[Sense]", , "Keen Sense") )
+Dull Hearing, +0, gives(=+"owner::ownerlevel" to SP:Dull Hearing)
+Dull Vision, +0, gives(=+"owner::ownerlevel" to SP:Dull Vision)
+Dull Taste and Smell, +0, gives(=+"owner::ownerlevel" to SP:Dull Taste and Smell)
+Dull [Sense], +0, gives(=+"owner::ownerlevel" to SP:Dull [Sense]),_
+		x( #InputReplace("Select the sense you can Dull:", "[Sense]", , "Dull Sense") )
+Alertness, +0, gives(=+"owner::ownerlevel" to SP:Alertness)
+Dullness, +0, gives(=+"owner::ownerlevel" to SP:Dullness)
+Fear, +0, gives(=+"owner::ownerlevel" to SP:Fear)
+Panic, +0, gives(=+"owner::ownerlevel" to SP:Panic)
+Terror, +0, gives(=+"owner::ownerlevel" to SP:Terror)
+Bravery, +0, gives(=+"owner::ownerlevel" to SP:Bravery)
+Rear Vision, +0, gives(=+"owner::ownerlevel" to SP:Rear Vision)
+Berserker, +0, gives(=+"owner::ownerlevel" to SP:Berserker)
+Foolishness, +0, gives(=+"owner::ownerlevel" to SP:Foolishness)
+Daze, +0, gives(=+"owner::ownerlevel" to SP:Daze)
+Mental Stun, +0, gives(=+"owner::ownerlevel" to SP:Mental Stun)
+Disorient, +0, gives(=+"owner::ownerlevel" to SP:Disorient)
+Encrypt, +0, gives(=+"owner::ownerlevel" to SP:Encrypt)
+Fascinate, +0, gives(=+"owner::ownerlevel" to SP:Fascinate)
+Forgetfulness, +0, gives(=+"owner::ownerlevel" to SP:Forgetfulness)
+Sleep, +0, gives(=+"owner::ownerlevel" to SP:Sleep)
+Wisdom, +0, gives(=+"owner::ownerlevel" to SP:Wisdom)
+Weaken Will, +0, gives(=+"owner::ownerlevel" to SP:Weaken Will)
+Strengthen Will, +0, gives(=+"owner::ownerlevel" to SP:Strengthen Will)
+Loyalty, +0, gives(=+"owner::ownerlevel" to SP:Loyalty)
+Command, +0, gives(=+"owner::ownerlevel" to SP:Command)
+Drunkenness, +0, gives(=+"owner::ownerlevel" to SP:Drunkenness)
+Madness, +0, gives(=+"owner::ownerlevel" to SP:Madness)
+Emotion Control, +0, gives(=+"owner::ownerlevel" to SP:Emotion Control)
+Mass Daze, +0, gives(=+"owner::ownerlevel" to SP:Mass Daze)
+Mindlessness, +0, gives(=+"owner::ownerlevel" to SP:Mindlessness)
+Compel Lie, +0, gives(=+"owner::ownerlevel" to SP:Compel Lie)
+Lure, +0, gives(=+"owner::ownerlevel" to SP:Lure)
+Mass Sleep, +0, gives(=+"owner::ownerlevel" to SP:Mass Sleep)
+Peaceful Sleep, +0, gives(=+"owner::ownerlevel" to SP:Peaceful Sleep)
+Sickness, +0, gives(=+"owner::ownerlevel" to SP:Sickness)
+Will Lock, +0, gives(=+"owner::ownerlevel" to SP:Will Lock)
+Oath, +0, gives(=+"owner::ownerlevel" to SP:Oath)
+Permanent Forgetfulness, +0, gives(=+"owner::ownerlevel" to SP:Permanent Forgetfulness)
+Vigil, +0, gives(=+"owner::ownerlevel" to SP:Vigil)
+Charm, +0, gives(=+"owner::ownerlevel" to SP:Charm)
+Ecstasy, +0, gives(=+"owner::ownerlevel" to SP:Ecstasy)
+Enthrall, +0, gives(=+"owner::ownerlevel" to SP:Enthrall)
+Permanent Madness, +0, gives(=+"owner::ownerlevel" to SP:Permanent Madness)
+False Memory, +0, gives(=+"owner::ownerlevel" to SP:False Memory)
+Avoid, +0, gives(=+"owner::ownerlevel" to SP:Avoid)
+Nightmare, +0, gives(=+"owner::ownerlevel" to SP:Nightmare)
+Hallucination, +0, gives(=+"owner::ownerlevel" to SP:Hallucination)
+Lesser Geas, +0, gives(=+"owner::ownerlevel" to SP:Lesser Geas)
+Suggestion, +0, gives(=+"owner::ownerlevel" to SP:Suggestion)
+Mass Suggestion, +0, gives(=+"owner::ownerlevel" to SP:Mass Suggestion)
+Glib Tongue, +0, gives(=+"owner::ownerlevel" to SP:Glib Tongue)
+Enslave, +0, gives(=+"owner::ownerlevel" to SP:Enslave)
+Great Hallucination, +0, gives(=+"owner::ownerlevel" to SP:Great Hallucination)
+Great Geas, +0, gives(=+"owner::ownerlevel" to SP:Great Geas)
+
+Haste, +0, gives(=+"owner::ownerlevel" to SP:Haste)
+Apportation, +0, gives(=+"owner::ownerlevel" to SP:Apportation)
+Glue, +0, gives(=+"owner::ownerlevel" to SP:Glue)
+Grease, +0, gives(=+"owner::ownerlevel" to SP:Grease)
+Deflect Missile, +0, gives(=+"owner::ownerlevel" to SP:Deflect Missile)
+Hold Fast, +0, gives(=+"owner::ownerlevel" to SP:Hold Fast)
+Increase Burden, +0, gives(=+"owner::ownerlevel" to SP:Increase Burden)
+Jump, +0, gives(=+"owner::ownerlevel" to SP:Jump)
+Levitation, +0, gives(=+"owner::ownerlevel" to SP:Levitation)
+Lighten Burden, +0, gives(=+"owner::ownerlevel" to SP:Lighten Burden)
+Locksmith, +0, gives(=+"owner::ownerlevel" to SP:Locksmith)
+Long March, +0, gives(=+"owner::ownerlevel" to SP:Long March)
+Poltergeist, +0, gives(=+"owner::ownerlevel" to SP:Poltergeist)
+Quick March, +0, gives(=+"owner::ownerlevel" to SP:Quick March)
+Slow Fall, +0, gives(=+"owner::ownerlevel" to SP:Slow Fall)
+Wallwalker, +0, gives(=+"owner::ownerlevel" to SP:Wallwalker)
+Dancing Object, +0, gives(=+"owner::ownerlevel" to SP:Dancing Object)
+Distant Blow, +0, gives(=+"owner::ownerlevel" to SP:Distant Blow)
+Lockmaster, +0, gives(=+"owner::ownerlevel" to SP:Lockmaster)
+Manipulate, +0, gives(=+"owner::ownerlevel" to SP:Manipulate)
+Slow, +0, gives(=+"owner::ownerlevel" to SP:Slow)
+Undo, +0, gives(=+"owner::ownerlevel" to SP:Undo)
+Winged Knife, +0, gives(=+"owner::ownerlevel" to SP:Winged Knife)
+Flight, +0, gives(=+"owner::ownerlevel" to SP:Flight)
+Light Tread, +0, gives(=+"owner::ownerlevel" to SP:Light Tread)
+Slide, +0, gives(=+"owner::ownerlevel" to SP:Slide)
+Flying Carpet, +0, gives(=+"owner::ownerlevel" to SP:Flying Carpet)
+Hawk Flight, +0, gives(=+"owner::ownerlevel" to SP:Hawk Flight)
+Ethereal Body, +0, gives(=+"owner::ownerlevel" to SP:Ethereal Body)
+Great Haste, +0, gives(=+"owner::ownerlevel" to SP:Great Haste)
+Pull, +0, gives(=+"owner::ownerlevel" to SP:Pull)
+Repel, +0, gives(=+"owner::ownerlevel" to SP:Repel)
+Swim, +0, gives(=+"owner::ownerlevel" to SP:Swim)
+Teleport, +0, gives(=+"owner::ownerlevel" to SP:Teleport)
+Teleport Other, +0, gives(=+"owner::ownerlevel" to SP:Teleport Other)
+Blink, +0, gives(=+"owner::ownerlevel" to SP:Blink)
+Blink Other, +0, gives(=+"owner::ownerlevel" to SP:Blink Other)
+Freedom, +0, gives(=+"owner::ownerlevel" to SP:Freedom)
+Cloud-Walking, +0, gives(=+"owner::ownerlevel" to SP:Cloud-Walking)
+Cloud-Vaulting, +0, gives(=+"owner::ownerlevel" to SP:Cloud-Vaulting)
+
+Death Vision, +0, gives(=+"owner::ownerlevel" to SP:Death Vision)
+Sense Spirit, +0, gives(=+"owner::ownerlevel" to SP:Sense Spirit)
+Summon Spirit, +0, gives(=+"owner::ownerlevel" to SP:Summon Spirit)
+Animation, +0, gives(=+"owner::ownerlevel" to SP:Animation)
+Steal Energy, +0, gives(=+"owner::ownerlevel" to SP:Steal Energy)
+Steal Vitality, +0, gives(=+"owner::ownerlevel" to SP:Steal Vitality)
+Materialize, +0, gives(=+"owner::ownerlevel" to SP:Materialize)
+Solidify, +0, gives(=+"owner::ownerlevel" to SP:Solidify)
+Affect Spirits, +0, gives(=+"owner::ownerlevel" to SP:Affect Spirits)
+Skull-Spirit, +0, gives(=+"owner::ownerlevel" to SP:Skull-Spirit)
+Turn Spirit, +0, gives(=+"owner::ownerlevel" to SP:Turn Spirit)
+Zombie, +0, gives(=+"owner::ownerlevel" to SP:Zombie)
+Control Zombie, +0, gives(=+"owner::ownerlevel" to SP:Control Zombie)
+Turn Zombie, +0, gives(=+"owner::ownerlevel" to SP:Turn Zombie)
+Zombie Summoning, +0, gives(=+"owner::ownerlevel" to SP:Zombie Summoning)
+Mass Zombie, +0, gives(=+"owner::ownerlevel" to SP:Mass Zombie)
+Slow Healing, +0, gives(=+"owner::ownerlevel" to SP:Slow Healing)
+Stop Healing, +0, gives(=+"owner::ownerlevel" to SP:Stop Healing)
+Command Spirit (Banshees), +0, gives(+owner::ownerlevel to SP:Command Spirit (Banshees))
+Command Spirit (Specters), +0, gives(+owner::ownerlevel to SP:Command Spirit (Specters))
+Command Spirit (Manitous), +0, gives(+owner::ownerlevel to SP:Command Spirit (Manitous))
+Command Spirit ([Spirit]), +0, gives(+owner::ownerlevel to SP:Command Spirit),_
+		x( #InputReplace("Select the Spirit type you can Command:", "[Spirit]", , "Command Spirit") )
+Age, +0, gives(=+"owner::ownerlevel" to SP:Age)
+Pestilence, +0, gives(=+"owner::ownerlevel" to SP:Pestilence)
+Evisceration, +0, gives(=+"owner::ownerlevel" to SP:Evisceration)
+Animate Shadow, +0, gives(=+"owner::ownerlevel" to SP:Animate Shadow)
+Rotting Death, +0, gives(=+"owner::ownerlevel" to SP:Rotting Death)
+Soul Jar, +0, gives(=+"owner::ownerlevel" to SP:Soul Jar)
+Summon Demon, +0, gives(=+"owner::ownerlevel" to SP:Summon Demon)
+Banish, +0, gives(=+"owner::ownerlevel" to SP:Banish)
+Entrap Spirit, +0, gives(=+"owner::ownerlevel" to SP:Entrap Spirit)
+Repel Spirits, +0, gives(=+"owner::ownerlevel" to SP:Repel Spirits)
+Bind Spirit (Banshees), +0, gives(+owner::ownerlevel to SP:Bind Spirit (Banshees))
+Bind Spirit (Specters), +0, gives(+owner::ownerlevel to SP:Bind Spirit (Specters))
+Bind Spirit (Manitous), +0, gives(+owner::ownerlevel to SP:Bind Spirit (Manitous))
+Bind Spirit ([type]), +0, gives(+owner::ownerlevel to SP:Bind Spirit ([type])),_
+		x( #InputReplace("Select the Spirit type you can Bind:", "[type]", , "Bind Spirit") )
+Steal Grace, +0, gives(=+"owner::ownerlevel" to SP:Steal Grace)
+Steal Vigor, +0, gives(=+"owner::ownerlevel" to SP:Steal Vigor)
+Steal Might, +0, gives(=+"owner::ownerlevel" to SP:Steal Might)
+Steal Wisdom, +0, gives(=+"owner::ownerlevel" to SP:Steal Wisdom)
+Steal Skill, +0, gives(=+"owner::ownerlevel" to SP:Steal Skill)
+Steal Youth, +0, gives(=+"owner::ownerlevel" to SP:Steal Youth)
+Steal Beauty, +0, gives(=+"owner::ownerlevel" to SP:Steal Beauty)
+Astral Block, +0, gives(=+"owner::ownerlevel" to SP:Astral Block)
+Lich, +0, gives(=+"owner::ownerlevel" to SP:Lich)
+Wraith, +0, gives(=+"owner::ownerlevel" to SP:Wraith)
+
+Seek Plant, +0, gives(=+"owner::ownerlevel" to SP:Seek Plant)
+Identify Plant, +0, gives(=+"owner::ownerlevel" to SP:Identify Plant)
+Heal Plant, +0, gives(=+"owner::ownerlevel" to SP:Heal Plant)
+Shape Plant, +0, gives(=+"owner::ownerlevel" to SP:Shape Plant)
+Bless Plants, +0, gives(=+"owner::ownerlevel" to SP:Bless Plants)
+Hide Path, +0, gives(=+"owner::ownerlevel" to SP:Hide Path)
+Plant Growth, +0, gives(=+"owner::ownerlevel" to SP:Plant Growth)
+Plant Vision, +0, gives(=+"owner::ownerlevel" to SP:Plant Vision)
+Pollen Cloud, +0, gives(=+"owner::ownerlevel" to SP:Pollen Cloud)
+Blight, +0, gives(=+"owner::ownerlevel" to SP:Blight)
+Blossom, +0, gives(=+"owner::ownerlevel" to SP:Blossom)
+Conceal, +0, gives(=+"owner::ownerlevel" to SP:Conceal)
+Forest Warning, +0, gives(=+"owner::ownerlevel" to SP:Forest Warning)
+Tangle Growth, +0, gives(=+"owner::ownerlevel" to SP:Tangle Growth)
+Create Plant, +0, gives(=+"owner::ownerlevel" to SP:Create Plant)
+False Tracks, +0, gives(=+"owner::ownerlevel" to SP:False Tracks)
+Plant Sense, +0, gives(=+"owner::ownerlevel" to SP:Plant Sense)
+Rejuvenate Plant, +0, gives(=+"owner::ownerlevel" to SP:Rejuvenate Plant)
+Wither Plant, +0, gives(=+"owner::ownerlevel" to SP:Wither Plant)
+Walk Through Plants, +0, gives(=+"owner::ownerlevel" to SP:Walk Through Plants)
+Walk Through Wood, +0, gives(=+"owner::ownerlevel" to SP:Walk Through Wood)
+Plant Control, +0, gives(=+"owner::ownerlevel" to SP:Plant Control)
+Essential Wood, +0, gives(=+"owner::ownerlevel" to SP:Essential Wood)
+Animate Plant, +0, gives(=+"owner::ownerlevel" to SP:Animate Plant)
+Plant Form, +0, gives(=+"owner::ownerlevel" to SP:Plant Form)
+Plant Speech, +0, gives(=+"owner::ownerlevel" to SP:Plant Speech)
+Rain of Nuts, +0, gives(=+"owner::ownerlevel" to SP:Rain of Nuts)
+Arboreal Immurement, +0, gives(=+"owner::ownerlevel" to SP:Arboreal Immurement)
+Plant Form Other, +0, gives(=+"owner::ownerlevel" to SP:Plant Form Other)
+Body of Wood, +0, gives(=+"owner::ownerlevel" to SP:Body of Wood)
+Body of Slime, +0, gives(=+"owner::ownerlevel" to SP:Body of Slime)
+
+Sense Danger, +0, gives(=+"owner::ownerlevel" to SP:Sense Danger)
+Detect Poison, +0, gives(=+"owner::ownerlevel" to SP:Detect Poison)
+Magelock, +0, gives(=+"owner::ownerlevel" to SP:Magelock)
+Block, +0, gives(=+"owner::ownerlevel" to SP:Block)
+Hardiness, +0, gives(=+"owner::ownerlevel" to SP:Hardiness)
+Watchdog, +0, gives(=+"owner::ownerlevel" to SP:Watchdog)
+Nightingale, +0, gives(=+"owner::ownerlevel" to SP:Nightingale)
+Sense Observation, +0, gives(=+"owner::ownerlevel" to SP:Sense Observation)
+Shield, +0, gives(=+"owner::ownerlevel" to SP:Shield)
+Armor, +0, gives(=+"owner::ownerlevel" to SP:Armor)
+Turn Blade, +0, gives(=+"owner::ownerlevel" to SP:Turn Blade)
+Bladeturning, +0, gives(=+"owner::ownerlevel" to SP:Bladeturning)
+Missile Shield, +0, gives(=+"owner::ownerlevel" to SP:Missile Shield)
+Catch Missile, +0, gives(=+"owner::ownerlevel" to SP:Catch Missile)
+Reverse Missiles, +0, gives(=+"owner::ownerlevel" to SP:Reverse Missiles)
+Return Missile, +0, gives(=+"owner::ownerlevel" to SP:Return Missile)
+Reflect Gaze, +0, gives(=+"owner::ownerlevel" to SP:Reflect Gaze)
+Mystic Mist, +0, gives(=+"owner::ownerlevel" to SP:Mystic Mist)
+Shade, +0, gives(=+"owner::ownerlevel" to SP:Shade)
+Iron Arm, +0, gives(=+"owner::ownerlevel" to SP:Iron Arm)
+Weather Dome, +0, gives(=+"owner::ownerlevel" to SP:Weather Dome)
+Atmosphere Dome, +0, gives(=+"owner::ownerlevel" to SP:Atmosphere Dome)
+Resist Pressure, +0, gives(=+"owner::ownerlevel" to SP:Resist Pressure)
+Teleport Shield, +0, gives(=+"owner::ownerlevel" to SP:Teleport Shield)
+Force Dome, +0, gives(=+"owner::ownerlevel" to SP:Force Dome)
+Force Wall, +0, gives(=+"owner::ownerlevel" to SP:Force Wall)
+Utter Dome, +0, gives(=+"owner::ownerlevel" to SP:Utter Dome)
+Utter Wall, +0, gives(=+"owner::ownerlevel" to SP:Utter Wall)
+
+Sound, +0, gives(=+"owner::ownerlevel" to SP:Sound)
+Silence, +0, gives(=+"owner::ownerlevel" to SP:Silence)
+Sound Vision, +0, gives(=+"owner::ownerlevel" to SP:Sound Vision)
+Thunderclap, +0, gives(=+"owner::ownerlevel" to SP:Thunderclap)
+Voices, +0, gives(=+"owner::ownerlevel" to SP:Voices)
+Garble, +0, gives(=+"owner::ownerlevel" to SP:Garble)
+Imitate Voice, +0, gives(=+"owner::ownerlevel" to SP:Imitate Voice)
+Wall of Silence, +0, gives(=+"owner::ownerlevel" to SP:Wall of Silence)
+Hush, +0, gives(=+"owner::ownerlevel" to SP:Hush)
+Mage-Stealth, +0, gives(=+"owner::ownerlevel" to SP:Mage-Stealth)
+Great Voice, +0, gives(=+"owner::ownerlevel" to SP:Great Voice)
+Noise, +0, gives(=+"owner::ownerlevel" to SP:Noise)
+Delayed Message, +0, gives(=+"owner::ownerlevel" to SP:Delayed Message)
+Resist Sound, +0, gives(=+"owner::ownerlevel" to SP:Resist Sound)
+Sound Jet, +0, gives(=+"owner::ownerlevel" to SP:Sound Jet)
+Converse, +0, gives(=+"owner::ownerlevel" to SP:Converse)
+Far-Hearing, +0, gives(=+"owner::ownerlevel" to SP:Far-Hearing)
+Scribe, +0, gives(=+"owner::ownerlevel" to SP:Scribe)
+Musical Scribe, +0, gives(=+"owner::ownerlevel" to SP:Musical Scribe)
+Message, +0, gives(=+"owner::ownerlevel" to SP:Message)
+Silver Tongue, +0, gives(=+"owner::ownerlevel" to SP:Silver Tongue)
+Wizard Ear, +0, gives(=+"owner::ownerlevel" to SP:Wizard Ear)
+Invisible Wizard Ear, +0, gives(=+"owner::ownerlevel" to SP:Invisible Wizard Ear)
+
+Seek Machine, +0, gives(=+"owner::ownerlevel" to SP:Seek Machine)
+Reveal Function, +0, gives(=+"owner::ownerlevel" to SP:Reveal Function)
+Machine Control, +0, gives(=+"owner::ownerlevel" to SP:Machine Control)
+Machine Summoning, +0, gives(=+"owner::ownerlevel" to SP:Machine Summoning)
+Machine Speech, +0, gives(=+"owner::ownerlevel" to SP:Machine Speech)
+Glitch, +0, gives(=+"owner::ownerlevel" to SP:Glitch)
+Malfunction, +0, gives(=+"owner::ownerlevel" to SP:Malfunction)
+Schematic, +0, gives(=+"owner::ownerlevel" to SP:Schematic)
+Rebuild, +0, gives(=+"owner::ownerlevel" to SP:Rebuild)
+Animate Machine, +0, gives(=+"owner::ownerlevel" to SP:Animate Machine)
+Machine Possession, +0, gives(=+"owner::ownerlevel" to SP:Machine Possession)
+Permanent Machine Possession, +0, gives(=+"owner::ownerlevel" to SP:Permanent Machine Possession)
+Awaken Computer, +0, gives(=+"owner::ownerlevel" to SP:Awaken Computer)
+
+//  Energy Spells
+Seek Power, +0, gives(=+"owner::ownerlevel" to SP:Seek Power)
+Seek Fuel, +0, gives(=+"owner::ownerlevel" to SP:Seek Fuel)
+Test Fuel, +0, gives(=+"owner::ownerlevel" to SP:Test Fuel)
+Preserve Fuel, +0, gives(=+"owner::ownerlevel" to SP:Preserve Fuel)
+Purify Fuel, +0, gives(=+"owner::ownerlevel" to SP:Purify Fuel)
+Create Fuel, +0, gives(=+"owner::ownerlevel" to SP:Create Fuel)
+Essential Fuel, +0, gives(=+"owner::ownerlevel" to SP:Essential Fuel)
+Stop Power, +0, gives(=+"owner::ownerlevel" to SP:Stop Power)
+Lend Power, +0, gives(=+"owner::ownerlevel" to SP:Lend Power)
+Propel, +0, gives(=+"owner::ownerlevel" to SP:Propel)
+Conduct Power, +0, gives(=+"owner::ownerlevel" to SP:Conduct Power)
+Steal Power, +0, gives(=+"owner::ownerlevel" to SP:Steal Power)
+Draw Power, +0, gives(=+"owner::ownerlevel" to SP:Draw Power)
+Magnetic Vision, +0, gives(=+"owner::ownerlevel" to SP:Magnetic Vision)
+Radio Hearing, +0, gives(=+"owner::ownerlevel" to SP:Radio Hearing)
+Spectrum Vision, +0, gives(=+"owner::ownerlevel" to SP:Spectrum Vision)
+
+//  Radiation Spells
+See Radiation, +0, gives(=+"owner::ownerlevel" to SP:See Radiation)
+Seek Radiation, +0, gives(=+"owner::ownerlevel" to SP:Seek Radiation)
+Irradiate, +0, gives(=+"owner::ownerlevel" to SP:Irradiate)
+Extinguish Radiation, +0, gives(=+"owner::ownerlevel" to SP:Extinguish Radiation)
+Resist Radiation, +0, gives(=+"owner::ownerlevel" to SP:Resist Radiation)
+Cure Radiation, +0, gives(=+"owner::ownerlevel" to SP:Cure Radiation)
+Radiation Jet, +0, gives(=+"owner::ownerlevel" to SP:Radiation Jet)
+Breathe Radiation, +0, gives(=+"owner::ownerlevel" to SP:Breathe Radiation)
+
+//  Metal & Plastic Spells
+Seek Plastic, +0, gives(=+"owner::ownerlevel" to SP:Seek Plastic)
+Identify Metal, +0, gives(=+"owner::ownerlevel" to SP:Identify Metal)
+Identify Plastic, +0, gives(=+"owner::ownerlevel" to SP:Identify Plastic)
+Shape Metal, +0, gives(=+"owner::ownerlevel" to SP:Shape Metal)
+Shape Plastic, +0, gives(=+"owner::ownerlevel" to SP:Shape Plastic)
+Metal Vision, +0, gives(=+"owner::ownerlevel" to SP:Metal Vision)
+Plastic Vision, +0, gives(=+"owner::ownerlevel" to SP:Plastic Vision)
+Body of Metal, +0, gives(=+"owner::ownerlevel" to SP:Body of Metal)
+Body of Plastic, +0, gives(=+"owner::ownerlevel" to SP:Body of Plastic)
+
+Seek Water, +0, gives(=+"owner::ownerlevel" to SP:Seek Water)
+Seek Coastline, +0, gives(=+"owner::ownerlevel" to SP:Seek Coastline)
+Purify Water, +0, gives(=+"owner::ownerlevel" to SP:Purify Water)
+Create Water, +0, gives(=+"owner::ownerlevel" to SP:Create Water)
+Destroy Water, +0, gives(=+"owner::ownerlevel" to SP:Destroy Water)
+Icy Weapon, +0, gives(=+"owner::ownerlevel" to SP:Icy Weapon)
+Shape Water, +0, gives(=+"owner::ownerlevel" to SP:Shape Water)
+Umbrella, +0, gives(=+"owner::ownerlevel" to SP:Umbrella)
+Body of Water, +0, gives(=+"owner::ownerlevel" to SP:Body of Water)
+Foul Water, +0, gives(=+"owner::ownerlevel" to SP:Foul Water)
+Freeze, +0, gives(=+"owner::ownerlevel" to SP:Freeze)
+Ice Slick, +0, gives(=+"owner::ownerlevel" to SP:Ice Slick)
+Ice Sphere, +0, gives(=+"owner::ownerlevel" to SP:Ice Sphere)
+Icy Missiles, +0, gives(=+"owner::ownerlevel" to SP:Icy Missiles)
+Melt Ice, +0, gives(=+"owner::ownerlevel" to SP:Melt Ice)
+Resist Water, +0, gives(=+"owner::ownerlevel" to SP:Resist Water)
+Snow Shoes, +0, gives(=+"owner::ownerlevel" to SP:Snow Shoes)
+Walk on Water, +0, gives(=+"owner::ownerlevel" to SP:Walk on Water)
+Water Jet, +0, gives(=+"owner::ownerlevel" to SP:Water Jet)
+Water Vision, +0, gives(=+"owner::ownerlevel" to SP:Water Vision)
+Whirlpool, +0, gives(=+"owner::ownerlevel" to SP:Whirlpool)
+Coolness, +0, gives(=+"owner::ownerlevel" to SP:Coolness)
+Create Ice, +0, gives(=+"owner::ownerlevel" to SP:Create Ice)
+Dehydrate, +0, gives(=+"owner::ownerlevel" to SP:Dehydrate)
+Ice Dagger, +0, gives(=+"owner::ownerlevel" to SP:Ice Dagger)
+Icy Touch, +0, gives(=+"owner::ownerlevel" to SP:Icy Touch)
+Walk Through Water, +0, gives(=+"owner::ownerlevel" to SP:Walk Through Water)
+Dry Spring, +0, gives(=+"owner::ownerlevel" to SP:Dry Spring)
+Essential Water, +0, gives(=+"owner::ownerlevel" to SP:Essential Water)
+Frostbite, +0, gives(=+"owner::ownerlevel" to SP:Frostbite)
+Snow Jet, +0, gives(=+"owner::ownerlevel" to SP:Snow Jet)
+Breathe Water, +0, gives(=+"owner::ownerlevel" to SP:Breathe Water)
+Body of Ice, +0, gives(=+"owner::ownerlevel" to SP:Body of Ice)
+Boil Water, +0, gives(=+"owner::ownerlevel" to SP:Boil Water)
+Condense Steam, +0, gives(=+"owner::ownerlevel" to SP:Condense Steam)
+Create Acid, +0, gives(=+"owner::ownerlevel" to SP:Create Acid)
+Create Spring, +0, gives(=+"owner::ownerlevel" to SP:Create Spring)
+Flesh to Ice, +0, gives(=+"owner::ownerlevel" to SP:Flesh to Ice)
+Create Steam, +0, gives(=+"owner::ownerlevel" to SP:Create Steam)
+Resist Acid, +0, gives(=+"owner::ownerlevel" to SP:Resist Acid)
+Geyser, +0, gives(=+"owner::ownerlevel" to SP:Geyser)
+Rain of Acid, +0, gives(=+"owner::ownerlevel" to SP:Rain of Acid)
+Steam Jet, +0, gives(=+"owner::ownerlevel" to SP:Steam Jet)
+Acid Ball, +0, gives(=+"owner::ownerlevel" to SP:Acid Ball)
+Acid Jet, +0, gives(=+"owner::ownerlevel" to SP:Acid Jet)
+Rain of Ice Daggers, +0, gives(=+"owner::ownerlevel" to SP:Rain of Ice Daggers)
+Icy Breath, +0, gives(=+"owner::ownerlevel" to SP:Icy Breath)
+Breathe Steam, +0, gives(=+"owner::ownerlevel" to SP:Breathe Steam)
+Spit Acid, +0, gives(=+"owner::ownerlevel" to SP:Spit Acid)
+Essential Acid, +0, gives(=+"owner::ownerlevel" to SP:Essential Acid)
+Summon Water Elemental, +0, gives(=+"owner::ownerlevel" to SP:Summon Water Elemental)
+Control Water Elemental, +0, gives(=+"owner::ownerlevel" to SP:Control Water Elemental)
+Create Water Elemental, +0, gives(=+"owner::ownerlevel" to SP:Create Water Elemental)
+
+Frost, +0, gives(=+"owner::ownerlevel" to SP:Frost)
+Fog, +0, gives(=+"owner::ownerlevel" to SP:Fog)
+Predict Weather, +0, gives(=+"owner::ownerlevel" to SP:Predict Weather)
+Waves, +0, gives(=+"owner::ownerlevel" to SP:Waves)
+Clouds, +0, gives(=+"owner::ownerlevel" to SP:Clouds)
+Current, +0, gives(=+"owner::ownerlevel" to SP:Current)
+Tide, +0, gives(=+"owner::ownerlevel" to SP:Tide)
+Wind, +0, gives(=+"owner::ownerlevel" to SP:Wind)
+Rain, +0, gives(=+"owner::ownerlevel" to SP:Rain)
+Snow, +0, gives(=+"owner::ownerlevel" to SP:Snow)
+Hail, +0, gives(=+"owner::ownerlevel" to SP:Hail)
+Warm, +0, gives(=+"owner::ownerlevel" to SP:Warm)
+Cool, +0, gives(=+"owner::ownerlevel" to SP:Cool)
+Storm, +0, gives(=+"owner::ownerlevel" to SP:Storm)
+Resist Lightning, +0, gives(=+"owner::ownerlevel" to SP:Resist Lightning)
+Lightning, +0, gives(=+"owner::ownerlevel" to SP:Lightning)
+Explosive Lightning, +0, gives(=+"owner::ownerlevel" to SP:Explosive Lightning)
+Lightning Whip, +0, gives(=+"owner::ownerlevel" to SP:Lightning Whip)
+Shocking Touch, +0, gives(=+"owner::ownerlevel" to SP:Shocking Touch)
+Spark Cloud, +0, gives(=+"owner::ownerlevel" to SP:Spark Cloud)
+Spark Storm, +0, gives(=+"owner::ownerlevel" to SP:Spark Storm)
+Wall of Lightning, +0, gives(=+"owner::ownerlevel" to SP:Wall of Lightning)
+Ball of Lightning, +0, gives(=+"owner::ownerlevel" to SP:Ball of Lightning)
+Lightning Stare, +0, gives(=+"owner::ownerlevel" to SP:Lightning Stare)
+Body of Lightning, +0, gives(=+"owner::ownerlevel" to SP:Body of Lightning)
+Lightning Armor, +0, gives(=+"owner::ownerlevel" to SP:Lightning Armor)
+Lightning Weapon, +0, gives(=+"owner::ownerlevel" to SP:Lightning Weapon)
+Lightning Missiles, +0, gives(=+"owner::ownerlevel" to SP:Lightning Missiles)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Energy Reserve
+AD:Twisted Mana Generator
+AD:Wild Mana Generator
+AD:Threshold Magery
+AD:Threshold Magery 0
+AD:Threshold Power Investiture
+AD:Increased Threshold
+AD:Increased Threshold (Partial)
+AD:Rapid Magical Recovery
+AD:Rapid Magical Recovery (Partial)
+AD:Safer Excess
+AD:Unusual Background (Emergency Use of Threshold Casting)
+AD:Variable Energy Access
+
+<AllAdvantagesMental>
+AD:Twisted Mana Generator
+AD:Wild Mana Generator
+AD:Threshold Magery
+AD:Threshold Magery 0
+AD:Threshold Power Investiture
+AD:Increased Threshold
+AD:Increased Threshold (Partial)
+AD:Rapid Magical Recovery
+AD:Rapid Magical Recovery (Partial)
+AD:Safer Excess
+AD:Unusual Background (Emergency Use of Threshold Casting)
+AD:Variable Energy Access
+
+<AllAdvantagesPhysical>
+AD:Energy Reserve
+
+<AllPerks>
+PE:Obscure True Name
+PE:Spirit Contract
+
+<AllDisadvantages>
+DI:No Legs (Portable)
+DI:No-Mana Shutdown
+DI:Flagrant Aura
+DI:Unmistakable Power
+DI:Twisted Mana Generator
+DI:Spiritual Distortion
+
+<AllQuirks>
+
+********************************************************************************************************\[STOP]
+* Raw Magic advantage and spells from P228 of Thaumatology
+*******************************************************************************************************\[START]
+[ADVANTAGES]
+<Raw Magic>
+Raw Magic Store,description(You can store Raw Magic within you as intangible energy bound to your soul or aura. This makes the ability to extract Raw Magic from a place of power or distill it from the ether especially useful. You can hold one point of Raw Magic per level of this advantage.),cat(Supernatural, Mental, Supernatural Mental),cost(5/10),displaycost(varies),page(Th228)
+
+[SPELLS]
+<Meta-Spells>
+Detect Raw Magic,type(IQ/H),description(Tells the caster the direction and approximate distance of the nearest Raw Magic. The caster can exclude known quantities if he wishes. Likewise, he can opt to ignore any and all Raw Magic stored in intangible form within an individual.),castingcost(3),cat(Knowledge, Meta-Spells),class(Information),countasneed(Magical),duration(Instant),ident(Magical),mods(Spells),needs(Detect Magic),noresync(yes),page(Th228),prereqcount(1),shortcat(K, Me),time(15 sec.)
+Analyze Raw Magic,type(IQ/H),description(Determines the quantity and nature of all Raw Magic – including its flavor, if Raw Magic has such variations – within the area of effect. It can also tell what form(s) the Raw Magic takes. Thus, it’s useful when sorting Raw Magic from mundane materials. Prereq Count: 1 Prerequisites: Detect Raw Magic),castingcost(3),cat(Knowledge, Meta-Spells),class(Area/Inform.),countasneed(Magical),duration(Instant),ident(Magical),mods(Spells),needs(Detect Raw Magic),noresync(yes),page(Th228),prereqcount(1),shortcat(K, Me),time(5 sec.)
+Process Raw Magic,type(IQ/H),description(Works on any Raw Magic except that held in intangible form by someone other than the caster. If the caster has the Raw Magic Store advantage, then a casting can render the Raw Magic intangible and attach it to him, up to his normal limit. This spell can also perform minor transformations on Raw Magic in material form to make it more transportable: loosen it from any mundane materials to which it’s attached, cause it to flow into a container if it’s a liquid or a gas, etc. Prereq Count: 1 Prerequisites: Detect Raw Magic),castingcost(1 per 5 points of Raw Magic to be manipulated, rounding up),cat(Meta-Spells),class(Regular),countasneed(Magical),duration(Instant),ident(Magical),mods(Spells),needs(Detect Raw Magic),noresync(yes),page(Th229),prereqcount(1),shortcat(K, Me),time(5 sec.)
+
+<~Ritual - Meta-Spells:MS>
+Detect Raw Magic (Ritual),type(Tech/H),description(Tells the caster the direction and approximate distance of the nearest Raw Magic. The caster can exclude known quantities if he wishes. Likewise, he can opt to ignore any and all Raw Magic stored in intangible form within an individual.),castingcost(3),cat(~Ritual, ~Ritual - Knowledge, ~Ritual - Meta-Spells),class(Information),countasneed(Ritual),default("SK:Path of Knowledge::level","SK:Path of Meta-Spells::level"),duration(Instant),ident(Ritual),needs("SK:Path of Knowledge" = 0pts | "SK:Path of Meta-Spells" = 0pts),page(Th228),prereqcount(1),shortcat(Ri, K, Me),time(15 sec.)
+Analyze Raw Magic (Ritual),type(Tech/H),description(Determines the quantity and nature of all Raw Magic – including its flavor, if Raw Magic has such variations – within the area of effect. It can also tell what form(s) the Raw Magic takes. Thus, it’s useful when sorting Raw Magic from mundane materials. Prereq Count: 1 Prerequisites: Detect Raw Magic),castingcost(3),cat(~Ritual, ~Ritual - Knowledge, ~Ritual - Meta-Spells),class(Area/Inform.),countasneed(Ritual),default("SK:Path of Knowledge::level","SK:Path of Meta-Spells::level"),duration(Instant),ident(Ritual),needs("SK:Path of Knowledge" = 0pts | "SK:Path of Meta-Spells" = 0pts),page(Th228),prereqcount(1),shortcat(Ri, K, Me),time(5 sec.)
+Process Raw Magic (Ritual),type(Tech/H),description(Works on any Raw Magic except that held in intangible form by someone other than the caster. If the caster has the Raw Magic Store advantage, then a casting can render the Raw Magic intangible and attach it to him, up to his normal limit. This spell can also perform minor transformations on Raw Magic in material form to make it more transportable: loosen it from any mundane materials to which it’s attached, cause it to flow into a container if it’s a liquid or a gas, etc. Prereq Count: 1 Prerequisites: Detect Raw Magic),castingcost(1 per 5 points of Raw Magic to be manipulated, rounding up),cat(~Ritual, ~Ritual - Meta-Spells),class(Regular),countasneed(Ritual),default("SK:Path of Meta-Spells::level"),duration(Instant),ident(Ritual),needs("SK:Path of Meta-Spells" = 0pts),page(Th229),prereqcount(1),shortcat(Ri, K, Me),time(5 sec.)

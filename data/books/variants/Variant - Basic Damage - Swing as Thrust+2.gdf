@@ -1,0 +1,119 @@
+Encoding=UTF-8
+Version=3
+//   The version information above MUST be the first line of the data file
+Program=5.0.148
+Description=2022 August 13. _
+		This data file contains only an alternate Basic Damage progression, where Sw is always Thr+2. There are no other changes.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  
+//   GURPS® Character Assistant
+//   Filename: Variant - Basic Damage - Swing as Thrust+2.gdf
+//   Created:  August 13, 2022
+//   Requires GCA v5 or later!
+//  
+//   This data file contains ONLY Basic Damage changes.
+//  
+*******************************************************************************************************************
+//  
+//   Armin D. Sykes - Changes, Updates, Packages/Templates, Hit Locations
+//  
+//   Problems? Drop a message in the GGURPS Character Assistant forum at:
+//   http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+//  
+//   GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//   Games. All rights reserved.
+//  
+//   The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//   copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//   rights reserved by Steve Jackson Games Incorporated.
+//  
+********************************************************************************************************\[STOP]
+
+[BASICDAMAGE]
+*******************************************************************************************************\[START]
+//   Starting this section will clear any existing 
+//   basic damage items.
+//  
+//   You must list the following items in order, because
+//   GCA will not sort them, but it does search through
+//   them in order.
+//  
+//   st() is the score that Damage Base must be <= 
+//   thr() is the basic thrust damage
+//   sw() is the basic swing damage
+
+st(1), thr(1d-6), sw(1d-4)
+st(2), thr(1d-6), sw(1d-4)
+st(3), thr(1d-5), sw(1d-3)
+st(4), thr(1d-5), sw(1d-3)
+st(5), thr(1d-4), sw(1d-2)
+
+st(6), thr(1d-4), sw(1d-2)
+st(7), thr(1d-3), sw(1d-1)
+st(8), thr(1d-3), sw(1d-1)
+st(9), thr(1d-2), sw(1d)
+st(10), thr(1d-2), sw(1d)
+
+st(11), thr(1d-1), sw(1d+1)
+st(12), thr(1d-1), sw(1d+1)
+st(13), thr(1d), sw(1d+2)
+st(14), thr(1d), sw(1d+2)
+st(15), thr(1d+1), sw(2d-1)
+
+st(16), thr(1d+1), sw(2d-1)
+st(17), thr(1d+2), sw(2d)
+st(18), thr(1d+2), sw(2d)
+st(19), thr(2d-1), sw(2d+1)
+st(20), thr(2d-1), sw(2d+1)
+
+st(21), thr(2d), sw(2d+2)
+st(22), thr(2d), sw(2d+2)
+st(23), thr(2d+1), sw(3d-1)
+st(24), thr(2d+1), sw(3d-1)
+st(25), thr(2d+2), sw(3d)
+
+st(26), thr(2d+2), sw(3d)
+st(27), thr(3d-1), sw(3d+1)
+st(28), thr(3d-1), sw(3d+1)
+st(29), thr(3d), sw(3d+2)
+st(30), thr(3d), sw(3d+2)
+
+st(31), thr(3d+1), sw(4d-1)
+st(32), thr(3d+1), sw(4d-1)
+st(33), thr(3d+2), sw(4d)
+st(34), thr(3d+2), sw(4d)
+st(35), thr(4d-1), sw(4d+1)
+
+st(36), thr(4d-1), sw(4d+1)
+st(37), thr(4d), sw(4d+2)
+st(38), thr(4d), sw(4d+2)
+st(39), thr(4d+1), sw(5d-1)
+
+st(40), thr(4d+1), sw(5d-1)
+st(45), thr(5d), sw(5d+2)
+st(50), thr(5d+2), sw(6d)
+st(55), thr(6d), sw(6d+2)
+st(60), thr(7d-1), sw(7d+1)
+st(65), thr(7d+1), sw(8d-1)
+st(70), thr(8d), sw(8d+2)
+st(75), thr(8d+2), sw(9d)
+st(80), thr(9d), sw(9d+2)
+st(85), thr(9d+2), sw(10d)
+st(90), thr(10d), sw(10d+2)
+st(95), thr(10d+2), sw(11d)
+
+st(100), thr(11d), sw(11d+2)
+
+//   The LAST item in the list is always the item that is to be used
+//   for anything that didn't fall under the preceding items.
+
+st(0), thr((@int(ST:Striking ST/10)+1)d), sw((@int(ST:Striking ST/10)+1)d+2)
+
+//   you must use the extra set of parens to separate the math part
+//   from the 'd' for the dice.
+

@@ -1,0 +1,226 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=12/29/2016. This file converts all Clerical Spells to be IQ/Hard.
+Requires="GURPS Magic 4e - Clerical Magic.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Magic 4e - Alt Attribute Will.gdf
+* Created: August 7, 2005
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Magic sourcebook.
+* GURPS Magic is Copyright © 1989, 1990, 1994, 1998, 2000, 2004 by Steve
+* Jackson Games Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*   Spells based on the Will Attribute
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[SPELLS]
+************************************************************************************************************************
+#ReplaceTags in "SP:Accelerate Time (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Age (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Alertness (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Alter Terrain (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Animate Machine (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Animate Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Animation (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Astral Vision (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Awaken Computer (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit ([Spirit]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit (Banshees; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit (Manitous; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit (Specters; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Blank Spell Arrow (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Blink Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Flames (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Ice (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Lightning (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Metal (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Plastic (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Shadow (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Stone (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Breathe Fire (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Breathe Radiation (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Breathe Steam (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Burning Death (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Catch Spell (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Charge Powerstone (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Cloud-Vaulting (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Communication (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Conduct Power (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Contract Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Corpulence (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Create Gate (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Create Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Cure Radiation (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Decapitation (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Disintegrate (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Divert Teleport (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Doppelgänger (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Drain Magery (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Drain Mana (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Draw Power (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Dullness (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Duplicate (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Ecstasy (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Effigy (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enchant (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enlarge (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enlarge Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enlarge Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enslave (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Ensorcel (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Essential Acid (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Essential Food (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Ethereal Body (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Evisceration (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Exchange Bodies (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Explode (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Extend Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Extinguish Radiation (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Flesh to Ice (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Flight (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Flying Carpet (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Gauntness (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Geyser (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Gift of Letters (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Gift of Tongues (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Golem (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Geas (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Hallucination (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Haste (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Healing (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Shapeshift (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Wish (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Halt Aging (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Hang Spell (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Hawk Flight (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Hybrid Control (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Icy Breath (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Inspired Creation (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Instant Neutralize Poison (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Instant Regeneration (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Instant Restoration (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lesser Geas (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lesser Wish (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lich (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lightning Stare (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Maintain Spell (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Major Healing (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Malefice (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Manastone (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Mass Zombie (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Mindlessness (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Mind-Search (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Move Terrain (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Petrifaction (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting ([Variation]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Chameleon Eyes; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Crocodile Jaws; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Elephant Trunk; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Feathered Arms; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Fish Tail; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Mountain Goat Hooves; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Saber Teeth; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Scorpion Tail; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Serpent's Fangs; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Skunk Tail; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Spider Arms; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Tiger Paws; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Toad Tongue; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Turtle Shell; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Beast Possession (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Forgetfulness (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Machine Possession (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Madness (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Possession (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Shapeshifting ([Animal]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Phantom (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Phase Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Planar Visit ([Plane]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Plane Shift ([Plane]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Plane Shift Other ([Plane]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Plant Form Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Possession (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rapid Journey (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rebuild (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Reflect Gaze (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Regeneration (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Repel Hybrids (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Restoration (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Restore Mana (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Resurrection (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rive (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rotting Death (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Sanctuary (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Schematic (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shapeshift Others ([Animal]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shapeshifting ([Animal]; Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shatter (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shrink (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shrink Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shrink Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Simulacrum (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Slow Time (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Soul Jar (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Soul Stone (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Spectrum Vision (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Spellguard (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Spit Acid (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Beauty (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Grace (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Might (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Power (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Skill (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Spell (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Vigor (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Wisdom (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Youth (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Summon Shade (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Suspend Magery (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Suspend Mana (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Suspend Time (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Telecast (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Telepathy (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Teleport (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Teleport Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Throw Spell (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Time Out (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Timeport (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Timeport Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Timeslip Other (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Transform Object (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Vigil (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Weapon Self (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Weapon Spirit (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Wish (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Wraith (Clerical)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Youth (Clerical)" WITH "type(IQ/H)"
+

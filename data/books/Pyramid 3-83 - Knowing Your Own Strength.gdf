@@ -1,0 +1,121 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Description=2022 September 13. Covers 'Knowing Your Own Strength' by Sean Punch from 'Pyramid 3/83 - Alternate GURPS IV'.
+Program=4.0.408
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+******************************************************************************************************\[START]
+*
+* GURPS® Character Assistant
+* Filename: Pyramid 3-83 - Knowing Your Own Strength.gdf
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS  sourcebook.
+* GURPS  is Copyright(C)  by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes: Damage progressions, Attributes, Advantages, Disadvantages, Modifiers.
+*
+*
+******************************************************************************************************************
+*
+* Armin D. Sykes - I'm not sure who created this file; it was adapted from a file in my records that had no credits. 
+*				   A similar file by Pierre Waldfried was also found in my records, so some credit may go to him,
+*                  and I've helped create many versions of this file over the years, so maybe I get some, too.
+* Eric B. Smith	- GURPS Data File Coordinator
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* eric.frogkiller@gmail.com
+*
+* Or drop a message at:
+* http://forums.sjgames.com
+* 
+******************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is copyright (c) 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+
+********************************************************************************************************\[STOP]
+[BASICDAMAGE]
+******************************************************************************************************\[START]
+st(1), thr(1d-11), sw(1d-9)
+st(2), thr(1d-10), sw(1d-8)
+st(3), thr(1d-9), sw(1d-7)
+st(4), thr(1d-8), sw(1d-6)
+st(5), thr(1d-7), sw(1d-5)
+st(6), thr(1d-6), sw(1d-4)
+st(7), thr(1d-5), sw(1d-3)
+st(8), thr(1d-4), sw(1d-2)
+st(9), thr(1d-3), sw(1d-1)
+st(10), thr(1d-2), sw(1d)
+st(11), thr(1d-1), sw(1d+1)
+st(12), thr(1d), sw(1d+2)
+st(13), thr(1d+1), sw(2d-1)
+st(14), thr(1d+2), sw(2d)
+st(15), thr(2d-1), sw(2d+1)
+st(16), thr(2d), sw(2d+2)
+st(17), thr(2d+1), sw(3d-1)
+st(18), thr(2d+2), sw(3d)
+st(19), thr(3d-1), sw(3d+1)
+st(20), thr(3d), sw(3d+2)
+
+st(0), thr((((ST:Damage Base-3) \ 4) - 1)d(+@indexedvalue(@modulo(ST:Damage Base-3,4)+1, -1, 0, +1, +2))), sw((((ST:Damage Base-1) \ 4) - 1)d(+@indexedvalue(@modulo(ST:Damage Base-1,4)+1, -1, 0, +1, +2)))
+
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+******************************************************************************************************\[START]
+ST, symbol(ST), basevalue(10), step(1), maxscore(1000000), minscore(0 - me::syslevels), 
+	up(10), down(-10), mainwin(1), disadat(-1), display(no)
+
+Basic Lift, basevalue(@int(2 * 10 ^ (ST:Lifting ST / 10))), maxscore (1000000), minscore(0), symbol(BL), roundup(@if(ST:Lifting ST::score <= 7 then 0 else 1))
+
+Hit Points, basevalue(ST:ST), step(1), maxscore(1000000), minscore(0 - me::syslevels), 
+	up(2), down(-2), symbol(HP), mainwin(5), display(no), disadat(-1)
+
+Striking ST, basevalue(ST:ST), step(1), maxscore(1000000), minscore(ST:ST), up(1), down(0), round(-1), display(No)
+
+Lifting ST, basevalue(ST:ST), step(1), maxscore(1000000), minscore(ST:ST), up(7), down(0), round(-1), display(No)
+
+TK ST, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no)
+TK Basic Lift, basevalue(@int(2 * 10 ^ (ST:TK ST / 10))), maxscore(1000000), minscore(0), symbol(TK BL), roundup(@if(ST:TK ST::score <= 7 then 0 else 1)), hide(yes), display(no)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+******************************************************************************************************\[START]
+Extra ST, 10/20, page(B14), mods(Extra ST), initmods(Affects displayed ST score, +0%, shortname(Affects ST), gives(+Owner::Level to ST:ST), group(Extra ST), description(This modifier causes the Extra ST advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove this modifier.)),
+	description(The Extra ST advantage allows you to take extra levels of the attribute which you can then apply enhancements and limitations to. The "Affects displayed score" modifier causes the Extra ST advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove that modifier.)
+	
+Extra Hit Points, 2/4, page(B16), mods(Extra Hit Points), initmods(Affects displayed HP score, +0%, shortname(Affects HP), gives(+Owner::Level to ST:Hit Points), group(Extra Hit Points), description(This modifier causes the Extra Hit Points advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove this modifier.)),
+	description(The Extra Hit Points advantage allows you to take extra levels of the attribute which you can then apply enhancements and limitations to. The "Affects displayed score" modifier causes the Extra Hit Points advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove that modifier.)	
+
+Lifting ST, 7/14, gives(+1 to ST:Lifting ST), conditional(+1 to ST:ST), mods(Lifting ST), page(B65), cat(Exotic, Physical)
+
+Striking ST, 1/2, gives(+1 to ST:Striking ST), mods(Striking ST), page(B89), cat(Exotic, Physical), conditional(+1 to ST:ST)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+******************************************************************************************************\[START]
+Reduced ST, -10/-20, page(B14), mods(Reduced ST), initmods(Affects displayed ST score, +0%, shortname(Affects ST), gives(-owner::Level to ST:ST), group(Reduced ST), description(This modifier causes the Reduced ST advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove this modifier.)),
+	description(The Reduced ST disadvantage allows you to take reduced levels of the attribute which you can then apply enhancements and limitations to. The "Affects displayed score" modifier causes the Reduced ST advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove that modifier.)
+	
+Reduced Hit Points, -2/-4, page(B16), mods(Reduced Hit Points), initmods(Affects displayed HP score, +0%, shortname(Affects HP), gives(-owner::Level to ST:Hit Points), group(Reduced Hit Points), description(This modifier causes the Reduced Hit Points advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove this modifier.)),
+	description(The Reduced Hit Points disadvantage allows you to take reduced levels of the attribute which you can then apply enhancements and limitations to. The "Affects displayed score" modifier causes the Reduced Hit Points advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove that modifier.)
+	
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+******************************************************************************************************\[START]
+<Size>
+Size, -0%, formula(-@if(ST:Size Modifier > 0 THEN ST:Size Modifier * 10 else 0)), forceformula(yes), page(B15)
+
+<Size HP>
+Size, -0%, formula(-@if(ST:Size Modifier > 0 & ST:Hit Points::level > 0 THEN ST:Size Modifier * 10 else 0)), forceformula(yes), page(B15)
+
+<Size ST>
+Size, -0%, formula(-@if(ST:Size Modifier > 0 & ST:ST::level > 0 THEN ST:Size Modifier * 10 else 0)), forceformula(yes), page(B15)

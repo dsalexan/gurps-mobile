@@ -1,0 +1,19 @@
+<div class="maneuver-button {{some children @root.data.conditions.maneuver 'highlighted' ''}} {{isTrue active 'active' ''}} {{not (isTrue children.length) 'selectable no-children' ''}} {{equals maneuver._data.name @root.data.conditions.maneuver 'selected' ''}} {{equals maneuver._data.name @root.actor.flags.gurps.mobile.lastManeuver 'last' ''}}" 
+    data-value="{{maneuver._data.name}}"
+    data-id="{{id}}">
+  <div class="maneuver">
+    <div class="icon-wrapper">{{gurpsIcon maneuver._data.name}}</div>
+    <div class="name-wrapper">
+      <div class="name">{{localize maneuver._data.label}}</div>
+    </div>
+    <div class="circles">
+      {{#each children}}
+        <i class="icon mdi mdi-circle-medium {{equals this @root.data.conditions.maneuver 'selected' ''}} {{equals this @root.actor.flags.gurps.mobile.lastManeuver 'last' ''}}" data-value="{{this}}"></i>
+      {{/each}}
+    </div>
+    <i class="mdi mdi-menu-down below"></i>
+  </div>
+  <div class="overlay">
+    <div class="icon-wrapper"><i class="icon mdi mdi-dots-horizontal"></i></div>
+  </div>
+</div>

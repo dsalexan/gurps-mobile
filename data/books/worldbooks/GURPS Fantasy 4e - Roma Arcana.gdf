@@ -1,0 +1,1403 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+		This file contains Campaign Information for the Roma Arcana world found in GURPS Fantasy.
+WorldBook=Roma Arcana
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf", "GURPS Fantasy 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Fantasy 4e.gdf
+//  Created: March 1, 2006
+//  Requires GCA v3 or later!
+// 
+//  This data file contains information taken from the GURPS Fantasy 4e sourcebook.
+//  GURPS Fantasy is Copyright © 1990, 1995, 2004 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Character Templates
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator
+//  Martin Etherington - Major Work, Character templates
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[Languages]
+*******************************************************************************************************\[START]
+<Language>
+Aramaic (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Aramaic (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Aramaic, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Persian (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Persian (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Persian, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Arabic (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Arabic (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Arabic, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Chinese (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Chinese (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Chinese, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Gothic (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Gothic (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Gothic, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Sanskrit (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Sanskrit (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Sanskrit, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Gaulish (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Gaulish (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Gaulish, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Frankish (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Frankish (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Frankish, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Akkadian (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Akkadian (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Akkadian, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Chaldean (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Chaldean (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Chaldean, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Punic (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Punic (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Punic, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Latin (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Latin (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Latin, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+Greek (Spoken), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken), taboo(Native Languages > 1)
+Greek (Written), 1/2, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written), taboo(Native Languages > 1)
+Greek, 2/4, page(B24, BS33), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+********************************************************************************************************\[STOP]
+[Cultures]
+*******************************************************************************************************\[START]
+<Cultural Familiarity>
+Roman Empire, 1, page(B23), cat(Cultural Familiarity, Social Background)
+Germanic Lands, 1, page(B23), cat(Cultural Familiarity, Social Background)
+Parthian Empire, 1, page(B23), cat(Cultural Familiarity, Social Background)
+
+Parthian Empire (Native), 0, page(B23), cat(Cultural Familiarity, Social Background), gives(+1 to ST:Native Cultural Familiarities), taboo(Native Cultural Familiarities > 1)
+Roman Empire (Native), 0, page(B23), cat(Cultural Familiarity, Social Background), gives(+1 to ST:Native Cultural Familiarities), taboo(Native Cultural Familiarities > 1)
+Germanic Empire (Native), 0, page(B23), cat(Cultural Familiarity, Social Background), gives(+1 to ST:Native Cultural Familiarities), taboo(Native Cultural Familiarities > 1)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+
+<Mundane Social>
+Wealth (Roman), 10/20/30/50/60/75/85/100/125, gives(=@indexedvalue(%level, 10, 40, 190, 990, (7970/3), (31970/3), (79970/3), (319970/3), (3199970/3), (31999970/3), (319999970/3), (3199999970/3), (31999999970/3)) to ST:Wealth Modifier, =@if(%level > 4 THEN 50) to ST:Starting Wealth, =@indexedvalue(%level, 0, 1, 1, 1, 1, 2, 3) To ST:Status), upto(13), page(B25), levelnames([Average], Comfortable, Wealthy, Very Wealthy, Filthy Rich, Decurial, Equestrian, Senatorial, Multimillionaire 2, Multimillionaire 3, Multimillionaire 4, Multimillionaire 5, Multimillionaire 6, Multimillionaire 7), mods(Wealth), taboo(DI:Wealth), cat(Mundane, Social, Wealth)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Social>
+Social Stigma (Minority Group: Unchaste Women), -10, page(B155), cat(Mundane, Social), conditional(-2 to ST:Reaction)
+Social Stigma (Minority Group: Enuchs), -10, page(B155), cat(Mundane, Social), conditional(-2 to ST:Reaction)
+Social Stigma (Second-Class Citizen: Jewish), -5, page(B155), cat(Mundane, Social), conditional(-1 to ST:Reaction)
+Social Stigma (Second-Class Citizen: Women), -5, page(B155), cat(Mundane, Social), conditional(-1 to ST:Reaction)
+Social Stigma (Valuable Property: Slave), -10, page(B155), cat(Mundane, Social), conditional(-2 to ST:Reaction)
+
+<Mundane Mental>
+Code of Honor (Roman), -10, page(F219), cat(Mundane, Mental)
+Code of Honor (Arena), -10, page(F219), cat(Mundane, Mental)
+Compulsive Debating, -5, displaycost(-5*), mods(Self-Control), page(F219), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Knowledge>
+Professional Skill (Courtesan), IQ/A, default(IQ - 5), page(B215), cat(_General, Knowledge)
+Engineer (Ships), IQ/H, tl(0-12), default("SK:Engineer" - 4), needs("SK:Mathematics (Applied)" = 1pts), page(B190), cat(_General, Design/Invention)
+Law (Roman), IQ/H, default(IQ - 6), page(B204), cat(_General, Business, Police, Social Sciences/Humanities)
+
+<Social>
+Fortune-Telling (Extispicy), IQ/A, default(IQ - 5, "SK:Fast-Talk" - 3, SK:Occultism - 3), page(F220), cat(_General, Social)
+Fortune-Telling (Oneiromancy), IQ/A, default(IQ - 5, "SK:Fast-Talk" - 3, SK:Occultism - 3), page(F220), cat(_General, Social)
+
+<Techniques, Techniques - Combat>
+Bracing (Spear), Tech/H, default("SK:Spear::level" - 4), needs(SK:Spear, SK:Riding (Horse)), upto(Prereq), page(F220)
+Vaulting (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 3), needs(SK:Acrobatics, SK:Riding (Horse)), upto(Prereq), page(F220)
+Vaulting (Riding), Tech/H, default("SK:Riding::level" - 3), needs(SK:Riding (Horse)), upto(Prereq), page(F220)
+Vaulting (Jumping), Tech/H, default("SK:Jumping::level" - 3 ), needs(SK:Riding (Horse)), upto(Prereq), page(F220)
+Testudo, Tech/H, default("SK:Soldier::level" - 4), needs(SK:Shield), upto(Prereq), page(F220)
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+#Clone "EQ:Shortsword" as "EQ:Gladius"
+#MergeTags in "EQ:Gladius" with "cat(Roma Arcana, Roma Arcana - Weapons)"
+#MergeTags in "EQ:Gladius" with "initmods(Composition: Iron (TL2+), *1, page(B275), group(Melee Quality), shortname(Iron)), cat(Roma Arcana, Roma Arcana - Weapons)"
+#Clone "EQ:Javelin" as "EQ:Pilum"
+#MergeTags in "EQ:Pilum" with "cat(Roma Arcana, Roma Arcana - Weapons)"
+#Clone "EQ:Long Spear" as "EQ:Hasta"
+#MergeTags in "EQ:Hasta" with "cat(Roma Arcana, Roma Arcana - Weapons)"
+
+<Roma Arcana, Roma Arcana - Roman Currency>
+Aureus, techlvl(2), basecost(400)
+Antonianus, techlvl(2), basecost(16)
+Denarius, techlvl(2), basecost(8)
+Sesterce, techlvl(2), basecost(2)
+Dupondius, techlvl(2), basecost(1)
+As, techlvl(2), basecost(0.5)
+Quadran, techlvl(2), basecost(0.25)
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<Languages>
+text("If you have not already chosen one, please choose a native Language."), pointswanted(atleast -3, upto 0), itemswanted(upto 2),_
+		list(_
+			#newitem(LA:Aramaic, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Persian, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Arabic, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Chinese, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Gothic, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Sanskrit, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Gaulish, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Frankish, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Akkadian, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Chaldean, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Punic, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Latin, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			#newitem(LA:Greek, 2/4, displaycost(0), page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(B23)), taboo(Native Languages > 1)) #codes(upto 3, downto 3),_
+			LA:Language - Native #codes(upto 3, downto 3),_
+			LA:Language - Native (Spoken) #codes(upto 3, downto 3),_
+			LA:Language - Native (Written) _
+			)
+
+<CulturalFamiliarity>
+text("If you have not already chosen one, please choose a native Cultural Familiarity."), pointswanted(0), itemswanted(upto 1),_
+		list(_
+			CU:Parthian Empire (Native),_
+			CU:Roman Empire (Native),_
+			CU:Germanic Empire (Native),_
+			CU:Cultural Familiarity (Native)_
+			)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates - Roma Arcana>
+Courtesan (Roma Arcana), displaycost(125),_
+	description(Courtesans are one mark of aristocratic societies such as Rome: women who find marriage less advantageous than having the favor of wealthy and powerful men with out formal ties. The physical aspects of teh transaction may be the least important. Men seek out courtesans for a sympathetic war, intelligent conversation, wit, good entertainment, or sophistication in art, fashion, and cusine. The financial aspects are often handled discreetly in the form of gifts and favors.),_
+	page(F214),_
+	sets(_
+			ST:DX = 11,_
+			ST:IQ = 11,_
+			ST:HT = 12,_
+			ST:Perception = 12_
+	),_
+	adds(_
+			AD:Appearance = 1,_
+			AD:Allure = 1,_
+			AD:Wealth (Roman) = 1,_
+			DI:Social Stigma (Minority Group: Unchaste Women),_
+			SK:Carousing = 2pts,_
+			SK:Sex Appeal = 4pts,_
+			SK:Savoir-Faire (High Society) = 2pts,_
+			SK:Professional Skill (Courtesan) = 8pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 25 points from among the following advantages, or improve Appearance to (Beautiful) [+8] or (Very Beautiful) [+12], or take extra levels of Allure [5/level] later:"),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(AD:_Additional Appearance, 8/0/12, upto(3), existing(AD:Appearance)),_
+			#newitem(AD:_Additional Allure, 5/10, upto(3), existing(AD:Allure)),_
+			PE:Alcohol Tolerance,_
+			AD:Charisma,_
+			AD:Clerical Investment,_
+			AD:Cultural Adaptability,_
+			AD:Empathy,_
+			AD:Sensitive,_
+			AD:Fashion Sense,_
+			AD:Language Talent,_
+			LA:Language,_
+			#newitem(AD:Resistant (Disease), 5/10/15/30, displaycost(3), mods(Resistant), _
+						levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), cat(Mundane, Physical), _
+						initmods(Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant))) #codes(upto 2, downto 2),_
+			AD:Versatile,_
+			AD:Voice _
+		)_
+	),_
+	select4(_
+		text("Choose -10 points from among the following disadvantages."),_
+		pointswanted(-10),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bully,_
+			DI:Code of Honor (Professional),_
+			DI:Compulsive Carousing,_
+			DI:Compulsive Spending,_
+			DI:Jealousy,_
+			DI:Lecherousness,_
+			DI:Overconfidence,_
+			DI:Selfish _
+		)_
+	),_
+	select5(_
+		text("Choose three skills from the following."),_
+		pointswanted(12),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs ([Regional]) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Business) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Headline News) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (High Culture) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (People) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Politics) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Popular Culture) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Science & Technology) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Sports) #codes(upto 4pts, downto 4pts),_
+			SK:Current Affairs (Travel) #codes(upto 4pts, downto 4pts),_
+			SK:Games #codes(upto 4pts, downto 4pts),_
+			SK:Makeup #codes(upto 4pts, downto 4pts),_
+			SK:Singing #codes(upto 4pts, downto 4pts),_
+			SK:Dancing #codes(upto 4pts, downto 4pts),_
+			SK:Erotic Art #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Dance) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Literature) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Music) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Wine) #codes(upto 4pts, downto 4pts),_
+			SK:Poetry #codes(upto 4pts, downto 4pts),_
+			SK:Politics #codes(upto 4pts, downto 4pts),_
+			SK:Public Speaking #codes(upto 4pts, downto 4pts),_
+			SK:Diplomacy #codes(upto 4pts, downto 4pts),_
+			SK:Literature #codes(upto 4pts, downto 4pts),_
+			SK:Musical Instrument #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Choose four skills from the following."),_
+		pointswanted(8),_
+		itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Sewing #codes(upto 2pts, downto 2pts),_
+			SK:Cooking #codes(upto 2pts, downto 2pts),_
+			SK:Gardening #codes(upto 2pts, downto 2pts),_
+			SK:Gesture #codes(upto 2pts, downto 2pts),_
+			SK:Acting #codes(upto 2pts, downto 2pts),_
+			SK:Holdout #codes(upto 2pts, downto 2pts),_
+			SK:Teaching #codes(upto 2pts, downto 2pts),_
+			SK:Body Language #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Accounting #codes(upto 2pts, downto 2pts),_
+			SK:Artist (Interior Decorating) #codes(upto 2pts, downto 2pts),_
+			SK:Poisons #codes(upto 2pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Engineer (Roma Arcana), displaycost(125),_
+	description(In the Roman empire, engineers have two main specializations: civil and military. Military engineers serve with the legions, building fortifications or penetrating them. Civil engineers direct public works projects, such as aqueducts, baths, bridges, roads and swewers. many engineers have knowledge in both areas, either as legionaries on detached duty with civil projects or as retired legionaries with a second career. This template also provides options for navel architects.),_
+	page(F215),_
+	sets(_
+			ST:ST = 11,_
+			ST:IQ = 14_
+	),_
+	adds(_
+			AD:Fit,_
+			DI:Code of Honor (Professional),_
+			SK:Administration = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose One of"),_
+		pointswanted(5),_
+		itemswanted(1),_
+		list(_
+			AD:Military Rank #codes(upto 1),_
+			AD:Administrative Rank #codes(upto 1) _
+		)_
+	),_
+	select4(_
+		text("Choose 25 points from the following advantages, or take more levels of Rank later [5/level]."),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(AD:_Additional Administrative Rank, 5/10, existing(AD:Administrative Rank)),_
+			#newitem(AD:_Additional Military Rank, 5/10, existing(AD:Military Rank)),_
+			AD:Absolute Direction,_
+			AD:Artificer,_
+			AD:Business Acumen,_
+			AD:Charisma,_
+			#newitem(AD:Eidetic Memory, 5, displaycost(3), page(B51), cat(Mundane, Mental), taboo(AD:Photographic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(3))),_
+			#newitem(AD:Photographic Memory, 10, displaycost(5), page(B51), cat(Mundane, Mental), taboo(AD:Eidetic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(3))),_
+			AD:Gadgeteer,_
+			AD:Lightning Calculator,_
+			AD:Patron,_
+			AD:Perfect balance,_
+			AD:Single-Minded,_
+			AD:Versatile _
+		)_
+	),_
+	select5(_
+		text("Choose -15 points from among the following disadvantages."),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Duty,_
+			DI:No Sense of Humor,_
+			DI:Overconfidence,_
+			DI:Social Stigma (Valuable Property),_
+			#newitem(DI:Sense of Duty (Workers), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			DI:Stubbornness,_
+			DI:Workaholic _
+		)_
+	),_
+	select6(_
+		text("Choose one of the following at 8 points."),_
+		pointswanted(8),_
+		itemswanted(1),_
+		list(_
+			SK:Engineer (Artillery) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Civil) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Combat) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Mining) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Ships) #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select7(_
+		text("Choose one of the following at 4 points."),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Forced Entry #codes(upto 4pts, downto 4pts),_
+			SK:Architecture #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Heavy Weapons) #codes(upto 4pts, downto 4pts),_
+			SK:Expert Skill (Hydrology) #codes(upto 4pts, downto 4pts),_
+			SK:Mathematics (Surveying) #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select8(_
+		text("Choose two of the following at 1 point."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			SK:Carpentry #codes(upto 1pts),_
+			SK:Masonry #codes(upto 1pts),_
+			SK:Mechanic ([Type]) #codes(upto 1pts),_
+			SK:Teamster #codes(upto 1pts),_
+			SK:Soldier #codes(upto 1pts),_
+			SK:Traps #codes(upto 1pts) _
+		)_
+	),_
+	select9(_
+		text("Choose one of the following at 2 points."),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Carousing #codes(upto 2pts, downto 2pts),_
+			SK:Hiking #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select10(_
+		text("Choose three of the following at 1 point."),_
+		pointswanted(3),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Gunner (Catapult) #codes(upto 1pts),_
+			SK:Knot-Tying #codes(upto 1pts),_
+			SK:Camouflage #codes(upto 1pts),_
+			SK:Current Affairs (Science & Technology) #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Savoir-Faire (Military) #codes(upto 1pts),_
+			SK:Seamanship #codes(upto 1pts),_
+			SK:Scrounging #codes(upto 1pts),_
+			SK:Artillery (Catapult) #codes(upto 1pts),_
+			SK:Cartography #codes(upto 1pts),_
+			SK:Leadership #codes(upto 1pts),_
+			SK:Meteorology (Earthlike) #codes(upto 1pts),_
+			SK:Prospecting #codes(upto 1pts),_
+			SK:Accounting #codes(upto 1pts),_
+			SK:Archaeology #codes(upto 1pts),_
+			SK:Expert Skill (Military Science) #codes(upto 1pts) _
+		)_
+	),_
+	select11(#List(QuirkSelection))
+
+Gladiator (Roma Arcana), displaycost(125*),_
+	description(The legions are Rome's heavy infantry; Roman strategy and tactics rely primarily on their skills. Legionaries rigorously train for military duties, but also serve in administrative and law enforcement roles; most have craft skillas well. This template represents a plebeian who entered the legion as an ordinary soldier and is still in service.),_
+	page(F216),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 12,_
+			ST:HT = 12_
+	),_
+	adds(_
+			AD:Combat Reflexes,_
+			AD:Fit,_
+			SK:Games (Arena) = 2pts,_
+			SK:Performance = 4pts,_
+			SK:Tactics = 4pts,_
+			SK:Intimidation = 4pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose one of the following advantages"),_
+		pointswanted(20),_
+		itemswanted(1),_
+		list(_
+			AD:Extra ST #codes(upto 2, downto 2),_
+			AD:Extra DX #codes(upto 1, downto 1) _
+		)_
+	),_
+	select4(_
+		text("Choose 15 points from the following advantages or choose 5 points and replace Fit with Very fit"),_
+		pointswanted(atleast 5, upto 15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Appearance #codes(upto 1, downto 1),_
+			AD:Blessed (Heroic Feat; [Attribute]),_
+			AD:Charisma,_
+			#newitem(AD:Contact (From gladitorial life), 1/2/3/4, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21),_
+						upto(4), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+						initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1,_
+						shortname(9 or less), group(Frequency of Appearance))_
+					),_
+			AD:High Pain Threshold,_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing,_
+			PE:Shtick,_
+			AD:Social Regard (Feared),_
+			AD:Wealth (Roman) _
+		)_
+	),_
+	select5(_
+		text("Choose -30 points from the following advantages"),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Code of Honor (Arena),_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Carousing,_
+			DI:Missing Digit,_
+			DI:One Eye,_
+			DI:One Hand,_
+			DI:Overconfidence,_
+			DI:Status #codes(upto 2, downto 2),_
+			DI:Truthfulness  _
+		)_
+	),_
+	select6(_
+		text("Choose one of the following skills at 1 point"),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Brawling #codes(upto 1pts),_
+			SK:Current Affairs (Sports) #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Carousing #codes(upto 1pts),_
+			SK:Gambling #codes(upto 1pts),_
+			SK:Streetwise #codes(upto 1pts),_
+			SK:Sex Appeal #codes(upto 1pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Gladiator - Bestiarius (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Shield (Shield) = 4pts,_
+			SK:Spear = 4pts,_
+			SK:Whip = 4pts,_
+			SK:Feint (Spear) = 3pts _
+	)
+
+Gladiator - Dimschaerus - Dual Weapon (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 12pts,_
+			SK:Dual-Weapon Attack (Broadsword) = 3pts _
+	)
+
+Gladiator - Dimschaerus - Off-Hand Weapon (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 12pts,_
+			SK:Off-Hand Weapon Training (Broadsword) = 3pts _
+	)
+
+Gladiator - Eques - Bracing Spear (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 2pts,_
+			SK:Riding (Horse) = 8pts,_
+			SK:Spear = 2pts,_
+			SK:Bracing (Spear)= 3pts _
+	)
+
+Gladiator - Eques - Vaulting (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 2pts,_
+			SK:Riding (Horse) = 8pts,_
+			SK:Spear = 2pts,_
+			SK:Vaulting (Riding)= 3pts _
+	)
+
+Gladiator - Eques - No Hands Riding (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 2pts,_
+			SK:Riding (Horse) = 8pts,_
+			SK:Spear = 2pts,_
+			SK:No-Hands Riding (Riding ([Animal])) = 3pts respond "Horse" _
+	)
+
+Gladiator - Mirillo - Disarming (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 8pts,_
+			SK:Shield (Shield) = 4pts,_
+			SK:Disarming (Broadsword) = 3pts _
+	)
+
+Gladiator - Mirillo - Feint (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 8pts,_
+			SK:Shield (Shield) = 4pts,_
+			SK:Feint (Broadsword) = 3pts _
+	)
+
+Gladiator - Mirillo - Retain Weapon (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Broadsword = 8pts,_
+			SK:Shield (Shield) = 4pts,_
+			SK:Retain Weapon (Broadsword) = 3pts _
+	)
+
+Gladiator - Retarius (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Net = 8pts,_
+			SK:Spear = 4pts _
+	),_
+	creates(_
+				"SK:Feint (Net), Tech/H, default(SK:Net::level), needs(SK:Net), upto(Prereq + 4), page(B231)"  = 3pts _
+	)
+
+Gladiator - Secutor (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Knife = 4pts,_
+			SK:Running = 8pts,_
+			SK:Feint (Knife) = 3pts _
+	)
+
+Gladiator - Thracian - Disarming (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Shield (Shield) = 4pts,_
+			SK:Shortsword = 8pts,_
+			SK:Disarming (Shortsword) = 3pts _
+	)
+
+Gladiator - Thracian - Feint (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Shield (Shield) = 4pts,_
+			SK:Shortsword = 8pts,_
+			SK:Feint (Shortsword) = 3pts _
+	)
+
+Gladiator - Thracian - Retain Weapon (Roma Arcana), Displaycost(*),_
+	description(NEEDS the Gladiator Template.),_
+	page(F215),_
+	needs(TE:Gladiator (Roma Arcana)),_
+	adds(_
+			SK:Shield (Shield) = 4pts,_
+			SK:Shortsword = 8pts,_
+			SK:Retain Weapon (Shortsword) = 3pts _
+	)
+
+Legionary (Roma Arcana), displaycost(125),_
+	description(The legions are Rome's heavy infantry; Roman strategy and tactics rely primarily on their skills. Legionaries rigorously train for military duties, but also serve in administrative and law enforcement roles; most have craft skillas well. This template represents a plebeian who entered the legion as an ordinary soldier and is still in service.),_
+	page(F216),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 11,_
+			ST:HT = 11,_
+			ST:Perception = 11_
+	),_
+	adds(_
+			AD:Combat Reflexes,_
+			AD:Fit,_
+			DI:Duty (Legion) = 3,_
+			SK:Broadsword = 8pts,_
+			SK:Shield (Shield) = 4pts,_
+			SK:Hiking = 8pts,_
+			SK:Intimidation = 4pts,_
+			SK:Observation = 1pts,_
+			SK:Savoir-Faire (Military) = 2pts,_
+			SK:Soldier = 8pts,_
+			SK:Thrown Weapon (Spear) = 2pts,_
+			SK:Jumping = 1pts,_
+			SK:Swimming = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 35 points from the following advantages or choose 25 points and replace Fit with Very fit"),_
+		pointswanted(atleast 25, upto 35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Ambidexterity,_
+			AD:Artificer,_
+			AD:Charisma,_
+			#newitem(AD:Clerical Investment (Mithraic Initiate), 5, page(B43), cat(Mundane, Social), conditional(+1 to ST:Reaction)),_
+			AD:Danger Sense,_
+			AD:Fearlessness,_
+			AD:Legal Enforcement Powers,_
+			AD:Military Rank,_
+			AD:Wealth (Roman) #codes(upto 1, downto 1) _
+		)_
+	),_
+	select4(_
+		text("Choose one of the following disadvantages"),_
+		pointswanted(-10),_
+		itemswanted(1),_
+		list(_
+			DI:Secret #codes(upto 2, downto 2),_
+			DI:Code of Honor (Soldier's)  _
+		)_
+	),_
+	select5(_
+		text("Choose -15 points from the following advantages"),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Spending,_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			DI:Lecherousness,_
+			DI:Missing Digit,_
+			DI:On the Edge,_
+			DI:One Eye,_
+			DI:Overconfidence,_
+			#newitem(DI:Sense of Duty (Century), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			#newitem(DI:Sense of Duty (Legion), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			DI:Selfish,_
+			DI:Wealth  _
+		)_
+	),_
+	select6(_
+		text("Choose one of the following skills at 4 points"),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Gunner (Catapult) #codes(upto 4pts, downto 4pts),_
+			SK:Carpentry #codes(upto 4pts, downto 4pts),_
+			SK:First Aid #codes(upto 4pts, downto 4pts),_
+			SK:Masonry #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Body Armor) #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 4pts, downto 4pts),_
+			SK:Artillery (Catapult) #codes(upto 4pts, downto 4pts),_
+			SK:Leadership #codes(upto 4pts, downto 4pts),_
+			SK:Teaching #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 4pts, downto 4pts),_
+			SK:Smith (Copper) #codes(upto 4pts, downto 4pts),_
+			SK:Smith (Iron) #codes(upto 4pts, downto 4pts),_
+			SK:Smith (Lead and Tin) #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select7(_
+		text("Choose three of the following skills at 2 points"),_
+		pointswanted(6),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Carousing #codes(upto 2pts, downto 2pts),_
+			SK:Scrounging #codes(upto 2pts, downto 2pts),_
+			SK:Stealth #codes(upto 2pts, downto 2pts),_
+			SK:Administration #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Body Armor) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Gambling #codes(upto 2pts, downto 2pts),_
+			SK:Meteorology (Earthlike) #codes(upto 2pts, downto 2pts),_
+			SK:Navigation (Land) #codes(upto 2pts, downto 2pts),_
+			SK:Religious Ritual #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(_
+		text(Choose one of the following:),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Survival #codes(upto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts) _
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Magistrate (Roma Arcana), displaycost(125),_
+	description(Roman magistrates, even while actin as judges, aren't neutral referees in the style of British and American judges; They actively persue information thats needed to decide a case. Law restricts their methods - for example, free men may not be tortured. But they do investigation that they judge necessary to reach a verdict. In the chaos of AUC 1011 meagistrates may occasionally have to look into some unusual issues.),_
+	page(F216),_
+	sets(_
+			ST:IQ = 11,_
+			ST:Will = 13_
+	),_
+	adds(_
+			AD:Administrative Rank = 2,_
+			AD:Legal Enforcement Powers = 1,_
+			AD:Status = 1,_
+			AD:Wealth (Roman) = 4,_
+			DI:Duty (Court) = 3 _
+				with "Nonhazardous, +5, group(Duty), page(B134)",_
+			SK:Law (Roman) = 8pts,_
+			SK:Religious Ritual = 4pts,_
+			SK:Savoir-Faire (High Society) = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 25 points from the following advantages, or take more levels of Administrative Rank [5/level] later:"),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(AD:_Additional Administrative Rank, 5/10, existing(AD:Administrative Rank)),_
+			#newitem(AD:Ally (Law Enforcement Staff), 1/2/3/5/10, upto(5), levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points), mods(Ally, Frequency of Appearance, Favor), page(B36), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			#newitem(AD:Eidetic Memory, 5, displaycost(4), page(B51), cat(Mundane, Mental), taboo(AD:Photographic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(2))),_
+			AD:Business Acumen,_
+			AD:Charisma,_
+			AD:Higher Purpose,_
+			AD:Independent Income,_
+			AD:Single-Minded,_
+			AD:Voice _
+		)_
+	),_
+	select4(_
+		text("Choose one of the following disadvantages"),_
+		pointswanted(-10),_
+		itemswanted(1),_
+		list(_
+			DI:Secret #codes(upto 2, downto 2),_
+			DI:Code of Honor (Roman)  _
+		)_
+	),_
+	select5(_
+		text("Choose -35 points from the following advantages"),_
+		pointswanted(-35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bloodlust,_
+			DI:Curious,_
+			DI:Fanaticism,_
+			DI:Hidebound,_
+			DI:Honesty,_
+			DI:Jealousy,_
+			DI:Secret,_
+			DI:Selfish,_
+			#newitem(DI:Sense of Duty (Family), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			#newitem(DI:Sense of Duty (City), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			#newitem(DI:Sense of Duty (Empire), -10, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			DI:Stubbornness,_
+			DI:Workaholic  _
+		)_
+	),_
+	select6(_
+		text("Choose two of the following skills at 8 points"),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			SK:Administration #codes(upto 8pts, downto 8pts),_
+			SK:Politics #codes(upto 8pts, downto 8pts),_
+			SK:Public Speaking #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select7(_
+		text("Choose one of the following skills at 1 point"),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			SK:Area Knowledge ([Area]) #codes(upto 1pts),_
+			SK:Current Affairs ([Regional]) #codes(upto 1pts) _
+		)_
+	),_
+	select8(_
+		text("Choose one of the following skills at 4 points"),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Criminology #codes(upto 4pts, downto 4pts),_
+			SK:Hidden Lore (Conspiracies) #codes(upto 4pts, downto 4pts),_
+			SK:Interrogation #codes(upto 4pts, downto 4pts),_
+			SK:Psychology #codes(upto 4pts, downto 4pts),_
+			SK:Detect Lies #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select9(_
+		text("Choose one of the following skills at 4 points"),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Architecture #codes(upto 4pts, downto 4pts),_
+			SK:Farming #codes(upto 4pts, downto 4pts),_
+			SK:Finance #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select10(_
+		text("Choose one of the following skills at 2 points"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Gardening #codes(upto 2pts, downto 2pts),_
+			SK:Connoisseur #codes(upto 2pts, downto 2pts),_
+			SK:Connoisseur (Dance) #codes(upto 2pts, downto 2pts),_
+			SK:Connoisseur (Literature) #codes(upto 2pts, downto 2pts),_
+			SK:Connoisseur (Music) #codes(upto 2pts, downto 2pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 2pts, downto 2pts),_
+			SK:Connoisseur (Wine) #codes(upto 2pts, downto 2pts),_
+			SK:Poetry #codes(upto 2pts, downto 2pts),_
+			SK:History #codes(upto 2pts, downto 2pts),_
+			SK:Literature #codes(upto 2pts, downto 2pts),_
+			SK:Philosophy #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select11(#List(QuirkSelection))
+
+Peregrin (Roma Arcana), displaycost(175),_
+	description(Not a Roman at all, but an agent of the Infinity Patrol, sent to investigate this strange timeline. Roma Arcana is a rule-breaking world, since magic works there, and as such is closed to all but highly qualified agents and researchers (recommended for 200 point compaigns and up). The following template defines a Penetration Service agent as he would appear from the viewpoint of a native of Roma Arcana.),_
+	page(F217),_
+	sets(_
+			ST:ST = 12,_
+			ST:DX = 11,_
+			ST:IQ = 12,_
+			ST:HT = 11,_
+			ST:Tech Level = ST:Tech Level + 6_
+	),_
+	adds(_
+			AD:Wealth (Roman) = 2,_
+			AD:Patron (Infinity Patrol) = 4 _
+				with "Frequency: roll of  6 or less (Quite rarely), *1/2, shortname(6 or less), group(Frequency of Appearance), page(B36)" _
+				and "Special Abilities: possesses equipment from a greater TL, +100%, group(Patron), page(B73)" _
+				and "Minimal Intervention, -50%, group(Patron), page(B73)",_
+			CU::Cultural Familiarity (Native) respond "Homeline",_
+			LA:Language - Native respond "English",_
+			DI:Mundane Background,_
+			DI:Secret (Visitor from another world) = 2,_
+			DI:Duty (Investigate Roman customs, institutions and arts) = 4,_
+			SK:Acting = 4pts,_
+			SK:Observation = 8pts,_
+			SK:Cartography = 1pts,_
+			SK:Diplomacy = 4pts,_
+			SK:History (Roman Empire) = 2pts,_
+			SK:Administration = 1pts,_
+			SK:Computer Operation = 1pts,_
+			SK:First Aid = 1pts,_
+			SK:Holdout = 1pts,_
+			SK:Survival (Woodlands) = 1pts,_
+			SK:Writing = 1pts _
+	),_
+	creates(_
+				"AD:Unusual Background, 5, page(B96), cat(Mundane, Mental)" _
+	),_
+	select1(_
+		text("Choose One of"),_
+		pointswanted(6),_
+		itemswanted(1),_
+		list(_
+			AD:Greek #codes(upto 3, downto 3),_
+			AD:Latin #codes(upto 3, downto 3)_
+		)_
+	),_
+	select2(_
+		text("Choose 10 points from the following advantages"),_
+		pointswanted(10),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			CU:Parthian Empire,_
+			CU:Roman Empire,_
+			CU:Germanic Empire,_
+			CU:Cultural Familiarity,_
+			AD:Charisma #codes(upto 1),_
+			AD:Cultural Adaptability,_
+			AD:Eidetic Memory,_
+			AD:Photographic Memory,_
+			AD:Language Talent,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Magery 0,_
+			#newitem(AD:Resistant (Disease), 5/10/15/30, displaycost(3/5), mods(Resistant), _
+						levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), cat(Mundane, Physical), _
+						initmods(Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant)) _
+					) #codes(upto 2, downto 2) _
+		)_
+	),_
+	select3(_
+		text("Choose -15 points from the following advantages"),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Professional),_
+			DI:Fanaticism,_
+			DI:Loner,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Post-Combat Shakes,_
+			DI:Weirdness Magnet,_
+			#newitem(DI:Delusion (Magic Doesn't Work), -5, cat(Mundane, Mental)),_
+			DI:Workaholic,_
+			DI:Reduced ST _
+		)_
+	),_
+	select4(_
+		text("Choose One of the following skills at 8 points"),_
+		pointswanted(8),_
+		itemswanted(1),_
+		list(_
+			SK:Anthropology #codes(upto 8pts, downto 8pts),_
+			SK:Sociology #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select5(_
+		text("Choose two of the following skills at 4 points"),_
+		pointswanted(8),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			SK:Connoisseur #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Dance) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Literature) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Music) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 4pts, downto 4pts),_
+			SK:Connoisseur (Wine) #codes(upto 4pts, downto 4pts),_
+			SK:Occultism #codes(upto 4pts, downto 4pts),_
+			SK:Archaeology #codes(upto 4pts, downto 4pts),_
+			SK:Economics #codes(upto 4pts, downto 4pts),_
+			SK:Law (Roman) #codes(upto 4pts, downto 4pts),_
+			SK:Linguistics #codes(upto 4pts, downto 4pts),_
+			SK:Expert Skill (Military Science) #codes(upto 4pts, downto 4pts),_
+			SK:Expert Skill (Political Science) #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(_
+		text("Choose one of the following skills at 4 points"),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Knife #codes(upto 4pts, downto 4pts),_
+			SK:Staff #codes(upto 4pts, downto 4pts),_
+			SK:Judo #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Philosopher (Roma Arcana), displaycost(125),_
+	description(This template is specifically for an adherent of Stoicism, a philosophy thet emphasizes schooling one's will to the tranquil acceptance of necessity. Stoicism appealed to the Roman aristocracy but found adherents at all levels of society, from slaves to the Emporer Marcul Aurelius. Variations on this template could define the other influential schools of thought.),_
+	page(F218),_
+	sets(_
+			ST:IQ = 12,_
+			ST:HT = 11,_
+			ST:Will = 14_
+	),_
+	adds(_
+			AD:High Pain Threshold,_
+			AD:Unfazeable,_
+			DI:Code of Honor (Professional),_
+			SK:Astronomy (Observational) = 8pts,_
+			SK:Expert SKill (Natural Philospohy) = 12pts,_
+			SK:Philosophy (Stoicism)= 12pts,_
+			SK:Observation = 4pts,_
+			SK:Research = 2pts,_
+			SK:Fortune-Telling (Astrology) = 1pts,_
+			SK:Meditation = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose One of the following languages:"),_
+		pointswanted(5),_
+		itemswanted(2),_
+		list(_
+			AD:Greek (Spoken) #codes(upto 2, downto 2),_
+			AD:Greek (Written) #codes(upto 3, downto 3),_
+			AD:Latin (Spoken) #codes(upto 2, downto 2),_
+			AD:Latin (Written) #codes(upto 3, downto 3) _
+		)_
+	),_
+	select4(_
+		text("Choose 15 points from the following advantages"),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(AD:Ally (Disciples), 1/2/3/5/10, upto(5), levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points), mods(Ally, Frequency of Appearance, Favor), page(B36), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			AD:Cultural Adaptability,_
+			#newitem(AD:Eidetic Memory, 5, displaycost(3), page(B51), cat(Mundane, Mental), taboo(AD:Photographic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(3))),_
+			#newitem(AD:Photographic Memory, 10, displaycost(5), page(B51), cat(Mundane, Mental), taboo(AD:Eidetic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(3))),_
+			AD:Higher Purpose,_
+			AD:Indomitable,_
+			AD:Longevity,_
+			AD:Sage,_
+			AD:Single-Minded,_
+			AD:Social Regard (Respected),_
+			AD:Visualization _
+		)_
+	),_
+	select5(_
+		text("Choose -20 points from the following advantages"),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Callous,_
+			DI:Curious,_
+			DI:Compulsive Debating,_
+			DI:Delusion,_
+			DI:Fanaticism,_
+			DI:Honesty,_
+			DI:No Sense of Humor,_
+			DI:Overconfidence,_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Sense of Duty,_
+			DI:Workaholic,_
+			DI:Xenophilia _
+		)_
+	),_
+	select6(_
+		text("Choose One of the following skills at 4 points"),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Public Speaking #codes(upto 4pts, downto 4pts),_
+			SK:Teaching #codes(upto 4pts, downto 4pts),_
+			SK:Writing #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select7(_
+		text("Choose One of the following skills at 1 point."),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Architecture #codes(upto 1pts),_
+			SK:Diagnosis #codes(upto 1pts),_
+			SK:Expert Skill #codes(upto 1pts),_
+			SK:Geography ([Regional]) #codes(upto 1pts),_
+			SK:History #codes(upto 1pts),_
+			SK:Law #codes(upto 1pts),_
+			SK:Linguistics #codes(upto 1pts),_
+			SK:Mathematics (Applied) #codes(upto 1pts),_
+			SK:Mathematics (Pure) #codes(upto 1pts),_
+			SK:Mathematics (Statistics) #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Esoteric Medicine #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Sorcerer (Roma Arcana), displaycost(125),_
+	description(This template describes a sorcerer who has learned his art through his own investigations. NOTE: This Template requires the data file "Variant Basic Set 4e - Ritual Magic.gdf" to be loaded in order for the template to work correctly. ),_
+	page(F218),_
+	x(#message("After completing you should select any 4 spells at 2 points each.")),_
+	sets(_
+			ST:IQ = 14_
+	),_
+	needs(4 Spells = 2pts),_
+	adds(_
+			AD:Ritual Magery 0,_
+			SK:Research = 2pts,_
+			SK:Ritual Magic = 8pts,_
+			SK:Meditation = 2pts,_
+			SK:Occultism = 1pts,_
+			SK:Teaching = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 25 points from the following advantages"),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Charisma,_
+			AD:Ritual Magery,_
+			#newitem(AD:Eidetic Memory, 5, displaycost(3), page(B51), cat(Mundane, Mental), taboo(AD:Photographic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(3))),_
+			#newitem(AD:Photographic Memory, 10, displaycost(5), page(B51), cat(Mundane, Mental), taboo(AD:Eidetic Memory), initmods(Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), level(3))),_
+			#newitem(AD:Patron (Mentor), 10/15/20/25/30, mods(Frequency of Appearance, Patron, Favor), page(B72), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) | Special Abilities, +50%, group(Patron), page(B73))),_
+			AD:Single-Minded,_
+			AD:Social Regard (Feared),_
+			AD:Wealth (Roman) _
+		)_
+	),_
+	select4(_
+		text("Choose -15 points from the following advantages"),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bully,_
+			DI:Jealousy,_
+			DI:Megalomania,_
+			DI:Overconfidence,_
+			DI:Post-COmbat Shakes,_
+			DI:Vow,_
+			DI:Wealth,_
+			DI:Weirdness Magnet,_
+			DI:Xenophilia _
+		)_
+	),_
+	select5(_
+		text("Choose One Ritual Magic Path at 4 points another at 2 points"),_
+		pointswanted(6),_
+		itemswanted(2),_
+		list(_
+			SK:Path of Air #codes(upto 4pts, downto 2pts),_
+			SK:Path of Body Control #codes(upto 4pts, downto 2pts),_
+			SK:Path of Communication & Empathy #codes(upto 4pts, downto 2pts),_
+			SK:Path of Earth #codes(upto 4pts, downto 2pts),_
+			SK:Path of Enchantment #codes(upto 4pts, downto 2pts),_
+			SK:Path of Fire #codes(upto 4pts, downto 2pts),_
+			SK:Path of Gate #codes(upto 4pts, downto 2pts),_
+			SK:Path of Healing #codes(upto 4pts, downto 2pts),_
+			SK:Path of Knowledge #codes(upto 4pts, downto 2pts),_
+			SK:Path of Light & Darkness #codes(upto 4pts, downto 2pts),_
+			SK:Path of Meta-Spells #codes(upto 4pts, downto 2pts),_
+			SK:Path of Mind Control #codes(upto 4pts, downto 2pts),_
+			SK:Path of Movement #codes(upto 4pts, downto 2pts),_
+			SK:Path of Necromancy #codes(upto 4pts, downto 2pts),_
+			SK:Path of Protection & Warning #codes(upto 4pts, downto 2pts),_
+			SK:Path of Water #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select6(_
+		text("Choose Two of the following skills at 1 point."),_
+		pointswanted(2),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Fortune-Telling #codes(upto 1pts),_
+			SK:Fortune-Telling (Astrology) #codes(upto 1pts),_
+			SK:Fortune-Telling (Augury) #codes(upto 1pts),_
+			SK:Fortune-Telling (Crystal Gazing) #codes(upto 1pts),_
+			SK:Fortune-Telling (Dream Interpretation) #codes(upto 1pts),_
+			SK:Fortune-Telling (Feng Shui) #codes(upto 1pts),_
+			SK:Fortune-Telling (Palmistry) #codes(upto 1pts),_
+			SK:Fortune-Telling (Tarot) #codes(upto 1pts),_
+			SK:Hidden Lore #codes(upto 1pts),_
+			SK:Hidden Lore (Conspiracies) #codes(upto 1pts),_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Poetry #codes(upto 1pts),_
+			SK:Artist (Body Art) (Science & Technology) #codes(upto 1pts),_
+			SK:Artist (Illusion) #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Philosophy #codes(upto 1pts),_
+			SK:Symbol Drawing #codes(upto 1pts),_
+			SK:Expert Skill (Thanatology) #codes(upto 1pts),_
+			SK:Esoteric Medicine #codes(upto 1pts),_
+			SK:Dreaming #codes(upto 1pts),_
+			SK:Exorcism #codes(upto 1pts) _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Surgeon (Roma Arcana), displaycost(125),_
+	description(Having limited access to healing magic, Romans often must turn to surgeons for treatment of injuries. Many surgeons first learn thier craft in the army, and this template assumes some military experience.),_
+	page(F219),_
+	sets(_
+			ST:IQ = 14,_
+			ST:HT = 11_
+	),_
+	adds(_
+			AD:High Manual Dexterity = 2,_
+			SK:First Aid = 4pts,_
+			SK:Surgery = 8pts,_
+			SK:Administration = 1pts,_
+			SK:Physiology = 1pts,_
+			SK:Teaching = 1pts,_
+			SK:Savoir-Faire (Military) = 1pts,_
+			SK:Sewing = 1pts,_
+			SK:Shield (Shield) = 1pts,_
+			SK:Shortsword = 2pts,_
+			SK:Soldier = 1pts,_
+			SK:Thrown Weapon (Spear) = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points from the following advantages"),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Acute Vision,_
+			AD:Ambidexterity,_
+			AD:Military Rank,_
+			AD:Courtesy Rank,_
+			AD:Single-Minded,_
+			AD:Wealth (Roman) _
+		)_
+	),_
+	select4(_
+		text("Choose One of the following disadvantages"),_
+		pointswanted(-5),_
+		itemswanted(1),_
+		list(_
+			DI:Code of Honor (Professional),_
+			#newitem(DI:Sense of Duty (Patients), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			#newitem(DI:Code of Honor (Hippocratic Oath), -5, page(B126), cat(Mundane Mental, Mundane, Mental))_
+		)_
+	),_
+	select5(_
+		text("Choose -15 points from the following disadvantages"),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Callous,_
+			DI:Impulsiveness,_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Stubbornness,_
+			DI:Workaholic _
+		)_
+	),_
+	select6(_
+		text("Choose one of the following at 2 points."),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Hiking #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:Riding (Horse), DX/A, default(DX - 5, SK:Animal Handling - 3, SK:Riding - 10), page(B217), cat(Animal)),_
+			SK:Seamanship #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select7(_
+		text("Choose One of the following at 1 point."),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Artist (Body Art) #codes(upto 1pts),_
+			SK:Expert Skill (Epidemiology) #codes(upto 1pts),_
+			SK:Forensics #codes(upto 1pts),_
+			SK:Expert Skill (Natural Philosophy) #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Esoteric Medicine #codes(upto 1pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Courtesan (Roma Arcana)" with {replacetags(in "TE:Courtesan (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Engineer (Roma Arcana)" with {replacetags(in "TE:Engineer (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Gladiator (Roma Arcana)" with {replacetags(in "TE:Gladiator (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Legionary (Roma Arcana)" with {replacetags(in "TE:Legionary (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Magistrate (Roma Arcana)" with {replacetags(in "TE:Magistrate (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Peregrin (Roma Arcana)" with {replacetags(in "TE:Peregrin (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Philosopher (Roma Arcana)" with {replacetags(in "TE:Philosopher (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Sorcerer (Roma Arcana)" with {replacetags(in "TE:Sorcerer (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Surgeon (Roma Arcana)" with {replacetags(in "TE:Surgeon (Roma Arcana)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

@@ -1,0 +1,392 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		This data file contains the Path and Book Magic system from Gurps Thaumatology.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Thaumatology 4e.gdf
+//  Created: 08-02-2009
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Thaumatology sourcebook.
+//  GURPS Thaumatology is Copyright © 2008 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Created by Richard Brown based on material in Gurps Thaumatology
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+*******************************************************************************************************************
+// 
+//  GURPS® Character Assistant Data File
+//  Requires GCA v4 or later!
+//  Created by Richard Brown based on material from Gurps Thaumatology by Phil Masters
+// 
+*******************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Supernatural>
+Path/Book Adept, 10/20,displaycost(varies),noresync(yes),tl(),usernotes(),familiarities(), cat(Supernatural, Mental, Supernatural Mental)
+
+Ritual Magery (Path/Book), 10/20,gives(+1 to SK:Thaumatology, +1 to SK:Ritual Magic, +1 to SK:Symbol Drawing, +1 CL:Magic Paths and Books),needs(AD:Ritual Magery 0),page(B66),tl(),usernotes(),familiarities(),description(For standard magic use Magery; for Ritual Magic use Ritual Magery; for Wildcard! Magic use Magery!; for Clerical Magic use Power Investiture.), cat(Supernatural, Mental, Supernatural Mental)
+
+*******************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Occult/Magical>
+Ritual Magic (Path/Book), IQ/VH,default(SK:Religious Ritual - 6),page(B218),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Occult/Magical)
+
+<Paths/Books Skills>
+Path of Cunning, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th140),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Dreams, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th141),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Elements, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th143),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Form, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th144),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Gadgets, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th145),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Health, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th148),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Knowledge, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th151),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Luck, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th152),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Nature, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th155),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Protection, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th157),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of Spirit, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th159),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+The Book of the Names of the Dead, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th163),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Gentle Arts of the Floating World, IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th163),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+The Deeper Principa Annotated ([Skill]), IQ/VH,default("SK:[Skill]" - 6), needs(SK:[Skill]),page(Th164),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books),_
+	x(#InputReplace("Please enter an appropriate Ritual Magic core skill or leave the default and press OK:", "[skill]", "Ritual Magic (Path/Book)", "Ritual Magic Path") )
+
+Path of the People, IQ/VH,page(Th154),noresync(yes),parryat(),blockat(),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Magic Paths and Books)
+
+*******************************************************************************************************\[STOP]
+[SPELLS]
+*******************************************************************************************************\[START]
+<%newspelllist%>
+_New Spell (Path/Book), type(Tech/H), CountAsNeed(Path/Book), ident(Path/Book), cat(~Path/Book Rituals, %newspelllist%), mods(Spells), shortcat(Ri, %newspellaliaslist%), needs("SK:%newspellalt1list%"), default("SK:%newspellalt1list%::level" [default]), upto(prereq), prereqcount([default]), class(Path/Book), time([time]), duration(var), castingcost([castingcost]),_
+	x(#InputToTagReplace("NEW SPELL: Please enter the name of this spell:", name),_
+	#InputReplace("Please enter the default penalty for this Spell. _
+					Please include the negative (or positive) sign; e.g. -4 or +0" , "[default]"),_
+	#InputReplace("Please enter the Casting Time of this spell:", "[time]", "1 sec.", "New Spell"),_
+	#InputReplace("Please enter the Casting Cost of this spell:", "[castingcost]", , "New Spell"),_
+	#ChoiceList(_
+				name(newspell),_
+				title(Choose a College),_
+				text(Choose the Path or Book from the list below:),_
+				picksallowed(1),_
+				method(bynumber),_
+				list(_
+					"~Path/Book Rituals - Cunning",_
+					"~Path/Book Rituals - Dreams",_
+					"~Path/Book Rituals - Elements",_
+					"~Path/Book Rituals - Form",_
+					"~Path/Book Rituals - Gadgets",_
+					"~Path/Book Rituals - Health",_
+					"~Path/Book Rituals - Knowledge",_
+					"~Path/Book Rituals - Luck",_
+					"~Path/Book Rituals - Nature",_
+					"~Path/Book Rituals - People",_
+					"~Path/Book Rituals - Protection",_
+					"~Path/Book Rituals - Spirit",_
+					"~Path/Book Rituals - The Book of the Names of the Dead",_
+					"~Path/Book Rituals - Gentle Arts of the Floating World",_
+					"~Path/Book Rituals - The Deeper Principa Annotated",_
+					"~Path/Book Rituals - User Defined"  _
+				),_
+			aliaslist(_
+				"Cu",_
+				"Dr",_
+				"El",_
+				"Fo",_
+				"Ga",_
+				"He",_
+				"Kn",_
+				"Pe",_
+				"Lu",_
+				"Na",_
+				"Pr",_
+				"Sp",_
+				"ND",_
+				"GA",_
+				"PA",_
+				"UD" _
+				),_
+			alt1list(_
+					"Path of Cunning",_
+					"Path of Dreams",_
+					"Path of Elements",_
+					"Path of Form",_
+					"Path of Gadgets",_
+					"Path of Health",_
+					"Path of Knowledge",_
+					"Path of Luck",_
+					"Path of Nature",_
+					"Path of the People",_
+					"Path of Protection",_
+					"Path of Spirit",_
+					"The Book of the Names of the Dead",_
+					"Gentle Arts of the Floating World",_
+					"The Deeper Principa Annotated",_
+					"User Defined"  _
+				)_
+			),_
+		#edit _
+	), noresync(yes)
+
+<~Path/Book Rituals>
+Cloud Memory (Path),type(Tech/H),castingcost(12),class(Path),CountAsNeed(Path/Book), ident(Path/Book),default("SK:Path of Cunning::level" -7),duration(perm),familiarities(),mods(Spells),needs("SK:Path of Cunning"),noresync(yes),prereqcount(-7),shortcat(Ri, Cu),time(1 hour),tl(),upto(prereq),usernotes(),baseapppoints(4), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning)
+
+Guise (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu),needs("SK:Path of Cunning"),default("SK:Path of Cunning::level" -1),upto(prereq),prereqcount(-1),class(Path),time(20),duration(var),castingcost(4),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning)
+
+Hallucination (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu),needs("SK:Path of Cunning"),default("SK:Path of Cunning::level" -6),upto(prereq),prereqcount(-6),class(Path),time(1d x 10 min),duration(var),castingcost(10),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning)
+
+Hand of Glory (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu, ND),needs("SK:Path of Cunning" | "SK:The Book of the Names of the Dead"),default("SK:Path of Cunning::level" -7, "SK:The Book of the Names of the Dead::level" - 8),upto(prereq),prereqcount(-7),class(Path),time(1d x 5 min),duration(var),castingcost(11),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning, ~Path/Book Rituals - The Book of The Names of the Dead)
+
+Liars Charm (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu),needs("SK:Path of Cunning"),default("SK:Path of Cunning::level" +0),upto(prereq),prereqcount(+0),class(Path),time(20 min),duration(perm),castingcost(3),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Lust (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu, He, GA),needs("SK:Path of Cunning" | "SK:Path of Health" | "SK:Gentle Arts of the Floating World"),default("SK:Path of Cunning::level" -4, "SK:Path of Health::level" -5, "SK:Gentle Arts of the Floating World::level" -4),upto(prereq),prereqcount(-4),class(Path),time(1 hour),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning, ~Path/Book Rituals - Health, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Mist (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu, El, Na),needs("SK:Path of Cunning" | "SK:Path of Elements" | "SK:Path of Nature"),default("SK:Path of Cunning::level" -4, "SK:Path of Elements::level" - 2, "SK:Path of Nature::Level " -3),upto(prereq),prereqcount(-4),class(Path),time(10 min),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning, ~Path/Book Rituals - Elements, ~Path/Book Rituals - Nature)
+
+Obscurity (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu),needs("SK:Path of Cunning"),default("SK:Path of Cunning::level" -5,),upto(prereq),prereqcount(-5),class(Path),time(10 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning)
+
+Slumber (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu, Dr, He, GA),needs("SK:Path of Cunning" | "SK:Path of Dreams" | "SK:Path of Health" | "SK:Gentle Arts of the Floating World"),default("SK:Path of Cunning::level" -3, "SK:Path of Dreams::level" -2, "SK:Path of Health::Level" -2, "SK:Gentle Arts of the Floating World::level" -3),upto(prereq),prereqcount(-3),class(Path),time(10 min),duration(var),castingcost(4),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning, ~Path/Book Rituals - Dreams, ~Path/Book Rituals - Health)
+
+Suggestion (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu),needs("SK:Path of Cunning"),default("SK:Path of Cunning::level" -6),upto(prereq),prereqcount(-6),class(Path),time(10 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning)
+
+Veil (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Cu, Kn, Pr),needs("SK:Path of Cunning" | "SK:Path of Knowledge" | "SK:Path of Protection"),default("SK:Path of Cunning::level" -4, "SK:Path of Knowledge::level" -3, "SK:Path of Protection::Level" -4),upto(prereq),prereqcount(-4),class(Path),time(20 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Cunning, ~Path/Book Rituals - Knowledge, ~Path/Book Rituals - Protection)
+
+Dream Sanctum (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Dr, Pr, GA),needs("SK:Path of Dreams" | "SK:Path of Protection" | "SK:Gentle Arts of the Floating World"),default("SK:Path of Dreams::level" -3, "SK:Path of Protection::level" -6, "SK:Gentle Arts of the Floating World::level" -6),upto(prereq),prereqcount(-3),class(Path),time(20 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Dreams, ~Path/Book Rituals - Protection)
+
+Dream Shackles (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Dr),needs("SK:Path of Dreams"),default("SK:Path of Dreams::level" -8),upto(prereq),prereqcount(-8),class(path),time(1 hour),duration(var),castingcost(13),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Dreams)
+
+Dream Visitor (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Dr),needs("SK:Path of Dreams"),default("SK:Path of Dreams::level" -2),upto(prereq),prereqcount(-2),class(Path),time(10 min),duration(var),castingcost(4),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Dreams)
+
+Dreamwalk (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Dr),needs("SK:Path of Dreams"),default("SK:Path of Dreams::level" +0),upto(prereq),prereqcount(+0),class(Path),time(1 hour),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Dreams)
+
+Night Terrors (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Dr, ND),needs("SK:Path of Dreams" | "SK:The Book of the Names of the Dead"),default("SK:Path of Dreams::level" -5, "SK:the Book of the Names of the Dead::level"-4),upto(prereq),prereqcount(-5),class(Path),time(1 hour),duration(var),castingcost(10),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Dreams, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Calm the Winds (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El, Pe),needs("SK:Path of Elements" | "SK:Path of the People"),default("SK:Path of Elements::level" +0, "SK:Path of the People::level"-3),upto(prereq),prereqcount(+0),class(path),time(10 min.),duration(var),castingcost(2/+1 per level),noresync(yes),tl(),usernotes(),familiarities(),baseapppoints(2), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements, ~Path/Book Rituals - People)
+
+Command the Waves (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El),needs("SK:Path of Elements"),default("SK:Path of Elements::level" -4),upto(prereq),prereqcount(-4),class(path),time(10min),duration(var),castingcost(6 +1 per level),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements)
+
+Conjure Flame (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El),needs("SK:Path of Elements"),default("SK:Path of Elements::level" -4),upto(prereq),prereqcount(-4),class(path),time(10 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements)
+
+Endure Elements (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El, Na, Pr),needs("SK:Path of Elements" | "SK:Path of Nature" | "SK:Path of Protection"),default("SK:Path of Elements::level" +0, "SK:Path of Nature::level", "SK:Path of Protection::Level" +0),upto(prereq),prereqcount(+0),class(path),time(10 min),duration(var),castingcost(2 +1 per 10 levels),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements, ~Path/Book Rituals - Nature, ~Path/Book Rituals - Protection)
+
+Firecalm (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El),needs("SK:Path of Elements"),default("SK:Path of Elements::level" -1),upto(prereq),prereqcount(-1),class(path),time(10 min),duration(var),castingcost(3 +1 per level),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements)
+
+Inexorable Breeze (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El),needs("SK:Path of Elements"),default("SK:Path of Elements::level" -1),upto(prereq),prereqcount(-1),class(path),time(10 min),duration(var),castingcost(11 +1 per level),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements)
+
+Rockfall (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El),needs("SK:Path of Elements"),default("SK:Path of Elements::level" -6),upto(prereq),prereqcount(-6),class(path),time(10 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements)
+
+Shake the Earth (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, El),needs("SK:Path of Elements"),default("SK:Path of Elements::level" -7),upto(prereq),prereqcount(-7),class(path),time(20 min),duration(var),castingcost(10/15/20),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements)
+
+Thunderbolt (Path),type(Tech/H),castingcost(12),class(path),CountAsNeed(Path/Book), ident(Path/Book),default("SK:Path of Elements::level" -6, "SK:Path of Nature::level" -7),duration(var),familiarities(),mods(Spells),needs("SK:Path of Elements" | "SK:Path of Nature"),noresync(yes),prereqcount(-6),shortcat(Ri, El, Na),time(1 hour +10 min),tl(),upto(prereq),usernotes(), cat(~Path/Book Rituals, ~Path/Book Rituals - Elements, ~Path/Book Rituals - Nature)
+
+Gentle Beast (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Fo, Na),needs("SK:Path of Form" | "SK:Path of Nature"),default("SK:Path of Form::level" -6, "SK:Path of Nature::level" -1),upto(prereq),prereqcount(-6),class(path),time(10 min),duration(var),castingcost(3 +1 per reaction bonus),noresync(yes),tl(),usernotes(),familiarities(),baseapppoints(2), cat(~Path/Book Rituals, ~Path/Book Rituals - Form, ~Path/Book Rituals - Nature)
+
+Reversion of Form (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Fo),needs("SK:Path of Form"),default("SK:Path of Form::level" -5),upto(prereq),prereqcount(-5),class(path),time(30 min),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(),baseapppoints(2), cat(~Path/Book Rituals, ~Path/Book Rituals - Form)
+
+See the True Face (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Fo, Kn),needs("SK:Path of Form" | "SK:Path of Knowledge"),default("SK:Path of Form::level" -1, "SK:Path of Knowledge::level" -1),upto(prereq),prereqcount(-1),class(path),time(10 min),duration(var),castingcost(3),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Form, ~Path/Book Rituals - Knowledge)
+
+Skinchange (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Fo),needs("SK:Path of Form"),default("SK:Path of Form::level" -6),upto(prereq),prereqcount(-6),class(path),time(20 min),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Form)
+
+Speak With Beasts (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Fo, Na),needs("SK:Path of Form" | "SK:Path of Nature"),default("SK:Path of Form::level" -4, "SK:Path of Nature::level" -3),upto(prereq),prereqcount(-4),class(path),time(10 min),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Form, ~Path/Book Rituals - Nature)
+
+Fix Glitch (Path),type(Tech/H),castingcost(4),class(path),CountAsNeed(Path/Book), ident(Path/Book),default("SK:Path of Gadgets::level" -2),duration(var),familiarities(),mods(Spells),needs("SK:Path of Gadgets"),noresync(yes),prereqcount(-2),shortcat(Ri, Ga),time(10 min),tl(),upto(prereq),usernotes(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Fuel (path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" -4),upto(prereq),prereqcount(-4),class(path),time(10 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Ghost Sword (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Sp),needs("SK:Path of Gadgets" | "SK:Path of Spirit"),default("SK:Path of Gadgets::level" -5, "SK:Path of Spirit::level" -3),upto(prereq),prereqcount(-5),class(path),time(30 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Spirit)
+
+Great Gas Mileage (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" +0),upto(prereq),prereqcount(+0),class(path),time(10 min),duration(var),castingcost(2, +1 per 5%improvement),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Gremlins (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Lu),needs("SK:Path of Gadgets" | "SK:Path of Luck"),default("SK:Path of Gadgets::level" -3, "SK:Path of Luck::level"-4),upto(prereq),prereqcount(-3),class(path),time(30 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(),baseapppoints(2), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Luck)
+
+Journeymans Blessing (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Lu),needs("SK:Path of Gadgets" | "SK:Path of Luck"),default("SK:Path of Gadgets::level" -5, "SK:Path of Luck::level"-3),upto(prereq),prereqcount(-5),class(Path),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(),baseapppoints(2), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Luck)
+
+Journeymans Curse (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Lu),needs("SK:Path of Gadgets" | "SK:Path of Luck" | "SK:Path of the People"),default("SK:Path of Gadgets::level" -5, "SK:Path of Luck::level"-3, "SK:Path of the People::level"-4),upto(prereq),prereqcount(-5),class(Path),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(),baseapppoints(2), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Luck)
+
+Know Fault (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Kn),needs("SK:Path of Gadgets" | "SK:Path of Knowledge"),default("SK:Path of Gadgets::level" -1, "SK:Path of Knowledge::level"-4),upto(prereq),prereqcount(-1),class(Path),time(10 min),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Knowledge)
+
+Locate Spares (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Kn),needs("SK:Path of Gadgets" | "SK:Path of Knowledge"),default("SK:Path of Gadgets::level" -4, "SK:Path of Knowledge::level"-7),upto(prereq),prereqcount(-4),class(path),time(10 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Knowledge)
+
+Machines Hate You (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" -5),upto(prereq),prereqcount(-5),class(Path),time(30 min),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Read the Manual (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga, Kn),needs("SK:Path of Gadgets" | "SK:Path of Knowledge"),default("SK:Path of Gadgets::level" -2, "SK:Path of Knowledge::level"-7),upto(prereq),prereqcount(-2),class(path),time(10 min),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets, ~Path/Book Rituals - Knowledge)
+
+Repair (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" -5),upto(prereq),prereqcount(-5),class(path),time(30 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Smooth Ride (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" -2),upto(prereq),prereqcount(-2),class(Path),time(10 min),duration(var),castingcost(4),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Supercharge (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" -3),upto(prereq),prereqcount(-3),class(Path),time(20 min),duration(var),castingcost(6, +1 per +5%),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Unlimited Ammo (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Ga),needs("SK:Path of Gadgets"),default("SK:Path of Gadgets::level" -4),upto(prereq),prereqcount(-4),class(Path),time(10 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gadgets)
+
+Dose (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He),needs("SK:Path of Health"),default("SK:Path of Health::level" +0),upto(prereq),prereqcount(+0),class(Path),time(1 hour),duration(var),castingcost(5*),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health)
+
+Evil Eye (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He, ND),needs("SK:Path of Health" | "SK:The Book of the Names of the Dead"),default("SK:Path of Health::level" -7, "SK:The Book of the Names of the Dead::level"-6),upto(prereq),prereqcount(-7),class(Path),time(1 hour),duration(1 day),castingcost(12),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Fertility (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He, Na),needs("SK:Path of Health" | "SK:Path of Nature"),default("SK:Path of Health::level" -2, "SK:Path of Nature::level"-3),upto(prereq),prereqcount(-2),class(Path),time(1 hour),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health, ~Path/Book Rituals - Nature)
+
+Hasten Mount (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He, Na),needs("SK:Path of Health" | "SK:Path of Nature"),default("SK:Path of Nature::level" -5, "SK:Path of Health::level" -5),upto(prereq),prereqcount(-5),class(Path),time(10 min),duration(var),castingcost(7, +3 per +1),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health, ~Path/Book Rituals - Nature)
+
+Malaise (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He),needs("SK:Path of Health"),default("SK:Path of Health::level" -5),upto(prereq),prereqcount(-5),class(Path),time(1 hour),duration(var),castingcost(10, +2 per -1),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health)
+
+Soothe (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He GA),needs("SK:Path of Health" | "SK:Gentle Arts of the Floating World" | "SK:Path of the People"),default("SK:Path of Health::level" +0, "SK:Gentle Arts of the Floating World::level"-3, "SK:Path of the People::level"-4),upto(prereq),prereqcount(+0),class(Path),time(10 min),duration(var),castingcost(3),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Sterility (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He),needs("SK:Path of Health"),default("SK:Path of Health::level" -1),upto(prereq),prereqcount(-1),class(Path),time(1 hour),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health)
+
+Succor (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He),needs("SK:Path of Health"),default("SK:Path of Health::level" -4),upto(prereq),prereqcount(-4),class(Path),time(30 min),duration(var),castingcost(8, +1 per day of effect),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health)
+
+Tirelessness (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He),needs("SK:Path of Health"),default("SK:Path of Health::level" -5),upto(prereq),prereqcount(-5),class(Path),time(30 min),duration(var),castingcost(9, +2 per +1),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health)
+
+Vitality (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He, Pr GA),needs("SK:Path of Health" | "SK:Path of Protection" | "SK:Gentle Arts of the Floating World"),default("SK:Path of Health::level" -3, "SK:Path of Protection::level"-4, "SK:Gentle Arts of the Floating World::Level" -6),upto(prereq),prereqcount(-3),class(Path),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection, ~Path/Book Rituals - Health, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Warrior's Blessing (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, He),needs("SK:Path of Health"),default("SK:Path of Health::level" -6),upto(prereq),prereqcount(-6),class(Path),time(1 hour),duration(var),castingcost(11),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Health)
+
+Aura Reading (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge"),default("SK:Path of Knowledge::level" +0),upto(prereq),prereqcount(+0),class(Path),time(10 min),duration(var),castingcost(2),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Knowledge)
+
+History (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge"),default("SK:Path of Knowledge::level" -4),upto(prereq),prereqcount(-4),class(Path),time(10 min),duration(var),castingcost(6/9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Knowledge)
+
+Locate (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge"),default("SK:Path of Knowledge::level" -5),upto(prereq),prereqcount(-5),class(Path),time(10 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Knowledge)
+
+Read Memories (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge"),default("SK:Path of Knowledge::level" -7),upto(prereq),prereqcount(-7),class(Path),time(1 hour),duration(var),castingcost(12),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Knowledge)
+
+Read Thoughts (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge"),default("SK:Path of Knowledge::level" -7),upto(prereq),prereqcount(-7),class(Path),time(10 min),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Knowledge)
+
+Scry (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge"),default("SK:Path of Knowledge::level" -6),upto(prereq),prereqcount(-6),class(Path),time(10 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Knowledge)
+
+Vision of Luck (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Kn),needs("SK:Path of Knowledge" | "SK:Path of Luck"),default("SK:Path of Knowledge::level" -3, "SK:Path of Luck::level"-5),upto(prereq),prereqcount(-3),class(Path),time(10 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals - Knowledge)
+
+Chaperone (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu, Pr),needs("SK:Path of Luck" | "SK:Path of Protection"),default("SK:Path of Luck::level" -3, "SK:Path of Protection::level"-5),upto(prereq),prereqcount(-3),class(Path),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck, ~Path/Book Rituals - Protection)
+
+Doom (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu, Pe),needs("SK:Path of Luck" | "SK:Path of the People"),default("SK:Path of Luck::level" -8, "SK:Path of the People"-10),upto(prereq),prereqcount(-8),class(Path),time(1 hour),duration(var),castingcost(13),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck, ~Path/Book Rituals - People)
+
+Gambler's Token (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu),needs("SK:Path of Luck"),default("SK:Path of Luck::level" +0),upto(prereq),prereqcount(+0),class(Path),time(20 min),duration(var),castingcost(3),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck)
+
+Hunter's Blessing (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu, Na),needs("SK:Path of Luck" | "SK:Path of Nature"),default("SK:Path of Luck::level" -4, "SK:Path of Nature::level"-3),upto(prereq),prereqcount(-4),class(Path),time(1dx10 min),duration(var),castingcost(9 for +2, +2 per additional +1),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck, ~Path/Book Rituals - Nature)
+
+Love Charm (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu, Pe, GA),needs("SK:Path of Luck" | "SK:Path of the People" | "SK:Gentle Arts of the Floating World"),default("SK:Path of Luck::level" -3, "SK:Path of the People::level"-3, "SK:Gentle Arts of the Floating World::level" -3),upto(prereq),prereqcount(-3),class(Path),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck, ~Path/Book Rituals - People, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Loyal Item (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu),needs("SK:Path of Luck"),default("SK:Path of Luck::level" -4),upto(prereq),prereqcount(-4),class(Path),time(1 hour),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck)
+
+Stroke of Luck (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu),needs("SK:Path of Luck"),default("SK:Path of Luck::level" -1),upto(prereq),prereqcount(-1),class(Path),time(10 min),duration(var),castingcost(3, +2 per extra "benefit"),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck)
+
+Weapon Blessing (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu),needs("SK:Path of Luck"),default("SK:Path of Luck::level" -6),upto(prereq),prereqcount(-6*),class(Path),time(1 hour),duration(var),castingcost(11*),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck)
+
+Windfall (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Lu),needs("SK:Path of Luck"),default("SK:Path of Luck::level" -2),upto(prereq),prereqcount(-2),class(Path),time(1 hour),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Luck)
+
+Command Beast (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Na),needs("SK:Path of Nature"),default("SK:Path of Nature::level" -4),upto(prereq),prereqcount(-4),class(Path),time(10 min),duration(var),castingcost(6),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Nature)
+
+Predict Weather (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Na),needs("SK:Path of Nature"),default("SK:Path of Nature::level" +0),upto(prereq),prereqcount(+0),class(Path),time(10 min),duration(var),castingcost(2),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Nature)
+
+Seek Beast (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Na),needs("SK:Path of Nature"),default("SK:Path of Nature::level" +0),upto(prereq),prereqcount(+0),class(Path),time(10 min),duration(var),castingcost(2),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Nature)
+
+Summon Beast (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Na),needs("SK:Path of Nature"),default("SK:Path of Nature::level" -3),upto(prereq),prereqcount(-3),class(Path/Book),time(10 min),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Nature)
+
+Weatherworking (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Na, El),needs("SK:Path of Nature"| "SK:Path of Elements"),default("SK:Path of Nature::level"-5, "Path of Elements::level" -6),upto(prereq),prereqcount(-6),class(Path/Book),time(1 hour),duration(var),castingcost(10),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Nature, ~Path/Book Rituals - Elements)
+
+Charm Against Dark Beasts (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" -6),upto(prereq),prereqcount(-6),class(Path/Book),time(1 hour),duration(var),castingcost(11),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Cleansing (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(20 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Curse Mirror (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" -3),upto(prereq),prereqcount(-3),class(Path/Book),time(20 min),duration(var),castingcost(6 for individual, 8 for charm),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Curse Sanctum (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" +0),upto(prereq),prereqcount(+0),class(Path/Book),time(1 hour),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Dispel Ritual (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" -6),upto(prereq),prereqcount(-6),class(Path/Book),time(1 hour),duration(var),castingcost(11),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Exorcise (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr, Sp, ND),needs("SK:Path of Protection" | "SK:Path of Spirit" | "SK:The Book of the Names of the Dead"),default("SK:Path of Protection::level" -5, "SK:Path of Spirit::level"-2, "SK:The Book of the Names of the Dead::level" -4),upto(prereq),prereqcount(-5),class(Path/Book),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection, ~Path/Book Rituals - Spirit)
+
+Ghost Shirt (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" -7),upto(prereq),prereqcount(-7),class(Path/Book),time(1 hour),duration(var),castingcost(12),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Ward (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Pr),needs("SK:Path of Protection"),default("SK:Path of Protection::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(1 hour),duration(var),castingcost(9),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Protection)
+
+Astral Projection (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" -5),upto(prereq),prereqcount(-5),class(Path/Book),time(20 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Banish (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp, ND),needs("SK:Path of Spirit" | "SK:The Book of the Names of the Dead"),default("SK:Path of Spirit::level" -4, "SK:The Book of the Names of the Dead::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(20 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Bind (Path/Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp, ND),needs("SK:Path of Spirit" | "SK:The Book of the Names of the Dead"),default("SK:Path of Spirit::level" -3, "SK:The Book of the Names of the Dead::level" -3),upto(prereq),prereqcount(-3),class(Path/Book),time(10 min),duration(var),castingcost(5),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Embody (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" -5),upto(prereq),prereqcount(-5),class(Path/Book),time(2 hours),duration(var),castingcost(12),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Empower (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(10 min),duration(var),castingcost(6, +1 per 5 FP),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Fetish (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" -8),upto(prereq),prereqcount(-8),class(Path/Book),time(1 hour),duration(var),castingcost(13),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Lay to Rest (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" +0),upto(prereq),prereqcount(+0),class(Path/Book),time(20 min),duration(var),castingcost(3),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Spirit Slave (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" -6),upto(prereq),prereqcount(-6),class(Path/Book),time(1d x 10 min),duration(var),castingcost(10),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Summon (Path),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, Sp),needs("SK:Path of Spirit"),default("SK:Path of Spirit::level" +0),upto(prereq),prereqcount(+0),class(Path/Book),time(1d x10 min),duration(var),castingcost(4),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Spirit)
+
+Command the Bodies of the Dead (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, ND),needs("SK:The Book of the Names of the Dead"),default("SK:The Book of the Names of the Dead::level" -7),upto(prereq),prereqcount(-7),class(Path/Book),time(1 hour),duration(var),castingcost(12),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Summon the Uspeakable (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, ND),needs("SK:The Book of the Names of the Dead"),default("SK:The Book of the Names of the Dead::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(1 hour),duration(var),castingcost(9 ),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - The Book of the Names of the Dead)
+
+Impotence (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, GA),needs("SK:Gentle Arts of the Floating World"),default("SK:Gentle Arts of the Floating World::level" -3),upto(prereq),prereqcount(-3),class(Path/Book),time(30 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Perfect Appearance (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, GA),needs("SK:Gentle Arts of the Floating World"),default("SK:Gentle Arts of the Floating World::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(40 min),duration(var),castingcost(8, +5 per level of apearance),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Unbearable Pleasure (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, GA),needs("SK:Gentle Arts of the Floating World"),default("SK:Gentle Arts of the Floating World::level" -5),upto(prereq),prereqcount(-5),class(Path/Book),time(20 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Virility (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, GA),needs("SK: Gentle Arts of the Floating World"),default("SK:Gentle Arts of the Floating World::level" -3),upto(prereq),prereqcount(-3),class(Path/Book),time(30 min),duration(var),castingcost(7),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - Gentle Arts of the Floating World)
+
+Measurement (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, PA),needs("SK:The Deeper Principa Annotated"),default("SK:The Deeper Principa Annotated::level" -2),upto(prereq),prereqcount(-2),class(Path/Book),time(10 min),duration(var),castingcost(4),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - The Deeper Principa Annotated)
+
+Perfection of the Soul (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, PA),needs("SK:The Deeper Principa Annotated"),default("SK:The Deeper Principa Annotated::level" -5),upto(prereq),prereqcount(-5),class(Path/Book),time(20 min),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - The Deeper Principa Annotated)
+
+Thicken the Walls of the World (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, PA),needs("SK:The Deeper Principa Annotated"),default("SK:The Deeper Principa Annotated::level" -3),upto(prereq),prereqcount(-3),class(Path/Book),time(1 hour),duration(var),castingcost(8),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - The Deeper Principa Annotated)
+
+Transmutation of Metals (Book),type(Tech/H),CountAsNeed(Path/Book), ident(Path/Book),mods(Spells),shortcat(Ri, PA),needs("SK:The Deeper Principa Annotated"),default("SK:The Deeper Principa Annotated::level" -4),upto(prereq),prereqcount(-4),class(Path/Book),time(30 min),duration(var),castingcost(8, +5 per level of improvement or +3 per level of reduction),noresync(yes),tl(),usernotes(),familiarities(), cat(~Path/Book Rituals, ~Path/Book Rituals - The Deeper Principa Annotated)

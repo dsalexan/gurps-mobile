@@ -1,0 +1,1148 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 June 1. _
+			This file contains the abilities and skills presented in GURPS Psionic Powers. This file is in a very _
+			incomplete phase of development.
+Incomplete=Yes
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Psionic Powers 4e.gdf
+//  Created: 9/11/2010
+//  Modified: 6/1/2021
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS  sourcebook.
+//  GURPS Psionic Powers is Copyright © 2010 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 		Psionic Abilities
+// 		Psionic Talents and Skills
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+Basic Air Move, maxscore(1000000), minscore(0), hide(yes), display(no), round(-1),_
+	basevalue(_
+				@if(@itemhasmod(AD:Flight, Slow)=1 THEN ST:Basic Move ELSE _
+				@if(@itemhasmod(AD:Flight, Slow)=2 THEN 1 ELSE _
+				@if(@itemhasmod(AD:Flight, Gliding) THEN ST:Basic Move ELSE _
+				@if(@itemhasmod(AD:Flight, Controlled Gliding) THEN ST:Basic Move ELSE _
+				@if(AD:Flight THEN _
+					@if(@itemhasmod(Flight, Space Flight Only) THEN 0 ELSE 2 * ST:Basic Speed) ELSE _
+					0 )_
+				)))))
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Exotic Physical>
+Extra-Sensory Awareness, 20, mods(Scanning Sense, Para-Radar), page(B81,PP17), cat(Exotic, Physical), rangehalfdam(20), rangemax(20),_
+	skillused(SK:Perception), mode(''See'')
+
+<Exotic Mental>
+Enhanced Power Defense ([OneSkill]), 5/10, page(PP18), cat(Mundane, Mental),_
+	gives(+1 to "SK:[OneSkill]::parryat" listAs "Enhanced Power Defense ([OneSkill])", +1 to "SK:[OneSkill]::blockat" listAs "Enhanced Power Defense ([OneSkill])"),_
+	x(#InputToTagReplace("Please enter the name of this skill:" , [OneSkill], ,"Power Defense Skill")), noresync(yes)
+
+Enhanced Power Defense (All Psionic Skills), 10/20, page(PP18), cat(Mundane, Mental),_
+	conditional(+1 to Parry "when psionic", +1 to Block "when psionic")
+
+Modular Abilities (Slotted Cosmic Power), 0, displaycost(7+5/point), mods(Slotted Cosmic Power, Modular Ability), page(B71,PP15), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Cosmic Power Slots),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Cosmic Power Slots),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 7+5/point, formula(7+(me::level*5)), forceformula(yes), group(Slotted Cosmic Power), page(B71,PP15), mods(Modular Abilities), level([level]) )
+
+Modular Abilities (Telepathic Learning), 0, displaycost(7+5/point), mods(Telepathic Learning, Modular Ability), page(B71,PP16), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Cosmic Power Slots),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Cosmic Power Slots),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 7+5/point, formula(5+(me::level*4)), forceformula(yes), group(Telepathic Learning), page(B71,PP16), mods(Modular Abilities), level([level]) )
+
+<Psionic Powers, Psionic Powers - Animal Telepathy>
+Animal Telepathy Talent, 5/10, upto(4), page(PP71-72), gives(+1 to "CL:Psionic Powers - Animal Telepathy")
+Animal Speech (Psi), 15/18/20/25, page(PP71), upto(9), skillused(SK:Animal Speech), needs(SK:Animal Speech)
+Beast Control (Psi), 10/18/23/48/73, page(PP72), upto(5), skillused(SK:Beast Control), needs(SK:Beast Control)
+
+<Psionic Powers, Psionic Powers - Anti-Psi>
+Anti-Psi Talent, 5/10, upto(4), page(PP23-26), gives(+1 to "CL:Psionic Powers - Anti-Psi")
+Cancellation (Psi), 20/35/50/70/95, page(PP23), upto(5), skillused(SK:Cancellation), needs(SK:Cancellation)
+Interruption (Psi), 10/25/45/70, page(PP23), upto(4), skillused(SK:Cancellation), needs(SK:Cancellation)
+Para-Invisibility (Psi), 5/10, page(PP23-24), upto(10), skillused(SK:Para-Invisibility), needs(SK:Para-Invisibility)
+Psi Static (Psi), 30, page(PP26)
+Psionic Overload (Psi), 25/40/60/85, page(PP24), upto(4), skillused(SK:Cancellation), needs(SK:Cancellation)
+Psionic Shield (Psi), 2/4, page(PP24-25), skillused(SK:Psionic Shield), needs(SK:Psionic Shield)
+Psychic Armor (Psi), 8/16, page(PP25), skillused(SK:Psychic Armor), needs(SK:Psychic Armor), mode(optional)
+Resistant to [Anti-Psi Power] (Psi), 5/7, page(PP26), upto(2), skillused(SK:Psionic Resistance), needs(SK:Psionic Resistance), mode(optional),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Anti-Psi Power]", , "Resistant to [Power]") )
+Resistant to Psionics (Psi), 10/15, page(PP26), upto(2), skillused(SK:Psionic Resistance), needs(SK:Psionic Resistance), mode(optional)
+Screaming (Psi), 9/24, page(PP25), skillused(SK:Screaming), needs(SK:Screaming)
+True Sight (Psi), 16/21, page(PP25), upto(2), skillused(SK:True Sight), needs(SK:True Sight)
+
+<Psionic Powers, Psionic Powers - Astral Projection>
+Astral Projection Talent, 5/10, upto(4), page(PP26-30), gives(+1 to "CL:Psionic Powers - Astral Projection")
+Astral Armor (Psi), 3/6, page(PP26), skillused(SK:Astral Armor), needs(SK:Astral Armor), mode(optional)
+Astral Celerity (Psi), 6/12, page(PP26-27), skillused(SK:Astral Movement), needs(SK:Astral Movement), mode(optional)
+Astral Sight (Psi), 6/10/13, page(PP27-28), upto(3), skillused(SK:Astral Sight), needs(SK:Astral Sight)
+Astral Sword (Psi), 8/14, page(PP28), skillused(SK:Astral Sword), needs(SK:Astral Sword)
+Astral Travel (Psi), 28/36/48/56/68/80, page(PP28-29), upto(6), skillused(SK:Astral Travel), needs(SK:Astral Travel)
+Doesn't Eat or Drink (Psi), 8, page(PP30)
+Doesn't Sleep (Psi), 16, page(PP30)
+Resistant to [Astral Projection Power] (Psi), 5, page(PP30),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Astral Projection Power]", , "Resistant to [Power]") )
+
+<Psionic Powers, Psionic Powers - Biokinesis>
+Biokinesis Talent, 5/10, upto(4), page(PP72-73), gives(+1 to "CL:Psionic Powers - Biokinesis")
+Mold Flesh (Psi), 32/34, page(PP72-73), upto(8), skillused(SK:Mold Flesh), needs(SK:Mold Flesh)
+Strike Sense (Psi), 22/24/28/33/66, page(PP73), skillused(SK:Strike Sense), needs(SK:Strike Sense)
+
+<Psionic Powers, Psionic Powers - Dream Control>
+Dream Control Talent, 5/10, upto(4), page(PP73-74), gives(+1 to "CL:Psionic Powers - Dream Control")
+Dream Projection (Psi), 20/30/40/50/60/65/75, page(PP73-74), upto(9), skillused(SK:Dream Projection), needs(SK:Dream Projection)
+Reshape Dream (Psi), 7/14/18/25, page(PP74), upto(4), skillused(SK:Reshape Dream), needs(SK:Reshape Dream)
+
+<Psionic Powers, Psionic Powers - Ergokinesis>
+Ergokinesis Talent, 5/10, upto(4), page(PP30-37), gives(+1 to "CL:Psionic Powers - Ergokinesis")
+Confuse (Psi), 15/18/21/26/52, page(PP32-33), skillused(SK:Confuse), needs(SK:Confuse)
+Dampen (Psi), 12/24, page(PP33), skillused(SK:Dampen), needs(SK:Dampen)
+Data Retrieval (Psi), 8/14/16/26, page(PP30), upto(4), skillused(SK:Data Retrieval), needs(SK:Data Retrieval)
+EK Shield (Psi), 4/8, page(PP33), skillused(SK:EK Shield), needs(SK:EK Shield)
+Electric Vision (Psi), 8/12, page(PP33), upto(2), skillused(SK:Electric Vision), needs(SK:Electric Vision)
+Flash (Psi), 22/27, page(PP35), skillused(SK:Flash), needs(SK:Flash)
+Hologram (Psi), 10/+special, page(PP35-36), skillused(SK:Hologram), needs(SK:Hologram)
+Hyperspectral Vision (Psi), 23, page(PP37)
+I/O Tap (Psi), 6/9/12/27, page(PP30-31), upto(4), skillused(SK:I/O Tap), needs(SK:I/O Tap)
+Infravision (Psi), 9, page(PP37)
+Lightning (Psi), 12/24, page(PP33-34), skillused(SK:Lightning), needs(SK:Lightning)
+Netrunning (Psi), 20/30/40/50/75/90/100/107, page(PP31-32), skillused(SK:Netrunning), needs(SK:Netrunning)
+Photorefraction (Psi), 5/10, page(PP36-37), skillused(SK:Photorefraction), needs(SK:Photorefraction)
+Photorefraction - Blocking (Psi), 4/8, page(PP36-37), skillused(SK:Photorefraction), needs(SK:Photorefraction)
+Resistant to [Ergokinesis Power] (Psi), 5, page(PP37),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Ergokinesis Power]", , "Resistant to [Power]") )
+Protected Vision (Psi), 5, page(PP37)
+Radar Sense (Psi), 12/14, page(PP34), skillused(SK:Radar Sense), needs(SK:Radar Sense)
+Remote Control (Psi), 10/15/20/45, page(PP32), upto(4), skillused(SK:Remote Control), needs(SK:Remote Control)
+Surge (Psi), 11/22, page(PP34), skillused(SK:Surge), needs(SK:Surge)
+Ultravision (Psi), 9, page(PP37)
+
+<Psionic Powers, Psionic Powers - ESP>
+ESP Talent, 5/10, upto(4), page(PP37-43), gives(+1 to "CL:Psionic Powers - ESP")
+Awareness (Psi), 9/11, page(PP39-40), skillused(SK:Awareness), needs(SK:Awareness)
+Clairaudience (Psi), 13/18, page(PP40), skillused(SK:Clairvoyance), needs(SK:Clairvoyance)
+Clairvoyance (Psi), 13/18, page(PP40-41), skillused(SK:Clairvoyance), needs(SK:Clairvoyance)
+Combat Sense (Psi), 24/48, page(PP37), skillused(SK:Combat Sense), needs(SK:Combat Sense)
+Common Sense (Psi), 9, page(PP43), skillused(SK:Common Sense), needs(SK:Common Sense)
+Danger Sense (Psi), 14, page(PP43), skillused(SK:Danger Sense), needs(SK:Danger Sense)
+Illuminated (Psi), 14, page(PP43), skillused(SK:Illumination), needs(SK:Illumination)
+Oracle (Psi), 14, page(PP43), skillused(SK:Oracle), needs(SK:Oracle)
+Prognostication (Psi), 18/23, page(PP37-38), upto(13), skillused(SK:Prognostication), needs(SK:Prognostication)
+Resistant to [ESP Power] (Psi), 5, page(PP43),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[ESP Power]", , "Resistant to [Power]") )
+Psi Sense (Psi), 8/13/22/32, page(PP41), upto(4), skillused(SK:Psi Sense), needs(SK:Psi Sense)
+Psidar (Psi), 9/14/19/29, page(PP41-42), upto(4), skillused(SK:Psidar), needs(SK:Psidar)
+Psychic Hunches (Psi), 14/29/36/51, page(PP42), upto(4), skillused(SK:Psychic Hunches), needs(SK:Psychic Hunches)
+Racial Memory (Psi), 14/36, page(PP43), upto(2), skillused(SK:Racial Memory), needs(SK:Racial Memory)
+Retrocognition (Psi), 14/20/30/40, page(PP38), upto(4), skillused(SK:Retrocognition), needs(SK:Retrocognition)
+Retrocognitive Flashbacks (Psi), 10/16/26/36, page(PP38), upto(4), skillused(SK:Retrocognition), needs(SK:Retrocognition)
+Seekersense (Psi), 7/13/18/29, page(PP42-43), upto(4), skillused(SK:Seekersense), needs(SK:Seekersense)
+Signature Sniffer (Psi), 4/9/18/28, page(PP38-39), upto(4), skillused(SK:Psi Sense), needs(SK:Psi Sense)
+Spirit Communication (Psi), 8/13/18/28, page(PP43), upto(4), skillused(SK:Spirit Communication), needs(SK:Spirit Communication)
+True Sight (Psi), 15/19, page(PP25,PP43), upto(2), skillused(SK:True Sight), needs(SK:True Sight)
+Visions (Psi), special, page(PP39), skillused(SK:Vision), needs(SK:Vision)
+
+<Psionic Powers, Psionic Powers - Probability Alteration>
+Probability Alteration Talent, 5/10, upto(4), page(PP43-46), gives(+1 to "CL:Psionic Powers - Probability Alteration")
+Adjustment (Psi), 10/14, page(PP44), upto(9), skillused(SK:Adjustment), needs(SK:Adjustment)
+Coincidence (Psi), 27/54, page(PP44), skillused(SK:Coincidence), needs(SK:Coincidence)
+Combat Sense (Psi), 24/48, page(PP37,PP45), skillused(SK:Combat Sense), needs(SK:Combat Sense)
+Curse (Psi), 22/24, page(PP45), upto(9), skillused(SK:Curse), needs(SK:Curse)
+Resistant to [Probability Alteration Power] (Psi), 5, page(PP46),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Probability Alteration Power]", , "Resistant to [Power]") )
+Second Chance (Psi), 12/24, page(PP45), upto(4), skillused(SK:Second Chance), needs(SK:Second Chance)
+Weather Control (Psi), 22/44, page(PP45-46), skillused(SK:Weather Control), needs(SK:Weather Control)
+Wild Talent (Psi), 18/36, page(PP46)
+
+<Psionic Powers, Psionic Powers - Psychic Healing>
+Psychic Healing Talent, 5/10, upto(4), page(PP46-49), gives(+1 to "CL:Psionic Powers - Psychic Healing")
+Aura Reading (Psi), 4/7/13/16/22, page(PP46), upto(5), skillused(SK:Aura Reading), needs(SK:Aura Reading)
+Cure (Psi), 18/24, page(PP46-47), skillused(SK:Cure), needs(SK:Cure)
+Cure Disease (Psi), 6/12, page(PP47), skillused(SK:Cure), needs(SK:Cure)
+Cure Injury (Psi), 12/18, page(PP47), skillused(SK:Cure), needs(SK:Cure)
+Disease Shield (Psi), 15/17, page(PP48), upto(8), skillused(SK:Disease Shield), needs(SK:Disease Shield)
+Empathy (Psi), 14, page(PP49), skillused(SK:Empathy), needs(SK:Empathy)
+Life Extension (Psi), 9/21, page(PP48-49), skillused(SK:Life Extension), needs(SK:Life Extension)
+Metabolism Control (Psi), 4.5/9, page(PP49), skillused(SK:Metabolism Control), needs(SK:Metabolism Control)
+Resistant to [Psychic Healing Power] (Psi), 5, page(PP49),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Psychic Healing Power]", , "Resistant to [Power]") )
+Recovery (Psi), 9, page(PP49)
+Regeneration (Psi), 9/23/45, page(PP49), upto(3)
+Regrowth (Psi), 36, page(PP49)
+Resistant to Disease (Psi), 3/5/9, page(PP49), upto(3)
+Resistant to Ingested Poison (Psi), 3/5/9, page(PP49), upto(3)
+Resistant to Poison (Psi), 5/8/14, page(PP49), upto(3)
+Resistant to Sickness (Psi), 5/8/14, page(PP49), upto(3)
+Sleep (Psi), 25/28/31/36/72, page(PP49), skillused(SK:Sleep), needs(SK:Sleep)
+
+<Psionic Powers, Psionic Powers - Psychic Vampirism>
+Psychic Vampirism Talent, 5/10, upto(4), page(PP49-52), gives(+1 to "CL:Psionic Powers - Psychic Vampirism")
+Detect Life (Psi), 27, page(PP52), skillused(SK:Detect Life), needs(SK:Detect Life)
+Drain ST (Psi), 24/26, page(PP50), upto(9), skillused(SK:Drain ST), needs(SK:Drain ST)
+Drain DX (Psi), 24/26, page(PP50), upto(9), skillused(SK:Drain DX), needs(SK:Drain DX)
+Drain IQ (Psi), 24/26, page(PP50), upto(9), skillused(SK:Drain IQ), needs(SK:Drain IQ)
+Drain HT (Psi), 24/26, page(PP50), upto(9), skillused(SK:Drain HT), needs(SK:Drain HT)
+Drain Emotion (Psi), 10/15/25/30, page(PP50), upto(4), skillused(SK:Drain Emotion), needs(SK:Drain Emotion)
+Resistant to [Psychic Vampirism Power] (Psi), 5, page(PP52),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Psychic Vampirism Power]", , "Resistant to [Power]") )
+Steal Dreams (Psi), 23/31/40/48/67, page(PP50-51), upto(5), skillused(SK:Steal Dreams), needs(SK:Steal Dreams)
+Steal Energy (Psi), 32/34/37/39/42/44/51, page(PP51), skillused(SK:Steal Energy), needs(SK:Steal Energy)
+Steal Life (Psi), 25/29, page(PP52), skillused(SK:Steal Life), needs(SK:Steal Life)
+Steal Power (Psi), 55/65, page(PP52), upto(9), skillused(SK:Steal Power), needs(SK:Steal Power)
+
+<Psionic Powers, Psionic Powers - Psychokinesis>
+Psychokinesis Talent, 5/10, upto(4), page(PP53-57), gives(+1 to "CL:Psionic Powers - Psychokinesis")
+Cryokinesis (Psi), 13/26, page(PP55-56), skillused(SK:Cryokinesis), needs(SK:Cryokinesis)
+Extra ST without HP (Psi), 7.2/14.4, page(PP57)
+Levitation (Psi), 14/16, page(PP55), skillused(SK:Levitation), needs(SK:Levitation)
+PK Shield (Psi), 4/8, page(PP56), skillused(SK:PK Shield), needs(SK:PK Shield)
+Resistant to [Psychokinesis Power] (Psi), 5, page(PP57),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Psychokinesis Power]", , "Resistant to [Power]") )
+Pyrokinesis (Psi), 14/28, page(PP56-57), skillused(SK:Pyrokinesis), needs(SK:Pyrokinesis)
+Super Jump (Psi), 9/18, page(PP57)
+Telekinetic Control (Psi), 8/16, page(PP54), skillused(SK:Telekinetic Control), needs(SK:Telekinetic Control)
+Temperature Tolerance (Psi), 0.9/1.8, page(PP57)
+TK Bullet (Psi), 5/10, page(PP53-54), skillused(SK:TK Bullet), needs(SK:TK Bullet)
+TK Crush (Psi), 5/10, page(PP54), skillused(SK:TK Crush), needs(SK:TK Crush)
+TK Grab (Psi), 7/14, page(PP54-55), skillused(SK:TK Grab), needs(SK:TK Grab)
+TK Grab - Short Ranged (Psi), 4/8, page(PP54-55), skillused(SK:TK Grab), needs(SK:TK Grab)
+Walk on Air (Psi), 18, page(PP57)
+Walk on Liquid (Psi), 14, page(PP57)
+
+<Psionic Powers, Psionic Powers - Psychometabolism>
+Psychometabolism Talent, 5/10, upto(4), page(PP75-76), gives(+1 to "CL:Psionic Powers - Psychometabolism")
+Damage Control (Psi), 8/24/32/64/72/92, page(PP75), upto(7), skillused(SK:Damage Control), needs(SK:Damage Control)
+Projected Senses (Psi), 7/14, page(PP75-76), skillused(SK:Projected Senses), needs(SK:Projected Senses)
+
+<Psionic Powers, Psionic Powers - Telepathy>
+Telepathy Talent, 5/10, upto(4), page(PP57-67), gives(+1 to "CL:Psionic Powers - Telepathy")
+Aspect (Psi), 4/8, page(PP61), skillused(SK:Aspect), needs(SK:Aspect)
+Borrow Skill (Psi), 7/10, page(PP57-58), skillused(SK:Borrow Skill), needs(SK:Borrow Skill)
+Emotion Control (Psi), 10/15/25/30/55/80, page(PP61), upto(6), skillused(SK:Suggestion), needs(SK:Suggestion)
+Emotion Sense (Psi), 3/9/18/20, page(PP58), upto(4), skillused(SK:Emotion Sense), needs(SK:Emotion Sense)
+Instill Fear (Psi), 18/21, page(PP64-65), skillused(SK:Instill Fear), needs(SK:Instill Fear)
+Mental Blow (Psi), 17/20/23/28/33/38, page(PP65), upto(6), skillused(SK:Mental Blow), needs(SK:Mental Blow)
+Mental Stab (Psi), 33/43/52/69/85/101, page(PP65-66), upto(6), skillused(SK:Mental Stab), needs(SK:Mental Stab)
+Mental Surgery (Psi), 10/25/33/48/65, page(PP61-62), upto(5), skillused(SK:Mental Surgery), needs(SK:Mental Surgery)
+Mind Clouding (Psi), 6/12, page(PP66), skillused(SK:Mind Clouding), needs(SK:Mind Clouding)
+Mind Shield (Psi), 4/8, page(PP66-67), skillused(SK:Mind Shield), needs(SK:Mind Shield)
+Mind Shield - Feedback (Psi), 3/6, page(PP66-67), skillused(SK:Mind Shield), needs(SK:Mind Shield)
+Mind Swap (Psi), 20/45/60/65/70, page(PP62), upto(5), skillused(SK:Mind Swap), needs(SK:Mind Swap)
+Mindlink (Psi), varies, page(PP67)
+Mindwipe (Psi), 20/23/26/31/36/41, page(PP62), upto(6), skillused(SK:Mindwipe), needs(SK:Mindwipe)
+Resistant to [Telepathy Power] (Psi), 5, page(PP67),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Telepathy Power]", , "Resistant to [Power]") )
+Sensory Control (Psi), 33/40/43/45/48, page(PP62-63), upto(5), skillused(SK:Sensory Control), needs(SK:Sensory Control)
+Sensory Overload (Psi), 20/28/30/33/35, page(PP62-63), upto(5), skillused(SK:Sensory Control), needs(SK:Sensory Control)
+Sleep (Psi), 25/28/31/36/72, page(PP49, 66), skillused(SK:Sleep), needs(SK:Sleep)
+Suggestion (Psi), 10/20/30/35/50/75, page(PP63-64), upto(7), skillused(SK:Suggestion), needs(SK:Suggestion)
+Telecontrol (Psi), 30/45/60/75/90, page(PP64), upto(5), skillused(SK:Telecontrol), needs(SK:Telecontrol)
+Telepathy Sense (Psi), 4/7/11/16, page(PP67), upto(4), skillused(SK:Telepathy Sense), needs(SK:Telepathy Sense)
+Telereceive (Psi), 21/36/42/45/60/75, page(PP58-60), upto(6), skillused(SK:Telereceive), needs(SK:Telereceive)
+Telereceive - Shallow (Psi), 9/18/24/27/42/57, page(PP58-60), upto(6), skillused(SK:Telereceive), needs(SK:Telereceive)
+Telescan (Psi), 11/15/20/25/30, page(PP67), upto(5), skillused(SK:Telescan), needs(SK:Telescan)
+Telesend (Psi), 9/18/21/24/27/42, page(PP60), upto(6), skillused(SK:Telesend), needs(SK:Telesend)
+Telespeak (Psi), 18/30/39/45/63/93, page(PP59), upto(6), skillused(SK:Telesend), needs(SK:Telesend)
+
+<Psionic Powers, Psionic Powers - Teleportation>
+Teleportation Talent, 5/10, upto(4), page(PP68-71), gives(+1 to "CL:Psionic Powers - Teleportation")
+Autoteleport (Psi), 20/30/40/50/55, page(PP68), upto(14), skillused(SK:Autoteleport), needs(SK:Autoteleport)
+Combat Teleport (Psi), 40, page(PP68-69), skillused(SK:Autoteleport), needs(SK:Autoteleport)
+Exoteleport (Psi), 46/51, page(PP69-70), skillused(SK:Exoteleport), needs(SK:Exoteleport)
+Exoteleport - Touch-Only (Psi), 35/40, page(PP69-70), skillused(SK:Exoteleport), needs(SK:Exoteleport)
+Innerportation (Psi), 9/18, page(PP70-71), skillused(SK:Innerportation), needs(SK:Innerportation)
+Portersense (Psi), 4/7/11/16, page(PP71), upto(4), skillused(SK:Portersense), needs(SK:Portersense)
+Resistant to [Teleportation Power] (Psi), 5, page(PP71),_
+		x( #InputReplace("Please describe the Power you are resistant to:", "[Teleportation Power]", , "Resistant to [Power]") )
+Range-Limited Exoteleport (Psi), 45/55/65/75/80, page(PP70), upto(14), skillused(SK:Exoteleport), needs(SK:Exoteleport)
+Range-Limited Exoteleport - Touch-Only (Psi), 34/44/54/64/69, page(PP70), upto(14), skillused(SK:Exoteleport), needs(SK:Exoteleport)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Psionic Perks>
+Ecstatic Psi, 1, page(PP19)
+Gestalt Familiarity, 1, page(PP19)
+Weak Latency, 1, page(PP19)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Psionic Powers, Psionic Powers - Animal Telepathy>
+Animal Speech, IQ/H, page(PP71)
+Beast Control, IQ/H, page(PP72)
+
+<Psionic Powers, Psionic Powers - Anti-Psi>
+Para-Invisibility, IQ/H, page(PP23-24)
+Cancellation, Will/H, page(PP23-24)
+Psionic Shield, Will/H, page(PP24-25)
+Psychic Armor, Will/H, page(PP25)
+Psionic Resistance, Will/H, page(PP26)
+Screaming, Will/H, page(PP25)
+True Sight, Will/H, page(PP25)
+
+<Psionic Powers, Psionic Powers - Astral Projection>
+Astral Armor, Will/H, page(PP26)
+Astral Movement, DX/H, page(PP26-27)
+Astral Sight, Per/H, page(PP27-28)
+Astral Sword, DX/H, page(PP28)
+Astral Travel, IQ/H, page(PP28-29)
+
+<Psionic Powers, Psionic Powers - Biokinesis>
+Mold Flesh, Will/H, page(PP72-73)
+Strike Sense, Will/H, page(PP73)
+
+<Psionic Powers, Psionic Powers - Dream Control>
+Dream Projection, IQ/H, page(PP73-74)
+Reshape Dream, IQ/H, page(PP74)
+
+<Psionic Powers, Psionic Powers - Ergokinesis>
+Confuse, Will/H, page(PP32-33)
+Dampen, IQ/H, page(PP33)
+Data Retrieval, IQ/H, page(PP30)
+EK Shield, IQ/H, page(PP33)
+Electric Vision, Per/H, page(PP33)
+Flash, Will/H, page(PP35)
+Hologram, IQ/H, page(PP35-36)
+I/O Tap, IQ/H, page(PP30-31)
+Lightning, IQ/H, page(PP33-34)
+Netrunning, IQ/H, page(PP31-32)
+Photorefraction, IQ/H, page(PP36-37)
+Radar Sense, Per/H, page(PP34)
+Remote Control, IQ/H, page(PP32)
+Surge, Will/H, page(PP34)
+
+<Psionic Powers, Psionic Powers - ESP>
+Awareness, Per/H, page(PP39-40)
+Clairvoyance, IQ/H, page(PP40-41)
+Combat Sense, IQ/H, page(PP37)
+Common Sense, IQ/H, page(PP43)
+Danger Sense, Per/H, page(PP43)
+Illumination, IQ/H, page(PP43)
+Oracle, IQ/H, page(PP43)
+Prognostication, IQ/H, page(PP37-38)
+Psi Sense, Per/H, page(PP38-39,PP41)
+Psidar, Per/H, page(PP41-42)
+Psychic Hunches, IQ/H, page(PP42)
+Racial Memory, IQ/H, page(PP43)
+Retrocognition, IQ/H, page(PP38)
+Seekersense, Per/H, page(PP42-43)
+Spirit Communication, IQ/H, page(PP43)
+True Sight, Will/H, page(PP25,PP43)
+Vision, IQ/H, page(PP39)
+
+<Psionic Powers, Psionic Powers - Probability Alteration>
+Adjustment, IQ/H, page(PP44)
+Coincidence, IQ/H, page(PP44)
+Combat Sense, IQ/H, page(PP37,PP45)
+Curse, Will/H, page(PP45)
+Second Chance, IQ/H, page(PP45)
+Weather Control, IQ/H, page(PP45-46)
+
+<Psionic Powers, Psionic Powers - Psychic Healing>
+Aura Reading, IQ/H, page(PP46)
+Cure, IQ/H, page(PP46-47)
+Disease Shield, Will/H, page(PP48)
+Empathy, IQ/H, page(PP49)
+Life Extension, IQ/H, page(PP48-49)
+Metabolism Control, HT/H, page(PP49)
+
+<Psionic Powers, Psionic Powers - Psychic Vampirism>
+Detect Life, Per/H, page(PP52)
+Drain ST, Will/H, page(PP50)
+Drain DX, Will/H, page(PP50)
+Drain IQ, Will/H, page(PP50)
+Drain HT, Will/H, page(PP50)
+Drain Emotion, IQ/H, page(PP50)
+Steal Dreams, Will/H, page(PP50-51)
+Steal Energy, Will/H, page(PP51)
+Steal Life, Will/H, page(PP52)
+Steal Power, Will/H, page(PP52)
+
+<Psionic Powers, Psionic Powers - Psychokinesis>
+Cryokinesis, Will/H, page(PP55-56)
+Levitation, IQ/H, page(PP55)
+PK Shield, IQ/H, page(PP56)
+Pyrokinesis, Will/H, page(PP56-57)
+Telekinetic Control, IQ/VH, page(PP54)
+TK Bullet, IQ/H, page(PP53-54)
+TK Crush, IQ/H, page(PP54)
+TK Grab, IQ/H, page(PP54-55)
+
+<Psionic Powers, Psionic Powers - Psychometabolism>
+Damage Control, HT/H, page(PP75)
+Projected Senses, IQ/H, page(PP75-76)
+
+<Psionic Powers, Psionic Powers - Telepathy>
+Aspect, Will/H, page(PP61)
+Borrow Skill, IQ/H, page(PP57-58)
+Suggestion, IQ/H, page(PP61,PP63,PP64)
+Emotion Sense, IQ/H, page(PP58)
+Instill Fear, Will/H, page(PP64-65)
+Mental Blow, Will/H, page(PP65)
+Mental Stab, Will/H, page(PP65-66)
+Mental Surgery, IQ/H, page(PP61-62)
+Mind Clouding, IQ/H, page(PP66)
+Mind Shield, Will/H, page(PP66-67)
+Mind Swap, IQ/H, page(PP62)
+Mindwipe, Will/H, page(PP62)
+Sensory Control, Will/H, page(PP62-63)
+Sleep, Will/H, page(PP49,PP66), cat(Psionic Powers - Telepathy,Psionic Powers - Psychic Healing)
+Telecontrol, IQ/H, page(PP64)
+Telepathy Sense, Per/H, page(PP67)
+Telereceive, IQ/H, page(PP58-60)
+Telescan, Per/H, page(PP67)
+Telesend, IQ/H, page(PP59-60)
+
+<Psionic Powers, Psionic Powers - Teleportation>
+Autoteleport, IQ/H, page(PP68)
+Autoteleport, IQ/H, page(PP68-69)
+Exoteleport, IQ/H, page(PP69-70)
+Innerportation, Will/H, page(PP70-71)
+Portersense, Per/H, page(PP71)
+
+<Psionic Powers, Psionic Powers - Anti-Psi Techniques>
+Crippling Attack (Cancellation), Tech/H, default("SK:Cancellation::level"-6), needs("SK:Cancellation"), upto(prereq), page(PP23,PP24)
+Precision Attack (Cancellation), Tech/H, default("SK:Cancellation::level"-2), needs("SK:Cancellation"), upto(prereq), page(PP23)
+Expansion (Para-Invisibility), Tech/H, default("SK:Para-Invisibility::level"-5), needs("SK:Para-Invisibility"), upto(prereq), page(PP24)
+Expansion (Psionic Shield), Tech/H, default("SK:Psionic Shield::level"-6), needs("SK:Psionic Shield"), upto(prereq), page(PP24)
+Mind Trap (Psionic Shield), Tech/H, default("SK:Psionic Shield::level"-5), needs("SK:Psionic Shield"), upto(prereq), page(PP25)
+Reflective Shield (Psionic Shield), Tech/H, default("SK:Psionic Shield::level"-5), needs("SK:Psionic Shield"), upto(prereq), page(PP25)
+Expansion (Psychic Armor), Tech/H, default("SK:Psychic Armor::level"-5), needs("SK:Psychic Armor"), upto(prereq), page(PP25)
+Exemption (Screaming), Tech/H, default("SK:Screaming::level"-2), needs("SK:Screaming"), upto(prereq), page(PP25)
+Projection (Screaming), Tech/H, default("SK:Screaming::level"-4), needs("SK:Screaming"), upto(prereq), page(PP25)
+Tiring Scream (Screaming), Tech/H, default("SK:Screaming::level"-5), needs("SK:Screaming"), upto(prereq), page(PP25)
+Shared Sight (True Sight), Tech/H, default("SK:True Sight::level"-5), needs("SK:True Sight"), upto(prereq), page(PP25)
+
+<Psionic Powers, Psionic Powers - Astral Projection Techniques>
+Expansion (Astral Armor), Tech/H, default("SK:Astral Armor::level"-6), needs("SK:Astral Armor"), upto(prereq), page(PP26)
+Piggyback (Astral Movement), Tech/H, default("SK:Astral Movement::level"-5), needs("SK:Astral Movement"), upto(prereq), page(PP26)
+Spectral Dodge (Astral Movement), Tech/H, default("SK:Astral Movement::level"-4), needs("SK:Astral Movement"), upto(prereq), page(PP27)
+Penetrate Disguise (Astral Sight), Tech/H, default("SK:Astral Sight::level"-5), needs("SK:Astral Sight"), upto(prereq), page(PP28)
+Penetrating Blow (Astral Sword), Tech/H, default("SK:Astral Sword::level"-5), needs("SK:Astral Sword"), upto(prereq), page(PP28)
+Astral Crossing (Astral Travel), Tech/H, default("SK:Astral Travel::level"-8), needs("SK:Astral Travel"), upto(prereq), page(PP29)
+Barrier Breaking (Astral Travel), Tech/H, default("SK:Astral Travel::level"-6), needs("SK:Astral Travel"), upto(prereq), page(PP29)
+Cloaking (Astral Travel), Tech/H, default("SK:Astral Travel::level"-8), needs("SK:Astral Travel"), upto(prereq), page(PP29)
+Piggyback (Astral Travel), Tech/H, default("SK:Astral Travel::level"-5), needs("SK:Astral Travel"), upto(prereq), page(PP29)
+
+<Psionic Powers, Psionic Powers - Ergokinesis Techniques>
+Binary Translation (Data Retrieval), Tech/H, default("SK:Data Retrieval::level"-5), needs("SK:Data Retrieval"), upto(prereq), page(PP30)
+Mirror (Data Retrieval), Tech/H, default("SK:Data Retrieval::level"-10), needs("SK:Data Retrieval"), upto(prereq), page(PP30)
+Binary Translation (I/O Tap), Tech/H, default("SK:I/O Tap::level"-5), needs("SK:I/O Tap"), upto(prereq), page(PP31)
+Adaptability (Netrunning), Tech/H, default("SK:Netrunning::level"-5), needs("SK:Netrunning"), upto(prereq), page(PP32)
+Secondary Senses (Netrunning), Tech/H, default("SK:Netrunning::level"-5), needs("SK:Netrunning"), upto(prereq), page(PP32)
+Wireless (Netrunning), Tech/H, default("SK:Netrunning::level"-4), needs("SK:Netrunning"), upto(prereq), page(PP32)
+Reprogramming (Remote Control), Tech/H, default("SK:Remote Control::level"-5), needs("SK:Remote Control"), upto(prereq), page(PP32)
+Blue Screen (Confuse), Tech/H, default("SK:Confuse::level"-5), needs("SK:Confuse"), upto(prereq), page(PP32)
+Daze (Confuse), Tech/H, default("SK:Confuse::level"-6), needs("SK:Confuse"), upto(prereq), page(PP33)
+Projection (Dampen), Tech/H, default("SK:Dampen::level"-4), needs("SK:Dampen"), upto(prereq), page(PP33)
+Expansion (EK Shield), Tech/H, default("SK:EK Shield::level"-5), needs("SK:EK Shield"), upto(prereq), page(PP33)
+Suppression (EK Shield), Tech/H, default("SK:EK Shield::level"-5), needs("SK:EK Shield"), upto(prereq), page(PP33)
+Deep Scan (Electric Vision), Tech/H, default("SK:Electric Vision::level"-8), needs("SK:Electric Vision"), upto(prereq), page(PP33)
+Particle Beam (Lightning), Tech/H, default("SK:Lightning::level"-7), needs("SK:Lightning"), upto(prereq), page(PP34)
+Thunderbolt (Lightning), Tech/H, default("SK:Lightning::level"-4), needs("SK:Lightning"), upto(prereq), page(PP34)
+Extended Arc (Radar Sense), Tech/H, default("SK:Radar Sense::level"-8), needs("SK:Radar Sense"), upto(prereq), page(PP34)
+Lock-On (Radar Sense), Tech/H, default("SK:Radar Sense::level"-2), needs("SK:Radar Sense"), upto(prereq), page(PP34)
+Mass Surge (Surge), Tech/H, default("SK:Surge::level"-7), needs("SK:Surge"), upto(prereq), page(PP34)
+Overwhelm (Flash), Tech/H, default("SK:Flash::level"-4), needs("SK:Flash"), upto(prereq), page(PP35)
+Broad Spectrum (Hologram), Tech/H, default("SK:Hologram::level"-6), needs("SK:Hologram"), upto(prereq), page(PP36)
+Increased Size (Hologram), Tech/H, default("SK:Hologram::level"-5), needs("SK:Hologram"), upto(prereq), page(PP36)
+Independent (Hologram), Tech/H, default("SK:Hologram::level"-4), needs("SK:Hologram"), upto(prereq), page(PP36)
+Broad Spectrum (Photorefraction), Tech/H, default("SK:Photorefraction::level"-4), needs("SK:Photorefraction"), upto(prereq), page(PP36)
+Expansion (Photorefraction), Tech/H, default("SK:Photorefraction::level"-5), needs("SK:Photorefraction"), upto(prereq), page(PP36)
+Reactive Use (Photorefraction), Tech/H, default("SK:Photorefraction::level"-4), needs("SK:Photorefraction"), upto(prereq), page(PP37)
+
+<Psionic Powers, Psionic Powers - ESP Techniques>
+Directed (Prognostication), Tech/H, default("SK:Prognostication::level"-5), needs("SK:Prognostication"), upto(prereq), page(PP38)
+Distant Use (Retrocognition), Tech/H, default("SK:Retrocognition::level"-4), needs("SK:Retrocognition"), upto(prereq), page(PP38)
+Event Search (Retrocognition), Tech/H, default("SK:Retrocognition::level"-5), needs("SK:Retrocognition"), upto(prereq), page(PP38)
+Exclusion (Psi Sense), Tech/H, default("SK:Psi Sense::level"-2), needs("SK:Psi Sense"), upto(prereq), page(PP38,PP41)
+Increased Range (Psi Sense), Tech/H, default("SK:Psi Sense::level"-5), needs("SK:Psi Sense"), upto(prereq), page(PP39,PP41)
+Deep Scan (Awareness), Tech/H, default("SK:Awareness::level"-5), needs("SK:Awareness"), upto(prereq), page(PP40)
+Extended Arc (Awareness), Tech/H, default("SK:Awareness::level"-8), needs("SK:Awareness"), upto(prereq), page(PP40)
+Blind Projection (Clairvoyance), Tech/H, default("SK:Clairvoyance::level"-5), needs("SK:Clairvoyance"), upto(prereq), page(PP40-41)
+Fast Activation (Clairvoyance), Tech/H, default("SK:Clairvoyance::level"-7), needs("SK:Clairvoyance"), upto(prereq), page(PP40-41)
+Secondary Senses (Clairvoyance), Tech/H, default("SK:Clairvoyance::level"-4), needs("SK:Clairvoyance"), upto(prereq), page(PP40-41)
+Visual (Clairvoyance), Tech/H, default("SK:Clairvoyance::level"-3), needs("SK:Clairvoyance"), upto(prereq), page(PP40)
+Audio (Clairvoyance), Tech/H, default("SK:Clairvoyance::level"-1), needs("SK:Clairvoyance"), upto(prereq), page(PP40)
+Dark Vision (Clairvoyance), Tech/H, default("SK:Clairvoyance::level"-2), needs("SK:Clairvoyance"), upto(prereq), page(PP40)
+Extended Range (Psidar), Tech/H, default("SK:Psidar::level"-5), needs("SK:Psidar"), upto(prereq), page(PP42)
+Shared Hunches (Psychic Hunches), Tech/H, default("SK:Psychic Hunches::level"-5), needs("SK:Psychic Hunches"), upto(prereq), page(PP42)
+Pinpoint (Seekersense), Tech/H, default("SK:Seekersense::level"-10), needs("SK:Seekersense"), upto(prereq), page(PP42)
+Channeling (Spirit Communication), Tech/H, default("SK:Spirit Communication::level"-8), needs("SK:Spirit Communication"), upto(prereq), page(PP43)
+
+<Psionic Powers, Psionic Powers - Probability Alteration Techniques>
+Cursing (Adjustment), Tech/H, default("SK:Adjustment::level"-10), needs("SK:Adjustment"), upto(prereq), page(PP44)
+Delayed Effect (Curse), Tech/H, default("SK:Curse::level"-5), needs("SK:Curse"), upto(prereq), page(PP45)
+Remove Curse (Curse), Tech/H, default("SK:Curse::level"-1), needs("SK:Curse"), upto(prereq), page(PP45)
+Transference (Second Chance), Tech/H, default("SK:Second Chance::level"-10), needs("SK:Second Chance"), upto(prereq), page(PP45)
+Faster Onset (Weather Control), Tech/H, default("SK:Weather Control::level"-8), needs("SK:Weather Control"), upto(prereq), page(PP46)
+Unsupervised Change (Weather Control), Tech/H, default("SK:Weather Control::level"-10), needs("SK:Weather Control"), upto(prereq), page(PP46)
+
+<Psionic Powers, Psionic Powers - Psychic Healing Techniques>
+Xeno-Reading (Aura Reading), Tech/H, default("SK:Aura Reading::level"-5), needs("SK:Aura Reading"), upto(prereq), page(PP46)
+Cure Affliction (Cure), Tech/H, default("SK:Cure::level"-6), needs("SK:Cure"), upto(prereq), page(PP47)
+Heal Limb (Cure), Tech/H, default("SK:Cure::level"-6), needs("SK:Cure"), upto(prereq), page(PP47)
+Restore Limb (Cure), Tech/H, default("SK:Cure::level"-10), needs("SK:Cure"), upto(prereq), page(PP47)
+Self-Healing (Cure), Tech/H, default("SK:Cure::level"-5), needs("SK:Cure"), upto(prereq), page(PP47)
+Xenohealing (Cure), Tech/H, default("SK:Cure::level"-4), needs("SK:Cure"), upto(prereq), page(PP47)
+Delayed Effect (Disease Shield), Tech/H, default("SK:Disease Shield::level"-5), needs("SK:Disease Shield"), upto(prereq), page(PP48)
+Megadose (Life Extension), Tech/H, default("SK:Life Extension::level"-2), needs("SK:Life Extension"), upto(prereq), page(PP48)
+Anesthetic (Sleep), Tech/H, default("SK:Sleep::level"-5), needs("SK:Sleep"), upto(prereq), page(PP49,PP66), cat(Psionic Powers - Telepathy,Psionic Powers - Psychic Healing)
+Deep Sleep (Sleep), Tech/H, default("SK:Sleep::level"-5), needs("SK:Sleep"), upto(prereq), page(PP49,PP66), cat(Psionic Powers - Telepathy,Psionic Powers - Psychic Healing)
+
+<Psionic Powers, Psionic Powers - Psychic Vampirism Techniques>
+Far Draining (Drain ST), Tech/H, default("SK:Drain ST::level"-5), needs("SK:Drain ST"), upto(prereq), page(PP50)
+Painful Draining (Drain ST), Tech/H, default("SK:Drain ST::level"-1), needs("SK:Drain ST"), upto(prereq), page(PP50)
+Far Draining (Drain DX), Tech/H, default("SK:Drain DX::level"-5), needs("SK:Drain DX"), upto(prereq), page(PP50)
+Painful Draining (Drain DX), Tech/H, default("SK:Drain DX::level"-1), needs("SK:Drain DX"), upto(prereq), page(PP50)
+Far Draining (Drain IQ), Tech/H, default("SK:Drain IQ::level"-5), needs("SK:Drain IQ"), upto(prereq), page(PP50)
+Painful Draining (Drain IQ), Tech/H, default("SK:Drain IQ::level"-1), needs("SK:Drain IQ"), upto(prereq), page(PP50)
+Far Draining (Drain HT), Tech/H, default("SK:Drain HT::level"-5), needs("SK:Drain HT"), upto(prereq), page(PP50)
+Painful Draining (Drain HT), Tech/H, default("SK:Drain HT::level"-1), needs("SK:Drain HT"), upto(prereq), page(PP50)
+Lasting Effect (Drain Emotion), Tech/H, default("SK:Drain Emotion::level"-8), needs("SK:Drain Emotion"), upto(prereq), page(PP50)
+Mass Drain (Drain Emotion), Tech/H, default("SK:Drain Emotion::level"-5), needs("SK:Drain Emotion"), upto(prereq), page(PP50)
+Destabilizing (Steal Dreams), Tech/H, default("SK:Steal Dreams::level"-5), needs("SK:Steal Dreams"), upto(prereq), page(PP51)
+Far Theft (Steal Energy), Tech/H, default("SK:Steal Energy::level"-5), needs("SK:Steal Energy"), upto(prereq), page(PP51)
+No Contact (Steal Life), Tech/H, default("SK:Steal Life::level"-7), needs("SK:Steal Life"), upto(prereq), page(PP52)
+Improved Theft (Steal Power), Tech/H, default("SK:Steal Power::level"-10), needs("SK:Steal Power"), upto(prereq), page(PP52)
+Precision (Steal Power), Tech/H, default("SK:Steal Power::level"-2), needs("SK:Steal Power"), upto(prereq), page(PP52)
+
+<Psionic Powers, Psionic Powers - Psychokinesis Techniques>
+Flat Edge (TK Bullet), Tech/H, default("SK:TK Bullet::level"-2), needs("SK:TK Bullet"), upto(prereq), page(PP53)
+Rapid Fire (TK Bullet), Tech/H, default("SK:TK Bullet::level"-7), needs("SK:TK Bullet"), upto(prereq), page(PP53)
+Sharp Edge (TK Bullet), Tech/H, default("SK:TK Bullet::level"-5), needs("SK:TK Bullet"), upto(prereq), page(PP53)
+Silencer (TK Bullet), Tech/H, default("SK:TK Bullet::level"-2), needs("SK:TK Bullet"), upto(prereq), page(PP54)
+Brain Squeeze (TK Crush), Tech/H, default("SK:TK Crush::level"-10), needs("SK:TK Crush"), upto(prereq), page(PP54)
+Throat Squeeze (TK Crush), Tech/H, default("SK:TK Crush::level"-10), needs("SK:TK Crush"), upto(prereq), page(PP54)
+Mass Grab (TK Grab), Tech/H, default("SK:TK Grab::level"-7), needs("SK:TK Grab"), upto(prereq), page(PP55)
+Rapid Launch (Levitation), Tech/H, default("SK:Levitation::level"-4), needs("SK:Levitation"), upto(prereq), page(PP55)
+Expanded Area (Cryokinesis), Tech/H, default("SK:Cryokinesis::level"-5), needs("SK:Cryokinesis"), upto(prereq), page(PP55)
+Nerve Damage (Cryokinesis), Tech/H, default("SK:Cryokinesis::level"-8), needs("SK:Cryokinesis"), upto(prereq), page(PP56)
+Expansion (PK Shield), Tech/H, default("SK:PK Shield::level"-5), needs("SK:PK Shield"), upto(prereq), page(PP56)
+Suppression (PK Shield), Tech/H, default("SK:PK Shield::level"-5), needs("SK:PK Shield"), upto(prereq), page(PP56)
+Expanded Area (Pyrokinesis), Tech/H, default("SK:Pyrokinesis::level"-5), needs("SK:Pyrokinesis"), upto(prereq), page(PP57)
+
+<Psionic Powers, Psionic Powers - Telepathy Techniques>
+Faster Learning (Borrow Skill), Tech/H, default("SK:Borrow Skill::level"-4), needs("SK:Borrow Skill"), upto(prereq), page(PP58)
+Retention (Borrow Skill), Tech/H, default("SK:Borrow Skill::level"-6), needs("SK:Borrow Skill"), upto(prereq), page(PP58)
+Animalism (Emotion Sense), Tech/H, default("SK:Emotion Sense::level"-4), needs("SK:Emotion Sense"), upto(prereq), page(PP58)
+Deep Probe (Telereceive), Tech/H, default("SK:Telereceive::level"-8), needs("SK:Telereceive"), upto(prereq), page(PP59)
+Multiplicity (Telereceive), Tech/H, default("SK:Telereceive::level"-5), needs("SK:Telereceive"), upto(prereq), page(PP59)
+New Approach (Telereceive), Tech/H, default("SK:Telereceive::level"-5), needs("SK:Telereceive"), upto(prereq), page(PP59)
+Universal (Telereceive), Tech/H, default("SK:Telereceive::level"-5), needs("SK:Telereceive"), upto(prereq), page(PP60)
+Broadcast (Telesend), Tech/H, default("SK:Telesend::level"-7), needs("SK:Telesend"), upto(prereq), page(PP60)
+Full Communion (Telesend), Tech/H, default("SK:Telesend::level"-2), needs("SK:Telesend"), upto(prereq), page(PP60)
+Secure (Telesend), Tech/H, default("SK:Telesend::level"-2), needs("SK:Telesend"), upto(prereq), page(PP60)
+Send Senses (Telesend), Tech/H, default("SK:Telesend::level"-4), needs("SK:Telesend"), upto(prereq), page(PP60)
+Universal (Telesend), Tech/H, default("SK:Telesend::level"-5), needs("SK:Telesend"), upto(prereq), page(PP60)
+Aura Extension (Aspect), Tech/H, default("SK:Aspect::level"-5), needs("SK:Aspect"), upto(prereq), page(PP61)
+Amnesia (Suggestion), Tech/H, default("SK:Suggestion::level"-1), needs("SK:Suggestion"), upto(prereq), page(PP61,PP64)
+Independent (Suggestion), Tech/H, default("SK:Suggestion::level"-7), needs("SK:Suggestion"), upto(prereq), page(PP61,PP64)
+Pressed Attack (Suggestion), Tech/H, default("SK:Suggestion::level"-5), needs("SK:Suggestion"), upto(prereq), page(PP61,PP64)
+Quick and Dirty (Mental Surgery), Tech/H, default("SK:Mental Surgery::level"-4), needs("SK:Mental Surgery"), upto(prereq), page(PP61)
+Distant Use (Mind Swap), Tech/H, default("SK:Mind Swap::level"-4), needs("SK:Mind Swap"), upto(prereq), page(PP62)
+New Approach (Mind Swap), Tech/H, default("SK:Mind Swap::level"-5), needs("SK:Mind Swap"), upto(prereq), page(PP62)
+Mass Wipe (Mindwipe), Tech/H, default("SK:Mindwipe::level"-7), needs("SK:Mindwipe"), upto(prereq), page(PP62)
+Psychosomatic (Sensory Control), Tech/H, default("SK:Sensory Control::level"-10), needs("SK:Sensory Control"), upto(prereq), page(PP63)
+Subconscious Hand-Off (Sensory Control), Tech/H, default("SK:Sensory Control::level"-10), needs("SK:Sensory Control"), upto(prereq), page(PP63)
+Animalism (Telecontrol), Tech/H, default("SK:Telecontrol::level"-4), needs("SK:Telecontrol"), upto(prereq), page(PP64)
+Distant Use (Telecontrol), Tech/H, default("SK:Telecontrol::level"-4), needs("SK:Telecontrol"), upto(prereq), page(PP64)
+New Approach (Telecontrol), Tech/H, default("SK:Telecontrol::level"-5), needs("SK:Telecontrol"), upto(prereq), page(PP64)
+Secondary Senses (Telecontrol), Tech/H, default("SK:Telecontrol::level"-5), needs("SK:Telecontrol"), upto(prereq), page(PP64)
+Group Scare (Instill Fear), Tech/H, default("SK:Instill Fear::level"-5), needs("SK:Instill Fear"), upto(prereq), page(PP65)
+Indirect (Instill Fear), Tech/H, default("SK:Instill Fear::level"-3), needs("SK:Instill Fear"), upto(prereq), page(PP65)
+New Approach (Instill Fear), Tech/H, default("SK:Instill Fear::level"-5), needs("SK:Instill Fear"), upto(prereq), page(PP65)
+Lasting Blow (Mental Blow), Tech/H, default("SK:Mental Blow::level"-4), needs("SK:Mental Blow"), upto(prereq), page(PP65)
+Neurological Damage (Mental Blow), Tech/H, default("SK:Mental Blow::level"-4), needs("SK:Mental Blow"), upto(prereq), page(PP65)
+Double Strike (Mental Stab), Tech/H, default("SK:Mental Stab::level"-4), needs("SK:Mental Stab"), upto(prereq), page(PP66)
+Bulk Compensation (Mind Clouding), Tech/H, default("SK:Mind Clouding::level"-14), needs("SK:Mind Clouding"), upto(prereq), page(PP66)
+Exclusion (Mind Clouding), Tech/H, default("SK:Mind Clouding::level"-2), needs("SK:Mind Clouding"), upto(prereq), page(PP66)
+Expansion (Mind Shield), Tech/H, default("SK:Mind Shield::level"-6), needs("SK:Mind Shield"), upto(prereq), page(PP67)
+Mind Trap (Mind Shield), Tech/H, default("SK:Mind Shield::level"-5), needs("SK:Mind Shield"), upto(prereq), page(PP67)
+Reflective Shield (Mind Shield), Tech/H, default("SK:Mind Shield::level"-5), needs("SK:Mind Shield"), upto(prereq), page(PP67)
+Omniscan (Telescan), Tech/H, default("SK:Telescan::level"-10), needs("SK:Telescan"), upto(prereq), page(PP67)
+
+<Psionic Powers, Psionic Powers - Teleportation Techniques>
+Bulk Compensation (Autoteleport), Tech/H, default("SK:Autoteleport::level"-5), needs("SK:Autoteleport"), upto(prereq), page(PP68-69)
+Careful (Autoteleport), Tech/H, default("SK:Autoteleport::level"-3), needs("SK:Autoteleport"), upto(prereq), page(PP68-69)
+Tracking (Autoteleport), Tech/H, default("SK:Autoteleport::level"-2), needs("SK:Autoteleport"), upto(prereq), page(PP69)
+Mass Port (Exoteleport), Tech/H, default("SK:Exoteleport::level"-7), needs("SK:Exoteleport"), upto(prereq), page(PP70)
+Wrenching Journey (Exoteleport), Tech/H, default("SK:Exoteleport::level"-1), needs("SK:Exoteleport"), upto(prereq), page(PP70)
+Mass Port (Innerportation), Tech/H, default("SK:Innerportation::level"-7), needs("SK:Innerportation"), upto(prereq), page(PP70)
+
+<Psionic Powers, Psionic Powers - Animal Telepathy Techniques>
+Lend Intelligence (Animal Speech), Tech/H, default("SK:Animal Speech::level"-4), needs("SK:Animal Speech"), upto(prereq), page(PP71)
+Independent (Beast Control), Tech/H, default("SK:Beast Control::level"-7), needs("SK:Beast Control"), upto(prereq), page(PP72)
+Obedience (Beast Control), Tech/H, default("SK:Beast Control::level"-4), needs("SK:Beast Control"), upto(prereq), page(PP72)
+Pressed Attack (Beast Control), Tech/H, default("SK:Beast Control::level"-5), needs("SK:Beast Control"), upto(prereq), page(PP72)
+
+<Psionic Powers, Psionic Powers - Biokinesis Techniques>
+Fast Mold (Mold Flesh), Tech/H, default("SK:Mold Flesh::level"-8), needs("SK:Mold Flesh"), upto(prereq), page(PP73)
+Multichannel Attack (Strike Sense), Tech/H, default("SK:Strike Sense::level"-4), needs("SK:Strike Sense"), upto(prereq), page(PP73)
+// Strike Exotic (Strike Sense), Tech/H, default("SK:Strike Sense::level"), needs("SK:Strike Sense"), upto(prereq), page(PP73)
+
+<Psionic Powers, Psionic Powers - Dream Control Techniques>
+Piggyback (Dream Projection), Tech/H, default("SK:Dream Projection::level"-5), needs("SK:Dream Projection"), upto(prereq), page(PP74)
+Psychosomatic (Reshape Dream), Tech/H, default("SK:Reshape Dream::level"-10), needs("SK:Reshape Dream"), upto(prereq), page(PP74)
+
+<Psionic Powers, Psionic Powers - Psychometabolism Techniques>
+Harden Bone (Damage Control), Tech/H, default("SK:Damage Control::level"-4), needs("SK:Damage Control"), upto(prereq), page(PP75)
+Quick Shot (Projected Senses), Tech/H, default("SK:Projected Senses::level"-4), needs("SK:Projected Senses"), upto(prereq), page(PP76)
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<_General>
+Extended Duration, +20%/+40%/+60%/+80%/+100%/+120%/+140%/+150%/+300%, levelnames(x3, x10, x30, x100, x300, x1000, x3000, Permanent with dispelling conditions, Permanent), upto(8), group(_General), page(B105)
+Glamour: Per, -5%/-10%, levelnames(Per-5, Per-4, Per-3, Per-2, Per-1, Per), group(_General), page(PP20)
+Glamour: IQ, -5%/-10%, levelnames(IQ-5, IQ-4, IQ-3, IQ-2, IQ-1, IQ), group(_General), page(PP20)
+Increased Range: Line-of-Sight, +40%/+70%, group(_General), page(PP20), upto(2), levelnames(Base range 10 yards,Base range 100 yards)
+Low Psychic Signature, +5%/+10%, upto(5), group(_General), page(PP20), levelnames(-2,-4,-6,-8,-10)
+Preparation Required, -20%/-30%/-50%/-60%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), mods(Preparation Required)
+Preparation Required: Weakened Without Preparation, -10%/-15%/-25%/-30%, levelnames(1 minute, 10 minutes, 1 hour, 8 hours), upto(4), group(_General), page(B114), mods(Preparation Required)
+Requires Quick Contest vs ST, -10%, page(PP20), group(_General)
+Requires Quick Contest vs DX, -10%, page(PP20), group(_General)
+Requires Quick Contest vs IQ, -10%, page(PP20), group(_General)
+Requires Quick Contest vs HT, -10%, page(PP20), group(_General)
+Requires Quick Contest vs Will, -10%, page(PP20), group(_General)
+Requires Quick Contest vs Per, -10%, page(PP20), group(_General)
+Decreased Immunity, +20%/+50%/+100%/+150%/+250%, upto(5), levelnames(0, 1, 2, 3, 4), page(PP21), group(_General)
+Fixed Duration, +0%, page(PP21), group(_General)
+
+Increased Immunity, -10%/-20%, upto(4), page(PP21), group(_General)
+Reduced Duration, -5%/-10%, upto(7), page(PP21), group(_General), levelnames(1/2 duration,1/3 duration,1/6 duration,1/10 duration,1/20 duration,1/30 duration,1/60 duration)
+Weaponized, -50%/-80%, page(PP21), group(_General), upto(2), mods(Weaponized)
+
+<Weaponized>
+Resistance Penalty, 10/20, page(PP21), group(Weaponized), upto(5)
+
+<Preparation Required>
+Immediate Preparation Required, *1.5, page(PP20)
+
+<Affliction>
+Cancellation, +10%, page(PP13)
+
+<Clairsentience>
+Fixed Range, -5%, page(PP13)
+Normal Sight, -20%, page(PP13)
+
+<Compartmentalized Mind>
+Limited: One Ability, -30%, page(PP13)
+Limited: One Power, -20%, page(PP13)
+Limited: One Source, -10%, page(PP13)
+Limited: Powers Only, -5%, page(PP13)
+Mental Separation Only, -80%, page(PP13)
+Mentalism, -10%, page(PP14)
+No Mental Separation, -20%, page(PP14)
+
+<Damage Resistance>
+Malediction-Proof, +0%/+50%, page(PP14), levelnames(Only vs Maledictions,)
+
+<Detect>
+Lock-On, +50%, page(PP14)
+Precise (Nontargeting), +90%, page(PP14)
+Analysis Only, -50%, page(PP14)
+Cannot Analyze, -10%, page(PP14)
+
+<Flight>
+Slow, -25%/-45%, page(PP14), levelnames(Basic Speed,Move 1), upto(2)
+
+<Insubstantiality>
+Ghost Air, +10%, page(PP14)
+Substantial Communication, +40%, page(PP14)
+Can Carry Objects, +10%/+20%/+50%/+100%/+150%, levelnames(No Encumbrance, Light Encumbrance, Medium Encumbrance, Heavy Encumbrance, Extra-Heavy Encumbrance), upto(5), group(Insubstantiality), page(B63)
+
+<Invisibility>
+Can Carry Objects, +10%/+20%/+50%/+100%/+150%, levelnames(No Encumbrance, Light Encumbrance, Medium Encumbrance, Heavy Encumbrance, Extra-Heavy Encumbrance), upto(5), group(Insubstantiality), page(B63)
+
+<Fatigue Attack Enhancements>
+Heat, +20%, page(PP19)
+
+<Burning Attack Enhancements>
+Surge: Arcing, +100%, page(PP19)
+
+<Jumper>
+Faster Concentration, +5%/+10%, upto(%), page(PP15)
+Improved, +10%, page(PP15)
+
+<Mind Control>
+Rationalization, +20%, page(PP15)
+Slow and Sure, +40%/+80%, upto(2), page(PP15), levelnames(Always Slow and Sure, ), mods(Mind Control Slow and Sure), initmods(_
+	Speed, +0%/+30%/+45%/+75%, page(PP15), levelnames(1 hour,10 minutes,1 minute,10 seconds), upto(4)_
+	)
+
+<Mind Control Slow and Sure>
+Speed, +0%/+30%/+45%/+75%, page(PP15), levelnames(1 hour,10 minutes,1 minute,10 seconds), upto(4)
+Mind Tricks, -30%, page(PP15)
+
+<Mind Shield>
+Lockdown, +100%, page(PP15)
+Profiling, +10%, page(PP15)
+Reflection, +100%, page(PP15)
+Active, -25%, page(PP15)
+Always On, -10%, page(PP15)
+Feedback, -25%, page(PP15)
+Feedback: Always On, -50%, page(PP15)
+
+<Slotted Cosmic Power>
+_Per point of abilities, 7+5/point, formula(7+(me::level*5)), forceformula(yes), group(Slotted Cosmic Power), page(B71,PP15), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Cosmic Power Slots),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Cosmic Power Slots) _
+	), level([level])
+
+<Telepathic Learning>
+_Per point of abilities, 7+5/point, formula(5+(me::level*4)), forceformula(yes), group(Telepathic Learning), page(B71,PP16), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Telepathic Learning Slots),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Telepathic Learning Slots) _
+	), level([level])
+
+<Neutralize>
+Derangable, +10%, page(PP16)
+Power Theft: Weak, +100%, page(PP16)
+Interruption, -50%, page(PP16)
+
+<Obscure>
+Anti-Targeting,-20%, page(PP16)
+
+<Posession>
+Poor Control, -5%/-10%/-15%/-20%, upto(4), levelnames(-1, -2,-4,-8), page(PP16), mods(Posession Poor Control), initmods(_
+	Time Taken, *1/*2/*3, upto(3), page(PP16), levelnames(8 hours, 40 hours, impossible)_
+	)
+
+<Posession Poor Control>
+Time Taken, *1/*2/*3, upto(3), page(PP16), levelnames(8 hours, 40 hours, impossible)
+
+<Precognition>
+Dreaming: Active Only, -20%, page(PP17)
+Dreaming: Can't See Own Death, -20%, page(PP17)
+Dreaming, -70%, page(PP17)
+
+<Psi Static>
+Tiring, +50%, page(PP17)
+One Power, -50%, page(PP17)
+
+<Static>
+Tiring, +50%, page(PP17)
+One Power, -50%, page(PP17)
+
+<Psychometry>
+Visions, +50%, page(PP17)
+
+<See Invisible>
+Exclusive, -20%/-50%, page(PP17), upto(2), levelnames(Partially,Completely)
+
+<Telesend>
+Full Communion, +20%, page(PP17)
+
+<Telekinesis>
+Animate Life-Forms, +100%, page(PP17)
+Animate Life-Forms (Partial), 20%, page(PP17)
+
+<Unaging>
+Halt Aging, +80%/+100%/+130%, upto(3), page(PP18), levelnames(Weekly Contact,Monthly Contact,Yearly Contact), mods(Unaging Halt Aging), initmods(_
+	Per Person, +0%/+100%/+200%/+300%, page(PP18)_
+	)
+Life Extension, -30%, page(PP18)
+
+<Unaging Halt Aging>
+Per Person, +0%/+100%/+200%/+300%, page(PP18)
+
+<Warp>
+Gyroscopic, +10%, page(PP18)
+Blink Only, -60%, page(PP18)
+Exoteleport, -50%, page(PP18)
+Exoteleport: Modified Capacity (BL), -30%/-25%, page(PP18), levelnames(BL/20 lbs.,BL/10 lbs.,BL/5 lbs.,BL/3 lbs.,BL/2 lbs.,BL×3/4 lbs.,BL lbs.,BL×1.5 lbs.,BL×2 lbs.,BL×2.5 lbs.,BL×3 lbs.,BL×4.5 lbs.,BL×6 lbs.,BL×7 lbs.,BL×8 lbs.,BL×9 lbs.,BL×10 lbs.)
+Exoteleport: Modified Capacity (Static), -30%/-25%, page(PP18), levelnames(1 lb.,2 lbs.,4 lbs.,7 lbs.,10 lbs.,15 lbs.,20 lbs.,30 lbs.,40 lbs.,50 lbs.,60 lbs.,90 lbs.,120 lbs.,140 lbs.,160 lbs.,180 lbs.,200 lbs.)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Modular Abilities (Slotted Cosmic Power)
+AD:Modular Abilities (Telepathic Learning)
+AD:Extra-Sensory Awareness
+AD:Enhanced Power Defense ([OneSkill])
+AD:Enhanced Power Defense (All Psionic Skills)
+AD:Cancellation (Psi)
+AD:Interruption (Psi)
+AD:Para-Invisibility (Psi)
+AD:Anti-Psi Talent
+AD:Psionic Overload (Psi)
+AD:Psionic Shield (Psi)
+AD:Psychic Armor (Psi)
+AD:Screaming (Psi)
+AD:True Sight (Psi)
+AD:Astral Armor (Psi)
+AD:Psi Static (Psi)
+AD:Resistant to [Anti-Psi Power] (Psi)
+AD:Resistant to Psionics (Psi)
+AD:Astral Celerity (Psi)
+AD:Astral Projection Talent
+AD:Astral Sight (Psi)
+AD:Astral Sword (Psi)
+AD:Astral Travel (Psi)
+AD:Data Retrieval (Psi)
+AD:Doesn't Eat or Drink (Psi)
+AD:Doesn't Sleep (Psi)
+AD:Resistant to [Astral Projection Power] (Psi)
+AD:I/O Tap (Psi)
+AD:Ergokinesis Talent
+AD:Netrunning (Psi)
+AD:Remote Control (Psi)
+AD:Confuse (Psi)
+AD:Dampen (Psi)
+AD:EK Shield (Psi)
+AD:Electric Vision (Psi)
+AD:Lightning (Psi)
+AD:Radar Sense (Psi)
+AD:Surge (Psi)
+AD:Flash (Psi)
+AD:Hologram (Psi)
+AD:Photorefraction - Blocking (Psi)
+AD:Photorefraction (Psi)
+AD:Combat Sense (Psi)
+AD:Hyperspectral Vision (Psi)
+AD:Infravision (Psi)
+AD:Protected Vision (Psi)
+AD:Resistant to [Ergokinesis Power] (Psi)
+AD:Ultravision (Psi)
+AD:Prognostication (Psi)
+AD:ESP Talent
+AD:Retrocognition (Psi)
+AD:Retrocognitive Flashbacks (Psi)
+AD:Signature Sniffer (Psi)
+AD:Visions (Psi)
+AD:Awareness (Psi)
+AD:Clairaudience (Psi)
+AD:Clairvoyance (Psi)
+AD:Psi Sense (Psi)
+AD:Psidar (Psi)
+AD:Psychic Hunches (Psi)
+AD:Seekersense (Psi)
+AD:Common Sense (Psi)
+AD:Danger Sense (Psi)
+AD:Illuminated (Psi)
+AD:Oracle (Psi)
+AD:Racial Memory (Psi)
+AD:Resistant to [ESP Power] (Psi)
+AD:Spirit Communication (Psi)
+AD:Probability Alteration Talent
+AD:Adjustment (Psi)
+AD:Coincidence (Psi)
+AD:Curse (Psi)
+AD:Second Chance (Psi)
+AD:Weather Control (Psi)
+AD:Aura Reading (Psi)
+AD:Resistant to [Probability Alteration Power] (Psi)
+AD:Wild Talent (Psi)
+AD:Cure (Psi)
+AD:Psychic Healing Talent
+AD:Cure Disease (Psi)
+AD:Cure Injury (Psi)
+AD:Disease Shield (Psi)
+AD:Life Extension (Psi)
+AD:Empathy (Psi)
+AD:Metabolism Control (Psi)
+AD:Recovery (Psi)
+AD:Regeneration (Psi)
+AD:Regrowth (Psi)
+AD:Resistant to [Psychic Healing Power] (Psi)
+AD:Resistant to Disease (Psi)
+AD:Resistant to Ingested Poison (Psi)
+AD:Resistant to Poison (Psi)
+AD:Resistant to Sickness (Psi)
+AD:Sleep (Psi)
+AD:Psychic Vampirism Talent
+AD:Drain ST (Psi)
+AD:Drain DX (Psi)
+AD:Drain IQ (Psi)
+AD:Drain HT (Psi)
+AD:Drain Emotion (Psi)
+AD:Steal Dreams (Psi)
+AD:Steal Energy (Psi)
+AD:Detect Life (Psi)
+AD:Resistant to [Psychic Vampirism Power] (Psi)
+AD:Steal Life (Psi)
+AD:Steal Power (Psi)
+AD:TK Bullet (Psi)
+AD:Psychokinesis Talent
+AD:Telekinetic Control (Psi)
+AD:TK Crush (Psi)
+AD:TK Grab - Short Ranged (Psi)
+AD:TK Grab (Psi)
+AD:Levitation (Psi)
+AD:Cryokinesis (Psi)
+AD:PK Shield (Psi)
+AD:Pyrokinesis (Psi)
+AD:Extra ST without HP (Psi)
+AD:Resistant to [Psychokinesis Power] (Psi)
+AD:Super Jump (Psi)
+AD:Temperature Tolerance (Psi)
+AD:Walk on Air (Psi)
+AD:Walk on Liquid (Psi)
+AD:Borrow Skill (Psi)
+AD:Telepathy Talent
+AD:Emotion Sense (Psi)
+AD:Telereceive - Shallow (Psi)
+AD:Telereceive (Psi)
+AD:Telespeak (Psi)
+AD:Telesend (Psi)
+AD:Aspect (Psi)
+AD:Emotion Control (Psi)
+AD:Mental Surgery (Psi)
+AD:Mind Swap (Psi)
+AD:Mindwipe (Psi)
+AD:Sensory Control (Psi)
+AD:Sensory Overload (Psi)
+AD:Suggestion (Psi)
+AD:Telecontrol (Psi)
+AD:Instill Fear (Psi)
+AD:Mental Blow (Psi)
+AD:Mental Stab (Psi)
+AD:Mind Clouding (Psi)
+AD:Mind Shield - Feedback (Psi)
+AD:Mind Shield (Psi)
+AD:Mindlink (Psi)
+AD:Resistant to [Telepathy Power] (Psi)
+AD:Telepathy Sense (Psi)
+AD:Telescan (Psi)
+AD:Autoteleport (Psi)
+AD:Combat Teleport (Psi)
+AD:Teleportation Talent
+AD:Exoteleport - Touch-Only (Psi)
+AD:Exoteleport (Psi)
+AD:Range-Limited Exoteleport - Touch-Only (Psi)
+AD:Range-Limited Exoteleport (Psi)
+AD:Innerportation (Psi)
+AD:Animal Speech (Psi)
+AD:Portersense (Psi)
+AD:Resistant to [Teleportation Power] (Psi)
+AD:Animal Telepathy Talent
+AD:Beast Control (Psi)
+AD:Biokinesis Talent
+AD:Mold Flesh (Psi)
+AD:Strike Sense (Psi)
+AD:Dream Control Talent
+AD:Dream Projection (Psi)
+AD:Reshape Dream (Psi)
+AD:Damage Control (Psi)
+AD:Projected Senses (Psi)
+AD:Psychometabolism Talent
+
+<AllAdvantagesMental>
+AD:Modular Abilities (Slotted Cosmic Power)
+AD:Modular Abilities (Telepathic Learning)
+AD:Enhanced Power Defense ([OneSkill])
+AD:Enhanced Power Defense (All Psionic Skills)
+AD:Cancellation (Psi)
+AD:Interruption (Psi)
+AD:Para-Invisibility (Psi)
+AD:Anti-Psi Talent
+AD:Psionic Overload (Psi)
+AD:Psionic Shield (Psi)
+AD:Psychic Armor (Psi)
+AD:Screaming (Psi)
+AD:True Sight (Psi)
+AD:Astral Armor (Psi)
+AD:Psi Static (Psi)
+AD:Resistant to [Anti-Psi Power] (Psi)
+AD:Resistant to Psionics (Psi)
+AD:Astral Celerity (Psi)
+AD:Astral Projection Talent
+AD:Astral Sight (Psi)
+AD:Astral Sword (Psi)
+AD:Astral Travel (Psi)
+AD:Data Retrieval (Psi)
+AD:Doesn't Eat or Drink (Psi)
+AD:Doesn't Sleep (Psi)
+AD:Resistant to [Astral Projection Power] (Psi)
+AD:I/O Tap (Psi)
+AD:Ergokinesis Talent
+AD:Netrunning (Psi)
+AD:Remote Control (Psi)
+AD:Confuse (Psi)
+AD:Dampen (Psi)
+AD:EK Shield (Psi)
+AD:Electric Vision (Psi)
+AD:Lightning (Psi)
+AD:Radar Sense (Psi)
+AD:Surge (Psi)
+AD:Flash (Psi)
+AD:Hologram (Psi)
+AD:Photorefraction - Blocking (Psi)
+AD:Photorefraction (Psi)
+AD:Combat Sense (Psi)
+AD:Hyperspectral Vision (Psi)
+AD:Infravision (Psi)
+AD:Protected Vision (Psi)
+AD:Resistant to [Ergokinesis Power] (Psi)
+AD:Ultravision (Psi)
+AD:Prognostication (Psi)
+AD:ESP Talent
+AD:Retrocognition (Psi)
+AD:Retrocognitive Flashbacks (Psi)
+AD:Signature Sniffer (Psi)
+AD:Visions (Psi)
+AD:Awareness (Psi)
+AD:Clairaudience (Psi)
+AD:Clairvoyance (Psi)
+AD:Psi Sense (Psi)
+AD:Psidar (Psi)
+AD:Psychic Hunches (Psi)
+AD:Seekersense (Psi)
+AD:Common Sense (Psi)
+AD:Danger Sense (Psi)
+AD:Illuminated (Psi)
+AD:Oracle (Psi)
+AD:Racial Memory (Psi)
+AD:Resistant to [ESP Power] (Psi)
+AD:Spirit Communication (Psi)
+AD:Probability Alteration Talent
+AD:Adjustment (Psi)
+AD:Coincidence (Psi)
+AD:Curse (Psi)
+AD:Second Chance (Psi)
+AD:Weather Control (Psi)
+AD:Aura Reading (Psi)
+AD:Resistant to [Probability Alteration Power] (Psi)
+AD:Wild Talent (Psi)
+AD:Cure (Psi)
+AD:Psychic Healing Talent
+AD:Cure Disease (Psi)
+AD:Cure Injury (Psi)
+AD:Disease Shield (Psi)
+AD:Life Extension (Psi)
+AD:Empathy (Psi)
+AD:Metabolism Control (Psi)
+AD:Recovery (Psi)
+AD:Regeneration (Psi)
+AD:Regrowth (Psi)
+AD:Resistant to [Psychic Healing Power] (Psi)
+AD:Resistant to Disease (Psi)
+AD:Resistant to Ingested Poison (Psi)
+AD:Resistant to Poison (Psi)
+AD:Resistant to Sickness (Psi)
+AD:Sleep (Psi)
+AD:Psychic Vampirism Talent
+AD:Drain [Attribute] (Psi)
+AD:Drain Emotion (Psi)
+AD:Steal Dreams (Psi)
+AD:Steal Energy (Psi)
+AD:Detect Life (Psi)
+AD:Resistant to [Psychic Vampirism Power] (Psi)
+AD:Steal Life (Psi)
+AD:Steal Power (Psi)
+AD:TK Bullet (Psi)
+AD:Psychokinesis Talent
+AD:Telekinetic Control (Psi)
+AD:TK Crush (Psi)
+AD:TK Grab - Short Ranged (Psi)
+AD:TK Grab (Psi)
+AD:Levitation (Psi)
+AD:Cryokinesis (Psi)
+AD:PK Shield (Psi)
+AD:Pyrokinesis (Psi)
+AD:Extra ST without HP (Psi)
+AD:Resistant to [Psychokinesis Power] (Psi)
+AD:Super Jump (Psi)
+AD:Temperature Tolerance (Psi)
+AD:Walk on Air (Psi)
+AD:Walk on Liquid (Psi)
+AD:Borrow Skill (Psi)
+AD:Telepathy Talent
+AD:Emotion Sense (Psi)
+AD:Telereceive - Shallow (Psi)
+AD:Telereceive (Psi)
+AD:Telespeak (Psi)
+AD:Telesend (Psi)
+AD:Aspect (Psi)
+AD:Emotion Control (Psi)
+AD:Mental Surgery (Psi)
+AD:Mind Swap (Psi)
+AD:Mindwipe (Psi)
+AD:Sensory Control (Psi)
+AD:Sensory Overload (Psi)
+AD:Suggestion (Psi)
+AD:Telecontrol (Psi)
+AD:Instill Fear (Psi)
+AD:Mental Blow (Psi)
+AD:Mental Stab (Psi)
+AD:Mind Clouding (Psi)
+AD:Mind Shield - Feedback (Psi)
+AD:Mind Shield (Psi)
+AD:Mindlink (Psi)
+AD:Resistant to [Telepathy Power] (Psi)
+AD:Telepathy Sense (Psi)
+AD:Telescan (Psi)
+AD:Autoteleport (Psi)
+AD:Combat Teleport (Psi)
+AD:Teleportation Talent
+AD:Exoteleport - Touch-Only (Psi)
+AD:Exoteleport (Psi)
+AD:Range-Limited Exoteleport - Touch-Only (Psi)
+AD:Range-Limited Exoteleport (Psi)
+AD:Innerportation (Psi)
+AD:Animal Speech (Psi)
+AD:Portersense (Psi)
+AD:Resistant to [Teleportation Power] (Psi)
+AD:Animal Telepathy Talent
+AD:Beast Control (Psi)
+AD:Biokinesis Talent
+AD:Mold Flesh (Psi)
+AD:Strike Sense (Psi)
+AD:Dream Control Talent
+AD:Dream Projection (Psi)
+AD:Reshape Dream (Psi)
+AD:Damage Control (Psi)
+AD:Projected Senses (Psi)
+AD:Psychometabolism Talent
+
+<AllAdvantagesPhysical>
+AD:Modular Abilities (Slotted Cosmic Power)
+AD:Modular Abilities (Telepathic Learning)
+AD:Extra-Sensory Awareness
+
+<AllPerks>
+PE:Ecstatic Psi
+PE:Gestalt Familiarity
+PE:Weak Latency

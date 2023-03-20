@@ -1,0 +1,1244 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, and this file third. This will ensure the proper modifications to spells required.  THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.  MIX WITH OTHER DATA FILES WITH CAUTION.
+Worldbook=Dungeon Fantasy
+Requires="GURPS Dungeon Fantasy  1 - Adventurers.GDF"
+LoadAfter="GURPS Magic 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Requires GCA v4 or later!
+// 
+// 
+//  This data file contains information taken from the GURPS Dungeon Fantasy: The Next Level sourcebook.
+//  GURPS Dungeon Fantasy 3: The Next Level is Copyright © 2008 by Steve Jackson Games Incorporated. All rights
+//  reserved.
+// 
+//  Information in this file includes:
+// 	Many character templates and other Dungeon Fantasy related abilities from various Pyramid articles.
+// 	bumbot - Mystic Knight Template
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Emily Smirle (Bruno)
+//  RobKamm
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Eldritch Might>
+
+Eldritch Talent, 5/10, page(P3/13:17), upto(6),_
+		gives(_
+			+1 to SK:Thaumatology,_
+			+1 to CL:Imbue,_
+			+1 to CL:Imbue!), cat(Supernatural, Mental, Supernatural Mental, Talents, Eldritch Might)
+
+#Clone "AD:Eldritch Talent" as "AD:Extra Eldritch Talent"
+#ReplaceTags in "AD:Extra Eldritch Talent" with "upto(6 - AD:Eldritch Talent::level)"
+
+<Supernatural Physical>
+Imbue, 10/20/40, upto(3), cat(Supernatural, Physical), page(PU1:4), mods(Imbue)
+
+#Clone "AD:Imbue" as "AD:Extra Imbue"
+#ReplaceTags in "AD:Extra Imbue" with "cost(9/18), upto(@if(AD:Imbue::baselevel = 1 THEN 2 ELSE 1)), needs(AD:Imbue), taboo(AD:Imbue), gives(+1 to AD:Imbue),_
+				initmods(Cost Adjustment, +0, forceformula(yes), formula(@if(owner::level = 2 THEN 9 ELSE @if(AD:Imbue::baselevel = 1 THEN 0 ELSE 9))))"
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Frightening Side Effects ([Imbuement Skill]), 1, needs(AD:Imbue= 1), page(P3/13:19),_
+x(#InputReplace("You must specialize by Imbuement Skill:", "[Imbuement Skill]", "", "Frightening Side Effects"))
+
+Frightening Side Effects (%ImbuementSkillList%), 1, needs(AD:Imbue= 1), page(P3/13:19),_
+	x(#ChoiceList(_
+			name(ImbuementSkill),_
+			title(Frightening Side Effect: Choose an imbuement skill),_
+			text(Choose an imbuement skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+	"Reinforce Weapon",_
+	"Returning Weapon",_
+	"Annihilating Weapon",_
+	"Arching Shot",_
+	"Bank Shot",_
+	"Conic Blast",_
+	"Continuing Attack",_
+	"Crippling Blow",_
+	"Dancing Weapon",_
+	"Drugged Weapon",_
+	"Electric Weapon",_
+	"Envenomed Weapon",_
+	"Far Shot",_
+	"Forceful Blow",_
+	"Ghostly Weapon",_
+	"Guided Weapon",_
+	"Homing Weapon",_
+	"Incendiary Weapon",_
+	"Multi-Shot",_
+	"Penetrating Strike",_
+	"Project Blow",_
+	"Shattershot",_
+	"Shockwave",_
+	"Stealthy Attack",_
+	"Stupefying Blow",_
+	"Sudden Death",_
+	"Supreme Control",_
+	"Telescoping Weapon",_
+	"Traumatic Blow",_
+	"Binding Shot",_
+	"Burning Strike",_
+	"Chilling Strike",_
+	"Corrosive Strike",_
+	"Crushing Strike",_
+	"Cutting Strike",_
+	"Dazzling Display",_
+	"Deafening Display",_
+	"Fatiguing Strike",_
+	"Impaling Strike",_
+	"Piercing Strike",_
+	"Strike of Negation",_
+	"Toxic Strike",_
+	"Vampiric Weapon",_
+	"Withering Strike",_
+	"Blinding Defense",_
+	"Blunting Armor",_
+	"Dancing Shield",_
+	"Energizing Defense",_
+	"Expand Armor",_
+	"Fireproof Armor",_
+	"Healthful Armor",_
+	"Impenetrable Armor",_
+	"Insulated Armor",_
+	"Lighten Armor",_
+	"Nullifying Armor",_
+	"Padded Armor",_
+	"Reinforce Armor",_
+	"Resilient Armor",_
+	"Restorative Armor",_
+	"Rigid Armor",_
+	"Sovereign Armor",_
+	"Spiritual Defense",_
+	"Subtle Defense",_
+	"Thunderous Defense",_
+	"Vengeful Defense",_
+	"Widen Shield"_
+			)_
+			)_
+	), noresync(yes)
+
+Illumination, 1, needs(AD:Imbue= 1), page(P3/13:19)
+
+Imbued Weapon, 1, needs(AD:Imbue= 1, "AD:Signature Gear"), page(P3/13:19)
+
+Imbued Weapon Bond (%Weapon%), 1, needs(AD:Imbue= 1, "PE:Imbued Weapon"), page(P3/13:19),_
+conditional(%WeaponAliasList%),_
+	x(#message(_
+			"Note: You will need to add the 'Imbued Weapon Bond' modifier to the specific weapon which recieves _
+			a bonus from Weapon Bond in order for the skill level to be increased on the Weapon Table." _
+			),_
+		#ChoiceList(_
+			name(Weapon),_
+			title(Imbued Weapon Bond: Choose a Weapon Skill),_
+			text(Choose a Weapon skill from the list. If the weapon has more than one mode, using more than one skill, select them all:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"Axe/Mace",_
+				"Blowpipe",_
+				"Bolas",_
+				"Bow",_
+				"Broadsword",_
+				"Cloak",_
+				"Crossbow",_
+				"Dropping",_
+				"Flail",_
+				"Garrote",_
+				"Innate Attack (Beam)",_
+				"Innate Attack (Breath)",_
+				"Innate Attack (Gaze)",_
+				"Innate Attack (Projectile)",_
+				"Jitte/Sai",_
+				"Judo",_
+				"Knife",_
+				"Kusari",_
+				"Lance",_
+				"Lasso",_
+				"Main-Gauche",_
+				"Net",_
+				"Polearm",_
+				"Rapier",_
+				"Saber",_
+				"Shield (Buckler)",_
+				"Shield (Shield)",_
+				"Shortsword",_
+				"Sling",_
+				"Smallsword",_
+				"Spear Thrower",_
+				"Spear",_
+				"Staff",_
+				"Thrown Weapon (Axe/Mace)",_
+				"Thrown Weapon (Dart)",_
+				"Thrown Weapon (Disc)",_
+				"Thrown Weapon (Harpoon)",_
+				"Thrown Weapon (Knife)",_
+				"Thrown Weapon (Shuriken)",_
+				"Thrown Weapon (Spear)",_
+				"Thrown Weapon (Stick)",_
+				"Tonfa",_
+				"Two-Handed Axe/Mace",_
+				"Two-Handed Flail",_
+				"Two-Handed Sword",_
+				"Whip" _
+			),_
+			aliaslist(_
+				+1 to "SK:Axe/Mace",_
+				+1 to "SK:Blowpipe",_
+				+1 to "SK:Bolas",_
+				+1 to "SK:Bow",_
+				+1 to "SK:Broadsword",_
+				+1 to "SK:Cloak",_
+				+1 to "SK:Crossbow",_
+				+1 to "SK:Dropping",_
+				+1 to "SK:Flail",_
+				+1 to "SK:Garrote",_
+				+1 to "SK:Innate Attack (Beam)",_
+				+1 to "SK:Innate Attack (Breath)",_
+				+1 to "SK:Innate Attack (Gaze)",_
+				+1 to "SK:Innate Attack (Projectile)",_
+				+1 to "SK:Jitte/Sai",_
+				+1 to "SK:Judo",_
+				+1 to "SK:Knife",_
+				+1 to "SK:Kusari",_
+				+1 to "SK:Lance",_
+				+1 to "SK:Lasso",_
+				+1 to "SK:Main-Gauche",_
+				+1 to "SK:Net",_
+				+1 to "SK:Polearm",_
+				+1 to "SK:Rapier",_
+				+1 to "SK:Saber",_
+				+1 to "SK:Shield (Buckler)",_
+				+1 to "SK:Shield (Shield)",_
+				+1 to "SK:Shortsword",_
+				+1 to "SK:Sling",_
+				+1 to "SK:Smallsword",_
+				+1 to "SK:Spear Thrower",_
+				+1 to "SK:Spear",_
+				+1 to "SK:Staff",_
+				+1 to "SK:Thrown Weapon (Axe/Mace)",_
+				+1 to "SK:Thrown Weapon (Dart)",_
+				+1 to "SK:Thrown Weapon (Disc)",_
+				+1 to "SK:Thrown Weapon (Harpoon)",_
+				+1 to "SK:Thrown Weapon (Knife)",_
+				+1 to "SK:Thrown Weapon (Shuriken)",_
+				+1 to "SK:Thrown Weapon (Spear)",_
+				+1 to "SK:Thrown Weapon (Stick)",_
+				+1 to "SK:Tonfa",_
+				+1 to "SK:Two-Handed Axe/Mace",_
+				+1 to "SK:Two-Handed Flail",_
+				+1 to "SK:Two-Handed Sword",_
+				+1 to "SK:Whip" _
+			)_
+			)_
+	), noresync(yes)
+
+Improvised Imbuement, 1, needs(AD:Imbue= 1), page(P3/13:19)
+
+Mana Compensation, 1, needs(AD:Imbue= 1), page(P3/13:19)
+
+Sacrificial Imbuement, 1, needs(AD:Imbue= 1), page(P3/13:19)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Imbue! - Enhancement - Melee>
+<Imbue! - Enhancement - Ranged>
+<Imbue! - Transformation - Melee>
+<Imbue! - Transformation - Ranged>
+<Imbue! - Melee>
+<Imbue! - Ranged>
+<Imbue! - Transformation>
+<Imbue! - Enhancement>
+<Imbue!>
+Reinforce Weapon!, DX/WC, needs(AD:Imbue = 1), mods(Imbue IQ-Based WC), page(P3/13:18), description(Prereq: Imbue 1), cat(Imbue!, Imbue! - Enhancement, Imbue! - Melee, Imbue! - Enhancement - Melee)
+Returning Weapon!, DX/WC, needs(AD:Imbue = 2), mods(Imbue IQ-Based WC), page(P3/13:18), description(Prereq: Imbue 2), cat(Imbue!, Imbue! - Enhancement, Imbue! - Ranged, Imbue! - Enhancement - Ranged)
+
+<Imbue - Defensive - General>
+<Imbue - Defensive - Armor>
+<Imbue - Defensive - Shield>
+<Imbue - Defensive>
+<Imbue - Enhancement - Melee>
+<Imbue - Enhancement - Ranged>
+<Imbue - Transformation - Melee>
+<Imbue - Transformation - Ranged>
+<Imbue - Melee>
+<Imbue - Ranged>
+<Imbue - Transformation>
+<Imbue - Enhancement>
+
+<Imbue>
+
+Blinding Defense (Armor), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2,), description(Prereq: Imbue 2), page(P3/4:11), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Blinding Defense (Shield)" -4)
+
+Blinding Defense (Shield), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2,), description(Prereq: Imbue 2), page(P3/4:11), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Blinding Defense (Armor)" -4)
+
+Blunting Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:11), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Dancing Shield, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:11), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Shield)
+
+Energizing Defense (Armor), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:11), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Energizing Defense (Shield)" -4)
+
+Energizing Defense (Shield), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:11), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Energizing Defense (Armor)" -4)
+
+Expand Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:12), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Fireproof Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:12), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Healthful Armor,  DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:12), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Impenetrable Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:12), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Insulated Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Lighten Armor,  DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Nullifying Armor,  DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Padded Armor,  DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Reinforce Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2,), description(Prereq: Imbue 2), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Reinforce Shield, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2,), description(Prereq: Imbue 2), page(P3/4:39), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Shield)
+
+Resilient Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2,), description(Prereq: Imbue 2), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Restorative Armor, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Rigid Armor,  DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Sovereign Armor,  DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:13), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Armor)
+
+Spiritual Defense (Armor), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Spiritual Defense (Shield)" -4)
+
+Spiritual Defense (Shield), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Spiritual Defense (Armor)" -4)
+
+Subtle Defense (Armor), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Subtle Defense (Shield)" -4)
+
+Subtle Defense (Shield), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Subtle Defense (Armor)" -4)
+
+Thunderous Defense (Armor), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Thunderous Defense (Shield)" -4)
+
+Thunderous Defense (Shield), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1,), description(Prereq: Imbue 1), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Thunderous Defense (Armor)" -4)
+
+Vengeful Defense (Armor), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Vengeful Defense (Shield)" -4)
+
+Vengeful Defense (Shield), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - General), default("SK:Vengeful Defense (Armor)" -4)
+
+Widen Shield, DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 3,), description(Prereq: Imbue 3), page(P3/4:14), cat(Imbue, Imbue - Defensive, Imbue - Defensive - Shield)
+
+Reinforce Weapon ([Skill]), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1, SK:[Skill]), description(Prereq: Imbue 1), page(P3/13:18), cat(Imbue, Imbue - Enhancement, Imbue - Melee, Imbue - Enhancement - Melee),_
+	x(#InputReplace("You must specialize by Skill:", "[Skill]", "", "Reinforce Weapon"))
+
+Reinforce Weapon (%Melee Weapon SkillList%), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 1, SK:%Melee Weapon SkillList%), description(Prereq: Imbue 1), default(%Melee Weapon SkillAliasList%), page(P3/13:18), cat(Imbue, Imbue - Enhancement, Imbue - Melee, Imbue - Enhancement - Melee),_
+	x(#ChoiceList(_
+			name(Melee Weapon Skill),_
+			title(Reinforce Weapon: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Unarmed,_
+				Axe/Mace,_
+				Broadsword,_
+				Cloak,_
+				Flail,_
+				Force Sword,_
+				Force Whip,_
+				Garrote,_
+				Jitte/Sai,_
+				Knife,_
+				Kusari,_
+				Lance,_
+				Main-Gauche,_
+				Monowire Whip,_
+				Polearm,_
+				Rapier,_
+				Saber,_
+				Shortsword,_
+				Smallsword,_
+				Spear,_
+				Staff,_
+				Tonfa,_
+				Two-Handed Axe/Mace,_
+				Two-Handed Flail,_
+				Two-Handed Sword,_
+				Whip _
+			),_
+			aliaslist(_
+				{},_
+				{"SK:Reinforce Weapon (Flail)" - 4, "SK:Reinforce Weapon (Two-Handed Axe/Mace)" - 3},_
+				{"SK:Reinforce Weapon (Force Sword)" - 4, "SK:Reinforce Weapon (Rapier)" - 4, "SK:Reinforce Weapon (Saber)" - 4, "SK:Reinforce Weapon (Shortsword)" - 2, "SK:Reinforce Weapon (Two-Handed Sword)" - 4},_
+				{"SK:Reinforce Weapon (Net)" - 4, "SK:Reinforce Weapon (Shield)" - 4},_
+				{"SK:Reinforce Weapon (Axe/Mace)" - 4, "SK:Reinforce Weapon (Two- Handed Flail)" - 3},_
+				{"SK:Reinforce Weapon (Broadsword)" - 3, "SK:Reinforce Weapon (Jitte/Sai)" - 3, "SK:Reinforce Weapon (Knife)" - 3, "SK:Reinforce Weapon (Shortsword)" - 3, "SK:Reinforce Weapon (Two- Handed Sword)" - 3},_
+				{"SK:Reinforce Weapon (Kusari)" - 3, "SK:Reinforce Weapon (Monowire Whip)" - 3, "SK:Reinforce Weapon (Whip)" - 3},_
+				{},_
+				{"SK:Reinforce Weapon (Force Sword)" - 4, "SK:Reinforce Weapon (Main- Gauche)" - 4, "SK:Reinforce Weapon (Shortsword)" - 3},_
+				{"SK:Reinforce Weapon (Force Sword)" - 3, "SK:Reinforce Weapon (Main- Gauche)" - 3, "SK:Reinforce Weapon (Shortsword)" - 3},_
+				{"SK:Reinforce Weapon (Two- Handed Flail)" - 4, "SK:Reinforce Weapon (Force Whip)" - 3, "SK:Reinforce Weapon (Monowire Whip)" - 3, "SK:Reinforce Weapon (Whip)" - 3},_
+				{"SK:Reinforce Weapon (Spear)" - 3},_
+				{"SK:Reinforce Weapon (Jitte/Sai)" - 4, "SK:Reinforce Weapon (Knife)" - 4, "SK:Reinforce Weapon (Rapier)" - 3, "SK:Reinforce Weapon (Saber)" - 3, "SK:Reinforce Weapon (Smallsword)" - 3},_
+				{"SK:Reinforce Weapon (Force Whip)" - 3, "SK:Reinforce Weapon (Kusari)" - 3, "SK:Reinforce Weapon (Whip)" - 3},_
+				{"SK:Reinforce Weapon (Two- Handed Axe/Mace)" - 4, "SK:Reinforce Weapon (Spear)" - 4, "SK:Reinforce Weapon (Staff)" - 4},_
+				{"SK:Reinforce Weapon (Broadsword)" - 4, "SK:Reinforce Weapon (Main- Gauche)" - 3, "SK:Reinforce Weapon (Saber)" - 3, "SK:Reinforce Weapon (Smallsword)" - 3},_
+				{"SK:Reinforce Weapon (Broadsword)" - 4, "SK:Reinforce Weapon (Shortsword)" - 4, "SK:Reinforce Weapon (Main- Gauche)" - 3, "SK:Reinforce Weapon (Rapier)" - 3, "SK:Reinforce Weapon (Smallsword)" - 3},_
+				{"SK:Reinforce Weapon (Broadsword)" - 2, "SK:Reinforce Weapon (Force Sword)" - 4, "SK:Reinforce Weapon (Jitte/Sai)" - 3, "SK:Reinforce Weapon (Knife)" - 4, "SK:Reinforce Weapon (Saber)" - 4, "SK:Reinforce Weapon (Smallsword)" - 4, "SK:Reinforce Weapon (Tonfa)" - 3},_
+				{"SK:Reinforce Weapon (Shortsword)" - 4, "SK:Reinforce Weapon (Main- Gauche)" - 3, "SK:Reinforce Weapon (Rapier)" - 3, "SK:Reinforce Weapon (Saber)" - 3},_
+				{"SK:Reinforce Weapon (Polearm)" - 4, "SK:Reinforce Weapon (Staff)" - 2},_
+				{"SK:Reinforce Weapon (Polearm)" - 4, "SK:Reinforce Weapon (Spear)" - 2},_
+				{"SK:Reinforce Weapon (Shortsword)" - 3},_
+				{"SK:Reinforce Weapon (Polearm)" - 4, "SK:Reinforce Weapon (Two- Handed Flail)" - 4, "SK:Reinforce Weapon (Axe/Mace)" - 3},_
+				{"SK:Reinforce Weapon (Kusari)" - 4, "SK:Reinforce Weapon (Two- Handed Axe/Mace)" - 4, "SK:Reinforce Weapon (Flail)" - 3},_
+				{"SK:Reinforce Weapon (Broadsword)" - 4, "SK:Reinforce Weapon (Force Sword)" - 4},_
+				{"SK:Reinforce Weapon (Force Whip)" - 3, "SK:Reinforce Weapon (Kusari)" - 3, "SK:Reinforce Weapon (Monowire Whip)" - 3}_
+			)_
+			)_
+	), noresync(yes)
+
+Returning Weapon ([Skill]), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2, SK:[Skill]), description(Prereq: Imbue 2), page(P3/13:18), cat(Imbue, Imbue - Enhancement, Imbue - Ranged, Imbue - Enhancement - Ranged),_
+	x(#InputReplace("You must specialize by Skill:", "[Skill]", "", "Returning Weapon"))
+
+Returning Weapon (%Ranged Weapon SkillList%), DX/VH, mods(Imbue IQ-Based), needs(AD:Imbue = 2, SK:%Ranged Weapon SkillList%), description(Prereq: Imbue 2), default(%Ranged Weapon SkillAliasList%), page(P3/13:18), cat(Imbue, Imbue - Enhancement, Imbue - Ranged, Imbue - Enhancement - Ranged),_
+	x(#ChoiceList(_
+			name(Ranged Weapon Skill),_
+			title(Returning Weapon: Choose a combat skill),_
+			text(Choose a Ranged Weapon skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Throwing,_
+				Artillery (Beams),_
+				Artillery (Bombs),_
+				Artillery (Cannon),_
+				Artillery (Catapult),_
+				Artillery (Guided Missile),_
+				Artillery (Torpedoes),_
+				Beam Weapons (Pistol),_
+				Beam Weapons (Projector),_
+				Beam Weapons (Rifle),_
+				Blowpipe,_
+				Bolas,_
+				Bow,_
+				Crossbow,_
+				Dropping,_
+				Gunner (Beams),_
+				Gunner (Cannon),_
+				Gunner (Catapult),_
+				Gunner (Machine Gun),_
+				Gunner (Rockets),_
+				Guns (Grenade Launcher),_
+				Guns (Gyroc),_
+				Guns (Light Anti-Armor Weapon),_
+				Guns (Light Machine Gun),_
+				Guns (Musket),_
+				Guns (Pistol),_
+				Guns (Rifle),_
+				Guns (Shotgun),_
+				Guns (Submachine Gun),_
+				Lasso,_
+				Liquid Projector (Flamethrower),_
+				Liquid Projector (Sprayer),_
+				Liquid Projector (Squirt Gun),_
+				Liquid Projector (Water Cannon),_
+				Net,_
+				Sling,_
+				Spear Thrower,_
+				Thrown Weapon (Axe/Mace),_
+				Thrown Weapon (Dart),_
+				Thrown Weapon (Harpoon),_
+				Thrown Weapon (Knife),_
+				Thrown Weapon (Shuriken),_
+				Thrown Weapon (Spear),_
+				Thrown Weapon (Stick)_
+			),_
+			aliaslist(_
+				{},_
+				{},_
+				{},_
+				{},_
+				{},_
+				{},_
+				{},_
+				{"SK:Returning Weapon (Beam Weapons)" - 4, "SK:Returning Weapon (Guns (Pistol))" - 4},_
+				{"SK:Returning Weapon (Beam Weapons)" - 4},_
+				{"SK:Returning Weapon (Beam Weapons)" - 4, "SK:Returning Weapon (Guns (Rifle))" - 4},_
+				{},_
+				{},_
+				{},_
+				{},_
+				{"SK:Returning Weapon (Throwing)" - 4},_
+				{SK:Returning Weapon (Gunner (Beams)) - 4, "SK:Returning Weapon (Gunner (Cannon))" - 4, "SK:Returning Weapon (Gunner (Catapult))" - 4, "SK:Returning Weapon (Gunner (Machine Gun))" - 4, "SK:Returning Weapon (Gunner (Rockets))" - 4},_
+				{SK:Returning Weapon (Gunner (Beams)) - 4, "SK:Returning Weapon (Gunner (Cannon))" - 4, "SK:Returning Weapon (Gunner (Catapult))" - 4, "SK:Returning Weapon (Gunner (Machine Gun))" - 4, "SK:Returning Weapon (Gunner (Rockets))" - 4},_
+				{SK:Returning Weapon (Gunner (Beams)) - 4, "SK:Returning Weapon (Gunner (Cannon))" - 4, "SK:Returning Weapon (Gunner (Catapult))" - 4, "SK:Returning Weapon (Gunner (Machine Gun))" - 4, "SK:Returning Weapon (Gunner (Rockets))" - 4},_
+				{SK:Returning Weapon (Gunner (Beams)) - 4, "SK:Returning Weapon (Gunner (Cannon))" - 4, "SK:Returning Weapon (Gunner (Catapult))" - 4, "SK:Returning Weapon (Gunner (Machine Gun))" - 4, "SK:Returning Weapon (Gunner (Rockets))" - 4},_
+				{SK:Returning Weapon (Gunner (Beams)) - 4, "SK:Returning Weapon (Gunner (Cannon))" - 4, "SK:Returning Weapon (Gunner (Catapult))" - 4, "SK:Returning Weapon (Gunner (Machine Gun))" - 4, "SK:Returning Weapon (Gunner (Rockets))" - 4},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 4, "SK:Returning Weapon (Guns (Musket))" - 4, "SK:Returning Weapon (Guns (Pistol))" - 4, "SK:Returning Weapon (Guns (Rifle))" - 4, "SK:Returning Weapon (Guns (Shotgun))" - 4, "SK:Returning Weapon (Guns (Submachine Gun))" - 4},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 4, "SK:Returning Weapon (Guns (Musket))" - 4, "SK:Returning Weapon (Guns (Pistol))" - 4, "SK:Returning Weapon (Guns (Rifle))" - 4, "SK:Returning Weapon (Guns (Shotgun))" - 4, "SK:Returning Weapon (Guns (Submachine Gun))" - 4},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 4, "SK:Returning Weapon (Guns (Musket))" - 4, "SK:Returning Weapon (Guns (Pistol))" - 4, "SK:Returning Weapon (Guns (Rifle))" - 4, "SK:Returning Weapon (Guns (Shotgun))" - 4, "SK:Returning Weapon (Guns (Submachine Gun))" - 4},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 2, "SK:Returning Weapon (Guns (Musket))" - 2, "SK:Returning Weapon (Guns (Pistol))" - 2, "SK:Returning Weapon (Guns (Rifle))" - 2, "SK:Returning Weapon (Guns (Shotgun))" - 2, "SK:Returning Weapon (Guns (Submachine Gun))" - 2},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 2, "SK:Returning Weapon (Guns (Musket))" - 2, "SK:Returning Weapon (Guns (Pistol))" - 2, "SK:Returning Weapon (Guns (Rifle))" - 2, "SK:Returning Weapon (Guns (Shotgun))" - 2, "SK:Returning Weapon (Guns (Submachine Gun))" - 2},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 2, "SK:Returning Weapon (Guns (Musket))" - 2, "SK:Returning Weapon (Guns (Pistol))" - 2, "SK:Returning Weapon (Guns (Rifle))" - 2, "SK:Returning Weapon (Guns (Shotgun))" - 2, "SK:Returning Weapon (Guns (Submachine Gun))" - 2},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 2, "SK:Returning Weapon (Guns (Musket))" - 2, "SK:Returning Weapon (Guns (Pistol))" - 2, "SK:Returning Weapon (Guns (Rifle))" - 2, "SK:Returning Weapon (Guns (Shotgun))" - 2, "SK:Returning Weapon (Guns (Submachine Gun))" - 2},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 2, "SK:Returning Weapon (Guns (Musket))" - 2, "SK:Returning Weapon (Guns (Pistol))" - 2, "SK:Returning Weapon (Guns (Rifle))" - 2, "SK:Returning Weapon (Guns (Shotgun))" - 2, "SK:Returning Weapon (Guns (Submachine Gun))" - 2},_
+				{"SK:Returning Weapon (Guns (Grenade Launcher))" - 4, "SK:Returning Weapon (Guns (Gyroc))" - 4, "SK:Returning Weapon (Guns (Light Anti-Armor Weapon))" - 4, "SK:Returning Weapon (Guns (Light Machine Gun))" - 2, "SK:Returning Weapon (Guns (Musket))" - 2, "SK:Returning Weapon (Guns (Pistol))" - 2, "SK:Returning Weapon (Guns (Rifle))" - 2, "SK:Returning Weapon (Guns (Shotgun))" - 2, "SK:Returning Weapon (Guns (Submachine Gun))" - 2},_
+				{},_
+				{"SK:Returning Weapon (Liquid Projector (Flamethrower))" - 4, "SK:Returning Weapon (Liquid Projector (Sprayer))" - 4, "SK:Returning Weapon (Liquid Projector (Squirt Gun))" - 4, "SK:Returning Weapon (Liquid Projector (Water Cannon))" - 4},_
+				{"SK:Returning Weapon (Liquid Projector (Flamethrower))" - 4, "SK:Returning Weapon (Liquid Projector (Sprayer))" - 4, "SK:Returning Weapon (Liquid Projector (Squirt Gun))" - 4, "SK:Returning Weapon (Liquid Projector (Water Cannon))" - 4},_
+				{"SK:Returning Weapon (Liquid Projector (Flamethrower))" - 4, "SK:Returning Weapon (Liquid Projector (Sprayer))" - 4, "SK:Returning Weapon (Liquid Projector (Squirt Gun))" - 4, "SK:Returning Weapon (Liquid Projector (Water Cannon))" - 4},_
+				{"SK:Returning Weapon (Liquid Projector (Flamethrower))" - 4, "SK:Returning Weapon (Liquid Projector (Sprayer))" - 4, "SK:Returning Weapon (Liquid Projector (Squirt Gun))" - 4, "SK:Returning Weapon (Liquid Projector (Water Cannon))" - 4},_
+				{"SK:Returning Weapon (Cloak)" - 5},_
+				{},_
+				{"SK:Returning Weapon (Thrown Weapon (Spear))" - 4},_
+				{},_
+				{},_
+				{"SK:Returning Weapon (Thrown Weapon (Spear))" - 2},_
+				{},_
+				{},_
+				{"SK:Returning Weapon (Spear Thrower)" - 4, "SK:Returning Weapon (Thrown Weapon (Harpoon))" - 2},_
+				{}_
+			)_
+		)_
+	), noresync(yes)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Dungeon Fantasy, Character Templates - Dungeon Fantasy - Adventurers>
+Justiciar (Dungeon Fantasy), displaycost(250), cost(0),_
+	cat(Character Templates - Dungeon Fantasy),_
+	description(You're a champion of The Law.),_
+	page(P3/10:4),_
+	noresync(yes),_
+	replacetags(in "ST:Perception" with "noresync(yes), maxscore(25)"),_
+	sets(_
+		{ST:ST}=12,_
+		{ST:DX}=13,_
+		{ST:IQ}=14,_
+		{ST:HT}=12,_
+		{ST:Perception}=15,_
+		{ST:Hit Points}=ST:ST,_
+		{ST:Will}=ST:IQ,_
+		{ST:Fatigue Points}=ST:HT,_
+		{ST:Basic Speed}=6.00,_
+		{ST:Basic Move}={ST:Basic Speed}_
+	),_
+	creates(_
+			%optionaltraitsaliaslist% _
+	),_
+	adds(_
+			AD:Intuition,_
+			%weapontypesaliaslist%,_
+			DI:Honesty,_
+			DI:Intolerance (Scum who aren't as law-abiding as me in civilized regions),_
+			SK:Interrogation =2pts,_
+			SK:Shadowing =2pts,_
+			SK:Traps =2pts,_
+			SK:Observation =2pts,_
+			SK:Search =2pts,_
+			SK:Tracking =2pts,_
+			SK:Brawling =2pts,_
+			SK:Forced Entry =2pts,_
+			SK:Stealth =2pts,_
+			SK:Wrestling =4pts_
+	),_
+	x(_
+			#ChoiceList(_
+				name(optionaltraits),_
+				title(Optional Traits Selection),_
+				text(Check with your GM: Will you be using Duty (Lord) and Legal Enforcement Powers?),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				"Yes - 10 Point Version (Local)",_
+				"Yes - 15 Point Version (National)",_
+				"No"_
+			),_
+		aliaslist(_
+				"{AD:Higher Purpose (Justice Will Be Served), 5, page(B59), cat(Supernatural, Mental, Supernatural Mental)},{AD:Legal Enforcement Powers, 10/15, page(B65), upto(2), levelnames(Local, National), cat(Mundane, Social, Mundane Social)}=1, {DI:Duty, -10/-15, upto(2), mods(Duty), (to Lord, to King), page(B134), cat(Mundane, Social, Mundane Social), levelnames(12 or less (quite often), 15 or less (almost always))}=1",_
+				"{AD:Higher Purpose (Justice Will Be Served), 5, page(B59), cat(Supernatural, Mental, Supernatural Mental)},{AD:Legal Enforcement Powers, 10/15, page(B65), upto(2), levelnames(Local, National), cat(Mundane, Social, Mundane Social)}=2, {DI:Duty, -10/-15, upto(2), mods(Duty), (to Lord, to King), page(B134), cat(Mundane, Social, Mundane Social), levelnames(12 or less (quite often), 15 or less (almost always))}=2",_
+				"{AD:Higher Purpose (Justice Will Be Served), 5, page(B59), cat(Supernatural, Mental, Supernatural Mental)}"_
+			)_
+	),_
+			#ChoiceList(_
+				name(weapontypes),_
+				title(Combat specialty),_
+				text(Choose your melee skill package.),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				"Axe/Mace and Shield",_
+				"Broadsword and Shield",_
+				"Shortsword and Shield",_
+				"Rapier and Buckler",_
+				"Rapier and Cloak",_
+				"Rapier and Main-Gauche",_
+				"Saber and Buckler",_
+				"Saber and Cloak",_
+				"Saber and Main-Gauche",_
+				"Smallsword and Buckler",_
+				"Smallsword and Cloak",_
+				"Smallsword and Main-Gauche",_
+				"Polearm",_
+				"Quarterstaff",_
+				"Spear" _
+			),_
+		aliaslist(_
+				"{SK:Axe/Mace}=12pts, {SK:Shield (Shield)}=8pts",_
+				"{SK:Broadsword}=12pts, {SK:Shield (Shield)}=8pts",_
+				"{SK:Shortsword}=12pts, {SK:Shield (Shield)}=8pts",_
+				"{SK:Rapier}=12pts, {SK:Shield (Buckler)}=8pts",_
+				"{SK:Rapier}=12pts, {SK:Cloak}=8pts",_
+				"{SK:Rapier}=12pts, {SK:Main-Gauche}=8pts",_
+				"{SK:Saber}=12pts, {SK:Shield (Buckler)}=8pts",_
+				"{SK:Saber}=12pts, {SK:Cloak}=8pts",_
+				"{SK:Saber}=12pts, {SK:Main-Gauche}=8pts",_
+				"{SK:Smallsword}=12pts, {SK:Shield (Buckler)}=8pts",_
+				"{SK:Smallsword}=12pts, {SK:Cloak}=8pts",_
+				"{SK:Smallsword}=12pts, {SK:Main-Gauche}=8pts",_
+				"{SK:Polearm}=20pts",_
+				"{SK:Staff}=20pts",_
+				"{SK:Spear}=20pts" _
+			)_
+		)_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Please select 35 points from the following advantages and perks."),_
+		pointswanted(35),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			PE:Honest Face,_
+			PE:Penetrating Voice,_
+			PE:Weapon Bond (%Weapon%),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Extra Will #codes(upto 6, downto 1),_
+			AD:Extra Basic Move #codes(upto 3, downto 1),_
+			AD:Acute Hearing #codes(upto 10, downto 1),_
+			AD:Acute Vision #codes(upto 10, downto 1),_
+			AD:Acute Taste and Smell #codes(upto 10, downto 1),_
+			AD:Danger Sense,_
+			AD:Eidetic Memory,_
+			AD:Photographic Memory,_
+			AD:Fearlessness #codes(upto 10, downto 1),_
+			AD:Unfazeable,_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Magic Resistance #codes(upto 10, downto 1),_
+			AD:Mind Shield #codes(upto 8, downto 1),_
+			AD:Night Vision #codes(upto 9, downto 1),_
+			AD:Peripheral Vision,_
+			AD:Resistant to Poison #codes(upto 1, downto 1),_
+			AD:Signature Gear #codes(upto 35, downto 1),_
+			AD:Smooth Operator #codes(upto 2, downto 1)_
+		)_
+	),_
+	select3(_
+		text("Please select -10 points from the following disadvantages."),_
+		pointswanted(-10),_
+		itemswanted(atleast 1),_
+		list(_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Soldier's),_
+			DI:Curious,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Sense of Duty (Nation),_
+			DI:Truthfulness,_
+			#newitem(_
+					DI:Obsession (Tracking down specific criminals or stolen goods), -10, displaycost(-10*), mods(Self-Control), page(B146), cat(Mundane, Mental),_
+						initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )_
+					),_
+			#newitem(DI:Worsen Honesty to (9 or 6), -5/-10, existing(DI:Honesty))_
+		)_
+	),_
+	select4(_
+		text("Please select an additional -20 from the following disadvantages and quirks."),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Soldier's),_
+			DI:Curious,_
+			DI:Fat,_
+			DI:Loner,_
+			DI:No Sense of Humor,_
+			DI:Odious Personal Habit (Arrogant, judgmental, etc.),_
+			DI:Overconfidence,_
+			DI:Overweight,_
+			DI:Selfless,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Sense of Duty (Nation),_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			#newitem(_
+					DI:Obsession (Tracking down specific criminals or stolen goods), -10, displaycost(-10*), mods(Self-Control), page(B146), cat(Mundane, Mental),_
+						initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )_
+					),_
+			#newitem(DI:Worsen Honesty to (9 or 6), -5/-10, existing(DI:Honesty))_
+		)_
+	),_
+	select5(_
+		text("Please select a grappling weapon from this list."),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Bolas #codes(upto 4pts, downto 4pts),_
+			SK:Lasso #codes(upto 4pts, downto 4pts),_
+			SK:Whip #codes(upto 4pts, downto 4pts),_
+			SK:Net #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select6(_
+		text("Please select a ranged weapon from this list."),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Crossbow #codes(upto 4pts, downto 4pts),_
+			SK:Bow #codes(upto 4pts, downto 4pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts),_
+			SK:Sling #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select7(_
+		text("Please select three secondary skills from this list."),_
+		pointswanted(3),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Savoire-Faire (High Society) #codes(upto 1pts),_
+			SK:Heraldry #codes(upto 1pts),_
+			SK:Public Speaking #codes(upto 1pts),_
+			SK:Streetwise #codes(upto 1pts),_
+			SK:Diplomacy #codes(upto 1pts),_
+			SK:Intimidation #codes(upto 1pts),_
+			SK:Detect Lies #codes(upto 1pts)_
+		)_
+	),_
+	select8(_
+		text("Please select up to seven background skills from this list"),_
+		pointswanted(7),_
+		itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Fast-Draw #codes(upto 1pts),_
+			SK:Knife #codes(upto 1pts),_
+			SK:Knot-Tying #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Acting #codes(upto 1pts),_
+			SK:Connoisseur #codes(upto 1pts),_
+			SK:Connoisseur (Dance) #codes(upto 1pts),_
+			SK:Connoisseur (Literature) #codes(upto 1pts),_
+			SK:Connoisseur (Music) #codes(upto 1pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 1pts),_
+			SK:Connoisseur (Wine) #codes(upto 1pts),_
+			SK:Disguise #codes(upto 1pts),_
+			SK:Holdout #codes(upto 1pts),_
+			SK:Lockpicking #codes(upto 1pts),_
+			SK:Occultism #codes(upto 1pts),_
+			SK:Diagnosis #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Tactics #codes(upto 1pts),_
+			SK:Thaumatology #codes(upto 1pts),_
+			SK:Hiking #codes(upto 1pts),_
+			SK:Scrounging #codes(upto 1pts),_
+			SK:Body Language #codes(upto 1pts),_
+			SK:Lip Reading #codes(upto 1pts),_
+			SK:Urban Survival #codes(upto 1pts),_
+			SK:Savoire-Faire (High Society) #codes(upto 1pts),_
+			SK:Heraldry #codes(upto 1pts),_
+			SK:Public Speaking #codes(upto 1pts),_
+			SK:Streetwise #codes(upto 1pts),_
+			SK:Diplomacy #codes(upto 1pts),_
+			SK:Intimidation #codes(upto 1pts),_
+			SK:Detect Lies #codes(upto 1pts),_
+			#newitem(_
+						SK:Connoisseur (Weapons), IQ/A, default(IQ - 5), page(B185), cat(_General, Arts/Entertainment, Knowledge, Social)_
+					) #codes(upto 1pts),_
+			#newitem(_
+						SK:Riding (Equines), DX/A, default(DX - 5, SK:Animal Handling - 3, SK:Riding - 10), page(B217), cat(_General, Animal)_
+					) #codes(upto 1pts)_
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Mystic Knight (Dungeon Fantasy), displaycost(250), cost(0),_
+	cat(Character Templates - Dungeon Fantasy),_
+	description(You've unlocked the power to access your internal lines of power, and, by making precise muscle movements, you can make them resonate with the magic around you.),_
+	page(P3/13:16),_
+	noresync(yes),_
+	sets(_
+		{ST:ST}=14,_
+		{ST:DX}=14,_
+		{ST:IQ}=10,_
+		{ST:HT}=13,_
+		{ST:Perception}=10,_
+		{ST:Hit Points}=14,_
+		{ST:Will}=10,_
+		{ST:Fatigue Points}=13,_
+		{ST:Basic Speed}=6.00,_
+		{ST:Basic Move}=6_
+	),_
+	adds(_
+		{AD:Imbue}=2 with {"Magical", -10%,group(_Power Modifiers),page(P27),level(1),valuenum(-10)},_
+		{AD:Eldritch Talent}=3,_
+		{AD:Magery 0},_
+		{SK:Fast-Draw}=1pts,_
+		{SK:Thaumatology}=2pts,_
+		%weapontypesaliaslist%_
+	),_
+	x(_
+			#ChoiceList(_
+				name(weapontypes),_
+				title(Combat specialty),_
+				text(Choose your melee skill package.),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				"Axe/Mace and Shield",_
+				"Broadsword and Shield",_
+				"Spear and Shield",_
+				"Flail and Shield",_
+				"Polearm",_
+				"Spear only",_
+				"Two-Handed Axe/Mace",_
+				"Two-Handed Sword"_
+			),_
+		aliaslist(_
+				"{SK:Axe/Mace}=20pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Broadsword}=20pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Spear}=20pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Flail}=20pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Polearm}=24pts",_
+				"{SK:Spear}=24pts",_
+				"{SK:Two-Handed Axe/Mace}=24pts",_
+				"{SK:Two-Handed Sword}=24pts"_
+			)_
+		)_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Please select up to 51 points from these Advantages. Put any leftover points in more Imbuement Skills."),_
+		pointswanted(atleast 50, upto 51),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 5, downto 1),_
+			AD:Extra DX #codes(upto 2, downto 1),_
+			AD:Extra HT #codes(upto 5, downto 1),_
+			AD:Extra Hit Points #codes(upto 3, downto 1),_
+			AD:Extra Fatigue Points #codes(upto 3, downto 1),_
+			AD:Extra Basic Speed #codes(upto 8, downto 4),_
+			AD:Combat Reflexes,_
+			AD:Enhanced Block #codes(upto 1, downto 1),_
+			AD:Enhanced Parry (%Melee Weapon%) #codes(upto 1, downto 1),_
+			AD:Extra Eldritch Talent #codes(upto 1, downto 1),_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill,_
+			AD:Hard to Subdue,_
+			AD:High Pain Threshold,_
+			AD:Extra Imbue,_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Signature Gear,_
+			AD:Unfazeable,_
+			PE:Imbued Weapon,_
+			PE:Imbued Weapon Bond (%Weapon%)_
+		)_
+	),_
+	select3(_
+		text("Please select 20 points in Disadvantages."),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			DI:Code of Honor (Pirate's),_
+			DI:Code of Honor (Soldier's),_
+			DI:Frightens Animals,_
+			DI:Magic Susceptibility #codes(upto 5, downto 1),_
+			DI:Obsession (Slay a specific type of monster),_
+			DI:One Eye,_
+			DI:Sense of Duty (Nation),_
+			DI:Unnatural Feature #codes(upto 5, downto 1),_
+			DI:Wounded_
+		)_
+	),_
+	select4(_
+		text("Please select a further 15 points in Disadvantages."),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			DI:Code of Honor (Pirate's),_
+			DI:Code of Honor (Soldier's),_
+			DI:Frightens Animals,_
+			DI:Magic Susceptibility #codes(upto 5, downto 1),_
+			DI:Obsession (Slay a specific type of monster),_
+			DI:One Eye,_
+			DI:Sense of Duty (Nation),_
+			DI:Unnatural Feature #codes(upto 5, downto 1),_
+			DI:Wounded,_
+			DI:Bully,_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Lecherousness,_
+			DI:Overconfidence,_
+			DI:Pyromania,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Social Stigma (Excommunicated),_
+			DI:Supernatural Feature_
+		)_
+	),_
+	select5(_
+		text("Please select one primary ranged weapon skill."),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Crossbow #codes(upto 4pts, downto 4pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Axe/Mace) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Dart) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Harpoon) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Spear) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Stick) #codes(upto 4pts, downto 4pts),_
+			SK:Sling #codes(upto 4pts, downto 4pts),_
+			SK:Bow #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select6(_
+		text("Choose a Fast-Draw specialty."),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Fast-Draw #codes(upto 1pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 1pts),_
+			SK:Fast-Draw (Knife) #codes(upto 1pts),_
+			SK:Fast-Draw (Sword) #codes(upto 1pts),_
+			SK:Fast-Draw (Two-Handed Sword)  #codes(upto 1pts) _
+		)_
+	),_
+	select7(_
+		text("Please select an armoury specialization."),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+			SK:Armoury (Body Armor) #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select8(_
+		text("Please select an unarmed combat skill"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Boxing #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Please select four background skills."),_
+		pointswanted(4),_
+		itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Forced Entry #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Stealth #codes(upto 1pts),_
+			SK:Savoir-Faire #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Gesture #codes(upto 1pts),_
+			SK:Gambling #codes(upto 1pts),_
+			SK:Heraldry #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts),_
+			SK:Strategy (Air) #codes(upto 1pts),_
+			SK:Strategy (Land) #codes(upto 1pts),_
+			SK:Strategy (Naval) #codes(upto 1pts),_
+			SK:Streetwise #codes(upto 1pts),_
+			SK:Tactics #codes(upto 1pts),_
+			SK:Scrounging #codes(upto 1pts),_
+			SK:Observation #codes(upto 1pts),_
+			SK:Intimidation #codes(upto 1pts),_
+			SK:Hiking #codes(upto 1pts),_
+			SK:Carousing #codes(upto 1pts)_
+		)_
+	),_
+	select10(_
+		text("Please select at least 10 Imbuement Skills, and spend a further 10 points."),_
+		pointswanted(20),_
+		itemswanted(atleast 10),_
+		list(_
+			SK:Reinforce Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Returning Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Annihilating Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Arching Shot (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Bank Shot (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Conic Blast (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Continuing Attack (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Continuing Attack (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Crippling Blow (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Crippling Blow (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Dancing Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Dancing Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Drugged Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Drugged Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Electric Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Electric Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Envenomed Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Envenomed Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Far Shot (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Forceful Blow (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Forceful Blow (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Ghostly Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Ghostly Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Guided Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Homing Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Incendiary Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Incendiary Weapon (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Multi-Shot (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Penetrating Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Penetrating Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Project Blow (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Shattershot (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Shockwave (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Shockwave (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Stealthy Attack (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Stealthy Attack (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Stupefying Blow (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Stupefying Blow (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Sudden Death (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Sudden Death (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Supreme Control (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Supreme Control (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Telescoping Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Traumatic Blow (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Traumatic Blow (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Binding Shot (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Burning Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Burning Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Chilling Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Chilling Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Corrosive Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Corrosive Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Crushing Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Crushing Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Cutting Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Cutting Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Dazzling Display (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Dazzling Display (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Deafening Display (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Deafening Display (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Fatiguing Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Fatiguing Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Impaling Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Impaling Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Piercing Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Piercing Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Strike of Negation (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Toxic Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Toxic Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Vampiric Weapon (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Withering Strike (%Melee Weapon SkillList%) #codes(upto 8pts),_
+			SK:Withering Strike (%Ranged Weapon SkillList%) #codes(upto 8pts),_
+			SK:Blinding Defense (Armor) #codes(upto 8pts),_
+			SK:Blinding Defense (Shield) #codes(upto 8pts),_
+			SK:Blunting Armor #codes(upto 8pts),_
+			SK:Dancing Shield #codes(upto 8pts),_
+			SK:Energizing Defense (Armor) #codes(upto 8pts),_
+			SK:Energizing Defense (Shield) #codes(upto 8pts),_
+			SK:Expand Armor #codes(upto 8pts),_
+			SK:Fireproof Armor #codes(upto 8pts),_
+			SK:Healthful Armor #codes(upto 8pts),_
+			SK:Impenetrable Armor #codes(upto 8pts),_
+			SK:Insulated Armor #codes(upto 8pts),_
+			SK:Lighten Armor #codes(upto 8pts),_
+			SK:Nullifying Armor #codes(upto 8pts),_
+			SK:Padded Armor #codes(upto 8pts),_
+			SK:Reinforce Armor #codes(upto 8pts),_
+			SK:Reinforce Shield #codes(upto 8pts),_
+			SK:Resilient Armor #codes(upto 8pts),_
+			SK:Restorative Armor #codes(upto 8pts),_
+			SK:Rigid Armor #codes(upto 8pts),_
+			SK:Sovereign Armor #codes(upto 8pts),_
+			SK:Spiritual Defense (Armor) #codes(upto 8pts),_
+			SK:Spiritual Defense (Shield) #codes(upto 8pts),_
+			SK:Subtle Defense (Armor) #codes(upto 8pts),_
+			SK:Subtle Defense (Shield) #codes(upto 8pts),_
+			SK:Thunderous Defense (Armor) #codes(upto 8pts),_
+			SK:Thunderous Defense (Shield) #codes(upto 8pts),_
+			SK:Vengeful Defense (Armor) #codes(upto 8pts),_
+			SK:Vengeful Defense (Shield) #codes(upto 8pts),_
+			SK:Widen Shield #codes(upto 8pts)_
+		)_
+	),_
+	select11(#List(QuirkSelection))
+
+<Character Templates - Dungeon Fantasy - Power-Ups>
+Justiciar Skills (Dungeon Fantasy), displaycost(varies), cost(0),_
+cat(Character Templates - Dungeon Fantasy - Power-Ups, Character Templates),_
+description(All optional Justiciar Skills.),_
+page(P3/10:4),_
+noresync(yes),_
+	select1(_
+		text("Justiciars may select any advantages from this list."),_
+			pointswanted(atleast 0, upto 1000),_
+			itemswanted(atleast 0, upto 1000),_
+			list(_
+		SK:Acting #codes(upto 4pts),_
+		SK:Axe/Mace #codes(upto 4pts),_
+		SK:Body Language #codes(upto 4pts),_
+		SK:Bolas #codes(upto 4pts),_
+		SK:Broadsword #codes(upto 4pts),_
+		SK:Climbing #codes(upto 4pts),_
+		SK:Cloak #codes(upto 4pts),_
+		SK:Connoisseur (Dance) #codes(upto 4pts),_
+		SK:Connoisseur (Literature) #codes(upto 4pts),_
+		SK:Connoisseur (Music) #codes(upto 4pts),_
+		SK:Connoisseur (Visual Arts) #codes(upto 4pts),_
+		SK:Connoisseur (Wine) #codes(upto 4pts),_
+		SK:Connoisseur #codes(upto 4pts),_
+		SK:Detect Lies #codes(upto 4pts),_
+		SK:Diagnosis #codes(upto 4pts),_
+		SK:Diplomacy #codes(upto 4pts),_
+		SK:Disguise #codes(upto 4pts),_
+		SK:Fast-Draw #codes(upto 4pts),_
+		SK:First Aid #codes(upto 4pts),_
+		SK:Gesture #codes(upto 4pts),_
+		SK:Heraldry #codes(upto 4pts),_
+		SK:Hiking #codes(upto 4pts),_
+		SK:Holdout #codes(upto 4pts),_
+		SK:Intimidation #codes(upto 4pts),_
+		SK:Knife #codes(upto 4pts),_
+		SK:Knot-Tying #codes(upto 4pts),_
+		SK:Lasso #codes(upto 4pts),_
+		SK:Lip Reading #codes(upto 4pts),_
+		SK:Lockpicking #codes(upto 4pts),_
+		SK:Main-Gauche #codes(upto 4pts),_
+		SK:Net #codes(upto 4pts),_
+		SK:Occultism #codes(upto 4pts),_
+		SK:Poisons #codes(upto 4pts),_
+		SK:Polearm #codes(upto 4pts),_
+		SK:Public Speaking #codes(upto 4pts),_
+		SK:Rapier #codes(upto 4pts),_
+		SK:Saber #codes(upto 4pts),_
+		SK:Savoire-Faire (High Society) #codes(upto 4pts),_
+		SK:Scrounging #codes(upto 4pts),_
+		SK:Shield (Buckler) #codes(upto 4pts),_
+		SK:Shield (Shield) #codes(upto 4pts),_
+		SK:Shortsword #codes(upto 4pts),_
+		SK:Smallsword #codes(upto 4pts),_
+		SK:Spear #codes(upto 4pts),_
+		SK:Staff #codes(upto 4pts),_
+		SK:Streetwise #codes(upto 4pts),_
+		SK:Tactics #codes(upto 4pts),_
+		SK:Thaumatology #codes(upto 4pts),_
+		SK:Urban Survival #codes(upto 4pts),_
+		SK:Whip #codes(upto 4pts),_
+		#newitem(_
+			SK:Connoisseur (Weapons), IQ/A, default(IQ - 5), page(B185), cat(_General, Arts/Entertainment, Knowledge, Social)_
+		) #codes(upto 4pts),_
+		#newitem(_
+			SK:Riding (Equines), DX/A, default(DX - 5, SK:Animal Handling - 3, SK:Riding - 10), page(B217), cat(_General, Animal)_
+		) #codes(upto 4pts)_
+	)_
+)
+
+Justiciar Advantages (Dungeon Fantasy), displaycost(varies), cost(0),_
+cat(Character Templates - Dungeon Fantasy - Power-Ups, Character Templates),_
+description(All optional Justiciar Advantages.),_
+page(P3/10:4),_
+noresync(yes),_
+	select1(_
+		text("Justiciars may select any advantages from this list."),_
+			pointswanted(atleast 0, upto 1000),_
+			itemswanted(atleast 0, upto 1000),_
+			list(_
+				PE:Honest Face,_
+				PE:Penetrating Voice,_
+				PE:Weapon Bond (%Weapon%),_
+				AD:Extra DX #codes(upto 1, downto 1),_
+				AD:Extra HT #codes(upto 3, downto 1),_
+				AD:Extra IQ #codes(upto 1, downto 1),_
+				AD:Extra ST #codes(upto 3, downto 1),_
+				AD:Extra Perception #codes(upto 5, downto 1),_
+				AD:Extra Will #codes(upto 6, downto 1),_
+				AD:Extra Basic Move #codes(upto 3, downto 1),_
+				AD:Acute Hearing #codes(upto 10, downto 1),_
+				AD:Acute Vision #codes(upto 10, downto 1),_
+				AD:Acute Taste and Smell #codes(upto 10, downto 1),_
+				AD:Danger Sense,_
+				AD:Eidetic Memory,_
+				AD:Photographic Memory,_
+				AD:Fearlessness #codes(upto 10, downto 1),_
+				AD:Unfazeable,_
+				AD:Luck #codes(upto 2, downto 1),_
+				AD:Magic Resistance #codes(upto 10, downto 1),_
+				AD:Mind Shield #codes(upto 8, downto 1),_
+				AD:Night Vision #codes(upto 9, downto 1),_
+				AD:Peripheral Vision,_
+				AD:Resistant to Poison #codes(upto 1, downto 1),_
+				AD:Signature Gear #codes(upto 35, downto 1),_
+				AD:Smooth Operator #codes(upto 2, downto 1)_
+				)_
+			)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Justiciar (Dungeon Fantasy)" with {replacetags(in "TE:Justiciar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Justiciar Advantages (Dungeon Fantasy)" with {replacetags(in "TE:Justiciar Advantages (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Justiciar Skills (Dungeon Fantasy)" with {replacetags(in "TE:Justiciar Skills (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Mystic Knight (Dungeon Fantasy)" with {replacetags(in "TE:Mystic Knight (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

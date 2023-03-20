@@ -1,0 +1,49 @@
+
+{{!-- {{log 'gurps-mobile' 'feature-list' this level='warn'}} --}}
+{{#if (contains _template 'list-feature')}}
+<div class="feature-list {{isTrue expanded 'expanded'}} {{join classes}}" data-id="{{id}}" data-index="{{@index}}">
+  <div class="label {{isNilOrEmpty label 'hidden'}}">
+    <div class="chevron spacer"><i class="icon mdi mdi-chevron-up"></i></div>
+    <span class="text">{{ label }}</span>
+    <div class="chevron up"><i class="icon mdi mdi-chevron-up"></i></div>
+    <div class="chevron down"><i class="icon mdi mdi-chevron-down"></i></div>
+  </div>
+  <div class="header">
+    <div class="button display-hidden {{isNilOrEmpty children.collapsed "disabled" ""}}">
+      <div class="icon-wrapper">
+        <i class="icon mdi mdi-chevron-double-down down"></i>
+        <i class="icon mdi mdi-chevron-double-up up"></i>
+      </div>
+      
+      <div class="label"><span>{{children.collapsed.length}}</span> Hidden Features</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="button hide-all {{isNilOrEmpty children.shown "disabled" ""}}">
+      <div class="icon-wrapper">
+        <i class="icon mdi mdi-eye-off"></i>
+      </div>
+      <div class="label">Hide All</div>
+    </div>
+    <div class="button show-all {{isNilOrEmpty children.collapsed "disabled" ""}}">
+      <div class="icon-wrapper">
+        <i class="icon mdi mdi-eye"></i>
+      </div>
+      <div class="label">Show All</div>
+    </div>
+  </div>
+  <div class="children">
+    <div class="collapsed-list">
+      {{#each children.collapsed}}
+      {{> gurps/feature_list this}}
+      {{/each}}
+    </div>
+    {{#each children.shown}}
+    {{> gurps/feature_list this}}
+    {{/each}}
+  </div>
+</div>
+{{else if (contains _template 'wrapper-feature')}}
+{{> gurps/feature_wrapper this}}
+{{else}}
+{{> gurps/feature this}}
+{{/if}}

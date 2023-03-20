@@ -1,0 +1,256 @@
+// CONTENT
+& > .content {
+  &.dark {
+    --content-background-color: 20,20,20;
+    // --background-color: var(--light-main-color);
+    // --color: 119, 119, 119;
+    // --selected-color: var(--dark-main-color);
+
+    & > .tabs {
+      & > .tab {
+        &.selected {
+          .wrapper-icon {
+            background-color: rgb(var(--background-color), 0.3);
+          }
+        }
+      }
+    }
+  }
+}
+
+// FEATURE
+& > .content.dark > .panels > .panel {
+  .feature-list {
+    // --highlight-color: var(--main-color);
+    // --lighter-highlight-color: var(--lighter-main-color);
+    // --very-lighter-highlight-color: var(--very-lighter-main-color);
+
+    & > .label {
+      background-color: black;
+    }
+
+    & > .header {
+      & > .button {
+        //
+        color: #AAA;
+        background-color: #282828;
+
+        & > .label {
+        }
+
+        & > .icon-wrapper {
+          & > .icon {
+            
+          }
+        }
+
+        &.disabled {
+          background-color: rgb(0 0 0 / 10%);
+          color: rgb(119, 119, 119, 75%);
+        }
+
+        &.inactive {
+          background-color: rgb(251 251 251 / 50%);
+          color: rgb(119, 119, 119, 75%);
+        }
+
+        &.active {
+          background-color: #d4d4d4;
+          color: rgb(119, 119, 119, 100%);
+        }
+      }
+    }
+      
+    &:not(.expanded) {
+      & > .label {
+        background-color: #1D1D1D;
+      }
+    }
+  }
+
+  .feature {
+    --border-color: 36, 36, 36;
+    // // --border-color: 255, 0, 0;
+    --background-color: 51, 51, 51;
+    // --value-color: 51, 51, 51;
+    --contrast-value-color: 51, 51, 51;
+    --label-color: 181, 181, 181;
+    // --contrast-label-color: 119, 119, 119;
+    // //
+    --highlight-color: var(--light-main-color);
+    --lighter-highlight-color: var(--darker-main-color);
+    --very-lighter-highlight-color: var(--dark-main-color);
+    // // color: #333;
+    
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.75));
+
+    & > .children > .feature-data {
+      & .wrapper {
+        .background-icon {
+          // color: rgb(0 0 0 / 3.3%);
+        }
+      }
+    }
+    
+    & > .children > .feature-data  {
+      &.swipe-variant > .children { 
+        & > .feature-variant {
+          &:not(:first-of-type) {
+            & > .wrapper {
+              border-left-color: rgb(var(--dark-main-color), 0.45);
+            }
+          }
+          &:not(:last-of-type) {
+            & > .wrapper {
+              border-right-color: rgb(var(--dark-main-color), 0.45);
+            }
+          }
+        }
+      }
+      
+
+      & > .children > .feature-variant {
+        &.value-interactible {
+          & > .wrapper > .content {
+            & > .value {
+              & > .display {
+                border-color: rgb(var(--highlight-color), 0.6);
+                background-color: rgb(var(--lighter-highlight-color), 0.25);
+
+                & > .value {
+                  color: rgb(var(--lighter-main-color), 1);
+                }
+                & > .label {
+                  color: rgb(var(--semi-dark-main-color), 1);
+                }
+              }
+            }
+          }          
+        }
+
+        & > .wrapper {
+          background: #232323;
+          background: linear-gradient(310deg, hsl(0deg 0% 10%) 14%, hsl(0deg 0% 14%) 90.84%);
+          --border-color: 51,51,51;
+
+          & > .content {
+            & > .label {
+              color: rgb(233, 233, 233, 0.95);
+            }
+
+            & > .tags > .children > .tag {
+              &.box {
+                & > .label {
+                  border-color: rgb(98 98 98 / 50%);
+
+                  &.interactible {
+                    border-color: rgb(var(--highlight-color), 0.5);
+                    color: rgb(var(--light-main-color), 0.95);
+                    background-color: rgb(var(--lighter-highlight-color), 0.50);
+                  }
+                }
+              }
+            }
+
+            & > .buttons {
+              & > .button {
+                border-color: rgb(var(--highlight-color), 0.2);
+                background-color: rgb(var(--lighter-highlight-color), 0.25);
+
+                & > .value {
+                  color: rgb(var(--lighter-main-color), 0.85);
+                }
+
+                & > .icon {
+                  color: rgb(var(--semi-dark-main-color), 1);
+                }
+
+                &.disabled {
+                  border: 0;
+                  background-color: rgba(119, 119, 119, 0.075);
+
+                  & > .value {
+                    color: rgb(143 143 143 / 75%);
+                  }
+
+                  & > .icon {
+                    color: rgb(143 143 143 / 50%);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        & > .chevron {
+          background-color: rgb(var(--darker-main-color), 0.35);
+          border-color: rgb(var(--dark-main-color), 0.45);
+
+          & > i.icon {
+            color: rgb(var(--main-color));
+          }
+        }
+      }
+
+      & > .action {
+        --background-color: var(--darker-main-color);
+        background: rgb(var(--background-color), 0.95);
+
+        & > div > div:not(.divider) > div {
+          & > .icon {
+            color: rgb(var(--main-color), 0.9);
+          }
+        }
+      }
+    }
+
+    // pinned
+    // ------------------------------------
+    &.pinned {
+      --border-color: var(--highlight-color);
+
+      & > .children > .feature-data {
+        & > .children > .feature-variant {
+          & > .wrapper {
+            background-color: rgb(var(--very-lighter-main-color));
+
+            & > .content {
+              & > .label > .main {
+                & > .tray > .children {
+                  & > .icon-wrapper {
+                    color: rgb(var(--semi-dark-main-color), 1);
+                  }
+                }
+                & > span {
+                  color: rgb(var(--semi-dark-main-color), 1);
+                }
+              }
+              & > .value {
+                & > .asterisk {
+                  color: rgb(var(--semi-dark-main-color), 1);
+                }
+              }
+            }
+
+            & > .show-mo1re {
+              & > div {
+                background-color: rgb(var(--lighter-main-color), 1);
+                color: rgb(var(--dark-main-color), 1);
+              }
+            }
+          }
+        }
+      }
+
+      // hidden
+      &.hidden {
+        & .feature {
+          & .wrapper {
+            // background-color: rgba(var(--very-lighter-main-color), 0.65);
+          }
+        }
+      }
+    }
+    // ------------------------------------
+  }
+}

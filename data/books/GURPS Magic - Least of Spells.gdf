@@ -1,0 +1,151 @@
+Encoding=UTF-8
+Version=3
+* The version class(information), above MUST be the first line of the data file
+Description=2022 September 13. This file requires the Basic Set to be loaded first and GURPS Magic second, and this file third.
+Program=4.0.423
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf","GURPS Magic 4e.gdf"
+LoadAfter="GURPS Basic Set 4th Ed.--Characters.gdf","GURPS Magic 4e.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* Author: Guðmundur Örn Ingvarsson (gudm00@gmail.com) (Gudmo @ SJGames Forum)
+* GURPS(R) Character Assistant Data File - GURPS Magic - Least of Spells
+* Created: 31-07-2020
+* Requires GCA v4 or later!
+*
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+//   This data file contains information taken from the GURPS Basic Set: Characters sourcebook. GURPS Basic Set:
+//   Characters is Copyright © 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+//   Steve Jackson Games Incorporated. All rights reserved.
+*
+************************************************************************************************************************
+[SPELLS]
+<Air:Ai>
+Diver’s Blessing, type(IQ/A), CountAsNeed(Magical), ident(Magical), page(M:LoS:6), cat(Air, Body Control), shortcat(Ai,B), mods(Spells), class(Regular), time(1 sec), duration(x2 Hold Breath), castingcost(1)
+Mighty Breath, type(IQ/A), CountAsNeed(Magical), ident(Magical), page(M:LoS:6), cat(Air), shortcat(Ai), mods(Spells), class(Regular), time(1 sec), duration(1 sec), castingcost(1/S)
+Stinkguard, type(IQ/A), CountAsNeed(Magical), ident(Magical), page(M:LoS:6), cat(Air,Protection & Warning), shortcat(Ai,Pr), mods(Spells), class(Regular), time(1 sec), duration(1 sec), castingcost(1/S)
+
+<Animal:An>
+Call, type(IQ/A), cat(Animal, Sound), shortcat(An,S), page(M:LoS:6), CountAsNeed(Magical), ident(Magical), mods(Spells), class(Regular), time(1 sec), duration(Instant), castingcost(1#)
+Groom, type(IQ/A), cat(Animal), shortcat(An), page(M:LoS:6), CountAsNeed(Magical), ident(Magical), mods(Spells), class(Regular), time(2 sec), duration(1 min), castingcost(1/S)
+
+<Body Control:B>
+Ache, type(IQ/A),cat(Body Control), shortcat(B), CountAsNeed(Magical), ident(Magical), page(M:LoS:7), mods(Spells), class(Regular/R-HT), time(1 sec), duration(1 min), castingcost(1/S)
+Belch, type(IQ/A), CountAsNeed(Magical), ident(Magical), page(M:LoS:7), mods(Spells), class(Regular/R-HT), time(1 sec), duration(Instant), castingcost(1#)
+Blend In, type(IQ/A),cat(Body Control,Illusion and Creation), shortcat(B,I), page(M:LoS:7), CountAsNeed(Magical), ident(Magical),class(Regular/R-HT),duration(1 hr),castingcost(2)
+Flexibility, type(IQ/A),cat(Body Control), shortcat(B), page(M:LoS:7), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S)
+Stand Out, type(IQ/A),cat(Body Control,Illusion and Creation), shortcat(B,I), page(M:LoS:7), CountAsNeed(Magical), ident(Magical),class(Regular/R-HT),duration(1 hr),castingcost(2)
+Stifle, type(IQ/A),cat(Body Control), shortcat(B), page(M:LoS:7), CountAsNeed(Magical), ident(Magical),class(Blocking/R-subject spell),castingcost(1)
+
+<Communication & Empathy:C>
+Ack, type(IQ/A),cat(Communication & Empathy), shortcat(C), page(M:LoS:7), CountAsNeed(Magical), ident(Magical),class(Blocking),castingcost(1)
+Drama, type(IQ/A),cat(Communication & Empathy, Mind Control), shortcat(C,M), page(M:LoS:7), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(2)
+Sorcerous Signal, type(IQ/A),cat(Communication & Empathy), shortcat(C), page(M:LoS:8), CountAsNeed(Magical), ident(Magical),class(Regular),duration(Until subject makes a Gesture roll, unless canceled sooner),castingcost(1),time(3 sec)
+
+<Earth:Ea>
+Badger Paws, type(IQ/A),cat(Earth), shortcat(Ea), page(M:LoS:8), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(2/S),time(2 sec)
+Gargoyle Skin, type(IQ/A),cat(Earth, Illusion and Creation), shortcat(Ea, I), page(M:LoS:8) CountAsNeed(Magical), ident(Magical),class(Regular/R-HT),duration(1 min),castingcost(2),time(2 sec)
+Pebble, type(IQ/A),cat(Earth), shortcat(Ea), page(M:LoS:8), CountAsNeed(Magical), ident(Magical), class(Missile), castingcost(1)
+Spotless Hands, type(IQ/A),cat(Earth), shortcat(Ea), page(M:LoS:8), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S),time(2 sec)
+
+<Enchantment:En>
+Emergency Staff, type(IQ/A), cat(Enchantment), shortcat(En), page(M:LoS:8), CountAsNeed(Magical), ident(Magical), class(Special),duration(1 sec),castingcost(1/S),description(Never reduced by high skill for nonmages!)
+Magician’s Minion, type(IQ/A), cat(Enchantment), shortcat(En), page(M:LoS:8), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(3),time(5 sec)
+Sorcerer’s Stand-In, type(IQ/A), cat(Enchantment), shortcat(En), page(M:LoS:9), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 day),castingcost(8),time(1 min)
+
+<Fire:Fi>
+Ember, type(IQ/A), cat(Fire), shortcat(Fi), page(M:LoS:9), CountAsNeed(Magical), ident(Magical), class(Missile), castingcost(1)
+Oven Mitts, type(IQ/A), cat(Fire,Protection and Warning), shortcat(Fi, Pr), page(M:LoS:9), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S)
+Puff, type(IQ/A), cat(Fire), shortcat(Fi), page(M:LoS:9), CountAsNeed(Magical), ident(Magical),class(Regular),duration(10 sec),castingcost(1/S)
+
+<Food:Fo>
+Eat Crow, type(IQ/A), cat(Food, Body Control), shortcat(Fo, B), page(M:LoS:9), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S)
+Find Ingredient, type(IQ/A),cat(Food), shortcat(Fo), page(M:LoS:9), CountAsNeed(Magical), ident(Magical),class(Information),castingcost(1)
+Glutton’s Cheat, type(IQ/A), cat(Food), shortcat(Fo), page(M:LoS:9), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S),time(2 sec)
+
+<Gate:G>
+Easy Rider, type(IQ/A),cat(Gate, Meta-Spells), shortcat(G, Me), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(2/S)
+Reorient, type(IQ/A), cat(Gate, Movement), shortcat(G, Mo), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Blocking),castingcost(1)
+
+<Healing:H>
+Aid, type(IQ/A),cat(Healing), shortcat(H), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min Must be maintained throughout the entire treatment to provide any benefit),castingcost(1/S)
+Aide, type(IQ/A),cat(Healing), shortcat(H), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min Must be maintained throughout the entire ceremony to provide any benefit),castingcost(2)
+Analgesic, type(IQ/A),cat(Healing,Body Control), shortcat(H,B), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S)
+Bender Defender, type(IQ/A),cat(Healing,Protection and Warning), shortcat(H, Pr), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(2),time(10 sec)
+Birth Control, type(IQ/A), cat(Healing,Body Control), shortcat(H, B), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(2),time(7 sec)
+Test, type(IQ/A), cat(Healing,Knowledge), shortcat(H, K), page(M:LoS:10), CountAsNeed(Magical), ident(Magical),class(Information),castingcost(1),time(30 sec)
+
+<Illusion & Creation:I>
+Disbelieve, type(IQ/A), cat(Illusion & Creation,Mind Control), shortcat(I,Mi), page(M:LoS:11), CountAsNeed(Magical), ident(Magical),class(Regular, Blocking),duration(1 second (long enough to try to disbelieve)),castingcost(1)
+Image, type(IQ/A), cat(Illusion & Creation), shortcat(I), page(M:LoS:11), CountAsNeed(Magical), ident(Magical),class(Area),duration(1 min), castingcost(1)
+Shadowplay, type(IQ/A), cat(Illusion & Creation,Light and Darkness), shortcat(I,L), page(M:LoS:11), CountAsNeed(Magical), ident(Magical),class(Area),duration(1 min), castingcost(1)
+
+<Knowledge:K>
+Keyfinder, type(IQ/A), cat(Knowledge, Mind Control), shortcat(K, Mi), page(M:LoS:11), CountAsNeed(Magical), ident(Magical),class(Regular),duration(Instantaneous. Recollection remains until object is misplaced again),castingcost(1),time(5 sec)
+Know Thyself, type(IQ/A), cat(Knowledge, Mind Control), shortcat(K, Mi), page(M:LoS:11), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(2),time(5 sec)
+Sweet Oblivion, type(IQ/A), cat(Knowledge, Mind Control), shortcat(K, Mi), page(M:LoS:11), CountAsNeed(Magical), ident(Magical),class(Regular),duration(Permanent),castingcost(3),time(10 sec)
+
+<Light & Darkness:L>
+Goggles, type(IQ/A), cat(Light & Darkness,Protection and Warning), shortcat(L, Pr), page(M:LoS:12), CountAsNeed(Magical), ident(Magical),class(Regular), duration(1 min), castingcost(1/S)
+Phosphorescence, type(IQ/A), cat(Light & Darkness), shortcat(L), page(M:LoS:12), CountAsNeed(Magical), ident(Magical),class(Area), duration(Instantaneous),castingcost(2),time(2 sec)
+Twinkle, type(IQ/A), cat(Light & Darkness), shortcat(L), page(M:LoS:12), CountAsNeed(Magical), ident(Magical), class(Regular), duration(1 min),castingcost(1/S)
+
+<Making & Breaking:Ma>
+Tack, type(IQ/A), cat(Making & Breaking), shortcat(Ma), page(M:LoS:12), CountAsNeed(Magical), ident(Magical),class(Regular),duration(Instantaneous. Sheet stays tacked until pulled down),castingcost(1)
+Wizardly Workshop, type(IQ/A), cat(Making & Breaking, Movement, Technological), shortcat(Ma, Mo, T), page(M:LoS:12), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),description(Must be maintained throughout an entire task to provide any benefit),castingcost(2 per -1 to skill, max 10/S),time(5 sec)
+
+<Meta-Spells:Me>
+Thaumatomancy, type(IQ/A), cat(Meta-Spells,Knowledge), shortcat(Me,K), page(M:LoS:12), CountAsNeed(Magical), ident(Magical),class(Information), castingcost(10, One try per question),time(1 hr)
+Use Item, type(IQ/A), cat(Meta-Spells), shortcat(Me), page(M:LoS:12), CountAsNeed(Magical), ident(Magical), class(Regular), duration(1 sec), description(Must be maintained throughout the entire time required to activate the item – very draining for scrolls!),castingcost(2/S)
+
+<Mind Control:Mi>
+Adjuration, type(IQ/A), cat(Mind Control), shortcat(Mi), page(M:LoS:13), CountAsNeed(Magical), ident(Magical),class(Regular),duration(Permanent),castingcost(4),time(1 min)
+Hypnotize, type(IQ/A), cat(Mind Control), shortcat(Mi), page(M:LoS:13), CountAsNeed(Magical), ident(Magical),class(Regular/R-Spcl) ,duration(1 min),castingcost(2),time(5 sec)
+Patience, type(IQ/A), cat(Mind Control), shortcat(Mi), page(M:LoS:13), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr), description(Must be maintained throughout the entire task to provide any benefit),castingcost(2),time(10 sec)
+Startle, type(IQ/A), cat(Mind Control), shortcat(Mi), page(M:LoS:13), CountAsNeed(Magical), ident(Magical),class(Regular/R-Will), duration(Instantaneous),castingcost(1)
+Volatility, type(IQ/A), cat(Mind Control), shortcat(Mi), page(M:LoS:14), CountAsNeed(Magical), ident(Magical),class(Regular/R-Spcl), duration(1 min or until a self-control roll is attempted, whichever comes first),castingcost(1-3/S)
+
+<Movement:Mo>
+Cushion, type(IQ/A), cat(Movement), shortcat(Mo), page(M:LoS:14), CountAsNeed(Magical), ident(Magical),class(Blocking), castingcost(Equal to falling damage)
+Flee, type(IQ/A), cat(Movement), shortcat(Mo), page(M:LoS:14), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(2)
+Open Door, type(IQ/A), cat(Movement), shortcat(Mo), page(M:LoS:14), CountAsNeed(Magical), ident(Magical),class(Regular or Blocking),duration(Instantaneous – doesn’t hold the door open!),castingcost(1)
+Sink, type(IQ/A), cat(Movement, Water), shortcat(Mo, Wa), page(M:LoS:14), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(3),time(3 sec)
+
+<Necromancy:N>
+Dramatic Departure, type(IQ/A), cat(Necromancy), shortcat(N), page(M:LoS:14), CountAsNeed(Magical), ident(Magical), class(Special),duration(Very permanent – caster can’t be resurrected by anything that requires an intact body or brain!)
+Invoke, type(IQ/A), cat(Necromancy, Gate), shortcat(N,G), page(M:LoS:14), CountAsNeed(Magical), ident(Magical), class(Special),duration(Instantaneous, but many entities have long memories),castingcost(1)
+Reverie of Ruin, type(IQ/A), cat(Necromancy), shortcat(N), page(M:LoS:15), CountAsNeed(Magical), ident(Magical), class(Information),castingcost(1),time((20 - skill) seconds, minimum 1 sec This is instead of the usual reduction for high skill)
+
+<Plant:Pl>
+Ritual of Reaping, type(IQ/A), cat(Plant, Food), shortcat(Pl, Fo), page(M:LoS:15), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(2/S),time(10 sec)
+Spell of Sowing, type(IQ/A), cat(Plant), shortcat(Pl), page(M:LoS:15), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(2/S),time(10 sec)
+
+<Protection & Warning:Pr>
+Anticipate, type(IQ/A), cat(Protection & Warning), shortcat(Pr), page(M:LoS:15), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(2/S)
+Insect Repellent, type(IQ/A), cat(Protection & Warning, Animal), shortcat(Pr, An), page(M:LoS:15), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(1/S),time(10 sec)
+
+<Sound:S>
+Selective Hearing, type(IQ/A), cat(Sound,Protection and Warning), shortcat(S,Pr), page(M:LoS:15), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1/S)
+Squeak, type(IQ/A), cat(Sound), shortcat(S), page(M:LoS:15), CountAsNeed(Magical), ident(Magical), class(Regular),duration(1 second (less, if the caster wishes)),castingcost(1)
+Throw Voice, type(IQ/A), cat(Sound, Body Control), shortcat(S,B), page(M:LoS:16), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(2),time(2 sec)
+
+<Technological:T>
+Magnetic Finger, type(IQ/A), cat(Technological), shortcat(T), page(M:LoS:16), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 min),castingcost(1)
+Remote Start/TL, type(IQ/A), cat(Technological), shortcat(T), page(M:LoS:16), CountAsNeed(Magical), ident(Magical),class(Regular),duration(Instantaneous. Machine remains on or off as usual),castingcost(1)
+
+<Water:Wa>
+Mer-Speech, type(IQ/A), cat(Water,Communication and Empathy,Sound), shortcat(Wa,S,C), page(M:LoS:17), CountAsNeed(Magical), ident(Magical), class(Regular), duration(1 min), castingcost(2),time(2 sec)
+Sea Legs, type(IQ/A), cat(Water, Healing), shortcat(Wa,H), page(M:LoS:17), CountAsNeed(Magical), ident(Magical), class(Regular), duration(1 hr), castingcost(1/S),time(2 sec)
+Sponge, type(IQ/A), cat(Water), shortcat(Wa), page(M:LoS:17), CountAsNeed(Magical), ident(Magical), class(Regular), duration(1 min),castingcost(1/S), time(2 sec)
+Squirt, type(IQ/A), cat(Water), shortcat(Wa), page(M:LoS:17), CountAsNeed(Magical), ident(Magical), class(Regular), duration(1 sec. Takes an hour to produce a gallon!), castingcost(1/S)
+Sweat, type(IQ/A), cat(Water), shortcat(Water), page(M:LoS:17), CountAsNeed(Magical), ident(Magical), class(Regular), duration(Instantaneous), castingcost(1)
+
+<Weather:We>
+Cloud, type(IQ/A), cat(Weather, Air, Water), shortcat(We, Wa, Ai), page(M:LoS:17), CountAsNeed(Magical), ident(Magical),class(Regular/R-Will), duration(1 min),castingcost(1/S)
+Jolt, type(IQ/A), cat(Weather, Air), shortcat(We, Ai), page(M:LoS:17), CountAsNeed(Magical), ident(Magical), class(Missile), castingcost(1)
+Storm Shelter, type(IQ/A), cat(Weather,Air, Protection and Warning), shortcat(We, Pr, Ai), page(M:LoS:17), CountAsNeed(Magical), ident(Magical),class(Regular),duration(1 hr),castingcost(1/S),time(2 sec)

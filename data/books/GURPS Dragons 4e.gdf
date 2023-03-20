@@ -1,0 +1,3789 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+		This data file contains information taken from the appendix of the GURPS Dragons sourcebook. _
+		GURPS Dragons is Copyright © 2004 by Steve Jackson Games Incorporated. _
+		All rights reserved. _
+		This data file contains information taken from the GURPS Spirits sourcebook. _
+		GURPS Spirits is Copyright © 2001 by Steve Jackson Games Incorporated. _
+		All rights reserved. _
+		Note: This file requires the use of the GURPS Magic data file for some templates. _
+		The Sorcer template requires that one of the Ritual Magic Data Files be _
+		loaded in the Data Set.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  GURPS® Character Assistant
+//  Filename: GURPS Dragons 4e.gdf
+//  Created:  August 7, 2005
+//  Requires GCA v4 or later!
+// 
+// 
+//  This data file contains information taken from the appendix of the GURPS Dragons sourcebook.
+//  GURPS Dragons is Copyright © 2004 by Steve Jackson Games Incorporated.
+//  All rights reserved.
+// 
+//  This data file contains information taken from the GURPS Spirits sourcebook.
+//  GURPS Spirits is Copyright © 2001 by Steve Jackson Games Incorporated.
+//  All rights reserved.
+// 
+//  Note: This file requires the use of the GURPS Magic data file for some templates.
+// 	The Sorcer template requires that one of the Ritual Magic Data Files be 
+// 		loaded in the Data Set.
+// 
+//  Information in this file includes:
+// 	Character Templates
+// 	Ritual Spells (a small selection from GURPS Spirits)
+// 	Racial Templates
+// 	Traits needed for the templates
+// 
+// 
+***************************************************************************
+// 
+//  Jared D. Voshall		- Major Work
+//  Martin Etherington	- Corrections, Character Templates, Spells
+//  Emily Smirle (Bruno)	- Corrections, Racial Templates
+//  Eric B. Smith			- GURPS Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+***************************************************************************
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated,_
+//  used with GCA by permission of Steve Jackson Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson
+//  Games Incorporated. This product includes copyrighted material from the
+//  GURPS game, which is used by permission of Steve Jackson Games
+//  Incorporated. All rights reserved by Steve Jackson Games Incorporated.
+********************************************************************************************************\[STOP]
+[LANGUAGES]
+*******************************************************************************************************\[START]
+<Mundane Social>
+Secret Dragon Language, 2/4, page(B24), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Mundane, Social, Language, Language Spoken, Language Written, Social Background)
+
+<Language>
+Draconic (Spoken), 1/2, page(B24), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Mundane, Social, Language, Language Spoken), taboo(Native Languages > 1)
+Draconic (Written), 1/2, page(B24), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Mundane, Social, Language, Language Written), taboo(Native Languages > 1)
+Draconic, 2/4, page(B24), mods(Language), upto(3 LimitingTotal), levelnames([None], Broken, Accented, Native), cat(Mundane, Social, Language, Language Spoken, Language Written), taboo(Native Languages > 1)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Knowledge>
+Hidden Lore (Dragon Lore), IQ/A, page(B199), cat(_General, Knowledge, Occult/Magical)
+Expert Skill (Bardic Knowledge), IQ/H, page(B193), cat(_General, Knowledge, Scholarly)
+Expert Skill (Dracontology), IQ/H, page(B193), cat(_General, Knowledge, Occult/Magical)
+
+<Animal>
+Riding (Dragon), DX/A, default(DX - 5, SK:Animal Handling - 3, SK:Riding - 10), page(B217), cat(_General, Animal)
+
+<Ritual Magic Paths>
+Path of Cunning, type(IQ/VH), default(SK:Ritual Magic - 6, SK:Symbol Drawing - 6, SK:Thaumatology - 6), needs(SK:Ritual Magic | SK:Symbol Drawing | SK:Thaumatology), page(B242)
+Path of Luck, type(IQ/VH), default(SK:Ritual Magic - 6, SK:Symbol Drawing - 6, SK:Thaumatology - 6), needs(SK:Ritual Magic | SK:Symbol Drawing | SK:Thaumatology), page(B242)
+
+********************************************************************************************************\[STOP]
+[SPELLS]
+*******************************************************************************************************\[START]
+<~Ritual, ~Ritual - Cunning:Cu>
+Guise (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -1), upto(prereq), page(SPI92), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Slumber (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -3, "SK:Path of Dreams" -2, "SK:Path of Health" -2), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Lust (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -4), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Mist (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -4), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Veil (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -4, "SK:Path of Knowledge" -4), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Obscurity (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -5), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Hallucination (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -6), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Suggestion (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -6), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Cloud Memory (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Cunning" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Cunning::level" -7), upto(prereq), page(SPI93), shortcat(Cu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+
+<~Ritual, ~Ritual - Luck:Lu>
+Stroke of Luck (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -1), upto(prereq), page(SPI97), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Windfall (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -2), upto(prereq), page(SPI98), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Chaperone (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Path of Protection & Warning" =0pts  | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -3, "SK:Path of Protection & Warning" -2), upto(prereq), page(SPI98), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Journeymans Blessing (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -3), upto(prereq), page(SPI98), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Journeymans Curse (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -3), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Love Charm (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -3), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Gremlins (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -4), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Hunters Blessing (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -4), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Loyal Item (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -4), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Vision of Luck (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | , "SK:Path of Knowledge" =0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -5, "SK:Path of Knowledge" -3), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Weapon Blessing (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -6), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+Malediction (Ritual), type(Tech/H), countsasneed(Ritual), ident(Ritual), needs("SK:Path of Luck" = 0pts | "SK:Magic!" = 3pts), default("SK:Path of Luck::level" -8), upto(prereq), page(SPI99), shortcat(Lu), prereqcount(0), class(Area), time(1 sec.), duration(Instant), castingcost(1)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllMetaTraits>
+TE:Half-Dragon
+TE:Western Dragon
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Racial Templates - Dragons - Non-Dragon>
+***************************************************************************************
+// Confirmed
+Snake-Form Naga (Dragons), displaycost(80), cost(70),_
+	race(Snake-Form Naga),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR22, DR144),_
+	gives(_
+		+3 to ST:DX,_
+		+5 to ST:HT,_
+		+2 to ST:Hit Points,_
+		-1.00 to ST:Basic Speed_
+	),_
+	adds(_
+	AD:Alternate Form respond "Human",_
+	AD:Toxic Attack=3 _
+		with "Cyclic; 10 Cycles; Resistable (1 hour interval), +90%, mods(Cyclic)" _
+					and "Follow-Up (Sharp Teeth), +0%, group(_Attack Enhancements), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)" _
+					and "Resistible (HT-3), -15%, group(_Attack Limitations)" _
+					respond 1,_
+	DI:Cold-Blooded,_
+	DI:Horizontal,_
+	PA:Vermiform_
+	),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=4_
+	)
+
+// Confirmed
+Half-Human Naga (Dragons), displaycost(145), cost(100),_
+	race(Half-Human Naga),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR22, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+3 to ST:DX,_
+		+4 to ST:HT_
+	),_
+	adds(_
+		AD:Double-Jointed,_
+		DI:No Legs (Slithers)_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=3_
+	)
+
+// Confirmed
+Draconic Lizardman (Dragons), displaycost(108), cost(70),_
+	race(Draconic Lizardman),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR25, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+1 to ST:DX,_
+		+2 to ST:IQ,_
+		+1 to ST:HT_
+	),_
+	adds(_
+		AD:Damage Resistance=1,_
+		AD:Fearlessness=2,_
+		AD:High Pain Threshold,_
+		AD:Magery 0,_
+		AD:Magery=2,_
+		AD:Nictitating Membrane=1,_
+		AD:Peripheral Vision,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		QU:Attentive,_
+		DI:Disturbing Voice,_
+		DI:No Sense of Humor_
+	),_
+	creates( _
+		"DI:Odious Racial Habit (Willfully Enigmatic), -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem"), noresync(yes)"=1 _
+	)
+
+// Confirmed
+Wyvern (Dragons), displaycost(209), cost(75),_
+	race(Wyvern),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR51, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+4 to ST:DX,_
+		-4 to ST:IQ,_
+		+4 to ST:HT,_
+		+4 to ST:Size Modifier,_
+		+4 to ST:Will,_
+		+7 to ST:Perception,_
+		-4 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Extra Basic Speed = 12 with "Only when Flying, -30%, group(_General)",_
+		AD:Claws (Blunt Claws),_
+		AD:Damage Resistance=3 with "Cannot wear armor, -40%, group(Damage Resistance)",_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+						respond {Disease},_
+		AD:Toxic Attack=2 with "Cyclic; 1 hour; 10 cycles; resistable, +90%, group(_Attack enhancers)"_
+			and "Follow-Up: Spear, +0%, group(_Attack Enhancers), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)" and "Resistable; HT-2, -20%, group(_Attack limitations)" _
+			respond 1,_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:Nictitating Membrane=1,_
+		AD:Striker (Impaling; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(2)" _
+		respond "Tail/Spear",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		DI:Bad Grip=2,_
+		DI:Cannot Speak,_
+		DI:Increased Consumption=2,_
+		AD:High Pain Threshold,_
+		DI:Short Arms (2 Arms)_
+	),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+			formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=8,_
+		"DI:Foot Manipulators (Both), -6, cat(Exotic, Physical)" _
+	)
+
+// Confirmed
+Wyvern - Smaller (Dragons), displaycost(193), cost(75),_
+	race(Wyvern),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR51, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+4 to ST:DX,_
+		-4 to ST:IQ,_
+		+4 to ST:HT,_
+		+2 to ST:Size Modifier,_
+		+4 to ST:Will,_
+		+7 to ST:Perception,_
+		-4 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Extra Basic Speed = 12 with "Only when Flying, -30%, group(_General)",_
+		AD:Claws (Blunt Claws),_
+		AD:Damage Resistance=2 with "Cannot wear armor, -40%, group(Damage Resistance)",_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Toxic Attack=1 with "Cyclic; 1 hour; 10 cycles; resistable, +90%, group(_Attack enhancers)"_
+					and "Follow-Up: Spear, +0%, group(_Attack Enhancers), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)" and "Resistable; HT-2, -20%, group(_Attack limitations)" _
+					respond 1,_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:Nictitating Membrane=1,_
+		AD:Striker (Impaling; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(2)" _
+		respond "Tail/Spear",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		DI:Bad Grip=2,_
+		DI:Cannot Speak,_
+		DI:Increased Consumption=1,_
+		AD:High Pain Threshold,_
+		DI:Short Arms (2 Arms)_
+	),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+			formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=5,_
+		"DI:Foot Manipulators (Both), -6, cat(Exotic, Physical)"_
+	)
+
+// Confirmed
+Petty Drake (Dragons), displaycost(124), cost(142),_
+	race(Petty Drake),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR54, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+5 to ST:DX,_
+		-4 to ST:IQ,_
+		+4 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+4 to ST:Will,_
+		+6 to ST:Perception,_
+		-2 to ST:Size Modifier,_
+		+1.00 to ST:Basic Speed_
+	),_
+	adds(_
+		AD:Burning Attack=1 with "Jet, +0%, group(_Attack Enhancements), page(B106), gives(-3 to owner::acc, *0.5 to owner::rangehalfdam, *0.1 to owner::rangemax)" and "Costs Fatigue; 1pt, -5%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Extended Lifespan=2,_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:Nictitating Membrane=1,_
+		AD:Reduced Consumption=2,_
+		AD:Resistant=2 with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), round(Down), shortname(+8), group(Resistant)" _
+					respond {Disease},_
+		AD:Teeth (Sharp Teeth),_
+		DI:Bad Grip=2,_
+		DI:Cannot Speak=1,_
+		DI:Semi-Upright,_
+		DI:Short Arms (2 Arms)_
+	),_
+	creates(_
+		"DI:Racial ST Penalty, -10/-20, cat(Exotic Physical, Exotic, Physical), gives(-1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=3_
+	)
+
+// Confirmed
+Petty Drake - Wild (Dragons), displaycost(99), cost(132),_
+	race(Petty Drake),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR54, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+5 to ST:DX,_
+		-5 to ST:IQ,_
+		+4 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+5 to ST:Will,_
+		+7 to ST:Perception,_
+		-2 to ST:Size Modifier,_
+		+1.00 to ST:Basic Speed_
+	),_
+	adds(_
+		AD:Burning Attack=1 with "Jet, +0%, group(_Attack Enhancements), page(B106), gives(-3 to owner::acc, *0.5 to owner::rangehalfdam, *0.1 to owner::rangemax)" and "Costs Fatigue; 1pt, -5%, group(General)" and "Costs Fatigue; 1pt, -5%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Extended Lifespan=2,_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:Nictitating Membrane=1,_
+		AD:Reduced Consumption=2,_
+		AD:Resistant =2 with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), round(Down), shortname(+8), group(Resistant)" _
+					respond {Disease},_
+		AD:Teeth (Sharp Teeth),_
+		DI:Bad Grip=2,_
+		DI:Cannot Speak=1,_
+		DI:Semi-Upright,_
+		DI:Short Arms (2 Arms),_
+		DI:Bestial,_
+		DI:Innumerate _
+	),_
+	creates(_
+		"DI:Racial ST Penalty, -10/-20, cat(Exotic Physical, Exotic, Physical), gives(-1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=3_
+	)
+
+// Confirmed
+Petty Drake - Cute Shoulder Dragon (Dragons), displaycost(36), cost(91),_
+	race(Petty Drake),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR54, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+5 to ST:DX,_
+		-4 to ST:IQ,_
+		+4 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+4 to ST:Will,_
+		+6 to ST:Perception,_
+		+3 to ST:Fatigue Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Burning Attack = 1 with "Jet, +0%, group(_Attack Enhancements), page(B106), gives(-3 to owner::acc, *0.5 to owner::rangehalfdam, *0.1 to owner::rangemax)" and "Costs Fatigue; 1pt, -5%, group(General)" and "Costs Fatigue; 1pt, -5%, group(General)" _
+					and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:Nictitating Membrane=1,_
+		AD:Reduced Consumption=2,_
+		AD:Resistant =2 with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), round(Down), shortname(+8), group(Resistant)" _
+					respond {Disease},_
+		AD:Teeth (Sharp Teeth),_
+		DI:Cannot Speak=1,_
+		AD:Pitiable,_
+		DI:Laziness,_
+		PA:Quadruped _
+	),_
+	creates(_
+		"DI:Racial ST Penalty, -10/-20, cat(Exotic Physical, Exotic, Physical), gives(-1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=8_
+	)
+
+// Confirmed
+Petty Drake - Venomous Dragonet (Dragons), displaycost(154), cost(142),_
+	race(Petty Drake),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR54, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+5 to ST:DX,_
+		-4 to ST:IQ,_
+		+4 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+4 to ST:Will,_
+		+6 to ST:Perception,_
+		-2 to ST:Size Modifier,_
+		+1.00 to ST:Basic Speed_
+	),_
+	adds(_
+		AD:Fatigue Attack=2 with "Cyclic; 1 hour; 10 cycles; resistable, +90%, group(_Attack enhancers)" _
+				and "Follow-Up: Teeth, +0%, group(_Attack Enhancers), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)" and "Resistable; HT-2, -20%, group(_Attack limitations)" _
+					respond 1,_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Extended Lifespan=2,_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:Nictitating Membrane=1,_
+		AD:Reduced Consumption=2,_
+		AD:Resistant =2 with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), round(Down), shortname(+8), group(Resistant)" _
+					respond {Disease},_
+		AD:Teeth (Sharp Teeth),_
+		DI:Bad Grip=2,_
+		DI:Cannot Speak=1,_
+		DI:Semi-Upright,_
+		DI:Short Arms (2 Arms)_
+	),_
+	creates(_
+		"DI:Racial ST Penalty, -10/-20, cat(Exotic Physical, Exotic, Physical), gives(-1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=3_
+	)
+
+// Confirmed
+Sea Serpent (Dragons), displaycost(87), cost(16),_
+	race(Sea Serpent),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR55, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+3 to ST:DX,_
+		-7 to ST:IQ,_
+		+6 to ST:HT,_
+		+8 to ST:Size Modifier,_
+		+7 to ST:Will,_
+		+5 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=5,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breath)",_
+		AD:Teeth (Fangs),_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak,_
+		DI:Colorblindness,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform,_
+		DI:No Legs (Aquatic)_
+	),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=25_
+	)
+
+// Confirmed
+Sea Serpent - Very Small (Dragons), displaycost(55), cost(16),_
+	race(Sea Serpent),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR55, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+3 to ST:DX,_
+		-7 to ST:IQ,_
+		+6 to ST:HT,_
+		+4 to ST:Size Modifier,_
+		+7 to ST:Will,_
+		+5 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=5,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breath)",_
+		AD:Teeth (Fangs),_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak,_
+		DI:Colorblindness,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform,_
+		DI:No Legs (Aquatic)_
+	),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=9_
+	)
+
+// Confirmed
+Sea Serpent - Small (Dragons), displaycost(69), cost(16),_
+	race(Sea Serpent),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR55, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+3 to ST:DX,_
+		-7 to ST:IQ,_
+		+6 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+7 to ST:Will,_
+		+5 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=5,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breath)",_
+		AD:Teeth (Fangs),_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak,_
+		DI:Colorblindness,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform,_
+		DI:No Legs (Aquatic)_
+	),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=16_
+	)
+
+// Confirmed
+Sea Serpent - Giant (Dragons), displaycost(103), cost(16),_
+	race(Sea Serpent),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR55, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+3 to ST:DX,_
+		-7 to ST:IQ,_
+		+6 to ST:HT,_
+		+9 to ST:Size Modifier,_
+		+7 to ST:Will,_
+		+5 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=5,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breath)",_
+		AD:Teeth (Fangs),_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak,_
+		DI:Colorblindness,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform,_
+		DI:No Legs (Aquatic)_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=33_
+	)
+
+// Confirmed
+Sea Serpent - Vast (Dragons), displaycost(117), cost(16),_
+	race(Sea Serpent),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR55, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+3 to ST:DX,_
+		-7 to ST:IQ,_
+		+6 to ST:HT,_
+		+10 to ST:Size Modifier,_
+		+7 to ST:Will,_
+		+5 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=5,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breath)",_
+		AD:Teeth (Fangs),_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak,_
+		DI:Colorblindness,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform,_
+		DI:No Legs (Aquatic)_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=40_
+	)
+
+// Confirmed
+Sea Serpent - Bena (Dragons), displaycost(195/225), cost(38),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	race(Sea Serpent),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR55, DR145),_
+	gives(_
+		+4 to ST:DX,_
+		-5 to ST:IQ,_
+		+5 to ST:HT,_
+		+3 to ST:Size Modifier,_
+		+5 to ST:Will,_
+		+3 to ST:Perception_
+	),_
+	adds(_
+		AD:Enhanced Move (Water),_
+		AD:Magery 0,_
+		AD:Magery=1 with "Water College Only, -40%, gives(-Owner::Level to ST:Magery, +Owner::Level to ST:Magery Water, -Owner::Level to Spells, +Owner::Level to CO:Water, +Owner::Level to SP:Recover Energy), group(Magery), page(B67), description(Use this limitation *ONLY* on the Magery advantage. It will cause errors if used on another trait.)",_
+		AD:Acute Hearing=5,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Crushing Attack with "Partial Dice, +2/+3/+, formula(@int(%level * 5 * 0.3 + 0.9)), forceformula(yes), group(Crushing Attack Enhancements), page(B62), gives(+1 to owner::damage), level(2)" _
+						and "Damage Modifier: Double Knockback, +20%/+40%, shortname(Double Knockback), group(Crushing Attack Enhancements), page(B104), gives(=" dkb" to owner::damtype$), level(2)" _
+						and "Jet, +0%, group(_Attack Enhancements), page(B106)" _
+						and "Underwater, +20%, group(_Attack Enhancements), page(B109)" _
+						and "Variable, +5%, group(_Attack Enhancements), page(B109)" _
+						and "Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breath)",_
+		AD:Teeth (Sharp Teeth),_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak,_
+		DI:Colorblindness,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform,_
+		DI:No Legs (Aquatic)_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)| No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=10,_
+			"SP:Tide, type(IQ/H), page(M194), cat(Weather, Water), shortcat(We, Wa), prereqcount(8), class(Special; Area), time(1 min.), duration(1 hr.), castingcost(1/30)"=104pts_
+	),_
+	select1(text("Optional: You may choose to have vulnerability to wood."), pointswanted(upto -30), itemswanted(upto 1),_
+		list(_
+			#newitem(DI:Vulnerability (Wood), -10/-20/-30/-40, displaycost(-30), upto(4), levelnames(Rare, Occasional, Common, Very Common), mods(Vulnerability), page(B161), cat(Exotic, Physical)) #codes(upto 3, downto 3)_
+		)_
+	)
+
+// Confirmed
+Western Dragon - Hatchling/Man-Sized (Dragons), displaycost(108), cost(1),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons,  Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		-1 to ST:DX,_
+		+3 to ST:HT,_
+		-1 to ST:Basic Move,_
+		-2 to ST:Air Move _
+	),_
+	adds(_
+		AD:Burning Attack with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+					and "Costs Fatigue 2 FP, -10%, group(General)" _
+					and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+					respond 5,_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Short Arms (2 Arms),_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=3_
+	)
+
+// Confirmed
+Western Dragon - Young/Very Small (Dragons), displaycost(219), cost(85),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+1 to ST:DX,_
+		+1 to ST:IQ,_
+		+5 to ST:HT,_
+		+2 to ST:Size Modifier,_
+		-1 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Burning Attack=1 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue: 2 FP, -10%, cat(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=2 with "Cannot Wear Armor, -40%, cat(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=6,_
+			"DI:Reduced Air Move 2, -4, cat(Exotic, Physical)"_
+	)
+
+// Confirmed
+Western Dragon - Adolescent/Small (Dragons), displaycost(298), cost(130),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+2 to ST:DX,_
+		+2 to ST:IQ,_
+		+5 to ST:HT,_
+		+2 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Burning Attack=2 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue: 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						and "Partial Dice, -1/-3/+, formula(@int(%level * -5 * 0.3 + 0.9)), forceformula(yes), group(Burning Attack Limitations), page(B62), gives(-1 to owner::damage), upto(@if(@int(owner::level/3) = (owner::level/3) THEN -1 ELSE 0) + @int(owner::level * 10/3)), levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))" _
+						respond 5,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Increased Consumption=1,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=10_
+	)
+
+// Confirmed
+Western Dragon - Adolescent/Medium (Dragons), displaycost(288), cost(130),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+2 to ST:DX,_
+		+2 to ST:IQ,_
+		+5 to ST:HT,_
+		+3 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Burning Attack=2 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue: 2 FP, -10%, cat(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						and "Partial Dice, -1/-3/+, formula(@int(%level * -5 * 0.3 + 0.9)), forceformula(yes), group(Burning Attack Limitations), page(B62), gives(-1 to owner::damage), upto(@if(@int(owner::level/3) = (owner::level/3) THEN -1 ELSE 0) + @int(owner::level * 10/3)), levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))" _
+						respond 5,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, cat(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Increased Consumption=1,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=10_
+	)
+
+// Confirmed
+Western Dragon - Adolescent/Large (Dragons), displaycost(278), cost(130),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+2 to ST:DX,_
+		+2 to ST:IQ,_
+		+5 to ST:HT,_
+		+4 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Burning Attack=2 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue: 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						and "Partial Dice, -1/-3/+, formula(@int(%level * -5 * 0.3 + 0.9)), forceformula(yes), group(Burning Attack Limitations), page(B62), gives(-1 to owner::damage), upto(@if(@int(owner::level/3) = (owner::level/3) THEN -1 ELSE 0) + @int(owner::level * 10/3)), levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))" _
+						respond 5,_
+		AD:Damage Resistance=3 with "Cannot Wear Armor, -40%, cat(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Increased Consumption=1,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=10_
+	)
+
+// Confirmed
+Western Dragon - Young Adult/Medium (Dragons), displaycost(327), cost(166),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+3 to ST:DX,_
+		+3 to ST:IQ,_
+		+5 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-1 to ST:Basic Move,_
+		+4 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Burning Attack=2 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue: 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=4 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Increased Consumption=2,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=13_
+	)
+
+// Confirmed
+Western Dragon - Young Adult/Large (Dragons), displaycost(313), cost(166),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+3 to ST:DX,_
+		+3 to ST:IQ,_
+		+5 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-1 to ST:Basic Move,_
+		+5 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Burning Attack=2 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue: 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=4 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Increased Consumption=2,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=13_
+	)
+
+// Confirmed
+Western Dragon - Adult/Large (Dragons), displaycost(394), cost(207),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+4 to ST:DX,_
+		+4 to ST:IQ,_
+		+5 to ST:HT,_
+		+5 to ST:Size Modifier,_
+		+2 to ST:Hit Points,_
+		-1 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Burning Attack=3 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						and "Partial Dice, -1/-3/+, formula(@int(%level * -5 * 0.3 + 0.9)), forceformula(yes), group(Burning Attack Limitations), page(B62), gives(-1 to owner::damage), upto(@if(@int(owner::level/3) = (owner::level/3) THEN -1 ELSE 0) + @int(owner::level * 10/3)), levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))" _
+						respond 5,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Enhanced Move (Air),_
+		AD:Teeth (Fangs),_
+		AD:Claws (Talons),_
+		DI:Increased Consumption=2,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=16_
+	)
+
+// Confirmed
+Western Dragon - Old Adult/Large (Dragons), displaycost(437), cost(229),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+4 to ST:DX,_
+		+5 to ST:IQ,_
+		+5 to ST:HT,_
+		+5 to ST:Size Modifier,_
+		+4 to ST:Hit Points,_
+		-1 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Burning Attack=3 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Enhanced Move (Air)=2,_
+		AD:Teeth (Fangs),_
+		AD:Claws (Talons),_
+		DI:Increased Consumption=2,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=18_
+	)
+
+// Confirmed
+Western Dragon - Old Adult/Very Large (Dragons), displaycost(419), cost(211),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+4 to ST:DX,_
+		+5 to ST:IQ,_
+		+5 to ST:HT,_
+		+5 to ST:Size Modifier,_
+		+4 to ST:Hit Points,_
+		-1 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Burning Attack=3 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Enhanced Move (Air)=2,_
+		AD:Teeth (Fangs),_
+		AD:Claws (Talons),_
+		DI:Increased Consumption=2,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=18_
+	)
+
+// Confirmed
+Western Dragon - Monstrous (Dragons), displaycost(460), cost(249),_
+	race(Western Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR57, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+4 to ST:DX,_
+		+6 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+4 to ST:Hit Points,_
+		-1 to ST:Basic Move_
+	),_
+	adds(_
+		AD:Burning Attack=3 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs Fatigue 2 FP, -10%, group(General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=7 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Enhanced Move (Air)=3,_
+		AD:Teeth (Fangs),_
+		AD:Claws (Talons),_
+		DI:Increased Consumption=2,_
+		PA:Western Dragon_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=20_
+	)
+
+// Confirmed
+Chinese Water Snake (Dragons), displaycost(5), cost(21),_
+	race(Chinese Water Snake),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR59, DR147),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		-1 to ST:DX,_
+		-1 to ST:IQ,_
+		+5 to ST:HT,_
+		-1 to ST:Hit Points,_
+		+2 to ST:Will,_
+		+3 to ST:Perception_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Survival (River/Stream)",_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Doesn't Breathe with "Gills: only underwater, *0, group(Doesn't Breathe)",_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Peripheral Vision,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=2,_
+		AD:Unaging,_
+		DI:Appearance=1,_
+		DI:Cannot Speak,_
+		DI:No Legs (Aquatic),_
+		DI:Revulsion (Iron)=3,_
+		SK:Survival (River/Stream)==0pts#DoNotOwn,_
+		PA:Vermiform_
+	),_
+	creates(_
+			"DI:Racial ST Penalty, -10/-20, cat(Exotic Physical, Exotic, Physical), gives(-1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=1,_
+			"QU:Unnerved by the smell of wax, -1, cat(Exotic, Mental)"_
+	)
+
+// Confirmed
+Kiao (Dragons), displaycost(72), cost(55),_
+	race(Kiao),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR59, DR147),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		-1 to ST:IQ,_
+		+5 to ST:HT,_
+		+2 to ST:Size Modifier,_
+		+3 to ST:Hit Points,_
+		+3 to ST:Perception,_
+		+1 to ST:Will_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Survival (River/Stream)",_
+		AD:Amphibious,_
+		AD:Claws (Blunt Claws),_
+		AD:Damage Resistance=2 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)" _
+						and "Can Only survive outside of water for 1 hour at a time, -20%, cat(Doesn't Breathe)",_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (water),_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=2,_
+		AD:Unaging,_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=1,_
+		DI:No Fine Manipulators,_
+		DI:Revulsion (Iron)=3,_
+		DI:Short Arms (2 Arms),_
+		SK:Survival (River/Stream)==0pts#DoNotOwn_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=3,_
+		"QU:Unnerved by the smell of wax, -1, cat(Exotic, Mental)"_
+	)
+
+// Confirmed
+Kiao-Lung (Dragons), displaycost(356), cost(219),_
+	race(Kiao-Lung),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR60, DR148),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+2 to ST:DX,_
+		+6 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+3 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Survival (River/Stream)",_
+		AD:Amphibious,_
+		AD:Appearance=1,_
+		AD:Damage Resistance=4 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground)=3,_
+		AD:Enhanced Move (Water)=2,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Temperature Tolerance=2,_
+		AD:Unaging,_
+		DI:Bad Grip=2,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		DI:Short Arms (2 Arms),_
+		SK:Survival (River/Stream)==0pts#DoNotOwn_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=6,_
+			"QU:Unnerved by the smell of wax, -1, cat(Exotic, Mental)"_
+	)
+
+// Confirmed
+Li Lung (Dragons), displaycost(696), cost(218),_
+	race(Li Lung),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR60, DR148),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+4 to ST:DX,_
+		+6 to ST:IQ,_
+		+5 to ST:HT,_
+		+3 to ST:Size Modifier_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Geology (Earthlike)",_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Prospecting",_
+		AD:Absolute Direction,_
+		AD:Damage Resistance (Earth)=90 with "Cannot Wear Armor, -40%, group(Damage Resistance)" _
+								and "Only vs effects of earth-quakes; cave-ins; and landslides, -60%, group(_General), gives(-owner::level to ST:DR)",_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Dark Vision with "Color Vision, +20%, group(Dark Vision)",_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Side Effects of Landslides; Earthquakes; and Cave-Ins},_
+		AD:Magery 0,_
+		AD:Magery=3 with "Earth College Only, -40%, gives(-Owner::Level to ST:Magery, +Owner::Level to ST:Magery Earth, -Owner::Level to Spells, +Owner::Level to CO:Earth, +Owner::Level to SP:Recover Energy), group(Magery), page(B67)",_
+		AD:Morph,_
+		AD:Nictitating Membrane=1,_
+		AD:Claws (Sharp Claws),_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		AD:Tunneling with "Tunneling Move, +5/+10, gives(+1 To ST:Tunneling Move), group(Tunneling), page(B94)",_
+		AD:Unaging,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		SK:Geology (Earthlike)==0pts#DoNotOwn,_
+		SK:Prospecting==0pts#DoNotOwn,_
+		PA:Quadruped_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=22,_
+			"SP:Earthquake, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Earth = 2)), page(M54), cat(Earth), shortcat(Ea), prereqcount(6), class(Area), time(30 sec.), duration(1 min.), castingcost(2/S)"=88pts_
+	)
+
+// Confirmed
+Lung Wang (Dragons), displaycost(382), cost(224),_
+	race(Lung Wang),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR60, DR148),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	replacetags(in "ST:Ground Move" with "hide(no), mainwin(11)"),_
+	gives(_
+		+2 to ST:DX,_
+		+8 to ST:IQ,_
+		+5 to ST:HT,_
+		+9 to ST:Size Modifier,_
+		-3 to ST:Ground Move_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Naturalist (Earth)",_
+		AD:Amphibious,_
+		AD:Animal Empathy,_
+		AD:Damage Resistance=10 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Nictitating Membrane=3,_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Temperature Tolerance=3,_
+		AD:Unaging,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		DI:Appearance=1,_
+		SK:Naturalist (Earth)==0pts#DoNotOwn,_
+		PA:Quadruped_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=40,_
+			"QU:Unnerved by the smell of wax, -1, cat(Supernatural, Mental)"_
+	)
+
+// Confirmed
+P'an Lung (Dragons), displaycost(892), cost(412),_
+	race(P'an Lung),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR61, DR148),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+10 to ST:DX,_
+		+8 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+2 to ST:Hit Points_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Meteorology (Earthlike)",_
+		AD:Absolute Direction,_
+		AD:Amphibious,_
+		AD:Appearance=1,_
+		AD:Crushing Attack=3 with "Aura, +80%, group(_General)" _
+						and "Melee Attack: Reach C, -30%, group(_Attack Limitations), page(B112), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, ="C" to owner::reach$)" _
+						and "Underwater, +20%, group(_General)" _
+						and "Extinquished for 2d turns by equal damage from fire, -30%, group(Crushing Attack)" _
+						and "Damage Limitation: No Blunt Trauma, -20%, shortname(No Blunt Trauma), group(Crushing Attack Limitations), page(B111), gives(=" nbt" to owner::damtype$)" _
+						and "Damage Limitation: No Knockback, -10%, shortname(No Knockback), group(Crushing Attack Limitations), page(B111), gives(=" nkb" to owner::damtype$)" _
+						respond 1,_
+		AD:Damage Resistance=4 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground),_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=2,_
+		AD:Claws (Sharp Claws),_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Temperature Tolerance=3,_
+		AD:Unaging,_
+		AD:Magery 0,_
+		AD:Magery=3,_
+		AD:Morph,_
+		AD:Secret Dragon Language = 3,_
+		AD:Night Vision=9,_
+		DI:Bad Grip=2,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		DI:Short Arms (2 Arms),_
+		SK:Meteorology (Earthlike)==0pts#DoNotOwn_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=16,_
+			"QU:Unnerved by the smell of Wax, -1, cat(Supernatural, Mental)",_
+			"SP:Bless, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(min.=cost), duration(Special), castingcost(Varies)"=20pts,_
+			"SP:Curse, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(Varies ), duration(Special), castingcost(Varies)"=20pts,_
+			"SP:Clouds, type(IQ/H), page(M194), cat(Weather, Air), shortcat(We, Ai), prereqcount(4), class(Area), time(10 sec.), duration(10 min.), castingcost(1/20/S)"=44pts,_
+			"SP:Predict Weather, type(IQ/H), page(M193, B243), cat(Weather, Air), shortcat(We, Ai), prereqcount(4), class(Information), time(5 sec.#), duration(Instant), castingcost(Varies)"=4pts,_
+			"SP:Rain, type(IQ/H), page(M195, F168), cat(Weather, Air, Water), shortcat(We, Ai, Wa), prereqcount(5), class(Area), time(1 min.), duration(1 hr.), castingcost(1/10/S#)"=64pts _
+	)
+
+// Confirmed
+Shen Lung (Dragons), displaycost(687), cost(354),_
+	race(Shen Lung),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR61, DR148),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+5 to ST:DX,_
+		+10 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+5 to ST:Hit Points_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Area Knowledge (Assigned river or lake)",_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Naturalist (Earth)",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Survival (River/Stream)",_
+		AD:Amphibious,_
+		AD:Appearance=2 with "Universal, +25%, group(Appearance)",_
+		AD:Crushing Attack=3 with "Aura, +80%, group(_General)" _
+						and "Melee Attack: Reach C, -30%, group(_Attack Limitations), page(B112), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, ="C" to owner::reach$)" _
+						and "Underwater, +20%, group(_General)" _
+						and "Extinquished for 2d turns by equal damage from fire, -30%, group(Crushing Attack)" _
+						and "Damage Limitation: No Blunt Trauma, -20%, shortname(No Blunt Trauma), group(Crushing Attack Limitations), page(B111), gives(=" nbt" to owner::damtype$)" _
+						and "Damage Limitation: No Knockback, -10%, shortname(No Knockback), group(Crushing Attack Limitations), page(B111), gives(=" nkb" to owner::damtype$)" _
+						respond 1,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Air)=2,_
+		AD:Enhanced Move (Ground)=1,_
+		AD:Enhanced Move (Water)=2,_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Resistant = 3 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Poison},_
+		AD:Magery 0,_
+		AD:Magery=2,_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Pressure Support=1,_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Secret Dragon Language = 3,_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Temperature Tolerance=5,_
+		AD:Terror=6 with "Only Affects Poisonous Creatures, -50%, cat(_General)" _
+				and "Always On, -20%, cat(Terror)",_
+		AD:Unaging,_
+		DI:Bad Grip=2,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		{SK:Area Knowledge ([Area])}==0pts#DoNotOwn respond "Assigned river or lake",_
+		SK:Naturalist (Earth)==0pts#DoNotOwn,_
+		SK:Survival (River/Stream)==0pts#DoNotOwn_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=17,_
+			"QU:Unnerved by the smell of wax, -1, cat(Supernatural, Mental)" _
+	)
+
+// Confirmed
+Tien Lung (Dragons), displaycost(998), cost(493),_
+	race(Tien Lung),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR61, DR149),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+7 to ST:DX,_
+		+15 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+3 to ST:Hit Points_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Leadership",_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Naturalist (Earth)",_
+		AD:Absolute Direction,_
+		AD:Amphibious,_
+		AD:Animal Empathy,_
+		AD:Appearance=2 with "Universal, +25%, group(Appearance)",_
+		AD:Burning Attack=3 with "Partial Dice, -1/-3/+, formula(@int(%level * -5 * 0.3 + 0.9)), forceformula(yes), group(Burning Attack Limitations), page(B62), gives(-1 to owner::damage), upto(@if(@int(owner::level/3) = (owner::level/3) THEN -1 ELSE 0) + @int(owner::level * 10/3)), levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))" _
+						and "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Costs 2 FP, -10%, group(_General)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(2)" _
+						respond 5,_
+		AD:Charisma=1,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Air)=2,_
+		AD:Enhanced Move (Ground)=2,_
+		AD:Enhanced Move (Water)=2,_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Resistant = 3 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Poison},_
+		AD:Magery 0,_
+		AD:Magery=3,_
+		AD:Morph,_
+		AD:Nictitating Membrane=3,_
+		AD:Night Vision=9,_
+		AD:Pressure Support=2,_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Secret Dragon Language = 3,_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Temperature Tolerance=5,_
+		AD:Unaging,_
+		DI:Bad Grip=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		SK:Leadership==0pts#DoNotOwn,_
+		SK:Naturalist (Earth)==0pts#DoNotOwn_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=29,_
+			"QU:Unnerved by the smell of wax, -1, cat(Supernatural, Mental)",_
+			"SP:Bless, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(min.=cost), duration(Special), castingcost(Varies)"=1pts,_
+			"SP:Curse, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(Varies ), duration(Special), castingcost(Varies)"=1pts _
+	)
+
+// Confirmed
+Japanese Tatsu - with Legs (Dragons), displaycost(860/865/870/875), cost(412),_
+	race(Japanese Tatsu),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR62, DR149),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+10 to ST:DX,_
+		+8 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+2 to ST:Hit Points_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Meteorology (Earthlike)",_
+		AD:Absolute Direction,_
+		AD:Amphibious,_
+		AD:Appearance=1,_
+		AD:Damage Resistance=4 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground),_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=2,_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Temperature Tolerance=3,_
+		AD:Unaging,_
+		DI:Bad Grip=2,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		DI:Short Arms (2 Arms),_
+		SK:Meteorology (Earthlike)==0pts#DoNotOwn,_
+		AD:Magery 0,_
+		AD:Magery=3,_
+		AD:Morph,_
+		AD:Secret Dragon Language = 3,_
+		AD:Night Vision=9_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=16,_
+			"QU:Unnerved by the smell of Wax, -1, cat(Supernatural, Mental)",_
+		"SP:Bless, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(min.=cost), duration(Special), castingcost(Varies)"=20pts,_
+		"SP:Curse, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(Varies ), duration(Special), castingcost(Varies)"=20pts,_
+		"SP:Clouds, type(IQ/H), page(M194), cat(Weather, Air), shortcat(We, Ai), prereqcount(4), class(Area), time(10 sec.), duration(10 min.), castingcost(1/20/S)"=44pts,_
+		"SP:Predict Weather, type(IQ/H), page(M193, B243), cat(Weather, Air), shortcat(We, Ai), prereqcount(4), class(Information), time(5 sec.#), duration(Instant), castingcost(Varies)"=4pts,_
+		"SP:Rain, type(IQ/H), page(M195, F168), cat(Weather, Air, Water), shortcat(We, Ai, Wa), prereqcount(5), class(Area), time(1 min.), duration(1 hr.), castingcost(1/10/S#)"=64pts _
+	),_
+	select1(text("Optional: You may choose to have one or both of the following."), pointswanted(upto -15), itemswanted(upto 2),_
+		list(_
+			DI:Status #codes(upto 2, downto 2),_
+			#newitem(DI:Code of honor (Tatsu), -5, page(B127), cat(Mundane, Mental)) _
+		)_
+	)
+
+// Confirmed
+Japanese Tatsu - no Legs (Dragons), displaycost(713/718/723/728), cost(332),_
+	race(Japanese Tatsu),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR62, DR149),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Eastern Dragon),_
+	gives(_
+		+10 to ST:DX,_
+		+8 to ST:IQ,_
+		+5 to ST:HT,_
+		+6 to ST:Size Modifier,_
+		+2 to ST:Hit Points_
+	),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Meteorology (Earthlike)",_
+		AD:Absolute Direction,_
+		AD:Amphibious,_
+		AD:Appearance=1,_
+		AD:Damage Resistance=4 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Enhanced Move (Ground),_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=2,_
+		AD:Striker (Crushing; [Description]) respond "Horns",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Speak Underwater,_
+		AD:Temperature Tolerance=3,_
+		AD:Unaging,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		DI:Revulsion (Iron)=3,_
+		SK:Meteorology (Earthlike)==0pts#DoNotOwn,_
+		AD:Magery 0,_
+		AD:Magery=3,_
+		AD:Morph,_
+		AD:Secret Dragon Language = 3,_
+		AD:Night Vision=9,_
+		PA:Vermiform_
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=16,_
+			"QU:Unnerved by the smell of Wax, -1, cat(Supernatural, Mental)",_
+		"SP:Bless, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(min.=cost), duration(Special), castingcost(Varies)"=20pts,_
+		"SP:Curse, type(IQ/H), needs((AD:Magery = 2 | ST:Magery Meta-Spells = 2)), page(M129), cat(Meta-Spells), shortcat(Me), prereqcount(20), class(Regular), time(Varies ), duration(Special), castingcost(Varies)"=20pts,_
+		"SP:Clouds, type(IQ/H), page(M194), cat(Weather, Air), shortcat(We, Ai), prereqcount(4), class(Area), time(10 sec.), duration(10 min.), castingcost(1/20/S)"=44pts,_
+		"SP:Predict Weather, type(IQ/H), page(M193, B243), cat(Weather, Air), shortcat(We, Ai), prereqcount(4), class(Information), time(5 sec.#), duration(Instant), castingcost(Varies)"=4pts,_
+		"SP:Rain, type(IQ/H), page(M195, F168), cat(Weather, Air, Water), shortcat(We, Ai, Wa), prereqcount(5), class(Area), time(1 min.), duration(1 hr.), castingcost(1/10/S#)"=64pts _
+	),_
+	select1(text("Optional: You may choose to have one or both of the following."), pointswanted(upto -15), itemswanted(upto 2),_
+		list(_
+			DI:Status #codes(upto 2, downto 2),_
+			#newitem(DI:Code of honor (Tatsu), -5, page(B127), cat(Mundane, Mental)) _
+		)_
+	)
+
+// Confirmed
+Realistic Dragon (Dragons), displaycost(-171), cost(-59),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	race(Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR62, DR149),_
+	gives(_
+		-1 to ST:DX,_
+		-5 to ST:IQ,_
+		+2 to ST:HT,_
+		+3 to ST:Size Modifier,_
+		+5 to ST:Will,_
+		+5 to ST:Perception,_
+		-3 to ST:Basic Move,_
+		-1 to ST:Air Move_
+	),_
+	adds(_
+		AD:Damage Resistance=2 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Flight with "Small Wings, -10%, group(Flight)" _
+				and "Clumsy, -25%, group(Flight)" _
+				and "Lighter than Air, -10%, group(Flight)",_
+		AD:Burning Attack = 1 with "Jet, +0%, group(_Attack Enhancements)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level()" _
+						and "Limited Use: 6/day, -10%, group(_General)" _
+						respond 5,_
+		AD:Nictitating Membrane=1,_
+		AD:Claws(Sharp Claws),_
+		AD:Teeth(Sharp Teeth),_
+		QU:Attentive,_
+		DI:Bestial,_
+		DI:Cannot Speak=1,_
+		DI:Cold-Blooded,_
+		DI:Colorblindness,_
+		DI:Wealth=3,_
+		DI:Hidebound,_
+		DI:Increased Consumption=1,_
+		DI:Innumerate,_
+		DI:Short Arms (2 Arms),_
+		DI:Sleepy=1,_
+		DI:Vulnerability (Fire)=3 with "Wounding Multiplier x2, *1, group(Vulnerability)",_
+		PA:Quadruped _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=6 _
+	)
+
+***************************************************************************************
+<Meta-Traits>
+***************************************************************************************
+Half-Dragon, displaycost(45), cost(20),_
+	cat(Meta-Traits),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR113, DR155),_
+	gives(_
+		+2 to ST:HT_
+	),_
+	adds(_
+		AD:Ritual Magery 0,_
+		AD:Ritual Magery=2,_
+		AD:Unusual Background_
+	)
+
+Western Dragon, displaycost(72), cost(10),_
+	cat(Meta-Traits),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR56, DR146),_
+	gives(_
+		+2 to ST:Perception_
+	),_
+	adds(_
+		AD:Flight with "Winged, -25%, group(Flight)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=2,_
+		AD:Night Vision=9,_
+		AD:Temperature Tolerance=6,_
+		AD:Unaging,_
+		DI:Bad Grip=2,_
+		DI:Horizontal_
+	)
+
+***************************************************************************************
+<Racial Templates - Dragons - Specials>
+***************************************************************************************
+// Confirmed
+Professor Friedl's Mechanical Dragon (Dragons), displaycost(392), cost(-18),_
+	race(Mechanical Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR52, DR145),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Mechanical Dragon),_
+	sets(_
+		ST:ST=68,_
+		ST:IQ=8,_
+		ST:DX=9,_
+		ST:HT=11 _
+	),_
+	gives(_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Timing,_
+		AD:Burning Attack=2 with "Accurate, +5%/+10%, group(_Attack Enhancements), page(B102), gives(+1 to owner::acc)" _
+						and "Cyclic (1 second interval), +0%/+100%/+200%, mods(Cyclic), group(Burning Attack Enhancements), page(B103), gives(=" {x$solver(me::level)}" to owner::damtype$), level(18)" _
+						and "Armor Divisor, +50%/+100%, levelnames(2, 3, 5, 10), upto(4), group(_Attack Enhancements), page(B102), gives(=@indexedvalue(me::level, 2, 3, 5, 10) to owner::armordivisor), level(3)" _
+						and "Jet: Increased Range (Max Range Only), +5%/+10%, shortname(Increased Range (Max Range Only)), group(_Attack Enhancements), page(B106), levelnames(x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18,x19,x20), gives(=*(me::level + 1) to owner::rangemax)" _
+						and "Jet: Increased Range (1/2D Range Only), +5%/+10%, shortname(Increased Range (1/2D Range Only)), group(_Attack Enhancements), page(B106), levelnames(x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15,x16,x17,x18,x19,x20), gives(=*(me::level + 1) to owner::rangehalfdam), level(2)" _
+						and "Jet, +0%, group(_Attack Enhancements), page(B106), gives(-3 to owner::acc, *0.5 to owner::rangehalfdam, *0.1 to owner::rangemax)" _
+						and "Not against Sealed, -30%, group(Burning Attack)" _
+						respond 5,_
+		AD:Doesn't Breathe,_
+		AD:Damage Resistance=10 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Doesn't Sleep,_
+		AD:Photographic Memory,_
+		AD:High Pain Threshold,_
+		AD:Intuitive Mathematician,_
+		PA:Machine,_
+		AD:Temperature Tolerance=5,_
+		DI:Bad Sight (Farsighted),_
+		DI:Mute,_
+		DI:Colorblindness,_
+		DI:Hard of Hearing,_
+		DI:Increased Consumption=2,_
+		PA:Quadruped,_
+		DI:Social Stigma (Valuable Property),_
+		DI:Wealth=3 _
+	)
+
+The Dragonet of Mount Pilatus (Dragons), displaycost(254), cost(121),_
+	race(Dragon),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR58, DR146),_
+	cat(Racial Templates, Racial Templates - Dragons, Racial Templates - Dragons - Western Dragon),_
+	gives(_
+		+5 to ST:DX,_
+		+3 to ST:HT,_
+		-1 to ST:Basic Move,_
+		-2 to ST:Air Move _
+	),_
+	adds(_
+		AD:Burning Attack=3 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)" _
+						and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)" _
+						respond 5,_
+		AD:Damage Resistance=1 with "Cannot Wear Armor, -40%, group(Damage Resistance)",_
+		AD:Toxic Attack=4 with "Only when Bleeding, -50%, group(_Attack Limitations)" _
+					and "Melee Attack: Reach C, -30%, group(_Attack Limitations)" _
+					and "Cyclic; 1 hour; 10 cycles; resistable, +90%, group(_Attack enhancers)" _
+					and "Resistable; HT-4, -10%, group(_Attack Limitations)" _
+					and "Contact Agent, -30%, group(_Attack Limitations)" _
+					respond 3,_
+		AD:Claws (Sharp Claws),_
+		AD:Teeth (Sharp Teeth),_
+		DI:Short Arms (2 Arms),_
+		PA:Western Dragon _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST),_
+				formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))"=3_
+	)
+
+***************************************************************************************
+<Racial Templates - Dragons - Lenses>
+***************************************************************************************
+// Confirmed
+Animalistic (Dragons), displaycost(-51),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR64, DR150),_
+	owns(yes),_
+	hides(yes),_
+	adds(_
+		QU:Attentive,_
+		DI:Bestial,_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Innumerate,_
+		DI:Social Stigma (Barbarian) _
+		),_
+	taboo(ST:IQ > 5)
+
+// Confirmed
+Animalistic - Includes OPH (Dragons), displaycost(-56),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR64, DR150),_
+	owns(yes),_
+	hides(yes),_
+	adds(_
+		QU:Attentive,_
+		DI:Bestial with "Includes Odious Personal Habit, -5, group(Bestial), page(B124)",_
+		DI:Wealth = 3,_
+		DI:Hidebound,_
+		DI:Innumerate,_
+		DI:Social Stigma (Barbarian) _
+		),_
+	taboo(ST:IQ > 5)
+
+// Confirmed
+Hording (Dragons), displaycost(-25),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR64, DR150),_
+	owns(yes),_
+	hides(yes),_
+	adds(_
+		DI:Greed,_
+		DI:Miserliness _
+		)
+
+// Confirmed
+Whimsical (Dragons), displaycost(-22),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR65, DR150),_
+	owns(yes),_
+	hides(yes),_
+	adds(_
+		DI:Bad Temper,_
+		DI:Compulsive Behavior = 2 respond "Playing with shiny objects",_
+		QU:Distractible _
+		),_
+	creates("QU:Vanity, -1, cat(Mental)")
+
+// Confirmed
+Benevolent (Dragons), displaycost(-15*),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR65, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose -15 points from the following"), pointswanted(-15), itemswanted(atleast 1),_
+			list(_
+				DI:Charitable,_
+				DI:Code of Honor,_
+				DI:Disciplines of Faity,_
+				DI:Duty,_
+				DI:Fanaticism,_
+				DI:Pacifism,_
+				DI:Sense of Duty,_
+				DI:Vow _
+				)_
+			),_
+	select2(_
+		text("Other appropriate advantages and disadvantages include the following"), pointswanted(atleast -100, upto 1000), itemswanted(upto 8),_
+			list(_
+				DI:Honesty,_
+				DI:Truthfulness,_
+				AD:Extra IQ,_
+				AD:Blessed,_
+				AD:Higher Purpose,_
+				AD:Patron,_
+				AD:Single-Minded,_
+				AD:Spirit Empathy _
+				)_
+			)
+// COnfirmed
+Disinterested (Dragons), displaycost(-20),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR65, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose -20 from the following:"), pointswanted(-20), itemswanted(atleast 1),_
+			list(_
+				DI:Callous,_
+				DI:Oblivious,_
+				#newitem(DI:Odious Racial Habit (Solapsism), -5/-10, displaycost(-10), upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")) #codes(upto 2, downto 2),_
+				DI:Loner,_
+				QU:Uncongenial,_
+				QU:Attentive,_
+				DI:Bad Temper,_
+				QU:Chauvinistic,_
+				DI:Clueless,_
+				QU:Dreamer,_
+				QU:Dull,_
+				DI:Hidebound,_
+				DI:Incurious,_
+				DI:No Sense of Humor,_
+				#newitem(DI:Odious Racial Habit (No Small Talk), -5/-10, displaycost(-5), upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")) #codes(upto 1, downto 1),_
+				#newitem(DI:Odious Personal Habit (No Small Talk), -5/-10, displaycost(-5), upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")) #codes(upto 1, downto 1)_
+				)_
+			)
+
+// Confirmed
+Subtle (Dragons), displaycost(varies),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR65, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose among these traits:"), pointswanted(atleast -100, upto 1000), itemswanted(upto 14),_
+			list(_
+				AD:Extra IQ,_
+				AD:Fearlessness,_
+				AD:Detect,_
+				AD:Danger Sense,_
+				AD:Intuition,_
+				AD:Medium,_
+				AD:Oracle,_
+				AD:Illuminated,_
+				DI:Obsession,_
+				DI:Overconfidence,_
+				DI:Stubbornness,_
+				QU:Attentive,_
+				QU:Dreamer,_
+				QU:Staid _
+				)_
+			)
+
+// Confirmed
+Malevolent (Dragons), displaycost(-30),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR66, DR150),_
+	owns(yes),_
+	hides(yes),_
+	adds(_
+		DI:Bad Temper,_
+		DI:Bully,_
+		DI:Intolerance = 2_
+		)
+
+// Confirmed
+Keepers of Secrets (Dragons), displaycost(-20),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR67, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose -20 points from the following"), pointswanted(-20), itemswanted(atleast 1),_
+			list(_
+				QU:Broad-Minded,_
+				QU:Careful,_
+				QU:Uncongenial,_
+				DI:Callous,_
+				DI:Duty,_
+				#newitem(DI:Fanaticism (Ensuring the ''correct'' use of knowledge), -15/-15, displaycost(-15), levelnames( , Extreme), page(B136), upto(2), cat(Mundane, Mental)) #codes(upto 1, downto 1),_
+				DI:Hidebound,_
+				DI:Incurious,_
+				DI:Loner,_
+				DI:No Sense of Humor,_
+				#newitem(DI:Obsession (Controlling knowledge), -5/-10, displaycost(-15*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121) )) #codes(upto 2, downto 2),_
+				#newitem(DI:Odious Personal Habit (Cryptic), -5/-10, displaycost(-5), upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")) #codes(upto 1, downto 1),_
+				#newitem(DI:Sense of Duty (To correct use of knowledge), -2/-5/-10/-15/-20, displaycost(-15), levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(B153), upto(5), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")) #codes(upto 4, downto 4),_
+				DI:Stubbornness,_
+				DI:Workaholic _
+				)_
+			)
+
+// Confirmed
+Appointed Guardians (Dragons), displaycost(-15),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR67, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose one of the following:"), pointswanted(-15), itemswanted(1),_
+			list(_
+				DI:Duty #codes(upto 4, downto 4),_
+				#newitem(DI:Obsession, -5/-10, displaycost(-15*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(B121) )) #codes(upto 2, downto 2),_
+				DI:Vow #codes(upto 3, downto 3) _
+				)_
+			)
+
+// Confirmed
+Lord of the Beasts (Dragons), displaycost(varies),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR67, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose any from among these advantages"), pointswanted(upto 1000), itemswanted(upto 15),_
+			list(_
+				AD:Ally,_
+				AD:Animal Empathy,_
+				AD:Animal Friend,_
+				AD:Detect,_
+				AD:Fearlessness,_
+				AD:Higher Purpose,_
+				AD:Magery 0,_
+				AD:Magery,_
+				AD:Medium,_
+				AD:Oracle,_
+				AD:Patron,_
+				AD:Power Investiture,_
+				AD:Social Chameleon,_
+				AD:Speak with Animals,_
+				AD:True Faith _
+				)_
+			),_
+	select2(_
+		text("Choose any from among these disadvantages"), pointswanted(atleast -100, upto 0), itemswanted(upto 5),_
+			list(_
+				DI:Duty,_
+				DI:Fanaticism,_
+				DI:Megalomania,_
+				DI:Sense of Duty,_
+				#newitem(DI:Vow (Vegetarianism), -5/-10/-15, displaycost(-5), levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)) #codes(upto 1, downto 1) _
+				)_
+			)
+
+// Confirmed
+Solitary Wanderer (Dragons), displaycost(-20),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	page(DR68, DR150),_
+	owns(yes),_
+	hides(yes),_
+	select1(_
+		text("Choose -20 from among these disadvantages:"), pointswanted(-20), itemswanted(atleast 1),_
+			list(_
+				QU:Uncongenial,_
+				QU:Attentive,_
+				QU:Callous,_
+				QU:Careful,_
+				QU:Dreamer,_
+				QU:Dull,_
+				DI:Loner,_
+				DI:Callous,_
+				DI:Confused,_
+				DI:Curious,_
+				DI:Hidebound,_
+				DI:Impulsiveness,_
+				DI:Intolerance,_
+				DI:Low Empathy,_
+				DI:Oblivious,_
+				DI:Odious Personal Habit,_
+				DI:Shyness,_
+				DI:Stubbornness,_
+				DI:Vow _
+				)_
+			)
+
+***************************************************************************************
+<Racial Templates - Dragons - Crawling Wyrm>
+***************************************************************************************
+
+// confirmed
+Crawling Wyrm (Dragons), displaycost(68), cost(32),_
+	race(Crawling Wyrm),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR50, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+2 to ST:DX,_
+		-5 to ST:IQ,_
+		+5 to ST:HT,_
+		+3 to ST:Size Modifier,_
+		+2 to ST:Hit Points,_
+		+5 to ST:Will,_
+		+6 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=1,_
+		AD:Acute Taste and Smell=3,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Reduction)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Striker (Crushing; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(3)" _
+					respond "Tail",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=12 _
+	)
+
+// Confirmed
+Crawling Wyrm - Small Wyrm (Dragons), displaycost(73), cost(33),_
+	race(Crawling Wyrm),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR50, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+2 to ST:DX,_
+		-5 to ST:IQ,_
+		+5 to ST:HT,_
+		+1 to ST:Size Modifier,_
+		+2 to ST:Hit Points,_
+		+5 to ST:Will,_
+		+6 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=1,_
+		AD:Acute Taste and Smell=3,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Reduction)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Striker (Crushing; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$)" _
+					respond "Tail",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=1,_
+		PA:Vermiform _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=8 _
+	)
+
+// confirmed
+Crawling Wyrm - Giant Wyrm (Dragons), displaycost(74), cost(30),_
+	race(Crawling Wyrm),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR50, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+2 to ST:DX,_
+		-5 to ST:IQ,_
+		+5 to ST:HT,_
+		+5 to ST:Size Modifier,_
+		+1 to ST:Hit Points,_
+		+5 to ST:Will,_
+		+6 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=1,_
+		AD:Acute Taste and Smell=3,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Reduction)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Striker (Crushing; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(4)" _
+					respond "Tail",_
+		AD:Teeth (Fangs),_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=19 _
+	)
+
+// confirmed
+Crawling Wyrm - Lindorm (Dragons), displaycost(78), cost(32),_
+	race(Crawling Wyrm),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR50, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+2 to ST:DX,_
+		-5 to ST:IQ,_
+		+5 to ST:HT,_
+		+3 to ST:Size Modifier,_
+		+2 to ST:Hit Points,_
+		+5 to ST:Will,_
+		+6 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=1,_
+		AD:Acute Taste and Smell=3,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Reduction)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Striker (Crushing; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(3)" _
+					respond "Tail",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		AD:Double-Jointed,_
+		DI:No Legs (Slithers),_
+		DI:No Fine Manipulators,_
+		DI:Short Arms (2 Arms) _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=12 _
+	)
+
+// confirmed
+Crawling Wyrm - Gargouille (Dragons), displaycost(197), cost(30),_
+	race(Crawling Wyrm),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR50, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+2 to ST:DX,_
+		-5 to ST:IQ,_
+		+5 to ST:HT,_
+		+5 to ST:Size Modifier,_
+		+1 to ST:Hit Points,_
+		+5 to ST:Will,_
+		+6 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=1,_
+		AD:Acute Taste and Smell=3,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Reduction)",_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Teeth (Fangs),_
+		AD:Temperature Tolerance=3,_
+		AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)",_
+		AD:Crushing Attack (Water Blast) = 2 with "Cone, +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.), level(5)" and "Double Knockback, +20%, group(_Attack Enhancements)" and  "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_Attack Limitations), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level()" and "Underwater, +20%, group(_Attack Enhancements)" and "No Wounding, -50%, group(_Attack Limitations)" _
+					respond 5,_
+		AD:Magery 0,_
+		AD:Magery with "Water College Only, -40%, gives(-Owner::Level to ST:Magery, +Owner::Level to ST:Magery Water, -Owner::Level to Spells, +Owner::Level to CO:Water College, +Owner::Level to SP:Recover Energy), group(Magery), page(B67)",_
+		AD:Striker (Crushing; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(4)" _
+					respond "Tail",_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		PA:Vermiform _
+	),_
+	creates(_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=19,_
+		"SP:Waves, type(IQ/H), page(M194), cat(Weather, Water), shortcat(We, Wa), prereqcount(4), class(Special; Area), time(1 min.), duration(1 hr.), castingcost(1/60)"=84pts_
+	)
+
+// confirmed
+Crawling Wyrm - Lambton Worm (Dragons), displaycost(169), cost(12),_
+	race(Crawling Wyrm),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	page(DR50, DR144),_
+	cat(Racial Templates, Racial Templates - Dragons),_
+	gives(_
+		+2 to ST:DX,_
+		-7 to ST:IQ,_
+		+5 to ST:HT,_
+		+3 to ST:Size Modifier,_
+		+2 to ST:Hit Points,_
+		+7 to ST:Will,_
+		+8 to ST:Perception_
+	),_
+	adds(_
+		AD:Acute Hearing=1,_
+		AD:Acute Taste and Smell=3,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance=6 with "Cannot Wear Armor, -40%, group(Damage Reduction)",_
+		AD:High Pain Threshold,_
+		AD:Injury Tolerance with "No Blood, +5, group(Injury Tolerance), page(B61)" and "No Neck, +5, group(Injury Tolerance), page(B61)" and "No Vitals, +5, group(Injury Tolerance), page(B61)",_
+		AD:Resistant = 2 with {Degree: Immunity, *1, shortname(Immunity), group(Resistant)} _
+					respond {Disease},_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=9,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance=3,_
+		AD:Magery 0,_
+		AD:Magery=1 with "Plant College Only, -40%, gives(-Owner::Level to ST:Magery, +Owner::Level to ST:Magery Plant, -Owner::Level to Spells, +Owner::Level to CO:Plant, +Owner::Level to SP:Recover Energy), group(Magery), page(B67)",_
+		AD:Striker (Crushing; [Description]) _
+		with "Long: any reach, +100%/+200%, group(Striker), page(B88), shortname(Long), gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$), level(3)",_
+		AD:Regeneration=4,_
+		DI:Appearance=3 with "Universal, +25%, group(Appearance)",_
+		DI:Odious Personal Habit (Devastates the countryside unless given milk)=3,_
+		DI:Cannot Speak=1,_
+		DI:Horizontal,_
+		DI:Increased Consumption=2,_
+		PA:Animalistic (Includes OPH),_
+		PA:Vermiform _
+	),_
+	creates(_
+		"SP:Wither Plant, type(IQ/H), page(M163), cat(Plant), shortcat(Pl), prereqcount(5), class(Area/R-HT), time(10 sec.), duration(Perm.), castingcost(2)"=72pts,_
+			"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes))"=12,_
+		"QU:Likes drinking milk in large quantities, -1" _
+	)
+
+***************************************************************************************
+<Character Templates - Dragons>
+***************************************************************************************
+Barbarian Dragon-Slayer (Dragons), displaycost(197),_
+	cat(Character Templates),_
+	description(A hero of the old school, you are among the toughest alive),_
+	page(DR100, DR152),_
+	sets(_
+	ST:ST=14,_
+			ST:DX=13,_
+			ST:HT=14,_
+			ST:Will=12 _
+	),_
+	adds( _
+			AD:Combat Reflexes,_
+			DI:Code of Honor (Pirates),_
+			SK:Broadsword=4pts,_
+			SK:Shield (Shield)=2pts,_
+			SK:Brawling=1pts,_
+			SK:Naturalist=2pts,_
+			SK:Riding (Horse)=2pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Select 30 points from the following list."),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list( _
+			#list(GMAdvantages),_
+			AD:Ally,_
+			AD:Claim to Hospitality,_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Hard to Kill,_
+			AD:High Pain Threshold,_
+			AD:Intuition,_
+			AD:Luck,_
+			AD:Night Vision,_
+			AD:Rapid Healing,_
+			#newitem(AD:Reputation (Great Warrior), 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)),conditional(+1 to ST:Reaction)),_
+			#newitem(AD:Resist (Disease), 5/10/15/30, displaycost(varies), mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), Page(B80), upto(4), cat(Mundane, Physical), initmods(Degree: Immunity, *1, shortname(Immunity), group(Resistant))) #codes(upto 2, downto 2),_
+			#newitem(AD:Resist (Poison), displaycost(varies), 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), Page(B80), upto(4), cat(Mundane, Physical), initmods( Degree: Immunity, *1, shortname(Immunity), group(Resistant))) #codes(upto 3, downto 3),_
+			AD:Status,_
+			AD:Extra IQ,_
+			AD:Extra Hit Points,_
+			AD:Extra Perception,_
+			AD:Extra Will,_
+			AD:Wealth _
+		)_
+	),_
+	select4(_
+		text("Disadvantages: Select up to -20 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bloodlust,_
+			DI:Callous,_
+			DI:Compulsive Carousing,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			DI:Sense of Duty,_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			#newitem(DI:Vow (To slay monsters), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)),_
+			#newitem(DI:Vow (To defend people), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)),_
+			DI:Wealth,_
+			QU:Attentive,_
+			QU:Personality Change,_
+			QU:Distractible,_
+			QU:Proud,_
+			DI:Social Stigma _
+		)_
+	),_
+	select5(_
+		text("Secondary Skill: Select one of the following:"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Survival #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Arctic) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Desert) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Island/Beach) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Jungle) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Mountain) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Plains) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Swampland) #codes(upto 2pts, downto 2pts),_
+			SK:Survival (Woodlands) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Background Skills: Select up to 15 points from the following list, or on previously selected skills:"),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem%)),_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands),_
+			SK:Farming,_
+			SK:Animal Handling,_
+			SK:Area Knowledge ([Area]),_
+			SK:Axe/Mace,_
+			SK:Thrown Weapon (Axe/Mace),_
+			SK:Public Speaking,_
+			SK:Boating (Large Powerboat),_
+			SK:Boating (Motorboat),_
+			SK:Boating (Sailboat),_
+			SK:Boating (Unpowered),_
+			SK:Camouflage,_
+			SK:Carousing,_
+			SK:Climbing,_
+			SK:Detect Lies,_
+			SK:First Aid,_
+			SK:Games,_
+			SK:Hiking,_
+			SK:Intimidation,_
+			SK:Jumping,_
+			SK:Knife,_
+			SK:Leadership,_
+			SK:Navigation (Land),_
+			SK:Running,_
+			SK:Seamanship,_
+			SK:Spear,_
+			SK:Thrown Weapon (Spear),_
+			SK:Stealth,_
+			SK:Swimming,_
+			SK:Tactics,_
+			SK:Tracking,_
+			SK:Two-Handed Axe/Mace _
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Dragon-Blooded Human (Dragons), displaycost(70),_
+	cat(Character Templates),_
+	description(A human who somehow possess dragon ancestory. These individuals are often enigmatic, with interesting powers.),_
+	page(DR100, DR152),_
+	sets( _
+			ST:IQ=12,_
+			ST:HT=11 _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Select 40 points from the following:"),_
+		pointswanted(40),_
+		itemswanted(atleast 1),_
+		list( _
+			#list(GMAdvantages),_
+			AD:Absolute Direction,_
+			AD:Animal Empathy,_
+			AD:Appearance,_
+			#newitem(AD:Detect (Magic), 5/10/20/30, displaycost(10), mods(Detect), levelnames(Rare, Occasional, Common, Very Common), upto(4), page(B48), cat(Exotic Physical, Exotic, Mental, Physical)) #codes(upto 2, downto 2),_
+			#newitem(AD:Detect (Dragons), 5/10/20/30, displaycost(5), mods(Detect), levelnames(Rare, Occasional, Common, Very Common), upto(4), page(B48), cat(Exotic Physical, Exotic, Mental, Physical)) #codes(upto 1),_
+			#newitem(AD:Detect (Supernatural Phenomena), displaycost(20), 5/10/20/30, mods(Detect), levelnames(Rare, Occasional, Common, Very Common), upto(4), page(B48), cat(Exotic Physical, Exotic, Mental, Physical)) #codes(upto 3, downto 3),_
+			#newitem(AD:Detect (Supernatural Beings), displaycost(20), 5/10/20/30, mods(Detect), levelnames(Rare, Occasional, Common, Very Common), upto(4), page(B48), cat(Exotic Physical, Exotic, Mental, Physical)) #codes(upto 3, downto 3),_
+			PE:Deep Sleeper,_
+			AD:Eidetic Memory,_
+			AD:Fearlessness,_
+			AD:Hard to Kill,_
+			AD:Intuition,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Longevity,_
+			AD:Magery 0,_
+			AD:Magery,_
+			AD:Magic Resistance,_
+			AD:Night Vision,_
+			#newitem(AD:Patron, 10/15/20/25/30, displaycost(5/8/10/13/15), mods(Frequency of Appearance, Patron, Favor), page(B72), cat(Mundane, Social), initmods(Secret, -50%, shortname(Secret), group(patron))),_
+			AD:Rapid Healing,_
+			#newitem(AD:Resist (Disease), 5/10/15/30, displaycost(varies), mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), Page(B80), upto(4), cat(Mundane, Physical), initmods(Degree: Immunity, *1, shortname(Immunity), group(Resistant))) #codes(upto 2, downto 2),_
+			AD:Single-Minded,_
+			AD:Status,_
+			AD:Unfazeable,_
+			AD:Wild Talent,_
+			AD:Extra ST,_
+			AD:Extra DX,_
+			AD:Extra IQ,_
+			AD:Extra HT,_
+			AD:Extra Will,_
+			AD:Extra Perception_
+		)_
+	),_
+	select4(_
+		text("Disadvantages: Select -25 points from the following list:"),_
+		pointswanted(-25),_
+		itemswanted(atleast 1),_
+		list( _
+			#list(GMDisadvantages),_
+			DI:Appearance,_
+			QU:Attentive,_
+			QU:Broad-Minded,_
+			DI:Callous,_
+			DI:Disturbing Voice,_
+			DI:Extra Sleep,_
+			DI:Frightens Animals,_
+			DI:Gigantism,_
+			DI:Greed,_
+			DI:Loner,_
+			DI:Low Empathy,_
+			DI:Miserliness,_
+			DI:No Sense of Humor,_
+			DI:Oblivious,_
+			QU:Proud,_
+			DI:Reputation,_
+			#newitem(DI:Secret (Starnge family History), -5/-10/-20/-30, upto(4), page(B152), cat(Mundane, Social), levelnames("Serious Embarrassment", "Utter Rejection", "Imprisonment or Exile", "Possible Death")),_
+			DI:Skinny,_
+			DI:Social Stigma,_
+			QU:Uncongenial,_
+			DI:Unnatural Feature,_
+			DI:Xenophilia _
+		)_
+	),_
+	select5(_
+		text("Skills: Select 5 points from the following list:"),_
+		pointswanted(5),_
+		itemswanted(atleast 1),_
+		list( _
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Fortune-Telling (Augury),_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:History,_
+			SK:Intimidation,_
+			SK:Dreaming,_
+			SK:Meditation,_
+			SK:Stealth,_
+			SK:Thaumatology _
+		)_
+	),_
+	select6(#List(QuirkSelection))
+
+Dragon-Friend (Dragons), displaycost(50),_
+	cat(Character Templates),_
+	description(A friend to dragons),_
+	page(DR101, DR153),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Patron/Ally: Select one of the following at 30 points:"),_
+		itemswanted(1),_
+		pointswanted(30),_
+		list(_
+			#newitem(AD:Ally (dragon), 1/2/3/5/10, upto(5), levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points), mods(Ally, Frequency of Appearance, Favor), page(B36), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			#newitem(AD:Patron (Dragon), 10/15/20/25/30, mods(Frequency of Appearance, Patron, Favor), page(B72), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))) _
+		)_
+	),_
+	select4(_
+		text("Advantages: Select up to 30 points from the following, or put more points into the Patron/Ally later:"),_
+		itemswanted(atleast 1),_
+		pointswanted(upto 30),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra Will,_
+			AD:Extra Perception,_
+			PE:Honest Face,_
+			AD:Animal Empathy,_
+			AD:Charisma,_
+			AD:Common Sense,_
+			AD:Cultural Adaptability #codes(upto 2, downto 2),_
+			AD:Daredevil,_
+			#newitem(AD:Detect (Magic), 5/10/20/30, mods(Detect), levelnames(Rare, Occasional, Common, Very Common), upto(4), page(B48), cat(Exotic Physical, Exotic, Mental, Physical)) #codes(upto2, downto2),_
+			AD:Sensitive,_
+			AD:Empathy,_
+			AD:Fearlessness,_
+			AD:Intuition,_
+			AD:Language Talent,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Luck,_
+			AD:Magery 0,_
+			AD:Pitiable,_
+			#newitem(AD:Reputation (among dragons as friend), 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(+1 to ST:Reaction)),_
+			#newitem(AD:Reputation (among humans as someone not to cross), 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(+1 to ST:Reaction)),_
+			AD:Serendipity,_
+			AD:Spirit Empathy,_
+			AD:Status,_
+			AD:True Faith,_
+			AD:Unfazeable,_
+			AD:Voice,_
+			AD:Wealth _
+		)_
+	),_
+	select5(_
+		text("Disadvantages: Select up to -20 from the following list:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			QU:Broad-Minded,_
+			DI:Bully,_
+			DI:Chummy,_
+			QU:Congenial,_
+			DI:Curious,_
+			QU:Imaginative,_
+			DI:Impulsiveness,_
+			QU:Nosy,_
+			DI:Overconfidence,_
+			#newitem(DI:Reputation (Monster-Lover), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			QU:Responsive,_
+			#newitem(DI:Sense of Duty (Dragon/Dragons), -2/-5/-10/-15/-20, levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(B153), upto(5), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+			DI:Social Stigma,_
+			DI:Status,_
+			DI:Wealth_
+		)_
+	),_
+	select6(_
+		text("Skills: Select 10 points from the following skills:"),_
+		pointswanted(10),_
+		itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Animal Handling,_
+			SK:Connoisseur,_
+			SK:Artist,_
+			SK:Public Speaking,_
+			SK:Expert Skill (Bardic Knowledge),_
+			SK:Expert Skill (Dracontology),_
+			SK:Games,_
+			SK:Diplomacy,_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:Jeweler,_
+			SK:Musical Instrument,_
+			SK:Poetry,_
+			SK:Riding (Dragon),_
+			SK:Savoir-Faire (High Society),_
+			SK:Singing_
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Hoard Raider (Dragons), displaycost(80),_
+	cat(Character Templates),_
+	description(You are an especially bold, lucky or foolish thief. You steal treasure from dragon lairs, once or repeatly. This impliessome measure of skill ot luck, but can lead to all sorts of trouble as well as to personal wealth.),_
+	page(DR102, DR153),_
+	sets(_
+			ST:DX=12,_
+			ST:IQ=11_
+	),_
+	adds(_
+			SK:Stealth=4pts,_
+			SK:Camouflage=2pts,_
+			SK:Climbing=2pts,_
+			SK:Traps=1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Choose 20 points from the following:"),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST,_
+			AD:Extra DX,_
+			AD:Extra IQ,_
+			AD:Extra HT,_
+			AD:Extra Perception,_
+			AD:Acute Hearing,_
+			AD:Combat Reflexes,_
+			#newitem(AD:Contact (Street), 1/2/3/4, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			#newitem(AD:Contact Group (Street), 5/10/15/20, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Fearlessness,_
+			AD:High Manual Dexterity,_
+			AD:Intuition,_
+			AD:Luck,_
+			AD:Night Vision,_
+			AD:Serendipity,_
+			AD:Wealth_
+		)_
+	),_
+	select4(_
+		text("Disadvantages: Select -15 from the list below:"),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			#newitem(DI:Overconfidence, -5, displaycost(-10*), mods(Self-Control), page(B148), cat(Mundane, Mental), initmods( You resist on a roll of 6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control), page(B121) ), conditional(+2 to ST:Reaction when "young or naive individuals", -2 to ST:Reaction when "experienced NPCS")),_
+			#newitem(DI:Odious Personal Habit (Glory Hound), -5, page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")),_
+			DI:Loner,_
+			DI:Greed,_
+			DI:Trickster_
+		)_
+	),_
+	select5(_
+		text("Disadvantages: Select -10 from the following list"),_
+		pointswanted(-10),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Curious,_
+			DI:Enemy (One Person),_
+			DI:Enemy (Less powerful group),_
+			DI:Enemy (Formidable group),_
+			QU:Imaginative,_
+			DI:Impulsiveness,_
+			QU:Nosy,_
+			DI:Oblivious,_
+			QU:Proud,_
+			#newitem(DI:Reputation (Reckless), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			#newitem(DI:Reputation (Criminal), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			DI:Sense of Duty,_
+			DI:Social Stigma,_
+			DI:Stubbornness,_
+			QU:Uncongenial,_
+			#newitem(DI:Vow (To acquire/recover an object), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)),_
+			DI:Wealth_
+		)_
+	),_
+	select6(_
+		text("Skills: Select up to 16 points from these skills, or add more points to skills already added:"),_
+		pointswanted(16),_
+		itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			SK:Connoisseur,_
+			SK:Archaeology,_
+			SK:Area Knowledge ([Area]),_
+			SK:Brawling,_
+			SK:Cartography,_
+			SK:Fast-Talk,_
+			SK:Filch,_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:History,_
+			SK:Jeweler,_
+			SK:Jumping,_
+			SK:Knife,_
+			SK:Lockpicking,_
+			SK:Navigation (Land),_
+			SK:Prospecting,_
+			SK:Shortsword,_
+			SK:Streetwise,_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands),_
+			SK:Tracking_
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Knight in Shining Armor (Dragons), displaycost(151),_
+	cat(Character Templates),_
+	description(A contrast to the barbarian dragon slayer the Knight in Shining Armor is a refined figure, motivated by high ideals.),_
+	page(DR102, DR153),_
+	sets(_
+			ST:ST=12,_
+			ST:DX=13,_
+			ST:HT=12_
+	),_
+	adds(_
+			AD:Fearlessness=3,_
+			AD:Status=1,_
+			AD:Wealth=2,_
+			DI:Code of Honor (Chivalry),_
+			SK:Broadsword=4pts,_
+			SK:Lance=2pts,_
+			SK:Riding (Horse)=2pts,_
+			SK:Shield (Shield)=2pts,_
+			SK:Heraldry=1pts,_
+			SK:Savoir-Faire (High Society)=1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(Advantages: text("Select 25 points from the following list:"),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST,_
+			AD:Extra IQ,_
+			AD:Extra HT,_
+			AD:Extra Hit Points,_
+			AD:Extra Will,_
+			PE:Honest Face,_
+			AD:Ally,_
+			AD:Appearance,_
+			AD:Claim to Hospitality,_
+			AD:Charisma,_
+			AD:Combat Reflexes,_
+			#newitem(AD:Contact Group (Military), 5/10/15/20, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			#newitem(AD:Contact (Military), 1/2/3/4, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			AD:Daredevil,_
+			AD:High Pain Threshold,_
+			AD:Legal Enforcement Powers #codes(upto 2, downto 2),_
+			AD:Magic Resistance,_
+			AD:Rapid Healing,_
+			#newitem(AD:Reputation (Heroic Warrior), 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(+1 to ST:Reaction)),_
+			#newitem(AD:Resist (Poison), displaycost(8), 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), Page(B80), upto(4), cat(Mundane, Physical), initmods( Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), round(Down), shortname(+8), group(Resistant), page(B81))) #codes(upto 3, downto 3),_
+			AD:Social Chameleon,_
+			AD:True Faith _
+		)_
+	),_
+ select4(_
+		text("Select -15 points from this list:"),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Charitable,_
+			DI:Compulsive Behavior,_
+			DI:Compulsive Vowing,_
+			#newitem(DI:Dependent (true love, young squire, etc), -1/-2/-5/-10/-15, upto(5), mods(Dependent, Frequency of Appearance), page(B131), cat(Mundane, Social), levelnames(No more than 100%, No more than 75%, No more than 50%, No more than 25%, 0 or fewer points), initmods(Importance: Friend, *1, shortname(Friend), group(Dependent) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			QU:Distractible,_
+			QU:Dreamer,_
+			DI:Fanaticism,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Loner,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents),_
+			QU:Proud,_
+			DI:Sense of Duty,_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			QU:Uncongenial,_
+			DI:Vow,_
+			#newitem(DI:Vow (To slay monsters), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)),_
+			#newitem(DI:Vow (To defend the right), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)) _
+		)_
+	),_
+ select5(_
+		text("Skills: Select two of the following at 2 points:"),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			SK:Axe/Mace #codes(upto 2pts, downto 2pts),_
+			SK:Flail #codes(upto 2pts, downto 2pts),_
+			SK:Two-Handed Flail #codes(upto 2pts, downto 2pts),_
+			SK:Leadership #codes(upto 2pts, downto 2pts),_
+			SK:Tactics #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+ select6(_
+		text("Select up to 9 points from the following list:"),_
+		pointswanted(9),_
+		itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Axe/Mace,_
+			SK:Flail,_
+			SK:Two-Handed Flail,_
+			SK:Leadership,_
+			SK:Tactics,_
+			SK:Animal Handling,_
+			SK:Connoisseur,_
+			SK:Area Knowledge ([Area]),_
+			SK:Public Speaking,_
+			SK:Brawling,_
+			SK:Carousing,_
+			SK:Games,_
+			SK:_Combat Sport,_
+			SK:Dancing,_
+			SK:Falconry,_
+			SK:Leadership,_
+			SK:Naturalist,_
+			SK:Spear,_
+			SK:Tactics,_
+			SK:Tracking,_
+			SK:Two-Handed Sword_
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Reckless Scholar (Dragons), displaycost(75),_
+	cat(Character Templates),_
+	description(This learned scholar of dragon-kind insists on studying his subject up close.),_
+	page(DR103, DR154),_
+	sets(_
+			ST:IQ=12,_
+			ST:HT=11_
+	),_
+	adds(_
+			AD:Status=1_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Select 20 points from the following list, or take additional levels of Status [5/level] later:"),_
+		pointswanted(upto 20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra DX,_
+			AD:Extra IQ,_
+			AD:Extra Will,_
+			PE:Honest Face,_
+			AD:Acute Vision,_
+			#newitem(AD:Claim to Hospitality (Fellow Schollars), 1/2/5/10, page(B41), upto(4), cat(Mundane, Social)),_
+			AD:Daredevil,_
+			AD:Fearlessness,_
+			#newitem(AD:Higher Purpose (To raise human knowledge of Dragons), 5, page(B59), cat(Supernatural, Mental) ),_
+			AD:Intuition,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Luck,_
+			AD:Patron,_
+			#newitem(AD:Reputation (as a Sage), 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence),   initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)),conditional(+1 to ST:Reaction)),_
+			AD:Serendipity,_
+			AD:Single-Minded,_
+			#newitem(AD:Extra Status, 5/10, gives(+1 to AD:Status)),_
+			AD:Tenure,_
+			AD:Unfazeable,_
+			AD:Wealth _
+		)_
+	),_
+	select4(_
+		text("Select -15 points from 1 to 2 of the following:"),_
+		pointswanted(-15),_
+		itemswanted(upto 2, atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			#newitem(DI:Fanaticism (Scholarship), -15/-15, displaycost(-15), levelnames( , Extreme), page(B136), upto(2), cat(Mundane, Mental)),_
+			#newitem(DI:Obsession (Knowing all about dragons), -10, displaycost(-15*), mods(Self-Control), levelnames(Long-Term Goal), page(B146), cat(Mundane, Mental), initmods(You resist on a roll of 9 or less (fairly often), *1.5, shortname(12 or less), group(Self-Control), page(B121))),_
+			#newitem(DI:Vow (To unlock all secrets of dragon kind), -5/-10/-15, displaycost(-15), levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)) #codes(upto 3, downto 3),_
+			#newitem(DI:Code of Honor (Scholarly), -5, page(B127), cat(Mundane, Mental)),_
+			#newitem(DI:Overconfidence, -5, displaycost(-10*), mods(Self-Control), page(B148), cat(Mundane, Mental), initmods( You resist on a roll of 6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control), page(B121) ), conditional(+2 to ST:Reaction when "young or naive individuals", -2 to ST:Reaction when "experienced NPCS")) _
+		)_
+	),_
+	select5(_
+		text("Select -10 points from the following:"),_
+		pointswanted(-10),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			QU:Attentive,_
+			QU:Broad-Minded,_
+			DI:Clueless,_
+			DI:Curious,_
+			DI:Easy to Read,_
+			QU:Imaginative,_
+			DI:Impulsiveness,_
+			DI:Loner,_
+			QU:Nosy,_
+			DI:Oblivious,_
+			QU:Proud,_
+			#newitem(DI:Reputation (suicidal lunatic), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			DI:Skinny,_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			QU:Uncongenial,_
+			DI:Xenophilia _
+		)_
+	),_
+	select6(_
+		text("Primary Skills: Select 3 items from the following list at 4 points each:"),_
+		pointswanted(12),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			SK:Expert Skill (Bardic Knowledge) #codes(upto 4pts, downto 4pts),_
+			SK:Hidden Lore (Dragon Lore) #codes(upto 4pts, downto 4pts),_
+			SK:History #codes(upto 4pts, downto 4pts),_
+			SK:Naturalist #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:Occultism (Demonology), IQ/A, default(IQ - 5), page(B212), cat(Occult/Magical)) #codes(upto 4pts, downto 4pts),_
+			SK:Theology #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select7(_
+		text(Secondary Skills: "Select 4 from the following list at 1 point each:"),_
+		pointswanted(4),_
+		itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			#newitem(SK:Area Knowledge (Wilderness), IQ/E, page(B176), cat(Everyman, Knowledge)) #codes(upto 1pts),_
+			SK:Camouflage #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Hiking #codes(upto 1pts),_
+			SK:History #codes(upto 1pts),_
+			SK:Navigation (Land) #codes(upto 1pts),_
+			SK:Research #codes(upto 1pts),_
+			SK:Stealth #codes(upto 1pts),_
+			SK:Survival #codes(upto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts),_
+			SK:Teaching #codes(upto 1pts)_
+		)_
+	),_
+	select8(_
+		text("Select up to 9 points from the following:"),_
+		pointswanted(9),_
+		itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Alchemy,_
+			SK:Connoisseur,_
+			SK:Archaeology,_
+			SK:Artist,_
+			SK:Fortune-Telling (Augury),_
+			SK:Cartography,_
+			SK:Games,_
+			SK:Geology (Earthlike),_
+			SK:First Aid,_
+			SK:Literature,_
+			SK:Meteorology (Earthlike),_
+			SK:Jeweler,_
+			SK:Philosophy,_
+			SK:Riding,_
+			SK:Thaumatology,_
+			SK:Tracking,_
+			SK:Veterinary_
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Sacrifice Survivor (Dragons), displaycost(60),_
+	cat(Character Templates),_
+	description(Given a tradition of tying madens to stakes for dragons to devour, it seems plausible that a few maight survive _
+					through wit, charm, divine protection, or sheer luck, and develop some kind of working relationship with the dragon..),_
+	page(DR103, DR154),_
+	sets(_
+			ST:IQ=12_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Primary Advantage: Select 1 of the following"),_
+		itemswanted(1),_
+		pointswanted(15),_
+		list(_
+			AD:Charisma #codes(upto 3, downto 3),_
+			AD:Serendipity #codes(upto 1, downto 1),_
+			AD:True Faith_
+		)_
+	),_
+	select4(_
+		text("Advantage: Select 15 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(15),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra HT,_
+			AD:Extra Will,_
+			PE:Honest Face,_
+			#newitem(AD:Ally (Dragon), 1/2/3/5/10, upto(5), levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points), mods(Ally, Frequency of Appearance, Favor), page(B36), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			AD:Animal Empathy,_
+			AD:Appearance,_
+			AD:Claim to Hospitality,_
+			AD:Fearlessness,_
+			AD:Intuition,_
+			AD:Luck #codes(upto 1),_
+			#newitem(AD:Patron (Dragon), 10/15/20/25/30, mods(Frequency of Appearance, Patron, Favor), page(B72), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			AD:Pitiable,_
+			AD:Reputation,_
+			AD:Social Chameleon,_
+			AD:Status,_
+			AD:Unfazeable,_
+			AD:Voice _
+		)_
+	),_
+	select5(_
+		text("Disadvantages: Select a total of -20 from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			QU:Broad-Minded,_
+			DI:Charitable,_
+			#newitem(DI:Duty (To dragon), -2/-5/-10/-15, mods(Duty), page(B134), cat(Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")),_
+			DI:Honesty,_
+			QU:Imaginative,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			#newitem(DI:Phobia (Coitophobia: Sex), -10, displaycost(-10*), mods(Self-Control), page(B148), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			QU:Proud,_
+			#newitem(DI:Reputation (Collaborator/Dragon Lover), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			QU:Responsive,_
+			DI:Selfless,_
+			DI:Sense of Duty,_
+			#newitem(DI:Social Stigma (Valuable property), -5/-10, upto(4), page(B155), cat(Mundane, Social), conditional(-1 to ST:Reaction)),_
+			DI:Truthfulness,_
+			DI:Unfit,_
+			DI:Xenophilia _
+		)_
+	),_
+	select6(_
+		text("Primary Skills: Select 2 of the following at 2 points, and 2 points between them:"),_
+		itemswanted(atleast 2),_
+		pointswanted(6),_
+		list(_
+			SK:Public Speaking #codes(upto 4pts, downto 2pts),_
+			SK:Diplomacy #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Talk #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Background Skills: Select 4 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(4),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Acting,_
+			SK:Farming,_
+			SK:Connoisseur,_
+			#newitem(SK:Area Knowledge (Vicinity of lair), IQ/E, page(B176), cat(Everyman, Knowledge)) #codes(upto 1pts),_
+			SK:Cooking,_
+			SK:Dancing,_
+			SK:Detect Lies,_
+			SK:First Aid,_
+			SK:Fortune-Telling,_
+			SK:Fortune-Telling (Astrology),_
+			SK:Fortune-Telling (Augury),_
+			SK:Fortune-Telling (Crystal Gazing),_
+			SK:Fortune-Telling (Dream Interpretation),_
+			SK:Fortune-Telling (Feng Shui),_
+			SK:Fortune-Telling (Palmistry),_
+			SK:Fortune-Telling (Tarot),_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:Musical Instrument,_
+			SK:Naturalist,_
+			#newitem(SK:Hobby Skill (Needlecraft), DX/E, default(DX - 4), page(B200), cat(Knowledge)),_
+			SK:Psychology,_
+			SK:Riding (Dragon),_
+			SK:Savoir-Faire,_
+			SK:Savoir-Faire (Dojo),_
+			SK:Savoir-Faire (High Society),_
+			SK:Savoir-Faire (Mafia),_
+			SK:Savoir-Faire (Military),_
+			SK:Savoir-Faire (Police),_
+			SK:Savoir-Faire (Servant),_
+			SK:Sex Appeal,_
+			SK:Singing,_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Servile Minion (Dragons), displaycost(60),_
+	cat(Character Templates),_
+	description(A scurrying cringing servant of dragons, either by choice or necessity.),_
+	page(DR104, DR154),_
+	sets(_
+			ST:DX=11,_
+			ST:IQ=11,_
+			ST:HT=11_
+	),_
+	adds(SK:Savoir-Faire (Servant)=4pts),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Select 20 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(20),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST,_
+			AD:Extra DX,_
+			AD:Extra IQ,_
+			AD:Extra HT,_
+			AD:Acute Hearing,_
+			AD:Claim to Hospitality,_
+			AD:Combat Reflexes,_
+			AD:Fearlessness,_
+			AD:High Pain Threshold,_
+			#newitem(AD:Patron (Dragon), 10/15/20/25/30, mods(Frequency of Appearance, Patron, Favor), page(B72), cat(Mundane, Social), initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))),_
+			AD:Pitiable,_
+			AD:Rapid Healing,_
+			#newitem(AD:Resist (Disease), 5/10/15/30, displaycost(varies), mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), Page(B80), upto(4), cat(Mundane, Physical), initmods(Degree: Immunity, *1, shortname(Immunity), group(Resistant))) #codes(upto 2, downto 2),_
+			#newitem(AD:Resist (Poison), displaycost(varies), 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), Page(B80), upto(4), cat(Mundane, Physical), initmods( Degree: Immunity, *1, shortname(Immunity), group(Resistant))) #codes(upto 3, downto 3),_
+			AD:Social Chameleon_
+		)_
+	),_
+	select4(_
+		text("Add duty and adjust cost to -10 points, using modifiers if desired:"),_
+		itemswanted(1),_
+		pointswanted(-10),_
+		list(_
+			#newitem(DI:Duty (To dragon), -2/-5/-10/-15, mods(Duty), page(B134), cat(Mundane Social, Mundane, Social), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")) _
+		)_
+	),_
+	select5(_
+		text("Disadvantages: Select up to -15 from the following, or increase the cost of Duty later:"),_
+		itemswanted(upto 15),_
+		pointswanted(-15),_
+		list(_
+			#newitem(DI:_Increase Duty cost, 0, displaycost(varies), existing(DI:Duty (To dragon))),_
+			#list(GMDisadvantages),_
+			DI:Alcoholism,_
+			DI:Appearance,_
+			QU:Broad-Minded,_
+			DI:Bully,_
+			DI:Callous,_
+			QU:Careful,_
+			DI:Cowardice,_
+			QU:Dull,_
+			DI:Fearfulness,_
+			DI:Greed,_
+			DI:Hidebound,_
+			QU:Humble,_
+			DI:Hunchback,_
+			DI:Intolerance #codes(upto 2, downto 2),_
+			DI:Low Pain Threshold,_
+			DI:Low Self-Image,_
+			DI:Nightmares,_
+			DI:Oblivious,_
+			DI:Odious Personal Habit,_
+			QU:Proud,_
+			#newitem(DI:Reputation (Monsters pet), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			DI:Sadism,_
+			DI:Selfish,_
+			DI:Selfless,_
+			DI:Skinny,_
+			DI:Social Stigma,_
+			QU:Staid,_
+			DI:Status,_
+			QU:Uncongenial,_
+			DI:Unfit,_
+			DI:Unluckiness,_
+			DI:Wealth,_
+			DI:Xenophilia_
+		)_
+	),_
+	select6(_
+		text("Select 2 of the following at 2 points each:"),_
+		itemswanted(2),_
+		pointswanted(4),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Accounting #codes(upto 2pts, downto 2pts),_
+			SK:Acting #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:Area Knowledge (Vicinity of lair), IQ/E, page(B176), cat(Everyman, Knowledge)) #codes(upto 2pts, downto 2pts),_
+			SK:Cooking #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Dragon Lore) #codes(upto 2pts, downto 2pts),_
+			SK:Intimidation #codes(upto 2pts, downto 2pts),_
+			SK:Stealth #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select 7 points from the following skills:"),_
+		itemswanted(atleast 1),_
+		pointswanted(7),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Accounting,_
+			SK:Acting,_
+			#newitem(SK:Area Knowledge (Vicinity of lair), IQ/E, page(B176), cat(Everyman, Knowledge)),_
+			SK:Cooking,_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:Intimidation,_
+			SK:Stealth,_
+			SK:Brawling,_
+			SK:Detect Lies,_
+			SK:Diplomacy,_
+			SK:Fast-Talk,_
+			SK:Heraldry,_
+			SK:Holdout,_
+			SK:Knife,_
+			SK:Scrounging,_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands),_
+			SK:Traps_
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Slayer's Advisor (Dragons), displaycost(90),_
+	cat(Character Templates),_
+	description(A local wise woman or specialist scholar - who advises a slayer on draconic behavior or useful tactics.),_
+	page(DR105, DR155),_
+	sets(_
+			ST:IQ=13,_
+			ST:HT=11_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Select a total of 20 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(20),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra DX,_
+			AD:Extra IQ,_
+			AD:Extra Will,_
+			PE:Honest Face,_
+			#newitem(AD:Claim to Hospitality (Fellow Schollars), 1/2/5/10, page(B41), upto(4), cat(Mundane, Social)),_
+			AD:Common Sense,_
+			AD:Sensitive,_
+			AD:Empathy,_
+			AD:Fearlessness,_
+			AD:Intuition,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			#newitem(AD:Legal Immunity (Bardic Immunity), 10, displaycost(5), mods(Legal Immunity), page(B65), cat(Mundane, Social), initmods(Only in romantic parts of Caithness, -50%, group(_General)) ),_
+			AD:Longevity,_
+			AD:Reputation,_
+			AD:Single-Minded,_
+			AD:Status #codes(upto 1),_
+			AD:Unfazeable_
+		)_
+	),_
+	select4(_
+		text("Disadvantages: Select -20 points from the following list:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Appearance,_
+			QU:Attentive,_
+			QU:Bowlegged,_
+			QU:Broad-Minded,_
+			#newitem(DI:Code of Honor (Scholarly), -5, page(B127), cat(Mundane, Mental)),_
+			DI:Ham-Fisted,_
+			QU:Imaginative,_
+			DI:Lame (Crippled Legs),_
+			DI:Lame (Missing Legs),_
+			DI:Loner,_
+			QU:Nosy,_
+			DI:Paranoia,_
+			QU:Proud,_
+			#newitem(DI:Reputation (creepy eccentric), -5/-10, mods(Reputation, Reputation Disadvantage), page(B27), upto(4), cat(Mundane, Social, Influence), initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)), conditional(-1 to ST:Reaction)),_
+			DI:Secret,_
+			DI:Sense of Duty,_
+			DI:Skinny,_
+			DI:Social Stigma,_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			QU:Uncongenial,_
+			DI:Unfit_
+		)_
+	),_
+	select5(_
+		text("Primary Skills: Select two of the following at 4 points each:"),_
+		itemswanted(2),_
+		pointswanted(8),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 4pts, downto 4pts),_
+			SK:Fortune-Telling (Augury) #codes(upto 4pts, downto 4pts),_
+			SK:Expert Skill (Bardic Knowledge) #codes(upto 4pts, downto 4pts),_
+			SK:Hidden Lore (Dragon Lore) #codes(upto 4pts, downto 4pts),_
+			SK:History #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:Occultism (demonology), IQ/A, default(IQ - 5), page(B212), cat(Occult/Magical)) #codes(upto 4pts, downto 4pts),_
+			SK:Tactics #codes(upto 4pts, downto 4pts),_
+			SK:Theology #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select6(_
+		text("Secondary Skills: Select 3 of the following at 2 points each:"),_
+		itemswanted(3),_
+		pointswanted(6),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:History #codes(upto 2pts, downto 2pts),_
+			SK:Naturalist #codes(upto 2pts, downto 2pts),_
+			SK:Physician #codes(upto 2pts, downto 2pts),_
+			SK:Research #codes(upto 2pts, downto 2pts),_
+			SK:Teaching #codes(upto 2pts, downto 2pts),_
+			SK:Thaumatology #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select up to 6 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(6),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem%)),_
+			SK:History,_
+			SK:Naturalist,_
+			SK:Physician,_
+			SK:Research,_
+			SK:Teaching,_
+			SK:Thaumatology,_
+			SK:Area Knowledge ([Area]),_
+			SK:Fortune-Telling (Augury),_
+			SK:Expert Skill (Bardic Knowledge),_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:History,_
+			#newitem(SK:Occultism (demonology), IQ/A, default(IQ - 5), page(B212), cat(Occult/Magical)),_
+			SK:Tactics,_
+			SK:Theology,_
+			SK:Alchemy,_
+			SK:Connoisseur,_
+			SK:Archaeology,_
+			SK:Public Speaking,_
+			SK:Cartography,_
+			SK:Detect Lies,_
+			SK:Diagnosis,_
+			SK:Fast-Talk,_
+			SK:First Aid,_
+			SK:Geology (Earthlike),_
+			SK:Heraldry,_
+			SK:Literature,_
+			SK:Meteorology (Earthlike),_
+			SK:Prospecting,_
+			SK:Philosophy,_
+			SK:Riding,_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands),_
+			SK:Tracking,_
+			SK:Traps _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Thoughtful Dragon Slayer (Dragons), displaycost(150),_
+	cat(Character Templates),_
+	description(The hunter that uses his intelligence to defeat the dragon perhaps using siege engines and smart tactics),_
+	page(DR105, DR155),_
+	sets(_
+			ST:ST=11,_
+			ST:DX=12,_
+			ST:IQ=13,_
+			ST:HT=11_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Select a total of 25"),_
+		itemswanted(atleast 1),_
+		pointswanted(25),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST,_
+			AD:Extra HT,_
+			AD:Extra Will,_
+			AD:Combat Reflexes,_
+			AD:Common Sense,_
+			AD:Fearlessness,_
+			AD:Gadgeteer,_
+			AD:Intuition,_
+			AD:Luck,_
+			AD:High Manual Dexterity,_
+			AD:Night Vision,_
+			#newitem(AD:Reputation (monster-slayer), 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence),   initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation)),conditional(+1 to ST:Reaction)),_
+			AD:Status #codes(upto 2),_
+			AD:Versatile,_
+			AD:Wealth_
+		)_
+	),_
+	select4(_
+		text("Disadvantages: Select a total of -20 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			QU:Careful,_
+			DI:Greed,_
+			QU:Imaginative,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Sense of Duty,_
+			DI:Social Stigma,_
+			DI:Trademark,_
+			#newitem(DI:Vow (To slay monsters), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)),_
+			#newitem(DI:Vow (To defend people), -5/-10/-15, levelnames(Minor, Major, Great), page(B160), upto(3), cat(Mundane, Mental)),_
+			DI:Wealth_
+		)_
+	),_
+	select5(_
+		text("Primary Skills: Select 2 from the following at 4 points each:"),_
+		itemswanted(2),_
+		pointswanted(8),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			AD:Armoury (Battlesuits) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Body Armor) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Force Shields) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Heavy Weapons) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Melee Weapons) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Missile Weapons) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Small Arms) #codes(upto 4pts, downto 4pts),_
+			AD:Armoury (Vehicular Armor) #codes(upto 4pts, downto 4pts),_
+			SK:Camouflage #codes(upto 4pts, downto 4pts),_
+			SK:Gunner (Catapult) #codes(upto 4pts, downto 4pts),_
+			SK:Poisons #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select6(_
+		text("Secondary Skills: Select 3 of the following at 2 points each:"),_
+		itemswanted(3),_
+		pointswanted(6),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Acting #codes(upto 2pts, downto 2pts),_
+			SK:Animal Handling #codes(upto 2pts, downto 2pts),_
+			SK:Smith (iron) #codes(upto 2pts, downto 2pts),_
+			SK:Crossbow #codes(upto 2pts, downto 2pts),_
+			SK:Fast-Talk #codes(upto 2pts, downto 2pts),_
+			SK:Thrown Weapon (Harpoon) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Dragon Lore) #codes(upto 2pts, downto 2pts),_
+			SK:Polearm #codes(upto 2pts, downto 2pts),_
+			SK:Stealth #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Background Skills: Select up to 11 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(11),_
+		list(_
+			#BuildSelectList(Skills where cat isnot "xxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem%)),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem%)),_
+			SK:Acting,_
+			SK:Animal Handling,_
+			SK:Smith (iron),_
+			SK:Crossbow,_
+			SK:Fast-Talk,_
+			SK:Thrown Weapon (Harpoon),_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:Polearm,_
+			SK:Stealth,_
+			SK:Tracking,_
+			SK:Two-Handed Axe/Mace,_
+			AD:Armoury (Battlesuits),_
+			AD:Armoury (Body Armor),_
+			AD:Armoury (Force Shields),_
+			AD:Armoury (Heavy Weapons),_
+			AD:Armoury (Melee Weapons),_
+			AD:Armoury (Missile Weapons),_
+			AD:Armoury (Small Arms),_
+			AD:Armoury (Vehicular Armor),_
+			SK:Camouflage,_
+			SK:Gunner (Catapult),_
+			SK:Poisons,_
+			SK:Traps,_
+			SK:Axe/Mace,_
+			SK:Bolas,_
+			SK:Carpentry,_
+			SK:Engineer (%type%),_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Civil),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Microtechnology),_
+			SK:Engineer (Mining),_
+			SK:Engineer (Nanotechnology),_
+			SK:Engineer (Parachronic),_
+			SK:Engineer (Psychotronics),_
+			SK:Engineer (Temporal),_
+			SK:Engineer ([Type]),_
+			SK:First Aid,_
+			SK:Lasso,_
+			#newitem(SK:Mechanic (Wagon), IQ/A, tl(0-12), page(B207), cat(Repair/Maintenance)),_
+			SK:Merchant,_
+			SK:Naturalist,_
+			SK:Net,_
+			#newitem(SK:Professional Skill (Net making), DX/A, default(DX - 5), page(B215), cat(Knowledge),),_
+			SK:Occultism,_
+			SK:Navigation (Land),_
+			#newitem(SK:Riding (Horse), DX/A, page(B217), cat(Animal)),_
+			SK:Research,_
+			SK:Scrounging,_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands),_
+			SK:Tactics _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Sorcerer (Dragons), displaycost(120),_
+	cat(Character Templates),_
+	description(This typical, if powerful, sorcerer is eccentric, egocentric, and so highly focused on his "art" that he may neglect himself or many social niceties. These sorcers are very individualistic so a great deal of variation is possible and likely. NOTE: This template requires that you load either the "Variant Basic Set 4e - Ritual Magic.gdf" or "Variant Magic 4e - Ritual Magic.gdf" Data Files.),_
+	page(DR122, DR156),_
+	sets(_
+			ST:ST=9,_
+			ST:IQ=13,_
+			ST:HT=11_
+	),_
+	adds(_
+			AD:Draconic =2pts,_
+			AD:Ritual Magery 0,_
+			AD:Ritual Magery = 3,_
+			SK:Research=1pts,_
+			SK:Ritual Magic=8pts,_
+			SK:Occultism=1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Advantages: Select up to 15 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(15),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra Will,_
+			#newitem(AD:Detect (Magic), 10, page(B48), cat(Exotic Physical, Exotic, Mental, Physical)),_
+			PE:Autotrance,_
+			AD:Charisma,_
+			AD:Fearlessness,_
+			AD:High Pain Threshold,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written),_
+			AD:Longevity,_
+			AD:Night Vision,_
+			AD:Single-Minded,_
+			AD:Status,_
+			AD:Voice,_
+			AD:Wealth #codes(upto 1)_
+		)_
+	),_
+	select4(_
+		text("Disadvantages: Select up to -25 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Appearance,_
+			QU:Attentive,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Clueless,_
+			DI:Enemy (One Person),_
+			DI:Enemy (Less powerful group),_
+			DI:Enemy (Formidable group),_
+			DI:Fat,_
+			DI:Fearfulness,_
+			DI:Hard of Hearing,_
+			DI:Jealousy,_
+			DI:Lame (Crippled Legs),_
+			DI:Lame (Missing Legs),_
+			DI:Loner,_
+			DI:Manic-Depressive,_
+			DI:Nightmares,_
+			DI:No Sense of Humor,_
+			#newitem(DI:Odious Personal Habit(Obsessive), -5, page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")),_
+			#newitem(DI:Odious Personal Habit(Arrogant), -5, page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")),_
+			#newitem(DI:Odious Personal Habit(Solipsism), -5, page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")),_
+			DI:Overconfidence,_
+			DI:Overweight,_
+			DI:Paranoia,_
+			DI:Phantom Voices,_
+			QU:Proud,_
+			DI:Secret _
+		)_
+	),_
+	select5(_
+		text("Secondary Skills: Select 2 of the following at 2 points each:"),_
+		itemswanted(2),_
+		pointswanted(4),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Autohypnosis #codes(upto 2pts, downto 2pts),_
+			SK:Public Speaking #codes(upto 2pts, downto 2pts),_
+			SK:Literature #codes(upto 2pts, downto 2pts),_
+			SK:Meditation #codes(upto 2pts, downto 2pts),_
+			SK:Philosophy #codes(upto 2pts, downto 2pts),_
+			SK:Poetry #codes(upto 2pts, downto 2pts),_
+			SK:Symbol Drawing #codes(upto 2pts, downto 2pts),_
+			SK:Teaching #codes(upto 2pts, downto 2pts),_
+			SK:Writing #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Background Skills: Select up to 3 points from any of the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(3),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem%)),_
+			SK:Anthropology,_
+			SK:Connoisseur,_
+			SK:Archaeology,_
+			SK:Games,_
+			#newitem(SK:Expert Skill (Conspiracy Theory), IQ/H, page(B193), cat(Knowledge, Scholarly)),_
+			SK:Detect Lies,_
+			SK:Erotic Art,_
+			SK:Fast-Talk,_
+			SK:Hidden Lore (Dragon Lore),_
+			SK:History,_
+			SK:Intimidation,_
+			SK:Leadership,_
+			SK:Mathematics (Applied),_
+			SK:Mathematics (Computer Science),_
+			SK:Mathematics (Cryptology),_
+			SK:Mathematics (Pure),_
+			SK:Mathematics (Statistics),_
+			SK:Mathematics (Surveying),_
+			SK:Naturalist,_
+			SK:Pharmacy (Herbal),_
+			SK:Pharmacy (Synthetic),_
+			SK:Poisons,_
+			SK:Expert Skill (Psionics),_
+			SK:Psychology,_
+			SK:Religious Ritual,_
+			SK:Savoir-Faire,_
+			SK:Savoir-Faire (Dojo),_
+			SK:Savoir-Faire (High Society),_
+			SK:Savoir-Faire (Mafia),_
+			SK:Savoir-Faire (Military),_
+			SK:Savoir-Faire (Police),_
+			SK:Savoir-Faire (Servant),_
+			SK:Sex Appeal,_
+			SK:Stealth,_
+			SK:Thaumatology,_
+			SK:Theology _
+		)_
+	),_
+	select7(_
+		text("Paths: Select two of the following paths, each will be added at 8pts:"),_
+		itemswanted(2),_
+		pointswanted(16),_
+		list(_
+			SK:Path of Knowledge #codes(upto 8pts, downto 8pts),_
+			SK:Path of Protection & Warning #codes(upto 8pts, downto 8pts),_
+			SK:Path of Cunning #codes(upto 8pts, downto 8pts),_
+			SK:Path of Luck #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Barbarian Dragon-Slayer (Dragons)" with {replacetags(in "TE:Barbarian Dragon-Slayer (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Dragon-Blooded Human (Dragons)" with {replacetags(in "TE:Dragon-Blooded Human (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Dragon-Friend (Dragons)" with {replacetags(in "TE:Dragon-Friend (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Hoard Raider (Dragons)" with {replacetags(in "TE:Hoard Raider (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Knight in Shining Armor (Dragons)" with {replacetags(in "TE:Knight in Shining Armor (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Reckless Scholar (Dragons)" with {replacetags(in "TE:Reckless Scholar (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Sacrifice Survivor (Dragons)" with {replacetags(in "TE:Sacrifice Survivor (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Servile Minion (Dragons)" with {replacetags(in "TE:Servile Minion (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Slayer's Advisor (Dragons)" with {replacetags(in "TE:Slayer's Advisor (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Thoughtful Dragon Slayer (Dragons)" with {replacetags(in "TE:Thoughtful Dragon Slayer (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Sorcerer (Dragons)" with {replacetags(in "TE:Sorcerer (Dragons)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

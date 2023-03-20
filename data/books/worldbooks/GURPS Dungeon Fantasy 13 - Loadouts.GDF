@@ -1,0 +1,2999 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file, 
+* or the first line AFTER the 'Encoding=UTF-8' line, when that is included.
+
+Description=2022 July 27. _
+		This data file contains information taken from the GURPS Dungeon Fantasy 13: Loadouts sourcebook. _
+		GURPS GURPS Dungeon Fantasy 13: Loadouts is Copyright© 2100 by Steve Jackson Games _
+		Incorporated. All rights reserved.
+Program=5.0.168
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf",  "GURPS Dungeon Fantasy  1 - Adventurers.GDF"
+LoadAfter="GURPS Dungeon Fantasy  4 - Sages.GDF", "GURPS Dungeon Fantasy  7 - Clerics.gdf", "GURPS Dungeon Fantasy  8 - Treasure Tables.gdf", "GURPS Dungeon Fantasy 10 - Taverns.gdf", "GURPS Dungeon Fantasy 12 - Ninja.gdf"
+
+[AUTHOR]
+********************************************************************************************************\[START]
+//
+// GURPS® Character Assistant
+// Filename: GURPS Dungeon Fantasy 13 - Loadouts.gdf
+// Created: 02/05/2020
+// Modified: 2022 February 8
+// Requires GCA v4 or later!
+//
+// This data file contains information taken from the GURPS Dungeon Fantasy 13: Loadouts sourcebook.
+// GURPS GURPS Dungeon Fantasy 13: Loadouts is Copyright© 2100 by Steve Jackson Games
+// Incorporated. All rights reserved.
+//
+// Information in this file includes:
+//
+//
+********************************************************************************************************
+//
+// Eric B. Smith    - GURPS Data File Coordinator, Major Work
+//
+// If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+// eric.frogkiller@gmail.com
+//
+// Or drop a message at:
+// http://forums.sjgames.com
+// 
+********************************************************************************************************
+//
+// GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+// Games. All rights reserved.
+//
+// The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+// copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+// rights reserved by Steve Jackson Games Incorporated.
+//
+********************************************************************************************************\[STOP]
+//   \par	new paragraph in RTF in description() tag
+//   ~P		new paragraph in the #Message() directive
+*******************************************************************************************************\[START]
+
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+Equip Weight, basevalue(char::currentload)
+Equip Cost, basevalue(char::equipmentcost)
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<KitSMList>
+"SM+1",_
+"SM+0",_
+"SM-1",_
+"SM-2",_
+"SM-4",_
+"SM-6",_
+"SM-1 (Faerie)",_
+"SM-2 (Faerie)",_
+"SM-4 (Faerie)",_
+"SM-6 (Faerie)"
+
+<KitWeaponSM>
+{Dungeon Fantasy: Oversized Weapon, *1.5, page(DF1:27), gives(*1.5 to owner::baseweight, *1.5 to owner::minst, +$/textindexedvalue( {$modetag(damage)}, ( "sw+4", 2 ), ( "thr+4", 2 ), ( "sw+5", 2 ), ( "thr+5", 2 ), ( "sw+6", 3 ), ( "thr+6", 3 ), ( "sw+7", 3 ), ( "thr+7", 3 ), ( "sw+8", 4 ), ( "thr+8", 4 ), ( "sw+9", 4 ), ( "thr+9", 4 ), ( "sw+10", 5 ), ( "thr+10", 5 ), else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"), shortname(Oversized), group(Melee Quality)},_
+{SM+0, +0},_
+{Dungeon Fantasy: SM -1 Mundane Weapon, *2/3, group(Melee Quality), shortname(SM-1 Mundane), gives(*2/3 to owner::baseweight, *3/4 to owner::minst, -1 to owner::damage, 0.5 to owner::armordivisor, *2/3 to owner::rangehalfdam, *2/3 to owner::rangemax, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "2" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ), ( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ), ( "1-3", "C-2" ), ( "1-3*", "C-2*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-3*" ), ( "1-6*", "C-4*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -2 Mundane Weapon, *1/3, group(Melee Quality), shortname(SM-2 Mundane), gives(*1/3 to owner::baseweight, *1/2 to owner::minst, -2 to owner::damage, 0.2 to owner::armordivisor, *1/2 to owner::rangehalfdam, *1/2 to owner::rangemax, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "1" ), ( "C,1", "C" ), ( "1,2", "C,1" ), ( "1,2*", "C,1*" ), ( "2,3", "1" ), ( "2,3*", "1" ), ( "1-3", "C-1" ), ( "1-3*", "C-1*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-2*" ), ( "1-6*", "C-3*" ), ( "1-7*", "C-3*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -4 Mundane Weapon, *1/8, group(Melee Quality), shortname(SM-4 Mundane), gives(*1/8 to owner::baseweight, *1/4 to owner::minst, -4 to owner::damage, 0.1 to owner::armordivisor, *1/4 to owner::rangehalfdam, *1/4 to owner::rangemax, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "C" ), ( "3", "C" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C" ), ( "1, 2*", "C" ), ( "2,3", "C" ), ( "2, 3", "C" ), ( "2,3*", "C" ), ( "2, 3*", "C" ), ( "1-3", "C" ), ( "1-3*", "C" ), ( "1-4", "C-1" ), ( "1-4*", "C-1*" ), ( "1-5*", "C-1*" ), ( "1-6*", "C-1*" ), ( "1-7*", "C-1*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -6 Mundane Weapon, *1/12, group(Melee Quality), shortname(SM-6 Mundane), gives(*1/25 to owner::baseweight, *1/10 to owner::minst, -6 to owner::damage, 0.1 to owner::armordivisor, *1/12 to owner::rangehalfdam, *1/12 to owner::rangemax, =nobase to owner::reach$, ="C" to owner::reach$)},_
+{Dungeon Fantasy: SM -1 Faerie Weapon, *1, group(Melee Quality), shortname(SM -1 Faerie), gives(*2/3 to owner::baseweight, *3/4 to owner::minst, -1 to owner::damage, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "2" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ),( "1, 2*", "C,1*" ), ( "2,3", "1,2" ), ( "2, 3", "1,2" ), ( "2,3*", "1,2*" ),( "2, 3*", "1,2*" ), ( "1-3", "C-2" ), ( "1-3*", "C-2*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-3*" ), ( "1-6*", "C-4*" ), ( "1-7*", "C-4*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -2 Faerie Weapon, *1, group(Melee Quality), shortname(SM -2 Faerie), gives(*1/3 to owner::baseweight, *1/2 to owner::minst, -2 to owner::damage, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "1" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ),( "1, 2*", "C,1*" ), ( "2,3", "1" ), ( "2, 3", "1" ), ( "2, 3*", "1" ), ( "2,3*", "1" ), ( "1-3", "C-1" ), ( "1-3*", "C-1*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-2*" ), ( "1-6*", "C-3*" ), ( "1-7*", "C-3*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -4 Faerie Weapon, *1, group(Melee Quality), shortname(SM -4 Faerie), gives(*1/8 to owner::baseweight, *1/4 to owner::minst, -4 to owner::damage, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "C" ), ( "3", "C" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C" ), ( "1, 2*", "C" ), ( "2,3", "C" ), ( "2, 3", "C" ), ( "2,3*", "C" ), ( "2, 3*", "C" ), ( "1-3", "C" ), ( "1-3*", "C" ), ( "1-4", "C-1" ), ( "1-4*", "C-1*" ), ( "1-5*", "C-1*" ), ( "1-6*", "C-1*" ), ( "1-7*", "C-1*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -6 Faerie Weapon, *1, group(Melee Quality), shortname(SM-6 Faerie), gives(*1/25 to owner::baseweight, *1/10 to owner::minst, -6 to owner::damage, =nobase to owner::reach$, ="C" to owner::reach$)}
+
+<KitToolSM>
+{Dungeon Fantasy: Oversized Tool, *1.5, page(DF1:27), gives(*1.5 to owner::baseweight, *1.5 to owner::minst, +$/textindexedvalue( {$modetag(damage)}, ( "sw+4", 2 ), ( "thr+4", 2 ), ( "sw+5", 2 ), ( "thr+5", 2 ), ( "sw+6", 3 ), ( "thr+6", 3 ), ( "sw+7", 3 ), ( "thr+7", 3 ), ( "sw+8", 4 ), ( "thr+8", 4 ), ( "sw+9", 4 ), ( "thr+9", 4 ), ( "sw+10", 5 ), ( "thr+10", 5 ), else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"), shortname(Oversized), group(Melee Quality)},_
+{SM+0, +0},_
+{Dungeon Fantasy: SM -1 Mundane Tool, *2/3, group(Melee Quality), shortname(SM-1 Mundane), gives(*2/3 to owner::baseweight, *3/4 to owner::minst, -1 to owner::damage, 0.5 to owner::armordivisor, *2/3 to owner::rangehalfdam, *2/3 to owner::rangemax, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "2" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ), ( "1, 2*", "C,1*" ), ( "2,3", "1,2" ),( "2, 3", "1,2" ), ( "2,3*", "1,2*" ), ( "2, 3*", "1,2*" ), ( "1-3", "C-2" ), ( "1-3*", "C-2*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-3*" ), ( "1-6*", "C-4*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -2 Mundane Tool, *1/3, group(Melee Quality), shortname(SM-2 Mundane), gives(*1/3 to owner::baseweight, *1/2 to owner::minst, -2 to owner::damage, 0.2 to owner::armordivisor, *1/2 to owner::rangehalfdam, *1/2 to owner::rangemax, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "1" ), ( "C,1", "C" ), ( "1,2", "C,1" ), ( "1,2*", "C,1*" ), ( "2,3", "1" ), ( "2,3*", "1" ), ( "1-3", "C-1" ), ( "1-3*", "C-1*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-2*" ), ( "1-6*", "C-3*" ), ( "1-7*", "C-3*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -4 Mundane Tool, *1/8, group(Melee Quality), shortname(SM-4 Mundane), gives(*1/8 to owner::baseweight, *1/4 to owner::minst, -4 to owner::damage, 0.1 to owner::armordivisor, *1/4 to owner::rangehalfdam, *1/4 to owner::rangemax, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "C" ), ( "3", "C" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C" ), ( "1, 2*", "C" ), ( "2,3", "C" ), ( "2, 3", "C" ), ( "2,3*", "C" ), ( "2, 3*", "C" ), ( "1-3", "C" ), ( "1-3*", "C" ), ( "1-4", "C-1" ), ( "1-4*", "C-1*" ), ( "1-5*", "C-1*" ), ( "1-6*", "C-1*" ), ( "1-7*", "C-1*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -6 Mundane Tool, *1/12, group(Melee Quality), shortname(SM-6 Mundane), gives(*1/25 to owner::baseweight, *1/10 to owner::minst, -6 to owner::damage, 0.1 to owner::armordivisor, *1/12 to owner::rangehalfdam, *1/12 to owner::rangemax, =nobase to owner::reach$, ="C" to owner::reach$)},_
+{Dungeon Fantasy: SM -1 Faerie Tool, *1, group(Melee Quality), shortname(SM -1 Faerie), gives(*2/3 to owner::baseweight, *3/4 to owner::minst, -1 to owner::damage, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "2" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ),( "1, 2*", "C,1*" ), ( "2,3", "1,2" ), ( "2, 3", "1,2" ), ( "2,3*", "1,2*" ),( "2, 3*", "1,2*" ), ( "1-3", "C-2" ), ( "1-3*", "C-2*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-3*" ), ( "1-6*", "C-4*" ), ( "1-7*", "C-4*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -2 Faerie Tool, *1, group(Melee Quality), shortname(SM -2 Faerie), gives(*1/3 to owner::baseweight, *1/2 to owner::minst, -2 to owner::damage, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "1" ), ( "3", "1" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C,1" ), ( "1, 2", "C,1" ), ( "1,2*", "C,1*" ),( "1, 2*", "C,1*" ), ( "2,3", "1" ), ( "2, 3", "1" ), ( "2, 3*", "1" ), ( "2,3*", "1" ), ( "1-3", "C-1" ), ( "1-3*", "C-1*" ), ( "1-4", "C-2" ), ( "1-4*", "C-2*" ), ( "1-5*", "C-2*" ), ( "1-6*", "C-3*" ), ( "1-7*", "C-3*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -4 Faerie Tool, *1, group(Melee Quality), shortname(SM -4 Faerie), gives(*1/8 to owner::baseweight, *1/4 to owner::minst, -4 to owner::damage, =nobase to owner::reach$, =$/textindexedvalue( {$modetag(reach)}, ( "C", "C" ), ( "1", "C" ), ( "2", "C" ), ( "3", "C" ), ( "C,1", "C" ), ( "C, 1", "C" ), ( "1,2", "C" ), ( "1, 2", "C" ), ( "1,2*", "C" ), ( "1, 2*", "C" ), ( "2,3", "C" ), ( "2, 3", "C" ), ( "2,3*", "C" ), ( "2, 3*", "C" ), ( "1-3", "C" ), ( "1-3*", "C" ), ( "1-4", "C-1" ), ( "1-4*", "C-1*" ), ( "1-5*", "C-1*" ), ( "1-6*", "C-1*" ), ( "1-7*", "C-1*" ), ( ", " ), else "Error" ) to owner::reach$)},_
+{Dungeon Fantasy: SM -6 Faerie Tool, *1, group(Melee Quality), shortname(SM-6 Faerie), gives(*1/25 to owner::baseweight, *1/10 to owner::minst, -6 to owner::damage, =nobase to owner::reach$, ="C" to owner::reach$)}
+
+<KitArmorSM>
+{Dungeon Fantasy: Oversized Armor, *2, page(DF1:28), gives(*2 to owner::baseweight), shortname(Oversized)},_
+{SM+0, +0},_
+{Dungeon Fantasy: SM -1 Mundane Armor, *1/2, gives(*1/2 to owner::baseweight, *1/2 to owner::dr), shortname(SM-1 Mundane)},_
+{Dungeon Fantasy: SM -2 Mundane Armor, *1/5, gives(*1/5 to owner::baseweight, *1/5 to owner::dr), shortname(SM-2 Mundane)},_
+{Dungeon Fantasy: SM -4 Mundane Armor, *1/20, gives(*1/20 to owner::baseweight, *1/20 to owner::dr), shortname(SM-4 Mundane)},_
+{Dungeon Fantasy: SM -6 Mundane Armor, *1/100, gives(*1/100 to owner::baseweight, *1/100 to owner::dr), shortname(SM-6 Mundane)},_
+{Dungeon Fantasy: SM -1 Faerie Armor, *1, gives(*1/2 to owner::baseweight, -1 to owner::dr), shortname(SM-1 Faerie)},_
+{Dungeon Fantasy: SM -2 Faerie Armor, *1, gives(*1/5 to owner::baseweight, -2 to owner::dr), shortname(SM-2 Faerie)},_
+{Dungeon Fantasy: SM -4 Faerie Armor, *1, gives(*1/20 to owner::baseweight, -4 to owner::dr), shortname(SM-4 Faerie)},_
+{Dungeon Fantasy: SM -6 Faerie Armor, *1, gives(*1/100 to owner::baseweight, -6 to owner::dr), shortname(SM-6 Faerie)}
+
+<KitEquipmentSM>
+{Dungeon Fantasy: Oversized Equipment, *2, page(DF1:28), gives(*2 to owner::baseweight), shortname(Oversized)},_
+{SM+0, +0},_
+{Dungeon Fantasy: SM -1 Mundane Equipment, *1/2, gives(*1/2 to owner::baseweight), shortname(SM-1 Mundane)},_
+{Dungeon Fantasy: SM -2 Mundane Equipment, *1/5, gives(*1/5 to owner::baseweight), shortname(SM-2 Mundane)},_
+{Dungeon Fantasy: SM -4 Mundane Equipment, *1/20, gives(*1/20 to owner::baseweight), shortname(SM-4 Mundane)},_
+{Dungeon Fantasy: SM -6 Mundane Equipment, *1/100, gives(*1/100 to owner::baseweight), shortname(SM-6 Mundane)},_
+{Dungeon Fantasy: SM -1 Faerie Equipment, *1, gives(*1/2 to owner::baseweight), shortname(SM-1 Faerie)},_
+{Dungeon Fantasy: SM -2 Faerie Equipment, *1, gives(*1/5 to owner::baseweight), shortname(SM-2 Faerie)},_
+{Dungeon Fantasy: SM -4 Faerie Equipment, *1, gives(*1/20 to owner::baseweight), shortname(SM-4 Faerie)},_
+{Dungeon Fantasy: SM -6 Faerie Equipment, *1, gives(*1/100 to owner::baseweight), shortname(SM-6 Faerie)}
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Dungeon Fantasy, Dungeon Fantasy - Garments>
+"Belt", page(DF8:17), basecost(15), baseweight(0.25), techlvl(3), mods(Equipment), cat(), description(TL:3 [1] Leather or sturdy cloth, strong enough to support scabbards and other gear.)
+"Cap", page(DF8:17), basecost(6), baseweight(0.1), techlvl(3), mods(Equipment), cat(), notes([1]), description(TL:3 [2] A small, brimless, usually form-fitting head cover, like a yarmulke or beret. )
+"Cape", page(DF8:17), basecost(20), baseweight(2), techlvl(3), mods(Equipment), cat(), notes([2]), description(TL:3)
+"Cloak", page(DF8:17), basecost(50), baseweight(5), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Gloves", page(DF8:17), basecost(15), baseweight(0.5), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Gown, Light", page(DF8:17), basecost(40), baseweight(0.6), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Gown, Regular", page(DF8:17), basecost(75), baseweight(1.2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Gown, Winter", page(DF8:17), basecost(112), baseweight(3), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hat, Small", page(DF8:17), basecost(12), baseweight(0.2), techlvl(3), mods(Equipment), cat(), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Small, Winter", page(DF8:17), basecost(24), baseweight(0.4), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Tall", page(DF8:17), basecost(18), baseweight(0.3), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Tall, Winter", page(DF8:17), basecost(36), baseweight(0.6), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Wide", page(DF8:17), basecost(18), baseweight(0.3), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Wide, Winter", page(DF8:17), basecost(36), baseweight(0.6), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Wide and Tall", page(DF8:17), basecost(28), baseweight(0.35), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hat, Wide and Tall, Winter", page(DF8:17), basecost(56), baseweight(0.7), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3 [3] A hat has a brim and usually a crown that rises above the top of the head. A tall hat has a very high crown, like a wizard’s cap or fez. A wide hat has a very broad brim, like a musketeer’s hat or a conical Asian peasant’s hat (bicorn and tricorn hats are typically wide hats worn with the brim folded up and pinned to the crown). Winter hats are made from fur or thick cloth.)
+"Hooded Cape", page(DF8:17), basecost(22), baseweight(2.2), techlvl(3), mods(Equipment), cat(), notes([3]), description(TL:3)
+"Hooded Cloak", page(DF8:17), basecost(55), baseweight(5.5), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hooded Shirt, Light", page(DF8:17), basecost(26.4), baseweight(0.44), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hooded Shirt, Regular", page(DF8:17), basecost(52.8), baseweight(0.88), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hooded Shirt, Winter", page(DF8:17), basecost(79.2), baseweight(2.2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hooded Tunic, Light", page(DF8:17), basecost(20), baseweight(0.33), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hooded Tunic, Regular", page(DF8:17), basecost(39.6), baseweight(0.66), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hooded Tunic, Winter", page(DF8:17), basecost(59.4), baseweight(1.65), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Hose, Light", page(DF8:17), basecost(18), baseweight(0.3), techlvl(3), mods(Equipment), cat(), description(TL:3 [4] Tight-fitting, usually knit, coverings for the entire leg.)
+"Hose, Regular", page(DF8:17), basecost(36), baseweight(0.6), techlvl(3), mods(Equipment), cat(), notes([4]), description(TL:3 [4] Tight-fitting, usually knit, coverings for the entire leg.)
+"Hose, Winter", page(DF8:17), basecost(54), baseweight(1.5), techlvl(3), mods(Equipment), cat(), notes([4]), description(TL:3 [4] Tight-fitting, usually knit, coverings for the entire leg.)
+"Keffiyeh/Yashmak", page(DF8:17), basecost(16), baseweight(0.5), techlvl(3), mods(Equipment), cat(), notes([4]), description(TL:3 [5] A large cloth, worn bymany desert-dwellers as headgear. It wraps around the entire head and neck, and can be pulled up over the face as well.)
+"Long Coat", page(DF8:17), basecost(50), baseweight(5), techlvl(3), mods(Equipment), cat(), notes([5]), description(TL:3)
+"Poncho", page(DF8:17), basecost(25), baseweight(3), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Robe, Light", page(DF8:17), basecost(36), baseweight(0.6), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Robe, Regular", page(DF8:17), basecost(72), baseweight(1.2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Robe, Winter", page(DF8:17), basecost(108), baseweight(3), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Ruff", page(DF8:17), basecost(8), baseweight(0.1), techlvl(3), mods(Equipment), cat(), description(TL:3 [6] A wide, detachable collar.)
+"Sandals", page(DF8:17), basecost(24), baseweight(0.5), techlvl(3), mods(Equipment), cat(), notes([6]), description(TL:3)
+"Sash", page(DF8:17), basecost(12), baseweight(0.2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Scarf", page(DF8:17), basecost(6), baseweight(0.1), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Shawl", page(DF8:17), basecost(24), baseweight(0.4), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Shirt, Light", page(DF8:17), basecost(24), baseweight(0.4), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Shirt, Regular", page(DF8:17), basecost(48), baseweight(0.8), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Shirt, Winter", page(DF8:17), basecost(72), baseweight(2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Shoes", dr(1*), location(feet), page(DF8:17), basecost(40), baseweight(2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Short Boots", page(DF8:17), basecost(80), baseweight(3), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Skirt, Light", page(DF8:17), basecost(15), baseweight(0.3), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Skirt, Regular", page(DF8:17), basecost(30), baseweight(0.6), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Skirt, Winter", page(DF8:17), basecost(50), baseweight(1.5), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Sleeves, Light", page(DF8:17), basecost(6), baseweight(0.1), techlvl(3), mods(Equipment), cat(), description(TL:3 [7] Many shirts and jackets before the modern era have detachable sleeves, which tie on to a main tunic or jacket. This makes them both easier to manufacture and slightly more comfortable, since air circulates better.)
+"Sleeves, Heavy", page(DF8:17), basecost(18), baseweight(0.5), techlvl(3), mods(Equipment), cat(), notes([7]), description(TL:3 [7] Many shirts and jackets before the modern era have detachable sleeves, which tie on to a main tunic or jacket. This makes them both easier to manufacture and slightly more comfortable, since air circulates better.)
+"Sleeves, Regular", page(DF8:17), basecost(12), baseweight(0.2), techlvl(3), mods(Equipment), cat(), notes([7]), description(TL:3 [7] Many shirts and jackets before the modern era have detachable sleeves, which tie on to a main tunic or jacket. This makes them both easier to manufacture and slightly more comfortable, since air circulates better.)
+"Slippers", page(DF8:17), basecost(35), baseweight(1), techlvl(3), mods(Equipment), cat(), notes([7]), description(TL:3 [8] Soft soles provide +1 against penalties to Stealth.)
+"Surcoat", page(DF8:17), basecost(35), baseweight(0.5), techlvl(3), mods(Equipment), cat(), notes([8]), description(TL:3 [9] A surcoat is a strip of cloth with a hole in the middle for the head to fit through. It is worn like a narrow poncho, over other clothing and armor.)
+"Trousers, Light", page(DF8:17), basecost(36), baseweight(0.6), techlvl(3), mods(Equipment), cat(), notes([9]), description(TL:3)
+"Trousers, Regular", page(DF8:17), basecost(72), baseweight(1.2), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Trousers, Winter", page(DF8:17), basecost(108), baseweight(3), techlvl(3), mods(Equipment), cat(), description(TL:3)
+"Tunic, Light", page(DF8:17), basecost(18), baseweight(0.3), techlvl(3), mods(Equipment), cat(), description(TL:3 [10] A tunic is a square, sleeveless top like a large vest; a shirt has sleeves.)
+"Tunic, Regular", page(DF8:17), basecost(36), baseweight(0.6), techlvl(3), mods(Equipment), cat(), notes([10]), description(TL:3 [10] A tunic is a square, sleeveless top like a large vest; a shirt has sleeves.)
+"Tunic, Winter", page(DF8:17), basecost(56), baseweight(1.5), techlvl(3), mods(Equipment), cat(), notes([10]), description(TL:3 [10] A tunic is a square, sleeveless top like a large vest; a shirt has sleeves.)
+"Turban", page(DF8:17), basecost(24), baseweight(0.4), techlvl(3), mods(Equipment), cat(), notes([10]), description(TL:3)
+"Wrap, Light", page(DF8:17), basecost(48), baseweight(0.8), techlvl(3), mods(Equipment), cat(), description(TL:3 [11] A large, wrap-around garment like a toga or sari.)
+"Wrap, Regular", page(DF8:17), basecost(96), baseweight(1.6), techlvl(3), mods(Equipment), cat(), notes([11]), description(TL:3 [11] A large, wrap-around garment like a toga or sari.)
+"Wrap, Winter", page(DF8:17), basecost(144), baseweight(4), techlvl(3), mods(Equipment), cat(), notes([11]), description(TL:3 [11] A large, wrap-around garment like a toga or sari.)
+
+<_Muscle-Powered Ranged Weapons>
+Repeating Pistol Crossbow (ST%choice%), weaponst(%choicelist%), basecost(400), baseweight(5), mode(Barbed-head), page(DF13:23),_
+	damage(@thr(me::weaponst)), damtype(imp), lc(4), techlvl(3), acc(1), calcrange(yes), rangehalfdam(me::weaponst*5), rangemax(me::weaponst*10), rof(1), shots(6(3i)), minst(8), bulk(-4), skillused(SK:Crossbow, ST:DX-4), page(DF13:23), notes([2,3]), cat(_Muscle-Powered Ranged Weapons),_
+	itemnotes(_
+				{Requires two hands to ready, but only one hand to attack.}_
+	),_
+	description(TL:3 LC:4 \par Dam:thr imp Acc:1 Range:ST*5/ST*10 RoF:1 Shots:6(3i) ST:8 Bulk:-4 Skill:Crossbow Notes: [2,3] Requires two hands to ready, but only one hand to attack.), mods(Equipment, Bow Quality),_
+	x(#ChoiceList(name(choice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), list(#list(OneToOneHundred Sorted))))
+
+#Delete "EQ:Flamethrower"
+Flamethrower, displaycost(400), displayweight(15), techlvl(3), basecost(400), baseweight(15), lc(0), page(DF7:34),_
+	mods(Equipment, Melee Quality),_
+	mode(Oil|Alchemists Fire), damage(1d-2|1d), damtype(bu (1d sec)| bu (30 sec)), acc(-), rangehalfdam(6), rangemax(6), rof(Jet), shots(4(30i)), minst(10†), bulk(-6),_
+	skillused(Liquid Projector (Flamethrower), DX - 4, SK:Liquid Projector - 4, SK:Gun!)
+
+<Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Tools>
+"Tool Kit, Backpack (Engineer)", basecost(600), baseweight(20), description(Notes: Basic equipment for one of Armoury, Smith, etc. Other skills can use it, but at -2.), page(DF1:24), mods(Equipment)
+
+<Dungeon Fantasy, Dungeon Fantasy - Mounts>
+#MergeTags in "EQ:Chariot" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts),_
+				adds("EQ:Carriage Horse"=2 #DoNotOwn),_
+				parentof("EQ:Carriage Horse"),_
+				displaycost(2730),_
+				description(\par Includes two horses. Effective Load: 400 lbs.)}
+
+#MergeTags in "EQ:Wagon" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts),_
+				adds("EQ:Oxen"=2 #DoNotOwn),_
+				parentof("EQ:Oxen"),_
+				displaycost(3680),_
+				description(\par Includes two oxen. Effective Load: 1,000 lbs.)}
+
+#MergeTags in "EQ:Oxen" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts)}
+
+#Clone "EQ:Saddle Horse" as "EQ:Carriage Horse"
+
+#MergeTags in "EQ:Carriage Horse" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts)}
+
+#MergeTags in "EQ:Cavalry Horse" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts),_
+				adds("EQ:Saddlebags" #DoNotOwn, "EQ:Saddle & Tack" #DoNotOwn),_
+				parentof("EQ:Saddlebags", "EQ:Saddle & Tack")}
+
+#ReplaceTags in "EQ:Cavalry Horse" with {displaycost(4250)}
+#MergeTags in "EQ:Cavalry Horse" with {description(\par Includes saddle & saddlebags. Effective Load: 273 lbs.)}
+
+
+#MergeTags in "EQ:Saddle Horse" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts),_
+				adds("EQ:Saddlebags" #DoNotOwn, "EQ:Saddle & Tack" #DoNotOwn),_
+				parentof("EQ:Saddlebags", "EQ:Saddle & Tack"),_
+				displaycost(1450),_
+				description(\par Includes saddle & saddlebags. Effective Load: 246 lbs.)}
+
+#MergeTags in "EQ:Heavy Warhorse" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts),_
+				adds("EQ:War Saddle" #DoNotOwn),_
+				parentof("EQ:War Saddle"),_
+				description(\par Includes saddle. Effective Load: 310 lbs.)}
+
+#ReplaceTags in "EQ:Heavy Warhorse" with {displaycost(5250)}
+
+#MergeTags in "EQ:Donkey" with {cat(Dungeon Fantasy, Dungeon Fantasy - Mounts),_
+				adds("EQ:Bit & Bridle" #DoNotOwn),_
+				parentof("EQ:Bit & Bridle"),_
+				displaycost(1035),_
+				description(\par Typically used solely as a pack animal; includes bridle. Effective Load: 132 lbs.)}
+
+<Dungeon Fantasy, Dungeon Fantasy - Clothing>
+Light Clothing, basecost(60), baseweight(1), mods(Equipment), page(B266), description(One complete outfit, ranging in quality from castoff rags to designer fashions, depending on Status. At minimum: undergarments, plus a tunic, blouse, or shirt with hose, skirt, or trousers - or a long tunic, robe or dress - and suitable footwear. 20% of cost of living; 2lbs.), techlvl(0)
+Ordinary Clothing, basecost(120), baseweight(2), mods(Equipment), page(B266), description(One complete outfit, ranging in quality from castoff rags to designer fashions, depending on Status. At minimum: undergarments, plus a tunic, blouse, or shirt with hose, skirt, or trousers - or a long tunic, robe or dress - and suitable footwear. 20% of cost of living; 2lbs.), techlvl(0), cat(Basic Set, Basic Set - Clothing)
+
+<_Armor, _Armor - Low-Tech>
+Mail Loincloth, techlvl(2), location(Groin), dr(4/2*), basecost(60), baseweight(6), lc(4), page(DF13:8),_
+	mods(Equipment, Armor, Armor - Mail, Armor - Metal)
+Partial Mail Top, techlvl(2), location(torso), dr(4/2*), basecost(75), baseweight(7), lc(4), page(DF13:8),_
+	mods(Equipment, Armor, Armor - Mail, Armor - Metal)
+Partial Steel Top, techlvl(3), location(torso), dr(5), basecost(280), baseweight(8), lc(3), page(DF13:8),_
+	mods(Equipment, Armor, Armor - Plate, Armor - Metal)
+
+<_Melee Weapons, _Melee Weapons - Dungeon Fantasy>
+Sai, page(DF12:14, MA227, MA228, MA231), basecost(60), baseweight(1.5), techlvl(3), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	itemnotes(_
+				{Can be thrown.},{Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401.}|_
+				{}|_
+				{Can be thrown.}|_
+				{}|_
+				{}_
+			),_
+	description(TL:3 LC:4 \par [Mode:jitte/sai swing Damage:sw cr Reach:1 Parry:0 ST:7 Skill:Jitte/Sai Notes:[1, 10]] \par [Mode:jitte/sai thrust Damage:thr imp Reach:1 Parry:0 ST:7 Skill:Jitte/Sai] \par [Mode:main-gauche swing Damage:sw cr Reach:1 Parry:0F ST:7 Skill:Main-Gauche Notes:[1]] \par [Mode:main-gauche thrust Damage:thr imp Reach:1 Parry:0F ST:7 Skill:Main-Gauche] \par [Mode:thrown Damage:thr imp Acc:0 Range:ST*0.8/ST*1.5 RoF:1 Shots:T(1) ST:7 Bulk:-3 Skill:Thrown Weapon (Knife)], [1] Can be thrown. [10] Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401. ),_
+	newmode(Jitte/sai swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0), notes([1, 10]), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Jitte/sai thrust, damage(thr), damtype(imp), minst(7), reach(1), parry(0), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Main-gauche swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0F), notes([1]), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Main-gauche thrust, damage(thr), damtype(imp), minst(7), reach(1), parry(0F), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Thrown, damage(thr), damtype(imp), minst(7), rangehalfdam(ST*0.8), rangemax(ST*1.5), calcrange(yes), acc(0), rof(1), shots(T(1)), bulk(-3), skillused(SK:Thrown Weapon (Knife), ST:DX-4))
+
+"Main-Gauche", basecost(50), baseweight(1.25), techlvl(4), page(DF13:6,LT67),_
+	dr(4), location(left hand),_
+	itemnotes(_
+				{Gives the hand (only) DR 4, cumulative with glove DR – although the hilt is too cramped to accommodate metal gauntlets.},_
+				{}|_
+				{Gives the hand (only) DR 4, cumulative with glove DR – although the hilt is too cramped to accommodate metal gauntlets.},_
+				{}_
+			),_
+	mods(Equipment, Melee Quality, Sword Class Quality, Metal Weapon),_
+	description(TL:4 LC:4 \par [Dam:sw-3 cut Reach:C, 1 Parry:0 ST:6 Skill:Knife, DX-4, Force Sword-3, Main-Gauche-3, Shortsword-3 Notes: [6] Gives the hand (only) DR. A myrmex offers DR 1 and a cestus affords DR 4; both are gloves of a sort, and mutually exclusive with other gloves. For other weapons, this indicates a metal hilt that provides DR 4, cumulative with glove DR ­ although the hilt is too cramped to accommodate metal gauntlets. Deer antlers, hook swords, katars, qian kun ri yue dao, and wheels don't enclose the hand completely; DR applies only on a roll of 1-3 on 1d.] \par [Dam:thr imp Reach:C Parry:0 ST:6 Skill:Knife, DX-4, Force Sword-3, Main-Gauche-3, Shortsword-3] \par [Dam:sw-3 cut Reach:C, 1 Parry:0F ST:6 Skill:Main-Gauche, DX-5, Jitte/Sai-4, Knife-4, Rapier-3, Saber-3, Smallsword-3 Notes: [6] Gives the hand (only) DR. A myrmex offers DR 1 and a cestus affords DR 4; both are gloves of a sort, and mutually exclusive with other gloves. For other weapons, this indicates a metal hilt that provides DR 4, cumulative with glove DR ­ although the hilt is too cramped to accommodate metal gauntlets. Deer antlers, hook swords, katars, qian kun ri yue dao, and wheels don't enclose the hand completely; DR applies only on a roll of 1-3 on 1d.] \par [Dam:thr imp Reach:C, 1 Parry:0F ST:6 Skill:Main-Gauche, DX-5, Jitte/Sai-4, Knife-4, Rapier-3, Saber-3, Smallsword-3]),_
+	newmode(Knife Swing, damage(sw-3), damtype(cut), reach(C,1), parry(0), minST(6), break(0), lc(4), skillused(SK:Sword!, SK:Knife, ST:DX-4, SK:Force Sword-3, SK:Main-Gauche-3, SK:Shortsword-3), notes([6])),_
+	newmode(Knife Thrust, damage(thr), damtype(imp), reach(C), parry(0), minST(6), break(0), lc(4), skillused(SK:Sword!, SK:Knife, ST:DX-4, SK:Force Sword-3, SK:Main-Gauche-3, SK:Shortsword-3)),_
+	newmode(Main-Gauche Swing, damage(sw-3), damtype(cut), reach(C,1), parry(0F), minST(6), break(0), lc(4), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3), notes([6])),_
+	newmode(Main-Gauche Thrust, damage(thr), damtype(imp), reach(C,1), parry(0F), minST(6), break(0), lc(4), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3))
+
+"Trident", basecost(80), baseweight(5), techlvl(2), page(DF13:6,LT69), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy), mods(Equipment, Melee Quality, Impaling Quality, Hafted Melee Quality, Metal Weapon, Dwarven 0U),_
+	description(TL:2 LC:4, [Dam:thr+3(0.5) imp Reach:1* Parry:0U ST:11 Skill:Spear, DX-5, Polearm-4, Staff-2 Notes: -2 to hit. [8, 17] Can strike to disarm (p. B401) without -2 to hit for using a non-fencing weapon., Target at -1 to Dodge, +1 to Block or Parry.], [Dam:thr+4(0.5) imp Reach:1, 2* Parry:0 ST:10 Skill:Spear, DX-5, Polearm-4, Staff-2 Notes: two hands. -2 to hit. [8, 17] Can strike to disarm (p. B401) without -2 to hit for using a non-fencing weapon., Target at -1 to Dodge, +1 to Block or Parry.]),_
+	newmode(1H, damage(thr+3(0.5)), damtype(imp), reach(1*), parry(0U), minST(11), break(0), lc(4), skillused(Spear, DX-5, Polearm-4, Staff-2), itemnotes(-2 to hit.[8, 17])),_
+	newmode(2H, damage(thr+4(0.5)), damtype(imp), reach(1, 2*), parry(0), minST(10†), break(0), lc(4), skillused(Spear, DX-5, Polearm-4, Staff-2), itemnotes(-2 to hit.[8, 17]))
+	
+<_Muscle-Powered Ranged Weapons, _Muscle-Powered Ranged Weapons - Dungeon Fantasy>
+"Boomerang", basecost(20), baseweight(1), techlvl(0), page(DF13:6), cat(_Muscle-Powered Ranged Weapons), mods(Equipment, Thrown Weapon, Crushing Quality),_
+	description(TL:0 LC:4 \par Dam:sw cr ACC:2 Range:ST*6/ST*10 ROF:1 Shots:T(1) ST:6 Bulk:-2 Rcl:- Skill:Thrown Weapon (Stick), DX-4),_
+	newmode(Swing, damage(sw), damtype(cr), acc(2), rangehalfdam(ST*6), rangemax(ST*10), rof(1), bulk(-2), rcl(-), shots(T(1)), minST(6), break(0), lc(4), skillused(Thrown Weapon (Stick), DX-4))
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Basic Loadouts>
+*******************************************************************************************************\[START]
+"Minimal Delver's Kit (%SM%)", displaycost(100), displayweight(20.5), page(DF13:5),_
+		adds(_
+		{EQ:Blanket} #DoNotOwn with {%SMalt3list%},_
+		{EQ:Canteen} #DoNotOwn,_
+		{EQ:Personal Basics} #DoNotOwn with {%SMalt1list%},_
+		{EQ:Rations}=12 #DoNotOwn,_
+		{EQ:Rope, 3/8'' (per 10 yards)} #DoNotOwn ,_
+		{EQ:Sack} #DoNotOwn with {%SMalt3list%},_
+		{EQ:Torch}=2 #DoNotOwn _
+	),_
+		parentof(_
+		{EQ:Blanket},_
+		{EQ:Canteen},_
+		{EQ:Personal Basics},_
+		{EQ:Rations},_
+		{EQ:Rope, 3/8'' (per 10 yards)},_
+		{EQ:Sack},_
+		{EQ:Torch}_
+	),_
+	x(#ChoiceList(_
+			name(SM),_
+			title(Select Size Modifier),_
+			text(Please select the helmet options:),_
+			picksallowed(1),_
+			default(2),_
+			method(bynumber),_
+			list(#list(KitSMList)),_
+			aliaslist(#list(KitWeaponSM)),_
+			alt1list(#list(KitToolSM)),_
+			alt2list(#list(KitArmorSM)),_
+			alt3list(#list(KitEquipmentSM))_
+	)_
+	), noresync(yes)
+
+"Deluxe Delver's Kit (%SM%)", displaycost(559), displayweight(40.2), page(DF13:5),_
+		adds(_
+		{EQ:Backpack, Frame} #DoNotOwn with {%SMalt3list%},_
+		{EQ:Bull's-Eye Lantern} #DoNotOwn ,_
+		{EQ:Delver's Webbing} #DoNotOwn with {%SMalt3list%},_
+		{EQ:Grapnel} #DoNotOwn with {%SMalt1list%},_
+		{EQ:Oil (per pint)}=5 #DoNotOwn ,_
+		{EQ:Rations (extra)}=6 #DoNotOwn,_
+		{EQ:Rope, 3/4'' (per 10 yards)} #DoNotOwn,_
+		{EQ:Hooded Cape} #DoNotOwn with {%SMalt3list%},_
+		{EQ:Sleeping Fur} #DoNotOwn with {%SMalt3list%}_
+			),_
+		parentof(_
+		{EQ:Backpack, Frame},_
+		{EQ:Bull's-Eye Lantern},_
+		{EQ:Delver's Webbing},_
+		{EQ:Grapnel},_
+		{EQ:Hooded Cape},_
+		{EQ:Oil (per pint)},_
+		{EQ:Rations (extra)},_
+		{EQ:Rope, 3/4'' (per 10 yards)},_
+		{EQ:Sleeping Fur}_
+	),_
+	x(#ChoiceList(_
+			name(SM),_
+			title(Select Size Modifier),_
+			text(Please select the helmet options:),_
+			picksallowed(1),_
+			default(2),_
+			method(bynumber),_
+			list(#list(KitSMList)),_
+			aliaslist(#list(KitWeaponSM)),_
+			alt1list(#list(KitToolSM)),_
+			alt2list(#list(KitArmorSM)),_
+			alt3list(#list(KitEquipmentSM))_
+	)_
+	), noresync(yes)
+
+"Group Kit", displaycost(365), displayweight(80), page(DF13:6),_
+	adds(_
+		{EQ:Crowbar, 3'} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Group Basics} #DoNotOwn,_
+		{EQ:Pickaxe} #DoNotOwn,_
+		{EQ:Pole, 10'} #DoNotOwn,_
+		{EQ:Sack}=2 #DoNotOwn,_
+		{EQ:Shovel} #DoNotOwn,_
+		{EQ:Tent, 4-Man} #DoNotOwn_
+	),_
+		parentof(_
+		{EQ:Crowbar, 3'},_
+		{EQ:First Aid Kit},_
+		{EQ:Group Basics},_
+		{EQ:Pickaxe},_
+		{EQ:Pole, 10'},_
+		{EQ:Sack},_
+		{EQ:Shovel},_
+		{EQ:Tent, 4-Man}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Artificer>
+*******************************************************************************************************\[START]
+"Artificer, Inventor", displaycost(874), displayweight(20.97), page(DF13:7),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(11), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Crossbow Bolt}=12 #DoNotOwn,_
+		{EQ:Main-Gauche} #DoNotOwn,_
+		{EQ:Shoulder Quiver} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Smallsword} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Tool Vest,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(240),baseweight(9),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(240),precountweight(9)} #DoNotOwn _
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Main-Gauche},_
+		{EQ:Shoulder Quiver},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Smallsword},_
+		{EQ:Tool Vest}_
+	)
+
+"Artificer, Field Alchemist", displaycost(1845), displayweight(40.9), page(DF13:7),_
+	adds(_
+		{EQ:Acid (Grenade)}=4 #DoNotOwn,_
+		{EQ:Alchemist's Fire (Grenade)} #DoNotOwn,_
+		{EQ:Alchemist's Garb} #DoNotOwn,_
+		{EQ:Axe} #DoNotOwn,_
+		{EQ:Backpack Alchemy Lab} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Nageteppo, Flash} #DoNotOwn,_
+		{EQ:Nageteppo, Smoke} #DoNotOwn,_
+		{EQ:Potion Belt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Tinted Goggles} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Acid (Grenade)},_
+		{EQ:Alchemist's Fire (Grenade)},_
+		{EQ:Alchemist's Garb},_
+		{EQ:Axe},_
+		{EQ:Backpack Alchemy Lab},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Nageteppo, Flash},_
+		{EQ:Nageteppo, Smoke},_
+		{EQ:Potion Belt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Tinted Goggles}_
+	)
+
+"Artificer, Engineer", displaycost(1874), displayweight(62.72), page(DF13:7),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(11), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Bit and Brace} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=12 #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Light Cloak} #DoNotOwn,_
+		{EQ:Shoulder Quiver} #DoNotOwn,_
+		{EQ:Smallsword} #DoNotOwn,_
+		{EQ:Tool Kit, Backpack (Engineer)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Trap-Finder's Kit} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Delver's Periscope,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(50),baseweight(4),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(50),precountweight(4)} #DoNotOwn,_
+		{EQ:Jamming Glue,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(60),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(60),precountweight(1)} #DoNotOwn,_
+		{EQ:"Pole, Collapsible",noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(2),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(2),precountweight(1)}=5 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Bit and Brace},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Leather Armor},_
+		{EQ:Light Cloak},_
+		{EQ:Shoulder Quiver},_
+		{EQ:Smallsword},_
+		{EQ:Tool Kit, Backpack (Engineer)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Trap-Finder's Kit},_
+		{EQ:Delver's Periscope},_
+		{EQ:Jamming Glue},_
+		{EQ:Pole, Collapsible}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Barbarian>
+*******************************************************************************************************\[START]
+"Barbarian, Light", displaycost(135), displayweight(14), page(DF13:8),_
+	adds(_
+		{EQ:Light Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Mail Loincloth} #DoNotOwn,_
+		{EQ:Partial Mail Top} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Light Clothing},_
+		{EQ:Mail Loincloth},_
+		{EQ:Partial Mail Top}_
+	)
+
+"Barbarian, Light (SM+1)", displaycost(270), displayweight(28), page(DF13:8),_
+	adds(_
+		{EQ:Light Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)} _
+			and {"Dungeon Fantasy: Oversized Equipment", *2,page(DF1:28),gives(*2 to owner::baseweight),shortname(Oversized),tier(1),group(Equipment),level(1),valuenum(2)},_
+		{EQ:Mail Loincloth} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Armor", *2,shortname(Oversized),page(DF1:28),gives(*2 to owner::baseweight),group(Armor),level(1),valuenum(2)},_
+		{EQ:Partial Mail Top} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Armor", *2,shortname(Oversized),page(DF1:28),gives(*2 to owner::baseweight),group(Armor),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Light Clothing},_
+		{EQ:Mail Loincloth},_
+		{EQ:Partial Mail Top}_
+	)
+
+"Barbarian, Heavy", displaycost(520), displayweight(42), page(DF13:8),_
+	adds(_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Scale Armor} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Pot-Helm},_
+		{EQ:Scale Armor},_
+		{EQ:Ordinary Clothing}_
+	)
+
+"Barbarian, Heavy (SM+1)", displaycost(1040), displayweight(84), page(DF13:8),_
+	adds(_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)} _
+			and {"Dungeon Fantasy: Oversized Equipment", *2,page(DF1:28),gives(*2 to owner::baseweight),shortname(Oversized),tier(1),group(Equipment),level(1),valuenum(2)},_
+		{EQ:Pot-Helm} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Armor", *2,shortname(Oversized),page(DF1:28),gives(*2 to owner::baseweight),group(Armor),level(1),valuenum(2)},_
+		{EQ:Scale Armor} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Armor", *2,shortname(Oversized),page(DF1:28),gives(*2 to owner::baseweight),group(Armor),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Pot-Helm},_
+		{EQ:Scale Armor},_
+		{EQ:Ordinary Clothing}_
+	)
+
+"Barbarian - Axe", displaycost(465), displayweight(24), page(DF13:8),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(17), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Axe} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Balanced", +400%,gives(=+1 to owner::skillscore),page(DF1:26),group(Melee Quality),shortname(Balanced),level(1),valuenum(400)},_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Arrow},_
+		{EQ:Axe},_
+		{EQ:Hip Quiver},_
+		{EQ:Medium Shield},_
+		{EQ:Regular Bow (ST%STchoice%)}_
+	)
+
+"Barbarian - Axe (SM+1)", displaycost(705), displayweight(36.5), page(DF13:8),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(17), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Arrow}=20 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Tool", *1.5,page(DF1:27),tier(1),group(Equipment),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),( "sw+8", 4 ), ( "thr+8", 4 ),( "sw+9", 4 ), ( "thr+9", 4 ),( "sw+10", 5 ), ( "thr+10", 5 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),shortname(Oversized),level(1),valuenum(1.5)},_
+		{EQ:Axe} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)} _
+			and {"Dungeon Fantasy: Quality: Balanced", +4 CF,gives(=+1 to owner::skillscore),page(DF1:26),group(Melee Quality),shortname(Balanced),level(1),valuenum(4)},_
+		{EQ:Hip Quiver} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Equipment", *2,page(DF1:28),gives(*2 to owner::baseweight),shortname(Oversized),tier(1),group(Equipment),level(1),valuenum(2)},_
+		{EQ:Medium Shield} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Regular Bow (ST%choice%)} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)} _
+			respond %STchoiceAliasList% _
+	),_
+	parentof(_
+		{EQ:Regular Bow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Axe},_
+		{EQ:Hip Quiver},_
+		{EQ:Medium Shield}_
+	)
+
+"Barbarian - Broadsword", displaycost(680), displayweight(26), page(DF13:8),_
+	adds(_
+		{EQ:Broadsword} #DoNotOwn,_
+		{EQ:Javelin}=4 #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Broadsword},_
+		{EQ:Javelin},_
+		{EQ:Medium Shield}_
+	)
+
+"Barbarian - Broadsword (SM+1)", displaycost(1020), displayweight(39), page(DF13:8),_
+	adds(_
+		{EQ:Broadsword} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Javelin}=4 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Medium Shield} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)}_
+	),_
+	parentof(_
+		{EQ:Broadsword},_
+		{EQ:Javelin},_
+		{EQ:Medium Shield}_
+	)
+
+"Barbarian - Flail", displaycost(260), displayweight(29), page(DF13:9),_
+	adds(_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Morningstar} #DoNotOwn,_
+		{EQ:Throwing Axe}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Medium Shield},_
+		{EQ:Morningstar},_
+		{EQ:Throwing Axe}_
+	)
+
+"Barbarian - Flail (SM+1)", displaycost(390), displayweight(43.5), page(DF13:9),_
+	adds(_
+		{EQ:Medium Shield} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Morningstar} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Throwing Axe}=2 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)}_
+	),_
+	parentof(_
+		{EQ:Medium Shield},_
+		{EQ:Morningstar},_
+		{EQ:Throwing Axe}_
+	)
+
+"Barbarian - Polearm", displaycost(305), displayweight(17), page(DF13:9),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(17), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Halberd} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Arrow},_
+		{EQ:Halberd},_
+		{EQ:Hip Quiver},_
+		{EQ:Regular Bow (ST%STchoice%)}_
+	)
+
+"Barbarian - Polearm (SM+1)", displaycost(465), displayweight(26), page(DF13:9),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(17), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Arrow}=20 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Halberd} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Hip Quiver} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Equipment", *2,page(DF1:28),gives(*2 to owner::baseweight),shortname(Oversized),tier(1),group(Equipment),level(1),valuenum(2)},_
+		{EQ:Regular Bow (ST%choice%)} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)} _
+			respond %STchoiceAliasList% _
+	),_
+	parentof(_
+		{EQ:Arrow},_
+		{EQ:Halberd},_
+		{EQ:Hip Quiver},_
+		{EQ:Regular Bow (ST%STchoice%)}_
+	)
+
+"Barbarian - Spear", displaycost(290), displayweight(33), page(DF13:9),_
+	adds(_
+		{EQ:Boomerang}=4 #DoNotOwn,_
+		{EQ:Large Shield} #DoNotOwn,_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(300)}_
+	),_
+	parentof(_
+		{EQ:Boomerang},_
+		{EQ:Large Shield},_
+		{EQ:Spear}_
+	)
+
+"Barbarian - Spear (SM+1)", displaycost(435), displayweight(49.5), page(DF13:9),_
+	adds(_
+		{EQ:Boomerang}=4 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Large Shield} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)} _
+			and {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(300)}_
+	),_
+	parentof(_
+		{EQ:Boomerang},_
+		{EQ:Large Shield},_
+		{EQ:Spear}_
+	)
+
+"Barbarian - Two-Handed Axe", displaycost(220), displayweight(16), page(DF13:9),_
+	adds(_
+		{EQ:Great Axe} #DoNotOwn,_
+		{EQ:Throwing Axe}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Great Axe},_
+		{EQ:Throwing Axe}_
+	)
+
+"Barbarian - Two-Handed Axe (SM+1)", displaycost(330), displayweight(24), page(DF13:9),_
+	adds(_
+		{EQ:Great Axe} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Throwing Axe}=2 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)}_
+	),_
+	parentof(_
+		{EQ:Great Axe},_
+		{EQ:Throwing Axe}_
+	)
+
+"Barbarian - Two-Handed Flail", displaycost(120), displayweight(10), page(DF13:9),_
+	adds(_
+		{EQ:Bolas} #DoNotOwn,_
+		{EQ:Flail} #DoNotOwn _
+	),_
+	parentof(_
+		{EQ:Bolas},_
+		{EQ:Flail}_
+	)
+
+"Barbarian - Two-Handed Flail (SM+1)", displaycost(180), displayweight(15), page(DF13:9),_
+	adds(_
+		{EQ:Bolas} _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Flail} _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)}_
+	),_
+	parentof(_
+		{EQ:Bolas},_
+		{EQ:Flail}_
+	)
+
+"Barbarian - Two-Handed Sword", displaycost(990), displayweight(13), page(DF13:9),_
+	adds(_
+		{EQ:Javelin}=3 #DoNotOwn,_
+		{EQ:Thrusting Greatsword} #DoNotOwn _
+	),_
+	parentof(_
+		{EQ:Javelin},_
+		{EQ:Thrusting Greatsword}_
+	)
+
+"Barbarian - Two-Handed Sword (SM+1)", displaycost(1485), displayweight(19.5), page(DF13:9),_
+	adds(_
+		{EQ:Javelin}=3 #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)},_
+		{EQ:Thrusting Greatsword} #DoNotOwn _
+			with {"Dungeon Fantasy: Oversized Weapon", *1.5,page(DF1:27),shortname(Oversized),group(Melee Quality),gives(*1.5 to owner::baseweight,*1.5 to owner::minst,+$/textindexedvalue( {$modetag(damage)},( "sw+4", 2 ), ( "thr+4", 2 ),( "sw+5", 2 ), ( "thr+5", 2 ),( "sw+6", 3 ), ( "thr+6", 3 ),( "sw+7", 3 ), ( "thr+7", 3 ),else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"),level(1),valuenum(1.5)}_
+	),_
+	parentof(_
+		{EQ:Javelin},_
+		{EQ:Thrusting Greatsword}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Bard>
+*******************************************************************************************************\[START]
+"Bard, Wandering Minstrel", displaycost(246), displayweight(15.9), page(DF13:9),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(11), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+					with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Arrow}=12 #DoNotOwn,_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Leather Jacket} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Short Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Shoulder Quiver} #DoNotOwn,_
+		{EQ:Hat, Small} #DoNotOwn,_
+		{EQ:Woodwind} #DoNotOwn_
+			),_
+	parentof(_
+		{EQ:Arrow},_
+		{EQ:Cloth Sleeves},_
+		{EQ:Hat, Small},_
+		{EQ:Leather Jacket},_
+		{EQ:Leather Pants},_
+		{EQ:Short Bow (ST%STchoice%)},_
+		{EQ:Shoulder Quiver},_
+		{EQ:Woodwind},_
+		{EQ:Ordinary Clothing}_
+	)
+
+"Bard, Courtly", displaycost(1582), displayweight(32.2), page(DF13:10),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(11), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn _
+					with {"Fur trimmed", +300%,gives(+0 to owner::baseweight),group(Equipment),level(1),valuenum(300)},_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Cloak} #DoNotOwn _
+					with {"Extensive Emproidery", +500%,gives(+0 to owner::baseweight),group(Equipment),level(1),valuenum(500)},_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Hat, Wide} #DoNotOwn with {%SMalt3list%} _
+					with {"Trimmed with lace", +350%,gives(+0 to owner::baseweight),group(Equipment),level(1),valuenum(350)},_
+		{EQ:Hose, Regular} #DoNotOwn with {%SMalt3list%} _
+					with {"Died an unremarkable color", +400%,gives(0 to owner::baseweight),group(Equipment),level(1),valuenum(400)},_
+		{EQ:Shirt, Regular} #DoNotOwn with {%SMalt3list%} _
+					with {"Trimmed with lace", +350%,gives(+0 to owner::baseweight),group(Equipment),level(1),valuenum(350)},_
+		{EQ:Stringed Instrument}_
+	),_
+	creates(_
+		{EQ:One-Handed Concertina,noresync(yes),techlvl(0),basecost(200),baseweight(0.5),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(200),precountweight(0.5)} #DoNotOwn _
+	),_
+	parentof(_
+		{EQ:Hose, Regular},_
+		{EQ:Hat, Wide},_
+		{EQ:Shirt, Regular},_
+		{EQ:One-Handed Concertina},_
+		{EQ:Arrow},_
+		{EQ:Boots},_
+		{EQ:Cloth Sleeves},_
+		{EQ:Hat, Wide},_
+		{EQ:Hip Quiver},_
+		{EQ:Hose, Regular},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Light Cloak},_
+		{EQ:Regular Bow (ST%STchoice%)},_
+		{EQ:Shirt, Regular},_
+		{EQ:Stringed Instrument}_
+	)
+
+"Bard - Sword-and-Cloak", displaycost(450), displayweight(6.5), page(DF13:10),_
+	adds(_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Smallsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Heavy Cloak},_
+		{EQ:Smallsword}_
+	)
+
+"Bard - Sword-and-Shield", displaycost(740), displayweight(10), page(DF13:10),_
+	adds(_
+		{EQ:Saber} #DoNotOwn,_
+		{EQ:Small Buckler} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Saber},_
+		{EQ:Small Buckler}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Cleric>
+*******************************************************************************************************\[START]
+"Cleric, Agricultural", displaycost(535), displayweight(33), page(DF13:10),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Flail} #DoNotOwn,_
+		{EQ:Healer's Kit} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Leather Jacket} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Flail},_
+		{EQ:Healer's Kit},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Leather Jacket},_
+		{EQ:Leather Pants}_
+	)
+
+"Cleric, Artificer", displaycost(742), displayweight(51), page(DF13:10),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Mace} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Sling Lead Pellet}=20 #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Staff Sling} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Tool Vest (Pick a skill),noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(240),baseweight(9),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(240),precountweight(9)}_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Holy Symbol},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Mace},_
+		{EQ:Medium Shield},_
+		{EQ:Sling Lead Pellet},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Staff Sling},_
+		{EQ:Tool Vest (Pick a skill)}_
+	)
+
+"Cleric, Death", displaycost(665), displayweight(49.5), page(DF13:11),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Garlic (Bundle)}=2 #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Poleaxe} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Garlic (Bundle)},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Leather Pants},_
+		{EQ:Mail Shirt},_
+		{EQ:Poleaxe},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm}_
+	)
+
+"Cleric, Fighting", displaycost(850), displayweight(77), page(DF13:11),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=4 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Mace} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Mace},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Shirt},_
+		{EQ:Mail Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm}_
+	)
+
+"Cleric, Fire", displaycost(846), displayweight(54), page(DF13:11),_
+	adds(_
+		{EQ:Flamethrower} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=4 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Oil (per pint)}=8 #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Flamethrower},_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Oil (per pint)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Quarterstaff}_
+	)
+
+"Cleric, Healing", displaycost(897.5), displayweight(46), page(DF13:11),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Healer's Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=3 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Minor Healing Potion (Drinkable)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Paut (Drinkable)} #DoNotOwn,_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Healer's Kit},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Mail Shirt},_
+		{EQ:Minor Healing Potion (Drinkable)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Paut (Drinkable)},_
+		{EQ:Quarterstaff}_
+	)
+
+"Cleric, Hunting", displaycost(697), displayweight(36.5), page(DF13:12),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn _
+			with {"Camouflaged", 100,conditional(+1 to SK:Stealth),group(Equipment),level(1),page(B345),shortname(Gives Skill Bonus),valuenum(100),x(),basedon(Equipment: Gives Skill Bonus (Stealth*)),basedgroup(Equipment)},_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Sling} #DoNotOwn,_
+		{EQ:Sling Lead Pellet}=20 #DoNotOwn,_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Leather Armor},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Sling},_
+		{EQ:Sling Lead Pellet},_
+		{EQ:Spear}_
+	)
+
+"Cleric, Love", displaycost(534), displayweight(33.25), page(DF13:12),_
+	adds(_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Healer's Kit} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=4 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shoes} #DoNotOwn,_
+		{EQ:Whip (2-yard)} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Carmine,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(40),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(40),precountweight(0.0625)},_
+		{EQ:Henna,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(1),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1),precountweight(0.0625)},_
+		{EQ:Musk,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(28),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(28),precountweight(0.0625)},_
+		{EQ:Myrrh,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(15),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(15),precountweight(0.0625)}_
+	),_
+	parentof(_
+		{EQ:Cloth Armor},_
+		{EQ:Cloth Sleeves},_
+		{EQ:Healer's Kit},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Leather Pants},_
+		{EQ:Light Clothing},_
+		{EQ:Shoes},_
+		{EQ:Whip (2-yard)},_
+		{EQ:Carmine},_
+		{EQ:Henna},_
+		{EQ:Musk},_
+		{EQ:Myrrh}_
+	)
+
+"Cleric, Messenger/Rogue", displaycost(745), displayweight(24), page(DF13:12),_
+	adds(_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Dagger}=2 #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Cloak} #DoNotOwn,_
+		{EQ:Light Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Sandals} #DoNotOwn,_
+		{EQ:Shortsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Cloth Sleeves},_
+		{EQ:Dagger},_
+		{EQ:First Aid Kit},_
+		{EQ:Holy Symbol},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Light Cloak},_
+		{EQ:Light Clothing},_
+		{EQ:Sandals},_
+		{EQ:Shortsword}_
+	)
+
+"Cleric, Night", displaycost(710), displayweight(34.4), page(DF13:12),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn _
+			with {"Camouflaged", +100,conditional(+1 to SK:Stealth),group(Equipment),level(1),page(B345),valuenum(100),x(),basedon(Equipment: Gives Skill Bonus (Stealth*)),basedgroup(Equipment)},_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Nageteppo, Smoke}=2 #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Small Knife}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Leather Armor},_
+		{EQ:Nageteppo, Smoke},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Quarterstaff},_
+		{EQ:Small Knife}_
+	)
+
+"Cleric, Sea", displaycost(785), displayweight(55), page(DF13:12),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Scale Armor} #DoNotOwn,_
+		{EQ:Trident} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Scale Armor},_
+		{EQ:Trident}_
+	)
+
+"Cleric, Storm", displaycost(665), displayweight(53), page(DF13:13),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Javelin}=4 #DoNotOwn,_
+		{EQ:Mace} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Small Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Javelin},_
+		{EQ:Mace},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Small Shield}_
+	)
+
+"Cleric, Sun", displaycost(720), displayweight(46), page(DF13:13),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(12), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Quarterstaff} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Regular Bow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Hip Quiver},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Quarterstaff}_
+	)
+
+"Cleric, War", displaycost(1560), displayweight(52), page(DF13:13),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=4 #DoNotOwn _
+			with {"Cleric", *0.5,group(Equipment),level(1),valuenum(0.5)},_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn,_
+		{EQ:Steel Breastplate} #DoNotOwn,_
+		{EQ:Thrusting Broadsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Small Shield},_
+		{EQ:Steel Breastplate},_
+		{EQ:Thrusting Broadsword}_
+	)
+
+"Cleric, Evil", displaycost(220), displayweight(3.5), page(DF13:13),_
+	x(#Message(This lens assumes you will remove the Healer's kit; you must do so manually if you wish to do so.)),_
+	adds(_
+		{EQ:Monster Drool (Utility)}=5,_
+		{EQ:Oozing Doom (Grenade)}_
+	),_
+	parentof(_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Oozing Doom (Grenade)}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Druid>
+*******************************************************************************************************\[START]
+"Druid, Beastmaster", displaycost(100), displayweight(19), page(DF13:13),_
+	adds(_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Melee Net} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Cloth Armor},_
+		{EQ:Cloth Sleeves},_
+		{EQ:Melee Net},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Quarterstaff}_
+	)
+
+"Druid, Elementalist", displaycost(627), displayweight(23.5), page(DF13:14),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Fur Loincloth} #DoNotOwn,_
+		{EQ:Fur Tunic} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shortsword} #DoNotOwn,_
+		{EQ:Sling} #DoNotOwn,_
+		{EQ:Sling Lead Pellet}=20 #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Fur Loincloth},_
+		{EQ:Fur Tunic},_
+		{EQ:Heavy Cloak},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shortsword},_
+		{EQ:Sling},_
+		{EQ:Sling Lead Pellet},_
+		{EQ:Small Shield}_
+	)
+
+"Druid, Green Druid", displaycost(400), displayweight(32), page(DF13:14),_
+	adds(_
+		{EQ:Anti-Toxin (Drinkable)}=2 #DoNotOwn,_
+		{EQ:Axe} #DoNotOwn,_
+		{EQ:Garlic (Bundle)}=2 #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Small Shield} #DoNotOwn,_
+		{EQ:Wolfsbane (Bundle)}=2 #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Druidic Fertailizer,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(60),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(60),precountweight(1)}_
+	),_
+	parentof(_
+		{EQ:Anti-Toxin (Drinkable)},_
+		{EQ:Axe},_
+		{EQ:Garlic (Bundle)},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Small Shield},_
+		{EQ:Wolfsbane (Bundle)},_
+		{EQ:Druidic Fertailizer}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Holy Warrior>
+*******************************************************************************************************\[START]
+"Holy Warrior, Armor of God", displaycost(862), displayweight(66), page(DF13:14),_
+	adds(_
+		{EQ:Halberd} #DoNotOwn,_
+		{EQ:Healer's Kit} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=2 #DoNotOwn,_
+		{EQ:Large Knife}=2 #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)}_
+	),_
+	parentof(_
+		{EQ:Halberd},_
+		{EQ:Healer's Kit},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Large Knife},_
+		{EQ:Leather Cap},_
+		{EQ:Mail Shirt},_
+		{EQ:Medium Shield},_
+		{EQ:Ordinary Clothing}_
+	)
+
+"Holy Warrior, Crusader", displaycost(2760), displayweight(103.2), page(DF13:14),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Gauntlets} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Sollerets} #DoNotOwn,_
+		{EQ:Steel Corselet} #DoNotOwn,_
+		{EQ:Thrusting Broadsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Gauntlets},_
+		{EQ:Hip Quiver},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Sollerets},_
+		{EQ:Steel Corselet},_
+		{EQ:Thrusting Broadsword}_
+	)
+
+"Holy Warrior, Evil Crusader", displaycost(3105), displayweight(78.2), page(DF13:15),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Gauntlets} #DoNotOwn _
+			with {"Dungeon Fantasy: Spiked", +2 CF,page(DF1:27),group(Armor - Plate),addmode(Spikes, damage(1d-2), damtype(imp), reach(C), skillused(ST:DX-4), parry(No)),shortname(Spiked),level(1),valuenum(2)},_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Monster Drool (Utility)}=2 #DoNotOwn,_
+		{EQ:Oozing Doom (Grenade)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Steel Breastplate} #DoNotOwn _
+			with {"Dungeon Fantasy: Spiked", +2 CF,page(DF1:27),group(Armor - Plate),addmode(Spikes, damage(1d-2), damtype(imp), reach(C), skillused(ST:DX-4), parry(No)),shortname(Spiked),level(1),valuenum(2)},_
+		{EQ:Thrusting Broadsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Gauntlets},_
+		{EQ:Hip Quiver},_
+		{EQ:Large Knife},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Oozing Doom (Grenade)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Steel Breastplate},_
+		{EQ:Thrusting Broadsword}_
+	)
+
+"Holy Warrior of Agriculture", displaycost(632), displayweight(44), page(DF13:15),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Halberd} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Throwing Axe} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Halberd},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Holy Symbol},_
+		{EQ:Leather Cap},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Throwing Axe}_
+	)
+
+"Holy Warrior of Artificers", displaycost(1007), displayweight(66.2), page(DF13:15),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Morningstar} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)}_
+	),_
+	creates(_
+		{EQ:Tool Vest,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(240),baseweight(9),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(240),precountweight(9)}_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Tool Vest},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Hip Quiver},_
+		{EQ:Holy Symbol},_
+		{EQ:Leather Cap},_
+		{EQ:Mail Shirt},_
+		{EQ:Medium Shield},_
+		{EQ:Morningstar},_
+		{EQ:Ordinary Clothing}_
+	)
+
+"Holy Warrior of Cities", displaycost(1320), displayweight(83), page(DF13:15),_
+	adds(_
+		{EQ:Barrel Helm} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Javelin}=3 #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Steel Breastplate} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Barrel Helm},_
+		{EQ:Boots},_
+		{EQ:Holy Symbol},_
+		{EQ:Javelin},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Spear},_
+		{EQ:Steel Breastplate}_
+	)
+
+"Holy Warrior of Death", displaycost(1075), displayweight(79.2), page(DF13:16),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Barrel Helm} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Poleaxe} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Barrel Helm},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Heavy Cloak},_
+		{EQ:Hip Quiver},_
+		{EQ:Holy Symbol},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Shirt},_
+		{EQ:Mail Sleeves},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Poleaxe}_
+	)
+
+"Holy Warrior of Earth", displaycost(1200), displayweight(79), page(DF13:16),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Gauntlets} #DoNotOwn,_
+		{EQ:Large Shield} #DoNotOwn,_
+		{EQ:Mace} #DoNotOwn _
+			with {"Dungeon Fantasy: Materials: Dwarven", +4 CF,displaycost(+4CF),gives(=nobase to owner::parry$, =+0 to owner::parry),page(DF1:26),group(Melee Quality),shortname(Dwarven),level(1),valuenum(4)},_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Steel Breastplate} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Gauntlets},_
+		{EQ:Large Shield},_
+		{EQ:Mace},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Steel Breastplate}_
+	)
+
+"Holy Warrior of Fire", displaycost(1160), displayweight(84), page(DF13:16),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Flamethrower} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Holy Water}=4 #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Oil (per pint)}=10 #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Flamethrower},_
+		{EQ:Holy Symbol},_
+		{EQ:Holy Water},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Shirt},_
+		{EQ:Mail Sleeves},_
+		{EQ:Oil (per pint)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Spear}_
+	)
+
+"Holy Warrior of Healing", displaycost(1210), displayweight(64.5), page(DF13:16),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Minor Healing Potion (Drinkable)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Poleaxe} #DoNotOwn,_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Steel Breastplate} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Halfling Joy Powder,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(55),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(55),precountweight(1)}=2_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Minor Healing Potion (Drinkable)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Poleaxe},_
+		{EQ:Pot-Helm},_
+		{EQ:Steel Breastplate},_
+		{EQ:Halfling Joy Powder}_
+	)
+
+"Holy Warrior of the Hunt", displaycost(865), displayweight(46), page(DF13:17),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn _
+			with {"Camouflaged", +100,conditional(+1 to SK:Stealth),group(Equipment),level(1),page(B345),valuenum(100),x(),basedon(Equipment: Gives Skill Bonus (Stealth*)),basedgroup(Equipment)},_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Regular Bow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Boots},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Hip Quiver},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Spear}_
+	)
+
+"Holy Warrior of Love", displaycost(698), displayweight(45.125), page(DF13:17),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Large Shield} #DoNotOwn,_
+		{EQ:Light Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Partial Steel Top} #DoNotOwn,_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Studded Leather Skirt} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Carmine,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(40),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(40),precountweight(0.0625)} #DoNotOwn,_
+		{EQ:Musk,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(28),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(28),precountweight(0.0625)} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Carmine},_
+		{EQ:Musk},_
+		{EQ:Boots},_
+		{EQ:Large Shield},_
+		{EQ:Light Clothing},_
+		{EQ:Partial Steel Top},_
+		{EQ:Spear},_
+		{EQ:Studded Leather Skirt}_
+	)
+
+"Holy Warrior of Messengers/Rogues", displaycost(897), displayweight(31), page(DF13:17),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Longbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shortsword} #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Longbow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Boots},_
+		{EQ:Cloth Armor},_
+		{EQ:Cloth Sleeves},_
+		{EQ:Hip Quiver},_
+		{EQ:Leather Cap},_
+		{EQ:Leather Pants},_
+		{EQ:Light Clothing},_
+		{EQ:Shortsword},_
+		{EQ:Small Shield}_
+	)
+
+"Holy Warrior of Night", displaycost(1400), displayweight(45.5), page(DF13:17),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Dagger}=6 #DoNotOwn,_
+		{EQ:Face Mask} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn _
+			with {"Camouflaged", +100,conditional(+1 to SK:Stealth),group(Equipment),level(1),page(B345),valuenum(100),x(),basedon(Equipment: Gives Skill Bonus (Stealth*)),basedgroup(Equipment)},_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn,_
+		{EQ:Thrusting Broadsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Dagger},_
+		{EQ:Face Mask},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Leather Armor},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Small Shield},_
+		{EQ:Thrusting Broadsword}_
+	)
+
+"Holy Warrior of the Sea", displaycost(1200), displayweight(98), page(DF13:17),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Melee Net} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Scale Armor} #DoNotOwn,_
+		{EQ:Scale Leggings} #DoNotOwn,_
+		{EQ:Scale Sleeves} #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn,_
+		{EQ:Trident} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Melee Net},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Scale Armor},_
+		{EQ:Scale Leggings},_
+		{EQ:Scale Sleeves},_
+		{EQ:Small Shield},_
+		{EQ:Trident}_
+	)
+
+"Holy Warrior of Storms", displaycost(770), displayweight(79), page(DF13:18),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Morningstar} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Throwing Axe}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Shirt},_
+		{EQ:Mail Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Morningstar},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Throwing Axe}_
+	)
+
+"Holy Warrior of the Sun", displaycost(1309), displayweight(56.2), page(DF13:18),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(1), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Arrow}=12 #DoNotOwn,_
+		{EQ:Bronze Breastplate} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn _
+			with {"Dungeon Fantasy: Materials: Mirrored", +2 CF/+6 CF,upto(1),levelnames(,),page(DF1:27),group(Shield),shortname(Mirrored),formula(@if(@ownerhasmod(Dungeon Fantasy: Materials: Meteoric) + @ownerhasmod(Dungeon Fantasy: Materials: Orichalcum) + @ownerhasmod(Dungeon Fantasy: Materials: Dwarven) > 0 THEN 2 ELSE 6)),forceformula(yes),level(1),valuenum(6)},_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Sandals} #DoNotOwn,_
+		{EQ:Shoulder Quiver} #DoNotOwn,_
+		{EQ:Spear} #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	parentof(_
+		{EQ:Regular Bow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Bronze Breastplate},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Sandals},_
+		{EQ:Shoulder Quiver},_
+		{EQ:Spear}_
+	)
+
+"Holy Warrior of War", displaycost(2575), displayweight(96.2), page(DF13:18),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(12), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Steel Corselet} #DoNotOwn,_
+		{EQ:Thrusting Broadsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Hip Quiver},_
+		{EQ:Holy Symbol},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Medium Shield},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Steel Corselet},_
+		{EQ:Thrusting Broadsword}_
+	)
+
+"Holy Warrior, Scourge of Good", displaycost(890), displayweight(61.7), page(DF13:18),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Axe} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Holy Symbol} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Monster Drool (Utility)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Orcish Energy Brew,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(45),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(45),precountweight(1)} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Orcish Energy Brew},_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Axe},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Hip Quiver},_
+		{EQ:Holy Symbol},_
+		{EQ:Large Knife},_
+		{EQ:Leather Pants},_
+		{EQ:Mail Shirt},_
+		{EQ:Medium Shield},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Innkeeper>
+*******************************************************************************************************\[START]
+"Innkeeper, Establishment Proprietor", displaycost(575), displayweight(57.22), page(DF13:19),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(12), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Pistol Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=12 #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn _
+			with {"Weapon Quality: Cheap", *0.2/*0.4,upto(1),levelnames(,),gives(-1 to owner::Acc listas "-1 Acc from Cheap Quality", +2 to owner::break),page(B274),group(Melee Quality),shortname(Cheap Quality),formula(@if(ST:Tech Level::basevalue < 7 THEN 0.4 ELSE 0.2 )),forceformula(yes),level(1),valuenum(0.4)},_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Weapon Quality: Cheap", *0.2/*0.4,upto(1),levelnames(,),gives(-1 to owner::Acc listas "-1 Acc from Cheap Quality", +2 to owner::break),page(B274),group(Melee Quality),shortname(Cheap Quality),formula(@if(ST:Tech Level::basevalue < 7 THEN 0.4 ELSE 0.2 )),forceformula(yes),level(1),valuenum(0.4)},_
+		{EQ:Rations}=9 #DoNotOwn,_
+		{EQ:Shoulder Quiver} #DoNotOwn,_
+		{EQ:Small Mace} #DoNotOwn _
+			with {"Weapon Quality: Cheap", *0.2/*0.4,upto(1),levelnames(,),gives(-1 to owner::Acc listas "-1 Acc from Cheap Quality", +2 to owner::break),page(B274),group(Melee Quality),shortname(Cheap Quality),formula(@if(ST:Tech Level::basevalue < 7 THEN 0.4 ELSE 0.2 )),forceformula(yes),level(1),valuenum(0.4)},_
+		{EQ:Wineskin}=2 #DoNotOwn_
+	),_
+	creates(_
+		{EQ:"Ale, 1 Gallon",noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(5),baseweight(8),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(8)}=2 #DoNotOwn,_
+		{EQ:Drinking Set,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(7),baseweight(3),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(7),precountweight(3)} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Pistol Crossbow (ST%STchoice%)},_
+		{EQ:Ale, 1 Gallon},_
+		{EQ:Drinking Set},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Large Knife},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Cap},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Quarterstaff},_
+		{EQ:Rations},_
+		{EQ:Shoulder Quiver},_
+		{EQ:Small Mace},_
+		{EQ:Wineskin}_
+	)
+
+"Innkeeper, Hole-in-the-Wall Barkeep", displaycost(1100), displayweight(61.47), page(DF13:19),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(12), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Bottle}=6 #DoNotOwn,_
+		{EQ:Broadsword} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=12 #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn _
+			with {"Weapon Quality: Cheap", *0.2/*0.4,upto(1),levelnames(,),gives(-1 to owner::Acc listas "-1 Acc from Cheap Quality", +2 to owner::break),page(B274),group(Melee Quality),shortname(Cheap Quality),formula(@if(ST:Tech Level::basevalue < 7 THEN 0.4 ELSE 0.2 )),forceformula(yes),level(1),valuenum(0.4)},_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shoulder Quiver} #DoNotOwn,_
+		{EQ:Small Mace} #DoNotOwn _
+			with {"Weapon Quality: Cheap", *0.2/*0.4,upto(1),levelnames(,),gives(-1 to owner::Acc listas "-1 Acc from Cheap Quality", +2 to owner::break),page(B274),group(Melee Quality),shortname(Cheap Quality),formula(@if(ST:Tech Level::basevalue < 7 THEN 0.4 ELSE 0.2 )),forceformula(yes),level(1),valuenum(0.4)},_
+		{EQ:Wineskin} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Achewater,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(6),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(6),precountweight(1)}=2,_
+		{EQ:"Ale, 1 Gallon",noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(5),baseweight(8),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(8)},_
+		{EQ:Polar Bear,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(5),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(1)}=2,_
+		{EQ:"Wine, Grape",noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(9),baseweight(8),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(9),precountweight(8)}_
+	),_
+	parentof(_
+		{EQ:Achewater},_
+		{EQ:Ale, 1 Gallon},_
+		{EQ:Polar Bear},_
+		{EQ:Wine, Grape},_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Boots},_
+		{EQ:Bottle},_
+		{EQ:Broadsword},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Large Knife},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Cap},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shoulder Quiver},_
+		{EQ:Small Mace},_
+		{EQ:Wineskin}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Knight>
+*******************************************************************************************************\[START]
+"Knight, Light Warrior", displaycost(440), displayweight(32), page(DF13:19),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm}_
+	)
+
+"Knight, Medium Warrior", displaycost(810), displayweight(69), page(DF13:20),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Leather Gloves} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Scale Armor} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Leather Gloves},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Scale Armor}_
+	)
+
+"Knight, Heavy Warrior", displaycost(1830), displayweight(75), page(DF13:20),_
+	adds(_
+		{EQ:Gauntlets} #DoNotOwn,_
+		{EQ:Mail Leggings} #DoNotOwn,_
+		{EQ:Mail Sleeves} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Sollerets} #DoNotOwn,_
+		{EQ:Steel Corselet} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Gauntlets},_
+		{EQ:Mail Leggings},_
+		{EQ:Mail Sleeves},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Sollerets},_
+		{EQ:Steel Corselet}_
+	)
+
+"Knight - Axe-and-Shield", displaycost(190), displayweight(23), page(DF13:20),_
+	adds(_
+		{EQ:Axe} #DoNotOwn,_
+		{EQ:Hatchet}=2 #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Axe},_
+		{EQ:Hatchet},_
+		{EQ:Medium Shield}_
+	)
+
+"Knight - Polearm", displaycost(395), displayweight(21.2), page(DF13:20),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(14), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Halberd} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Halberd},_
+		{EQ:Hip Quiver},_
+		{EQ:Large Knife}_
+	)
+
+"Knight - Sword-and-Shield", displaycost(855), displayweight(24), page(DF13:20),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(14), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Regular Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Thrusting Broadsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Regular Bow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Hip Quiver},_
+		{EQ:Large Knife},_
+		{EQ:Medium Shield},_
+		{EQ:Thrusting Broadsword}_
+	)
+
+"Knight - Two-Handed Axe", displaycost(220), displayweight(16), page(DF13:20),_
+	adds(_
+		{EQ:Great Axe} #DoNotOwn,_
+		{EQ:Throwing Axe}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Great Axe},_
+		{EQ:Throwing Axe}_
+	)
+
+"Knight - Two-Handed Sword", displaycost(1045), displayweight(16.2), page(DF13:21),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(14), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Crossbow Bolt}=20 #DoNotOwn,_
+		{EQ:Greatsword} #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Crossbow (ST%STchoice%)},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Greatsword},_
+		{EQ:Hip Quiver},_
+		{EQ:Large Knife}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Martial Artist>
+*******************************************************************************************************\[START]
+"Martial Artist, Empty-Hand Warrior", displaycost(170), displayweight(12), page(DF13:21),_
+	adds(_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Gauntlets} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shoes} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Cloth Armor},_
+		{EQ:Gauntlets},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shoes}_
+	)
+
+"Martial Artist, Armored", displaycost(1190), displayweight(43), page(DF13:21),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Gauntlets} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Steel Laminate Plate} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Gauntlets},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Steel Laminate Plate}_
+	)
+
+"Martial Artist - Flail", displaycost(20), displayweight(2), page(DF13:21),_
+	adds(_
+		{EQ:Nunchaku} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Nunchaku}_
+	)
+
+"Martial Artist - Sai", displaycost(120), displayweight(3), page(DF13:21),_
+	adds(_
+		{EQ:Sai}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Sai}_
+	)
+
+"Martial Artist - Shuriken", displaycost(18), displayweight(0.6), page(DF13:21),_
+	adds(_
+		{EQ:Shuriken}=6 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Shuriken}_
+	)
+
+"Martial Artist - Shortsword", displaycost(40), displayweight(2), page(DF13:21),_
+	adds(_
+		{EQ:Baton}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Baton}_
+	)
+
+"Martial Artist - Smallsword", displaycost(40), displayweight(2), page(DF13:21),_
+	adds(_
+		{EQ:Short Staff}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Short Staff}_
+	)
+
+
+"Martial Artist - Staff", displaycost(10), displayweight(4), page(DF13:21),_
+	adds(_
+		{EQ:Quarterstaff} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Quarterstaff}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Ninja>
+*******************************************************************************************************\[START]
+"Ninja, Master of Death", displaycost(1872), displayweight(22.1), page(DF13:22),_
+	adds(_
+		{EQ:Armored Ninja Suit} #DoNotOwn _
+			with {"Ninja Suit: Armored", +3 CF,page(DF12:16),gives(+1 to owner::dr, +6 to owner::baseweight),shortname(Armored),group(Initial),level(1),valuenum(3)},_
+		{EQ:Bandoleer} #DoNotOwn,_
+		{EQ:Hatchet} #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Kusari} #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Large Knife} #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Ninja-to} #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Ninja-to Saya} #DoNotOwn,_
+		{EQ:Shuriken}=6 #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Tonfa} #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)}_
+	),_
+	parentof(_
+		{EQ:Armored Ninja Suit},_
+		{EQ:Bandoleer},_
+		{EQ:Hatchet},_
+		{EQ:Kusari},_
+		{EQ:Large Knife},_
+		{EQ:Ninja-to},_
+		{EQ:Ninja-to Saya},_
+		{EQ:Shuriken},_
+		{EQ:Tonfa}_
+	)
+
+"Ninja, Master of Missiles", displaycost(877), displayweight(19.4), page(DF13:22),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(11), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Short Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Arrow}=10 #DoNotOwn,_
+		{EQ:Arrow (Bodkin)}=10 #DoNotOwn,_
+		{EQ:Bandoleer}=2 #DoNotOwn,_
+		{EQ:Caltrops (Per hex)}=6 #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Monster Drool (Utility)}=5 #DoNotOwn,_
+		{EQ:Nageteppo, Flash}=2 #DoNotOwn,_
+		{EQ:Nageteppo, Smoke}=2 #DoNotOwn,_
+		{EQ:Ninja Suit} #DoNotOwn,_
+		{EQ:Shuriken}=6 #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Small Knife}=4 #DoNotOwn,_
+		{EQ:Tonfa} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Short Bow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Arrow (Bodkin)},_
+		{EQ:Bandoleer},_
+		{EQ:Caltrops (Per hex)},_
+		{EQ:Hip Quiver},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Nageteppo, Flash},_
+		{EQ:Nageteppo, Smoke},_
+		{EQ:Ninja Suit},_
+		{EQ:Shuriken},_
+		{EQ:Small Knife},_
+		{EQ:Tonfa}_
+	)
+
+"Ninja, Master of Stealth", displaycost(2210.5), displayweight(925), page(DF13:22),_
+	adds(_
+		{EQ:Bandoleer} #DoNotOwn,_
+		{EQ:Blowpipe Dart}=5 #DoNotOwn,_
+		{EQ:Monster Drool (Utility)}=5 #DoNotOwn,_
+		{EQ:Ninja Suit} #DoNotOwn _
+			with {"Ninja Suit: Dark", +3 CF,shortname(Dark),group(Ninja Suit),conditional(+1 to SK:Stealth when "Vision-based, while moving", +2 to SK:Stealth when "stationary", +1 to SK:Invisibility Art),level(1),valuenum(3)} _
+			and {"Ninja Suit: Quiet", +3 CF,shortname(Quiet),group(Light Ninja Suit),conditional(+1 to SK:Stealth when "Hearing-based, while moving", +2 to SK:Stealth when "stationary"),level(1),valuenum(3)},_
+		{EQ:Ninja-to} #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)},_
+		{EQ:Ninja-to Saya} #DoNotOwn,_
+		{EQ:Tabi, Stealthy} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Bandoleer},_
+		{EQ:Blowpipe Dart},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Ninja Suit},_
+		{EQ:Ninja-to},_
+		{EQ:Ninja-to Saya},_
+		{EQ:Tabi, Stealthy}_
+	)
+
+"Ninja, Master of Tools", displaycost(1247), displayweight(7.4), page(DF13:22),_
+	adds(_
+		{EQ:Bandoleer} #DoNotOwn,_
+		{EQ:Nageteppo, Flash}=2 #DoNotOwn,_
+		{EQ:Nageteppo, Smoke}=2 #DoNotOwn,_
+		{EQ:Ninja Suit} #DoNotOwn _
+			with {"Ninja Suit: Reversible", +1 CF,shortname(Reversible),group(Ninja Suit),level(1),valuenum(1)},_
+		{EQ:Ninja-to} #DoNotOwn,_
+		{EQ:Ninja-to Saya} #DoNotOwn,_
+		{EQ:Shuriken}=6 #DoNotOwn _
+			with {"Dungeon Fantasy: Ninja", +0.5 CF,page(DF12:13),gives(+2 to owner::holdout),group(Melee Quality),shortname(Ninja),level(1),valuenum(0.5)}_
+	),_
+	parentof(_
+		{EQ:Bandoleer},_
+		{EQ:Nageteppo, Flash},_
+		{EQ:Nageteppo, Smoke},_
+		{EQ:Ninja Suit},_
+		{EQ:Ninja-to},_
+		{EQ:Ninja-to Saya},_
+		{EQ:Shuriken}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Scholar>
+*******************************************************************************************************\[START]
+"Scholar, Curator", displaycost(818), displayweight(35.5), page(DF13:23),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(10), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Repeating Pistol Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Crossbow Bolt}=10 #DoNotOwn,_
+		{EQ:Crossbow Bolt (Bodkin Point)}=10 #DoNotOwn,_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Leather Jacket} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Hat, Wide} #DoNotOwn,_
+		{EQ:Whip (3-yard)} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Luminous Dust,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(20),baseweight(0.5),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(20),precountweight(0.5)}=2 #DoNotOwn,_
+		{EQ:Primer (Title or topic),basecost(25),baseweight(3),page(DF4:13),mods(Books, Primer),precountcost(25),precountweight(3),description(Notes: Scholars may temporarily add 1 point in the Topic skill, anyone may spend 15 weeks and 1 point to learn the skill permanantly.), cat(Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Books)}=3 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Repeating Pistol Crossbow (ST%STchoice%)},_
+		{EQ:Hat, Wide},_
+		{EQ:Luminous Dust},_
+		{EQ:Primer (Title or topic)},_
+		{EQ:Boots},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Crossbow Bolt (Bodkin Point)},_
+		{EQ:Hip Quiver},_
+		{EQ:Leather Jacket},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Whip (3-yard)}_
+	)
+
+"Scholar, Professor", displaycost(1152), displayweight(46.25), page(DF13:23),_
+	adds(_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Cloth Sleeves} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Cloak} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Saber} #DoNotOwn,_
+		{EQ:Scribe's Kit} #DoNotOwn,_
+		{EQ:Shoes} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:"Paper, Rice, 20 sheets",basecost(40),baseweight(0.25),familiarities(),mods(Equipment),page(DF8:27),precountcost(40),precountweight(0.25),tl(),usernotes(),description(Notes: Paper, 20 Sheets. Heavy papyrus or similar, suitable for maps or magical writings.), cat(Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Writing Equipment)} #DoNotOwn,_
+		{EQ:Primer (Title or topic),basecost(25),baseweight(3),page(DF4:13),mods(Books, Primer),precountcost(25),precountweight(3),description(Notes: Scholars may temporarily add 1 point in the Topic skill, anyone may spend 15 weeks and 1 point to learn the skill permanantly.), cat(Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Books)}=2 #DoNotOwn,_
+		{EQ:Rubbing Wax,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(12),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(12),precountweight(1)} #DoNotOwn,_
+		{EQ:Textbook (Title or topic),basecost(50),baseweight(6),page(DF4:13),mods(Books, Textbook),precountcost(50),precountweight(6),description(Notes: Scholars may temporarily add 2 points in the Topic skill, others may spend 15 weeks and 1 point to learn the skill permanantly. Those lacking the skill may also consult a textbook in the field to gain a default on a skill that doesn't normally have one. Attribute -4 if Easy, -5 Average, -6 Hard, -7 Very Hard.), cat(Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Books)} #DoNotOwn,_
+		{EQ:Thesis (Title or topic),basecost(0),baseweight(12),familiarities(),mods(Books, Thesis),page(DF4:13),precountcost(100),precountweight(12),tl(),usernotes(),description(Notes: For non-scholars may spend 15 weeks and 1 point to learn the skill permanantly. Those lacking the skill may also consult a textbook in the field to gain a default on a skill that doesn't normally have one. Attribute -4 if Easy, -5 Average, -6 Hard, -7 Very Hard. Scholars may temporarily gain however many points the book is rated in the Topic skill.), cat(Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Books)} #DoNotOwn _
+			with {"Points", 0/0,gives(+25 to owner::basecost),page(DF4:13),upto(12),groups(Annotated Maps),levelnames(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),shortname(Points),level(4),group(Initial),valuenum(0)}_
+	),_
+	parentof(_
+		{EQ:Paper, Rice, 20 sheets},_
+		{EQ:Primer (Title or topic)},_
+		{EQ:Rubbing Wax},_
+		{EQ:Textbook (Title or topic)},_
+		{EQ:Thesis (Title or topic)},_
+		{EQ:Cloth Armor},_
+		{EQ:Cloth Sleeves},_
+		{EQ:Leather Pants},_
+		{EQ:Light Cloak},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Saber},_
+		{EQ:Scribe's Kit},_
+		{EQ:Shoes}_
+	)
+
+"Scholar, Wise Man", displaycost(402), displayweight(29), page(DF13:24),_
+	adds(_
+		{EQ:Anti-Toxin (Drinkable)}=2 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Garlic (Bundle)} #DoNotOwn,_
+		{EQ:Leather Jacket} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Quarterstaff} #DoNotOwn,_
+		{EQ:Scribe's Kit} #DoNotOwn,_
+		{EQ:Sling} #DoNotOwn,_
+		{EQ:Sling Lead Pellet}=20 #DoNotOwn,_
+		{EQ:Wolfsbane (Bundle)} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Primer (Title or topic),basecost(25),baseweight(3),page(DF4:13),mods(Books, Primer),precountcost(25),precountweight(3),description(Notes: Scholars may temporarily add 1 point in the Topic skill, anyone may spend 15 weeks and 1 point to learn the skill permanantly.), cat(Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Books)}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Primer (Title or topic)},_
+		{EQ:Anti-Toxin (Drinkable)},_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Garlic (Bundle)},_
+		{EQ:Leather Jacket},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Quarterstaff},_
+		{EQ:Scribe's Kit},_
+		{EQ:Sling},_
+		{EQ:Sling Lead Pellet},_
+		{EQ:Wolfsbane (Bundle)}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Scout>
+*******************************************************************************************************\[START]
+"Scout, Bounty Hunter", displaycost(1260), displayweight(47), page(DF13:24),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Longbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn _
+			with {"Arrowhead: Bodkin Point (TL3)", +0,page(B277),group(Bow Quality),shortname(Bodkin Point),addmode(Bodkin Point,damage(%copyfirst),damtype(pi),armordivisor(2),lc(%copyfirst),acc(%copyfirst),calcrange(%copyfirst),rangehalfdam(%copyfirst),rangemax(%copyfirst),rof(%copyfirst),shots(%copyfirst),minst(%copyfirst),bulk(%copyfirst),skillused(%copyfirst),rcl(%copyfirst),notes(%copyfirst)),level(1),valuenum(0)},_
+		{EQ:Arrow}=25 #DoNotOwn,_
+		{EQ:Arrow (Bodkin)}=25 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Broadsword} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver, Large} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Longbow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Arrow (Bodkin)},_
+		{EQ:Boots},_
+		{EQ:Broadsword},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Hip Quiver, Large},_
+		{EQ:Leather Armor},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Small Shield}_
+	)
+
+"Scout, Ranger", displaycost(895), displayweight(27), page(DF13:24),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Longbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Arrow}=20 #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn _
+			with {"Camouflaged", +100,conditional(+1 to SK:Stealth),group(Equipment),level(1),page(B345),valuenum(100),x(),basedon(Equipment: Gives Skill Bonus (Stealth*)),basedgroup(Equipment)},_
+		{EQ:Hip Quiver} #DoNotOwn,_
+		{EQ:Leather Jacket} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shortsword} #DoNotOwn,_
+		{EQ:Small Shield} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Longbow (ST%STchoice%)},_
+		{EQ:Arrow},_
+		{EQ:Heavy Cloak},_
+		{EQ:Hip Quiver},_
+		{EQ:Leather Jacket},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shortsword},_
+		{EQ:Small Shield}_
+	)
+
+"Scout, Sharpshooter", displaycost(1680), displayweight(47), page(DF13:24),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(13), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Composite Bow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn _
+			with {"Arrowhead: Bodkin Point (TL3)", +0,page(B277),group(Bow Quality),shortname(Bodkin Point),addmode(Bodkin Point,damage(%copyfirst),damtype(pi),armordivisor(2),lc(%copyfirst),acc(%copyfirst),calcrange(%copyfirst),rangehalfdam(%copyfirst),rangemax(%copyfirst),rof(%copyfirst),shots(%copyfirst),minst(%copyfirst),bulk(%copyfirst),skillused(%copyfirst),rcl(%copyfirst),notes(%copyfirst)),level(1),valuenum(0)},_
+		{EQ:Arrow (Fine)}=25 #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Arrow (Fine Bodkin)}=25 #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)},_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Hip Quiver, Large} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Pot-Helm} #DoNotOwn,_
+		{EQ:Quarterstaff} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Composite Bow (ST%STchoice%)},_
+		{EQ:Arrow (Fine)},_
+		{EQ:Arrow (Fine Bodkin)},_
+		{EQ:Boots},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Hip Quiver, Large},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Pot-Helm},_
+		{EQ:Quarterstaff}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Summoner>
+*******************************************************************************************************\[START]
+"Summoner, Demonologist", displaycost(885), displayweight(27.75), page(DF13:25),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Buckler} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Rapier} #DoNotOwn,_
+		{EQ:Scribe's Kit} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Large Knife},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Light Buckler},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Rapier},_
+		{EQ:Scribe's Kit}_
+	)
+
+"Summoner, Elementalist", displaycost(1400), displayweight(34), page(DF13:25),_
+	adds(_
+		{EQ:Alchemist's Fire (Grenade)} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Liquid Ice (Grenade)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Paut (Drinkable)}=2 #DoNotOwn,_
+		{EQ:Potion Belt} #DoNotOwn,_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Decorated", +4 CF,gives(+0 to owner::baseweight),group(Equipment),level(1),valuenum(4)} _
+			and {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)} _
+			and {"Gemstones", 280,gives(+0 to owner::baseweight),group(Equipment),level(1),tier(1),valuenum(280),x(,,)} _
+			and {"~Staff", 30,shortname(Staff),energy(30 * @if(@hasmod(Bane (x1/2)) THEN 0.5 ELSE 1) * @if(@hasmod(Bane (x1/3)) THEN (1/3) ELSE 1) * @if(@hasmod(Bane (x1/4)) THEN 0.25 ELSE 1) * @if(@hasmod(Bane (x1/10)) THEN 0.1 ELSE 1) * @if(@hasmod(Attune (x1/2)) THEN 0.5 ELSE 1)),mods(Bane),page(M70, B481),tier(1),formula(me::extracost + @int(me::energy * ST:EnchantmentEnergyMultiplier::Score + 0.98) * @if(me::energy > ST:EnchantmentQuickAndDirtyThreshold::Score THEN ST:EnchantmentSlowAndSureCost::Score ELSE ST:EnchantmentQuickAndDirtyCost::Score)),forceformula(yes),group(Equipment),level(1),valuenum(30)}_
+	),_
+	parentof(_
+		{EQ:Alchemist's Fire (Grenade)},_
+		{EQ:Boots},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Leather Armor},_
+		{EQ:Liquid Ice (Grenade)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Paut (Drinkable)},_
+		{EQ:Potion Belt},_
+		{EQ:Quarterstaff}_
+	)
+
+"Summoner, Necromancer", displaycost(811), displayweight(36), page(DF13:25),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Garlic (Bundle)}=4 #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Large Knife} #DoNotOwn _
+			with {"Dungeon Fantasy: Materials: Silver-coated", +2 CF,page(DF1:27),group(Melee Quality),shortname(Silver-coated),level(1),valuenum(2)},_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Scythe} #DoNotOwn,_
+		{EQ:Shovel} #DoNotOwn,_
+		{EQ:Wooden Stake}=2 #DoNotOwn _
+			with {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)}_
+	),_
+	creates(_
+		{EQ:Necromantic Preservative,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(110),baseweight(1),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(110),precountweight(1)},_
+		{EQ:Salt,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(15),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(15),precountweight(0.0625)}=16_
+	),_
+	parentof(_
+		{EQ:Necromantic Preservative},_
+		{EQ:Salt},_
+		{EQ:Boots},_
+		{EQ:Garlic (Bundle)},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Large Knife},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Scythe},_
+		{EQ:Shovel},_
+		{EQ:Wooden Stake}_
+	)
+
+"Summoner, Shaman", displaycost(397), displayweight(38.5), page(DF13:26),_
+	adds(_
+		{EQ:Blowpipe} #DoNotOwn,_
+		{EQ:Blowpipe Dart}=20 #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:First Aid Kit} #DoNotOwn,_
+		{EQ:Fur Tunic} #DoNotOwn,_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Medium Shield} #DoNotOwn,_
+		{EQ:Monster Drool (Utility)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Spear} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Blowpipe},_
+		{EQ:Blowpipe Dart},_
+		{EQ:Boots},_
+		{EQ:First Aid Kit},_
+		{EQ:Fur Tunic},_
+		{EQ:Heavy Cloak},_
+		{EQ:Leather Pants},_
+		{EQ:Medium Shield},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Spear}_
+	)
+
+"Summoner, High-Overhead Summoner", displaycost(507), displayweight(12.6), page(DF13:26),_
+	adds(_
+		{EQ:Hat, Tall} #DoNotOwn,_
+		{EQ:Candle, Beeswax}=10 #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Ambergris,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(35),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(35),precountweight(0.0625)}=2 #DoNotOwn,_
+		{EQ:Bowl,noresync(yes),displaycost(varies),displayweight(varies),techlvl(1),basecost(1),baseweight(0.3),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1),precountweight(0.3)} #DoNotOwn,_
+		{EQ:Cedar Resin,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(10),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(10),precountweight(0.0625)}=2 #DoNotOwn,_
+		{EQ:Chalk,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(1),baseweight(0.25),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1),precountweight(0.25)}=2 #DoNotOwn,_
+		{EQ:Myrrh,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(15),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(15),precountweight(0.0625)}=2 #DoNotOwn,_
+		{EQ:Salt,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(15),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(15),precountweight(0.0625)}=16 #DoNotOwn,_
+		{EQ:Sumac,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(38),baseweight(0.0625),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(38),precountweight(0.0625)}=2 #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Candle, Beeswax},_
+		{EQ:Ambergris},_
+		{EQ:Bowl},_
+		{EQ:Cedar Resin},_
+		{EQ:Chalk},_
+		{EQ:Hat, Tall},_
+		{EQ:Myrrh},_
+		{EQ:Salt},_
+		{EQ:Sumac}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Swashbuckler>
+*******************************************************************************************************\[START]
+"Swashbuckler, Bladed Ruffian", displaycost(188), displayweight(12.3), page(DF13:26),_
+	adds(_
+		{EQ:Hat, Wide} #DoNotOwn,_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Leather Jacket} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)}_
+	),_
+	parentof(_
+		{EQ:Hat, Wide},_
+		{EQ:Boots},_
+		{EQ:Leather Jacket},_
+		{EQ:Leather Pants},_
+		{EQ:Ordinary Clothing}_
+	)
+
+"Swashbuckler, Gentleman Adventurer", displaycost(1294), displayweight(35.3), page(DF13:26),_
+	adds(_
+		{EQ:Hat, Wide} #DoNotOwn with {%SMalt3list%} _
+			with {"Fine", +2 CF,gives(3 to owner::baseweight),group(Equipment),level(1),valuenum(2)}_
+		{EQ:Boots} #DoNotOwn _
+			with {"Fine", +2 CF,gives(3 to owner::baseweight),group(Equipment),level(1),valuenum(2)},_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"Fine", +2 CF,gives(3 to owner::baseweight),group(Equipment),level(1),valuenum(2)},_
+		{EQ:Steel Breastplate} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Hat, Wide},_
+		{EQ:Boots},_
+		{EQ:Cloth Armor},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Steel Breastplate}_
+	)
+
+"Swashbuckler - Rapier-and-Buckler", displaycost(525), displayweight(4.75), page(DF13:27),_
+	adds(_
+		{EQ:Light Buckler} #DoNotOwn,_
+		{EQ:Rapier} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Light Buckler},_
+		{EQ:Rapier}_
+	)
+
+"Swashbuckler - Shortsword-and-Main-Gauche", displaycost(450), displayweight(3.25), page(DF13:27),_
+	adds(_
+		{EQ:Main-Gauche} #DoNotOwn,_
+		{EQ:Shortsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Main-Gauche},_
+		{EQ:Shortsword}_
+	)
+
+"Swashbuckler - Smallsword-and-Cloak", displaycost(450), displayweight(6.5), page(DF13:27),_
+	adds(_
+		{EQ:Heavy Cloak} #DoNotOwn,_
+		{EQ:Smallsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Heavy Cloak},_
+		{EQ:Smallsword}_
+	)
+
+"Swashbuckler - Saber", displaycost(740), displayweight(3), page(DF13:27),_
+	adds(_
+		{EQ:Large Knife} #DoNotOwn,_
+		{EQ:Saber} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Large Knife},_
+		{EQ:Saber}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Thief>
+*******************************************************************************************************\[START]
+"Thief, Basic Thief", displaycost(885), displayweight(27.6), page(DF13:27),_
+	adds(_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Light Buckler} #DoNotOwn,_
+		{EQ:Lockpicks} #DoNotOwn,_
+		{EQ:Monster Drool (Utility)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shoes} #DoNotOwn,_
+		{EQ:Shortsword} #DoNotOwn,_
+		{EQ:Spy's Horn} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Luminous Dust,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(20),baseweight(0.5),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(20),precountweight(0.5)}=2_
+	),_
+	parentof(_
+		{EQ:Luminous Dust},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Leather Armor},_
+		{EQ:Light Buckler},_
+		{EQ:Lockpicks},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shoes},_
+		{EQ:Shortsword},_
+		{EQ:Spy's Horn}_
+	)
+
+"Thief, Burglar", displaycost(1665), displayweight(29.5), page(DF13:27),_
+	adds(_
+		{EQ:Grapnel} #DoNotOwn,_
+		{EQ:Light Buckler} #DoNotOwn,_
+		{EQ:Lockpicks, Good} #DoNotOwn,_
+		{EQ:Mail Shirt} #DoNotOwn _
+			with {"Dungeon Fantasy: Thieves'", +3 CF,page(DF1:27),group(Armor - Mail),shortname(Thieves),level(1),valuenum(3)},_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shortsword} #DoNotOwn,_
+		{EQ:Trap-Finder's Kit} #DoNotOwn_
+	),_
+	creates(_
+		{EQ:Burglar Bar,noresync(yes),displaycost(varies),displayweight(varies),techlvl(3),basecost(20),baseweight(2),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),conditional(+1 to SK:Traps when "disarming traps"),precountcost(20),precountweight(2)},_
+		{EQ:Luminous Dust,noresync(yes),displaycost(varies),displayweight(varies),techlvl(0),basecost(20),baseweight(0.5),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(20),precountweight(0.5)}=2_
+	),_
+	parentof(_
+		{EQ:Burglar Bar},_
+		{EQ:Luminous Dust},_
+		{EQ:Grapnel},_
+		{EQ:Light Buckler},_
+		{EQ:Lockpicks, Good},_
+		{EQ:Mail Shirt},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shortsword},_
+		{EQ:Trap-Finder's Kit}_
+	)
+
+"Thief, Assassin", displaycost(1246), displayweight(41.12), page(DF13:28),_
+	x(#ChoiceList(name(STchoice), title(Bow ST), text(A Bow/Crossbow must be assigned a ST score. This is the ST of the bow itself; a character normally uses a bow with ST equal to his own ST.), picksallowed(1), method(bynumber), default(11), list(#list(OneToOneHundred Sorted)), aliaslist(1,#list(LevelName Step 1)))),_
+	adds(_
+		{EQ:Pistol Crossbow (ST%choice%)} respond %STchoiceAliasList% #DoNotOwn,_
+		{EQ:Anti-Toxin (Drinkable)}=4 #DoNotOwn,_
+		{EQ:Crossbow Bolt}=12 #DoNotOwn,_
+		{EQ:Dagger}=4 #DoNotOwn,_
+		{EQ:Garrote} #DoNotOwn,_
+		{EQ:Heavy Cloak}=2 #DoNotOwn _
+			with {"Camouflaged", +100,conditional(+1 to SK:Stealth),group(Equipment),level(1),page(B345),valuenum(100),x(),basedon(Equipment: Gives Skill Bonus (Stealth*)),basedgroup(Equipment)},_
+		{EQ:Heavy Leather Leggings} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Lockpicks} #DoNotOwn,_
+		{EQ:Monster Drool (Utility)}=2 #DoNotOwn,_
+		{EQ:Nageteppo, Flash}=2 #DoNotOwn,_
+		{EQ:Nageteppo, Smoke}=2 #DoNotOwn,_
+		{EQ:Oozing Doom (Grenade)} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Shoes} #DoNotOwn,_
+		{EQ:Shoulder Quiver} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Pistol Crossbow (ST%STchoice%)},_
+		{EQ:Anti-Toxin (Drinkable)},_
+		{EQ:Crossbow Bolt},_
+		{EQ:Dagger},_
+		{EQ:Garrote},_
+		{EQ:Heavy Cloak},_
+		{EQ:Heavy Leather Leggings},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Leather Armor},_
+		{EQ:Lockpicks},_
+		{EQ:Monster Drool (Utility)},_
+		{EQ:Nageteppo, Flash},_
+		{EQ:Nageteppo, Smoke},_
+		{EQ:Oozing Doom (Grenade)},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Shoes},_
+		{EQ:Shoulder Quiver}_
+	)
+
+********************************************************************************************************\[STOP]
+<Dungeon Fantasy, Dungeon Fantasy - Loadouts, Dungeon Fantasy - Loadouts - Wizard>
+*******************************************************************************************************\[START]
+"Wizard, Fighting Wizard", displaycost(862), displayweight(24), page(DF13:28),_
+	adds(_
+		{EQ:Boots} #DoNotOwn,_
+		{EQ:Heavy Leather Sleeves} #DoNotOwn,_
+		{EQ:Leather Armor} #DoNotOwn,_
+		{EQ:Leather Cap} #DoNotOwn,_
+		{EQ:Leather Pants} #DoNotOwn,_
+		{EQ:Light Buckler} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Paut (Drinkable)} #DoNotOwn,_
+		{EQ:Smallsword} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Boots},_
+		{EQ:Heavy Leather Sleeves},_
+		{EQ:Leather Armor},_
+		{EQ:Leather Cap},_
+		{EQ:Leather Pants},_
+		{EQ:Light Buckler},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Paut (Drinkable)},_
+		{EQ:Smallsword}_
+	)
+
+"Wizard, Scholarly Wizard", displaycost(880), displayweight(15), page(DF13:28),_
+	adds(_
+		{EQ:Cloth Armor} #DoNotOwn,_
+		{EQ:Ordinary Clothing} #DoNotOwn _
+			with {"_Free", *0,shortname(Free),group(Equipment),level(1),valuenum(0)},_
+		{EQ:Paut (Drinkable)}=2 #DoNotOwn,_
+		{EQ:Quarterstaff} #DoNotOwn _
+			with {"Decorated", +4 CF,gives(+0 to owner::baseweight),group(Equipment),level(1),valuenum(4)} _
+			and {"Dungeon Fantasy: Power Item", 0,shortname(Power Item),page(DF1:28),group(Equipment),gives(=+@if(owner::cost > 26000 THEN 40 ELSE @if(owner::cost > 18000 THEN 35 ELSE @if(owner::cost > 12000 THEN 30 ELSE @if(owner::cost > 7000 THEN 25 ELSE @if(owner::cost > 6200 THEN 20 ELSE @if(owner::cost > 5500 THEN 19 ELSE @if(owner::cost > 4900 THEN 18 ELSE @if(owner::cost > 4300 THEN 17 ELSE @if(owner::cost > 3800 THEN 16 ELSE @if(owner::cost > 3300 THEN 15 ELSE @if(owner::cost > 2800 THEN 14 ELSE @if(owner::cost > 2400 THEN 13 ELSE @if(owner::cost > 2000 THEN 12 ELSE @if(owner::cost > 1700 THEN 11 ELSE @if(owner::cost > 1400 THEN 10 ELSE @if(owner::cost > 1100 THEN 9 ELSE @if(owner::cost > 880 THEN 8 ELSE @if(owner::cost > 670 THEN 7 ELSE @if(owner::cost > 490 THEN 6 ELSE @if(owner::cost > 340 THEN 5 ELSE @if(owner::cost > 220 THEN 4 ELSE @if(owner::cost > 120 THEN 3 ELSE @if(owner::cost > 50 THEN 2 ELSE 1))))))))))))))))))))))) to ST:Power Item),level(1),valuenum(0)} _
+			and {"Dungeon Fantasy: Quality: Fine", +2 CF,gives(=+@textindexedvalue( $modetag(damtype), ("cut", 1), ("imp", 1) ) to owner::damage$ listAs "+1 to cut/imp damage from Quality: Fine", -1 to owner::break),page(DF1:26),group(Crushing/Imp Class Quality),shortname(Fine),level(1),valuenum(2)} _
+			and {"Gemstones", 430,gives(+0 to owner::baseweight),group(Equipment),level(1),tier(1),valuenum(430),x(,,)} _
+			and {"~Staff", 30,shortname(Staff),energy(30 * @if(@hasmod(Bane (x1/2)) THEN 0.5 ELSE 1) * @if(@hasmod(Bane (x1/3)) THEN (1/3) ELSE 1) * @if(@hasmod(Bane (x1/4)) THEN 0.25 ELSE 1) * @if(@hasmod(Bane (x1/10)) THEN 0.1 ELSE 1) * @if(@hasmod(Attune (x1/2)) THEN 0.5 ELSE 1)),mods(Bane),page(M70, B481),tier(1),formula(me::extracost + @int(me::energy * ST:EnchantmentEnergyMultiplier::Score + 0.98) * @if(me::energy > ST:EnchantmentQuickAndDirtyThreshold::Score THEN ST:EnchantmentSlowAndSureCost::Score ELSE ST:EnchantmentQuickAndDirtyCost::Score)),forceformula(yes),group(Equipment),level(1),valuenum(30)},_
+		{EQ:Scribe's Kit} #DoNotOwn_
+	),_
+	parentof(_
+		{EQ:Cloth Armor},_
+		{EQ:Ordinary Clothing},_
+		{EQ:Paut (Drinkable)},_
+		{EQ:Quarterstaff},_
+		{EQ:Scribe's Kit}_
+	)
+
+********************************************************************************************************\[STOP]

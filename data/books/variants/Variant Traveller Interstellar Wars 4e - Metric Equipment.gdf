@@ -1,0 +1,86 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file contains all of the equipment from Traveller Interstellar Wars 4e converted to Metric weights. _
+		It requires that you also load both the Variant Basic Set - Metric Equipment.gdf and GURPS Traveller _
+		Interstellar Wars 4e.gdf data files. _
+		All weights have been rounded off; those under 1 Kilo are rounded to two decimal places; those under 10 Kilos _
+		are rounded to one decimal place; those over 10 Kilos are rounded to the nearest whole number.
+Requires="GURPS Traveller Interstellar Wars 4e.gdf"
+Worldbook=Traveller Interstellar Wars
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Traveller Interstellar Wars 4e - Metric Equipment.gdf
+* Created: January 04, 2006
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS  sourcebook.
+* GURPS Traveller: Interstellar Wars is Copyright © 2006 by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*	Talents, Cultural Famaliarities, and Languages
+*	Character Templates
+*	Racial Templates
+*	Equipment
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+[EQUIPMENT]
+
+#ReplaceTags in "EQ:Mainframe" with "units(kg), baseweight(455)"
+#ReplaceTags in "EQ:Microframe" with "units(kg), baseweight(45)"
+#ReplaceTags in "EQ:Minicomputer" with "units(kg), baseweight(4.5)"
+#ReplaceTags in "EQ:Small Computer" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Tiny Computer" with "units(kg), baseweight(0.05)"
+#ReplaceTags in "EQ:Palmtop Terminal" with "units(kg), baseweight(0.23)"
+#ReplaceTags in "EQ:Desktop Terminal" with "units(kg), baseweight(4.5)"
+#ReplaceTags in "EQ:Workstation Terminal" with "units(kg), baseweight(18)"
+#ReplaceTags in "EQ:Technician's Aide" with "units(kg), baseweight(2.5)"
+#ReplaceTags in "EQ:Administrator's Aide" with "units(kg), baseweight(20)"
+
+#ReplaceTags in "EQ:Atmosphere Tester" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Biosniffer" with "units(kg), baseweight(0.91)"
+#ReplaceTags in "EQ:Chemsniffer" with "units(kg), baseweight(0.91)"
+#ReplaceTags in "EQ:Densitometer" with "units(kg), baseweight(91)"
+#ReplaceTags in "EQ:Inertial Compass" with "units(kg), baseweight(0.45)"
+
+#ReplaceTags in "EQ:Air Mask" with "units(kg), baseweight(0.91)"
+
+#ReplaceTags in "EQ:Advanced Rebreather" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Air Tank" with "units(kg), baseweight(4.5)"
+#ReplaceTags in "EQ:Filter (CBR)" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Filter" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Filter Replacement (CBR)" with "units(kg), baseweight(0.11)"
+#ReplaceTags in "EQ:Filter Replacement" with "units(kg), baseweight(0.11)"
+#ReplaceTags in "EQ:Pressure Tent (One-man)" with "units(kg), baseweight(6.8)"
+#ReplaceTags in "EQ:Pressure Tent (Two-man)" with "units(kg), baseweight(14)"
+#ReplaceTags in "EQ:Pressure Tent (Eight-man)" with "units(kg), baseweight(68)"
+#ReplaceTags in "EQ:Respirator" with "units(kg), baseweight(1.4)"
+#ReplaceTags in "EQ:Reducing Respirator" with "units(kg), baseweight(2.3)"
+
+#ReplaceTags in "EQ:Rescue Ball" with "units(kg), baseweight(2.3)"
+#ReplaceTags in "EQ:Personal Reentry Kit" with "units(kg), baseweight(14)"

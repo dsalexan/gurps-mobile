@@ -1,0 +1,2267 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.1
+Description=2022 June 24. _
+		This data file contains information taken from the GURPS Powers sourcebook. _
+		GURPS Powers is Copyright © 2005 by Steve Jackson Games _
+		Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Powers 4e.gdf
+//  Created: October 15, 2005
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Powers sourcebook.
+//  GURPS Powers is Copyright © 2005 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Power Modifiers
+// 	New Trait Modifiers
+// 	New Advantages & Abilities
+// 
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+//  Rev. Pee Kitty	- Corrections
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+"Will÷2", basevalue(ST:Will/2)
+"HT÷2", basevalue(ST:HT/2)
+PowerDodgeBase, basevalue(ST:Basic Speed - @int(ST:Basic Speed)), display(no), hide(yes)
+PowerBlockMentalBase, basevalue((ST:Will / 2) - @int(ST:Will / 2)), display(no), hide(yes)
+PowerBlockPhysicalBase, basevalue((ST:HT / 2) - @int(ST:HT / 2)), display(no), hide(yes)
+
+// @if( @itemhasmod(AD:Lifting ST, Super-Effort) = 0 & @itemhasmod(AD:Striking ST, Super-Effort)=0 & @itemhasmod(AD:Super ST, Super ST)=0 then 1 else 0)
+// @if(AD:Telekinesis=0 then 1 else 0)
+
+Super-Effort Lifting ST, basevalue(ST:Lifting ST), maxscore(1000000), minscore(0), hide(yes), display(yes), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Basic Lift, basevalue("ST:Super-Effort Lifting ST" * "ST:Super-Effort Lifting ST" / @if(ST:Metric = 1 THEN 11 ELSE 5)), maxscore(1000000), minscore(0), round(-1), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort One-Handed Lift, basevalue(2 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Two-Handed Lift, basevalue(8 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Shove/Knock Over, basevalue(12 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Carry on Back, basevalue(15 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Shift Slightly, basevalue(50 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+
+TK Super-Effort ST, basevalue(ST:TK ST), maxscore(1000000), minscore(0), hide(yes), display(yes), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Basic Lift, basevalue("ST:TK Super-Effort ST" * "ST:TK Super-Effort ST"  / @if(ST:Metric = 1 THEN 11 ELSE 5)), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), round(-1), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Max Lift, basevalue(8 * "ST:TK Super-Effort Basic Lift"), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Shove/Knock Over, basevalue(12 * "ST:TK Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Shift Slightly, basevalue(50 * "ST:TK Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+
+#ReplaceTags in "ST:High Jump" with "basevalue((((6 * @max(ST:Basic Ground Move, SK:Jumping::level / 2)) - 10) * @if(ST:Metric = 1 THEN 2.5 ELSE 1)) * (2 ^ ST:Super Jump Vertical))"
+#ReplaceTags in "ST:Broad Jump" with "basevalue((((2 * @max(ST:Basic Ground Move, SK:Jumping::level / 2)) - 3) / @if(ST:Metric = 1 THEN 3 ELSE 1)) * (2 ^ ST:Super Jump Horizontal))"
+
+//  Helper stats
+Modified ST-Based Damage, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no)
+Super Jump Vertical, basevalue(ST:Super Jump), hide(yes), display(no)
+Super Jump Horizontal, basevalue(ST:Super Jump), hide(yes), display(no)
+
+Super-Effort Lifting Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:Super-Effort Lifting ST)
+TK Super-Effort Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:TK Super-Effort ST)
+
+#ReplaceTags in "ST:Tunneling Move" with basevalue(@itemhasmod(AD:Tunneling, Tunneling Move) + @itemhasmod(AD:Tunneling (Slow), Tunneling Move)/30)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+
+//  New Modifier for Advantages
+#MergeTags in "AD:Altered Time Rate" with "mods(Altered Time Rate)"
+#MergeTags in "AD:Animal Empathy" with "mods(Animal Empathy)"
+#MergeTags in "AD:Catfall" with "mods(Catfall)"
+#MergeTags in "AD:Channeling" with "mods(Channeling)"
+#MergeTags in "AD:Common Sense" with "mods(Common Sense)"
+#MergeTags in "AD:Constriction Attack" with "mods(Constriction Attack)"
+#MergeTags in "AD:Discriminatory Hearing" with "mods(Discriminatory Hearing)"
+#MergeTags in "AD:Discriminatory Taste" with "mods(Discriminatory Taste)"
+#MergeTags in "AD:Empathy" with "mods(Empathy)"
+#MergeTags in "AD:Enhanced Tracking" with "mods(Enhanced Tracking)"
+#MergeTags in "AD:Extra Attack" with "mods(Extra Attack)"
+#MergeTags in "AD:Intuition" with "mods(Intuition)"
+#MergeTags in "AD:Jumper (Time)" with "mods(Time Jumper)"
+#MergeTags in "AD:Jumper (World)" with "mods(World Jumper)"
+#MergeTags in "AD:Lifting ST" with "mods(Lifting ST)"
+#MergeTags in "AD:Medium" with "mods(Medium)"
+#MergeTags in "AD:Mimicry" with "mods(Mimicry)"
+#MergeTags in "AD:Mind Probe" with "mods(Mind Probe)"
+#MergeTags in "AD:Mind Reading" with "mods(Mind Reading)"
+#MergeTags in "AD:Oracle" with "mods(Oracle)"
+#MergeTags in "AD:Para-Radar" with "mods(Para-Radar)"
+#MergeTags in "AD:Plant Empathy" with "mods(Plant Empathy)"
+#MergeTags in "AD:Psychometry" with "mods(Psychometry)"
+#MergeTags in "AD:Racial Memory" with "mods(Racial Memory)"
+#MergeTags in "AD:Radiation Tolerance" with "mods(Radiation Tolerance)"
+#MergeTags in "AD:Rapier Wit" with "mods(Rapier Wit)"
+#MergeTags in "AD:See Invisible" with "mods(See Invisible)"
+#MergeTags in "AD:Sensitive Touch" with "mods(Sensitive Touch)"
+#MergeTags in "AD:Serendipity" with "mods(Serendipity)"
+#MergeTags in "AD:Special Rapport" with "mods(Special Rapport)"
+#MergeTags in "AD:Stretching" with "mods(Stretching)"
+#MergeTags in "AD:Striking ST" with "mods(Striking ST)"
+#MergeTags in "AD:Super Climbing" with "mods(Super Climbing)"
+#MergeTags in "AD:Super Jump" with "mods(Super Jump)"
+#MergeTags in "AD:True Faith" with "mods(True Faith)"
+#MergeTags in "AD:Universal Digestion" with "mods(Universal Digestion)"
+#MergeTags in "AD:Visualization" with "mods(Visualization)"
+#MergeTags in "AD:Walk on Air" with "mods(Walk on Air)"
+#MergeTags in "AD:Walk on Liquid" with "mods(Walk on Liquid)"
+
+// #MergeTags in "AD:ESP Talent" with "mods(_Power Talents), x(#buildit)"
+// #MergeTags in "AD:Psychic Healing Talent" with "mods(_Power Talents), x(#buildit)"
+// #MergeTags in "AD:PK Talent" with "mods(_Power Talents), x(#buildit)"
+// #MergeTags in "AD:Telepathy Talent" with "mods(_Power Talents), x(#buildit)"
+// #MergeTags in "AD:Teleportation Talent" with "mods(_Power Talents), x(#buildit)"
+
+//  Changes/Additions to existing advantages
+#ReplaceTags in "AD:Chameleon" with "conditional(+2 to SK:Stealth when "perfectly still, unless clothed", +@if(@hasmod(Dynamic) then 2 else 1) to SK:Stealth when "moving, unless clothed", +1 to SK:Stealth when "perfectly still, and clothed")"
+#MergeTags in "AD:Neutralize" with "x(#InputToTag("You must specify the power source which you can neutralize (Magic, Psi, etc.):", NameExt, , "Neutralize")), page(P97)"
+#MergeTags in "AD:Permeation" with "levelnames(Everything), page(P66)"
+#ReplaceTags in "AD:Permeation" with "cost(5/10/20/40/80), upto(5)"
+#MergeTags in "AD:Regeneration" with "taboo(%Level < @if(@hasmod(Fatigue Only) THEN 3 ELSE @if(@hasmod(Fatigue Recovery) THEN 3 ELSE 1)))"
+#MergeTags in "AD:Silence" with "mods(Silence)"
+#ReplaceTags in "AD:Silence" with "conditional(+@if(@hasmod(Dynamic) then 2 else 1) to SK:Stealth when "moving, vs. hearing only", +2 to SK:Stealth when "standing still, vs. hearing only")"
+#MergeTags in "AD:Super Luck" with "mods(Super Luck), page(P80)"
+#ReplaceTags in "AD:Super Luck" with "cost(100/200), taboo(me::level > 1), description(Levels of Super Luck above level 1 should only be taken with GM permission. See GURPS Powers for details.), levelnames(1 per hr, 1 per 30-min, 1 per 15-min, 1 per 8-min, 1 per 4-min, 1 per 2-min, 1 per min, 1 per 30-sec, 1 per 15-sec, 1 per 8-sec, 1 per 4-sec, 1 per 2-sec, 1 per sec), upto(13)"
+#MergeTags in "AD:Telekinesis" with "conditional(=+2 to SK:Filch, =+2 to SK:Gambling when "you cheat", =+2 to SK:Parry Missile Weapons when "moving objects without using your hands")"
+#Clone "AD:Terror" as "AD:Terror (Awe)"
+#MergeTags in "AD:Terror (Awe)" with "description(This variation works exactly like the standard Terror advantage, except all rolls are made on the Awe and Confusion Check Table, p. P85.), page(P84)"
+#Clone "AD:Terror (Awe)" as "AD:Terror (Confusion)"
+
+//  New Skill Bonuses
+#MergeTags in "AD:Clairsentience" with "conditional(+2 to SK:Diagnosis when "seeing inside would be useful", +2 to SK:Lockpicking when "seeing inside would be useful", +2 to SK:Surgery when "seeing inside would be useful")"
+#MergeTags in "AD:Detect" with "conditional(=+2 to SK:Forensics when "intentionally seeking anything you can detect", =+2 to SK:Observation when "intentionally seeking anything you can detect", =+2 to SK:Prospecting when "intentionally seeking anything you can detect", =+2 to SK:Search when "intentionally seeking anything you can detect", =+2 to SK:Electrician when "intentionally seeking anything you can detect")"
+#MergeTags in "AD:Flight" with "conditional(+4 to SK:Acrobatics when "body lightening would help", +4 to SK:Climbing when "body lightening would help", +4 to SK:Flying Leap when "body lightening would help", +4 to SK:Jumping when "body lightening would help", +4 to SK:Light Walk when "body lightening would help")"
+#MergeTags in "AD:Mimicry" with "conditional(+2 to SK:Acting when "impersonating someone else")"
+#MergeTags in "AD:Mind Reading" with {conditional(+2 to GR:Influence Skills when "what the subject is thinking would be useful", +2 to SK:Tactics when "what the subject is thinking would be useful", +2 to SK:Strategy when "what the subject is thinking would be useful", +4 to SK:Detect Lies when "what the subject is thinking would be useful, *not* cumulative with the +3 from Empathy", +4 to SK:Fortune-Telling when "what the subject is thinking would be useful, *not* cumulative with the +3 from Empathy")}
+#MergeTags in "AD:Obscure" with "conditional(+4 to SK:Invisibility Art when "using smoke or darkness to distract witnesses")"
+#MergeTags in "AD:Precognition" with "conditional(+4 to SK:Gambling when "successful active use to predict likely outcomes", +4 to SK:Market Analysis when "successful active use to predict likely outcomes", +4 to SK:Tactics when "successful active use to predict likely outcomes", +4 to SK:Strategy when "successful active use to predict likely outcomes")"
+#MergeTags in "AD:Psychometry" with "conditional(+4 to SK:Tracking when "you know exactly who you're following")"
+#MergeTags in "AD:Radar" with "conditional(+2 to SK:Observation when "sense would be able to spot the objective")"
+#MergeTags in "AD:Imaging Radar" with "conditional(+2 to SK:Observation when "sense would be able to spot the objective")"
+#MergeTags in "AD:Ladar" with "conditional(+2 to SK:Observation when "sense would be able to spot the objective")"
+#MergeTags in "AD:Para-Radar" with "conditional(+2 to SK:Observation when "sense would be able to spot the objective")"
+#MergeTags in "AD:Sonar" with "conditional(+2 to SK:Observation when "sense would be able to spot the objective")"
+#MergeTags in "AD:Telecommunication (Telesend)" with "gives(+2 to SK:Hypnotism), conditional(+2 to SK:Leadership when "you are telling target what to do", +2 to SK:Teaching when "you are telling target what to do")"
+#MergeTags in "AD:Warp" with "conditional(+2 to SK:Shadowing when "attempting to follow someone on foot, to bypass crowds, watch quarry from rooftops, etc.")"
+
+//  Page References for Powers
+#MergeTags in "AD:360° Vision" with "page(P39)"
+#MergeTags in "AD:Affliction" with "page(P39)"
+#MergeTags in "AD:Ally" with "page(P41)"
+#MergeTags in "AD:Altered Time Rate" with "page(P41)"
+#MergeTags in "AD:Alternate Form (Cosmetic)" with "page(P74)"
+#MergeTags in "AD:Alternate Form" with "page(P74)"
+#MergeTags in "AD:Amphibious" with "page(P42)"
+#MergeTags in "AD:Binding" with "page(P42)"
+#MergeTags in "AD:Blessed" with "page(P43)"
+#MergeTags in "AD:Burning Attack" with "page(P53)"
+#MergeTags in "AD:Catfall" with "page(P43)"
+#MergeTags in "AD:Chameleon" with "page(P43)"
+#MergeTags in "AD:Channeling" with "page(P43)"
+#MergeTags in "AD:Clairsentience" with "page(P44)"
+#MergeTags in "AD:Clinging" with "page(P45)"
+#MergeTags in "AD:Common Sense" with "page(P45)"
+#MergeTags in "AD:Constriction Attack" with "page(P45)"
+#MergeTags in "AD:Corrosion Attack" with "page(P53)"
+#MergeTags in "AD:Crushing Attack" with "page(P53)"
+#MergeTags in "AD:Cutting Attack" with "page(P53)"
+#MergeTags in "AD:Damage Resistance" with "page(P45)"
+#MergeTags in "AD:Danger Sense" with "page(P46)"
+#MergeTags in "AD:Dark Vision" with "page(P46)"
+#MergeTags in "AD:Detect" with "page(P47)"
+#MergeTags in "AD:Discriminatory Hearing" with "page(P47)"
+#MergeTags in "AD:Discriminatory Smell" with "page(P47)"
+#MergeTags in "AD:Discriminatory Taste" with "page(P47)"
+#MergeTags in "AD:Duplication" with "page(P48)"
+#MergeTags in "AD:Elastic Skin" with "page(P48)"
+#MergeTags in "AD:Empathy" with "page(P48)"
+#MergeTags in "AD:Enhanced Move (Air)" with "page(P49)"
+#MergeTags in "AD:Enhanced Move (Ground)" with "page(P49)"
+#MergeTags in "AD:Enhanced Move (Space)" with "page(P49)"
+#MergeTags in "AD:Enhanced Move (Water)" with "page(P49)"
+#MergeTags in "AD:Enhanced Tracking" with "page(P49)"
+#MergeTags in "AD:Extra Arms" with "page(P81)"
+#MergeTags in "AD:Extra Attack" with "page(P49)"
+#MergeTags in "AD:Extra Legs (3 Legs)" with "page(P81)"
+#MergeTags in "AD:Extra Legs (4 Legs)" with "page(P81)"
+#MergeTags in "AD:Extra Legs (5 Legs)" with "page(P81)"
+#MergeTags in "AD:Extra Legs (6 Legs)" with "page(P81)"
+#MergeTags in "AD:Extra Legs (7+ Legs)" with "page(P81)"
+#MergeTags in "AD:Extra Mouth" with "page(P81)"
+#MergeTags in "AD:Fatigue Attack" with "page(P53)"
+#MergeTags in "AD:Flight" with "page(P50)"
+#MergeTags in "AD:Growth" with "page(P50)"
+#MergeTags in "AD:Healing" with "page(P51)"
+#MergeTags in "AD:Huge Piercing Attack" with "page(P53)"
+#MergeTags in "AD:Hyperspectral Vision" with "page(P51)"
+#MergeTags in "AD:Imaging Radar" with "page(P72)"
+#MergeTags in "AD:Impaling Attack" with "page(P53)"
+#MergeTags in "AD:Infravision" with "page(P87)"
+#MergeTags in "AD:Injury Tolerance" with "page(P52)"
+#MergeTags in "AD:Insubstantiality" with "page(P55)"
+#MergeTags in "AD:Intuition" with "page(P56)"
+#MergeTags in "AD:Invisibility" with "page(P56)"
+#MergeTags in "AD:Jumper (Time)" with "page(P57)"
+#MergeTags in "AD:Jumper (World)" with "page(P57)"
+#MergeTags in "AD:Ladar" with "page(P72)"
+#MergeTags in "AD:Large Piercing Attack" with "page(P53)"
+#MergeTags in "AD:Lifting ST" with "page(P58)"
+#MergeTags in "AD:Long Spines" with "page(P81)"
+#MergeTags in "AD:Luck" with "page(P59)"
+#MergeTags in "AD:Mana Damper" with "page(P59)"
+#MergeTags in "AD:Mana Enhancer" with "page(P59)"
+#MergeTags in "AD:Medium" with "page(P59)"
+#MergeTags in "AD:Metabolism Control" with "page(P60)"
+#MergeTags in "AD:Microscopic Vision" with "page(P60)"
+#MergeTags in "AD:Mimicry" with "page(P60)"
+#MergeTags in "AD:Mind Control" with "page(P61)"
+#MergeTags in "AD:Mind Probe" with "page(P61)"
+#MergeTags in "AD:Mind Reading" with "page(P61)"
+#MergeTags in "AD:Mind Shield" with "page(P62)"
+#MergeTags in "AD:Modular Abilities (Chip Slots)" with "page(P62)"
+#MergeTags in "AD:Modular Abilities (Computer Brain)" with "page(P62)"
+#MergeTags in "AD:Modular Abilities (Cosmic Power)" with "page(P62)"
+#MergeTags in "AD:Modular Abilities (Super-Memorization)" with "page(P62)"
+#MergeTags in "AD:Morph (Cosmetic)" with "page(P74)"
+#MergeTags in "AD:Morph" with "page(P74)"
+#MergeTags in "AD:Nictitating Membrane" with "page(P81)"
+#MergeTags in "AD:Night Vision" with "page(P87)"
+#MergeTags in "AD:Obscure" with "page(P64)"
+#MergeTags in "AD:Oracle" with "page(P65)"
+#MergeTags in "AD:Parabolic Hearing" with "page(P51)"
+#MergeTags in "AD:Para-Radar" with "page(P72)"
+#MergeTags in "AD:Patron" with "page(P65)"
+#MergeTags in "AD:Penetrating Vision" with "page(P66)"
+#MergeTags in "AD:Peripheral Vision" with "page(P87)"
+#MergeTags in "AD:Permeation" with "page(P66)"
+#MergeTags in "AD:Piercing Attack" with "page(P53)"
+#MergeTags in "AD:Possession" with "page(P67)"
+#MergeTags in "AD:Precognition" with "page(P68)"
+#MergeTags in "AD:Protected [Sense]" with "page(P69)"
+#MergeTags in "AD:Psi Static" with "page(P69)"
+#MergeTags in "AD:Psychometry" with "page(P69)"
+#MergeTags in "AD:Racial Memory" with "page(P70)"
+#MergeTags in "AD:Radar" with "page(P72)"
+#MergeTags in "AD:Radiation Tolerance" with "page(P70)"
+#MergeTags in "AD:Rapier Wit" with "page(P70)"
+#MergeTags in "AD:Regeneration" with "page(P70)"
+#MergeTags in "AD:Regrowth" with "page(P71)"
+#MergeTags in "AD:Resistant" with "page(P71)"
+#MergeTags in "AD:See Invisible" with "page(P72)"
+#MergeTags in "AD:Sensitive Touch" with "page(P73)"
+#MergeTags in "AD:Serendipity" with "page(P73)"
+#MergeTags in "AD:Shadow Form" with "page(P73)"
+#MergeTags in "AD:Short Spines" with "page(P81)"
+#MergeTags in "AD:Shrinking" with "page(P75)"
+#MergeTags in "AD:Silence" with "page(P76)"
+#MergeTags in "AD:Small Piercing Attack" with "page(P52)"
+#MergeTags in "AD:Snatcher" with "page(P76)"
+#MergeTags in "AD:Sonar" with "page(P51)"
+#MergeTags in "AD:Speak Underwater" with "page(P78)"
+#MergeTags in "AD:Speak With Animals" with "page(P77)"
+#MergeTags in "AD:Speak With Plants" with "page(P77)"
+#MergeTags in "AD:Special Rapport" with "page(P77)"
+#MergeTags in "AD:Stretching" with "page(P78)"
+#MergeTags in "AD:Striker (Crushing; [Description])" with "page(P81)"
+#MergeTags in "AD:Striker (Cutting; [Description])" with "page(P81)"
+#MergeTags in "AD:Striker (Impaling; [Description])" with "page(P81)"
+#MergeTags in "AD:Striker (Large Piercing; [Description])" with "page(P81)"
+#MergeTags in "AD:Striker (Piercing; [Description])" with "page(P81)"
+#MergeTags in "AD:Striking ST" with "page(P78)"
+#MergeTags in "AD:Subsonic Hearing" with "page(P51)"
+#MergeTags in "AD:Subsonic Speech" with "page(P51, P78)"
+#MergeTags in "AD:Super Climbing" with "page(P79)"
+#MergeTags in "AD:Super Jump" with "page(P79)"
+#MergeTags in "AD:Super Luck" with "page(P80)"
+#MergeTags in "AD:Teeth (Blunt Teeth)" with "page(P81)"
+#MergeTags in "AD:Teeth (Fangs)" with "page(P81)"
+#MergeTags in "AD:Teeth (Sharp Beak)" with "page(P81)"
+#MergeTags in "AD:Teeth (Sharp Teeth)" with "page(P81)"
+#MergeTags in "AD:Telecommunication (Infrared Communication)" with "page(P81)"
+#MergeTags in "AD:Telecommunication (Laser Communication)" with "page(P81)"
+#MergeTags in "AD:Telecommunication (Radio)" with "page(P81)"
+#MergeTags in "AD:Telecommunication (Telesend)" with "page(P81)"
+#MergeTags in "AD:Telekinesis" with "page(P82)"
+#MergeTags in "AD:Telescopic Vision" with "page(P87)"
+#MergeTags in "AD:Temperature Control" with "page(P83)"
+#MergeTags in "AD:Terrain Adaptation" with "page(P83)"
+#MergeTags in "AD:Terror" with "page(P84)"
+#MergeTags in "AD:Toxic Attack" with "page(P53)"
+#MergeTags in "AD:True Faith" with "page(P84)"
+#MergeTags in "AD:Tunneling" with "page(P85)"
+#MergeTags in "AD:Ultrahearing" with "page(P51)"
+#MergeTags in "AD:Ultrasonic Speech" with "page(P51, P78)"
+#MergeTags in "AD:Ultravision" with "page(P87)"
+#MergeTags in "AD:Universal Digestion" with "page(P86)"
+#MergeTags in "AD:Vibration Sense" with "page(P86)"
+#MergeTags in "AD:Visualization" with "page(P87)"
+#MergeTags in "AD:Walk on Air" with "page(P87)"
+#MergeTags in "AD:Walk on Liquid" with "page(P88)"
+#MergeTags in "AD:Warp" with "page(P88)"
+#MergeTags in "AD:Wild Talent" with "page(P89)"
+
+<General/Other Physical Features>
+_New Alternative Abilities, 0, isparent(yes), childprofile(1), page(P11),_
+	description(_
+			In GCA Alternative Abilities are created using the Parent/Child trait relationship. Look at the Description of "_New Parent Item" for a full description of Parent items in GCA. _
+			To create an Alternative Ability in GCA simply add this trait to the character then make all the Alternate traits Children of the New Alternative Abilities Parent item._
+	),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, ,"New Alternative Abilities"))
+
+// <Exotic>
+// _New Power, 0, cat(Exotic, Supernatural, Exotic Mental, Exotic Physical, Supernatural Mental, Supernatural Physical, Mental, Physical), page(P7), mods(_Power Modifiers, _Psionic Power Modifier), isparent(yes),_
+// 	x(_
+// 		#InputReplace("Please designate the Source of this Power (e.g. Chi, Magical, Psionic):", "New Power", , "New Power"),_
+// 		#InputToTag("Please designate the Focus of this Power (i.e. a form of matter, energy, natural phenomenon, supernatural phenomenon, or class of target):", nameext, , "New Power"),_
+// 		#buildit
+// 	),_
+// 	description(_
+// 	Add this "advantage" to start creating a New Power. After you add this advantage you will be presented with the modifiers window; apply all modifiers _
+// 	to this advantage which you intend to apply to all abilities in this Power. _
+// 	)
+
+<Exotic Physical>
+#ReplaceTags in "AD:Affliction" with "damage(HT±$solver(me::level - 1))"
+
+Modified ST-Based Damage, 5/10,_
+	mods(_Attack Enhancements, _Attack Limitations, Modified ST-Based Damage Enhancements, Modified ST-Based Damage Limitations, Innate Attack),_
+	page(P146), cat(Attributes, Exotic, Physical, Innate Attack, Natural Attacks),_
+	init(owner::basethdice),_
+	gives(+5 to ST:Modified ST-Based Damage),_
+	initmods( Base Points, 0, tier(1), forceformula(yes), formula(-"ST:Modified ST-Based Damage::score"), page(P146) ),_
+	description(_
+			This advantage can be used to apply the rules for "Modifying ST-Based Damage" found in Powers. When _
+			this advantage is added to the character its level will be set to the current Thrust dice of damage _
+			(i.e. if Thrust is 3d-1 the level will be set to 3); if you later change the characters ST or Striking _
+			ST you will need to adjust the level manually. You will need to add the "Partial Dice" modifier to get _
+			the proper damage value/point cost if the base Thrust damage includes a + or - modifier (note that you should leave the "Base Points" _
+			modifier alone). You can then add any other modifiers you wish and GCA will compute the proper point cost. _
+			NOTE: In order for this advantage to work properly on an existing character you WILL have to Resynchronize _
+			the characters Attributes. _
+			)
+
+Protected [Power], 5, page(P69), cat(Exotic, Physical),_
+	x(#InputReplace("Please enter the power that is protected:", "[Power]", , "Protected Power"))
+Active IR, 20, mods(Scanning Sense), page(B81, P72), cat(Exotic, Physical), rangehalfdam(200),_
+	conditional(+2 to SK:Observation when "sense would be able to spot the objective"),_
+	skillused(ST:Perception), mode(''see'')
+T-Ray Vision, 25, mods(Scanning Sense), page(B81, P72), cat(Exotic, Physical), rangehalfdam(200),_
+	conditional(+2 to SK:Observation when "sense would be able to spot the objective"),_
+	skillused(ST:Perception), mode(''see'')
+
+Control [Rare], 10/20, mods(Control), page(P90), cat(Exotic Mental, Exotic, Physical, Mental),_
+	x(#InputReplace("Please specify the rare category of matter, energy, or force you can control _
+				(Brick, Iron, Paper, Rubber, etc.):", "[Rare]", , "Control [Rare]")),_
+	skillused(ST:IQ), mode(control)
+Control [Occasional], 15/30, mods(Control), page(P90), cat(Exotic Mental, Exotic, Physical, Mental),_
+	x(#InputReplace("Please specify the occasional category of matter, energy, or force you can control _
+				(Ceramics, Ferrous Metals, Ice, Steam, Stone, etc.):", "[Occasional]", , "Control [Occasional]")),_
+	skillused(ST:IQ), mode(control)
+Control [Common], 20/40, mods(Control), page(P90), cat(Exotic Mental, Exotic, Physical, Mental),_
+	x(#InputReplace("Please specify the common category of matter, energy, or force you can control _
+				(Earth, Fire, Gravity, Light, Metal, Plastic, Sound, Water, Wood, etc.):", "[Common]", , "Control [Common]")),_
+	skillused(ST:IQ), mode(control)
+
+Control [Very Common], %pricealiaslist%, displaycost(varies), mods(Control), page(P90), cat(Exotic Mental, Exotic, Physical, Mental),_
+	x(#InputReplace("Please specify the common category of matter, energy, or force you can control _
+				(All EM Radiation, All solid matter, All liquid matter, All gaseous matter, etc.):", "[Very Common]", , "Control [Very Common]"),_
+	#ChoiceList(_
+			name(price),_
+			title(Choose the cost),_
+			text(The cost for Controlling a Very Common category should be set by the GM. Choose the cost below:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				25/level,_
+				30/level _
+				),_
+		aliaslist(_
+				25/50,_
+				30/60_
+				)_
+			)_
+	),_
+	description(Control of Very Common categories of matter/energy should only be allowed with strict GM approval.),_
+	skillused(ST:IQ), mode(control)
+
+Control [Godlike], %pricealiaslist%, displaycost(varies), mods(Control), page(P90), cat(Exotic Mental, Exotic, Physical, Mental),_
+	x(#InputReplace("Please specify the abstract element you can control: _
+				(Time, Space, etc.)", "[Godlike]", , "Control [Godlike]"),_
+	#ChoiceList(_
+			name(price),_
+			title(Choose the cost),_
+			text(The cost for Controlling a Godlike category should be set by the GM. Choose the cost below:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+					30/level,_
+					35/level,_
+					40/level,_
+					50/level,_
+					60/level,_
+					75/level,_
+				100/level _
+				),_
+		aliaslist(_
+				30/60,_
+				35/70,_
+				40/80,_
+				50/100,_
+				60/120,_
+				75/150,_
+				100/200_
+				)_
+			)_
+	),_
+	description(Control of Godlike categories of matter/energy should only be allowed with strict GM approval.),_
+	skillused(ST:IQ), mode(control)
+
+Create [Large Category], 40/80, mods(Create), page(P92), cat(Exotic Mental, Exotic, Physical, Mental),_
+	conditional(+2 to SK:Alchemy when "you can create a useful substance", +2 to SK:Chemistry when "you can create a useful substance", +2 to SK:Pharmacy when "you can create a useful substance", +2 to SK:Poisons when "you can create a useful substance"),_
+	x(#InputReplace("CREATE: Please specify the large category of matter or energy you can create _
+				(Solid, Liquid, Gas, Organic, Inorganic, EM Waves, Physical Waves, etc.):", "[Large Category]")),_
+	skillused(ST:IQ), mode(create)
+Create [Medium Category], 20/40, mods(Create), page(P92), cat(Exotic Mental, Exotic, Physical, Mental),_
+	conditional(+2 to SK:Alchemy when "you can create a useful substance", +2 to SK:Chemistry when "you can create a useful substance", +2 to SK:Pharmacy when "you can create a useful substance", +2 to SK:Poisons when "you can create a useful substance"),_
+	x(#InputReplace("CREATE: Please specify the medium category of matter or energy you can create _
+				(Acid, Biochemicals, Drugs, Earth, Metal, Electricity, Sound, Long-Wave EM, Light, Short-Wave EM, Radiation, etc.):", "[Medium Category]")),_
+	skillused(ST:IQ), mode(create)
+Create [Small Category], 10/20, mods(Create), page(P92), cat(Exotic Mental, Exotic, Physical, Mental),_
+	conditional(+2 to SK:Alchemy when "you can create a useful substance", +2 to SK:Chemistry when "you can create a useful substance", +2 to SK:Pharmacy when "you can create a useful substance", +2 to SK:Poisons when "you can create a useful substance"),_
+	x(#InputReplace("CREATE: Please specify the small category of matter or energy you can create _
+			(Ferrous Metals, Fire, Fossil Fuels, Wood, Gamma Rays, Infrared, Ultrasonics, Visible Light, etc.):", "[Small Category]")),_
+	skillused(ST:IQ), mode(create)
+Create [Specific Item], 5/10, mods(Create), page(P92), cat(Exotic Mental, Exotic, Physical, Mental),_
+	conditional(+2 to SK:Alchemy when "you can create a useful substance", +2 to SK:Chemistry when "you can create a useful substance", +2 to SK:Pharmacy when "you can create a useful substance", +2 to SK:Poisons when "you can create a useful substance"),_
+	x(#InputReplace("CREATE: Please specify the specific element/compound or commonly occuring mixture you can create _
+				(Salt, Water, Air, Brine, etc.):", "[Specific Item]")),_
+	skillused(ST:IQ), mode(create)
+Creation Pool, 1/2, page(P93), cat(Exotic Mental, Exotic, Physical, Mental)
+
+Illusion, 25, mods(Illusion), page(P95), cat(Exotic Mental, Exotic, Physical, Mental), radius(2),_
+	conditional(+2 to SK:Public Speaking when "making briefings and presentations", +2 to SK:Teaching when "making briefings and presentations"),_
+	skillused(ST:IQ), mode(create)
+
+Leech, 25/29, mods(Leech), page(P96), cat(Exotic, Physical, Natural Attacks),_
+	reach(C), damage($solver(me::level)), damtype(HP/sec),_
+	levelnames(1HP/sec,#buildlist(list(#list(LevelName Step 1)), template(%listitem%HP/sec)))
+
+Static, 30, mods(Static), page(P98), cat(Exotic, Physical), x(#InputToTag("STATIC: Specify the power source which you can stop from working (Magic, Psi, etc.)", NameExt))
+
+Energy Reserve, 3/6, mods(Energy Reserve), cat(Attributes, Exotic, Physical), page(P119),_
+	x(#InputToTag("Please specify power source to which the Energy Reserve applies (Magical, Psi, etc.):", NameExt, , "Energy Reserve"))
+
+Tunneling (Slow), 5, displaycost(5/6/+), mods(Slow Tunneling), page(B94), cat(Exotic, Physical),_
+	replacetags(in "ST:Tunneling Move" with "hide(), display(yes), mainwin(11), noresync(yes)"),_
+	initmods(Tunneling Move, +1/+2, group(Slow Tunneling), page(P86)),_
+	x(#buildit)
+
+<Exotic Mental>
+Telecommunication (Directional Sound), 5, mods(Telecommunication, Directional Sound), page(B91, P81), cat(Exotic Physical, Exotic, Mental, Physical), rangehalfdam(100),_
+	skillused(ST:IQ), mode(Communicate)
+Telecommunication (Gravity-Ripple Comm), 20, mods(Telecommunication, Gravity-Ripple Comm), page(B91, P81), cat(Exotic Physical, Exotic, Mental, Physical), rangehalfdam(1000 mi.),_
+	skillused(ST:IQ), mode(Communicate)
+Telecommunication (Neutrino Comm), 25, mods(Telecommunication, Neutrino Comm), page(B91, P81), cat(Exotic Physical, Exotic, Mental, Physical), rangehalfdam(1000 mi.),_
+	skillused(ST:IQ), mode(Communicate)
+Telecommunication (Sonar Comm), 10, mods(Telecommunication, Sonar Comm), page(B91, P81), cat(Exotic Physical, Exotic, Mental, Physical), rangehalfdam(50),_
+	skillused(ST:IQ), mode(Communicate)
+Modular Abilities (Divine Inspiration), 0, displaycost(6+4/point), mods(Divine Inspiration, Modular Ability), page(B71, P63), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Divine Inspiration),_
+		#InputReplace("How many points does this slot have:","[level]","1",Divine Inspiration),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 6+4/point, formula(6+(me::level*4)), forceformula(yes), group(Divine Inspiration), page(B71), mods(Modular Abilities), level([level]) )
+
+<Supernatural Mental>
+Jumper (Spirit), 100, mods(Jumper, Spirit Jumper), page(B64, P57), cat(Supernatural, Mental),_
+	skillused(ST:IQ), mode(Spirit Jump)
+Oracle (Digital), 15, page(B72, P65), cat(Supernatural, Mental), mods(Oracle),_
+	mode(Perceive|Interpret), skillused(ST:Perception|ST:IQ)
+True Faith (Chosen), 15, page(B94, P84), cat(Supernatural, Mental), mods(True Faith)
+
+//  Talents
+_New Power Talent, %costaliaslist%, displaycost(varies), cat(Supernatural, Mental, Talents - Powers), upto(4), mods(_Talents, _Power Talents),_
+	x(#InputToTagReplace("please enter the name of this Power Talent:" , name, ,"New Power Talent"),_
+	#ChoiceList(_
+			name(cost),_
+			title(New Talent: Cost),_
+			text(Choose the point cost and number of affected skills for this talent.),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+					5/level (most power talents),_
+				10/level (wide ranging talents - e.g. Magery),_
+				15/level (Cosmic ranging talents) _
+				),_
+			aliaslist(_
+					5/10,_
+					10/20,_
+					15/30_
+				)_
+			),_
+	#buildit),_
+	blockat(@max(ST:HT÷2 + 3 + me::physicalpowerblock,ST:Will÷2 + 3 + me::mentalpowerblock)),_
+		gives(_
+				=+@textindexedvalue( $modetag(mode),_
+						({Power Dodge}, me::powerdodge),_
+						({Power Block/Mental}, me::mentalpowerblock),_
+						({Power Block/Physical}, me::physicalpowerblock)_
+						) to me::skillscore$,_
+				+1 to SK:Skill Name Here, +1 to SK:Skill Name Here_
+			),_
+	newmode(Power Dodge, skillused(ST:Basic Speed + 3)),_
+	newmode({Power Block/Physical}, skillused(ST:HT÷2 + 3)),_
+	newmode({Power Block/Mental}, skillused(ST:Will÷2 + 3)),_
+	powerdodge(-ST:PowerDodgeBase + @int(ST:PowerDodgeBase + (me::level/2))),_
+	mentalpowerblock(-ST:PowerBlockMentalBase + @int(ST:PowerBlockMentalBase + (me::level/2))),_
+	physicalpowerblock(-ST:PowerBlockPhysicalBase + @int(ST:PowerBlockPhysicalBase + (me::level/2)))
+
+Air Talent, 5/10, upto(4), page(P121,P167-169), cat(Supernatural, Mental, Talents - Powers), mods(_Talents, _Power Talents),_
+	blockat(@max(ST:HT÷2 + 3 + me::physicalpowerblock,ST:Will÷2 + 3 + me::mentalpowerblock)),_
+		gives(_
+				=+@textindexedvalue( $modetag(mode),_
+						({Power Dodge}, me::powerdodge),_
+						({Power Block/Mental}, me::mentalpowerblock),_
+						({Power Block/Physical}, me::physicalpowerblock)_
+						) to me::skillscore$,_
+				+1 to SK:Skill Name Here, +1 to SK:Skill Name Here_
+			),_
+	newmode(Power Dodge, skillused(ST:Basic Speed + 3)),_
+	newmode({Power Block/Physical}, skillused(ST:HT÷2 + 3)),_
+	newmode({Power Block/Mental}, skillused(ST:Will÷2 + 3)),_
+	powerdodge(-ST:PowerDodgeBase + @int(ST:PowerDodgeBase + (me::level/2))),_
+	mentalpowerblock(-ST:PowerBlockMentalBase + @int(ST:PowerBlockMentalBase + (me::level/2))),_
+	physicalpowerblock(-ST:PowerBlockPhysicalBase + @int(ST:PowerBlockPhysicalBase + (me::level/2)))
+
+#Clone "AD:Air Talent" as "AD:Animal Control Talent"
+#Clone "AD:Air Talent" as "AD:Anti-Magic Talent"
+#Clone "AD:Air Talent" as "AD:Antipsi Talent"
+#Clone "AD:Air Talent" as "AD:Anti-Super Talent"
+#Clone "AD:Air Talent" as "AD:Astral Projection Talent"
+#Clone "AD:Air Talent" as "AD:Bioenergy Talent"
+#Clone "AD:Air Talent" as "AD:Body Alteration Talent"
+#Clone "AD:Air Talent" as "AD:Body Control Talent"
+#Clone "AD:Air Talent" as "AD:Chaos Talent"
+#Clone "AD:Air Talent" as "AD:Cold/Ice Talent"
+#Clone "AD:Air Talent" as "AD:Cosmic Talent"
+#Clone "AD:Air Talent" as "AD:Darkness Talent"
+#Clone "AD:Air Talent" as "AD:Death Talent"
+#Clone "AD:Air Talent" as "AD:Dimension Travel Talent"
+#Clone "AD:Air Talent" as "AD:Earth Talent"
+#Clone "AD:Air Talent" as "AD:Electricity Talent"
+#Clone "AD:Air Talent" as "AD:Electrokinesis Talent"
+#Clone "AD:Air Talent" as "AD:ESP Talent"
+#Clone "AD:Air Talent" as "AD:Evil Talent"
+#Clone "AD:Air Talent" as "AD:Force Constructs Talent"
+#Clone "AD:Air Talent" as "AD:Good Talent"
+#Clone "AD:Air Talent" as "AD:Gravity Talent"
+#Clone "AD:Air Talent" as "AD:Healing Talent"
+#Clone "AD:Air Talent" as "AD:Heat/Fire Talent"
+#Clone "AD:Air Talent" as "AD:Illusion Talent"
+#Clone "AD:Air Talent" as "AD:Kinetic Energy Talent"
+#Clone "AD:Air Talent" as "AD:Life Talent"
+#Clone "AD:Air Talent" as "AD:Light Talent"
+#Clone "AD:Air Talent" as "AD:Machine Telepathy Talent"
+#Clone "AD:Air Talent" as "AD:Magnetism Talent"
+#Clone "AD:Air Talent" as "AD:Matter Control Talent"
+#Clone "AD:Air Talent" as "AD:Order Talent"
+#Clone "AD:Air Talent" as "AD:Plant Control Talent"
+#Clone "AD:Air Talent" as "AD:Probability Alteration Talent"
+#Clone "AD:Air Talent" as "AD:Psychokinesis Talent"
+#Clone "AD:Air Talent" as "AD:Radiation Talent"
+#Clone "AD:Air Talent" as "AD:Sound/Vibration Talent"
+#Clone "AD:Air Talent" as "AD:Spirit Control Talent"
+#Clone "AD:Air Talent" as "AD:Telepathy Talent"
+#Clone "AD:Air Talent" as "AD:Teleportation Talent"
+#Clone "AD:Air Talent" as "AD:Time Mastery Talent"
+#Clone "AD:Air Talent" as "AD:Vampirism Talent"
+#Clone "AD:Air Talent" as "AD:Water Talent"
+#Clone "AD:Air Talent" as "AD:Weather Control Talent"
+
+#Delete "AD:ESP Talent"
+#Delete "AD:Healing Talent"
+#Delete "AD:PK Talent"
+#Delete "AD:Telepathy Talent"
+#Delete "AD:Teleportation Talent"
+
+#Clone "AD:Air Talent" as "AD:ESP Talent"
+#Clone "AD:Air Talent" as "AD:Healing Talent"
+#Clone "AD:Air Talent" as "AD:PK Talent"
+#Clone "AD:Air Talent" as "AD:Telepathy Talent"
+#Clone "AD:Air Talent" as "AD:Teleportation Talent"
+
+#MergeTags in "AD:ESP Talent" with "page(B256)"
+#MergeTags in "AD:Healing Talent" with "page(B256)"
+#MergeTags in "AD:PK Talent" with "page(B256)"
+#MergeTags in "AD:Telepathy Talent" with "page(B256)"
+#MergeTags in "AD:Teleportation Talent" with "page(B256)"
+
+#MergeTags in "AD:ESP Talent" with "gives(+@if(@itemhasmod(AD:Channeling, ESP) THEN 1 ELSE 0) to AD:Channeling::skillscore,_
+											+@if(@itemhasmod(AD:Clairsentience, ESP) THEN 1 ELSE 0) to AD:Clairsentience::skillscore,_
+											+@if(@itemhasmod(AD:Danger Sense, ESP) THEN 1 ELSE 0) to AD:Danger Sense::skillscore,_
+											+@if(@itemhasmod(AD:Detect, ESP) THEN 1 ELSE 0) to AD:Detect::skillscore,_
+											+@if(@itemhasmod(AD:Medium, ESP) THEN 1 ELSE 0) to AD:Medium::skillscore,_
+											+@if(@itemhasmod(AD:Oracle, ESP) THEN 1 ELSE 0) to AD:Oracle::skillscore,_
+											+@if(@itemhasmod(AD:Para-Radar, ESP) THEN 1 ELSE 0) to AD:Para-Radar::skillscore,_
+											+@if(@itemhasmod(AD:Penetrating Vision, ESP) THEN 1 ELSE 0) to AD:Penetrating Vision::skillscore,_
+											+@if(@itemhasmod(AD:Precognition, ESP) THEN 1 ELSE 0) to AD:Precognition::skillscore,_
+											+@if(@itemhasmod(AD:Psychometry, ESP) THEN 1 ELSE 0) to AD:Psychometry::skillscore,_
+											+@if(@itemhasmod(AD:Racial Memory, ESP) THEN 1 ELSE 0) to AD:Racial Memory::skillscore,_
+											+@if(@itemhasmod(AD:See Invisible, ESP) THEN 1 ELSE 0) to AD:See Invisible::skillscore_
+											)"
+#MergeTags in "AD:Psychic Healing Talent" with "gives(+@if(@itemhasmod(AD:Detect, Psychic Healing) THEN 1 ELSE 0) to AD:Detect::skillscore,_
+														+@if(@itemhasmod(AD:Healing, Psychic Healing) THEN 1 ELSE 0) to AD:Healing::skillscore,_
+														+@if(@itemhasmod(AD:Metabolism Control, Psychic Healing) THEN 1 ELSE 0) to AD:Metabolism Control::skillscore,_
+														+@if(@itemhasmod(AD:Regeneration, Psychic Healing) THEN 1 ELSE 0) to AD:Regeneration::skillscore,_
+														+@if(@itemhasmod(AD:Regrowth, Psychic Healing) THEN 1 ELSE 0) to AD:Regrowth::skillscore,_
+														+@if(@itemhasmod(AD:Resistant, Psychic Healing) THEN 1 ELSE 0) to AD:Resistant::skillscore_
+														)"
+#MergeTags in "AD:PK Talent" with "gives(+@if(@itemhasmod(AD:Binding (PK), Psychokinetic) THEN 1 ELSE 0) to AD:Binding (PK)::skillscore,_
+											+@if(@itemhasmod(AD:Binding (PK), Psychokinetic) THEN 1 ELSE 0) to AD:Binding (PK)::skillscore,_
+											+@if(@itemhasmod(AD:Binding (Psychokinetic), Psychokinetic) THEN 1 ELSE 0) to AD:Binding (Psychokinetic)::skillscore,_
+											+@if(@itemhasmod(AD:Damage Resistance, Psychokinetic) THEN 1 ELSE 0) to AD:Damage Resistance::skillscore,_
+											+@if(@itemhasmod(AD:Enhanced Move (Air), Psychokinetic) THEN 1 ELSE 0) to AD:Enhanced Move (Air)::skillscore,_
+											+@if(@itemhasmod(AD:Enhanced Move (Water), Psychokinetic) THEN 1 ELSE 0) to AD:Enhanced Move (Water)::skillscore,_
+											+@if(@itemhasmod(AD:Flight, Psychokinetic) THEN 1 ELSE 0) to AD:Flight::skillscore,_
+											+@if(@itemhasmod(AD:Burning Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Burning Attack::skillscore,_
+											+@if(@itemhasmod(AD:Corrosion Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Corrosion Attack::skillscore,_
+											+@if(@itemhasmod(AD:Crushing Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Crushing Attack::skillscore,_
+											+@if(@itemhasmod(AD:Cutting Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Cutting Attack::skillscore,_
+											+@if(@itemhasmod(AD:Fatigue Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Fatigue Attack::skillscore,_
+											+@if(@itemhasmod(AD:Huge Piercing Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Huge Piercing Attack::skillscore,_
+											+@if(@itemhasmod(AD:Impaling Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Impaling Attack::skillscore,_
+											+@if(@itemhasmod(AD:Large Piercing Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Large Piercing Attack::skillscore,_
+											+@if(@itemhasmod(AD:Piercing Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Piercing Attack::skillscore,_
+											+@if(@itemhasmod(AD:Small Piercing Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Small Piercing Attack::skillscore,_
+											+@if(@itemhasmod(AD:Toxic Attack, Psychokinetic) THEN 1 ELSE 0) to AD:Toxic Attack::skillscore,_
+											+@if(@itemhasmod(AD:Super Jump, Psychokinetic) THEN 1 ELSE 0) to AD:Super Jump::skillscore,_
+											+@if(@itemhasmod(AD:Telekinesis, Psychokinetic) THEN 1 ELSE 0) to AD:Telekinesis::skillscore,_
+											+@if(@itemhasmod(AD:Temperature Control, Psychokinetic) THEN 1 ELSE 0) to AD:Temperature Control::skillscore,_
+											+@if(@itemhasmod(AD:Vibration Sense, Psychokinetic) THEN 1 ELSE 0) to AD:Vibration Sense::skillscore,_
+											+@if(@itemhasmod(AD:Walk on Air, Psychokinetic) THEN 1 ELSE 0) to AD:Walk on Air::skillscore,_
+											+@if(@itemhasmod(AD:Walk on Liquid, Psychokinetic) THEN 1 ELSE 0) to AD:Walk on Liquid::skillscore_
+											)"
+#MergeTags in "AD:Telepathy Talent" with "gives(+@if(@itemhasmod(AD:Animal Empathy, Telepathic) THEN 1 ELSE 0) to AD:Animal Empathy::skillscore,_
+													+@if(@itemhasmod(AD:Empathy, Telepathic) THEN 1 ELSE 0) to AD:Empathy::skillscore,_
+													+@if(@itemhasmod(AD:Invisibility, Telepathic) THEN 1 ELSE 0) to AD:Invisibility::skillscore,_
+													+@if(@itemhasmod(AD:Mind Control, Telepathic) THEN 1 ELSE 0) to AD:Mind Control::skillscore,_
+													+@if(@itemhasmod(AD:Mind Probe, Telepathic) THEN 1 ELSE 0) to AD:Mind Probe::skillscore,_
+													+@if(@itemhasmod(AD:Mind Reading, Telepathic) THEN 1 ELSE 0) to AD:Mind Reading::skillscore,_
+													+@if(@itemhasmod(AD:Mind Shield, Telepathic) THEN 1 ELSE 0) to AD:Mind Shield::skillscore,_
+													+@if(@itemhasmod(AD:Mindlink, Telepathic) THEN 1 ELSE 0) to AD:Mindlink::skillscore,_
+													+@if(@itemhasmod(AD:Possession, Telepathic) THEN 1 ELSE 0) to AD:Possession::skillscore,_
+													+@if(@itemhasmod(AD:Speak with Animals, Telepathic) THEN 1 ELSE 0) to AD:Speak with Animals::skillscore,_
+													+@if(@itemhasmod(AD:Special Rapport, Telepathic) THEN 1 ELSE 0) to AD:Special Rapport::skillscore,_
+													+@if(@itemhasmod(AD:Telecommunication (Telesend), Telepathic) THEN 1 ELSE 0) to AD:Telecommunication (Telesend)::skillscore,_
+													+@if(@itemhasmod(AD:Terror, Telepathic) THEN 1 ELSE 0) to AD:Terror::skillscore,_
+													+@if(@itemhasmod(AD:Fatigue Attack, Telepathic) THEN 1 ELSE 0) to AD:Fatigue Attack::skillscore,_
+													+@if(@itemhasmod(AD:Affliction, Telepathic) AND @itemhasmod(AD:Affliction, Malediction) THEN 1 ELSE 0) to AD:Affliction::skillscore_
+													)"
+#MergeTags in "AD:Teleportation Talent" with "gives(+@if(@itemhasmod(AD:Jumper, Psionic Teleportation) THEN 1 ELSE 0) to AD:Jumper::skillscore,_
+														+@if(@itemhasmod(AD:Snatcher, Psionic Teleportation) THEN 1 ELSE 0) to AD:Snatcher::skillscore,_
+														+@if(@itemhasmod(AD:Warp, Psionic Teleportation) THEN 1 ELSE 0) to AD:Warp::skillscore_
+														)"
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Techniques, Techniques - Combat>
+Coordinated Attack ([Type]), Tech/H, tl(0-12), default("SK:[Type]"),_
+		needs("SK:[Type]" = 1pts), page(P166), noresync(yes),_
+		x( #InputReplace("Choose combat skill to specialize in:", "[Type]", , "Coordinated Attack") )
+Coordinated Attack (%Combat Skill%), Tech/H, tl(0-12), default("SK:%Combat Skill%"),_
+	needs("SK:%Combat Skill%"= 1pts), page(P166),_
+	x(#ChoiceList(_
+			name(Combat Skill),_
+			title(Choose combat skill to specialize:),_
+			text(Choose combat skill to specialize in:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Artillery (Beams)",_
+				"Artillery (Bombs)",_
+				"Artillery (Cannon)",_
+				"Artillery (Catapult)",_
+				"Artillery (Guided Missile)",_
+				"Artillery (Torpedoes)",_
+				"Axe/Mace",_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Blowpipe",_
+				"Bolas",_
+				"Bow",_
+				"Boxing",_
+				"Brawling",_
+				"Broadsword",_
+				"Cloak",_
+				"Crossbow",_
+				"Dropping",_
+				"Flail",_
+				"Force Sword",_
+				"Force Whip",_
+				"Garrote",_
+				"Gunner (Beams)",_
+				"Gunner (Cannon)",_
+				"Gunner (Catapult)",_
+				"Gunner (Machine Gun)",_
+				"Gunner (Rockets)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)",_
+				"Innate Attack (Beam)",_
+				"Innate Attack (Breath)",_
+				"Innate Attack (Gaze)",_
+				"Innate Attack (Projectile)",_
+				"Jitte/Sai",_
+				"Judo",_
+				"Karate",_
+				"Knife",_
+				"Kusari",_
+				"Lance",_
+				"Lasso",_
+				"Liquid Projector (Flamethrower)",_
+				"Liquid Projector (Sprayer)",_
+				"Liquid Projector (Squirt Gun)",_
+				"Liquid Projector (Water Cannon)",_
+				"Main-Gauche",_
+				"Monowire Whip",_
+				"Net",_
+				"Parry Missile Weapons",_
+				"Polearm",_
+				"Rapier",_
+				"Saber",_
+				"Shield (Buckler)",_
+				"Shield (Force)",_
+				"Shield (Shield)",_
+				"Shortsword",_
+				"Sling",_
+				"Smallsword",_
+				"Spear",_
+				"Spear Thrower",_
+				"Staff",_
+				"Sumo Wrestling",_
+				"Thrown Weapon (Axe/Mace)",_
+				"Thrown Weapon (Dart)",_
+				"Thrown Weapon (Harpoon)",_
+				"Thrown Weapon (Knife)",_
+				"Thrown Weapon (Shuriken)",_
+				"Thrown Weapon (Spear)",_
+				"Thrown Weapon (Stick)",_
+				"Tonfa",_
+				"Two-Handed Axe/Mace",_
+				"Two-Handed Flail",_
+				"Two-Handed Sword",_
+				"Whip",_
+				"Wrestling" _
+				)_
+			)_
+	), noresync(yes)
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Burning Attack Enhancements>
+Damage Modifier: Incendiary, +10%, shortname(Incendiary), group(Burning Attack Enhancements), page(P102),_
+	gives(=" inc" to owner::damtype$)
+
+<Burning Attack Limitations>
+Damage Limitation: No Wounding, -50%, shortname(No Wounding), group(Burning Attack Limitations), page(B111, P102),_
+	gives(=" nw" to owner::damtype$)
+
+<Crushing Attack Enhancements>
+Melee Attack: ST-Based, +100%, group(Crushing Attack Enhancements), page(P103), shortname(ST-Based),_
+	gives(="+sw" to owner::damage$)
+
+<Corrosion Attack Limitations>
+Damage Limitation: No Wounding, -50%, shortname(No Wounding), group(Corrosion Attack Limitations), page(B111, P102),_
+	gives(=" nw" to owner::damtype$)
+
+<Cutting Attack Enhancements>
+Melee Attack: ST-Based, +100%, group(Cutting Attack Enhancements), page(P103), shortname(ST-Based),_
+	gives(="+sw" to owner::damage$)
+
+<Fatigue Attack Limitations>
+Resistible (ST), -5%/-10%, group(Fatigue Attack Limitations), page(B115), gives(=" R-ST$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(ST-5, ST-4, ST-3, ST-2, ST-1, ST)
+Resistible (DX), -5%/-10%, group(Fatigue Attack Limitations), page(B115), gives(=" R-DX$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(DX-5, DX-4, DX-3, DX-2, DX-1, DX)
+Resistible (IQ), -5%/-10%, group(Fatigue Attack Limitations), page(B115), gives(=" R-IQ$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(IQ-5, IQ-4, IQ-3, IQ-2, IQ-1, IQ)
+Resistible (Will), -5%/-10%, group(Fatigue Attack Limitations), page(B115), gives(=" R-Will$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(Will-5, Will-4, Will-3, Will-2, Will-1, Will)
+Resistible (Per), -5%/-10%, group(Fatigue Attack Limitations), page(B115), gives(=" R-Per$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(Per-5, Per-4, Per-3, Per-2, Per-1, Per)
+
+<Impaling Attack Enhancements>
+Melee Attack: ST-Based, +100%, group(Impaling Attack Enhancements), page(P103), shortname(ST-Based),_
+	gives(="+thr" to owner::damage$)
+
+<Toxic Attack Limitations>
+Resistible (ST), -5%/-10%, group(Toxic Attack Limitations), page(B115), gives(=" R-ST$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(ST-5, ST-4, ST-3, ST-2, ST-1, ST)
+Resistible (DX), -5%/-10%, group(Toxic Attack Limitations), page(B115), gives(=" R-DX$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(DX-5, DX-4, DX-3, DX-2, DX-1, DX)
+Resistible (IQ), -5%/-10%, group(Toxic Attack Limitations), page(B115), gives(=" R-IQ$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(IQ-5, IQ-4, IQ-3, IQ-2, IQ-1, IQ)
+Resistible (Will), -5%/-10%, group(Toxic Attack Limitations), page(B115), gives(=" R-Will$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(Will-5, Will-4, Will-3, Will-2, Will-1, Will)
+Resistible (Per), -5%/-10%, group(Toxic Attack Limitations), page(B115), gives(=" R-Per$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$),_
+	levelnames(Per-5, Per-4, Per-3, Per-2, Per-1, Per)
+
+<_Attack Enhancements>
+Based On ST (Target Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobasenocalc to owner::damage$, ="ST±$solver(owner::level - 1) " to owner::damage$)
+Based On DX (Target Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobasenocalc to owner::damage$, ="DX±$solver(owner::level - 1) " to owner::damage$)
+Based On IQ (Target Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobasenocalc to owner::damage$, ="IQ±$solver(owner::level - 1) " to owner::damage$)
+Based On HT (Target Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobasenocalc to owner::damage$, ="HT±$solver(owner::level - 1) " to owner::damage$)
+Based On Per (Target Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobasenocalc to owner::damage$, ="Per±$solver(owner::level - 1) " to owner::damage$)
+Based On Will (Target Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobasenocalc to owner::damage$, ="Will±$solver(owner::level - 1) " to owner::damage$)
+
+Based On ST (Own Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="ST:ST" to owner::skillused$), addmode(Primary, skillused(ST))
+Based On DX (Own Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="ST:DX" to owner::skillused$), addmode(Primary, skillused(ST:DX))
+Based On IQ (Own Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="ST:IQ" to owner::skillused$), addmode(Primary, skillused(ST:IQ))
+Based On HT (Own Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="ST:HT" to owner::skillused$), addmode(Primary, skillused(ST:HT))
+Based On Per (Own Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="ST:Perception" to owner::skillused$), addmode(Primary, skillused(ST:Perception))
+Based On Will (Own Roll), +20%, group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="ST:Will" to owner::skillused$), addmode(Primary, skillused(ST:Will))
+Based On [Alternate Skill] (Own Roll), +0%/+20%, upto(2), levelnames("",""), group(_Attack Enhancements), page(B102), gives(=nobase to owner::skillused$, ="[Alternate Skill]" to owner::skillused$), addmode(Primary, skillused([Alternate Skill])),_
+	x(_
+	#InputReplace("Please enter the exact skill name (and extension) that this ability uses; multiple skills may listed separated by a comma; skill penalties may be added:", "[Alternate Skill]", "Name (Extension), NameTwo (ExtensionTwo)-3", "Attack Enhancements")_
+	)
+
+Damage Modifier: Fragmentation (large piercing fragments), +15%/+30%, upto(@min(owner::level, 12)), shortname(Fragmentation (pi+)), group(_Attack Enhancements), page(P102),_
+	levelnames([0d], [1d], [2d], [3d], [4d], [5d], [6d], [7d], [8d], [9d], [10d], [11d], [12d]),_
+	gives(=" frag pi+ " to owner::damtype$, =$indexedvalue(me::level, "[1d]", "[2d]", "[3d]", "[4d]", "[5d]", "[6d]", "[7d]", "[8d]", "[9d]", "[10d]", "[11d]", "[12d]") to owner::damtype$)
+Damage Modifier: Fragmentation (impaling fragments), +20%/+40%, upto(@min(owner::level, 12)), shortname(Fragmentation (imp)), group(_Attack Enhancements), page(P102),_
+	levelnames([0d], [1d], [2d], [3d], [4d], [5d], [6d], [7d], [8d], [9d], [10d], [11d], [12d]),_
+	gives(=" frag imp " to owner::damtype$, =$indexedvalue(me::level, "[1d]", "[2d]", "[3d]", "[4d]", "[5d]", "[6d]", "[7d]", "[8d]", "[9d]", "[10d]", "[11d]", "[12d]") to owner::damtype$)
+Delay: Triggered (can specify the trigger at the time of attack), +100%, group(_Attack Enhancements), page(P102)
+Guided: Extra Passes, +10%/+20%, shortname(Extra Passes), group(_Attack Enhancements), page(P103)
+Homing: Extra Passes, +10%/+20%, shortname(Extra Passes), group(_Attack Enhancements), page(P103)
+Melee Attack: Destructive Parry, +10%, group(_Attack Enhancements), page(P103)
+Melee Attack: Dual, +10%, group(_Attack Enhancements), page(P103)
+Overhead: Surprise Attack, 150%, shortname(Surprise Attack), group(_Attack Enhancements), page(P104)
+Rapid Fire: Very Rapid Fire, +10%, shortname(Very Rapid Fire), group(_Attack Enhancements), page(P105)
+Ricochet, +10%, group(_Attack Enhancements), page(P109)
+
+<_Attack Limitations>
+Blood Agent, -40%, group(_Attack Limitations), page(B110, P100)
+
+Damage Modifier: Missing Damage Effect (type), -10%/-20%, group(_Attack Limitations), page(P102)
+Minimum Range, -5%/-10%, upto(2), levelnames(1% of max range, 5% of max range), group(_Attack Limitations), page(P111)
+
+**************************************************************************
+<_General>
+Alternative Ability, *1/5, group(_General), page(P11), tier(2)
+Multiple Copies of the same Advantage, *1/5, group(_General), page(P12), tier(2)
+Accessibility: Can only be powered by Energy Reserve, -5%, shortname(Can only be powered by ER), group(_General), page(P119)
+
+Accessibility: only works a percentage of the time, -0%/-5%, upto(11), group(_General), page(B110, P99), mods(Accessibility),_
+	levelnames(Works 94-100% of the time, Works 82-93% of the time, Works 69-81% of the time, Works 57-68% of the time, Works 44-56% of the time, Works 32-43% of the time, Works 19-31% of the time, Works 7-18% of the time, Works 1-6% of the time, Works less than 1% of the time, Works *FAR* less than 1% of the time),_
+	x(_
+		#InputToTagReplace("please specify the nature of the Accessibility:" , nameext, ,"Accessibility") _
+	)
+
+Affects Insubstantial (Selective), +30%, group(_General), page(P99)
+Affects Substantial (Selective), +50%, group(_General), page(P99)
+Always On, -10%/-20%/-40%/-50%, levelnames(effects are social or cosmetic, effects are physically inconvenient, effects are dangerous, effects are horribly inconvenient and/or very dangerous), upto(4), group(_General), page(B110)
+Usually On, -5%/-10%/-30%/-40%, levelnames(effects are social or cosmetic, effects are physically inconvenient, effects are dangerous, effects are horribly inconvenient and/or very dangerous), upto(4), group(_General), page(P100)
+Cosmic: No die roll required, +100%, group(_General), page(P101)
+Cosmic: No active defense allowed, +300%, group(_General), page(P101)
+Costs Fatigue (Variable), -5%/-10%, mods(Costs Fatigue), forceformula(yes), group(_General), page(P101), shortname(Costs FP),_
+	formula(-5 * @int( (me::level / owner::level) * (1 + owner::level) / 2 )),_
+	description(NOTE: While GCA calculates the correct value for this limitation based on the maximum _
+			FP cost you select you will have to figure out the FP cost per die/level of the _
+			ability yourself.),_
+	x(#message(NOTE: While GCA calculates the correct value for this limitation based on the maximum _
+			FP cost you select you will have to figure out the FP cost per die/level of the _
+			ability yourself.))
+Low Signature, +10%, group(_General), page(P103)
+No Signature, +20%, group(_General), page(P103)
+Backlash: Attribute Penalty: ST, -5%/-10%, mods(Backlash), shortname(Backlash: ST Penalty), group(_General), page(B36, P104)
+Backlash: Attribute Penalty: DX, -10%/-20%, mods(Backlash), shortname(Backlash: DX Penalty), group(_General), page(B36, P104)
+Backlash: Attribute Penalty: IQ, -10%/-20%, mods(Backlash), shortname(Backlash: IQ Penalty), group(_General), page(B36, P104)
+Backlash: Attribute Penalty: HT, -5%/-10%, mods(Backlash), shortname(Backlash: HT Penalty), group(_General), page(B36, P104)
+Backlash: Incapacitation: Daze, -50%, mods(Backlash), shortname(Backlash: Daze), group(_General), page(B36, P104)
+Backlash: Incapacitation: Hallucinating, -50%, mods(Backlash), shortname(Backlash: Hallucinating), group(_General), page(B36, P104)
+Backlash: Incapacitation: Retching, -50%, mods(Backlash), shortname(Backlash: Retching), group(_General), page(B36, P104)
+Backlash: Incapacitation: Agony, -100%, mods(Backlash), shortname(Backlash: Agony), group(_General), page(B36, P104)
+Backlash: Incapacitation: Choking, -100%, mods(Backlash), shortname(Backlash: Choking), group(_General), page(B36, P104)
+Backlash: Incapacitation: Ecstasy, -100%, mods(Backlash), shortname(Backlash: Ecstasy), group(_General), page(B36, P104)
+Backlash: Incapacitation: Seizure, -100%, mods(Backlash), shortname(Backlash: Seizure), group(_General), page(B36, P104)
+Backlash: Incapacitation: Paralysis, -150%, mods(Backlash), shortname(Backlash: Paralysis), group(_General), page(B36, P104)
+Backlash: Incapacitation: Sleep, -150%, mods(Backlash), shortname(Backlash: Sleep), group(_General), page(B36, P104)
+Backlash: Incapacitation: Unconsciousness, -200%, mods(Backlash), shortname(Backlash: Unconsciousness), group(_General), page(B36, P104)
+Backlash: Irritant: Tipsy, -10%, mods(Backlash), shortname(Backlash: Tipsy), group(_General), page(B36, P104)
+Backlash: Irritant: Coughing, -20%, mods(Backlash), shortname(Backlash: Coughing), group(_General), page(B36, P104)
+Backlash: Irritant: Drunk, -20%, mods(Backlash), shortname(Backlash: Drunk), group(_General), page(B36, P104)
+Backlash: Irritant: Moderate Pain, -20%, mods(Backlash), shortname(Backlash: Moderate Pain), group(_General), page(B36, P104)
+Backlash: Irritant: Euphoria, -30%, mods(Backlash), shortname(Backlash: Euphoria), group(_General), page(B36, P104)
+Backlash: Irritant: Nauseated, -30%, mods(Backlash), shortname(Backlash: Nauseated), group(_General), page(B36, P104)
+Backlash: Irritant: Severe Pain, -40%, mods(Backlash), shortname(Backlash: Severe Pain), group(_General), page(B36, P104)
+Backlash: Irritant: Terrible Pain, -60%, mods(Backlash), shortname(Backlash: Terrible Pain), group(_General), page(B36, P104)
+Backlash: Stunning, -10%, mods(Backlash), shortname(Backlash: Stunning), group(_General), page(B36, P104)
+Selective Effect, +20%, group(_General), page(P105)
+Uncontrollable Trigger, -5%/-10%, upto(3), levelnames(Occasional, Common, Very Common), mods(Uncontrollable Trigger), group(_General), page(P106)
+Hard to Use, -5%/-10%, upto(4), levelnames(-3, -6, -9, -12), group(_General), page(P107)
+
+//  New Enhancements
+Affects Others, +50%/+100%, group(_General), page(P107)
+Can Carry Objects, +10%/+20%/+50%/+100%, upto(4), levelnames(No Encumbrance, Light Encumbrance, Medium Encumbrance, Heavy Encumbrance), group(_General), page(P108)
+Erosive, +10%, group(_General), page(P108)
+Force Field, +20%, group(_General), page(P108), gives(=All+nobase to owner::location$)
+Game Time, +0, group(_General), page(P108)
+Independent, +40%/+70%, upto(2), levelnames( , power has penalty for simultaneous use), group(_General), page(P108)
+Long-Range, +50%/+100%, upto(4), group(_General), page(P108)
+"Once On, Stays On", +50%, group(_General), page(P109)
+Reflexive, +40%, group(_General), page(P109)
+Reliable, +5%/+10%, upto(10), group(_General), page(P109), gives(+1 to owner::skillscore), mods(_Talents)
+Switchable, +10%, group(_General), page(P109)
+Usually On, +5%, group(_General), page(P109)
+Timespanning, +50%/+50%/+100%, upto(3), levelnames(Past Only, Future Only, Past & Future), group(_General), page(P109)
+Timespanning (Doesn't work in Present), +0%/+0%/+50%, upto(3), levelnames(Past Only, Future Only, Past & Future), group(_General), page(P109)
+World-Spanning, +50%/+100%, upto(2), levelnames(only works in own realm, works in own & other realms), group(_General), page(P109)
+
+//  New Limitations
+All-Out, -25%, group(_General), page(P110)
+Aspected, -20%, group(_General), page(P110)
+Blockable, -5%/-10%, upto(2), levelnames(can be blocked with shield, can be blocked or parried), group(_General), page(P110)
+Costs Hit Points, -10%/-20%, mods(Costs Hit Points), group(_General), page(P110), shortname(Costs HP)
+Costs Hit Points (Variable), -10%/-20%, mods(Costs Hit Points), forceformula(yes), group(_General), page(P101, P110), shortname(Costs HP),_
+	formula(-10 * @int( (me::level / owner::level) * (1 + owner::level) / 2 )),_
+	description(NOTE: While GCA calculates the correct value for this limitation based on the maximum _
+			HP cost you select you will have to figure out the HP cost per die/level of the _
+			ability yourself.),_
+	x(#message(NOTE: While GCA calculates the correct value for this limitation based on the maximum _
+			FP cost you select you will have to figure out the FP cost per die/level of the _
+			ability yourself.))
+Environmental, -5%/-10%/-20%/-40%/-80%, upto(5), levelnames(Very Common, Common, Occasional, Rare, Very Rare), group(_General), page(P110)
+Fickle, -20%, group(_General), page(P110)
+Requires Reaction Roll, -5%, group(_General), page(P111)
+Glamour, -5%/-10%, levelnames(Will-5, Will-4, Will-3, Will-2, Will-1, Will), group(_General), page(P111)
+Insubstantial Only, -30%, group(_General), page(P111)
+Maximum Duration, -0%/-5%/-10%/-25%/-50%/-65%/-75%, upto(7), group(_General), page(P111),_
+	levelnames(Greater than 12 hours, Up to 12 hours (or one night), Up to 1 hour, Up to 30 minutes, Up to 10 minutes, Up to 1 minute, Less than 30 seconds)
+Minimum Duration, -0%/-5%, upto(7), group(_General), page(P111),_
+	levelnames(Less than 1 hour, Up to 8 hours, Up to 12 hours (or one night), Up to 24 hours, Up to 1 week, Up to 1 month, Greater than 1 month)
+
+Requires DX Roll, -10%, group(_General), page(P112),_
+	addmode(activate, skillused(ST:DX))
+Requires IQ Roll, -10%, group(_General), page(P112),_
+	addmode(activate, skillused(ST:IQ))
+Requires HT Roll, -10%, group(_General), page(P112),_
+	addmode(activate, skillused(ST:HT))
+Requires Per Roll, -5%, group(_General), page(P112),_
+	addmode(activate, skillused(ST:Perception))
+Requires Will Roll, -5%, group(_General), page(P112),_
+	addmode(activate, skillused(ST:Will))
+
+Requires [Skill] Roll, -0%/-10%, upto(2), levelnames(,), group(_General), page(P112),_
+	addmode(Primary, skillused([Skill])),_
+	x(_
+		#InputReplace("Please enter the name (and extension) of the skill:","[Skill]", ,Requires Skill Roll),_
+		#Message("For abilities which already require an attribute roll this is generally a -0% limitation to require a skill roll instead. For abilities which don't, it's worth -10%.")_
+	)
+
+Requires %skillslist% Roll, -0%/-10%, upto(2), levelnames(,), group(_General), page(P112),_
+	addmode(Primary, skillused(%skillslist%)),_
+	x(_
+	#ChoiceList(_
+			name(skills),_
+			title(Talent Bonus: Choose Skills),_
+			text(Choose which skills will receive a bonus from this Talent.),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSkills, flags(NoPrefix))_
+			)_
+		),_
+	#Message("For abilities which already require an attribute roll this is generally a -0% limitation to require a skill roll instead. For abilities which don't, it's worth -10%.") _
+	)
+
+Requires Active Defense, -40%, group(_General), page(P112)
+
+Requires Concentrate, -15%, group(_General), page(P112)
+Requires Ready, -10%, group(_General), page(P112)
+Short Ranged, -10%/-20%, group(_General), page(P112)
+Magnetic, -50%, group(_General), page(P112)
+Specific, -10%/-20%, group(_General), page(P112)
+Terminal Condition, -0%/-5%, group(_General), page(P112)
+Visible, -10%/-20%, upto(2), group(_General), page(P112)
+
+<Accessibility>
+Half Power, *0.5, group(Accessibility), page(B110)
+
+<Ally>
+Conjured, +100%, group(Ally), page(P41)
+
+<Backlash>
+Resistible, *0.5, group(Backlash), page(P104)
+
+<Costs Hit Points>
+Per Minute, *1, group(Costs Hit Points), page(B111)
+Per Second, *2, group(Costs Hit Points), page(B111)
+Per Activation, *1, group(Costs Hit Points), page(B111)
+Converts built in FP cost to HP, *1/2, group(Costs Hit Points), page(P110)
+
+<Uncontrollable Trigger>
+Destructive Power, *3, group(Uncontrollable Trigger), page(P106)
+**************************************************************************
+
+**************************************************************************
+<_Power Modifiers>
+_New Power Modifier, -0%, mods(New Power Modifier), group(_Power Modifiers), page(P20-26),_
+	x(_
+		#InputToTagReplace("Specify the name of this power modifier (e.g. Psi, Chi, etc.):",name, ,New Power Modifier),_
+		#buildit _
+	)
+
+Cosmic: Two Tiers, +0%/+50%, upto(2), levelnames(Tier 2, Tier 1 (Cosmic)), group(_Power Modifiers), page(P32)
+Cosmic: Three Tiers, +0%/+25%/+50%, upto(3), levelnames(Tier 3, Tier 2, Tier 1 (Cosmic)), group(_Power Modifiers), page(P32)
+Cosmic: Four Tiers, +0%/+15%/+30%/+50%, upto(4), levelnames(Tier 4, Tier 3, Tier 2, Tier 1 (Cosmic)), group(_Power Modifiers), page(P32)
+Cosmic: Five Tiers, +0%/+10%/+25%/+35%/+50%, upto(5), levelnames(Tier 5, Tier 4, Tier 3, Tier 2, Tier 1 (Cosmic)), group(_Power Modifiers), page(P32)
+Cosmic: Six Tiers, +0%/+10%/+20%/+30%/+40%/+50%, upto(6), levelnames(Tier 6, Tier 5, Tier 4, Tier 3, Tier 2, Tier 1 (Cosmic)), group(_Power Modifiers), page(P32)
+
+Biological, -10%, group(_Power Modifiers), page(P26)
+Chi, -10%, group(_Power Modifiers), page(P26)
+Cosmic, +50%, group(_Power Modifiers), page(P26)
+Divine, -10%, group(_Power Modifiers), page(P26)
+Elemental: Other, -10%, group(_Power Modifiers), page(P27)
+Elemental: Air, -10%, group(_Power Modifiers), page(P27)
+Elemental: Cold/Ice, -10%, group(_Power Modifiers), page(P27)
+Elemental: Darkness, -10%, group(_Power Modifiers), page(P27)
+Elemental: Earth, -10%, group(_Power Modifiers), page(P27)
+Elemental: Electricity, -10%, group(_Power Modifiers), page(P27)
+Elemental: Heat/Fire, -10%, group(_Power Modifiers), page(P27)
+Elemental: Light, -10%, group(_Power Modifiers), page(P27)
+Elemental: Radiation, -10%, group(_Power Modifiers), page(P27)
+Elemental: Sound/Vibration, -10%, group(_Power Modifiers), page(P27)
+Elemental: Water, -10%, group(_Power Modifiers), page(P27)
+Magical, -10%, group(_Power Modifiers), page(P27)
+Moral, -20%, group(_Power Modifiers), page(P27)
+Nature, -20%, group(_Power Modifiers), page(P28)
+Psionic, -10%, group(_Power Modifiers), page(P28)
+Spirit, -25%, group(_Power Modifiers), page(P28)
+Super, -10%, group(_Power Modifiers), page(P29)
+
+<New Power Modifier>
+_New/Other Effect, -1/-2, group(New Power Modifier), page(P24), level(%levelaliaslist%),_
+	x(_
+		#InputToTagReplace("Please specify the name of the effect:",name, ,New/Other Effect),_
+		#ChoiceList(_
+			name(level),_
+			title(New/Other Effect),_
+			text(Please select the point cost of the effect. If the exact value is not listed pick the closest one, you will be able to adjust it later:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"  -1",_
+				"  -2",_
+				"  -3",_
+				"  -4",_
+				"  -5",_
+				"  -6",_
+				"  -7",_
+				"  -8",_
+				"  -9",_
+				" -10",_
+				" -11",_
+				" -12",_
+				" -13",_
+				" -14",_
+				" -15",_
+				" -20",_
+				" -25",_
+				" -30",_
+				" -35",_
+				" -40",_
+				" -45",_
+				" -50",_
+				" -55",_
+				" -60",_
+				" -65",_
+				" -70",_
+				" -75",_
+				" -80",_
+				" -85",_
+				" -90",_
+				" -95",_
+				"-100"_
+				),_
+			aliaslist(_
+				1,_
+				2,_
+				3,_
+				4,_
+				5,_
+				6,_
+				7,_
+				8,_
+				9,_
+				10,_
+				11,_
+				12,_
+				13,_
+				14,_
+				15,_
+				20,_
+				25,_
+				30,_
+				35,_
+				40,_
+				45,_
+				50,_
+				55,_
+				60,_
+				65,_
+				70,_
+				75,_
+				80,_
+				85,_
+				90,_
+				95,_
+				100 _
+					)_
+			),_
+		#Edit _
+	),_
+	levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))
+
+Ambient energies blocked by Esoteric or Supernatural item/condition, -5, group(New Power Modifier), page(P24)
+Ambient energies blocked by Mundane item/condition, -10, group(New Power Modifier), page(P24)
+Fickle, -20, group(New Power Modifier), page(P24)
+Cosmic Power, +50, group(New Power Modifier), page(P21)
+Countermeasures: Mundane, -10, group(New Power Modifier), page(P20)
+Countermeasures: Special advantages or skills, -5, group(New Power Modifier), page(P20)
+Countermeasures: Technological, -5, group(New Power Modifier), page(P20)
+
+Required Disadvantage, -1/-2, group(New Power Modifier), page(P21-23), level(%levelaliaslist%),_
+	x(_
+		#InputToTag("Please specify the name of the required disadvantage:",nameext, ,Required Disadvantage),_
+		#ChoiceList(_
+			name(level),_
+			title(Required Disadvantage),_
+			text(Please select the point cost of the required disadvantage. If the exact value is not listed pick the closest one, you will be able to adjust it later:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"  -1",_
+				"  -2",_
+				"  -3",_
+				"  -4",_
+				"  -5",_
+				"  -6",_
+				"  -7",_
+				"  -8",_
+				"  -9",_
+				" -10",_
+				" -11",_
+				" -12",_
+				" -13",_
+				" -14",_
+				" -15",_
+				" -20",_
+				" -25",_
+				" -30",_
+				" -35",_
+				" -40",_
+				" -45",_
+				" -50",_
+				" -55",_
+				" -60",_
+				" -65",_
+				" -70",_
+				" -75",_
+				" -80",_
+				" -85",_
+				" -90",_
+				" -95",_
+				"-100"_
+				),_
+			aliaslist(_
+				1,_
+				2,_
+				3,_
+				4,_
+				5,_
+				6,_
+				7,_
+				8,_
+				9,_
+				10,_
+				11,_
+				12,_
+				13,_
+				14,_
+				15,_
+				20,_
+				25,_
+				30,_
+				35,_
+				40,_
+				45,_
+				50,_
+				55,_
+				60,_
+				65,_
+				70,_
+				75,_
+				80,_
+				85,_
+				90,_
+				95,_
+				100 _
+					)_
+			),_
+		#Edit _
+	),_
+	levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))
+
+Power Disappears Gradually, +5, group(New Power Modifier), page(P23)
+Power Disappears Immediately, +0, group(New Power Modifier), page(P23)
+Power turns against User, -5, group(New Power Modifier), page(P23)
+Restoration requires A day, +5, group(New Power Modifier), page(P23)
+Restoration requires A week/minor quest/minor harm, +0, group(New Power Modifier), page(P23)
+Restoration requires A month/major quest/serious harm, -5, group(New Power Modifier), page(P23)
+**************************************************************************
+
+<360° Vision>
+Panoptic, +20%/+60%, upto(2), group(360° Vision), page(P39)
+
+<Affliction>
+Negated Disadvantage, +10%/+20%, mods(Secondary), group(Affliction), page(P41)
+Temporal Stasis, +1000%, mods(Secondary), group(Affliction), page(P118)
+
+<Altered Time Rate>
+Super-Speed, +20%, group(Altered Time Rate), page(P42)
+Non-Combat Speed, -60%, group(Altered Time Rate), page(P42)
+
+<Alternate Form>
+Absorptive Change, +5%/+10%, upto(5), levelnames(No Encumbrance, Light Encumbrance, Medium Encumbrance, Heavy Encumbrance, Extra-Heavy Encumbrance), group(Alternate Form), page(P75)
+Active Change, +20%, group(Alternate Form), page(P75)
+Non-Reciprocal Damage, +50%, group(Alternate Form), page(P75)
+"Once On, Stays On", +50%, group(Alternate Form), page(P75)
+"Difference in point costs (Once On, Stays On)", +1/+2, tier(1), group(Alternate Form), page(B84, P75)
+Reciprocal Rest, +30%, group(Alternate Form), page(P75)
+Projected Form, -50%, group(Alternate Form), page(P75)
+
+<Animal Empathy>
+Remote, +50%, group(Animal Empathy), page(P48)
+Specialized: All land animals, -40%, shortname(All land animals), group(Animal Empathy), page(B87, P48)
+Specialized: All aquatic animals, -40%, shortname(All aquatic animals), group(Animal Empathy), page(B87, P48)
+Specialized: one class, -50%, group(Animal Empathy), page(B87, P48)
+Specialized: one family, -60%, group(Animal Empathy), page(B87, P48)
+Specialized: one species, -80%, group(Animal Empathy), page(B87, P48)
+
+<Binding>
+Constricting, +75%, group(Binding), page(P43)
+Suffocating, +75%, group(Binding), page(P43)
+
+<Catfall>
+Feather Fall, +20%, group(Catfall), page(P43)
+Parachute, -30%, group(Catfall), page(P43)
+
+<Chameleon>
+Controllable, +20%, group(Chameleon), page(P43)
+Dynamic, +40%, group(Chameleon), page(P43)
+
+<Channeling>
+Aware, +50%, group(Channeling), page(P43)
+Specialized, -50%, group(Channeling), page(P44)
+
+<Clairsentience>
+Aware, +50%, group(Clairsentience), page(P44)
+Projection, +0%/+140%, upto(2), levelnames(can only affect the insubstantial world, "can use spells, mental abilities, and Maledictions on the material world"), group(Clairsentience), page(P44)
+Second Nature, +70%, group(Clairsentience), page(P44)
+
+<Clinging>
+Attraction, +25%, group(Clinging), page(P45)
+Requires Low Gravity, -5%/-10%, levelnames(0.9G, 0.8G, 0.7G, 0.6G, 0.5G, 0.4G, 0.3G, 0.2G, 0.1G, 0G), upto(10), group(Clinging), page(P45)
+
+<Common Sense>
+Conscious, +50%, group(Common Sense), page(P45)
+
+<Constriction Attack>
+Engulfing, +60%, group(Constriction Attack), page(P45)
+
+<Control>
+Collective, +100%, group(Control), page(P92)
+Natural Phenomena, +100%, group(Control), page(P92)
+Cosmetic, -80%, group(Control), page(P92)
+
+<Create>
+Destruction, +0%/+100%, upto(2), levelnames(you can only destroy, you can create and destroy), group(Create), page(P94)
+Transmutation: type to type, +50%, group(Create), page(P94)
+Transmutation Only, -100%, group(Create), page(P94) 
+
+<Dark Vision>
+Hypersensory, +40%, group(Dark Vision), page(P46-47)
+
+<Detect>
+Analyzing, +100%, group(Detect), page(P47)
+
+<Diffuse>
+Infiltration, +40%, group(Diffuse), page(P53)
+Swarm (can't affect the material world), +80%, group(Diffuse), page(P53)
+Swarm (can affect the material world), +160%, group(Diffuse), page(P53)
+
+<Discriminatory Smell>
+Profiling, +50%, group(Discriminatory Smell), page(P47)
+
+<Discriminatory Hearing>
+Profiling, +50%, group(Discriminatory Hearing), page(P47)
+
+<Discriminatory Taste>
+Profiling, +50%, group(Discriminatory Taste), page(P47)
+
+<Divine Inspiration>
+_Per point of abilities, 6+4/point, formula(6+(me::level*4)), forceformula(yes), group(Divine Inspiration), page(B71), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Divine Inspiration),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Divine Inspiration) _
+	), level([level])
+
+<Duplication>
+Construct, +60%, group(Construct), page(P48)
+Sequential, -40%, group(Construct), page(P48)
+
+<Empathy>
+Remote, +50%, group(Empathy), page(P48)
+
+<Energy Reserve>
+Abilities Only, -10%, group(Energy Reserve), page(P119)
+One Power, -50%, group(Energy Reserve), page(P119)
+Slow Recharge, -20%/-60%, upto(2), levelnames(1 pt/hr, 1 pt/day), group(Energy Reserve), page(P119)
+Special Recharge, -70%/-80%, upto(2), levelnames( , energy bleeds away at 1 pt/sec), group(Energy Reserve), page(P119)
+Stunts Only, -10%, group(Energy Reserve), page(P119)
+Granted by Familiar, -40%, group(Energy Reserve), page(B38)
+
+<Enhanced Move>
+All-Out, -20%, group(Enhanced Move), page(P49)
+
+<Enhanced Tracking>
+Multiple Lock-Ons, +20%, group(Enhanced Tracking), page(P49)
+
+<Extra Attack>
+Multi-Strike, +20%, group(Extra Attack), page(P49)
+Single Skill, -20%, group(Extra Attack), page(P49)
+
+<Flight>
+Planetary, -5%, group(Flight), page(P50)
+Requires Surface, -20%, group(Flight), page(P50)
+Requires Low Gravity, -5%/-10%, levelnames(0.9G, 0.8G, 0.7G, 0.6G, 0.5G, 0.4G, 0.3G, 0.2G, 0.1G, 0G), upto(10), group(Flight), page(P45)
+
+<Healing>
+Affects Self, +50%, group(Healing), page(P51)
+Cure Affliction, +60%, group(Healing), page(P51)
+Affliction Only, -40%, group(Healing), page(P51)
+Capped, -25%/-20%, upto(5), levelnames(2 FP, 4 FP, 6 FP, 8 FP, 10 FP), group(Healing), page(P51)
+Empathic, -50%, group(Healing), page(P51)
+
+<Hyperspectral Vision>
+Extended (class of radiation), +30%/+60%, group(Hyperspectral Vision), page(P52)
+
+<Injury Tolerance>
+Damage Reduction, +50/+75, upto(3), levelnames(/2, /3, /4), mods(Limited Defense), group(Injury Tolerance), page(P53)
+Damage Reduction (Extended), +125/+150, mods(Limited Defense), group(Injury Tolerance), page(P118), description(This ability should only be taken with GM approval. See book for details.),_
+	levelnames(/5, /10, /15, /20, /30, /50, /70, /100, /150, /200, /300, /500, /700, "/1,000", "/1,500", "/2,000", "/3,000", "/5,000", "/7,000", "/10,000")
+Independent Body Parts, +35, mods(Independent Body Parts), group(Injury Tolerance), page(P53)
+Unbreakable Bones, +10, group(Injury Tolerance), page(P53)
+//  Since there's no #MergeTags for modifiers Diffuse is repeated here to include it's new mods() tag
+Diffuse, +100, mods(Diffuse), group(Injury Tolerance), page(B60)
+
+<Independent Body Parts>
+Detachable Head, +15%, group(Independent Body Parts), page(P52)
+Instant Reattachment, +50%, group(Independent Body Parts), page(P52)
+No Reattachment, -60%, group(Independent Body Parts), page(P52)
+Reattachment Only, -50%, group(Independent Body Parts), page(P52)
+
+<Illusion>
+Extended: other auditory/visual sense, +1%/+2%, group(Illusion), page(P95)
+Extended: new sense, +20%, group(Illusion), page(P95)
+Independence, +40%, group(Illusion), page(P95)
+Initiative, +100%, group(Illusion), page(P95)
+Mental, +100%, group(Illusion), page(P95)
+Stigmata, +100%, group(Illusion), page(P95)
+Auditory Only, -70%, group(Illusion), page(P95)
+Static, -30%, group(Illusion), page(P95)
+Visual Only, -30%, group(Illusion), page(P95)
+Area Effect, +50%/+100%, group(Illusion), page(B102, P95), upto(24),_
+	levelnames(#list(LevelName Area Effect)),_
+	gives(_
+		=*(2^me::level) to owner::radius _
+		)
+
+<Insubstantiality>
+No Vertical Move, -10%, group(Insubstantiality), page(P56)
+Noisy, -5%, group(Insubstantiality), page(P56)
+Projection, -50%, group(Insubstantiality), page(P56)
+
+<Intuition>
+Inspired, +100%, group(Intuition), page(P56)
+
+<Invisibility>
+Extended (All), +100%, group(Invisibility), page(P56)
+Fringe, -10%, group(Invisibility), page(P57)
+
+**************************************************************************
+<Jumper>
+Reliable, +5%/+10%, upto(10), group(Jumper), page(P57), gives(+1 to owner::skillscore), mods(_Talents)
+Special Movement, -10%/-20%, upto(4), group(Jumper), page(P58)
+Special Portal, -10%/-20%, upto(8), group(Jumper), page(P58)
+Tunnel, +40%/+100%, upto(2), levelnames(forms after you jump, forms before you jump), group(Jumper), page(B64, P89)
+
+<Spirit Jumper>
+Interplanar, +0%/+100%, upto(2), levelnames(can only reach higher planes, can reach higher and lower planes), group(Spirit Jumper), page(P57)
+Limited Access, -0%/-5%, upto(6), group(Spirit Jumper), page(P57)
+
+<Time Jumper>
+Projection, -0%/-50%, upto(2), group(Time Jumper), page(P58),_
+	levelnames(Cannot affect destination without Insubstantiality or Possession, Can affect destination with spells/mental abilities/maledictions)
+Projection (Sends physical body to destination/leaves unconscious body behind), -25%, group(Time Jumper), page(P58)
+
+<World Jumper>
+Interplanar, +0%/+100%, upto(2), levelnames(can only reach higher planes, can reach higher and lower planes), group(World Jumper), page(P57)
+Limited Access, -0%/-5%, upto(6), group(World Jumper), page(P57)
+Projection, -0%/-50%, upto(2), group(World Jumper), page(P58),_
+	levelnames(Cannot affect destination without Insubstantiality or Possession, Can affect destination with spells/mental abilities/maledictions)
+Projection (Sends physical body to destination/leaves unconscious body behind), -25%, group(World Jumper), page(P58)
+**************************************************************************
+
+<Leech>
+Blood Agent, -40%, group(Leech), page(B110, P96)
+Contact Agent, -30%, group(Leech), page(B111, P96)
+
+Accelerated Healing, +25%, group(Leech), page(P96)
+Hazard: Dehydration, +20%, shortname(Dehydration Hazard), group(Leech), page(B104, P96)
+Hazard: Drowning, +0%, shortname(Drowning Hazard), group(Leech), page(B104, P96)
+Hazard: Freezing, +20%, shortname(Freezing Hazard), group(Leech), page(B104, P96)
+Hazard: Missed Sleep, +50%, shortname(Missed Sleep Hazard), group(Leech), page(B104, P96)
+Hazard: Starvation, +40%, shortname(Starvation Hazard), group(Leech), page(B104, P96)
+Hazard: Suffocation, +0%, shortname(Suffocation Hazard), group(Leech), page(B104, P96)
+Heals FP, +30%/+60%, upto(2), levelnames(only heals FP, heals HP or FP), group(Leech), page(P96)
+Heals Energy Reserve, +30%/+60%, upto(2), levelnames(only heals ER, heals HP or ER), group(Leech), page(P119)
+Steal FP, -25%/+50%, upto(2), levelnames(only drains FP, drains HP when FP is 0), group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=$if(me::level=1 THEN " FP" ELSE " FP HP") to owner::damtype$ _
+		)
+Steal ST, +100%, group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" ST" to owner::damtype$ _
+		)
+Steal HT, +100%, group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" HT" to owner::damtype$ _
+		)
+Steal DX, +300%, group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" DX" to owner::damtype$ _
+		)
+Steal IQ, +300%, group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" IQ" to owner::damtype$ _
+		)
+Steal Youth, +300%/+450%, upto(2), levelnames(victim regains youth when you die, permanent), group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" Youth" to owner::damtype$ _
+		)
+Only Heals FP, -20%, group(Leech), page(P96)
+Only Heals Energy Reserve, -20%, group(Leech), page(P119)
+Ranged, +40%, group(Leech), page(B107),_
+	addmode(Primary, damage(), damtype(spcl.), rangehalfdam(10), rangemax(100), acc(3), rof(1), shots(), rcl(1), skillused(%examplealiaslist%)),_
+	x(#ChoiceList(_
+			name(example),_
+			title(Burning Attack: Choose a Skill),_
+			text(Choose a Skill that will be used with this Innate Attack. "DX, Brawling" is appropriate for attacks that will have one of the the Melee Attack limitations; "Will" for Maledictions:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"_None of these",_
+				"Will",_
+				"Innate Attack (Beam)",_
+				"Innate Attack (Breath)",_
+				"Innate Attack (Gaze)",_
+				"Innate Attack (Projectile)" _
+				),_
+			aliaslist(_
+				"",_
+				"Will",_
+				"Innate Attack (Beam), DX-4, Innate Attack-2",_
+				"Innate Attack (Breath), DX-4, Innate Attack-2",_
+				"Innate Attack (Gaze), DX-4, Innate Attack-2",_
+				"Innate Attack (Projectile), DX-4, Innate Attack-2" _
+				)_
+			)_
+	)
+
+Malediction, +100%/+150%/+200%, upto(3), group(Leech), page(B106),_
+	levelnames(Receives -1/yd range, Uses Speed/Range Table, Uses Long-Distance Modifiers),_
+	gives(_
+		=nobase to owner::reach$,_
+		=nobase to owner::acc$,_
+		=nobasenocalc to owner::rangehalfdam$,_
+		=nobasenocalc to owner::rangemax$,_
+		=nobase to owner::rof$,_
+		=nobase to owner::shots$,_
+		=nobase to owner::rcl$,_
+		=" mal " to owner::damtype$,_
+		=$indexedvalue(me::level, "-1/yd", "Speed/Range", "Long-Distance") to owner::rangemax$_
+		)
+
+<Lifting ST>
+Super-Effort, +400%, gives(+owner::level to ST:Super-Effort Lifting Strength), group(Lifting ST), page(P58)
+
+<Luck>
+Wishing, +100%, group(Luck), page(P59)
+
+<Mana Damper/Enhancer>
+Discriminatory, +150%, group(Mana Damper/Enhancer), page(P59)
+
+<Medium>
+Manifestation, +100%, group(Medium), page(P60)
+Universal, +50%, group(Medium), page(P60)
+Visual, +50%, group(Medium), page(P60)
+Specialized, -50%, group(Medium), page(P60)
+
+<Metabolism Control>
+Mastery, +40%, group(Metabolism Control), page(P60)
+
+<Mimicry>
+Voice Library, +50%, group(Mimicry), page(P61)
+
+<Mind Control>
+Independent, +70%, group(Mind Control), page(P61)
+Emotion Control, -50%, group(Mind Control), page(P61)
+Suggestion, -40%, group(Mind Control), page(P61)
+
+<Mind Probe>
+Invasive, +75%, group(Mind Probe/Reading), page(P62)
+Memory Bank, +100%/+150%, upto(2), levelnames(can store snapshots equal to IQ, unlimited capacity), group(Mind Probe/Reading), page(P62)
+
+<Mind Reading>
+Multiple Contacts, +50%, group(Mind Probe/Reading), page(P62)
+
+<Mind Shield>
+Limited (type), -50%/-75%, upto(2), levelnames(entire power source, specific focus), group(Mind Shield), page(P62)
+
+<Modified ST-Based Damage Enhancements>
+Base Points, 0, tier(1), forceformula(yes), formula(-"ST:Modified ST-Based Damage::score"), page(P146)
+Partial Dice, 2/3, formula(@int(%level * 5 * 0.3 + 0.9)), forceformula(yes), group(Modified ST-Based Damage), page(B62), gives(=+@int(me::level * 0.3 * 5 + 0.9) to ST:Modified ST-Based Damage, ="+$solver(me::level)" to owner::damage$)
+Damage Modifier: Double Knockback, +20%, shortname(Double Knockback), group(Modified ST-Based Damage Enhancements), page(B104),_
+	gives(=" dkb" to owner::damtype$)
+Damage Modifier: Incendiary, +10%, shortname(Incendiary), group(Modified ST-Based Damage Enhancements), page(B104),_
+	gives(=" inc" to owner::damtype$)
+
+<Modified ST-Based Damage Limitations>
+Partial Dice, -1/-3, formula(@int(%level * -5 * 0.3 + 0.9)), forceformula(yes), group(Modified ST-Based Damage), page(B62), gives(=+@int(me::level * 0.3 * -5 + 0.9) to ST:Modified ST-Based Damage),_
+	levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%)))
+Damage Limitation: No Blunt Trauma, -20%, shortname(No Blunt Trauma), group(Modified ST-Based Damage Limitations), page(B111),_
+	gives(=" nbt" to owner::damtype$)
+Damage Limitation: No Knockback, -10%, shortname(No Knockback), group(Modified ST-Based Damage Limitations), page(B111),_
+	gives(=" nkb" to owner::damtype$)
+Damage Limitation: No Wounding, -50%, shortname(No Wounding), group(Modified ST-Based Damage Limitations), page(B111),_
+	gives(=" nw" to owner::damtype$)
+
+<Modular Ability>
+Social, +0%/+50%, upto(2), levelnames(Social only, Social and Mental), group(Modular Ability), page(P64)
+Focus Limited: Highly versatile focus, -5%, group(Modular Ability), page(P63)
+Focus Limited: Any ordinary variety of matter, -10%, group(Modular Ability), page(P63)
+Focus Limited: Specialized, -15%, group(Modular Ability), page(P63)
+Trait Limited: Advantages Only, -10%, shortname(Advantages Only), group(Modular Ability), page(P64)
+Trait Limited: Skills Only, -10%, shortname(Skills Only), group(Modular Ability), page(P64)
+Trait Limited: Broad class of Advantages or Skills, -20%, group(Modular Ability), page(P64)
+Trait Limited: Medium sized class of related abilities, -30%, group(Modular Ability), page(P64)
+Trait Limited: Subset of Medium-Sized class/one specifi form of a specific power, -40%, group(Modular Ability), page(P64)
+Trait Limited: One specific trait, -50%, group(Modular Ability), page(P64)
+
+<Morph>
+Active Change, +20%, group(Morph), page(P75)
+Improvised Forms, +100%, group(Morph), page(P75)
+No Memorization Required, +50%, group(Morph), page(P75)
+Cannot Memorize Forms, -50%, group(Morph), page(P75)
+Flawed, -10%, group(Morph), page(P75)
+Needs Sample, -5%/-15%/-50%, upto(3), levelnames(must touch subject, requires blood/hair/etc., must consume whole target), group(Morph), page(P75)
+Unliving Forms Only, -0%, group(Morph), page(P75)
+
+<Neutralize>
+Cosmic, +300%, group(Neutralize), page(P97)
+Power Theft, +200%/+300%, upto(2), levelnames(gains stolen power, uses point value of stolen power to boost own powers), group(Neutralize), page(B71, P97)
+Precise, +20%, group(Neutralize), page(P97)
+Derange, -20%, group(Neutralize), page(P97)
+One Ability, -80%, group(Neutralize), page(P97)
+One Power, -50%, group(Neutralize), page(B71, P98)
+
+<Obscure>
+Limited: An entire power source, -20%, group(Obscure), page(P65)
+Limited: A specific power, -40%, group(Obscure), page(P65)
+
+<Oracle>
+Inspired, +100%, group(Oracle), page(P65)
+
+<Permeation>
+Extended (type of material), +20%/+40%, group(Permeation), page(P66)
+Meld, +150%/+300%, upto(2), group(Permeation), page(P67)
+Finite Thickness, -5%/-15%/-30%/-50%, upto(4), levelnames(1 seconds movement, 1 foot, 1 inch, thin membrane), group(Permeation), page(P67)
+Tunnel, +40%/+100%, upto(2), levelnames(forms after you pass through, forms before you pass through), group(Permeation), page(B74, P89)
+
+<Plant Empathy>
+Remote, +50%, group(Plant Empathy), page(P48)
+Specialized: All terrestrial plants, -40%, shortname(All terrestrial plants), group(Plant Empathy), page(P77)
+Specialized: All aquatic plants, -40%, shortname(All aquatic plants), group(Plant Empathy), page(P77)
+Specialized: A large subset of terrestrial plants, -50%, shortname(A large subset of terrestrial plants), group(Plant Empathy), page(P77)
+Specialized: A large subset of aquatic plants, -50%, shortname(A large subset of aquatic plants), group(Plant Empathy), page(P77)
+Specialized: A small subset of terrestrial plants, -60%, shortname(A small subset of terrestrial plants), group(Plant Empathy), page(P77)
+Specialized: A small subset of aquatic plants, -60%, shortname(A small subset of aquatic plants), group(Plant Empathy), page(P77)
+
+<Possession>
+Full Memory Access, +10%, group(Possession), page(P67)
+Telecontrol, +50%/+100%, group(Possession), page(B76, P67)
+Specialized: All Carbon-Based Life, -10%, group(Possession), page(P68)
+Specialized: All Earthly Life, -20%, group(Possession), page(P68)
+Specialized: Animals Only, -25%, group(Possession), page(P68)
+Specialized: One Class of animal, -30%, group(Possession), page(P68)
+Specialized: One Species of animal, -40%, group(Possession), page(P68)
+
+<_Power Talents>
+Gives Skill Bonus to Innate Attack (Beam), +0, gives(+owner::level to SK:Innate Attack (Beam)), shortname(Innate Attack (Beam))
+Gives Skill Bonus to Innate Attack (Breath), +0, gives(+owner::level to SK:Innate Attack (Breath)), shortname(Innate Attack (Breath))
+Gives Skill Bonus to Innate Attack (Gaze), +0, gives(+owner::level to SK:Innate Attack (Gaze)), shortname(Innate Attack (Gaze))
+Gives Skill Bonus to Innate Attack (Projectile), +0, gives(+owner::level to SK:Innate Attack (Projectile)), shortname(Innate Attack (Projectile))
+
+Gives Skill Bonus to [advantage], +0, gives(+owner::level to AD:[advantage]::skillscore), shortname([advantage]),_
+	x(_
+	#InputReplace("Please enter the name of the advantage which will receive the skill bonus; include the name extension if applicable:", "[advantage]", "name (extension)" , "Talent Skill Bonus")_
+	)
+
+Gives Skill Bonus to %advantageslist%, +0, gives(%advantagesaliaslist%), shortname(%advantageslist%),_
+	x(_
+	#ChoiceList(_
+			name(advantages),_
+			title(Talent Bonus: Choose Advantages),_
+			text(Choose which advantages will receive a bonus from this Talent.),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+					"Active IR",_
+					"Affliction",_
+					"Animal Empathy",_
+					"Blessed",_
+					"Blessed (Very Blessed)",_
+					"Burning Attack",_
+					"Catfall",_
+					"Clairsentience",_
+					"Clinging",_
+					"Common Sense",_
+					"Constriction Attack",_
+					"Corrosion Attack",_
+					"Crushing Attack",_
+					"Cutting Attack",_
+					"Danger Sense",_
+					"Detect",_
+					"Discriminatory Hearing",_
+					"Discriminatory Smell",_
+					"Discriminatory Taste",_
+					"Eidetic Memory",_
+					"Empathy",_
+					"Fatigue Attack",_
+					"Healing",_
+					"High Pain Threshold",_
+					"Huge Piercing Attack",_
+					"Illuminated",_
+					"Illusion",_
+					"Imaging Radar",_
+					"Impaling Attack",_
+					"Intuition",_
+					"Jumper (Spirit)",_
+					"Jumper (Time)",_
+					"Jumper (World)",_
+					"Ladar",_
+					"Large Piercing Attack",_
+					"Long Spines",_
+					"Mimicry",_
+					"Mind Control",_
+					"Mind Probe",_
+					"Mind Reading",_
+					"Oracle",_
+					"Oracle (Digital)",_
+					"Para-Radar",_
+					"Photographic Memory",_
+					"Piercing Attack",_
+					"Plant Empathy",_
+					"Possession",_
+					"Precognition",_
+					"Psychometry",_
+					"Racial Memory",_
+					"Radar",_
+					"Rapier Wit",_
+					"Sensitive",_
+					"Short Spines",_
+					"Small Piercing Attack",_
+					"Snatcher",_
+					"Sonar",_
+					"Spirit Empathy",_
+					"Subsonic Hearing",_
+					"Subsonic Speech",_
+					"Telecommunication (Directional Sound)",_
+					"Telecommunication (Gravity-Ripple Comm)",_
+					"Telecommunication (Infrared Communication)",_
+					"Telecommunication (Laser Communication)",_
+					"Telecommunication (Neutrino Comm)",_
+					"Telecommunication (Radio)",_
+					"Telecommunication (Sonar Comm)",_
+					"Telecommunication (Telesend)",_
+					"Telekinesis",_
+					"Temporal Inertia",_
+					"Toxic Attack",_
+					"T-Ray Vision",_
+					"Ultrahearing",_
+					"Ultrasonic Speech",_
+					"Ultravision",_
+					"Visualization",_
+					"Warp"_
+				),_
+			aliaslist(_
+					"+owner::level to AD:Active IR::skillscore",_
+					"+owner::level to AD:Affliction::skillscore",_
+					"+owner::level to AD:Animal Empathy::skillscore",_
+					"+owner::level to AD:Blessed::skillscore",_
+					"+owner::level to AD:Blessed (Very Blessed)::skillscore",_
+					"+owner::level to AD:Burning Attack::skillscore",_
+					"+owner::level to AD:Catfall::skillscore",_
+					"+owner::level to AD:Clairsentience::skillscore",_
+					"+owner::level to AD:Clinging::skillscore",_
+					"+owner::level to AD:Common Sense::skillscore",_
+					"+owner::level to AD:Constriction Attack::skillscore",_
+					"+owner::level to AD:Corrosion Attack::skillscore",_
+					"+owner::level to AD:Crushing Attack::skillscore",_
+					"+owner::level to AD:Cutting Attack::skillscore",_
+					"+owner::level to AD:Danger Sense::skillscore",_
+					"+owner::level to AD:Detect::skillscore",_
+					"+owner::level to AD:Discriminatory Hearing::skillscore",_
+					"+owner::level to AD:Discriminatory Smell::skillscore",_
+					"+owner::level to AD:Discriminatory Taste::skillscore",_
+					"+owner::level to AD:Eidetic Memory::skillscore",_
+					"+owner::level to AD:Empathy::skillscore",_
+					"+owner::level to AD:Fatigue Attack::skillscore",_
+					"+owner::level to AD:Healing::skillscore",_
+					"+owner::level to AD:High Pain Threshold::skillscore",_
+					"+owner::level to AD:Huge Piercing Attack::skillscore",_
+					"+owner::level to AD:Illuminated::skillscore",_
+					"+owner::level to AD:Illusion::skillscore",_
+					"+owner::level to AD:Imaging Radar::skillscore",_
+					"+owner::level to AD:Impaling Attack::skillscore",_
+					"+owner::level to AD:Intuition::skillscore",_
+					"+owner::level to AD:Jumper (Spirit)::skillscore",_
+					"+owner::level to AD:Jumper (Time)::skillscore",_
+					"+owner::level to AD:Jumper (World)::skillscore",_
+					"+owner::level to AD:Ladar::skillscore",_
+					"+owner::level to AD:Large Piercing Attack::skillscore",_
+					"+owner::level to AD:Long Spines::skillscore",_
+					"+owner::level to AD:Mimicry::skillscore",_
+					"+owner::level to AD:Mind Control::skillscore",_
+					"+owner::level to AD:Mind Probe::skillscore",_
+					"+owner::level to AD:Mind Reading::skillscore",_
+					"+owner::level to AD:Oracle::skillscore",_
+					"+owner::level to AD:Oracle (Digital)::skillscore",_
+					"+owner::level to AD:Para-Radar::skillscore",_
+					"+owner::level to AD:Photographic Memory::skillscore",_
+					"+owner::level to AD:Piercing Attack::skillscore",_
+					"+owner::level to AD:Plant Empathy::skillscore",_
+					"+owner::level to AD:Possession::skillscore",_
+					"+owner::level to AD:Precognition::skillscore",_
+					"+owner::level to AD:Psychometry::skillscore",_
+					"+owner::level to AD:Racial Memory::skillscore",_
+					"+owner::level to AD:Radar::skillscore",_
+					"+owner::level to AD:Rapier Wit::skillscore",_
+					"+owner::level to AD:Sensitive::skillscore",_
+					"+owner::level to AD:Short Spines::skillscore",_
+					"+owner::level to AD:Small Piercing Attack::skillscore",_
+					"+owner::level to AD:Snatcher::skillscore",_
+					"+owner::level to AD:Sonar::skillscore",_
+					"+owner::level to AD:Spirit Empathy::skillscore",_
+					"+owner::level to AD:Subsonic Hearing::skillscore",_
+					"+owner::level to AD:Subsonic Speech::skillscore",_
+					"+owner::level to AD:Telecommunication (Directional Sound)::skillscore",_
+					"+owner::level to AD:Telecommunication (Gravity-Ripple Comm)::skillscore",_
+					"+owner::level to AD:Telecommunication (Infrared Communication)::skillscore",_
+					"+owner::level to AD:Telecommunication (Laser Communication)::skillscore",_
+					"+owner::level to AD:Telecommunication (Neutrino Comm)::skillscore",_
+					"+owner::level to AD:Telecommunication (Radio)::skillscore",_
+					"+owner::level to AD:Telecommunication (Sonar Comm)::skillscore",_
+					"+owner::level to AD:Telecommunication (Telesend)::skillscore",_
+					"+owner::level to AD:Telekinesis::skillscore",_
+					"+owner::level to AD:Temporal Inertia::skillscore",_
+					"+owner::level to AD:Toxic Attack::skillscore",_
+					"+owner::level to AD:T-Ray Vision::skillscore",_
+					"+owner::level to AD:Ultrahearing::skillscore",_
+					"+owner::level to AD:Ultrasonic Speech::skillscore",_
+					"+owner::level to AD:Ultravision::skillscore",_
+					"+owner::level to AD:Visualization::skillscore",_
+					"+owner::level to AD:Warp::skillscore"_
+					)_
+			)_
+	)
+
+<Precognition>
+Directed, +100%, group(Precognition), page(P68)
+Active Only, -60%, group(Precognition), page(P69)
+Passive Only, -20%, group(Precognition), page(P69)
+
+<Psychometry>
+Directed, +50%, group(Psychometry), page(P69)
+Immersive, +100%, group(Psychometry), page(P69)
+Sensitive, +30%, group(Psychometry), page(P69)
+Active Only, -20%, group(Psychometry), page(P69)
+Hypersensory, -50%, group(Psychometry), page(P69)
+Mundane, -30%, group(Psychometry), page(P69)
+Passive Only, -60%, group(Psychometry), page(P69)
+
+<Racial Memory>
+Immersive, +50%, group(Racial Memory), page(P70)
+
+<Radiation Tolerance>
+Extended (class of weird radiation), +30%/+60%, group(Radiation Tolerance), page(P70)
+
+<Rapier Wit>
+Words of Power, +100%, group(Rapier Wit), page(P70)
+
+<Regeneration>
+Fatigue Recovery, +100%, group(Regeneration), page(P70)
+Fatigue Only, -0%, group(Regeneration), page(P70)
+Energy Reserve Recovery, +100%, group(Regeneration), page(P119)
+Energy Reserve Only, -0%, group(Regeneration), page(P119)
+Limited: DR Only, -40%, shortname(DR Only), group(Regeneration), page(P70)
+Limited: Regrowth Only, -40%, shortname(Regrowth Only), group(Regeneration), page(P70)
+Limited: Unkillable Only, -40%, shortname(Unkillable Only), group(Regeneration), page(P70)
+
+<Regrowth>
+Doubling, +25%/+50%, upto(2), levelnames(one type of body part, any missing part), group(Regrowth), page(P71)
+Reattachment, +50%, group(Regrowth), page(P71)
+Bane: Rare, -10%, group(Regrowth), page(P71)
+Bane: Occasional, -30%, group(Regrowth), page(P71)
+Bane: Common/Very Common, -50%, group(Regrowth), page(P71)
+
+<Para-Radar>
+Bio-Scan, +50%, group(Para-Radar), page(P72)
+Scanner, +50%, group(Para-Radar), page(P72)
+
+<Scanning Sense>
+No Intercept, +50%, group(Scanning Sense), page(P72)
+
+<See Invisible>
+True Sight, +50%, group(See Invisible), page(P72)
+
+<Sensitive Touch>
+Stethoscopic, +50%, group(Sensitive Touch), page(P73)
+Ultra-Fine, +30%, group(Sensitive Touch), page(P73)
+
+<Serendipity>
+Wishing, +0%/+100%, upto(2), levelnames(others only, yourself and others), group(Serendipity), page(P73)
+
+<Silence>
+Dynamic, +40%, group(Silence), page(P76)
+
+<Shadow Form Advantage>
+3-D Movement, +20%, group(Shadow Form Advantage), page(P74)
+Light Insensitive, +20%, group(Shadow Form Advantage), page(P74)
+Finite Thickness, -50%, group(Shadow Form Advantage), page(P74)
+
+<Shadow Form Disadvantage>
+3-D Movement, -20%, group(Shadow Form Disadvantage), page(P74)
+Light Insensitive, -20%, group(Shadow Form Disadvantage), page(P74)
+Finite Thickness, +50%, group(Shadow Form Disadvantage), page(P74)
+
+<Snatcher>
+Creation, +100%, group(Snatcher), page(P76)
+Large Items, +50%, group(Snatcher), page(P76)
+More Weight, +5%/+10%, group(Snatcher), page(P77),_
+	levelnames(7 lbs., 10 lbs., 15 lbs., 20 lbs., 30 lbs., 50 lbs.,_
+			70 lbs., 100 lbs., 150 lbs., 200 lbs., 300 lbs., 500 lbs.,_
+			700 lbs., 0.5 ton, 0.75 ton, 1 ton, 1.5 ton, 2.5 tons,_
+			3.5 tons, 5 tons, 7.5 tons, 10 tons, 15 tons, 25 tons,_
+			35 tons, 50 tons, 75 tons, 100 tons, 150 tons, 250 tons, Over 350 tons)
+Recall, -25%, group(Snatcher), page(P77)
+
+<Speak With Animals>
+Sapience, +40%, group(Speak With Animals), page(P77)
+Universal, +20%, group(Speak With Animals), page(P77)
+
+<Speak With Plants>
+Sapience, +40%, group(Speak with Plants), page(P77)
+Specialized: All terrestrial plants, -40%, shortname(All terrestrial plants), group(Speak with Plants), page(P77)
+Specialized: All aquatic plants, -40%, shortname(All aquatic plants), group(Speak with Plants), page(P77)
+Specialized: A large subset of terrestrial plants, -50%, shortname(A large subset of terrestrial plants), group(Speak with Plants), page(P77)
+Specialized: A large subset of aquatic plants, -50%, shortname(A large subset of aquatic plants), group(Speak with Plants), page(P77)
+Specialized: A small subset of terrestrial plants, -60%, shortname(A small subset of terrestrial plants), group(Speak with Plants), page(P77)
+Specialized: A small subset of aquatic plants, -60%, shortname(A small subset of aquatic plants), group(Speak with Plants), page(P77)
+
+<Special Rapport>
+One-Way, +20%, group(Special Rapport), page(P77)
+Transferable: own race only, +100%, group(Special Rapport), page(P78)
+Transferable: any living being, +150%, group(Special Rapport), page(P78)
+Transferable: Digital Minds, +150%, group(Special Rapport), page(P78)
+Transferable: Any sapient being, +250%, group(Special Rapport), page(P78)
+Transferable: subject must be willing or helpless, -50%, group(Special Rapport), page(P78)
+
+<Spirit Empathy>
+Remote, +50%, group(Spirit Empathy), page(P48)
+
+<Static>
+Area Effect, +50%/+100%, group(Static), page(P98),_
+	levelnames("1 yd","2 yd",#list(LevelName Area Effect)),_
+	gives(_
+		=+(0.5 * (2^me::level)) to owner::radius _
+		)
+
+Discriminatory, +150%, group(Static), page(P98)
+Switchable, +100%, group(Static), page(P98)
+Resistible, -50%, group(Static), page(P98)
+
+<Stretching>
+Force Extensions, +50%, group(Stretching), page(P78)
+Limited: Arms Only, -20%, shortname(Arms Only), group(Stretching), page(P78)
+Limited: Legs Only, -20%, shortname(Legs Only), group(Stretching), page(P78)
+Limited: Single Limb, -40%, shortname(Single Limb), group(Stretching), page(P78)
+Limited: Neck Only, -50%, shortname(Neck Only), group(Stretching), page(P78)
+
+<Striking ST>
+One Attack Only, -60%, group(Striking ST), page(P79), gives(-owner::level to ST:Striking ST)
+Bite Only, -60%, group(Striking ST), page(P79), gives(-owner::level to ST:Striking ST, +owner::level to ST:Bite)
+
+<Super Climbing>
+Requires Low Gravity, -5%/-10%, levelnames(0.9G, 0.8G, 0.7G, 0.6G, 0.5G, 0.4G, 0.3G, 0.2G, 0.1G, 0G), upto(10), group(Super Climbing), page(P79)
+
+<Super Jump>
+Bouncing, +50%, group(Super Jump), page(P80)
+Maneuverable, +50%, group(Super Jump), page(P80)
+Full Power Only, -10%, group(Super Jump), page(P80)
+Ligher Than Air, -10%, group(Super Jump), page(P80)
+Planetary, -5%, group(Super Jump), page(P80)
+Projectile, -20%, group(Super Jump), page(P80)
+Horizontal Only, -25%, group(Super Jump), page(P80), gives(-owner::level to ST:Super Jump Vertical)
+Vertical Only, -25%, group(Super Jump), page(P80), gives(-owner::level to ST:Super Jump Horizontal)
+
+<Super Luck>
+Alter Reality, +75%, group(Super Luck), page(P80)
+Wishing, +0%/+100%, upto(2), levelnames(can only aid others, can aid your rolls and others rolls), group(Super Luck), page(P80)
+
+**************************************************************************
+<Telecommunication>
+FTL, +120%, group(Telecommunication), page(P82)
+Secure, +20%, group(Telecommunication), page(P82)
+
+<Infrared Communication>
+Burst, +30%/+60%, levelnames(10x, 100x, "1,000x", "10,000x", "100,000x", "1,000,000x", varies), group(Infrared Communication), page(P81)
+Sensie, +80%, group(Infrared Communication), page(P82)
+
+<Laser Communication>
+Burst, +30%/+60%, levelnames(10x, 100x, "1,000x", "10,000x", "100,000x", "1,000,000x", varies), group(Laser Communication), page(P81)
+Sensie, +80%, group(Laser Communication), page(P82)
+
+<Radio>
+Burst, +30%/+60%, levelnames(10x, 100x, "1,000x", "10,000x", "100,000x", "1,000,000x", varies), group(Radio Communication), page(P81)
+Sensie, +80%, group(Radio), page(P82)
+
+<Telesend>
+Burst, +30%/+60%, levelnames(10x, 100x, "1,000x", "10,000x", "100,000x", "1,000,000x", varies), group(Telesend), page(P81)
+Sensie, +80%, group(Telesend), page(P82)
+
+<Directional Sound>
+Receive Only, -50%, group(Directional Sound), page(B91)
+Send Only, -50%, group(Directional Sound), page(B91)
+
+<Gravity-Ripple Comm>
+Receive Only, -50%, group(Gravity-Ripple Comm), page(B91)
+Send Only, -50%, group(Gravity-Ripple Comm), page(B91)
+Burst, +30%/+60%, levelnames(10x, 100x, "1,000x", "10,000x", "100,000x", "1,000,000x", varies), group(Gravity-Ripple Comm), page(P81)
+Sensie, +80%, group(Gravity-Ripple Comm), page(P82)
+
+<Neutrino Comm>
+Receive Only, -50%, group(Neutrino Comm), page(B91)
+Send Only, -50%, group(Neutrino Comm), page(B91)
+Burst, +30%/+60%, levelnames(10x, 100x, "1,000x", "10,000x", "100,000x", "1,000,000x", varies), group(Neutrino Comm), page(P81)
+Sensie, +80%, group(Neutrino Comm), page(P82)
+
+<Sonar Comm>
+Receive Only, -50%, group(Sonar Comm), page(B91)
+Send Only, -50%, group(Sonar Comm), page(B91)
+**************************************************************************
+
+<Telekinesis>
+//  Damage based on own level, +0%,_
+//  	addmode(Swing, damagebasedon(%level)),_
+//  	addmode(Thrust, damagebasedon(%level))
+
+Super-Effort, +400%, gives(+owner::level to ST:TK Super-Effort Strength), group(Telekinesis), page(P83)
+Animation, -30%/-20%, upto(2), levelnames(object can't fly, object can fly if it has wings/rotors/etc.), group(Telekinesis), page(P83)
+Attraction/Repulsion, -30%, group(Telekinesis), page(P83)
+Attraction, -60%, group(Telekinesis), page(P83)
+Repulsion, -60%, group(Telekinesis), page(P83)
+Lift Only, -20%, group(Telekinesis), page(P83), gives(-owner::level to ST:TK Move, =nobase to owner::rangemax$)
+Move Only, -40%, group(Telekinesis), page(P83), gives(-owner::level to ST:TK ST, =nobase to owner::rangemax$)
+
+<Terrain Adaptation>
+Active, +300%, group(Terrain Adaptation), page(B83)
+
+<Terror>
+Active, +0%, group(Terror), page(P84),_
+	addmode(Contest of Will, skillused(ST:Will))
+Presence, +25%, group(Terror), page(P84)
+
+<True Faith>
+Turning, +65%, group(True Faith), page(P84)
+
+**************************************************************************
+<Tunneling>
+Hands-Free, +20%, group(Tunneling), page(P86)
+
+<Slow Tunneling>
+Tunneling Move, +1/+2, group(Slow Tunneling), page(P86)
+Hands-Free, +20%, group(Slow Tunneling), page(P86)
+**************************************************************************
+
+<Universal Digestion>
+Matter Eater, +300%, group(Universal Digestion), page(P86)
+
+<Vibration Sense>
+Sense of Perception, +100%, group(Vibration Sense), page(P86)
+Targeting, +20%, group(Vibration Sense), page(P86)
+
+<Visualization>
+Blessing, +0%/+100%, upto(2), levelnames(can only aid others, can aid others and yourself), group(Visualization), page(P87)
+Cursing, +100%, group(Visualization), page(P87)
+
+<Walk on Air>
+Lighter Than Air, -10%, group(Walk on Air), page(P87)
+Maximum Height, -10%/-20%/-25%, upto(3), levelnames(30-foot limit, 10-foot limit, 5-foot limit), group(Walk on Air), page(P87)
+Planetary, -5%, group(Walk on Air), page(P87)
+Vertical Only, -25%, group(Walk on Air), page(P87)
+
+<Walk on Liquid>
+Submerged, +20%, group(Walk on Liquid), page(P88)
+
+<Warp>
+Blink, +25%, group(Warp), page(P89)
+No Strain, +25%, group(Warp), page(P89)
+Tracking, +20%, group(Warp), page(P89)
+Tunnel, +40%/+100%, upto(2), levelnames(forms after you teleport, forms before you teleport), group(Warp), page(P89)
+Anchored, -50%/-60%/-80%, upto(3), levelnames(single site/can switch site, specific item/can move item, "single, fixed site"), group(Warp), page(P89)
+Blind Only, -50%, group(Warp), page(P89)
+Drift, -15%, group(Warp), page(P89)
+Projection, -25%, group(Warp), page(P89)
+Special Portal, -10%/-20%, upto(8), group(Warp), page(P89)
+
+<Wild Talent>
+Wild Ability, +50%, group(Wild Talent), page(P90)
+External, -20%, group(Wild Talent), page(P90)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:_New Alternative Abilities
+AD:Active IR
+AD:Air Talent
+AD:Animal Control Talent
+AD:Anti-Magic Talent
+AD:Antipsi Talent
+AD:Anti-Super Talent
+AD:Bioenergy Talent
+AD:Body Alteration Talent
+AD:Body Control Talent
+AD:Chaos Talent
+AD:Cold/Ice Talent
+AD:Control [Common]
+AD:Control [Godlike]
+AD:Control [Occasional]
+AD:Control [Rare]
+AD:Control [Very Common]
+AD:Cosmic Talent
+AD:Create [Large Category]
+AD:Create [Medium Category]
+AD:Create [Small Category]
+AD:Create [Specific Item]
+AD:Creation Pool
+AD:Darkness Talent
+AD:Death Talent
+AD:Dimension Travel Talent
+AD:Earth Talent
+AD:Electricity Talent
+AD:Electrokinesis Talent
+AD:Energy Reserve
+AD:Evil Talent
+AD:Force Constructs Talent
+AD:Good Talent
+AD:Gravity Talent
+AD:Healing Talent
+AD:Heat/Fire Talent
+AD:Illusion
+AD:Illusion Talent
+AD:Jumper (Spirit)
+AD:Kinetic Energy Talent
+AD:Leech
+AD:Life Talent
+AD:Light Talent
+AD:Machine Telepathy Talent
+AD:Magnetism Talent
+AD:Matter Control Talent
+AD:Modified ST-Based Damage
+AD:Modular Abilities (Divine Inspiration)
+AD:Oracle (Digital)
+AD:Order Talent
+AD:Plant Control Talent
+AD:Protected [Power]
+AD:Radiation Talent
+AD:Sound/Vibration Talent
+AD:Spirit Control Talent
+AD:Static
+AD:Terror (Awe)
+AD:Terror (Confusion)
+AD:Time Mastery Talent
+AD:True Faith (Chosen)
+AD:Vampirism Talent
+AD:Water Talent
+AD:Weather Control Talent
+
+<AllAdvantagesMental>
+AD:_New Alternative Abilities
+AD:Air Talent
+AD:Animal Control Talent
+AD:Anti-Magic Talent
+AD:Antipsi Talent
+AD:Anti-Super Talent
+AD:Bioenergy Talent
+AD:Body Alteration Talent
+AD:Body Control Talent
+AD:Chaos Talent
+AD:Cold/Ice Talent
+AD:Control [Common]
+AD:Control [Godlike]
+AD:Control [Occasional]
+AD:Control [Rare]
+AD:Control [Very Common]
+AD:Cosmic Talent
+AD:Create [Large Category]
+AD:Create [Medium Category]
+AD:Create [Small Category]
+AD:Create [Specific Item]
+AD:Creation Pool
+AD:Darkness Talent
+AD:Death Talent
+AD:Dimension Travel Talent
+AD:Earth Talent
+AD:Electricity Talent
+AD:Electrokinesis Talent
+AD:Evil Talent
+AD:Force Constructs Talent
+AD:Good Talent
+AD:Gravity Talent
+AD:Healing Talent
+AD:Heat/Fire Talent
+AD:Illusion
+AD:Illusion Talent
+AD:Jumper (Spirit)
+AD:Kinetic Energy Talent
+AD:Life Talent
+AD:Light Talent
+AD:Machine Telepathy Talent
+AD:Magnetism Talent
+AD:Matter Control Talent
+AD:Modular Abilities (Divine Inspiration)
+AD:Oracle (Digital)
+AD:Order Talent
+AD:Plant Control Talent
+AD:Radiation Talent
+AD:Sound/Vibration Talent
+AD:Spirit Control Talent
+AD:Terror (Awe)
+AD:Terror (Confusion)
+AD:Time Mastery Talent
+AD:True Faith (Chosen)
+AD:Vampirism Talent
+AD:Water Talent
+AD:Weather Control Talent
+
+<AllAdvantagesPhysical>
+AD:_New Alternative Abilities
+AD:Active IR
+AD:Control [Common]
+AD:Control [Godlike]
+AD:Control [Occasional]
+AD:Control [Rare]
+AD:Control [Very Common]
+AD:Create [Large Category]
+AD:Create [Medium Category]
+AD:Create [Small Category]
+AD:Create [Specific Item]
+AD:Creation Pool
+AD:Energy Reserve
+AD:Illusion
+AD:Leech
+AD:Modified ST-Based Damage
+AD:Modular Abilities (Divine Inspiration)
+AD:Protected [Power]
+AD:Static
+
+<AllAdvantagesSocial>
+AD:_New Alternative Abilities
+
+<AllPerks>
+
+<AllDisadvantages>
+
+<AllQuirks>
+

@@ -1,0 +1,390 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable no-duplicate-selectors */
+
+.feature {
+  // #region DEFAULT
+
+  & > .children > .feature-data > .children {
+    & > .feature-variant {
+      // interactible sections
+
+      // #region VALUE
+
+      // value-interactible
+      &:not(.value-interactible) {
+        & > .wrapper > .content {
+          & > .tags {
+            margin-top: 0;
+          }
+          & > .value {
+            align-items: center;
+          }
+        }
+      }
+
+      &.value-interactible {
+        & > .wrapper > .content {
+          & > .label {
+            padding-top: var(--s0-5);
+            padding-bottom: var(--s1-5);
+          }
+
+          & > .value {
+            padding-left: 0;
+
+            & > .display {
+              border: 1px solid rgb(var(--highlight-color), 1);
+              background-color: rgb(var(--lighter-highlight-color), 1);
+              border-radius: var(--border-radius-size);
+              padding: var(--s1-5);
+
+              & > .label {
+                text-align: center;
+              }
+
+              & > .value {
+                color: rgb(var(--darker-main-color), 1);
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+
+      // without value
+      &:not(.has-value) {
+        & > .wrapper > .content > .value {
+          display: none;
+        }
+      }
+
+      // #endregion
+
+      // #region TAGS
+
+      // inline tags
+      &.inline-tags {
+        & > .wrapper > .content > .tags {
+          display: flex;
+          flex-direction: row;
+          margin: calc(-1 * var(--s0-25)) calc(-1 * var(--s0-5));
+          margin-top: calc(var(--spacing) * 0.6666);
+        }
+      }
+
+      &:not(.has-tags) {
+        & > .wrapper {
+          & > .content {
+            & > .label {
+              padding: 0;
+              grid-area: label / label / slot1 / slot1;
+              justify-content: center;
+            }
+
+            & > .tags {
+              display: none;
+            }
+          }
+        }
+      }
+
+      // #endregion
+
+      // #region NOTES
+
+      // without notes
+      &:not(.has-notes) {
+        & > .wrapper > .content {
+          & > .tags {
+            grid-area: slot1;
+          }
+        }
+
+        // without notes AND tags
+        &:not(.has-tags) {
+          & > .wrapper > .content {
+            grid-template-areas:
+              "label value"
+              "label value"
+              "slot2 slot2"
+              "stats stats"
+              "buttons buttons";
+
+            & > .label {
+              justify-content: center;
+              padding-bottom: 0;
+            }
+
+            & > .value {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      // #endregion
+
+      // #region MARK (external rectangular indicator with variable string content)
+
+      &.marked {
+        grid-template-areas: "prev wrapper mark next";
+        grid-template-columns: auto 1fr auto auto;
+
+        & > .mark {
+          display: flex;
+        }
+
+        // variants
+        &.top-marked {
+          & > .mark {
+            margin-bottom: 0;
+
+            & > div {
+              writing-mode: horizontal-tb;
+              text-orientation: mixed;
+            }
+          }
+
+          // TODO: wtf? a variant inside another variant?
+          & .feature-variant > .wrapper {
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto;
+            grid-template-areas:
+              "mark mark mark"
+              "prev wrapper next";
+          }
+        }
+      }
+
+      // #endregion
+
+      // #region BACKICON
+
+      // without backicon
+      &:not(.backicon) {
+        & > .wrapper > .background-icon {
+          display: none;
+        }
+      }
+
+      // #endregion
+    }
+  }
+
+  // #endregion
+
+  // #region HIDDEN
+  &.hidden {
+    filter: none;
+    flex-shrink: 1;
+
+    & > .children {
+      & > .feature-data {
+        flex: none !important;
+        display: none;
+        &:first-of-type {
+          display: flex;
+        }
+
+        & > .children {
+          min-width: auto;
+          // padding: var(--s0-5);
+
+          & > .feature-variant {
+            & > .mark {
+              display: none;
+            }
+
+            & > .wrapper {
+              margin-left: 0;
+              background-color: rgb(var(--background-color), 0.5);
+
+              & > .content {
+                grid-template-areas:
+                  "label value"
+                  "label value"
+                  "slot2 slot2"
+                  "stats stats"
+                  "buttons buttons";
+                padding: var(--s1-5);
+
+                & > .label {
+                  padding: 0;
+                  font-size: 12px;
+                  line-height: 10px;
+                  margin-bottom: 0;
+
+                  & > .main > .tray > .children > .icon-wrapper {
+                    & > i {
+                      font-size: calc(var(--s1) * 1.25);
+                    }
+                    & > svg.icon {
+                      width: calc(var(--s1) * 1.25);
+                    }
+                    &:not(.pin) {
+                      display: none;
+                    }
+                  }
+                }
+                & > .value {
+                  display: none;
+                }
+
+                & > .notes,
+                & > .tags,
+                & > .stats,
+                & > .buttons {
+                  display: none;
+                }
+              }
+
+              & > .background-icon {
+                display: none;
+              }
+            }
+          }
+        }
+
+        & > .action {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  // #endregion
+
+  // #region MARKED
+
+  // HIDDEN + MARKED
+  &.hidden {
+    & > .children {
+      & > .feature-data {
+        & > .children {
+          & > .feature-variant.marked {
+            & > .wrapper {
+              border-color: rgb(var(--highlight-color), 1);
+              background-color: rgb(var(--lighter-highlight-color), 1);
+
+              & > .content {
+                color: rgb(var(--highlight-color), 0.85);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // #endregion
+
+  // #region PINNED
+
+  & > .children > .feature-data > .children > .feature-variant {
+    & > .wrapper > .content > .label > .main > .tray {
+      & > .children > .icon-wrapper.pin {
+        display: none;
+      }
+    }
+  }
+
+  &.pinned {
+    & > .children > .feature-data:first-of-type > .children > .feature-variant:first-of-type {
+      & > .wrapper > .content > .label > .main > .tray {
+        & > .children > .icon-wrapper.pin {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // #endregion
+
+  // #region VALUE
+
+  &.attachments {
+    & > .feature:not(.has-value) {
+      &:last-of-type {
+        & .wrapper {
+          & > .content {
+          }
+        }
+      }
+    }
+  }
+
+  // #endregion
+
+  // #region COLLAPSED
+
+  &.collapsed:not(.hidden) {
+    & > .children > .feature-data {
+      &:first-of-type {
+        & > .children > .feature-variant {
+          &:first-of-type {
+            & > .wrapper {
+              & > .content {
+                & > .label {
+                  & > .main > .collapsed-wrapper {
+                    display: block;
+                  }
+                }
+
+                & > .notes {
+                  display: none;
+                }
+
+                & > .value {
+                  margin-bottom: 0;
+                }
+
+                & > .tags {
+                  // grid-area: stats;
+                  & > .children > .tag:not(.collapsed, .collapsed-only) {
+                    display: none;
+                  }
+                }
+
+                & > .stats {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+      &:not(:first-of-type) {
+        display: none;
+      }
+    }
+  }
+
+  &:not(.collapsed) {
+    & > .children > .feature-data > .children > .feature-variant {
+      & > .wrapper > .content > .label > .main > .tray {
+        & > .children > .icon-wrapper.collapse {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &:not(.collapsed) {
+    & > .children > .feature-data {
+      & > .children > .feature-variant {
+        & > .wrapper {
+          & > .content {
+            & > .tags {
+              & > .children > .tag.collapsed-only {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // #endregion
+}

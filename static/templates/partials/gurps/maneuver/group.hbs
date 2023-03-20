@@ -1,0 +1,16 @@
+{{log 'gurps-mobile' 'MANEUVVER-GROUP' this level='warn'}}
+{{#if (isEqual type 'group')}}
+<div class="maneuver-group {{isNilOrEmpty label 'no-label' ''}} {{isTrue expanded 'expanded'}}" data-id="{{id}}" data-parent="{{parent}}">
+  <div class="above">
+    <i class="mdi mdi-menu-up"></i>
+  </div>
+  <div class="label">{{{isNilOrEmpty label ' ' (localize label)}}}</div>
+  <div class="children">
+    {{#each children}}
+      {{> gurps/maneuver/button this}}
+    {{/each}}
+  </div>
+</div>
+{{else}}
+  {{> gurps/maneuver/button this}}
+{{/if}}

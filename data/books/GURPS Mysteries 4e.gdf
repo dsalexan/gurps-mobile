@@ -1,0 +1,1175 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Description=2021 May 20. _
+		This data file contains information taken from the GURPS Mysteries 4e sourcebook. _
+		GURPS Mysteries is Copyright © 2005 by Steve Jackson Games Incorporated. All rights reserved.
+Program=4.0.408
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Mysteries 4e.gdf
+//  Created: September 5, 2005
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Mysteries 4e sourcebook.
+//  GURPS Mysteries is Copyright © 2005 by Steve Jackson Games Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Advantages, Disadvantages, Quirks, Skills, Techniques, and Character Templates
+// 
+*******************************************************************************************************************
+// 
+//  This file created by Rev. Pee Kitty
+//  Character Templates provided by Martin Etherington
+// 
+//  Eric B. Smith - GURPS Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Mental>
+Talker, 5/10, gives(+1 to GR:Talker), page(B89, MY108), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Detect Lies, Diplomacy, Fast-Talk, Psychology, Savoir-Faire)
+Tough Guy, 5/10, gives(+1 to GR:Tough Guy), page(B89, MY108), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Fast-Talk, Forced Entry, Intimidation, Shadowing, Streetwise)
+Whiz Kid, 5/10, gives(+1 to GR:Whiz Kid), page(B89, MY108), upto(4), cat(Mundane, Mental, Talents),_
+	conditional(+1 to ST:Reaction), description(Chemistry, Criminology, Diagnosis, Forensics, Psychology, Research)
+
+<Supernatural Mental>
+Spirit Advisor, 10, page(MY112), mods(Frequency of Appearance), cat(Supernatural, Social, Mental),_
+	initmods(_
+			Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+		)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Mental>
+Code of Honor (Gentleman P.I.), -5, page(B127, MY109), cat(Mundane, Mental)
+Code of Honor (Private Investigator), -10, page(B127, MY109), cat(Mundane, Mental)
+Code of Honor (Police), -5, page(B127, MY109), cat(Mundane, Mental)
+Code of Honor (Hippocratic Oath), -5, page(B127, MY109), cat(Mundane, Mental, Mundane Mental)
+
+********************************************************************************************************\[STOP]
+[QUIRKS]
+*******************************************************************************************************\[START]
+<Mental>
+Duty (Legal Ethics), -1, page(MY109)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Combat/Weapons - Ranged Combat>
+Guns (Taser), DX/E, tl(0-12), default(DX - 4, "SK:Guns (Grenade Launcher)" - 4, "SK:Guns (Gyroc)"- 4, "SK:Guns (Light Anti-Armor Weapon)" - 4, "SK:Guns (Light Machine Gun)" - 2, "SK:Guns (Musket)" - 2, "SK:Guns (Pistol)" - 2, "SK:Guns (Rifle)" - 2, "SK:Guns (Shotgun)" - 2, "SK:Guns (Submachine Gun)" - 2), page(MY111), cat(_General, Combat/Weapons - Ranged Combat)
+#MergeTags in "SK:Guns (Light Machine Gun)" with default("SK:Guns (Taser)" - 2)
+#MergeTags in "SK:Guns (Musket)" with default("SK:Guns (Taser)" - 2)
+#MergeTags in "SK:Guns (Pistol)" with default("SK:Guns (Taser)" - 2)
+#MergeTags in "SK:Guns (Rifle)" with default("SK:Guns (Taser)" - 2)
+#MergeTags in "SK:Guns (Shotgun)" with default("SK:Guns (Taser)" - 2)
+#MergeTags in "SK:Guns (Submachine Gun)" with default("SK:Guns (Taser)" - 2)
+
+<Techniques, Techniques - Combat>
+Handcuffing (DX), Tech/A, default(ST:DX - 2), page(MY111)
+Handcuffing (Judo), Tech/A, default(SK:Judo::level - 1, ST:DX - 2), needs(SK:Judo), page(MY112)
+Handcuffing (Wrestling), Tech/A, default(SK:Wrestling::level - 2, ST:DX - 2), needs(SK:Wrestling), page(MY112)
+
+<Techniques, Techniques - Noncombat>
+Camouflaged Mind Block (Mind Block), Tech/H, default(SK:Mind Block::level - 4), needs(SK:Mind Block), upto(Prereq), page(MY111)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<Talker>
+SK:Detect Lies
+SK:Diplomacy
+SK:Fast-Talk
+SK:Psychology
+SK:Savoir-Faire
+
+<Tough Guy>
+SK:Fast-Talk
+SK:Forced Entry
+SK:Intimidation
+SK:Shadowing
+SK:Streetwise
+
+<Whiz Kid>
+SK:Chemistry
+SK:Criminology
+SK:Diagnosis
+SK:Forensics
+SK:Psychology
+SK:Research
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<_Armor, _Armor - High-Tech, Mysteries - Armor - High-Tech Body Armor>
+Type IIA Armor, location(torso), dr(7), basecost(600), baseweight(2), lc(3), techlvl(7), description(TL:8 LC:3 DR:7 Holdout -1 covert body armor), mods(Equipment), page(B284)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Talker
+AD:Tough Guy
+AD:Whiz Kid
+AD:Spirit Advisor
+
+<AllAdvantagesMental>
+AD:Talker
+AD:Tough Guy
+AD:Whiz Kid
+AD:Spirit Advisor
+
+<AllAdvantagesSocial>
+AD:Spirit Advisor
+
+<AllDisadvantages>
+DI:Code of Honor (Gentleman P.I.)
+DI:Code of Honor (Police)
+DI:Code of Honor (Private Investigator)
+
+<AllQuirks>
+QU:Duty (Legal Ethics)
+
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Mysteries>
+Defense Attorney (Mysteries), displaycost(60),_
+	description(_
+			You specialize in defending accused suspects in court. You may be a public defender, _
+			working in a state agency to defend poor suspects, or a highly-paid private attorney _
+			who represents wealthy, famous defendants. You might have once been a prosecutor or a _
+			cop; being a defense lawyer usually pays better, although real estate or corporate law _
+			pays better than criminal defense. You may passionately believe in protecting defendants' _
+			rights. You may be fresh from law school, without the grades, experience, or contacts _
+			to get a more prestigious job. _
+			),_
+	page(MY101),_
+	sets(_
+		ST:IQ = 12 _
+		),_
+	adds(_
+		QU:Duty (legal Ethics),_
+		SK:Diplomacy = 2pts,_
+		SK:Fast-Talk = 2pts,_
+		SK:Public Speaking = 4pts,_
+		SK:Research = 1pts,_
+		SK:Writing = 1pts,_
+		SK:Detect Lies = 1pts,_
+		SK:Law (Criminal) = 8pts,_
+		SK:Psychology (Human) = 1pts _
+		),_
+	Creates(_
+		"EQ:Cell Phone, techlvl(8), basecost(-), baseweight(0.25), lc(4), description(Issued equipment. TL:8 Notes: Only works in some areas, $20/month fee. 10hrs.), page(B288), mods(Equipment)",_
+		"EQ:Pager, techlvl(7), basecost(-), baseweight(0.1), lc(4), description(Issued equipment. TL:7 Notes: Only works in some areas, $5/month fee. 10hrs.), page(B288), mods(Equipment)",_
+		"EQ:Briefcase, techlvl(6), basecost(-), baseweight(2), lc(4), description(Issued equipment. Leather), page(B288), mods(Equipment)" _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text("Advantages: Select 10 points from amongst the following:"),_
+			pointswanted(10),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Appearance #codes(upto 1, down to 1),_
+			AD:Charisma #codes(upto 2, downto 2),_
+			#newitem(AD:Contact (Street), 1/2/3/4, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18,_
+					Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				),_
+			#newitem(_
+				AD:Favor (Contact), 1/2/3/4, displaycost(varies), levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18,_
+					Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						| Favor, *1/5, group(Patron) _
+						) _
+				),_
+			#newitem(_
+				AD:Favor (Patron), 10/15/20/25/30, displaycost(varies), mods(Frequency of Appearance, Patron, Favor), _
+					page(B72), cat(Mundane, Social),_
+					initmods(_
+						Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						| Favor, *1/5, group(Patron) _
+						) _
+				),_
+			AD:Status #codes(upto 1, downto 1),_
+			AD:Wealth #codes(upto 1, downto 1) _
+			)_
+		),_
+	select4(_
+			text("Disdvantages: Select -15 points from amongst the following:"),_
+			pointswanted(-15),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			DI:Alcoholism,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(_
+				DI:Odious Personal Habit (Publicity Hound), -5/-10, displaycost(-5), upto(3), page(B22), _
+					conditional(-1 to ST:Reaction when "people notice your problem") _
+				) #codes(upto 1, downto 1),_
+			#newitem(_
+				DI:Secret (Corrupt), -5/-10/-20/-30, upto(4), displaycost(-5/-10), page(B152), levelnames("Serious Embarrassment",_
+					"Utter Rejection", "Imprisonment or Exile", "Possible Death") _
+				) #codes(upto 2, downto 1),_
+			#newitem(_
+				DI:Sense of Duty (Clients), -2/-5/-10/-15/-20, displaycost(-5), levelnames(Individual, Small Group, Large Group, _
+					Entire Race, Every Living Being), page(B153), upto(5), conditional(=+2 to ST:Reaction when "in dangerous situations _
+					if Sense of Duty is known")_
+				) #codes(Upto 2, Downto 2),_
+			DI:Greed,_
+			DI:Overconfidence,_
+			DI:Wealth _
+			)_
+		),_
+	select5(_
+			text("Background Skills: Select 6 points from amongst the following:"),_
+			pointswanted(6),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Computer Operation,_
+			SK:Criminology,_
+			SK:Streetwise,_
+			SK:Forensics _
+			)_
+		),_
+	select6(#list(QuirkSelection))
+
+Fire Marshal (Mysteries), displaycost(60),_
+	description(_
+			You're a firefighter who's moved from eating smoke to investigating firebugs. You don't _
+			get to hang around the station any more, but you do get to help protect your old friends _
+			from criminals. _
+			),_
+	page(MY102),_
+	sets(_
+		ST:IQ = 12 _
+		),_
+	adds(_
+		AD:Legal Enforcement Powers = 1,_
+		AD:Rank (Fire Service) = 2,_
+		DI:Duty (Fire Service) = 4,_
+		SK:Architecture = 1pts,_
+		SK:Chemistry = 2pts,_
+		SK:Criminology = 1pts,_
+		SK:Explosives (Demolition) = 1pts,_
+		SK:Explosives (Fireworks) = 1pts,_
+		SK:Forensics = 1pts,_
+		SK:Interrogation = 2pts,_
+		SK:Law (Police/Fire) = 1pts,_
+		SK:Writing = 1pts,_
+		SK:Detect Lies = 1pts,_
+		SK:Fast-Talk = 1pts,_
+		SK:Hazardous Materials (Chemical) = 1pts,_
+		SK:Intimidation = 1pts,_
+		SK:Psychology (Human) = 1pts,_
+		SK:Streetwise = 1pts _
+		),_
+	Creates(_
+		"SK:Area Knowledge (City), IQ/E, default(IQ - 4, "SK:Geography ([Area])" - 3), page(B176), cat(Everyman, Knowledge)" = 1pts,_
+		"SK:Professional Skill (Fire Fighting), IQ/A, default(IQ - 5), page(B215), cat(_General, Knowledge)" = 4pts,_
+		"EQ:Auto Pistol¸ 9mm (TL 6¸ Ammunition), baseweight(0.7), basecost(-), techlvl(6), lc(3), mods(Equipment, Ammunition)",_
+		"EQ:Cell Phone, techlvl(8), basecost(-), baseweight(0.25), lc(4), description(Issued equipment. TL:8 Notes: Only works in some areas, $20/month fee. 10hrs.), page(B288), mods(Equipment)",_
+		"EQ:Handcuffs, techlvl(5), basecost(-), baseweight(0.5), lc(3), description(Issued equipment. TL:5 Notes: Gives -5 to Escape.), page(B289), mods(Equipment)",_
+		"EQ:Pager, techlvl(7), basecost(-), baseweight(0.1), lc(4), description(Issued equipment. TL:7 Notes: Only works in some areas, $5/month fee. 10hrs.), page(B288), mods(Equipment)",_
+		"EQ:Badge (Fire Service), techlvl(4), basecost(-), baseweight(0), lc(4), description(Issued equipment. Fire Service badge), page(B288), mods(Equipment)",_
+		"EQ:Basic Crime Scene kit, techlvl(6), basecost(-), baseweight(10), lc(4), description(Issued equipment. Fire Service badge), page(B288), mods(Equipment)",_
+		"EQ:Latex Gloves, techlvl(6), basecost(-), baseweight(0), lc(4), description(Issued equipment. basic equipment for forensic/chemical testing of crime scene), page(MY103), mods(Equipment)",_
+		"EQ:Auto Pistol¸ 9mm (TL 6), techlvl(6), lc(3), baseweight(2.4), basecost(-), damage(2d+2), damtype(pi), acc(2), rangehalfdam(150), rangemax(1850), rof(3), shots(8+1(3)), minst(9), bulk(-2), rcl(2), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2), description(Issued equipment. TL:6 LC:3 Damage:2d+2 pi Acc:2 Range:150/1850 RoF:3 Shots:8+1(3) ST:9 Bulk:-2 Rcl:2 Skill:Guns (Pistol)), page(B278), mods(Equipment, Guns)",_
+		"EQ:Personal Radio, techlvl(7), basecost(-), baseweight(1), lc(3), description(Issued equipment. TL:7 Notes: Classic "walkie-talkie." 2-mile range. 12hrs.), page(B288), mods(Equipment)" _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text("Advantages: Select 10 points from amongst the following:"),_
+			pointswanted(10),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Vision,_
+			#newitem(AD:Contact (Street), 1/2/3/4, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18,_
+					Effective Skill 21), upto(4), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				),_
+			#newitem(_
+				AD:Patron (Powerful Individual), 10/15/20/25/30, displaycost(5), mods(Frequency of Appearance, Patron, Favor),_
+					page(B72), cat(Mundane, Social),_
+					initmods(_
+						Frequency: roll of  6 or less (Quite rarely), *1/2, shortname(6 or less), group(Frequency of Appearance) _
+						) _
+				) #codes(upto 1, downto 1),_
+			AD:Extra Perception,_
+			AD:Extra Will _
+			) _
+		),_
+	select4(_
+			text("Disdvantages: Select -15 points from amongst the following:"),_
+			pointswanted(-15),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			DI:Bad Temper,_
+			DI:Callous,_
+			DI:Chronic Pain #codes(upto 1, downto 1),_
+			DI:Insomniac,_
+			DI:Intolerance,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot harm innocents),_
+			#newitem(_
+				DI:Secret (Corrupt), -5/-10/-20/-30, upto(4), displaycost(-5/-10), page(B152), levelnames("Serious Embarrassment",_
+					"Utter Rejection", "Imprisonment or Exile", "Possible Death") _
+				) #codes(upto 2, downto 1),_
+			#newitem(_
+				DI:Sense of Duty (Fire Service), -2/-5/-10/-15/-20, displaycost(-5/-10), levelnames(Individual, Small Group, Large Group, _
+					Entire Race, Every Living Being), page(B153), upto(5), conditional(=+2 to ST:Reaction when "in dangerous situations _
+					if Sense of Duty is known")_
+				) #codes(Upto 3, Downto 2),_
+			DI:Stubbornness,_
+			DI:Unfit _
+			)_
+		),_
+	select5(_
+			text("Background Skills: Select 3 points from amongst the following:"),_
+			pointswanted(3),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts))),_
+			SK:Computer Operation,_
+			SK:First Aid,_
+			SK:Administration,_
+			SK:Public Speaking,_
+			SK:Diplomacy,_
+			SK:Brawling,_
+			SK:Wrestling,_
+			SK:Running _
+			)_
+		),_
+	select6(#list(QuirkSelection))
+
+Genius Detective (Mysteries), displaycost(215),_
+	description(_
+			You are a famous detective, intuitive, creative, and rational, with abilities at deduction _
+			and analysis that confound your less-witty peers. You may be a master of disguise, able to _
+			blend in to any setting from seamen's tavern to the royal court. You may have charm and wit _
+			enough to persuade the most recalcitrant suspect to betray his innermost secrets. Often you _
+			are not particularly handsome or athletic. If you need someone to carry a firearm or engage _
+			in a brawl, you may well have a stalwart sidekick at your side who also jots down your deeds _
+			for posterity. _
+			),_
+	page(MY103),_
+	sets(_
+		ST:IQ = 17,_
+				ST:Perception = 19 _
+		),_
+	adds(_
+		AD:Ally (specify) = 3 _
+			with "Frequency: roll of  15 or less (Almost all the time), *3, shortname(15 or less), group(Frequency of Appearance)",_
+		AD:Contact (Police) _
+			with "Reliability: Usually Reliable, *2, shortname(Usually Reliable), group(Reliability)" _
+			and "Frequency: roll of  12 or less (Quite often), *2, shortname(12 or less), group(Frequency of Appearance)",_
+		AD:Independent Income = 5,_
+		AD:Reputation (Famed Sleuth) = 3,_
+		AD:Status = 1,_
+		AD:Wealth = 2,_
+		DI:Code of Honor (Gentleman P.I.),_
+		DI:Overconfidence,_
+		SK:Criminology = 1pts,_
+		SK:Detect Lies = 2pts,_
+		SK:Diplomacy = 16pts,_
+		SK:Fast-Talk = 12pts,_
+		SK:Public Speaking = 1pts,_
+		SK:Acting = 1pts,_
+		SK:Disguise (Human) = 1pts,_
+		SK:Writing = 1pts _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text("Disadvantages: Select -30 points from amongst the following:"),_
+			pointswanted(-30),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			DI:Addiction ([Physiological]),_
+			DI:Alcoholism,_
+			DI:Compulsive Behavior,_
+			DI:Odious Personal Habit,_
+			DI:Chronic Pain,_
+			DI:Overweight,_
+			DI:Unfit,_
+			DI:Bad Back,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Colorblindness,_
+			DI:Fat,_
+			DI:Hard of Hearing,_
+			DI:Hunchback,_
+			DI:Ham-Fisted,_
+			DI:Klutz,_
+			DI:Lame (Crippled Legs),_
+			DI:Lame (Legless),_
+			DI:Lame (Missing Legs),_
+			DI:Lame (Paraplegic),_
+			DI:Stuttering,_
+			DI:Very Fat,_
+			DI:Very Unfit _
+			)_
+		),_
+	select4(_
+			text("Secondary Skills: Select 9 points from amongst the following:"),_
+			pointswanted(9),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 8pts))),_
+			SK:First Aid,_
+			SK:Diagnosis,_
+			SK:Poisons,_
+			SK:Psychology,_
+			SK:Hypnotism,_
+			SK:Physician,_
+			SK:Hobby Skill ([DX-based]),_
+			SK:Hobby SKill ([IQ-based]),_
+			SK:Research,_
+			SK:Professional Skill ([DX based]),_
+			SK:Professional Skill ([IQ based]),_
+			SK:Forensics,_
+			SK:Expert Skill,_
+			LA:Language,_
+			LA:Language (Spoken),_
+			LA:Language (Written) _
+			)_
+		),_
+	select5(_
+			text("Background Skills: Select 3 points from amongst the following:"),_
+			pointswanted(3),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts))),_
+			SK:Administration,_
+			SK:Brawling,_
+			SK:Wrestling,_
+			SK:Guns (Pistol) _
+			)_
+		),_
+	select6(#list(QuirkSelection))
+
+Hard-Boiled Detective (Mysteries), displaycost(85),_
+	description(_
+			You are a cynical yet honorable man driven by a fierce desire for justice. You are a tough _
+			guy (or gal) who will not be intimidated or threatened by anyone. You protect your clients, _
+			even if you have to bend or break the law to do it. You are curious and will poke into _
+			interesting events that aren't directly related to your case to make sure that justice is _
+			done. Police usually don't like you; you are trouble waiting to happen. _
+			),_
+	page(MY103),_
+	sets(_
+		ST:ST = 11,_
+		ST:DX = 11,_
+		ST:IQ = 12,_
+		ST:HT = 11,_
+		ST:Will = 13 _
+		),_
+	adds(_
+		AD:Fearlessness = 2,_
+		DI:Code of Honor (Private Investigator),_
+		DI:Overconfidence,_
+		DI:Sense of Duty (Clients) = 3,_
+		DI:Stubbornness,_
+		SK:Brawling = 4pts,_
+		SK:Detect Lies = 2pts,_
+		SK:Fast-Talk = 4pts,_
+		SK:Guns (Pistol) = 2pts,_
+		SK:Intimidation = 4pts,_
+		SK:Shadowing = 2pts,_
+		SK:Stealth = 4pts,_
+		SK:Streetwise = 4pts,_
+		SK:Acting = 1pts,_
+		SK:Criminology = 1pts,_
+		SK:Diplomacy = 2pts,_
+		SK:Disguise (Human) = 1pts,_
+		SK:Driving (Automobile) = 2pts,_
+		SK:First Aid (Human) = 1pts,_
+		SK:Holdout = 1pts,_
+		SK:Lockpicking = 1pts,_
+		SK:Photography = 1pts,_
+		SK:Writing = 1pts _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text("Disdvantages: Select -15 points from amongst the following:"),_
+			pointswanted(-15),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			DI:Debt,_
+			#newitem(DI:Compulsive Behavior (Heavy Drinking), -5/-10, displaycost(-5/-10/+*), mods(Self-Control), page(B128), upto(3), cat(Mundane, Mental),  initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less),  group(Self-Control), page(B121)), displaycost(-5)) #codes (upto1, downto 1),_
+			DI:No Sense of Humor _
+			)_
+		),_
+	select4(_
+			text("Background Skills: Select 3 points from amongst the following:"),_
+			pointswanted(3),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts))),_
+			SK:Computer Operation,_
+			SK:Area Knowledge ([Area]),_
+			SK:Administration,_
+			#newitem(SK:Professional Skill (Bard), IQ/A, default(IQ - 5), page(B215), cat(_General, Knowledge)),_
+			SK:Research,_
+			SK:Law _
+			)_
+		),_
+	select5(#list(QuirkSelection))
+
+Investigating Mage (Mysteries), displaycost(150),_
+	description(_
+			You are a wizard who specializes in solving crimes, often those caused by foes with magical _
+			powers themselves. You may work for a noble, a city, or a guild, which provides you with a _
+			job and some magical items to assist your official investigations in the same way that a _
+			modern police department provides equipment to its employees. _
+			),_
+	page(MY104),_
+		x(#message("After completing you should select -30 points worth of appropriate disadvantages such as Odious Personal Habit or Sense of Duty.")),_
+	sets(_
+		ST:IQ = 14,_
+		ST:HT = 11,_
+			ST:Fatigue Points = 14 _
+		),_
+	adds(_
+		AD:Legal Enforcement Powers = 1,_
+		AD:Legal Immunity (Guild Justice Only),_
+		AD:Magery 0,_
+		AD:Magery = 2,_
+		DI:Duty (Law Enforcement Agency) = 4,_
+		SK:Acting = 1pts,_
+		SK:Diplomacy = 1pts,_
+		SK:Fast-Talk = 2pts,_
+		SK:Interrogation = 1pts,_
+		SK:Public Speaking = 1pts,_
+		SK:Streetwise = 1pts,_
+		SK:Riding (Horse) = 2pts,_
+		SK:Writing = 1pts,_
+		SP:Aura = 1pts,_
+		SP:Detect Magic = 1pts,_
+		SP:Echoes of the Past = 12pts,_
+		SP:History = 1pts,_
+		SP:Identify Spell = 1pts,_
+		SP:Images of the Past = 12pts,_
+		SP:Keen Hearing = 1pts,_
+		SP:Keen Vision = 1pts,_
+		SP:Memorize = 1pts,_
+		SP:Persuasion = 1pts,_
+		SP:See Secrets = 2pts,_
+		SP:Seek Earth = 1pts,_
+		SP:Seek Water = 1pts,_
+		SP:Seeker = 2pts,_
+		SP:Sense Emotion = 1pts,_
+		SP:Sense Foes = 1pts,_
+		SP:Simple Illusion = 1pts,_
+		SP:Sound = 1pts,_
+		SP:Tell Time = 1pts,_
+		SP:Trace = 1pts,_
+		SP:Truthsayer = 2pts,_
+		SP:Voices = 1pts _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text(Background Skills: Select 4 points from amongst the following:),_
+			pointswanted(4),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Area Knowledge ([Area]),_
+			SK:Administration,_
+			SK:Research,_
+			SK:Detect Lies,_
+			SK:Law _
+			)_
+		),_
+	select4(#list(QuirkSelection))
+
+Medical Examiner (Mysteries), displaycost(80),_
+	description(_
+			You are a doctor who specializes in forensic medicine. You perform autopsies on the bodies _
+			of crime victims, and anyone else who died unexpectedly. Your job is to figure out the cause _
+			of death. In criminal cases, you look for clues on the body that might tell you who killed _
+			the victim. Often, you go to court to testify about how the victim died. Generally, you do _
+			not go to crime scenes, but you may sometimes get more involved in your cases than your _
+			colleagues would like. _
+			),_
+	page(MY104),_
+	sets(_
+		ST:IQ = 13 _
+		),_
+	adds(_
+		DI:Code of Honor (Hippocratic Oath),_
+		SK:Diagnosis (Human) = 2pts,_
+		SK:Electronics Operation (Medical) = 2pts,_
+		SK:Forensics = 4pts,_
+		SK:Physician (Human) = 4pts,_
+		SK:Physiology (Human) = 2pts,_
+		SK:Surgery (Human) = 4pts,_
+		SK:Writing = 2pts,_
+		SK:Chemistry = 2pts,_
+		SK:Criminology = 1pts,_
+		SK:Poisons = 2pts,_
+		SK:Research = 1pts _
+		),_
+	Creates(_
+		"EQ:Basic Crime Scene kit, techlvl(6), basecost(-), baseweight(10), lc(4), description(Issued equipment. Fire Service badge), page(B288), mods(Equipment)",_
+		"EQ:Latex Gloves, techlvl(6), basecost(-), baseweight(0), lc(4), description(Issued equipment. basic equipment for forensic/chemical testing of crime scene), page(MY103), mods(Equipment)" _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text(Advantages: Select 15 points from amongst the following:),_
+			pointswanted(15),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Wealth,_
+			AD:Status #codes(upto 1, downto 1),_
+			AD:Unfazeable,_
+			#newitem(_
+				AD:Contact (beat cop), 1/2/3/4, displaycost(1), levelnames(Effective Skill 12, Effective Skill 15,_
+				Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social),_
+				mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+				initmods(_
+					Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+					| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					) _
+				) #codes(upto 1, downto 1),_
+			#newitem(_
+				AD:Contact (detective/federal agent), 1/2/3/4, displaycost(2), levelnames(Effective Skill 12, Effective Skill 15,_
+				Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social),_
+				mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+				initmods(_
+					Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+					| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					) _
+				) #codes(upto 2, downto 2),_
+			#newitem(_
+				AD:Contact (lieutenant/doctor/expert), 1/2/3/4, displaycost(3), levelnames(Effective Skill 12, Effective Skill 15,_
+				Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social),_
+				mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+				initmods(_
+					Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+					| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					) _
+				) #codes(upto3, downto 3),_
+			#newitem(_
+				AD:Contact (Chief of police/senior officers), 1/2/3/4, displaycost(4), levelnames(Effective Skill 12, Effective Skill 15,_
+				Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social),_
+				mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+				initmods(_
+					Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+					| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					) _
+				) #codes(upto 4, downto 4) _
+			)_
+		),_
+	select4(_
+			text(Disadvantages: Select -20 points from amongst the following:),_
+			pointswanted(-20),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			#newitem(_
+				DI:Addiction (Prescription Drugs), -5/-10/-20, upto(3), displaycost(-10), levelnames(Cheap, Expensive, Very Expensive),_
+				mods(Addiction), page(B122), cat(Mundane, Mental)_
+				) #codes(upto 2, downto 2),_
+			DI:Alcoholism,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Callous,_
+			DI:Loner,_
+			DI:Nightmares,_
+			DI:Low Empathy,_
+			DI:Odious Personal Habit #codes(upto 2, downto 1),_
+			#newitem(DI:Secret (Corrupt), -5/-10/-20/-30, upto(4), displaycost(-5/-10), page(B152), levelnames("Serious Embarrassment",_
+					"Utter Rejection", "Imprisonment or Exile", "Possible Death") _
+				) #codes(upto 3, downto 1),_
+			DI:Shyness _
+			)_
+		),_
+	select5(_
+			text(Background Skills: Select 4 points from amongst the following:),_
+			pointswanted(4),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Computer Operation,_
+			SK:First Aid,_
+			SK:Administration,_
+			SK:Public Speaking,_
+			SK:Teaching,_
+			SK:Biology (Earthlike) _
+			)_
+		),_
+	select6(#list(QuirkSelection))
+
+Police Detective (Mysteries), displaycost(80),_
+	description(_
+			You're the relentless investigator of major crimes. You and your partner, or your squad, _
+			uncover the big crimes, stake-out the bad guys, and do your real work in the interrogation _
+			room, not the squad car. If you work in a large city, you could be assigned to a unit like _
+			Vice (gambling, prostitution, and drugs), Robbery, or Homicide. If you work in a small _
+			rural department, you may be the only detective in your town. If you're an American _
+			detective, you have four or more years experience as a patrol officer. If you're a French _
+			detective, you may have been hired right out of college with no prior experience on the streets. _
+			),_
+	page(MY105),_
+	sets(_
+		ST:IQ = 12 _
+		),_
+	adds(_
+		AD:Legal Enforcement Powers = 1,_
+		AD:Rank (Police) = 2,_
+		DI:Code of Honor (Police),_
+		DI:Duty (Police) = 4,_
+		SK:Criminology = 4pts,_
+		SK:Detect Lies = 4pts,_
+		SK:Fast-Talk = 4pts,_
+		SK:Forensics = 2pts,_
+		SK:Guns (Pistol) = 2pts,_
+		SK:Interrogation = 4pts,_
+		SK:Law (Criminal) = 1pts,_
+		SK:Writing = 1pts,_
+		SK:Acting = 1pts,_
+		SK:Driving (Automobile) = 1pts,_
+		SK:Holdout = 2pts,_
+		SK:Intimidation = 2pts,_
+		SK:Psychology (Human) = 1pts,_
+		SK:Savoir-Faire (Police) = 1pts,_
+		SK:Shadowing = 2pts,_
+		SK:Stealth = 2pts,_
+		SK:Streetwise = 2pts _
+		),_
+	Creates(_
+		"SK:Area Knowledge (City), IQ/E, default(IQ - 4, "SK:Geography ([Area])" - 3), page(B176), cat(Everyman, Knowledge)" = 2pts,_
+		"SK:Area Knowledge (Precinct), IQ/E, default(IQ - 4, "SK:Geography ([Area])" - 3), page(B176), cat(Everyman, Knowledge)" = 2pts,_
+		"SK:Professional Skill (Law Enforcement), IQ/A, default(IQ - 5), page(B215), cat(_General, Knowledge)" = 4pts,_
+		"EQ:Auto Pistol¸ 9mm (TL 6¸ Ammunition), baseweight(0.7), basecost(-), techlvl(6), lc(3), mods(Equipment, Ammunition)",_
+		"EQ:Type IIA Armor, location(torso), dr(7), basecost(-), baseweight(5), lc(3), techlvl(8), description(TL:8 LC:3 DR:7 Holdout -1 covert body armor), mods(Equipment), page(MY113)",_
+		"EQ:Cell Phone, techlvl(8), basecost(-), baseweight(0.25), lc(4), description(Issued equipment. TL:8 Notes: Only works in some areas, $20/month fee. 10hrs.), page(B288), mods(Equipment)",_
+		"EQ:Handcuffs, techlvl(5), basecost(-), baseweight(0.5), lc(3), description(Issued equipment. TL:5 Notes: Gives -5 to Escape.), page(B289), mods(Equipment)",_
+		"EQ:Pager, techlvl(7), basecost(-), baseweight(0.1), lc(4), description(Issued equipment. TL:7 Notes: Only works in some areas, $5/month fee. 10hrs.), page(B288), mods(Equipment)",_
+		"EQ:Badge (Police Service), techlvl(4), basecost(-), baseweight(0), lc(4), description(Issued equipment. Fire Service badge), page(B288), mods(Equipment)",_
+		"EQ:Basic Crime Scene kit, techlvl(6), basecost(-), baseweight(10), lc(4), description(Issued equipment. Fire Service badge), page(B288), mods(Equipment)",_
+		"EQ:Latex Gloves, techlvl(6), basecost(-), baseweight(0), lc(4), description(Issued equipment. basic equipment for forensic/chemical testing of crime scene), page(MY103), mods(Equipment)",_
+		"EQ:Auto Pistol¸ 9mm (TL 6), techlvl(6), lc(3), baseweight(2.4), basecost(-), damage(2d+2), damtype(pi), acc(2), rangehalfdam(150), rangemax(1850), rof(3), shots(8+1(3)), minst(9), bulk(-2), rcl(2), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2), description(Issued equipment. TL:6 LC:3 Damage:2d+2 pi Acc:2 Range:150/1850 RoF:3 Shots:8+1(3) ST:9 Bulk:-2 Rcl:2 Skill:Guns (Pistol)), page(B278), mods(Equipment, Guns)",_
+		"EQ:Personal Radio, techlvl(7), basecost(-), baseweight(1), lc(3), description(Issued equipment. TL:7 Notes: Classic "walkie-talkie." 2-mile range. 12hrs.), page(B288), mods(Equipment)" _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text(Advantages: Select 10 points from amongst the following:),_
+			pointswanted(10),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra Perception,_
+			AD:Extra Will,_
+			#newitem(_
+				AD:Patron (Powerful Individual), 10/15/20/25/30, displaycost(5), mods(Frequency of Appearance, Patron, Favor),_
+					page(B72), cat(Mundane, Social),_
+					initmods(_
+						Frequency: roll of  6 or less (Quite rarely), *1/2, shortname(6 or less), group(Frequency of Appearance) _
+						) _
+				) #codes(upto 1, downto 1),_
+			#newitem(_
+				AD:Contact (street), 1/2/3/4, displaycost(1), levelnames(Effective Skill 12, Effective Skill 15,_
+					Effective Skill 18, Effective Skill 21), upto(4), cat(Mundane, Social),_
+					mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				) #codes(upto 1, downto 1) _
+			)_
+		),_
+	select4(_
+			text(Disadvantages: Select -15 points from amongst the following:),_
+			pointswanted(-15),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Insomniac,_
+			DI:Intolerance #codes(upto 2, downto 1),_
+			DI:Overconfidence,_
+			DI:Sense of Duty #codes(upto 2, downto 1),_
+			#newitem(DI:Secret (Corrupt), -5/-10/-20/-30, upto(4), displaycost(-5/-10), page(B152), levelnames("Serious Embarrassment",_
+					"Utter Rejection", "Imprisonment or Exile", "Possible Death") _
+				) #codes(upto 3, downto 1),_
+			DI:Stubbornness _
+			)_
+		),_
+	select5(_
+			text(Background Skills: Select 6 points from amongst the following:),_
+			pointswanted(6),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Computer Operation,_
+			SK:First Aid,_
+			SK:Administration,_
+			SK:Disguise,_
+			SK:Public Speaking,_
+			SK:Diplomacy,_
+			SK:Brawling,_
+			SK:Guns (Shotgun),_
+			SK:Shortsword,_
+			SK:Wrestling,_
+			SK:Running _
+			)_
+		),_
+	select6(#list(QuirkSelection))
+
+Private Psi (Mysteries), displaycost(125),_
+	description(_
+			You are a specialist in using the powers of the mind to solve crimes. If psionics are openly _
+			accepted in your society, then you are a respected professional able to publicly use your _
+			powers. If psionics are a secret in your society, then you use your powers to help you _
+			discover the culprit, but must use mundane methods to prove your case. _
+			),_
+	page(MY102),_
+	sets(_
+		ST:IQ = 13,_
+				ST:Perception = 14 _
+		),_
+	adds(_
+		AD:Detect (Current Psi use and Past Psi Residue) =2 with "ESP, -10%,group(_Psionic Power Modifier),page(B255),level(1)",_
+		AD:Mind Probe with "Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1)",_
+		AD:Mind Reading with "Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1)",_
+		AD:Mind Shield = 3 with "Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1)",_
+		AD:Psychometry with "ESP, -10%,group(_Psionic Power Modifier),page(B255),level(1)",_
+		AD:Telepathy Talent = 2,_
+		DI:Code of Honor (Private Investigator),_
+		DI:Sense of Duty (Clients) = 3,_
+		SK:Criminology = 1pts,_
+		SK:Detect Lies = 1pts,_
+		SK:Diplomacy = 2pts,_
+		SK:Fast-Talk = 2pts,_
+		SK:Streetwise = 2pts,_
+		SK:Brawling = 1pts _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text(Disadvantages: Select -25 points from amongst the following, or any appropriate physical disadvantage),_
+			pointswanted(-25),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Insomniac,_
+			DI:Intolerance #codes(upto 2, downto 1),_
+			DI:Overconfidence,_
+			DI:Sense of Duty #codes(upto 2, downto 1),_
+			#newitem(DI:Secret (Corrupt), -5/-10/-20/-30, upto(4), displaycost(-5/-10), page(B152), levelnames("Serious Embarrassment",_
+					"Utter Rejection", "Imprisonment or Exile", "Possible Death") _
+				) #codes(upto 3, downto 1),_
+			DI:Stubbornness _
+			)_
+		),_
+	select4(_
+			text(Background Skills: Select 3 points from amongst the following:),_
+			pointswanted(3),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts))),_
+			SK:Computer Operation,_
+			SK:Area Knowledge ([Area]),_
+			SK:Administration,_
+			SK:Public Speaking,_
+			SK:Research,_
+			SK:Law _
+			)_
+		),_
+	select5(#list(QuirkSelection))
+
+Specialist (Mysteries), displaycost(70),_
+	description(_
+			You are not a sworn police officer, but you work with police officers on a regular basis _
+			and are welcome at the station house. You may be a civilian crime scene technician, a _
+			criminal psychologist, or a social worker. You find the evidence to put the bad guy away. _
+			You are not supposed to be chasing the bad guys down alleys, but sometimes you can't resist _
+			the temptation. _
+			),_
+	page(MY102),_
+	sets(_
+		ST:IQ = 12,_
+				ST:Perception = 13 _
+		),_
+	adds(_
+		SK:Forensics = 8pts,_
+		SK:Photography = 4pts,_
+		SK:Writing = 4pts,_
+		SK:Criminology = 1pts,_
+		SK:Physiology (Human) = 2pts,_
+		SK:Research = 2pts _
+		),_
+	Creates(_
+		"EQ:Measuring Tape, techlvl(4), basecost(-), baseweight(0.20), lc(4), description(Issued equipment. TL:4 Notes: retractable measuring tape upto 15 feet), page(B288), mods(Equipment)",_
+		"EQ:Basic Crime Scene kit, techlvl(6), basecost(-), baseweight(10), lc(4), description(Issued equipment. Fire Service badge), page(B288), mods(Equipment)",_
+		"EQ:Latex Gloves, techlvl(6), basecost(-), baseweight(0), lc(4), description(Issued equipment. basic equipment for forensic/chemical testing of crime scene), page(MY103), mods(Equipment)" _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text("Advantages: Select 10 points from amongst the following:"),_
+			pointswanted(10),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Acute Hearing,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Vision,_
+			#newitem(AD:Contact (Beat Cop), 1, levelnames(Effective Skill 12),_
+					cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				),_
+			#newitem(AD:Contact (Detective/federal Agent), 2, levelnames(Effective Skill 15),_
+					cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				),_
+			#newitem(AD:Contact (Lieutenants/doctors/scientists/managers), 3, levelnames(Effective Skill 18),_
+					cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				),_
+			#newitem(AD:Contact (Cheif/Senior Officers/known Experts), 4, levelnames(Effective Skill 21),_
+					cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+						) _
+				),_
+			AD:Reputation,_
+			AD:Extra Perception _
+			)_
+		),_
+	select4(_
+			text("Disadvantages: Select -20 points from amongst the following:"),_
+			pointswanted(-20),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction (Tobacco),_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Odious Personal Habit #codes(upto 2, downto 1),_
+			DI:Overweight,_
+			#newitem(DI:Secret (Corrupt), -5/-10/-20/-30, upto(4), displaycost(-5/-10), page(B152), levelnames("Serious Embarrassment",_
+					"Utter Rejection", "Imprisonment or Exile", "Possible Death") _
+				) #codes(upto 3, downto 1),_
+			DI:Unfit _
+			)_
+		),_
+	select5(_
+			text("Primary Skills: choose 9 points from amongst the following:"),_
+			pointswanted(9),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts))),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Small Arms),_
+			SK:Biochemistry,_
+			SK:Chemistry,_
+			SK:Diagnosis,_
+			SK:Metallurgy,_
+			SK:Poisons,_
+			SK:Biology (Earthlike),_
+			#newitem(SK:Expert Skill (Biochemistry), IQ/H, page(B193), cat(_General, Natural Sciences)),_
+			#newitem(SK:Expert Skill (Genetics), IQ/VH, page(B193), cat(_General, Natural Sciences)),_
+			#newitem(SK:Expert Skill (Entomology), IQ/VH, page(B193), cat(_General, Natural Sciences)) _
+			)_
+		),_
+	select6(_
+			text("Background Skills: choose 5 points from amongst the following:"),_
+			pointswanted(upto 5),_
+			itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Computer Operation,_
+			SK:First Aid,_
+			SK:Administration,_
+			SK:Teaching,_
+			SK:Armory (Melee Weapons),_
+			SK:Armory (Small Arms),_
+			SK:Biochemistry,_
+			SK:Chemistry,_
+			SK:Diagnosis,_
+			SK:Metallurgy,_
+			SK:Poisons,_
+			SK:Biology (Earthlike),_
+			#newitem(SK:Expert Skill (Biochemistry), IQ/H, page(B193), cat(_General, Natural Sciences)),_
+			#newitem(SK:Expert Skill (Genetics), IQ/VH, page(B193), cat(_General, Natural Sciences)),_
+			#newitem(SK:Expert Skill (Entomology), IQ/VH, page(B193), cat(_General, Natural Sciences)) _
+			)_
+		),_
+	select7(#list(QuirkSelection))
+
+That Darn Kid (Mysteries), displaycost(65),_
+	description(_
+			You're the meddling teenager with a nose for trouble. You solve high-school mysteries and _
+			occasional adult problems. You are quick-witted, observant, and precocious, but may lack _
+			insight into complex adult motivations and the consequences of your adventures. _
+			),_
+	page(MY102),_
+	sets(_
+		ST:IQ = 12,_
+				ST:Perception = 13 _
+		),_
+	adds(_
+		AD:Patron (Parents) with "Frequency: roll of 15 or less (Almost all the time), *3,shortname(15 or less),group(Frequency of Appearance),page(B36),level(1)",_
+		DI:Wealth = 2,_
+		DI:Social Stigma (Minor),_
+		SK:Criminology = 1pts,_
+		SK:Fast-Talk = 1pts,_
+		SK:Throwing = 2pts,_
+		SK:Area Knowledge (Neighbourhood) = 1pts _
+		),_
+	creates(_
+		"SK:Area Knowledge (Neighbourhood), IQ/E, default(IQ - 4, "SK:Geography ([Area])" - 3), page(B176), cat(Everyman, Knowledge)" = 1pts,_
+		"SK:Hobby Skill (Trivia), IQ/E, default(IQ - 4), page(B200), cat(_General, Knowledge)",_
+		"EQ:very old Jeep, basecost(-), lc(3), techlvl(6), description(TL:6 Skill:Driving/TL (Automobile) ST/HP:52 Hnd/SR:0/3 HT:11f Move:2/32 Lwt:1.6 Load:0.4 SM:+2 Occ:1+3 DR:4 Range:375 Locations: O4W), page(B464), mods(Equipment)" _
+		),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+			text("Advantages: Select 5 points from amongst the following:"),_
+			pointswanted(5),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Appearance #codes(upto 1, downto 1),_
+			AD:Fit,_
+			PE:Honest Face,_
+			AD:Pitiable _
+			)_
+		),_
+	select4(_
+			text("Disadvantages: Select -10 points from amongst the following:"),_
+			pointswanted(-10),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Curious,_
+			DI:Fearfulness,_
+			DI:Ham-Fisted,_
+			DI:Honesty,_
+			DI:Klutz,_
+			DI:Overconfidence,_
+			DI:Stubbornness _
+			)_
+		),_
+	select5(_
+			text("Primary Skill: Select 1 of the following skills at 4 points:"),_
+			pointswanted(4),_
+			itemswanted(1),_
+		list(_
+			SK:Climbing #codes(upto 4pts, downto 4pts),_
+			SK:Stealth #codes(upto 4pts, downto 4pts) _
+			)_
+		),_
+	select6(_
+			text("Secondary Skill: Select 1 of the following skills at 2 points:"),_
+			pointswanted(2),_
+			itemswanted(1),_
+		list(_
+			SK:Bicycling #codes(upto 2pts, downto 2pts),_
+			SK:Swimming #codes(upto 2pts, downto 2pts) _
+			)_
+		),_
+	select7(_
+			text("Background Skill: Select 3 points from the following skills:"),_
+			pointswanted(3),_
+			itemswanted(atleast 1),_
+		list(_
+			#grouplist(GR:AllSkills, flags(NoPrefix))_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts))),_
+			SK:Hobby Skill ([DX-based]),_
+			SK:Hobby Skill ([IQ-based]),_
+			SK:Musical Instrument,_
+			SK:Singing,_
+			SK:Dancing,_
+			SK:Sports,_
+			SK:Games,_
+			SK:Fishing _
+			)_
+		),_
+	select8(#list(QuirkSelection))
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Defense Attorney (Mysteries)" with {replacetags(in "TE:Defense Attorney (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Fire Marshal (Mysteries)" with {replacetags(in "TE:Fire Marshal (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Private Psi (Mysteries)" with {replacetags(in "TE:Private Psi (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Specialist (Mysteries)" with {replacetags(in "TE:Specialist (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:That Darn Kid (Mysteries)" with {replacetags(in "TE:That Darn Kid (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Genius Detective (Mysteries)" with {replacetags(in "TE:Genius Detective (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Hard-Boiled Detective (Mysteries)" with {replacetags(in "TE:Hard-Boiled Detective (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Investigating Mage (Mysteries)" with {replacetags(in "TE:Investigating Mage (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Medical Examiner (Mysteries)" with {replacetags(in "TE:Medical Examiner (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Police Detective (Mysteries)" with {replacetags(in "TE:Police Detective (Mysteries)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

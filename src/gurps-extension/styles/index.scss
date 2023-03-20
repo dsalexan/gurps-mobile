@@ -1,0 +1,125 @@
+.gurps.actor {
+  form {
+    .tabs {
+      height: auto;
+      border: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: var(--spacing) var(--s2);
+      padding-top: 0;
+      justify-content: space-around;
+
+      .tab {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        --icon_size: var(--s2-5);
+
+        .wrapper-icon,
+        .icon {
+          transition: all 0.3s;
+          transition-timing-function: ease-in-out;
+        }
+
+        .wrapper-icon {
+          width: calc(var(--icon_size) + var(--s2));
+          height: calc(var(--icon_size) + var(--s2));
+          border-radius: 50%;
+          background-color: transparent;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .icon {
+          font-size: var(--icon_size);
+          line-height: var(--icon_size);
+          width: var(--icon_size);
+          height: var(--icon_size);
+          color: #666;
+        }
+
+        svg.tag {
+          margin-top: var(--spacing);
+          color: red;
+          width: 6px;
+          opacity: 0;
+        }
+
+        &.selected {
+          .wrapper-icon {
+            background-color: rgb(100 100 100 / 25%);
+          }
+
+          .icon {
+            color: red;
+          }
+        }
+
+        &.tagged {
+          svg.tag {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .panel {
+      padding: 0 var(--s2);
+      display: none;
+      transition: all 0.3s;
+      transition-timing-function: ease-in-out;
+
+      &.selected {
+        display: block;
+      }
+
+      & > .feature-wrapper {
+        & > .feature {
+          margin-top: var(--spacing);
+        }
+        &:first-of-type > .feature {
+          margin-top: 0;
+        }
+      }
+
+      & > .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: calc(var(--s2) + 6px);
+
+        &.flex-end {
+          justify-content: flex-end;
+        }
+
+        --icon_size: var(--s2);
+
+        color: #777;
+
+        & > .button {
+          padding: var(--s1) calc(var(--s1) * 1.25);
+          background-color: #ddd;
+          border-radius: var(--s1);
+          display: flex;
+          flex-direction: row;
+
+          & > .label {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            color: #777;
+            font-size: calc(var(--s1) * 1.25);
+            font-style: italic;
+            font-weight: 500;
+            margin-right: calc(var(--s1) * 0.5);
+          }
+        }
+      }
+    }
+  }
+}

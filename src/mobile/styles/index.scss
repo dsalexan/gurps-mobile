@@ -1,0 +1,115 @@
+/* stylelint-disable custom-property-pattern */
+@use "../../december/utils/styles" as utils;
+
+@import "./clean";
+@import "./integrations";
+
+:root {
+  --navigationHeight: 35px;
+  --vh: 1vh;
+  --viewHeight: calc(calc(var(--vh) * 100) - var(--navigationHeight));
+  --miDarkBackground: #333;
+  --miDarkBackgroundTransparent: #333e;
+}
+
+body.mobile {
+  #ui-left,
+  #ui-top,
+  #ui-bottom {
+    display: none;
+  }
+
+  #ui-right {
+    width: 100%;
+    flex-grow: 1;
+
+    #sidebar {
+      width: calc(100% - 5px);
+
+      #sidebar-tabs {
+        --sidebar-tab-height: 46px;
+
+        box-shadow: none;
+        border-bottom: 0;
+
+        &.tabs {
+          overflow: scroll;
+          justify-content: space-between;
+          @include utils.no-scroll;
+        }
+
+        a.collapse {
+          display: none;
+        }
+
+        a.item {
+          align-items: center;
+          display: flex;
+          padding: 10px;
+
+          i {
+            font-size: x-large;
+          }
+        }
+      }
+
+      #chat-controls {
+        flex: 0 0 36px;
+        margin: 0 6px;
+        align-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  & > .app {
+    margin: 0;
+    background: #111;
+
+    &.window-app {
+      min-width: auto;
+      width: 100vw !important;
+      min-height: auto;
+      height: 100vh !important;
+      top: 0 !important;
+      box-shadow: none;
+
+      header.window-header {
+        padding: 0;
+        justify-content: flex-end;
+        align-items: center;
+        flex: 0 0 50px;
+        line-height: normal;
+        // display: none;
+
+        a[id^="popout_"],
+        .window-title {
+          display: none;
+        }
+
+        a.header-button {
+          &.import,
+          // &.configure-sheet,
+          &.configure-token {
+            display: none;
+          }
+
+          &.close {
+            margin: 0 8px;
+          }
+
+          font-size: 0;
+          /* stylelint-disable-next-line no-descending-specificity */
+          i {
+            font-size: x-large;
+            color: white;
+          }
+        }
+      }
+
+      section.window-content {
+        padding: var(--s1) var(--s1-5);
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+* {
+  scrollbar-width: thin;
+}
+
+html {
+  background: black;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+}
+
+/* Better loading */
+.chat-message {
+  background-color: #d8d7cc;
+}

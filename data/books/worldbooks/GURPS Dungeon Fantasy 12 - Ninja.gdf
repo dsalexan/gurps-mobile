@@ -1,0 +1,1720 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 February 8. _
+        This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, and this file third. This will ensure the proper modifications to spells required.  THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.  MIX WITH OTHER DATA FILES WITH CAUTION.
+WorldBook=Dungeon Fantasy
+Requires="GURPS Dungeon Fantasy  1 - Adventurers.GDF"
+LoadAfter="GURPS Martial Arts 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 8-27-2010
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Dungeon Fantasy 1: Adventurers sourcebook.
+//  GURPS Dungeon Fantasy 1: Adventurers is Copyright © 2007 by Steve Jackson Games Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Advantages, disadvantages, skills, Wildcard skills, spells, powers, equipment, and advantage modifiers.
+// 		Some character templates, but this is incomplete.
+//  
+//  This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, and this file third.
+//  This will ensure the proper modifications to spells required.
+// 	THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.
+// 	MIX WITH OTHER DATA FILES WITH CAUTION.
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith		- Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+Ninja Talent, basevalue(AD:Ninja Talent::level), display(no), hide(yes)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Ninja Training>
+Weapon Master (Ninja Weapons), 35, page(B99), levelnames(,,),_
+	x(_
+		#Message(In order for the Damage Bonus to be applied to the characters weapons you will need to add the Weapon Modifier "_Advantage: Weapon Master Damage Bonus" to each weapon.)_
+		)
+
+Ninja Talent, 10/20, upto(6), page(DF12:4), gives(_
+		+1 to SK:Blind Fighting,_
+		+1 to SK:Hypnotism,_
+		+1 to SK:Invisibility Art,_
+		+1 to SK:Light Walk,_
+		+1 to SK:Mental Strength,_
+		+1 to "AD:Ninja Danger Sense::skillscore",_
+		+1 to "AD:Ninja Mind Shield::skillscore",_
+		+1 to "AD:Ninja Shifting Visage::skillscore",_
+		+1 to "AD:Ninja Catfall::skillscore",_
+		+1 to "AD:Ninja One With Shadows::skillscore",_
+		+1 to "AD:Ninja Perfect Balance::skillscore",_
+		+1 to "AD:Ninja Shadow Walker::skillscore",_
+		+1 to "AD:Ninja Silence::skillscore",_
+		+1 to "AD:Ninja Super Jump::skillscore",_
+		+1 to "AD:Ninja Tools::skillscore"_
+	)
+
+// #Clone "AD:Ninja Talent" as "AD:Extra Ninja Talent"
+// #ReplaceTags in "AD:Extra Ninja Talent" with "upto(6 - AD:Ninja Talent::level)"
+
+#Clone "AD:Catfall" as "AD:Ninja Catfall"
+#ReplaceTags in "AD:Ninja Catfall" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Catfall" with "displaycost(9), needs(AD:Ninja Talent), page(DF12:5)"
+#MergeTags in "AD:Ninja Catfall" with "cat(Ninja Training)"
+
+#Clone "AD:Danger Sense" as "AD:Ninja Danger Sense"
+#ReplaceTags in "AD:Ninja Danger Sense" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Danger Sense" with "displaycost(14), needs(AD:Ninja Talent), page(DF12:5)"
+#MergeTags in "AD:Ninja Danger Sense" with "cat(Ninja Training)"
+
+#Clone "AD:Enhanced Dodge" as "AD:Ninja Enhanced Dodge"
+#ReplaceTags in "AD:Ninja Enhanced Dodge" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Enhanced Dodge" with "displaycost(14), upto(1), needs(AD:Ninja Talent), page(DF12:5)"
+#MergeTags in "AD:Ninja Enhanced Dodge" with "cat(Ninja Training)"
+
+#Clone "AD:Enhanced Parry (all parries)" as "AD:Ninja Enhanced Parry (All Weapons)"
+#ReplaceTags in "AD:Ninja Enhanced Parry (All Weapons)" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Enhanced Parry (All Weapons)" with "displaycost(9/18), upto(2), needs(AD:Ninja Talent = %level)"
+#MergeTags in "AD:Ninja Enhanced Parry (All Weapons)" with "cat(Ninja Training)"
+
+#Clone "AD:Striking ST" as "AD:Ninja Killing Strike"
+#ReplaceTags in "AD:Ninja Killing Strike" with "initmods(_
+														Once Per Weapon Per Battle, -10%, page(DF12:4) | _
+														Ninja Training, -10%, group(_Power Modifiers), page(DF12:4)_
+														)"
+#ReplaceTags in "AD:Ninja Killing Strike" with "displaycost(4/8), upto(2), needs(AD:Ninja Talent = %level), page(DF12:5), gives()"
+#MergeTags in "AD:Ninja Killing Strike" with "cat(Ninja Training)"
+
+Ninja Lethal Weapon, 7, needs(AD:Ninja Killing Strike = 2, AD:Ninja Talent = 3, AD: Ninja Tools = 2, AD:Weapon Master (Ninja Weapons)), page(DF12:5),_
+	gives(+1 to "AD:Weapon Master (Ninja Weapons)" listas "Improvised Weapons from Ninja Lethal Weapon")
+
+#Clone "AD:Mind Shield" as "AD:Ninja Mind Shield"
+#ReplaceTags in "AD:Ninja Mind Shield" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Mind Shield" with "displaycost(4/8/+), needs(AD:Ninja Talent), page(DF12:5)"
+#MergeTags in "AD:Ninja Mind Shield" with "cat(Ninja Training)"
+
+#Clone "AD:Gizmo" as "AD:Ninja Tools"
+#ReplaceTags in "AD:Ninja Tools" with "initmods(Ninja Gear Only, -10%, group(_General), page(DF12:6) | Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Tools" with "displaycost(4/8/+), needs(AD:Ninja Talent = @indexedvalue(%level, 1, 1, 2)), page(DF12:5)"
+#MergeTags in "AD:Ninja Tools" with "cat(Ninja Training)"
+
+#Clone "AD:Obscure" as "AD:Ninja One With Shadows"
+#ReplaceTags in "AD:Ninja One With Shadows" with "initmods(_
+															Accessibility (Only when stationary), -50%, group(_General), page(B110) | _
+															Defensive, +50%, group(Obscure), page(B72) | _
+															Extended (Vision & Infravision), +20%, group(Obscure), page(B72) | _
+															Stealthy, +100%, group(Obscure), page(B72) | _
+															Ninja Training, -10%, group(_Power Modifiers), page(DF12:4) _
+															)"
+#ReplaceTags in "AD:Ninja One With Shadows" with "x(), displaycost(21), cost(10), upto(1), needs(AD:Ninja Talent), page(DF12:6)"
+#MergeTags in "AD:Ninja One With Shadows" with "cat(Ninja Training)"
+
+#Clone "AD:Perfect Balance" as "AD:Ninja Perfect Balance"
+#ReplaceTags in "AD:Ninja Perfect Balance" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Perfect Balance" with "displaycost(14), needs((AD:Ninja Talent = 2 | AD:Ninja Catfall)), page(DF12:6)"
+#MergeTags in "AD:Ninja Perfect Balance" with "cat(Ninja Training)"
+
+#Clone "AD:Peripheral Vision" as "AD:Ninja Peripheral Vision"
+#ReplaceTags in "AD:Ninja Peripheral Vision" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Peripheral Vision" with "displaycost(14), needs(AD:Ninja Danger Sense), page(DF12:6)"
+#MergeTags in "AD:Ninja Peripheral Vision" with "cat(Ninja Training)"
+
+#Clone "AD:Shadow Form" as "AD:Ninja Shadow Walker"
+#ReplaceTags in "AD:Ninja Shadow Walker" with "initmods(_
+														Can Carry Objects, +10%/+20%/+50%/+100%, levelnames(No Encumbrance, Light Encumbrance, Medium Encumbrance, Heavy Encumbrance), upto(4), group(Shadow Form Advantage), page(B83) | _
+														Ninja Training, -10%, group(_Power Modifiers), page(DF12:4)_
+														)"
+#ReplaceTags in "AD:Ninja Shadow Walker" with "displaycost(50), needs(AD:Ninja Talent = 3, AD:Ninja Perfect Balance, AD:Ninja Silence = 2, AD:Ninja Super Jump), page(DF12:6)"
+#MergeTags in "AD:Ninja Shadow Walker" with "cat(Ninja Training)"
+
+#Clone "AD:Elastic Skin" as "AD:Ninja Shift Visage"
+#ReplaceTags in "AD:Ninja Shift Visage" with "initmods(_
+														Glamour, -5%/-10%, level(2), levelnames(Will-5, Will-4, Will-3, Will-2, Will-1, Will), group(_General), page(P111) | _
+														Ninja Training, -10%, group(_Power Modifiers), page(DF12:4)_
+														)"
+#ReplaceTags in "AD:Ninja Shift Visage" with "displaycost(16), needs(AD:Ninja Talent = 3, AD:Ninja One With Shadows), page(DF12:6)"
+#MergeTags in "AD:Ninja Shift Visage" with "cat(Ninja Training)"
+
+#Clone "AD:Silence" as "AD:Ninja Silence"
+#ReplaceTags in "AD:Ninja Silence" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Silence" with "displaycost(5/9), upto(2), needs(AD:Ninja Talent = %level), page(DF12:6)"
+#MergeTags in "AD:Ninja Silence" with "cat(Ninja Training)"
+
+#Clone "AD:Super Jump" as "AD:Ninja Super Jump"
+#ReplaceTags in "AD:Ninja Super Jump" with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+#ReplaceTags in "AD:Ninja Super Jump" with "displaycost(9), upto(1), needs(AD:Ninja Talent), page(DF12:6)"
+#MergeTags in "AD:Ninja Super Jump" with "cat(Ninja Training)"
+
+// #Clone "AD:" as "AD:Ninja "
+// #ReplaceTags in "AD:Ninja " with "initmods(Ninja Training, -10%, group(_Power Modifiers), page(DF12:4))"
+// #ReplaceTags in "AD:Ninja " with "displaycost(), needs(AD:Ninja Talent), page(DF12:6)"
+// #MergeTags in "AD:Ninja " with "cat(Ninja Training)"
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Ninja Perks>
+Ninja Dual Ready, 1, page(DF12:6),_
+	x(#InputToTag("You must specify the specific Left Hand/Right Hand weapon combination you can Dual Ready:", nameext, "Left Hand/Right Hand", "Ninja Dual Ready"))
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Mental>
+Vow (Ninja Secrecy), -5, page(B160, DF12:7), cat(Mundane, Mental)
+Vow (Own no more than what can be carried), -10, page(B160, DF12:7), cat(Mundane, Mental)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+#MergeTags in "SK:Blind Fighting" with "needs(ST:IQ = 1 | AD:Ninja Talent)"
+#MergeTags in "SK:Hypnotism" with "needs(ST:IQ = 1 | AD:Ninja Talent)"
+#MergeTags in "SK:Invisibility Art" with "needs(ST:IQ = 1 | AD:Ninja Talent)"
+#MergeTags in "SK:Light Walk" with "needs(ST:IQ = 1 | AD:Ninja Talent)"
+#MergeTags in "SK:Mental Strength" with "needs(ST:IQ = 1 | AD:Ninja Talent)"
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons, _Melee Weapons, _Melee Weapons - Dungeon Fantasy>
+Kama, page(MA226), basecost(40), baseweight(2), techlvl(1), mods(Equipment, Melee Quality, Sword Class Quality, Dwarven 0U), lc(4),_
+	itemnotes(_
+				{}|_
+				{May get stuck; see Picks (p. B405).}|_
+				{Hook enables the rules under Hook (Low-Tech p. 54 or Martial Arts p. 74), and may also damage the victim.}_
+			),_
+	description(TL:1 LC:4 \par [Mode:slice Damage:sw cut Reach:1 Parry:0 ST:8 Skill:Axe/Mace] \par [Mode:stab Damage:sw imp Reach:1 Parry:0U ST:8 Skill:Axe/Mace Notes:[2]] \par [Mode:hook Damage:thr-2 cut Reach:1 Parry:0U ST:8 Skill:Axe/Mace Notes:[3]]),_
+	newmode(Slice, damage(sw), damtype(cut), minst(8), reach(1), parry(0), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3)),_
+	newmode(Stab, damage(sw), damtype(imp), minst(8), reach(1), parry(0U), notes([2]), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3)),_
+	newmode(Hook, damage(thr-2), damtype(cut), minst(8), reach(1), parry(0U), notes([3]), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3))
+
+Neko-De, page(MA226), basecost(100), baseweight(1), techlvl(3), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	itemnotes(_
+				{This attack receives Brawling or Karate damage bonuses.}|_
+				{This attack receives Brawling or Karate damage bonuses.}_
+			),_
+	description(TL:3 LC:4 \par [Mode:swing Damage:sw-2 cut Reach:C Parry:0 ST:6 Skill:Brawling, Karate, DX Notes:[4]] \par [Mode:thrust Damage:thr imp Reach:C Parry:0 ST:6 Skill:Brawling, Karate, DX Notes:[4]], [4] This attack receives Brawling or Karate damage bonuses. ),_
+	newmode(Swing, damage(sw-2 + _
+				@max(_
+					@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+					@if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)),_
+					@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+				)_
+		), damtype(cut), minst(6), reach(C), parry(0), notes([4]), skillused(SK:Brawling, SK:Karate, ST:DX), damagebasedon(ST:Punch)),_
+	newmode(Thrust, damage(thr + _
+				@max(_
+					@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+					@if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)),_
+					@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+				)_
+		), damtype(imp), minst(6), reach(C), parry(0), notes([4]), skillused(SK:Brawling, SK:Karate, ST:DX), damagebasedon(ST:Punch))
+#MergeTags in "EQ:Neko-De" with "page(MA221)"
+
+Shuriken, cat(_Melee Weapons - Basic Set, _Muscle-Powered Ranged Weapons, _Muscle-Powered Ranged Weapons - Basic Set), page(B276, MA226), basecost(3), baseweight(0.1), techlvl(3), mods(Equipment, Melee Quality, Cutting Class Quality), lc(4),_
+	itemnotes(_
+				{}|_
+				{This attack receives Brawling or Karate damage bonuses.}_
+			),_
+	description(TL:3 LC:4 \par [Mode:thrown Damage:thr-1 cut Acc:1 Range:ST*0.5/ST*1 RoF:1 Shots:T(1) ST:5 Bulk:0 Skill:Thrown Weapon (Shuriken)] \par [Mode:claw Damage:thr-2 cut Reach:C Parry:0 ST:0 Skill:Brawling, Karate, DX Notes:[4]]),_
+	newmode(Thrown, damage(thr-1), damtype(cut), minst(5), rangehalfdam(ST*0.5), rangemax(ST*1), calcrange(yes), acc(1), rof(1), shots(T(1)), bulk(0), skillused(SK:Thrown Weapon (Shuriken), ST:DX-4, SK:Throwing-2)),_
+	newmode(Claw, damage(thr-2 + _
+				@max(_
+					@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+					@if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)),_
+					@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+				)_
+		), damtype(cut), reach(C), parry(0), notes([4]), skillused(SK:Brawling, SK:Karate, ST:DX), damagebasedon(ST:Punch))
+
+Tonfa, page(MA226, MA230), basecost(40), baseweight(1.5), techlvl(3), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), lc(4),_
+	itemnotes(_
+				{This attack receives Brawling or Karate damage bonuses.}|_
+				{Use Brawling or Karate parry if better than usual weapon parry.}|_
+				{}_
+			),_
+	description(TL:3 LC:4 \par [Mode:butt jab Damage:thr cr Reach:C Parry:0 ST:0 Skill:Brawling, Karate, DX Notes:[4]] \par [Mode:swing Damage:sw cr Reach:1 Parry:0 ST:7 Skill:Tonfa Notes:[11]] \par [Mode:thrust Damage:thr cr Reach:C,1 Parry:0 ST:7 Skill:Tonfa], [4] This attack receives Brawling or Karate damage bonuses. ),_
+	newmode(Butt jab, damage(thr + _
+				@max(_
+					@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+					@if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)),_
+					@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+				)_
+		), damtype(cr), reach(C), parry(0), notes([4]), skillused(SK:Brawling, SK:Karate, ST:DX), damagebasedon(ST:Punch)),_
+	newmode(Swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0), notes([11]), skillused(SK:Tonfa, ST:DX-5, SK:Shortsword-3)),_
+	newmode(Thrust, damage(thr), damtype(cr), minst(7), reach(C,1), parry(0), skillused(SK:Tonfa, ST:DX-5, SK:Shortsword-3))
+
+Jutte, page(MA227, MA228), basecost(40), baseweight(1), techlvl(3), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), lc(4),_
+	itemnotes(_
+				{Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401.}|_
+				{}|_
+				{}|_
+				{}_
+			),_
+	description(TL:3 LC:4 \par [Mode:jitte/sai swing Damage:sw cr Reach:1 Parry:0 ST:6 Skill:Jitte/Sai Notes:[10]] \par [Mode:jitte/sai thrust Damage:thr cr Reach:1 Parry:0 ST:6 Skill:Jitte/Sai] \par [Mode:main-gauche swing Damage:sw cr Reach:1 Parry:0F ST:6 Skill:Main-Gauche] \par [Mode:main-gauche thrust Damage:thr cr Reach:1 Parry:0F ST:6 Skill:Main-Gauche], [10] Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401. ),_
+	newmode(Jitte/sai swing, damage(sw), damtype(cr), minst(6), reach(1), parry(0), notes([10]), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Jitte/sai thrust, damage(thr), damtype(cr), minst(6), reach(1), parry(0), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Main-gauche swing, damage(sw), damtype(cr), minst(6), reach(1), parry(0F), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Main-gauche thrust, damage(thr), damtype(cr), minst(6), reach(1), parry(0F), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3))
+
+Sai, page(DF12:14, MA227, MA228, MA231), basecost(60), baseweight(1.5), techlvl(3), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	itemnotes(_
+				{Can be thrown.},{Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401.}|_
+				{}|_
+				{Can be thrown.}|_
+				{}|_
+				{}_
+			),_
+	description(TL:3 LC:4 \par [Mode:jitte/sai swing Damage:sw cr Reach:1 Parry:0 ST:7 Skill:Jitte/Sai Notes:[1, 10]] \par [Mode:jitte/sai thrust Damage:thr imp Reach:1 Parry:0 ST:7 Skill:Jitte/Sai] \par [Mode:main-gauche swing Damage:sw cr Reach:1 Parry:0F ST:7 Skill:Main-Gauche Notes:[1]] \par [Mode:main-gauche thrust Damage:thr imp Reach:1 Parry:0F ST:7 Skill:Main-Gauche] \par [Mode:thrown Damage:thr imp Acc:0 Range:ST*0.8/ST*1.5 RoF:1 Shots:T(1) ST:7 Bulk:-3 Skill:Thrown Weapon (Knife)], [1] Can be thrown. [10] Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401. ),_
+	newmode(Jitte/sai swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0), notes([1, 10]), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Jitte/sai thrust, damage(thr), damtype(imp), minst(7), reach(1), parry(0), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Main-gauche swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0F), notes([1]), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Main-gauche thrust, damage(thr), damtype(imp), minst(7), reach(1), parry(0F), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Thrown, damage(thr), damtype(imp), minst(7), rangehalfdam(ST*0.8), rangemax(ST*1.5), calcrange(yes), acc(0), rof(1), shots(T(1)), bulk(-3), skillused(SK:Thrown Weapon (Knife), ST:DX-4))
+
+Kusarigama, page(MA228), basecost(80), baseweight(4.5), techlvl(3), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	itemnotes(_
+				{Attempts to parry flails and kusaris are at -4; fencing weapons (''F'' parry) can’t parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, nunchaku, thonged club, and weighted scarf.}|_
+				{Attempts to parry flails and kusaris are at -4; fencing weapons (''F'' parry) can’t parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, nunchaku, thonged club, and weighted scarf.},{When swinging the kama on the end of the chain, the kusarigama can’t disarm or entangle like a regular kusari (p. B406).}_
+			),_
+	description(TL:3 LC:4 \par [Mode:kusari Damage:sw+2 cr Reach:1,2* Parry:-2U ST:10† Skill:Kusari Notes:[8]] \par [Mode:kama Damage:sw+2 cut Reach:1,2* Parry:-2U ST:11† Skill:Kusari Notes:[8, 14]], [8] Attempts to parry flails and kusaris are at -4; fencing weapons ("F" parry) can't parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, and weighted scarf. ),_
+	newmode(Kusari, damage(sw+2), damtype(cr), minst(10†), reach(1,2*), parry(-2U), notes([8]), skillused(SK:Kusari, ST:DX-6, SK:Monowire Whip-3, SK:Two-Handed Flail-4, SK:Whip-3)),_
+	newmode(Kama, damage(sw+2), damtype(cut), minst(11†), reach(1,2*), parry(-2U), notes([8, 14]), skillused(SK:Kusari, ST:DX-6, SK:Monowire Whip-3, SK:Two-Handed Flail-4, SK:Whip-3))
+
+Kusarijutte, page(MA228), basecost(80), baseweight(3.5), techlvl(3), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), lc(4),_
+	itemnotes(_
+				{Attempts to parry flails and kusaris are at -4; fencing weapons (''F'' parry) can’t parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, nunchaku, thonged club, and weighted scarf.}_
+			),_
+	description(TL:3 LC:4 Damage:sw+2 cr Reach:1,2* Parry:-2U ST:8† Skill:Kusari Notes:[8], [8] Attempts to parry flails and kusaris are at -4; fencing weapons ("F" parry) can't parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, and weighted scarf. ),_
+	damage(sw+2), damtype(cr), minst(8†), reach(1,2*), parry(-2U), notes([8]), skillused(SK:Kusari, ST:DX-6, SK:Monowire Whip-3, SK:Two-Handed Flail-4, SK:Whip-3)
+
+Okusarigama, techlvl(3), break(0), lc(4), basecost(95), baseweight(10), page(B274, MA221), mods(Equipment, Melee Quality, Cutting Class Quality, Dwarven 0U),_
+	itemnotes(_
+				{}|_
+				{}|_
+				{May get stuck; see Picks (p. B405).}|_
+				{Attempts to parry flails and kusaris are at -4; fencing weapons (''F'' parry) can’t parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, nunchaku, thonged club, and weighted scarf.}_
+			),_
+	newmode(Chain swing, damage(sw+4), damtype(cut), reach(1), parry(0U), minst(15‡), skillused(SK:Two-Handed Axe/Mace, ST:DX-5, SK:Axe/Mace-3, SK:Polearm-4, SK:Two-Handed Flail-4)),_
+	newmode(Swing cut, damage(sw+2), damtype(cut), reach(1), parry(0U), minst(14‡), skillused(SK:Two-Handed Axe/Mace, ST:DX-5, SK:Axe/Mace-3, SK:Polearm-4, SK:Two-Handed Flail-4)),_
+	newmode(Swing impale, damage(sw), damtype(imp), reach(1), parry(0U), minst(14‡), notes([2]), skillused(SK:Two-Handed Axe/Mace, ST:DX-5, SK:Axe/Mace-3, SK:Polearm-4, SK:Two-Handed Flail-4)),_
+	newmode(Kusari, damage(sw+2), damtype(cr), reach(1-4*), parry(-2U), minst(14‡), notes([6]), skillused(SK:Kusari, ST:DX-6, SK:Monowire Whip-3, SK:Two-Handed Flail-4, SK:Whip-3)),_
+	description(TL:1 LC:4 \par [Mode:swing1 Dam:sw+2 cut Reach:1 Parry:0U ST:11‡ Skill:Two-Handed Axe/Mace Notes: Requires two hands; becomes unready after attack.] \par [Mode:swing2 Dam:sw imp Reach:1 Parry:0U ST:11‡ Skill:Two-Handed Axe/Mace Notes: [2] May get stuck; see Picks (p. B405). Requires two hands; becomes unready after attack.] \par [Mode:Kusari Dam:sw+2 cr Reach:1-4* Parry:-2U ST:11 Skill:Kusari Notes: [6] Attempts to parry flails are at -4, and fencing weapons (F parry) cannot parry at all! Attempts to block flails are at -2. A nunchaku is small, and gives half these penalties.])
+
+// #Delete "EQ:Ninja-to"
+#Clone "EQ:Shortsword" as "EQ:Ninja-to"
+#ReplaceTags in "EQ:Ninja-to" with "damage(sw|thr+1)"
+#MergeTags in "EQ:Ninja-to" with "page(MA221), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+
+#MergeTags in "EQ:Kama" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Neko-De" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Shuriken" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Tonfa" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Jutte" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Sai" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Kusarigama" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Kusarijutte" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Ninja-to" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Okusarigama" with "page(DF12:13), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Katana" with "cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+
+#MergeTags in "Arrow" with "cat(_Muscle-Powered Ranged Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "Hip Quiver" with "cat(_Muscle-Powered Ranged Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "Hip Quiver, Large" with "cat(_Muscle-Powered Ranged Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "Shoulder Quiver" with "cat(_Muscle-Powered Ranged Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#MergeTags in "EQ:Quarterstaff" with "cat(_Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+
+Fukumi-Bari, page(DF12:14), basecost(5), baseweight(0.1), techlvl(3), mods(Equipment), lc(4), description(TL:3 LC:4 Damage:thr-4 pi- Acc:0 Range:ST*0.5 RoF:1 Shots:1(1) ST:- Bulk:0 Skill:Blowpipe), damage(thr-4), damtype(pi-), minst(-), rangemax(ST*0.5), acc(0), rof(1), shots(1(1)), bulk(0), skillused(SK:Blowpipe, ST:DX-6),_
+	cat(_Muscle-Powered Ranged Weapons, Dungeon Fantasy - Ninja Weapons)
+
+// #Delete "EQ:Fukiya"
+#Clone "EQ:Blowpipe" as "EQ:Fukiya"
+#MergeTags in "EQ:Fukiya" with "page(DF12:12), cat(_Muscle-Powered Ranged Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+
+// #Delete "EQ:Han-Kyu"
+#Clone "EQ:Short Bow (ST%choice%)" as "EQ:Han-Kyu (ST%choice%)"
+#MergeTags in "EQ:Han-Kyu (ST%choice%)" with "page(DF12:12), cat(_Muscle-Powered Ranged Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#ReplaceTags in "EQ:Han-Kyu (ST%choice%)" with "basecost(100)"
+
+// #Delete "EQ:Kittate"
+#Clone "EQ:Pick" as "EQ:Kittate"
+#MergeTags in "EQ:Kittate" with "page(DF12:12), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+
+// #Delete "EQ:Metsubushi"
+#Clone "EQ:Blowpipe" as "EQ:Metsubushi"
+#MergeTags in "EQ:Metsubushi" with "page(DF12:13), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+#ReplaceTags in "EQ:Metsubushi" with "rof(1(60))"
+
+// #Delete "EQ:Tanto"
+#Clone "EQ:Large Knife" as "EQ:Tanto"
+#MergeTags in "EQ:Tanto" with "page(DF12:14), cat(_Melee Weapons, _Melee Weapons - Dungeon Fantasy, Dungeon Fantasy, Dungeon Fantasy - Ninja Weapons)"
+
+<Dungeon Fantasy, Dungeon Fantasy - Ninja Tools>
+Blowpipe Mount, page(DF12:15), basecost(10), baseweight(1), techlvl(), mods(Equipment), cat(), description(TL:)
+"Climbing Pole, Collapsible", page(DF12:15), basecost(100), baseweight(6), techlvl(), mods(Equipment), cat(), description(TL:)
+Ninja's Firebox, page(DF12:15), basecost(20), baseweight(1), techlvl(), mods(Equipment), cat(), description(TL:)
+Folding Raft, page(DF12:15), basecost(150), baseweight(10), techlvl(), mods(Equipment), cat(), description(TL:)
+"Tabi, Inflatable", page(DF12:15), basecost(50), baseweight(2), techlvl(), mods(Equipment), cat(), description(TL:),_
+	dr(1), location(feet), skillused(DX|DX-5), mode(walking on water|running on water)
+"Tabi, Inflatable, Acid-Resistant", page(DF12:15), basecost(200), baseweight(2), techlvl(), mods(Equipment), cat(), description(TL:),_
+	dr(1/3), location(feet), skillused(DX|DX-5), mode(walking on water|running on water)
+"Tabi, Stealthy", page(DF12:15), basecost(100), baseweight(0.5), techlvl(), mods(Equipment), cat(), description(TL:),_
+	dr(0), location(feet), conditional(+1 to SK:Stealth when "vs hearing")
+"Tabi, Traction", page(DF12:15), basecost(75), baseweight(0.5), techlvl(), mods(Equipment), cat(), description(TL:),_
+	dr(0), location(feet), conditional(-1 to SK:Stealth when "vs hearing", +1 to SK:Climbing when "feet can be used")
+"Torch, Waterproof", page(DF12:15), basecost(12), baseweight(1), techlvl(), mods(Equipment), cat(), description(TL:)
+
+// #Delete "EQ:Ninja-to Saya"
+// #Clone "EQ:Blowpipe" as "EQ:Ninja-to Saya"
+// #ReplaceTags in "EQ:Ninja-to Saya" with "basecost(300), baseweight(1), mode(blowpipe)"
+
+Ninja-to Saya, techlvl(0), break(0), lc(4), basecost(300), baseweight(1), page(B275, DF12:15), mods(Equipment, Melee Quality, Crushing/Imp Class Quality),_
+	description(Acts as a snorkel, 3' ladder, blowpipe, and baton.),_
+	newmode(Baton Swing, damage(sw), damtype(cr), reach(1), parry(0), minst(6), skillused(SK:Sword!, SK:Shortsword, ST:DX-5, SK:Broadsword-2, SK:Force Sword-4, SK:Jitte/Sai-3, SK:Knife-4, SK:Saber-4, SK:Smallsword-4, SK:Tonfa-3)),_
+	newmode(Baton Thrust, damage(thr), damtype(cr), reach(1), parry(0), minst(6), skillused(SK:Sword!, SK:Shortsword, ST:DX-5, SK:Broadsword-2, SK:Force Sword-4, SK:Jitte/Sai-3, SK:Knife-4, SK:Saber-4, SK:Smallsword-4, SK:Tonfa-3)),_
+	newmode(Blowpipe, damage(1d-3), damtype(pi-), acc(1), calcrange(yes), rangehalfdam(), rangemax(ST*4), rof(1), shots(1(2)), minst(2), bulk(-6), skillused(SK:Blowpipe, ST:DX-6), notes([1,2,3]))
+
+<Dungeon Fantasy, Dungeon Fantasy - Ninja Suit>
+Ninja Suit, page(DF12:16), basecost(150), baseweight(2),_
+	mods(Ninja Suit, Light Ninja Suit),_
+	location(full suit, face, skull), dr(0*),_
+	taboo(_
+			@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) + @hasmod(Ninja Suit: Dark) = 2,_
+			@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) * @hasmod(Ninja Suit: Weapon Holder) > 0_
+		),_
+	needs(_
+			(_
+			"ST:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					) _
+			| "AD:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					)_
+				)_
+			),_
+	description(location: full suit DR:0)
+"Ninja Suit, Armored", page(DF12:16), displaycost(600), basecost(150), baseweight(2), displayweight(8),_
+	mods(Ninja Suit, Light Ninja Suit),_
+	location(full suit, face, skull), dr(0*),_
+	taboo(_
+			@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) + @hasmod(Ninja Suit: Dark) = 2,_
+			@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) * @hasmod(Ninja Suit: Weapon Holder) > 0_
+		),_
+	needs(_
+			(_
+			"ST:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					) _
+			| "AD:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					)_
+				)_
+			),_
+	initmods(Ninja Suit: Armored, +3 CF, page(DF12:16), gives(+1 to owner::dr, +6 to owner::baseweight), shortname(Armored)),_
+	description(location: full suit DR:1)
+"Ninja Suit, Heavily Armored", page(DF12:16), displaycost(1050), basecost(150), baseweight(2), displayweight(10),_
+	mods(Ninja Suit), location(full suit, face, skull),_
+	dr(0*),_
+	taboo(_
+			@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) + @hasmod(Ninja Suit: Dark) = 2,_
+			@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) * @hasmod(Ninja Suit: Weapon Holder) > 0_
+		),_
+	needs(_
+			(_
+			"ST:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					) _
+			| "AD:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					)_
+				)_
+			),_
+	initmods(Ninja Suit: Heavily Armored, +6 CF, page(DF12:16), gives(+2 to owner::dr, +8 to owner::baseweight), shortname(Heavily Armored)),_
+	description(location: full suit DR:2)
+Ninja Mail, page(DF12:16), displaycost(2250), basecost(150), baseweight(2), displayweight(25),_
+	mods(Ninja Suit),_
+	location(full suit, face, skull), dr(0*),_
+	taboo(_
+			@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) + @hasmod(Ninja Suit: Dark) = 2,_
+			@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) * @hasmod(Ninja Suit: Weapon Holder) > 0_
+		),_
+	needs(_
+			(_
+			"ST:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					) _
+			| "AD:Ninja Talent"=_
+				@max(_
+					@if(@hasmod(Ninja Suit: Pitch Dark - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hadmod(Ninja Suit: Supremely Quiet - Ninja Talent 2+) THEN 2 ELSE 0),_
+					@if(@hasmod(Ninja Suit: Superior Weapon Holder - Ninja Talent 3+) THEN 3 ELSE 0)_
+					)_
+				)_
+			),_
+	initmods(Ninja Suit: Mail, +14 CF, shortname(Mail), page(DF12:16), gives(+3 to owner::dr, +23 to owner::baseweight)),_
+	description(location: full suit DR:3)
+
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Light Ninja Suit>
+Ninja Suit: Light, +3 CF, shortname(Light), group(Light Ninja Suit), description(Doesn't count as encumbrance)
+Ninja Suit: Quiet, +3 CF, shortname(Quiet), group(Light Ninja Suit),_
+	conditional(+1 to SK:Stealth when "Hearing-based, while moving", +2 to SK:Stealth when "stationary")
+Ninja Suit: Supremely Quiet - Ninja Talent 2+, +19 CF, shortname(Supremely Quiet), group(Light Ninja Suit),_
+	conditional(+2 to SK:Stealth when "Hearing-based, while moving", +4 to SK:Stealth when "stationary")
+
+<Ninja Suit>
+Ninja Suit: Dark, +3 CF, shortname(Dark), group(Ninja Suit),_
+	conditional(+1 to SK:Stealth when "Vision-based, while moving", +2 to SK:Stealth when "stationary", +1 to SK:Invisibility Art)
+Ninja Suit: Reversible, +1 CF, shortname(Reversible), group(Ninja Suit)
+Ninja Suit: Weapon Holder, +9 CF/+9 CF, displaycost(+9 CF), shortname(Weapon Holder), gives(=+2 to owner::baseweight), group(Ninja Suit), description(Grants 3+Ninja Talent Slots),_
+	upto(3 + AD:Ninja Talent::level), level(9)
+Ninja Suit: Pitch Dark - Ninja Talent 2+, +19 CF, shortname(Pitch Dark), group(Ninja Suit),_
+	conditional(+2 to SK:Stealth when "Vision-based, while moving", +4 to SK:Stealth when "stationary", +2 to SK:Invisibility Art)
+Ninja Suit: Superior Weapon Holder - Ninja Talent 3+, +29 CF/+29 CF, displaycost(+29 CF), shortname(Superior Weapon Holder), gives(=+2 to owner::baseweight), group(Ninja Suit), description(Grants 7+Ninja Talent Slots),_
+	upto(7 + AD:Ninja Talent::level), level(13)
+
+<Bow Quality>
+Dungeon Fantasy: Ninja, +0.5 CF, page(DF12:13), gives(+2 to owner::holdout), group(Bow Quality), shortname(Ninja)
+
+<Shield>
+Dungeon Fantasy: Ninja, +0.5 CF, page(DF12:13), gives(+2 to owner::holdout), group(Bow Quality), shortname(Ninja)
+
+<Melee Quality>
+Dungeon Fantasy: Ninja, +0.5 CF, page(DF12:13), gives(+2 to owner::holdout), group(Melee Quality), shortname(Ninja)
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<Assassin Abilities>
+
+<Ninja Abilities>
+AD:Ninja Catfall,_
+#newitem(AD:Ninja Talent 3-4, cost(0), displaycost(+10/20), existing(AD:Ninja Talent)),_
+AD:Ninja Danger Sense,_
+AD:Ninja Enhanced Dodge,_
+AD:Ninja Enhanced Parry (All Weapons),_
+AD:Ninja Killing Strike,_
+AD:Ninja Lethal Weapon,_
+AD:Ninja Mind Shield,_
+AD:Ninja Tools,_
+AD:Ninja Perfect Balance,_
+AD:Ninja Peripheral Vision,_
+AD:Ninja Shift Visage,_
+AD:Ninja Silence,_
+AD:Ninja Super Jump,_
+PE:Ninja Dual Ready
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates - Dungeon Fantasy - Adventurers, Character Templates - Dungeon Fantasy, Character Templates>
+Ninja (Dungeon Fantasy), displaycost(250),_
+	page(DF12:8),_
+		description(You are an expert at killing . . . and sometimes your targets lurk in the depths of a dungeon! Not for you are the one-weapon focus of the swashbuckler or the brute strength of the knight. You carry and use a vast array of special weaponry and devices to defeat your prey, and are also highly trained in barehanded fighting (although not as obsessively as the martial artist). You strike using a lethal combination of specialized attacks, exotic hardware, and stealth. You are even trained in the insidious secrets of the mind – not to sway emotions like the bard, but to trick, suggest, and deceive your enemies.),_
+		sets(_
+			ST:ST = 11,_
+			ST:DX = 15,_
+			ST:IQ = 10,_
+			ST:HT = 12,_
+			ST:Hit Points = 11,_
+			ST:Will = 11,_
+			ST:Perception = 11,_
+			ST:Fatigue Points = 12,_
+			ST:Basic Speed = 7,_
+			ST:Basic Move = 7 _
+			),_
+	adds(_
+			AD:Ninja Talent = 2,_
+			AD:Weapon Master (Ninja Weapons),_
+			DI:Vow (Ninja Secrecy),_
+			DI:Vow (Own no more than what can be carried),_
+			DI:Social Stigma (Minority Group),_
+			SK:Stealth = 8pts,_
+			SK:Climbing = 1pts,_
+			SK:Holdout = 2pts,_
+			SK:Judo = 2pts,_
+			SK:Karate = 2pts,_
+			SK:Meditation = 2pts,_
+			SK:Poisons = 2pts,_
+			SK:Jumping = 1pts _
+			),_
+	select1(#List(Languages)),_
+	select2(_
+			text(Special Skills: Select a total of 12 points from the following:), tagwith(dfninja(yes)),_
+			pointswanted(12),_
+			tagwith(Ninja(yes)),_
+			itemswanted(3),_
+			list(_
+				SK:Blind Fighting #codes(upto 4pts, downto 4pts),_
+				SK:Hypnotism #codes(upto 4pts, downto 4pts),_
+				SK:Invisibility Art #codes(upto 4pts, downto 4pts),_
+				SK:Light Walk #codes(upto 4pts, downto 4pts),_
+				SK:Mental Strength #codes(upto 4pts, downto 4pts) _
+				)_
+			),_
+	select3(_
+			text(Advantages: Select a total of 20 points from the following Ninja Training abilities. Put leftovers in Special Skills:),_
+			pointswanted(20),_
+			tagwith(Ninja(yes)),_
+			itemswanted(atleast 1),_
+			multitype(yes),_
+			list(_
+				#BuildCharItemList(Skills where Ninja is "yes", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+1pts) )),_
+				#list(GMAdvantages),_
+				#list(Ninja Abilities),_
+				SK:Blind Fighting,_
+				SK:Hypnotism,_
+				SK:Invisibility Art,_
+				SK:Light Walk,_
+				SK:Mental Strength_
+				)_
+			),_
+	select4(_
+			text(Advantages: Select a total of 20 points from the following:),_
+			pointswanted(20),_
+			tagwith(Ninja(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+				#BuildSelectList(Advantages where Ninja is "Yes", template(#newitem(AD:_Increase/Modify %ListItem%, cost(0), displaycost(varies), existing(AD:%ListItem%)))),_
+				#list(GMAdvantages),_
+				#list(Ninja Abilities),_
+				AD:Extra ST #codes(upto 2, downto 1),_
+				AD:Extra DX #codes(upto 1, downto 1),_
+				AD:Extra IQ #codes(upto 1, downto 1),_
+				AD:Extra Basic Speed #codes(upto 1, downto 1),_
+				AD:Extra Basic Move #codes(upto 3, downto 1),_
+				AD:Extra Will #codes(upto 4, downto 1),_
+				#newitem(AD:_Improve Ninja Talent, 10/20, existing(AD:Ninja Talent)) #codes(upto 4, downto 3),_
+				AD:Ambidexterity,_
+				AD:Combat Reflexes,_
+				AD:Daredevil,_
+				AD:Fit,_
+				AD:Very Fit,_
+				AD:Flexibility,_
+				AD:Double-Jointed,_
+				AD:Luck,_
+				AD:Magic Resistance,_
+				AD:Night Vision,_
+				AD:Resistant to Poison #codes(upto 1, downto 1),_
+				AD:Serendipity,_
+				AD:Signature Gear,_
+				AD:Striking ST_
+			)_
+		),_
+	select5(_
+			text(Disadvantages: Select a total of -25 points from the following:),_
+			pointswanted(-25),_
+			tagwith(Ninja(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+				#list(GMDisadvantages),_
+				DI:Bloodlust,_
+				DI:Callous,_
+				DI:Loner,_
+				DI:No Sense of Humor,_
+				#newitem(DI:Odious Pesonal Habit (Inscrutable), -5, cat(Mundane Mental, Mundane, Mental)),_
+				DI:Overconfidence,_
+				DI:Paranoia,_
+				DI:Sense of Duty (Adventuring companions),_
+				DI:Stubbornness,_
+				DI:Vow (Always complete the mission) _
+				)_
+			),_
+	select6(_
+			text(Skills: Select a total of 4 points from the following:), tagwith(dfninja(yes)),_
+			pointswanted(4),_
+			tagwith(Ninja(yes)),_
+			itemswanted(1),_
+			list(_
+				SK:Thrown Weapon (Knife) #codes(upto 4pts, downto 4pts),_
+				SK:Thrown Weapon (Shuriken) #codes(upto 4pts, downto 4pts),_
+				SK:Bow #codes(upto 4pts, downto 4pts),_
+				SK:Throwing #codes(upto 4pts, downto 4pts),_
+				SK:Blowpipe #codes(upto 4pts, downto 4pts) _
+				)_
+			),_
+	select7(_
+			text(Skills: Select a total of 8 points from the following:), tagwith(dfninja(yes)),_
+			pointswanted(8),_
+			tagwith(Ninja(yes)),_
+			itemswanted(1),_
+			list(_
+				SK:Knife #codes(upto 8pts, downto 8pts),_
+				SK:Axe/Mace #codes(upto 8pts, downto 8pts),_
+				SK:Jitte/Sai #codes(upto 8pts, downto 8pts),_
+				SK:Polearm #codes(upto 8pts, downto 8pts),_
+				SK:Shortsword #codes(upto 8pts, downto 8pts),_
+				SK:Spear #codes(upto 8pts, downto 8pts),_
+				SK:Staff #codes(upto 8pts, downto 8pts),_
+				SK:Tonfa #codes(upto 8pts, downto 8pts),_
+				SK:Kusari #codes(upto 8pts, downto 8pts) _
+				)_
+			),_
+	select8(_
+			text(Skills: Select a total of 8 points from the following:), tagwith(dfninja(yes)),_
+			pointswanted(8),_
+			tagwith(Ninja(yes)),_
+			itemswanted(2),_
+			list(_
+				SK:Knife #codes(upto 4pts, downto 4pts),_
+				SK:Axe/Mace #codes(upto 4pts, downto 4pts),_
+				SK:Jitte/Sai #codes(upto 4pts, downto 4pts),_
+				SK:Polearm #codes(upto 4pts, downto 4pts),_
+				SK:Shortsword #codes(upto 4pts, downto 4pts),_
+				SK:Spear #codes(upto 4pts, downto 4pts),_
+				SK:Staff #codes(upto 4pts, downto 4pts),_
+				SK:Tonfa #codes(upto 4pts, downto 4pts),_
+				SK:Kusari #codes(upto 4pts, downto 4pts) _
+				)_
+			),_
+	select9(_
+			text(Skills: Select a total of 1 points from the following:), tagwith(dfninja(yes)),_
+			pointswanted(1),_
+			tagwith(Ninja(yes)),_
+			itemswanted(1),_
+			list(_
+				SK:Fast-Draw (Arrow) #codes(upto 1pts),_
+				SK:Fast-Draw (Balisong) #codes(upto 1pts),_
+				SK:Fast-Draw (Flexible) #codes(upto 1pts),_
+				SK:Fast-Draw (Knife) #codes(upto 1pts),_
+				SK:Fast-Draw (Shuriken) #codes(upto 1pts),_
+				SK:Fast-Draw (Stone) #codes(upto 1pts),_
+				SK:Fast-Draw (Sword) #codes(upto 1pts),_
+				SK:Fast-Draw (Tonfa) #codes(upto 1pts),_
+				SK:Fast-Draw (Two-Handed Sword) #codes(upto 1pts),_
+				SK:Fast-Draw #codes(upto 1pts) _
+				)_
+			),_
+	select10(_
+			text(Skills: Select a total of upto 7 points from the following:),_
+			pointswanted(upto 7),_
+			tagwith(Ninja(yes)),_
+			itemswanted(upto 7),_
+			list(_
+				#BuildSelectList(Skills where Ninja is "yes", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)))),_
+				#newitem(SK:_Increase Stealth, existing(SK:Stealth)),_
+				#newitem(SK:_Increase Climbing, existing(SK:Climbing)),_
+				#newitem(SK:_Increase Holdout, existing(SK:Holdout)),_
+				#newitem(SK:_Increase Judo, existing(SK:Judo)),_
+				#newitem(SK:_Increase Karate, existing(SK:Karate)),_
+				#newitem(SK:_Increase Meditation, existing(SK:Meditation)),_
+				#newitem(SK:_Increase Poisons, existing(SK:Poisons)),_
+				#newitem(SK:_Increase Jumping, existing(SK:Jumping)),_
+				#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+				SK:Garrote #codes(upto 1pts),_
+				SK:Acrobatics #codes(upto 1pts),_
+				SK:Escape #codes(upto 1pts),_
+				SK:First Aid #codes(upto 1pts),_
+				SK:Gesture #codes(upto 1pts),_
+				SK:Disguise #codes(upto 1pts),_
+				SK:Shadowing #codes(upto 1pts),_
+				SK:Observation #codes(upto 1pts),_
+				SK:Search #codes(upto 1pts),_
+				SK:Knife #codes(upto 1pts),_
+				SK:Axe/Mace #codes(upto 1pts),_
+				SK:Jitte/Sai #codes(upto 1pts),_
+				SK:Polearm #codes(upto 1pts),_
+				SK:Shortsword #codes(upto 1pts),_
+				SK:Spear #codes(upto 1pts),_
+				SK:Staff #codes(upto 1pts),_
+				SK:Tonfa #codes(upto 1pts),_
+				SK:Kusari #codes(upto 1pts),_
+				SK:Thrown Weapon (Knife) #codes(upto 1pts),_
+				SK:Thrown Weapon (Shuriken) #codes(upto 1pts),_
+				SK:Bow #codes(upto 1pts),_
+				SK:Throwing #codes(upto 1pts),_
+				SK:Blowpipe #codes(upto 1pts),_
+				SK:Blind Fighting #codes(upto 1pts),_
+				SK:Hypnotism #codes(upto 1pts),_
+				SK:Invisibility Art #codes(upto 1pts),_
+				SK:Light Walk #codes(upto 1pts),_
+				SK:Mental Strength #codes(upto 1pts) _
+				)_
+			),_
+	select11(#List(QuirkSelection))
+
+Assassin (Dungeon Fantasy), displaycost(250),_
+	page(DF12:9),_
+	description(As crazy as it sounds, not everyone wants to be a ninja assassin; some just want to be assassins. The assassin eschews the weapon-based Gizmos and most of the exotic weaponry of a ninja, and focuses on the sneak backstab instead of the Killing Strike (p. 5). Most assassins dispose of their weapon to get rid of the evidence, but when dungeon delving, they may have a specific weapon they use to hunt monsters; take a Weapon Bond or use Signature Gear for that special weapon.),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 15,_
+			ST:IQ = 11,_
+			ST:HT = 12,_
+			ST:Hit Points = 11,_
+			ST:Will = 11,_
+			ST:Perception = 12,_
+			ST:Fatigue Points = 12,_
+			ST:Basic Speed = 7,_
+			ST:Basic Move = 7 _
+			),_
+	adds(_
+			AD:Striking ST = 2,_
+			AD:Combat Reflexes,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			SK:Fast-Draw (Knife) = 1pts,_
+			SK:Garrote = 4pts,_
+			SK:Knife = 8pts,_
+			SK:Poisons = 8pts,_
+			SK:Stealth = 8pts,_
+			SK:Traps = 4pts,_
+			SK:Wrestling = 4pts,_
+			SK:Brawling = 1pts,_
+			SK:Forced Entry = 1pts,_
+			SK:Gesture = 1pts,_
+			SK:Holdout = 4pts,_
+			SK:Shadowing = 4pts,_
+			SK:Smuggling = 4pts,_
+			SK:Streetwise = 4pts,_
+			SK:Search = 2pts,_
+			SK:Urban Survival = 2pts _
+			),_
+	select1(#List(Languages)),_
+	select2(_
+			text(Advantages: Select a total of 35 points from the following:),_
+			pointswanted(35),_
+			tagwith(Assassin(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			#list(GMAdvantages),_
+			#list(Assassin Abilities),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 4),_
+			AD:Extra Basic Move #codes(upto 2, downto 1),_
+			AD:Ambidexterity,_
+			AD:Catfall,_
+			AD:Danger Sense,_
+			AD:Enhanced Dodge #codes(upto 2, downto 1),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Flexibility,_
+			AD:Double-Jointed,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			PE:Honest Face,_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Magic Resistance,_
+			AD:Night Vision,_
+			AD:Perfect Balance,_
+			AD:Peripheral Vision,_
+			AD:Serendipity #codes(upto 1, downto 1),_
+			AD:Signature Gear,_
+			#newitem(AD:Striking ST, 5/10, upto(4), displaycost(2/4/+), page(DF12:9), initmods(Only on surprise attack, -60%, page(DF12:9))),_
+			AD:Wealth #codes(upto 2, downto 1),_
+			PE:Weapon Bond _
+				)_
+			),_
+	select3(_
+			text(Disadvantages: Select a total of -35 points from the following:),_
+			pointswanted(-35),_
+			tagwith(Assassin(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			#list(GMDisadvantages),_
+			DI:Bad Temper,_
+			DI:Code of Honor (Pirate's),_
+			DI:Code of Honor (Stays Bought),_
+			DI:Compulsive Carousing,_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Spending,_
+			DI:Greed,_
+			DI:Lecherousness,_
+			DI:Loner,_
+			DI:Overconfidence,_
+			DI:Sense of Duty (Adventuring companions),_
+			DI:Skinny,_
+			DI:Social Stigma (Criminal Record),_
+			DI:Vow (Always complete the mission) _
+				)_
+			),_
+	select4(_
+			text(Skills: Select a total of 8 points from the following:), tagwith(dfassassin(yes)),_
+			pointswanted(8),_
+			tagwith(Assassin(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Crossbow #codes(upto 8pts, downto 8pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 8pts, downto 8pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 8pts, downto 8pts),_
+			SK:Bow #codes(upto 8pts, downto 8pts),_
+			SK:Throwing #codes(upto 8pts, downto 8pts),_
+			SK:Blowpipe #codes(upto 8pts, downto 8pts) _
+				)_
+			),_
+	select5(_
+			text(Skills: Select a total of 4 points from the following:), tagwith(dfassassin(yes)),_
+			pointswanted(4),_
+			tagwith(Assassin(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Broadsword #codes(upto 4pts, downto 4pts),_
+			SK:Rapier #codes(upto 4pts, downto 4pts),_
+			SK:Saber #codes(upto 4pts, downto 4pts),_
+			SK:Shortsword #codes(upto 4pts, downto 4pts),_
+			SK:Smallsword #codes(upto 4pts, downto 4pts) _
+				)_
+			),_
+	select6(_
+			text(Skills: Select a total of upto 8 points from the following:),_
+			pointswanted(upto 8),_
+			tagwith(Assassin(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+			#BuildSelectList(Skills where Assassin is "yes",_
+					template(_
+							#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%))_
+							)_
+						),_
+			#newitem(SK:_Increase Fast-Draw (Knife), existing(SK:Fast-Draw (Knife))),_
+			#newitem(SK:_Increase Garrote, existing(SK:Garrote)),_
+			#newitem(SK:_Increase Knife, existing(SK:Knife)),_
+			#newitem(SK:_Increase Poisons, existing(SK:Poisons)),_
+			#newitem(SK:_Increase Stealth, existing(SK:Stealth)),_
+			#newitem(SK:_Increase Traps, existing(SK:Traps)),_
+			#newitem(SK:_Increase Wrestling, existing(SK:Wrestling)),_
+			#newitem(SK:_Increase Brawling, existing(SK:Brawling)),_
+			#newitem(SK:_Increase Forced Entry, existing(SK:Forced Entry)),_
+			#newitem(SK:_Increase Gesture, existing(SK:Gesture)),_
+			#newitem(SK:_Increase Holdout, existing(SK:Holdout)),_
+			#newitem(SK:_Increase Shadowing, existing(SK:Shadowing)),_
+			#newitem(SK:_Increase Smuggling, existing(SK:Smuggling)),_
+			#newitem(SK:_Increase Streetwise, existing(SK:Streetwise)),_
+			#newitem(SK:_Increase Search, existing(SK:Search)),_
+			#newitem(SK:_Increase Urban Survival, existing(SK:Urban Survival)),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Panhandling #codes(upto 1pts),_
+			SK:Seamanship #codes(upto 1pts),_
+			SK:Cartography #codes(upto 1pts),_
+			SK:Disguise #codes(upto 1pts),_
+			SK:Fast-Talk #codes(upto 1pts),_
+			SK:Merchant #codes(upto 1pts),_
+			SK:Counterfeiting #codes(upto 1pts),_
+			SK:Forgery #codes(upto 1pts),_
+			SK:Hiking #codes(upto 1pts),_
+			SK:Scrounging #codes(upto 1pts),_
+			SK:Lip Reading #codes(upto 1pts),_
+			SK:Observation #codes(upto 1pts),_
+			SK:Broadsword #codes(upto 1pts),_
+			SK:Rapier #codes(upto 1pts),_
+			SK:Saber #codes(upto 1pts),_
+			SK:Shortsword #codes(upto 1pts),_
+			SK:Smallsword #codes(upto 1pts),_
+			SK:Crossbow #codes(upto 1pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 1pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 1pts),_
+			SK:Bow #codes(upto 1pts),_
+			SK:Throwing #codes(upto 1pts),_
+			SK:Blowpipe #codes(upto 1pts),_
+			SK:Connoisseur #codes(upto 1pts),_
+			SK:Connoisseur (Dance) #codes(upto 1pts),_
+			SK:Connoisseur (Literature) #codes(upto 1pts),_
+			SK:Connoisseur (Music) #codes(upto 1pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 1pts),_
+			SK:Connoisseur (Wine) #codes(upto 1pts) _
+				)_
+			),_
+select7(#List(QuirkSelection))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Ninja, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+
+Ninja-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+Ninja-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+Ninja-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+Ninja-Barbarian (Dungeon Fantasy), displaycost(+50),_
+	description(This mix suits those ninja who are experts in the outdoors. Few (if any) are actually barbarians.),_
+	page(DF12:9),_
+		sets(_
+			ST:ST = ST:ST+2,_
+			ST:Perception = ST:Perception+1 _
+			),_
+	adds(_
+			AD:High Pain Threshold,_
+			AD:Outdoorsman _
+			),_
+	select1(_
+			text(Skills: Select a total of 5 points from the following:),_
+			pointswanted(5),_
+			tagwith(Barbarian(yes)),_
+			itemswanted(5),_
+			list(_
+			SK:Camouflage #codes(upto 1pts),_
+			SK:Navigation (Land) #codes(upto 1pts),_
+			SK:Mimicry (Animal Sounds) #codes(upto 1pts),_
+			SK:Mimicry (Bird Calls) #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts),_
+			SK:Tracking #codes(upto 1pts),_
+			SK:Survival #codes(upto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts) _
+				)_
+			)
+
+Ninja-Bard (Dungeon Fantasy), displaycost(+50),_
+	description(Bardic abilities take up where Ninja Training mind powers leave off. However, this combination is expensive, and you'll need a lot of points to be good at both.),_
+	page(DF12:10),_
+		sets(_
+			ST:IQ = ST:IQ+1,_
+			ST:Will = ST:Will-1,_
+			ST:Perception = ST:Perception-1 _
+			),_
+	adds(_
+			AD:Bardic Talent,_
+			AD:Charisma,_
+			AD:Musical Ability,_
+			SK:Public Speaking = 2pts,_
+			SK:Singing = 2pts,_
+			SK:Musical Instrument = 4pts _
+			),_
+	select1(_
+		text(Bardic Abilities: Select a total of 14 points from the following:),_
+		pointswanted(14),_
+		tagwith(Bard(yes)),_
+		itemswanted(atleast 1), multitype(yes),_
+		list(_
+			#list(Bard Abilities),_
+			#list(Bard Spells),_
+			#list(Bard Skills)_
+		)_
+	)
+
+Ninja-Cleric (Dungeon Fantasy), displaycost(+50),_
+	description(Clerical spells such as Armor help the usually light-armored ninja in combat. This mix requires long-term dedication to take full advantage of the available abilities. The Vow (No edged weapons) is right out for ninja, however.),_
+	page(DF12:10),_
+		sets(_
+			ST:IQ = ST:IQ+1,_
+			ST:Perception = ST:Perception-1 _
+			),_
+	adds(_
+			AD:Clerical Investment,_
+			AD:Power Investiture (Holy) = 2,_
+			SK:Exorcism = 1pts,_
+			SK:Religious Ritual = 2pts,_
+			SK:Theology = 2pts _
+			),_
+	select1(_
+			text(Skills: Select a total of 14 points from the following:),_
+			pointswanted(-10),_
+			tagwith(Cleric(yes)),_
+			itemswanted(1),_
+			list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Coreligionists) _
+				)_
+			),_
+	select2(_
+			text(Holy Abilities: Select a total of 15 points from the following:),_
+			pointswanted(15),_
+			tagwith(Cleric(yes)),_
+			itemswanted(atleast 1), multitype(yes),_
+			list(_
+			#list(Holy Abilities),_
+			#grouplist(GR:AllSpellsHoly, append( #codes(upto 1pts)))_
+				)_
+			)
+
+Ninja-Druid (Dungeon Fantasy), displaycost(+50),_
+	description(Like the cleric, this path is another long-term investment. Nevertheless, the outdoor abilities and spells of the druid will help solve any wilderness problems the ninja may encounter.),_
+	page(DF12:10),_
+		sets(_
+			ST:IQ = ST:IQ+1,_
+			ST:Will = ST:Will-1,_
+			ST:Perception = ST:Perception-1 _
+			),_
+	adds(_
+			AD:Power Investiture (Druidic) = 2,_
+			SK:Camouflage = 1pts,_
+			SK:Herb Lore = 2pts,_
+			SK:Naturalist = 2pts,_
+			SK:Religious Ritual (Druidic) = 2pts,_
+			SK:Theology (Druidic) = 2pts _
+			),_
+	select1(_
+			text(Skills: Select a total of 1 points from the following:),_
+			pointswanted(1),_
+			tagwith(Druid(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Survival #codes(upto 1pts),_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts) _
+				)_
+			),_
+	select2(_
+			text(Druidic Abilities: Select a total of 10 points from the following:),_
+			pointswanted(10),_
+			tagwith(Druid(yes)),_
+			itemswanted(atleast 1), multitype(yes),_
+			list(_
+				#list(Druid Abilities),_
+				#grouplist(GR:AllSpellsDruidic, append( #codes(upto 1pts)))_
+			)_
+		)
+
+Ninja-Holy Warrior (Dungeon Fantasy), displaycost(+50),_
+	description(Some ninja clans work directly on behalf on the gods. You hunt and destroy your god's enemies, using your gadgets, your ninja weaponry, and your god-granted powers.),_
+	page(DF12:10),_
+		sets(_
+			ST:IQ = ST:IQ+1,_
+			ST:Perception = ST:Perception-1 _
+			),_
+	adds(_
+			AD:Holiness,_
+			SK:Leadership = 1pts,_
+			SK:Exorcism = 1pts,_
+			SK:Strategy (Land) = 2pts _
+			),_
+		creates(_
+			"PE:Foes slain personally can't rise as undead, 1, page(B100)",_
+			"SK:Physiology ([Primary Monster Type]), IQ/H, HolyWarrior(yes), tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences),x(#InputReplace("Please specify a monster type:", "[Primary Monster Type]", "monster", "Physiology"))"=4pts,_
+			"SK:Psychology ([Primary Monster Type]), IQ/H, HolyWarrior(yes), default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities),x(#InputReplace("Please specify a monster type:", "[Primary Monster Type]", "monster", "Psychology"))"=1pts_
+		),_
+	select1(_
+			text(Disadvantages: Select a total of -10 points from the following:),_
+			pointswanted(-10),_
+			tagwith(HolyWarrior(yes)),_
+			itemswanted(1),_
+			list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Good entities) _
+				)_
+			),_
+		select2(_
+		text("Select a Higher Purpose."),_
+		pointswanted(5),_
+		tagwith(HolyWarrior(yes)),_
+			itemswanted(1),_
+		list(_
+			#newitem( AD:Holy Warrior Higher Purpose (Slay Demons), 5/10, upto(3), page(B59), cat(Supernatural, Mental) ),_
+			#newitem( AD:Holy Warrior Higher Purpose (Slay Undead), 5/10, upto(3), page(B59), cat(Supernatural, Mental) )_
+			)_
+		),_
+	select3(_
+			text(Skills: Select a total of 1 points from the following:),_
+			pointswanted(1),_
+			tagwith(HolyWarrior(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts) _
+				)_
+			),_
+	select4(_
+			text(Skills: Select a total of 24 points from the following:),_
+			pointswanted(upto 24),_
+			tagwith(HolyWarrior(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+				#BuildSelectList(Skills where HolyWarrior is "yes", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+1pts) )),_
+				#list(Holy Abilities),_
+				)_
+			)
+
+Ninja-Knight (Dungeon Fantasy), displaycost(+50),_
+	description(An unusual lens, but a potentially powerful one. The ability to mix the exotic weapon mastery and stealth of a ninja with a heavier emphasis on strength and combat power is the appeal of the ninja-knight. The best weapon option to choose is usually enhancing a preexisting weapon skill . . . unless you have access to a knightly weapon with the Ninja modifier (p. 13) or tote a big weapon like the okusarigama (p. 13)!),_
+	page(DF12:10),_
+		sets(_
+			ST:ST = ST:ST+1 _
+			),_
+	adds(_
+			AD:Born War-Leader,_
+			AD:Combat Reflexes,_
+			AD:High Pain Threshold,_
+			SK:Armoury (Melee Weapons) = 2pts,_
+			SK:Connoisseur (Weapons) = 2pts,_
+			SK:Leadership = 1pts,_
+			SK:Strategy (Land) = 1pts _
+			),_
+	select1(_
+			text(Skills: Select a total of upto 4pts points from the following:),_
+			pointswanted(upto 4pts),_
+			tagwith(Knight(yes)),_
+			itemswanted(upto 1),_
+			list(_
+			SK:Axe/Mace #codes(upto 4pts, downto 4pts),_
+			SK:Bow #codes(upto 4pts, downto 4pts),_
+			SK:Broadsword #codes(upto 4pts, downto 4pts),_
+			SK:Polearm #codes(upto 4pts, downto 4pts),_
+			SK:Spear #codes(upto 4pts, downto 4pts),_
+			SK:Two-Handed Sword #codes(upto 4pts, downto 4pts) _
+				)_
+			)
+
+Ninja-Martial Artist (Dungeon Fantasy), displaycost(+50),_
+	description(Some ninja also learn the Chi powers of the martial artist. Having Weapon Master and Trained by a Master enables a new option: You can learn variants of “unarmed” chi skills that work with individual weapon skills, such as Breaking Blow (Tonfa). Clear these with the GM!),_
+	page(DF12:11),_
+	adds(_
+			AD:Chi Talent,_
+			AD:Trained by a Master,_
+			DI:Disciplines of Faith (Chi Rituals) _
+			),_
+	select1(_
+			text(Special Abilities: Select a total of 11 points from the following:),_
+			pointswanted(11),_
+			tagwith(MartialArtist(yes)),_
+			itemswanted(atleast 1), multitype(yes),_
+			list(_
+				#list(Martial Artist Abilities),_
+				#buildlist(list(#list(Martial Artist Skills)), template(%ListItem% #codes(upto 8pts, downto 1pts)))_
+				)_
+			),_
+	select2(_
+			text(Add 4 points total to Judo and Karate:),_
+			pointswanted(atleast 2, upto 4),_
+			tagwith(MartialArtist(yes)),_
+			itemswanted(atleast 1),_
+			list(_
+				#BuildCharItemList(Skills where name includes "Judo", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+2pts) )),_
+				#BuildCharItemList(Skills where name includes "Karate", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+2pts) )),_
+				"SK:Karate" #codes(upto 4pts, downto 1pts),_
+				"SK:Judo" #codes(upto 4pts, downto 1pts)_
+				)_
+			)
+
+Ninja-Scout (Dungeon Fantasy), displaycost(+50),_
+	description(Another option that operates well in the wilderness. The addition of Heroic Archer turns a ninja into a master of ranged and melee weapons.),_
+	page(DF12:11),_
+		sets(_
+			ST:Perception = ST:Perception+1 _
+			),_
+		adds(_
+			AD:Heroic Archer,_
+			AD:Outdoorsman,_
+			SK:Bow = 8pts,_
+			SK:Camouflage = 2pts,_
+			SK:Fast-Draw (Arrow) = 1pts,_
+			SK:Tracking = 1pts _
+			),_
+	select1(_
+			text(Skills: Select a total of 1 points from the following:),_
+			pointswanted(1),_
+			tagwith(Scout(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Survival,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands) _
+				)_
+			),_
+	select2(_
+			text(Skills: Select a total of 2 points from the following:),_
+			pointswanted(2),_
+			tagwith(Scout(yes)),_
+			itemswanted(atleast 1), multitype(yes),_
+			list(_
+			SK:Observation,_
+			SK:Shadowing,_
+			#newitem(SK:_Increase Observation, DX/H, existing(SK:Observation)),_
+			#newitem(SK:_Increase Shadowing, DX/H, existing(SK:Shadowing))_
+				)_
+			)
+
+Ninja-Swashbuckler (Dungeon Fantasy), displaycost(+50),_
+	description(The swashbuckler's focus on a specific weapon makes for a ninja most deadly with a single specific weapon or pair of weapons.),_
+	page(DF12:11),_
+		sets(_
+			ST:DX = ST:DX+1 _
+			),_
+	adds(_
+			AD:Combat Reflexes,_
+			AD:Enhanced Parry (%Melee Weapon%),_
+			PE:Weapon Bond (%Weapon%) _
+			),_
+	select1(_
+			text(Skills: Select a total of 1 points from the following:),_
+			pointswanted(1),_
+			tagwith(Swashbuckler(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Fast-Draw,_
+			SK:Fast-Draw (Arrow),_
+			SK:Fast-Draw (Knife),_
+			SK:Fast-Draw (Sword),_
+			SK:Fast-Draw (Two-Handed Sword) _
+				)_
+			),_
+	select2(_
+			text(Skills: Select a total of 8 points from the following:),_
+			pointswanted(8),_
+			tagwith(Swashbuckler(yes)),_
+			itemswanted(atleast 1), multitype(yes),_
+			list(_
+			SK:Broadsword #codes(upto 8pts, downto 8pts),_
+			SK:Rapier #codes(upto 8pts, downto 8pts),_
+			SK:Saber #codes(upto 8pts, downto 8pts),_
+			SK:Knife #codes(upto 8pts, downto 4pts),_
+			SK:Jitte/Sai #codes(upto 8pts, downto 4pts),_
+			SK:Polearm #codes(upto 8pts, downto 4pts),_
+			SK:Shortsword #codes(upto 8pts, downto 4pts),_
+			SK:Spear #codes(upto 8pts, downto 4pts),_
+			SK:Staff #codes(upto 8pts, downto 4pts),_
+			SK:Tonfa #codes(upto 8pts, downto 4pts),_
+			#newitem(SK:_Increase Knife, DX/E, existing(SK:Knife)),_
+			#newitem(SK:_Increase Jitte/Sai, DX/A, existing(SK:Jitte/Sai)),_
+			#newitem(SK:_Increase Polearm, DX/A, existing(SK:Polearm)),_
+			#newitem(SK:_Increase Shortsword, DX/A, existing(SK:Shortsword)),_
+			#newitem(SK:_Increase Spear, DX/A, existing(SK:Spear)),_
+			#newitem(SK:_Increase Staff, DX/A, existing(SK:Staff)),_
+			#newitem(SK:_Increase Tonfa, DX/A, existing(SK:Tonfa))_
+				)_
+			)
+
+Ninja-Thief (Dungeon Fantasy), displaycost(+50),_
+	description(Lockpicking and Traps are useful skills to get to targets behind locked doors. Sneak attacks make the ninja an even more effective assassin!),_
+	page(DF12:11),_
+		sets(_
+			ST:IQ = ST:IQ+1,_
+			ST:Will = ST:Will-1,_
+			ST:Perception = ST:Perception-1 _
+			),_
+		adds(_
+			AD:Ninja Catfall,_
+			AD:Flexibility,_
+			AD:Ninja Perfect Balance,_
+			SK:Filch = 1pts,_
+			SK:Forced Entry = 1pts,_
+			SK:Lockpicking = 2pts,_
+			SK:Pickpocket = 1pts,_
+			SK:Traps = 2pts_
+			),_
+	needs(_
+			SK:Climbing = 2pts,_
+			SK:Stealth = 12pts _
+			)
+
+Ninja-Wizard (Dungeon Fantasy), displaycost(+50),_
+	description(Ninjitsu and magic both require a substantial investment, but spells can enhance ninja in ways that even Ninja Training abilities can't. Movement spells and Invisibility are especially useful for a ninja!),_
+	page(DF12:11),_
+		sets(_
+			ST:IQ = ST:IQ+1,_
+			ST:Will = ST:Will-1,_
+			ST:Perception = ST:Perception-1 _
+			),_
+		x(#message("You must be fluent in your native language before taking this lens! _
+			Select 10 points in wizardly spells, which will be either (H) IQ[1] or (VH) IQ-1[1] with the +2 for Magery." )_
+		),_
+	adds(_
+			AD:Magery 0,_
+			AD:Magery = 2,_
+			SK:Alchemy = 2pts,_
+			SK:Occultism = 1pts,_
+			SK:Thaumatology = 2pts _
+			),_
+	needs(10 Spells=1pts)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Ninja Lens (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Assassin Lens (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Barbarian, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Barbarian-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Barbarian-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Artificer, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Artificer-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Artificer-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Bard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Bard-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Bard-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Cleric, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Cleric-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Cleric-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Druid, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Druid-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Druid-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Holy Warrior, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Holy Warrior-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Holy Warrior-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Knight, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Knight-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Knight-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Martial Artist, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Martial Artist-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Martial Artist-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scholar, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Scholar-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Scholar-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scout, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Scout-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Scout-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Swashbuckler, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Swashbuckler-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Swashbuckler-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Thief, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Thief-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Thief-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Wizard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Wizard-Ninja (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:11),_
+	select1(#list(Ninja Lens))
+
+Wizard-Assassin (Dungeon Fantasy), displaycost(+50),_
+	page(DF12:9),_
+	select1(#list(Assassin Lens))
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<Ninja Lens>
+text(Skills: Select a total of 2 points from the following:),_
+			pointswanted(2),_
+			tagwith(Ninja(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Thrown Weapon (Knife) #codes(upto 2pts, downto 2pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 2pts, downto 2pts),_
+			SK:Bow #codes(upto 2pts, downto 2pts),_
+			SK:Throwing #codes(upto 2pts, downto 2pts),_
+			SK:Blowpipe #codes(upto 2pts, downto 2pts) _
+				)_
+			),_
+	select2(_
+			text(Skills: Select a total of 4 points from the following:),_
+			pointswanted(4),_
+			tagwith(Ninja(yes)),_
+			itemswanted(2),_
+			list(_
+			SK:Knife #codes(upto 2pts, downto 2pts),_
+			SK:Axe/Mace #codes(upto 2pts, downto 2pts),_
+			SK:Jitte/Sai #codes(upto 2pts, downto 2pts),_
+			SK:Polearm #codes(upto 2pts, downto 2pts),_
+			SK:Shortsword #codes(upto 2pts, downto 2pts),_
+			SK:Staff #codes(upto 2pts, downto 2pts),_
+			SK:Spear #codes(upto 2pts, downto 2pts),_
+			SK:Tonfa #codes(upto 2pts, downto 2pts),_
+			SK:Kusari #codes(upto 2pts, downto 2pts) _
+				)_
+			),_
+	select3(_
+			text(Ninja Training: Select a total of upto 10 points from the following:),_
+			pointswanted(upto 10),_
+			tagwith(Ninja(yes)),_
+			itemswanted(atleast 1), multitype(yes),_
+			list(_
+			AD:Ninja Catfall,_
+			AD:Ninja Danger Sense,_
+			AD:Ninja Enhanced Dodge,_
+			AD:Ninja Enhanced Parry (All Weapons),_
+			AD:Ninja Killing Strike,_
+			AD:Ninja Lethal Weapon,_
+			AD:Ninja Mind Shield,_
+			AD:Ninja Tools,_
+			AD:Ninja Perfect Balance,_
+			AD:Ninja Peripheral Vision,_
+			AD:Ninja Shift Visage,_
+			AD:Ninja Silence,_
+			AD:Ninja Super Jump,_
+			PE:Ninja Dual Ready,_
+			SK:Blind Fighting #codes(upto 4pts),_
+			SK:Hypnotism #codes(upto 4pts),_
+			SK:Invisibility Art #codes(upto 4pts),_
+			SK:Light Walk #codes(upto 4pts),_
+			SK:Mental Strength #codes(upto 4pts) _
+				)_
+			),_
+	adds(_
+			AD:Ninja Talent,_
+			AD:Weapon Master (Ninja Weapons),_
+			DI:Vow (Ninja Secrecy),_
+			DI:Vow (Own no more than what can be carried),_
+			SK:Poisons = 2pts,_
+			SK:Stealth = 2pts _
+			), y(
+// )
+
+<Assassin Lens>
+text(Skills: Select a total of 4 points from the following:),_
+			pointswanted(4),_
+			tagwith(Assassin(yes)),_
+			itemswanted(1),_
+			list(_
+			SK:Crossbow #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 4pts, downto 4pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 4pts, downto 4pts),_
+			SK:Bow #codes(upto 4pts, downto 4pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts),_
+			SK:Blowpipe #codes(upto 4pts, downto 4pts) _
+				)_
+			),_
+	sets(_
+			ST:DX = ST:DX+1 _
+		),_
+	adds(_
+			AD:Striking ST,_
+			SK:Garrote = 4pts,_
+			SK:Knife = 4pts,_
+			SK:Stealth = 4pts,_
+			SK:Streetwise = 1pts,_
+			SK:Shadowing = 2pts,_
+			SK:Poisons = 4pts,_
+			SK:Urban Survival = 2pts _
+			), y(
+// )
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Ninja Talent
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Ninja-Bard (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Bard (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Assassin Lens (Dungeon Fantasy)" with {replacetags(in "TE:Assassin Lens (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Barbarian-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Barbarian-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Barbarian-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Barbarian-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Bard-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Bard-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Bard-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Bard-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Cleric-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Cleric-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Cleric-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Cleric-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Druid-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Druid-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Druid-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Druid-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Holy Warrior-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Holy Warrior-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Holy Warrior-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Holy Warrior-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Knight-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Knight-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Knight-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Knight-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Martial Artist-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Martial Artist-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Martial Artist-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Martial Artist-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja Lens (Dungeon Fantasy)" with {replacetags(in "TE:Ninja Lens (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Artificer Lens (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Barbarian (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Barbarian (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Cleric (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Cleric (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Druid (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Druid (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Holy Warrior (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Holy Warrior (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Knight (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Knight (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Martial Artist (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Martial Artist (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Scout (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Scout (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Swashbuckler (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Swashbuckler (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Thief (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Thief (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja-Wizard (Dungeon Fantasy)" with {replacetags(in "TE:Ninja-Wizard (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scout-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Scout-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scout-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Scout-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Swashbuckler-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Swashbuckler-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Swashbuckler-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Swashbuckler-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Thief-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Thief-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Thief-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Thief-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Wizard-Assassin (Dungeon Fantasy)" with {replacetags(in "TE:Wizard-Assassin (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Wizard-Ninja (Dungeon Fantasy)" with {replacetags(in "TE:Wizard-Ninja (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

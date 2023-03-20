@@ -1,0 +1,234 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Description=05/05/2021. _
+			This file adds all of the 25-point 'Skill Set' lenses as Background Lens choices to the main _
+			templates. Since Background Lenses are normally 20-points using these lenses as Background lenses will _
+			require either taking all 5 quirk points or allowing 255-point characters.
+Program=4.0.283
+Incomplete=Yes
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf","GURPS Action  1 - Heroes.gdf","GURPS Action  4 - Specialists.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//
+// GURPS® Character Assistant
+// Filename: GURPS Action  4 - Specialists.gdf
+// Created: 01-24-2020
+// Modified: 01-24-2020
+// Requires GCA v4 or later!
+//
+// This data file contains information taken from the GURPS	sourcebook.
+// GURPS	is Copyright ©	by Steve Jackson Games
+// Incorporated. All rights reserved.
+//
+// Information in this file includes:
+//
+//
+************************************************************************************************************************
+//
+// Eric B. Smith	- GURPS Data File Coordinator, Major Work
+//
+// If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+// eric.frogkiller@gmail.com
+//
+// Or drop a message at:
+// http://forums.sjgames.com
+// 
+************************************************************************************************************************
+//
+// GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+// Games. All rights reserved.
+//
+// The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+// copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+// rights reserved by Steve Jackson Games Incorporated.
+//
+************************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<ActionBackgroundLensName>
+"Academics"=25,_
+"Airborne School"=25,_
+"Amphibious Operations"=25,_
+"Area Security"=25,_
+"Armory"=25,_
+"Bon Vivant"=25,_
+"Booby Traps"=25,_
+"Bugging"=25,_
+"Bushwhacker"=25,_
+"Businessperson"=25,_
+"Car Thief"=25,_
+"Chemical Safety"=25,_
+"Cleaning"=25,_
+"Climber"=25,_
+"Close-Quarters Battle"=25,_
+"Command"=25,_
+"Communications"=25,_
+"Computer Intrusion"=25,_
+"Conspiracies"=25,_
+"Construction"=25,_
+"Countersurveillance"=25,_
+"Cowboy"=25,_
+"Criminal Past"=25,_
+"Demolitions"=25,_
+"Desert Training"=25,_
+"Detective Work"=25,_
+"Disease Control"=25,_
+"Electronic Surveillance"=25,_
+"Electronics"=25,_
+"Escape and Evasion"=25,_
+"Explosive Ordnance Disposal"=25,_
+"Femme Fatale"=25,_
+"Fireman"=25,_
+"Fixer"=25,_
+"Flight School - Civilian"=25,_
+"Flight School - Military"=25,_
+"Forensics"=25,_
+"Forest/Jungle Training"=25,_
+"Goon"=25,_
+"Heavy Weapons"=25,_
+"Hostile Extraction"=25,_
+"Illicit Entry"=25,_
+"Impersonation"=25,_
+"Infantry Training"=25,_
+"Intelligence"=25,_
+"Interrogation"=25,_
+"Journalism"=25,_
+"Law Enforcement"=25,_
+"Linguist"=25,_
+"Local Expert"=25,_
+"Mastermind"=25,_
+"Medicine - Medic"=25,_
+"Mountain Training"=25,_
+"Negotiator"=25,_
+"Nuclear Disposal"=25,_
+"Obsolete Weapons"=25,_
+"Parkour"=25,_
+"Personal Security"=25,_
+"Physical Training"=25,_
+"Pistolero"=25,_
+"Psy-Ops"=25,_
+"Recon"=25,_
+"Records Falsification"=25,_
+"Repairman"=25,_
+"Researcher"=25,_
+"Resistance"=25,_
+"Sabotage"=25,_
+"Safecracking"=25,_
+"Sailor - Civilian Crewman"=25,_
+"Sailor - Military Crewman"=25,_
+"Scientist"=25,_
+"Security Systems"=25,_
+"Silent Killing"=25,_
+"Sniper School"=25,_
+"Social Engineering"=25,_
+"Spin Doctor"=25,_
+"Surveillance"=25,_
+"Survival"=25,_
+"Tactical Driving"=25,_
+"Theft"=25,_
+"Toxicology"=25,_
+"Tradecraft"=25,_
+"Unarmed Combat - Self-Defense"=25,_
+"Undercover"=25,_
+"Underwater Operations"=25,_
+"Urban Assault"=25,_
+"Winter Operations 1 (Action)"=25
+
+<ActionBackgroundLensTemplate>
+{TE:Academics 1 (Action)},_
+{TE:Airborne School 1 (Action)},_
+{TE:Amphibious Operations 1 (Action)},_
+{TE:Area Security 1 (Action)},_
+{TE:Armory 1 (Action)},_
+{TE:Bon Vivant 1 (Action)},_
+{TE:Booby Traps 1 (Action)},_
+{TE:Bugging 1 (Action)},_
+{TE:Bushwhacker 1 (Action)},_
+{TE:Businessperson 1 (Action)},_
+{TE:Car Thief 1 (Action)},_
+{TE:Chemical Safety 1 (Action)},_
+{TE:Cleaning 1 (Action)},_
+{TE:Climber 1 (Action)},_
+{TE:Close-Quarters Battle 1 (Action)},_
+{TE:Command 1 (Action)},_
+{TE:Communications 1 (Action)},_
+{TE:Computer Intrusion 1 (Action)},_
+{TE:Conspiracies 1 (Action)},_
+{TE:Construction 1 (Action)},_
+{TE:Countersurveillance 1 (Action)},_
+{TE:Cowboy 1 (Action)},_
+{TE:Criminal Past 1 (Action)},_
+{TE:Demolitions 1 (Action)},_
+{TE:Desert Training 1 (Action)},_
+{TE:Detective Work 1 (Action)},_
+{TE:Disease Control 1 (Action)},_
+{TE:Electronic Surveillance 1 (Action)},_
+{TE:Electronics 1 (Action)},_
+{TE:Escape and Evasion 1 (Action)},_
+{TE:Explosive Ordnance Disposal 1 (Action)},_
+{TE:Femme Fatale 1 (Action)},_
+{TE:Fireman 1 (Action)},_
+{TE:Fixer 1 (Action)},_
+{TE:Flight School - Civilian 1 (Action)},_
+{TE:Flight School - Military 1 (Action)},_
+{TE:Forensics 1 (Action)},_
+{TE:Forest/Jungle Training 1 (Action)},_
+{TE:Goon 1 (Action)},_
+{TE:Heavy Weapons 1 (Action)},_
+{TE:Hostile Extraction 1 (Action)},_
+{TE:Illicit Entry 1 (Action)},_
+{TE:Impersonation 1 (Action)},_
+{TE:Infantry Training 1 (Action)},_
+{TE:Intelligence 1 (Action)},_
+{TE:Interrogation 1 (Action)},_
+{TE:Journalism 1 (Action)},_
+{TE:Law Enforcement 1 (Action)},_
+{TE:Linguist 1 (Action)},_
+{TE:Local Expert 1 (Action)},_
+{TE:Mastermind 1 (Action)},_
+{TE:Medicine - Medic (Action)},_
+{TE:Mountain Training 1 (Action)},_
+{TE:Negotiator 1 (Action)},_
+{TE:Nuclear Disposal 1 (Action)},_
+{TE:Obsolete Weapons 1 (Action)},_
+{TE:Parkour 1 (Action)},_
+{TE:Personal Security 1 (Action)},_
+{TE:Physical Training 1 (Action)},_
+{TE:Pistolero 1 (Action)},_
+{TE:Psy-Ops 1 (Action)},_
+{TE:Recon 1 (Action)},_
+{TE:Records Falsification 1 (Action)},_
+{TE:Repairman 1 (Action)},_
+{TE:Researcher 1 (Action)},_
+{TE:Resistance 1 (Action)},_
+{TE:Sabotage 1 (Action)},_
+{TE:Safecracking 1 (Action)},_
+{TE:Sailor - Civilian Crewman 1 (Action)},_
+{TE:Sailor - Military Crewman 1 (Action)},_
+{TE:Scientist 1 (Action)},_
+{TE:Security Systems 1 (Action)},_
+{TE:Silent Killing 1 (Action)},_
+{TE:Sniper School 1 (Action)},_
+{TE:Social Engineering 1 (Action)},_
+{TE:Spin Doctor 1 (Action)},_
+{TE:Surveillance 1 (Action)},_
+{TE:Survival 1 (Action)},_
+{TE:Tactical Driving 1 (Action)},_
+{TE:Theft 1 (Action)},_
+{TE:Toxicology 1 (Action)},_
+{TE:Tradecraft 1 (Action)},_
+{TE:Unarmed Combat - Self-Defense (Action)},_
+{TE:Undercover 1 (Action)},_
+{TE:Underwater Operations 1 (Action)},_
+{TE:Urban Assault 1 (Action)},_
+{TE:Winter Operations 1 (Action)}
+
+<ActionBackgroundLensAdvantages>
+{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}
+
+<ActionBackgroundLensDisdvantages>
+{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}

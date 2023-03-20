@@ -1,0 +1,92 @@
+// CONTENT
+& > .content {
+  &.light {
+    --content-background-color: 238, 238, 238;
+    --background-color: var(--light-main-color);
+    --color: 119, 119, 119;
+    --selected-color: var(--dark-main-color);
+  }
+}
+
+// FEATURE
+& > .content.light > .panels > .panel,
+& > .modal.pin > .wrapper > .children,
+& > .modal.skills > .wrapper > #skill-auto-complete > .result > .result-item {
+  .feature-list {
+    --highlight-color: var(--main-color);
+    --lighter-highlight-color: var(--lighter-main-color);
+    --very-lighter-highlight-color: var(--very-lighter-main-color);
+  }
+
+  .feature {
+    --border-color: 217, 217, 217;
+    // --border-color: 255, 0, 0;
+    --background-color: 251, 251, 251;
+    --value-color: 51, 51, 51;
+    --contrast-value-color: 238, 238, 238;
+    --label-color: 102, 102, 102;
+    --contrast-label-color: 119, 119, 119;
+    //
+    --highlight-color: var(--main-color);
+    --lighter-highlight-color: var(--lighter-main-color);
+    --very-lighter-highlight-color: var(--very-lighter-main-color);
+    // color: #333;
+
+    & > .children > .feature-data {
+      & .wrapper {
+        .background-icon {
+          color: rgb(0 0 0 / 3.3%);
+        }
+      }
+    }
+
+    // pinned
+    // ------------------------------------
+    &.pinned {
+      --border-color: var(--highlight-color);
+
+      & > .children > .feature-data {
+        & > .children > .feature-variant {
+          & > .wrapper {
+            background-color: rgb(var(--very-lighter-main-color));
+
+            & > .content {
+              & > .label > .main {
+                & > .tray > .children {
+                  & > .icon-wrapper {
+                    color: rgb(var(--semi-dark-main-color), 1);
+                  }
+                }
+                & > span {
+                  color: rgb(var(--semi-dark-main-color), 1);
+                }
+              }
+              & > .value {
+                & > .asterisk {
+                  color: rgb(var(--semi-dark-main-color), 1);
+                }
+              }
+            }
+
+            & > .show-mo1re {
+              & > div {
+                background-color: rgb(var(--lighter-main-color), 1);
+                color: rgb(var(--dark-main-color), 1);
+              }
+            }
+          }
+        }
+      }
+
+      // hidden
+      &.hidden {
+        & .feature {
+          & .wrapper {
+            // background-color: rgba(var(--very-lighter-main-color), 0.65);
+          }
+        }
+      }
+    }
+    // ------------------------------------
+  }
+}

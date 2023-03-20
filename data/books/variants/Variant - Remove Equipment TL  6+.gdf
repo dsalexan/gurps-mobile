@@ -1,0 +1,67 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. When loaded in a data set this file removes all Equipment of the listed TL and higher from the available _
+		lists within GCA. _
+		Note that that you will need to load up to three of these files: one for regular TL's, one for Superscience TL's _
+		(denoted with a ^ next to the TL's number) and one to remove superscience items which don't have a TL number _
+		(as appears in some Basic Set equipment).
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter=All
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant - Remove Equipment TL  6+.gdf
+* Created: August 18, 2007
+* Requires GCA v4 or later!
+*
+* Information in this file includes:
+*  #Delete commands all equipment of the given TL or higher
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+[EQUIPMENT]
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 6
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 7
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 8
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 9
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 10
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 11
+#DeleteByTag Equipment, Text IgnoreEmpty, techlvl = 12
+
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 6
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 7
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 8
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 9
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 10
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 11
+#DeleteByTag Templates, Text IgnoreEmpty, techlvl = 12
+
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 6
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 7
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 8
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 9
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 10
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 11
+#DeleteByTag Advantages, Text IgnoreEmpty, techlvl = 12

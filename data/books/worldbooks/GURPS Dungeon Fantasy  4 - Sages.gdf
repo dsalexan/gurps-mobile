@@ -1,0 +1,2849 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+		This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, and this file third. This will ensure the proper modifications to spells required.  THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.  MIX WITH OTHER DATA FILES WITH CAUTION.
+Worldbook=Dungeon Fantasy
+Requires="GURPS Dungeon Fantasy  1 - Adventurers.GDF"
+LoadAfter="GURPS Magic 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 05-13-2007
+//  Modified: May 13, 2008
+//  Requires GCA v4 or later!
+// 
+//  File Version: Beta 1.0
+// 
+//  This data file contains information taken from the GURPS Dungeon Fantasy: Sages sourcebook.
+//  GURPS Dungeon Fantasy 4: Sages is Copyright © 2008 by Steve Jackson Games Incorporated. All rights
+//  reserved.
+// 
+//  Information in this file includes:
+// 	Many character templates, the inclusion of which is ongoing.
+// 
+//  This file requires the Basic Set to be loaded first. If using GURPS Magic, load that file second, then the
+//  Dungeon Fantasy: Adventurers file, finally load this one fourth.
+//  This will ensure the proper modifications to spells required.
+// 
+//  To blend these templates with the Character Templates offered in DF1 load the Racial Template then the Character
+//  Template.
+//  To add the templates together, load the Character Template first then the Racial Template.
+*******************************************************************************************************************
+// 
+//  Rob Kamm - Original data file author
+//  Emily smirle (Bruno) - File host and DF data file author
+//  Eric B. Smith		- Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+//  Talents
+Dungeon Artificer, 5/10, gives(+1 To GR:Dungeon Artificer), page(DF4:4), upto(4), cat(Mundane Mental, Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Alchemy, Armoury, Engineer (Gadgets), Fast-Draw (Gadget), Scrounging, and Traps)
+
+//  Scholar
+Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom), page(B71), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Book-Learned Wisdom),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Book-Learned Wisdom),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 5+2/point, formula(5+(me::level*2)), forceformula(yes), group(Book-Learned Wisdom), page(DF4:8), mods(Modular Abilities), level([level]) )
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+//  From GURPS Supers 4e.GDF
+Equipment Bond, 1, page(SU31, DF4:4), noresync(yes),_
+	x(#InputToTag("Please name the piece of equipment:", NameExt, , "Equipment Bond"))
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+Compulsive Inventing, -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental),_
+	conditional(+1 to ST:Reaction when "from technophiles", -1 to ST:Reaction when "from people with a self-preservation instinct"),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Knowledge>
+Hidden Lore (Lost Civilizations), IQ/A, page(B199), cat(_General, Knowledge)
+<Combat/Weapons - Melee Combat>
+Fast-Draw (Gadget), DX/E, page(B194), cat(_General, Combat/Weapons - Melee Combat, Combat/Weapons - Ranged Combat)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Dungeon Artificer
+
+<AllAdvantagesMental>
+AD:Dungeon Artificer
+
+<Dungeon Artificer>
+SK:Alchemy
+SK:Armoury
+SK:Engineer (Gadgets)
+SK:Fast-Draw (Gadget)
+SK:Scrounging
+SK:Traps
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Dungeon Fantasy, Dungeon Fantasy - Special Orders, Dungeon Fantasy - Special Orders - Adventure-Wear>
+"Alchemist's Garb", basecost(225), baseweight(5), description(Notes: Prevents ill effects from failures when rinsing off gunk, extracting venom, etc. Can be worn with armor -1 DX.), page(DF4:12), mods(Equipment)
+"Cobweb Kite", basecost(16000), baseweight(8), description(Notes: Backpack that unfurls after 40+ yard fall, guaranteeing a safe landing.), page(DF4:12), mods(Equipment)
+"Float Cloak", basecost(100), baseweight(6), description(Notes: Gives +6 to Swimming to avoid drowning, but -3 DX while inflated.), page(DF4:12), mods(Equipment)
+"Scroll Belt", basecost(60), baseweight(14), isparent(yes), description(Notes: Belt with 10 waxed cylinders for scrolls. Waterproof and protects against up to 10HP in flame damage. Scrolls can be removed with a Ready or Fast-Draw.), page(DF4:12), mods(Equipment)
+
+<Dungeon Fantasy, Dungeon Fantasy - Special Orders, Dungeon Fantasy - Special Orders - Combat Accessories>
+"Shield Lamp", basecost(200), baseweight(4), description(Notes: DR 6, HP 12 latern that clamps to any medium or large shield. Five yard beam, handsfree.), page(DF4:12), mods(Equipment), isparent(yes)
+"Shield Lectern", basecost(50), baseweight(2), description(Notes: Bolts to the back of any medium or large shield, firmly holds a map, scroll, or open book where it can be read or written on handsfree.), page(DF4:12), mods(Equipment)
+
+<Dungeon Fantasy, Dungeon Fantasy - Special Orders, Dungeon Fantasy - Special Orders - Optics>
+"Dwarven Accurizer", basecost(1200), baseweight(14), description(Notes: Twin telescopes pivot into place with a Ready, giving Telescopic Vision 1, +1 to Acc.), page(DF4:12), mods(Equipment)
+"Reflector", basecost(75), baseweight(1), description(Notes: Concave reflector concentrates light where the wearer is looking. Removes darkness penalty up to -3 while reading, lockpicking, trap removal, etc.), page(DF4:12), mods(Equipment)
+
+<Dungeon Fantasy, Dungeon Fantasy - Special Orders, Dungeon Fantasy - Special Orders - Scholarly Gear>
+"Faerie Ink", basecost(75), baseweight(.5), description(Notes: Alchemical ink, sold by leprechauns, give completely secret writing until exposed to developer or See Secrets spell.), page(DF4:12), mods(Equipment)
+"Faerie Ink Developer", basecost(75), baseweight(.5), description(Notes: Reveals text written with Faerie Ink.), page(DF4:12), mods(Equipment)
+"Portable Scribe", basecost(400), baseweight(15), description(Notes: Copies ink writing on paper. Place page in press with a sheet of paper, add Portable Scribe Fluid and operate roller. Magic transfers to the new copy.), page(DF4:12), mods(Equipment)
+"Portable Scribe Fluid", basecost(100), baseweight(.5), description(Notes: Good for 10 copies.), page(DF4:12), mods(Equipment)
+"Scroll Case", basecost(75), baseweight(1), isparent(yes), description(Notes: Water- and fireproof bone-and-metal case protects up to 20 scrolls, maps, pages, etc. 1 Ready to open plus 1D6 seconds to find a particular scroll.), page(DF4:12), mods(Equipment)
+"Wax Tablet", basecost(10), baseweight(2), description(Notes:Erasable, reusable, waterproof writing surface.), page(DF4:12), mods(Equipment)
+
+<Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Tools>
+"Self-Righting Hourglass", basecost(160), baseweight(4), description(Notes: One-hour model, graduated in minutes. Weights keep it upright in a water jar.), page(DF4:12), mods(Equipment)
+"Trap-Finder's Kit", basecost(250), baseweight(2), description(Notes: Gives +1 to Traps skill when actively searching for, disarming, or removing traps.), page(DF4:12), mods(Equipment), conditional(+1 to SK:Traps when "actively searching for, disarming, or removing traps")
+"Trap-Finder's Kit, Fine", basecost(1250), baseweight(10), description(Notes: Gives +2 to Traps skill when actively searching for, disarming, or removing traps.), page(DF4:12), mods(Equipment), conditional(+2 to SK:Traps when "actively searching for, disarming, or removing traps")
+"Universal Tool Kit", basecost(12000), baseweight(20), description(Notes: Gnomish modular tools will suffice for any non-esoteric skill requiring tools.), page(DF4:12), mods(Equipment)
+
+<Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Books>
+"Primer ([topic])", basecost(25), baseweight(3), description(Notes: Scholars may temporarily add 1 point in the Topic skill, anyone may spend 15 weeks and 1 point to learn the skill permanantly.), page(DF4:13), mods(Books, Primer),_
+	x(#InputReplace("please enter the title or topic of the book:" , "[topic]", "Title or topic", "Primer") )
+"Textbook ([topic])", basecost(50), baseweight(6), description(Notes: Scholars may temporarily add 2 points in the Topic skill, others may spend 15 weeks and 1 point to learn the skill permanantly. Those lacking the skill may also consult a textbook in the field to gain a default on a skill that doesn't normally have one. Attribute -4 if Easy, -5 Average, -6 Hard, -7 Very Hard.), page(DF4:13), mods(Books, Textbook),_
+	x(#InputReplace("please enter the title or topic of the book:" , "[topic]", "Title or topic", "Textbook"),_
+	#message("Spellbooks may allocate [2] points in up to 2 spells.") )
+"Thesis ([topic])", basecost(), baseweight(12), description(Notes: For non-scholars may spend 15 weeks and 1 point to learn the skill permanantly. Those lacking the skill may also consult a textbook in the field to gain a default on a skill that doesn't normally have one. Attribute -4 if Easy, -5 Average, -6 Hard, -7 Very Hard. Scholars may temporarily gain however many points the book is rated in the Topic skill.), page(DF4:13), mods(Books, Thesis), initmods(_
+	Points, 0/0, gives(+25 to owner::basecost), page(DF4:13), upto(12), groups(Annotated Maps), levelnames(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), shortname(Points), level(3)_
+	), x(#InputReplace("please enter the title or topic of the book:" , "[topic]", "Title or topic", "Thesis") )
+
+<Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Maps>
+"Sketchy Map ([Location])", basecost(25), baseweight(.1), description(Notes: Navigation is at -2), page(DF4:14), mods(Media),_
+	initmods( Heavy Paper, +0, page(DF4:15) ),_
+	x(#InputReplace("please enter the region covered by the map:" , "[Location]", Location, "Sketchy Map") )
+"Average Map ([Location])", basecost(50), baseweight(.1), description(Notes: May temporarily add 1 point in Area Knowledge. Navigation is unpenalized.), page(DF4:14), mods(Media),_
+	initmods( Heavy Paper, +0, page(DF4:15) ),_
+	x(#InputReplace("please enter the region covered by the map:" , "[Location]", Location, "Average Map") )
+"Annotated Map ([Location])", basecost(0), baseweight(.1), description(Notes: Scholars may temporarily acquire the map's rated number of points in Area Knowledge. Navigation is at +1.), page(DF4:14), mods(Annotated Maps, Media), initmods(_
+	Heavy Paper, +0, page(DF4:15)_
+	| Points, 0/0, gives(+50 to owner::basecost), page(DF4:14), upto(8), groups(Annotated Maps), levelnames(1, 2, 3, 4, 5, 6, 7, 8), shortname(AK Points), level(2)_
+	),_
+	x(#InputReplace("please enter the region covered by the map:" , "[Location]", Location, "Annotated Map") )
+
+<Dungeon Fantasy, Dungeon Fantasy - Miscellaneous Equipment, Dungeon Fantasy - Miscellaneous Equipment - Scrolls>
+"Clerical Scroll ([Spell], [Level], [Power])", basecost([Power]*_
+	@if([Level] < 15 THEN 20 ELSE @if([Level] < 19 THEN (16+4*([Level]-14)) ELSE (20*([Level]-17)) ) )_
+	),_
+	displaycost(varies), baseweight(0.05), description(Notes: A magical scroll. Reading it aloud casts the spell enchanted on it or allows the reader to learn the spell.), page(DF4:14), mods(Clerical Scroll, Media, Scroll), initmods( Heavy Paper, +0, page(DF4:15) | Holy, page(DF4:15), groups(Clerical Scroll) ),_
+	x(#InputReplace("Please enter the spell written on the scroll:", "[Spell]", Spell, "Clerical Scroll"),_
+	#InputReplace("Please enter the skill level at which the scroll was written:", "[Level]", "15", "Clerical Scroll"),_
+	#InputReplace("Please enter the Cost to Cast for the spell on the scroll:", "[Power]", "Cost to Cast", "Clerical Scroll") )
+
+"Druidic Scroll ([Spell], [Level], [Power])", basecost([Power]*_
+	@if([Level] < 15 THEN 20 ELSE @if([Level] < 19 THEN (16+4*([Level]-14)) ELSE (20*([Level]-17)) ) )_
+	),_
+	displaycost(varies), baseweight(0.05), description(Notes: A magical scroll. Reading it aloud casts the spell enchanted on it or allows the reader to learn the spell.), page(DF4:14), mods(Media, Scroll), initmods( Bark, page(DF4:15) ),_
+	x(#InputReplace("Please enter the spell written on the scroll:", "[Spell]", Spell, "Druidic Scroll"),_
+	#InputReplace("Please enter the skill level at which the scroll was written:", "[Level]", "15", "Druidic Scroll"),_
+	#InputReplace("Please enter the Cost to Cast for the spell on the scroll:", "[Power]", "Cost to Cast", "Druidic Scroll") )
+
+"Wizardly Scroll ([Spell], [Level], [Power])", basecost([Power]*_
+	@if([Level] < 15 THEN 20 ELSE @if([Level] < 19 THEN (16+4*([Level]-14)) ELSE (20*([Level]-17)) ) )_
+	),_
+	displaycost(varies), baseweight(0.05), description(Notes: A magical scroll. Reading it aloud casts the spell enchanted on it or allows the reader to learn the spell.), page(DF4:14), mods(Media, Scroll), initmods( Heavy Paper, +0, page(DF4:15) ),_
+	x(#InputReplace("Please enter the spell written on the scroll:", "[Spell]", Spell, "Wizardly Scroll"),_
+	#InputReplace("Please enter the skill level at which the scroll was written:", "[Level]", "15", "Wizardly Scroll"),_
+	#InputReplace("Please enter the Cost to Cast for the spell on the scroll:", "[Power]", "Cost to Cast", "Wizardly Scroll") )
+
+"Charged Clerical Scroll ([Spell], [Level], [Power], [Energy])", basecost(2.5*([Power]+[Energy])*_
+	@if([Level] < 15 THEN 20 ELSE @if([Level] < 19 THEN (16+4*([Level]-14)) ELSE (20*([Level]-17)) ) )_
+	),_
+	displaycost(varies), baseweight(0.05), description(Notes: A magical scroll. Reading it aloud casts the spell enchanted on it or allows the reader to learn the spell.), page(DF4:14), mods(Clerical Scroll, Media, Scroll), initmods( Heavy Paper, +0, page(DF4:15) | Holy, page(DF4:15), groups(Clerical Scroll) ),_
+	x(#InputReplace("Please enter the spell written on the scroll:", "[Spell]", Spell, "Charged Clerical Scroll"),_
+	#InputReplace("Please enter the skill level at which the scroll was written:", "[Level]", "15", "Charged Clerical Scroll"),_
+	#InputReplace("Please enter the Cost to Cast for the spell on the scroll:", "[Power]", "Cost to Cast", "Charged Clerical Scroll"),_
+	#InputReplace("Please enter the amount of energy stored for maintaining the scroll:", "[Energy]", "Maintenance Energy", "Charged Clerical Scroll") )
+
+"Charged Druidic Scroll ([Spell], [Level], [Power], [Energy])", basecost(2.5*([Power]+[Energy])*_
+	@if([Level] < 15 THEN 20 ELSE @if([Level] < 19 THEN (16+4*([Level]-14)) ELSE (20*([Level]-17)) ) )_
+	),_
+	displaycost(varies), baseweight(0.05), description(Notes: A magical scroll. Reading it aloud casts the spell enchanted on it or allows the reader to learn the spell.), page(DF4:14), mods(Media, Scroll), initmods( Bark, page(DF4:15) ),_
+	x(#InputReplace("Please enter the spell written on the scroll:", "[Spell]", Spell, "Charged Druidic Scroll"),_
+	#InputReplace("Please enter the skill level at which the scroll was written:", "[Level]", "15", "Charged Druidic Scroll"),_
+	#InputReplace("Please enter the Cost to Cast for the spell on the scroll:", "[Power]", "Cost to Cast", "Charged Druidic Scroll"),_
+	#InputReplace("Please enter the amount of energy stored for maintaining the scroll:", "[Energy]", "Maintenance Energy", "Charged Druidic Scroll") )
+
+"Charged Wizardly Scroll ([Spell], [Level], [Power], [Energy])", basecost(2.5*([Power]+[Energy])*_
+	@if([Level] < 15 THEN 20 ELSE @if([Level] < 19 THEN (16+4*([Level]-14)) ELSE (20*([Level]-17)) ) )_
+	),_
+	displaycost(varies), baseweight(0.05), description(Notes: A magical scroll. Reading it aloud casts the spell enchanted on it or allows the reader to learn the spell.), page(DF4:14), mods(Media, Scroll), initmods( Heavy Paper, +0, page(DF4:15) ),_
+	x(#InputReplace("Please enter the spell written on the scroll:", "[Spell]", Spell, "Charged Wizardly Scroll"),_
+	#InputReplace("Please enter the skill level at which the scroll was written:", "[Level]", "15", "Charged Wizardly Scroll"),_
+	#InputReplace("Please enter the Cost to Cast for the spell on the scroll:", "[Power]", "Cost to Cast", "Charged Wizardly Scroll"),_
+	#InputReplace("Please enter the amount of energy stored for maintaining the scroll:", "[Energy]", "Maintenance Energy", "Charged Wizardly Scroll") )
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Wild Talent>
+No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8)
+
+<Book-Learned Wisdom>
+_Per point of abilities, 5+2/point, formula(5+(me::level*2)), forceformula(yes), group(Book-Learned Wisdom), page(B71), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Book-Learned Wisdom),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Book-Learned Wisdom) _
+	), level([level])
+
+<Books>
+Obscure Knowledge, +1 CF, page(DF4:13), group(Books), shortname(Obscure)
+Esoteric Knowledge, +2 CF, page(DF4:13), group(Books), shortname(Esoteric)
+Dwarven, +4 CF, gives(*2 to owner::baseweight), page(DF4:13), groups(Books), shortname(Dwarven)
+Faerie, +14 CF, gives(-(owner::baseweight * 5/6) to owner::baseweight), page(DF4:13), groups(Books), shortname(Faerie)
+Fine, +8 CF, gives(*2 to owner::baseweight), page(DF4:13), groups(Books), shortname(Fine)
+Very Fine, +17 CF, gives(*2 to owner::baseweight), page(DF4:13), groups(Books), shortname(Very Fine)
+
+<Primer>
+Magic ([Spell]), +3 CF, page(DF4:13), group(Primer), shortname([Spell] [1]),_
+	x(#InputReplace("Name of the spell in this book:", "[Spell]", "Spellname", "Magic") )
+
+<Textbook>
+Magic ([One Spell]), +3 CF, page(DF4:13), group(Textbook), shortname([One Spell] [2]),_
+	x(#InputReplace("Name of the spell in this book:", "[One Spell]", "Spellname", "Magic") )
+"Magic ([Two Spells], [Second])", +3 CF, page(DF4:13), group(Textbook), shortname([Two Spells] [1], [Second] [1]),_
+	x(#InputReplace("Name of the first spell in this book:", "[Two Spells]", "Spellname", "Magic")_
+	#InputReplace("Name of the second spell in this book:", "[Second]", "Spellname", "Magic") )
+
+<Thesis>
+Points, 0/0, gives(+25 to owner::basecost), displaycost(+25/level), page(DF4:13), upto(12), groups(Thesis), levelnames(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), shortname(Points)
+Magic, +3 CF, page(DF4:13), group(Thesis), shortname(Spellbook),_
+	x(#message("Total points allocated to all of the spells must equal the number of points assigned to the book. Select Spell List once for each spell in the book.") )
+Spell List ([Spell]), +0, page(DF4:13), group(Thesis), shortname([Spell] [[P]]),_
+	x(#InputReplace("Name of the next spell in this book:", "[Spell]", "Spellname", "Magic")_
+	#InputReplace("How many points are allocated to this spell:", "[P]", "1", "") )
+
+<Annotated Maps>
+Points, 0/0, gives(+50 to owner::basecost), displaycost(+50/level), page(DF4:14), upto(8), groups(Annotated Maps), levelnames(1, 2, 3, 4, 5, 6, 7, 8), shortname(AK Points)
+
+<Media>
+Heavy Paper, +0, page(DF4:15)
+Bark, +0, page(DF4:15)
+Embroidered Cloth, +5, page(DF4:15)
+Engraved Metal, +30, gives(*2.5 to owner::baseweight), page(DF4:15)
+Stone Tablet, +20, gives(*20 to owner::baseweight), page(DF4:15)
+Tattooed Leather, +10, gives(*2 to owner::baseweight), page(DF4:15)
+
+<Scroll>
+Universal, *2, page(DF4:15)
+
+<Clerical Scroll>
+Holy, +0, page(DF4:15), groups(Clerical Scroll)
+Unholy, +0, page(DF4:15), groups(Clerical Scroll)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Dungeon Fantasy, Character Templates - Dungeon Fantasy - Adventurers>
+Artificer (Dungeon Fantasy), displaycost(250), cost(0),_
+	description(Every delver loves wonderful toys - and you are the one who makes them.),_
+	page(DF4:4),_
+	sets(_
+		{ST:ST}=11,_
+		{ST:DX}=13,_
+		{ST:IQ}=13,_
+		{ST:HT}=11,_
+		{ST:Perception}=ST:IQ,_
+		{ST:Hit Points}=ST:ST,_
+		{ST:Will}=ST:IQ,_
+		{ST:Fatigue Points}=ST:HT,_
+		{ST:Basic Speed}=6.00,_
+		{ST:Basic Move}={ST:Basic Speed}_
+	),_
+	adds(_
+		{AD:Dungeon Artificer}=4,_
+		{AD:Gizmo}=3,_
+		{AD:Gadgeteer}=2,_
+		{PE:Equipment Bond},_
+		{PE:Equipment Bond},_
+		{DI:Compulsive Inventing},_
+		{SK:Alchemy}=4pts,_
+		{SK:Fast-Draw (Gadget)}=1pts,_
+		{SK:Scrounging}=1pts,_
+		{SK:Forced Entry}=2pts,_
+		{SK:Armoury (Body Armor)}=1pts,_
+		{SK:Armoury (Melee Weapons)}=1pts,_
+		{SK:Armoury (Missile Weapons)}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Lockpicking}=2pts,_
+		%weapontypesaliaslist%_
+	),_
+	creates(_
+				"SK:Engineer (Gadgets), IQ/H, tl(0-12), default("SK:Mechanic ([Type])" - 6, "SK:Armoury ([Type])" - 6, SK:Engineer - 4)"=2pts_
+	),_
+	x(_
+			#ChoiceList(_
+				name(weapontypes),_
+				title(Combat specialty),_
+				text(Choose your melee skill package.),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				"Axe/Mace",_
+				"Axe/Mace and Shield",_
+				"Axe/Mace and Buckler",_
+				"Axe/Mace and Cloak",_
+				"Axe/Mace and Main-Gauche",_
+				"Broadsword",_
+				"Broadsword and Shield",_
+				"Broadsword and Buckler",_
+				"Broadsword and Cloak",_
+				"Broadsword and Main-Gauche",_
+				"Rapier",_
+				"Rapier and Shield",_
+				"Rapier and Buckler",_
+				"Rapier and Cloak",_
+				"Rapier and Main-Gauche",_
+				"Saber",_
+				"Saber and Shield",_
+				"Saber and Buckler",_
+				"Saber and Cloak",_
+				"Saber and Main-Gauche",_
+				"Shortsword",_
+				"Shortsword and Shield",_
+				"Shortsword and Buckler",_
+				"Shortsword and Cloak",_
+				"Shortsword and Main-Gauche",_
+				"Smallsword",_
+				"Smallsword and Shield",_
+				"Smallsword and Buckler",_
+				"Smallsword and Cloak",_
+				"Smallsword and Main-Gauche"_
+	),_
+	aliaslist(_
+				"{SK:Axe/Mace}=8pts",_
+				"{SK:Axe/Mace}=4pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Axe/Mace}=4pts, {SK:Shield (Buckler)}=4pts",_
+				"{SK:Axe/Mace}=4pts, {SK:Cloak}=4pts",_
+				"{SK:Axe/Mace}=4pts, {SK:Main-Gauche}=4pts",_
+				"{SK:Broadsword}=8pts",_
+				"{SK:Broadsword}=4pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Broadsword}=4pts, {SK:Shield (Buckler)}=4pts",_
+				"{SK:Broadsword}=4pts, {SK:Cloak}=4pts",_
+				"{SK:Broadsword}=4pts, {SK:Main-Gauche}=4pts",_
+				"{SK:Rapier}=8pts",_
+				"{SK:Rapier}=4pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Rapier}=4pts, {SK:Shield (Buckler)}=4pts",_
+				"{SK:Rapier}=4pts, {SK:Cloak}=4pts",_
+				"{SK:Rapier}=4pts, {SK:Main-Gauche}=4pts",_
+				"{SK:Saber}=8pts",_
+				"{SK:Saber}=4pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Saber}=4pts, {SK:Shield (Buckler)}=4pts",_
+				"{SK:Saber}=4pts, {SK:Cloak}=4pts",_
+				"{SK:Saber}=4pts, {SK:Main-Gauche}=4pts",_
+				"{SK:Shortsword}=8pts",_
+				"{SK:Shortsword}=4pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Shortsword}=4pts, {SK:Shield (Buckler)}=4pts",_
+				"{SK:Shortsword}=4pts, {SK:Cloak}=4pts",_
+				"{SK:Shortsword}=4pts, {SK:Main-Gauche}=4pts",_
+				"{SK:Smallsword}=8pts",_
+				"{SK:Smallsword}=4pts, {SK:Shield (Shield)}=4pts",_
+				"{SK:Smallsword}=4pts, {SK:Shield (Buckler)}=4pts",_
+				"{SK:Smallsword}=4pts, {SK:Cloak}=4pts",_
+				"{SK:Smallsword}=4pts, {SK:Main-Gauche}=4pts"_
+			)_
+		)_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 40 points chosen from this list of advantages."),_
+		pointswanted(40),_
+		tagwith(Artificer(yes)),_
+			itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			#list(GMAdvantages),_
+			#list(Artificer Abilities),_
+			AD:Extra DX #codes(upto 2, downto 1),_
+			AD:Extra IQ #codes(upto 2, downto 1),_
+			AD:High Manual Dexterity #codes(upto 4, downto 1),_
+			AD:Lifting ST #codes(upto 3, downto 1),_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Serendipity,_
+			AD:Signature Gear,_
+			AD:Versatile,_
+			AD:Wealth #codes(upto 3, downto 1),_
+			PE:Equipment Bond,_
+			PE:Weapon Bond (%Weapon%),_
+			#newitem( AD:More Gizmos, 5/10, page(B58), cat(Mundane, Mental), existing(AD:Gizmo) )_
+		)_
+	),_
+	select3(_
+		text("Select -20 points from this list of disadvantages. You may choose to worsen your Compulsive Inventing; select that option here, you will need to delete Worsen Compulsive Inventing and change Compulsive Inventing's modifiers later."),_
+		pointswanted(-20),_
+		tagwith(Artificer(yes)),_
+			itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Curious,_
+			DI:Hard of Hearing,_
+			DI:Overconfidence,_
+			DI:Pyromania,_
+			DI:Trickster,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Worsen Compulsive Inventing, -2/-5, upto(2), cat(_General), existing(DI:Compulsive Inventing ))_
+		)_
+	),_
+	select4(_
+		text("Select -25 points from this list of disadvantages. You may choose to worsen your Compulsive Inventing; select that option here, you will need to delete Worsen Compulsive Inventing and change Compulsive Inventing's modifiers later."),_
+		pointswanted(-25),_
+		tagwith(Artificer(yes)),_
+			itemswanted(atleast 1),_
+		list(_
+			#BuildSelectList(Disdvantages where Artificer is "Yes", template(#newitem(DI:_Increase/Modify %ListItem%, cost(0), displaycost(varies), existing(DI:%ListItem%)))),_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Bad Temper,_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Hard of Hearing,_
+			DI:Impulsiveness,_
+			DI:Jealousy,_
+			DI:Kleptomania,_
+			DI:Odious Personal Habit,_
+			DI:Overconfidence,_
+			DI:Post-Combat Shakes,_
+			DI:Pyromania,_
+			DI:Sense of Duty (Adventuring Companions),_
+			DI:Stubbornness,_
+			DI:Trickster,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem( DI:Worsen Compulsive Inventing, -2/-5, upto(2), cat(_General), existing(DI:Compulsive Inventing) )_
+		)_
+	),_
+	select5(_
+		text("Select a ranged combat option."),_
+		pointswanted(4),_
+		tagwith(Artificer(yes)),_
+			itemswanted(1),_
+		list(_
+			SK:Crossbow #codes(upto 4pts, downto 4pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select6(_
+		text("Select five background skills at [1] point each."),_
+		pointswanted(5),_
+		tagwith(Artificer(yes)),_
+			itemswanted(5),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Knot-Tying #codes(upto 1pts),_
+			SK:Leatherworking #codes(upto 1pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Stealth #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Architecture #codes(upto 1pts),_
+			SK:Cartography #codes(upto 1pts),_
+			SK:Hazardous Materials (Magical) #codes(upto 1pts),_
+			SK:Holdout #codes(upto 1pts),_
+			SK:Merchant #codes(upto 1pts),_
+			SK:Smith (Copper) #codes(upto 1pts),_
+			SK:Smith (Iron) #codes(upto 1pts),_
+			SK:Smith (Lead and Tin) #codes(upto 1pts),_
+			SK:Counterfeiting #codes(upto 1pts),_
+			SK:Jeweler #codes(upto 1pts),_
+			SK:Search #codes(upto 1pts)_
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Scholar (Dungeon Fantasy), displaycost(250), cost(0),_
+	description(You seek to solve all mysteries, not just magical ones. Learning practical skills necessary to plumb dungeons for forgotten truths is just part of the job.),_
+	page(DF4:8),_
+	sets(_
+		{ST:ST}=10,_
+		{ST:DX}=12,_
+		{ST:IQ}=15,_
+		{ST:HT}=12,_
+		{ST:Perception}=ST:IQ,_
+		{ST:Hit Points}=ST:ST,_
+		{ST:Will}=ST:IQ,_
+		{ST:Fatigue Points}=ST:HT,_
+		{ST:Basic Speed}=6.00,_
+		{ST:Basic Move}={ST:Basic Speed}_
+	),_
+	creates(_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+			with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) },_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+			with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)} _
+			and {Skill 2, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)} _
+		}_
+	),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			AD:Intuition,_
+			%weapontypesaliaslist%,_
+			SK:Cartography=2pts,_
+			SK:Research=2pts,_
+			SK:Speed-Reading=2pts,_
+			SK:Teaching=1pts,_
+			SK:Writing=1pts,_
+			SK:Observation=1pts,_
+			SK:Scrounging=1pts,_
+			SK:Search=1pts_
+	),_
+	x(_
+			#ChoiceList(_
+				name(weapontypes),_
+				title(Combat Style),_
+				text(Choose your melee skill package.),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				"Broadsword and Buckler",_
+				"Broadsword and Cloak",_
+				"Broadsword and Shield",_
+				"Broadsword Expert",_
+				"Rapier and Buckler",_
+				"Rapier and Cloak",_
+				"Rapier and Shield",_
+				"Rapier Expert",_
+				"Saber and Buckler",_
+				"Saber and Cloak",_
+				"Saber and Shield",_
+				"Saber Expert",_
+				"Shortsword and Buckler",_
+				"Shortsword and Cloak",_
+				"Shortsword and Shield",_
+				"Shortsword Expert",_
+				"Smallsword and Buckler",_
+				"Smallsword and Cloak",_
+				"Smallsword and Shield",_
+				"Smallsword Expert",_
+				"Staff and Buckler",_
+				"Staff and Cloak",_
+				"Staff and Shield",_
+				"Staff Expert",_
+				"Whip and Buckler",_
+				"Whip and Cloak",_
+				"Whip and Shield",_
+				"Whip Expert"_
+	),_
+	aliaslist(_
+				"SK:Broadsword=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Broadsword=8pts, SK:Cloak=4pts",_
+				"SK:Broadsword=8pts, SK:Main-Gauche=4pts",_
+				"SK:Broadsword=12pts",_
+				"SK:Rapier=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Rapier=8pts, SK:Cloak=4pts",_
+				"SK:Rapier=8pts, SK:Main-Gauche=4pts",_
+				"SK:Rapier=12pts",_
+				"SK:Saber=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Saber=8pts, SK:Cloak=4pts",_
+				"SK:Saber=8pts, SK:Main-Gauche=4pts",_
+				"SK:Saber=12pts",_
+				"SK:Shortsword=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Shortsword=8pts, SK:Cloak=4pts",_
+				"SK:Shortsword=8pts, SK:Main-Gauche=4pts",_
+				"SK:Shortsword=12pts",_
+				"SK:Smallsword=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Smallsword=8pts, SK:Cloak=4pts",_
+				"SK:Smallsword=8pts, SK:Main-Gauche=4pts",_
+				"SK:Smallsword=12pts",_
+				"SK:Staff=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Staff=8pts, SK:Cloak=4pts",_
+				"SK:Staff=8pts, SK:Main-Gauche=4pts",_
+				"SK:Staff=12pts",_
+				"SK:Whip=8pts, SK:Shield (Buckler)=4pts",_
+				"SK:Whip=8pts, SK:Cloak=4pts",_
+				"SK:Whip=8pts, SK:Main-Gauche=4pts",_
+				"SK:Whip=12pts"_
+			)_
+		)_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these advantages. Take Extra Book-Learned Wisdom to acquire an additional skill slot or to improve the number of points in an existing one. New slots cost [5] points, plust [2] per point of capacity."),_
+		tagwith(Scholar(yes)),_
+			itemswanted(atleast 1),_
+		pointswanted(30),_
+		list(_
+			#list(GMAdvantages),_
+			#list(Scholar Abilities),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto5, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Absolute Direction,_
+			AD:Acute [sense] #codes(upto 10, downto 1),_
+			AD:Acute Acute Taste and Smell,_
+			AD:Acute Touch,_
+			AD:Acute Vision,_
+			AD:Acute Hearing,_
+			AD:Cultural Adaptability #codes(upto 1, downto 1),_
+			AD:Fearlessness #codes(upto 10, downto 1),_
+			AD:Language Talent,_
+			LA:Language #codes(upto 6, downto 1),_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 30, downto 1),_
+			AD:Speak with Animals,_
+			AD:Unfazeable,_
+			AD:Wealth #codes(upto 2, downto 1),_
+			#newitem(_
+				AD:Extra Book-Learned Wisdom, 1/2, page(B51), cat(_General), existing(AD:Book-Learned Wisdom)_
+			),_
+			#newitem(_
+				AD:Photography Memory, +5, existing(AD:Eidetic Memory) page(B51), cat(_General)_
+			) #codes(upto 2, downto 2),_
+			#newitem(AD:_Extra Wild Talent, 20/40, existing(AD:Wild Talent)),_
+			#newitem(AD:Higher Purpose (Seek Knowledge), 5, page(B59), cat(Supernatural, Mental))_
+		)_
+	),_
+	select3(_
+		text("Select -25 points from these disadvantages. You must select the Curious disadvantage, but may take it with any Control Roll of 12 or less."),_
+		tagwith(Scholar(yes)),_
+			itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			DI:Overconfidence,_
+			DI:Truthfulness,_
+			DI:Xenophilia,_
+			#newitem( DI:Curious, -5, displaycost(-5*), mods(Self-Control), page(B129), cat(Mundane, Mental), taboo(DI:Incurious),_
+						initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )_
+					),_
+			#newitem( DI:Obsession (Learn one specific, dangerous thing), -5, displaycost(-5*), mods(Self-Control), page(B146), cat(Mundane, Mental),_
+						initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ) ),_
+			#newitem( DI:Intolerance (Stupid People-IQ 10 or less), -5, page(B140), cat(Mundane, Mental) ),_
+			#newitem( DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted)), mods(Bad Sight), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses)) ),_
+			#newitem( DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted)), mods(Bad Sight), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses)) )_
+		)_
+	),_
+	select4(_
+		text("Select -25 points from these disadvantages."),_
+		tagwith(Scholar(yes)),_
+			itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			#BuildSelectList(Disdvantages where Scholar is "Yes", template(#newitem(DI:_Increase/Modify %ListItem%, cost(0), displaycost(varies), existing(DI:%ListItem%)))),_
+			DI:Absent-Mindedness,_
+			DI:Bad Temper,_
+			DI:Clueless,_
+			DI:Hard of Hearing,_
+			DI:Jealousy,_
+			DI:No Sense of Humor,_
+			DI:Oblivious,_
+			DI:Odious Personal Habit #codes(upto 3, downto 1),_
+			DI:Overconfidence,_
+			DI:Post-Combat Shakes,_
+			DI:Sense of Duty (Adventuring Companions),_
+			DI:Skinny,_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			DI:Xenophilia,_
+			#newitem( DI:Obsession (Learn one specific, dangerous thing), -5, displaycost(-5*), mods(Self-Control), page(B146), cat(Mundane, Mental),_
+						initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ) ),_
+			#newitem( DI:Intolerance (Stupid People-IQ 10 or less), -5, page(B140), cat(Mundane, Mental) ),_
+			#newitem( DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted)), mods(Bad Sight), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses)) ),_
+			#newitem( DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted)), mods(Bad Sight), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses)) )_
+		)_
+	),_
+	select5(_
+		text("Pick a Hidden Lore specialties"),_
+		tagwith(Scholar(yes)),_
+			itemswanted(3),_
+		pointswanted(6),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 2pts, downto 2pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Select five secondary skills."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(5),_
+		pointswanted(5),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Architecture #codes(upto 1pts),_
+			SK:Hazardous Materials (Magical) #codes(upto 1pts),_
+			SK:Heraldry #codes(upto 1pts),_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+			SK:Occultims #codes(upto 1pts),_
+			SK:Prospecting #codes(upto 1pts),_
+			SK:Traps #codes(upto 1pts),_
+			SK:Diagnosis #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Pharmacy (Herbal) #codes(upto 1pts),_
+			SK:Philosophy #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Strategy #codes(upto 1pts),_
+			SK:Theology #codes(upto 1pts),_
+			SK:Veterinary #codes(upto 1pts),_
+			SK:Alchemy #codes(upto 1pts),_
+			SK:Surgery #codes(upto 1pts),_
+			SK:Thaumatology #codes(upto 1pts),_
+			#newitem(SK:Physiology ([Monster Type]), IQ/H, tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences) #codes(upto 1pts),x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Physiology"))),_
+			#newitem(SK:Psychology ([Monster Type]), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities) #codes(upto 1pts),x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Psychology")))_
+		)_
+	),_
+	select7(_
+		text("Select a ranged combat option."),_
+		pointswanted(4),_
+		tagwith(Scholar(yes)),_
+			itemswanted(1),_
+		list(_
+			SK:Crossbow #codes(upto 4pts, downto 4pts),_
+			SK:Lasso #codes(upto 4pts, downto 4pts),_
+			SK:Sling #codes(upto 4pts, downto 4pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select8(_
+		text("Select four background skills."),_
+		pointswanted(4),_
+		tagwith(Scholar(yes)),_
+			itemswanted(4),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Riding (Equines) #codes(upto 1pts),_
+			SK:Stealth #codes(upto 1pts),_
+			SK:First Aid #codes(upto 1pts),_
+			SK:Savoire-Faire (High Society) #codes(upto 1pts),_
+			SK:Connoisseur #codes(upto 1pts),_
+			SK:Connoisseur (Dance) #codes(upto 1pts),_
+			SK:Connoisseur (Literature) #codes(upto 1pts),_
+			SK:Connoisseur (Music) #codes(upto 1pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 1pts),_
+			SK:Connoisseur (Wine) #codes(upto 1pts),_
+			SK:Navigation (Land) #codes(upto 1pts),_
+			SK:Navigation (Sea) #codes(upto 1pts),_
+			SK:Hiking #codes(upto 1pts),_
+			SK:Meditation #codes(upto 1pts),_
+			SK:Survival #codes(upto 1pts)_
+		)_
+	),_
+	select9(#List(QuirkSelection)),_
+	needs( DI:Curious )
+
+<Character Templates - Dungeon Fantasy - Power-Ups, Character Templates - Dungeon Fantasy, Character Templates>
+Artificer Advantages (Dungeon Fantasy), displaycost(varies), cost(0),_
+	description(All optional Artificer Traits and Power-Ups.),_
+	page(DF4:4),_
+	select1(_
+		text("Artificers may select any trait from this list."),_
+		pointswanted(atleast 0, upto 1000),_
+		tagwith(Artificer(yes)),_
+		itemswanted(atleast 0, upto 1000),_
+		list(_
+			AD:Extra DX #codes(upto 2, downto 1),_
+			AD:Extra IQ #codes(upto 2, downto 1),_
+			AD:High Manual Dexterity #codes(upto 4, downto 1),_
+			AD:Lifting ST #codes(upto 3, downto 1),_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Mortal Foe (%foetypealiaslist%),_
+			AD:Serendipity,_
+			AD:Signature Gear,_
+			AD:Versatile,_
+			AD:Wealth #codes(upto 3, downto 1),_
+			PE:Equipment Bond,_
+			PE:Weapon Bond (%Weapon%)_
+		)_
+	)
+
+Artificer Skills (Dungeon Fantasy), displaycost(varies), cost(0),_
+	description(All optional Artificer skills.),_
+	page(DF4:4),_
+	select1(_
+		text("Artificers may select any skills from this list."),_
+		pointswanted(atleast 0, upto 1000),_
+		tagwith(Artificer(yes)),_
+		itemswanted(atleast 0, upto 1000),_
+		list(_
+			SK:Architecture #codes(upto 4pts),_
+			SK:Axe/Mace #codes(upto 4pts),_
+			SK:Broadsword #codes(upto 4pts),_
+			SK:Cartography #codes(upto 4pts),_
+			SK:Climbing #codes(upto 4pts),_
+			SK:Cloak #codes(upto 4pts),_
+			SK:Connoisseur #codes(upto 4pts),_
+			SK:Connoisseur (Dance) #codes(upto 4pts),_
+			SK:Connoisseur (Literature) #codes(upto 4pts),_
+			SK:Connoisseur (Music) #codes(upto 4pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 4pts),_
+			SK:Connoisseur (Wine) #codes(upto 4pts),_
+			SK:Counterfeiting #codes(upto 4pts),_
+			SK:Crossbow #codes(upto 4pts),_
+			SK:First Aid #codes(upto 4pts),_
+			SK:Hazardous Materials (Magical) #codes(upto 4pts),_
+			SK:Hiking #codes(upto 4pts),_
+			SK:Holdout #codes(upto 4pts),_
+			SK:Jeweler #codes(upto 4pts),_
+			SK:Knot-Tying #codes(upto 4pts),_
+			SK:Leatherworking #codes(upto 4pts),_
+			SK:Main Gauche #codes(upto 4pts),_
+			SK:Merchant #codes(upto 4pts),_
+			SK:Navigation (Land) #codes(upto 4pts),_
+			SK:Navigation (Sea) #codes(upto 4pts),_
+			SK:Meditation #codes(upto 4pts),_
+			SK:Rapier #codes(upto 4pts),_
+			SK:Riding (Equines) #codes(upto 4pts),_
+			SK:Saber #codes(upto 4pts),_
+			SK:Savoire-Faire (High Society) #codes(upto 4pts),_
+			SK:Search #codes(upto 4pts),_
+			SK:Shield (Shield) #codes(upto 4pts),_
+			SK:Shield (Buckler) #codes(upto 4pts),_
+			SK:Shortsword #codes(upto 4pts),_
+			SK:Smallsword #codes(upto 4pts),_
+			SK:Smith (Copper) #codes(upto 4pts),_
+			SK:Smith (Iron) #codes(upto 4pts),_
+			SK:Smith (Lead and Tin) #codes(upto 4pts),_
+			SK:Stealth #codes(upto 4pts),_
+			SK:Survival #codes(upto 4pts)_
+			SK:Throwing #codes(upto 4pts)_
+		)_
+	)
+
+Scholar Advantages (Dungeon Fantasy), displaycost(varies), cost(0),_
+	description(All optional Scholar Traits and Power-Ups.),_
+	page(DF4:8),_
+	select1(_
+		text("Scholars may select any trait from this list."),_
+		pointswanted(atleast 0, upto 1000),_
+		tagwith(Scholar(yes)),_
+		itemswanted(atleast 0, upto 1000),_
+		list(_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto5, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Absolute Direction,_
+			AD:Acute [sense] #codes(upto 10, downto 1),_
+			AD:Acute Acute Taste and Smell,_
+			AD:Acute Touch,_
+			AD:Acute Vision,_
+			AD:Acute Hearing,_
+			AD:Cultural Adaptability #codes(upto 1, downto 1),_
+			AD:Fearlessness #codes(upto 10, downto 1),_
+			AD:Language Talent,_
+			LA:Language #codes(upto 6, downto 1),_
+			AD:Luck #codes(upto 2, downto 1),_
+			AD:Mortal Foe (%foetypealiaslist%),_
+			AD:Signature Gear #codes(upto 30, downto 1),_
+			AD:Speak with Animals,_
+			AD:Unfazeable,_
+			AD:Wealth #codes(upto 2, downto 1),_
+			#newitem(AD:Extra Book-Learned Wisdom, 1/2, page(B51), cat(_General), existing(AD:Modular Abilities (Book-Learned Wisdom))),_
+			#newitem(AD:Photography Memory, +5, existing(AD:Eidetic Memory) page(B51), cat(_General)) #codes(upto 2, downto 2),_
+			#newitem(AD:Extra Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental), existing(AD:Wild Talent)),_
+			#newitem(AD:Higher Purpose (Seek Knowledge), 5, page(B59), cat(Supernatural, Mental))_
+		)_
+	)
+
+Scholar Skills (Dungeon Fantasy), displaycost(varies), cost(0),_
+	description(All optional Scholar skills.),_
+	page(DF4:8),_
+	select1(_
+		text("Scholars may select any skills from this list."),_
+		pointswanted(atleast 0, upto 1000),_
+		tagwith(Scholar(yes)),_
+		itemswanted(atleast 0, upto 1000),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			SK:Architecture #codes(upto 1pts),_
+			SK:Crossbow #codes(upto 4pts, downto 4pts),_
+			SK:Diagnosis #codes(upto 1pts),_
+			SK:Hazardous Materials (Magical) #codes(upto 1pts),_
+			SK:Heraldry #codes(upto 1pts),_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts),_
+			SK:Lasso #codes(upto 4pts, downto 4pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Occultims #codes(upto 1pts),_
+			SK:Pharmacy (Herbal) #codes(upto 1pts),_
+			SK:Philosophy #codes(upto 1pts),_
+			SK:Poisons #codes(upto 1pts),_
+			SK:Prospecting #codes(upto 1pts),_
+			SK:Sling #codes(upto 4pts, downto 4pts),_
+			SK:Strategy #codes(upto 1pts),_
+			SK:Surgery #codes(upto 1pts),_
+			SK:Thaumatology #codes(upto 1pts),_
+			SK:Theology #codes(upto 1pts),_
+			SK:Throwing #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 1pts),_
+			SK:Veterinary #codes(upto 1pts),_
+			#newitem(SK:Physiology ([Monster Type]), IQ/H, tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences) #codes(upto 1pts),x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Physiology"))),_
+			#newitem(SK:Psychology ([Monster Type]), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities) #codes(upto 1pts),x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Psychology")))_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Artificer, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Artificer-Barbarian (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:ST" with "maxscore(25)", in "ST:Hit Points" with "maxscore(ST:ST * 1.5)"),_
+	description(Artificers benefit greatly from added muscle and outdoor training fills a deficiency in their training.),_
+	page(DF4:5),_
+	sets(_
+			ST:ST=ST:ST+2,_
+			ST:HT=ST:HT+2,_
+			ST:Basic Speed=ST:Basic Speed-.5_
+	),_
+	adds(_
+			AD:High Pain Threshold_
+	),_
+	select1(_
+		text("Select ten of these background skills at [1] point each."),_
+		tagwith(Barbarian(yes)),_
+		itemswanted(10),_
+		pointswanted(10),_
+		list(_
+			SK:Camouflage #codes(upto 1pts),_
+			SK:Animal Handling #codes(upto 1pts),_
+			SK:Disguise (Animals) #codes(upto 1pts),_
+			SK:Navigation (Land) #codes(upto 1pts),_
+			SK:Weather Sense #codes(upto 1pts),_
+			SK:Mimicry (Animal Sounds) #codes(upto 1pts),_
+			SK:Mimicry (Bird Calls) #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts),_
+			SK:Running #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts),_
+			SK:Survival #codes(upto 1pts),_
+			SK:Tracking #codes(upto 1pts)_
+		)_
+	)
+
+Artificer-Bard (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Being able to secure funds by persuasion or mind cnotrol is a boon to any artificer.),_
+	page(DF4:6),_
+	adds(_
+			AD:Bardic Talent=2,_
+			AD:Charisma=1,_
+			AD:Musical Ability=1,_
+			SK:Musical Instrument=2pts,_
+			SK:Public Speaking=1pts,_
+			SK:Singing=4pts_
+	),_
+	select1(_
+		text("Please select 17 points from the following Bard-Song abilities, bardic skills, and/or spells from the Commuication and Empathy or Mind Control Colleges."),_
+		pointswanted(17),_
+		tagwith(Bard(yes)),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			#list(Bard Abilities),_
+			#list(Bard Spells),_
+			#list(Bard Skills)_
+		)_
+	)
+
+Artificer-Cleric (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(An artificer's wisdom makes him a natural candidate for the priesthood.),_
+	page(DF4:6),_
+	sets(_
+			ST:Will=ST:Will+1_
+	),_
+	adds(_
+			AD:Clerical Investment,_
+			AD:Power Investiture (Holy)=2,_
+			SK:Esoteric Medicine (Holy)=1pts,_
+			SK:Exorcism=1pts,_
+			SK:Meditation=1pts,_
+			SK:Religious Ritual=1pts,_
+			SK:Theology=1pts_
+	),_
+	select1(_
+		text("Choose one disadvantage."),_
+		pointswanted(-10),_
+		tagwith(Cleric(yes)),_
+		itemswanted(1),_
+		list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Coreligionists),_
+			DI:Vow (No edged weapons) _
+		)_
+	),_
+	select2(_
+		text("Select 25 points in Clerical Abilities and/or Clerical spells."),_
+		tagwith(Cleric(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(25),_
+		multitype(yes),_
+		list(_
+			#list(Holy Abilities),_
+			#grouplist(GR:AllSpellsHoly, append( #codes(upto 1pts)))_
+		)_
+	)
+
+Artificer-Druid (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Druidic magic isn't complementary to gadgeteering, but artificers are smart enough to excel at it if it interests them.),_
+	page(DF4:6),_
+	adds(_
+			AD:Power Investiture (Druidic)=2,_
+			SK:Esoteric Medicine (Druidic)=1pts,_
+			SK:Naturalist=1pts,_
+			SK:Pharmacy (Herbal)=1pts,_
+			SK:Religious Ritual (Druidic)=1pts,_
+			SK:Theology (Druidic)=1pts_
+	),_
+	select1(_
+		text("Please select 25 points in total of Druidic abilities and/or druidic spells."),_
+		tagwith(Druid(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(25),_
+		multitype(yes),_
+		list(_
+			#list(Druid Abilities),_
+			#grouplist(GR:AllSpellsDruidic, append( #codes(upto 1pts)))_
+		)_
+	)
+
+Artificer-Holy Warrior (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(The ability to pull out exactly what's needed to destroy a creature of Evil-makes the artificer an exceptional holy warrior),_
+	page(DF4:6),_
+	sets(_
+			ST:ST=ST:ST+1,_
+			ST:HT=ST:HT+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Holiness=1,_
+			SK:Exorcism=1pts_
+	),_
+	creates(_
+		{PE:Shtick (Foes slain personally can't rise as undead), 1, page(B100)},_
+		{SK:Physiology ([Primary Monster Type]), IQ/H, HolyWarrior(yes), tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences),x(#InputReplace("Please specify a monster type:", "[Primary Monster Type]", "monster", "Physiology")) } =1pts,_
+		{SK:Psychology ([Primary Monster Type]), IQ/H, HolyWarrior(yes), default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities),x(#InputReplace("Please specify a monster type:", "[Primary Monster Type]", "monster", "Psychology")) } =1pts_
+	),_
+	select1(_
+		text("Select a Higher Purpose."),_
+		pointswanted(5),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		list(_
+			#newitem(AD:Holy Warrior Higher Purpose (Slay Demons), 5/10, upto(1), page(B59), cat(Supernatural, Mental) ),_
+			#newitem(AD:Holy Warrior Higher Purpose (Slay Undead), 5/10, upto(1), page(B59), cat(Supernatural, Mental) )_
+		)_
+	),_
+	select2(_
+		text("Select one of these disadvantages."),_
+		pointswanted(-10),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Good entities),_
+			DI:Vow (Own no more than horse can carry)_
+		)_
+	),_
+	select3(_
+		text(Please add 4 points to your primary Combat skill:),_
+		pointswanted(4),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ))_
+		)_
+	),_
+	select4(_
+		text("Select a form of Hidden Lore."),_
+		pointswanted(1),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	),_
+	select5(_
+		text("Select 26 more points in Holy Abilities and/or any of the skills above."),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(26),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where HolyWarrior is "yes", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+1pts) )),_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+1pts) )),_
+			#list(Holy Abilities),_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts),_
+			#newitem(AD:_Increase Exorcism Skill, 1/1, upto(3), gives(+1pts to "SK:Exorcism"), taboo("SK:Exorcism"), needs("SK:Exorcism"), existing(SK:Exorcism) ),_
+			#newitem(SK:Physiology ([Secondary Monster Type]), IQ/H, tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences),x(#InputReplace("Please specify a monster type:", "[Secondary Monster Type]", "monster", "Physiology"))) #codes(upto 1pts),_
+			#newitem(SK:Psychology ([Secondary Monster Type]), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities),x(#InputReplace("Please specify a monster type:", "[Secondary Monster Type]", "monster", "Psychology")) #codes(upto 1pts))_
+		)_
+	)
+
+Artificer-Knight (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:Hit Points" with "maxscore(ST:ST * 1.5)"),_
+	description(Many artificers who craft exceptional arms and armor eventually consider using them.),_
+	page(DF4:6),_
+	sets(_
+			ST:ST=ST:ST+1,_
+			ST:HT=ST:HT+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Combat Reflexes,_
+			AD:High Pain Threshold,_
+			PE:Weapon Bond (%Weapon%),_
+			SK:Connoisseur (Weapons)=2pts,_
+			SK:Leadership=1pts,_
+			SK:Strategy=1pts,_
+			SK:Tactics=1pts_
+	),_
+	select1(_
+		text(Please add 4 points to your primary Combat skill:),_
+		pointswanted(4),_
+		tagwith(Knight(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ))_
+		)_
+	)
+
+Artificer-Martial Artist (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(After catching 'ninja fever' the Artificer's high IQ lets them excel at the more cerebral chi skills.),_
+	page(DF4:6),_
+	adds(_
+			AD:Chi Talent=1,_
+			AD:Trained by a Master,_
+			DI:Disciplines of Faith (Chi Rituals),_
+			SK:Acrobatics=2pts,_
+			SK:Jumping=1pts_
+	),_
+	select1(_
+		text("Select one of these weapon skills."),_
+		tagwith(MartialArtist(yes)),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Thrown Weapon (Shuriken) #codes(upto 2pts, downto 2pts),_
+			SK:Jitte/Sai #codes(upto 2pts, downto 2pts),_
+			SK:Staff #codes(upto 2pts, downto 2pts),_
+			SK:Tonfa #codes(upto 2pts, downto 2pts),_
+			SK:Blowpipe #codes(upto 2pts, downto 2pts),_
+			SK:Flail #codes(upto 2pts, downto 2pts),_
+			SK:Kusari #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select2(_
+		text("Select 10 points in Chi Abilities and/or Chi Skills."),_
+		tagwith(MartialArtist(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(10),_
+		multitype(yes),_
+		list(_
+			#list(Martial Artist Abilities),_
+			#buildlist(list(#list(Martial Artist Skills)), template(%ListItem% #codes(upto 4pts, downto 1pts)))_
+		)_
+	)
+
+Artificer-Scout (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:Basic Move" with "maxscore(ST:Basic Speed + 6)"),_
+	description(Many bowyer-artificers has fallen in love with his creations and sought scout training just to try them out.),_
+	page(DF4:6),_
+	sets(_
+			ST:DX=ST:DX+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Heroic Archer,_
+			SK:Bow=8pts,_
+			SK:Camouflage=1pts,_
+			SK:Fast-Draw (Arrow)=1pts,_
+			SK:Navigation (Land)=1pts,_
+			SK:Observation=1pts,_
+			SK:Tracking=1pts_
+	),_
+	select1(_
+		text("Take Cartography skill, or add Boost Cartography Skill to add [1] point to an existing one. You will need to delete the Boost Cartography skill and edit Cartography skill accordingly."),_
+		tagwith(Scout(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Cartography #codes(upto 1pts),_
+			#newitem(AD:_Increase Cartography Skill, 1, gives(+1pts to "SK:Cartography"), taboo("SK:Cartography"), needs("SK:Cartography"), existing(SK:Cartography) )_
+		)_
+	),_
+	select2(_
+		text("Take Stealth skill, or add Boost Stealth Skill to add [1] point to an existing one."),_
+		tagwith(Scout(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Stealth #codes(upto 1pts),_
+			#newitem(AD:_Increase Stealth Skill, 1, gives(+1pts to "SK:Stealth"), taboo("SK:Stealth"), needs("SK:Stealth"), existing(SK:Stealth) )_
+		)_
+	)
+
+Artificer-Swashbuckler (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:Basic Speed" with "maxscore(((ST:DX + ST:HT) / 4) + 4)"),_
+	description(Many artificers see themselves as swashbucklers. Some actually are.),_
+	page(DF4:7),_
+	sets(_
+			ST:DX=ST:DX+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Enhanced Parry (%Melee Weapon%)=1,_
+			AD:Weapon Master (One Specific Weapon),_
+			PE:Weapon Bond (%Weapon%),_
+			SK:Acrobatics=1pts_
+	),_
+	select1(_
+		text(Please add 8 points to your primary Combat skill:),_
+		pointswanted(8),_
+		tagwith(Swashbuckler(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+8pts) ))_
+		)_
+	)
+
+Artificer-Thief (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:DX" with "maxscore(25)"),_
+	description(Thief is the artificer's second profession of choice. It's probably the traps and gizmos.),_
+	page(DF4:7),_
+	sets(_
+			ST:DX=ST:DX+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Flexibility,_
+			AD:High Manual Dexterity=1,_
+			AD:Perfect Balance,_
+			SK:Escape=1pts,_
+			SK:Filch=1pts,_
+			SK:Pickpocket=1pts,_
+			SK:Sleight of Hand=1pts,_
+			SK:Smuggling=1pts_
+	),_
+	select1(_
+		text("Add a Climbing skill, or raise an existing Climbing skill by [1] point."),_
+		tagwith(Thief(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Climbing #codes(upto 1pts),_
+			#newitem(AD:_Increase Climbing Skill, 1, gives(+1pts to "SK:Climbing"), taboo("SK:Climbing"), needs("SK:Climbing"), existing(SK:Climbing) )_
+		)_
+	),_
+	select2(_
+		text("Select either [4] points in Stealth, or [3] in an existing Stealth skill and one additional skill. If you took Boost Climbing Skill as your last option, do not take it again."),_
+		tagwith(Thief(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(4),_
+		multitype(yes),_
+		list(_
+			SK:Stealth #codes(upto 4pts, downto 4pts),_
+			#newitem(AD:_Increase Climbing Skill, 1, gives(+1pts to "SK:Climbing"), taboo("SK:Climbing"), needs("SK:Climbing"), existing(SK:Climbing) ),_
+			#newitem(AD:_Increase Escape Skill, 1, gives(+1pts to "SK:Escape"), taboo("SK:Escape"), needs("SK:Escape"), existing(SK:Escape) ),_
+			#newitem(AD:_Increase Filch Skill, 1, gives(+1pts to "SK:Filch"), taboo("SK:Filch"), needs("SK:Filch"), existing(SK:Filch) ),_
+			#newitem(AD:_Increase Pickpocket Skill, 1, gives(+1pts to "SK:Pickpocket"), taboo("SK:Pickpocket"), needs("SK:Pickpocket"), existing(SK:Pickpocket) ),_
+			#newitem(AD:_Increase Sleight of Hand Skill, 1, gives(+1pts to "SK:Sleight of Hand"), taboo("SK:Sleight of Hand"), needs("SK:Sleight of Hand"), existing(SK:Sleight of Hand) ),_
+			#newitem(AD:_Increase Smuggling Skill, 1, gives(+1pts to "SK:Smugging"), taboo("SK:Smuggling"), needs("SK:Smuggling"), existing(SK:Smuggling) )_
+		)_
+	)
+
+Artificer-Wizard (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:IQ" with "maxscore(25)"),_
+	description(The artificer-wizard never wants for options.),_
+	page(DF4:7),_
+	adds(_
+			AD:Magery 0,_
+			AD:Magery=2,_
+			SK:Occultism=1pts,_
+			SK:Thaumatology=1pts_
+		),_
+	x(#message("You must spend [23] points on twenty-three Wizardly spells. Remember that Clerical spells do not count as prerequisites for Wizardly ones.")),_
+	needs(23 Spells=1pts)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates - Dungeon Fantasy, Character Templates>
+Artificer Lens (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+Scholar Lens (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Barbarian, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Barbarian-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Bard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Bard-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Cleric, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Cleric-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Druid, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Druid-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Holy Warrior, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Holy Warrior-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Knight, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Knight-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Martial Artist, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Martial Artist-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scholar, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Scholar-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scout, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Scout-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Swashbuckler, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Swashbuckler-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Thief, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Thief-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Wizard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Wizard-Artificer (Dungeon Fantasy), displaycost(+70), cost(0),_
+	description(Anyone can become an artificer, it's just hard. High IQ professions will do better becoming one.),_
+	page(DF4:7),_
+	adds(_
+			AD:Dungeon Artificer=2,_
+			AD:Gizmo=1,_
+			AD:Gadgeteer = 2,_
+			PE:Equipment Bond,_
+			SK:Engineer (Gadgets)=1pts,_
+			SK:Fast-Draw (Gadget)=1pts_
+	),_
+	select1(_
+		text("Add Alchemy skill if you don't already have it, otherwise select another skill to boost by one point."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	),_
+	select2(_
+		text("Add Scrounging skill if you don't already have it, otherwise select another skill to boost by one point. You will need to add it to the skill later."),_
+		tagwith(Artificer(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Scrounging #codes(upto 1pts),_
+			#newitem(AD:_Increase Engineer (Gadget), 1, gives(+1pts to "SK:Engineer (Gadgets)"), taboo("SK:Engineer (Gadgets)"), needs("SK:Engineer (Gadgets)"), existing(SK:Engineer (Gadgets)) ),_
+			#newitem(AD:_Increase Fast-Draw (Gadget), 1, gives(+1pts to "SK:Fast-Draw (Gadget)"), taboo("SK:Fast-Draw (Gadget)"), needs("SK:Fast-Draw (Gadget)"), existing(SK:Fast-Draw (Gadget)) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scholar, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Scholar-Barbarian (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:ST" with "maxscore(25)", in "ST:Hit Points" with "maxscore(ST:ST * 1.5)"),_
+	description(Wise men from isolated villages are often scholar-barbarians.),_
+	page(DF4:9),_
+	sets(_
+			ST:ST=ST:ST+2_
+	),_
+	adds(_
+			AD:High Pain Threshold,_
+			AD:Outdoorsman=1_
+	),_
+	select1(_
+		text("Select 10 background skills from the list. If you already have a skill you may increase it by one point later."),_
+		tagwith(Barbarian(yes)),_
+		itemswanted(upto 10),_
+		pointswanted(upto 10),_
+		list(_
+			SK:Camouflage #codes(upto 1pts),_
+			SK:Animal Handling #codes(upto 1pts),_
+			SK:Disguise (Animals) #codes(upto 1pts),_
+			SK:Navigation (Land) #codes(upto 1pts),_
+			SK:Weather Sense #codes(upto 1pts),_
+			SK:Mimicry (Animal Sounds) #codes(upto 1pts),_
+			SK:Mimicry (Bird Calls) #codes(upto 1pts),_
+			SK:Naturalist #codes(upto 1pts),_
+			SK:Swimming #codes(upto 1pts),_
+			SK:Running #codes(upto 1pts),_
+			SK:Fishing #codes(upto 1pts),_
+			SK:Survival #codes(upto 1pts),_
+			SK:Tracking #codes(upto 1pts)_
+		)_
+	)
+
+Scholar-Bard (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Eidetic Memory can recall songs combined with Book-Learned Wisdom to pick up any language in mere hours make the scholar a natural bard.),_
+	page(DF4:9),_
+	adds(_
+			AD:Bardic Talent=2,_
+			AD:Charisma=1,_
+			AD:Musical Ability=1,_
+			SK:Musical Instrument=1pts,_
+			SK:Public Speaking=1pts,_
+			SK:Singing=2pts_
+	),_
+	select1(_
+		text("Take 20 points total in Bard-Song abilities, bardic skills, and/or spells from the Communication and Empathy and/or Mind Control Colleges."),_
+		tagwith(Bard(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(20),_
+		multitype(yes),_
+		list(_
+			#list(Bard Abilities),_
+			#list(Bard Spells),_
+			#list(Bard Skills)_
+		)_
+	)
+
+Scholar-Cleric (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Many scholars work for temples in some capacity.),_
+	page(DF4:10),_
+	adds(_
+			AD:Clerical Investment,_
+			AD:Power Investiture (Holy)=2,_
+			SK:Esoteric Medicine (Holy)=1pts,_
+			SK:Exorcism=1pts,_
+			SK:Religious Ritual=1pts_
+	),_
+	select1(_
+		text("Select one of these disadvantages."),_
+		tagwith(Cleric(yes)),_
+		itemswanted(1),_
+		pointswanted(-10),_
+		list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Coreligionists),_
+			DI:Vow (No edged weapons)_
+		)_
+	),_
+	select2(_
+		text("Select Meditation or Boost Meditation if you already have the skill."),_
+		tagwith(Cleric(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Meditation #codes(upto 1pts),_
+			#newitem(AD:_Increase Meditation Skill, 1, gives(+1pts to "SK:Meditation"), taboo("SK:Meditation"), needs("SK:Meditation"), existing(SK:Meditation) )_
+		)_
+	),_
+	select3(_
+		text("Select Theology or Boost Theology if you already have the skill."),_
+		tagwith(Cleric(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Theology #codes(upto 1pts),_
+			#newitem(AD:_Increase Theology Skill, 1, gives(+1pts to "SK:Theology"), taboo("SK:Theology"), needs("SK:Theology"), existing(SK:Theology) )_
+		)_
+	),_
+	select4(_
+		text("Select 30 points in Clerical Abilities and/or Clerical spells."),_
+		tagwith(Cleric(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			#list(Holy Abilities),_
+			#grouplist(GR:AllSpellsHoly, append( #codes(upto 1pts)))_
+		)_
+	)
+
+Scholar-Druid (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Rural wise men have the capacity to become exceptional druids.),_
+	page(DF4:10),_
+	adds(_
+			AD:Power Investiture (Druidic)=2,_
+			SK:Esoteric Medicine (Druidic)=1pts,_
+			SK:Religious Ritual (Druidic)=1pts_
+	),_
+	select1(_
+		text("Select Naturalist or Boost Naturalist if you already have the skill."),_
+		tagwith(Druid(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Naturalist #codes(upto 1pts),_
+			#newitem(AD:_Increase Naturalist Skill, 1, gives(+1pts to "SK:Naturalist"), taboo("SK:Naturalist"), needs("SK:Naturalist"), existing(SK:Naturalist) )_
+		)_
+	),_
+	select2(_
+		text("Select Pharmacy (Herbal) or Boost Pharmacy (Herbal) if you already have the skill."),_
+		tagwith(Druid(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Pharmacy (Herbal) #codes(upto 1pts),_
+			#newitem(AD:_Increase Herbal Pharmacy Skill, 1, gives(+1pts to "SK:Pharmacy (Herbal)"), taboo("SK:Pharmacy (Herbal)"), needs("SK:Pharmacy (Herbal)"), existing(SK:Pharmacy (Herbal)) )_
+		)_
+	),_
+	select3(_
+		text("Select Theology (Druidic) or Boost Theology (Druidic) if you already have the skill."),_
+		tagwith(Druid(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Theology (Druidic) #codes(upto 1pts),_
+			#newitem(AD:_Increase Theology Skill, 1, gives(+1pts to "SK:Theology (Druidic)"), taboo("SK:Theology (Druidic)"), needs("SK:Theology (Druidic)"), existing(SK:Theology) )_
+		)_
+	),_
+	select4(_
+		text("Please select 25 points in total of Druidic abilities and/or druidic spells."),_
+		tagwith(Druid(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(25),_
+		multitype(yes),_
+		list(_
+			#list(Druid Abilities),_
+			#grouplist(GR:AllSpellsDruidic, append( #codes(upto 1pts)))_
+		)_
+	)
+
+Scholar-Holy Warrior (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(When research discovers a great evil, some scholars are not content merely to publish about it.),_
+	page(DF4:10),_
+	sets(_
+			ST:ST=ST:ST+1,_
+			ST:HT=ST:HT+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Holiness=1,_
+			SK:Excorcism=1pts_
+	),_
+	creates(_
+		{PE:Shtick (Foes slain personally can't rise as undead), 1, page(B100)}_
+	),_
+	select1(_
+		text("Select a Higher Purpose."),_
+		pointswanted(5),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		list(_
+			#newitem(AD:Holy Warrior Higher Purpose (Slay Demons), 5/10, upto(1), page(B59), cat(Supernatural, Mental) ),_
+			#newitem(AD:Holy Warrior Higher Purpose (Slay Undead), 5/10, upto(1), page(B59), cat(Supernatural, Mental) )_
+		)_
+	),_
+	select2(_
+		text("Select one of these disadvantages."),_
+		pointswanted(-10),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		list(_
+			DI:Honesty,_
+			DI:Sense of Duty (Good entities),_
+			DI:Vow (Own no more than horse can carry)_
+		)_
+	),_
+	select3(_
+		text(Please add 4 points to your primary Combat skill:),_
+		pointswanted(4),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ))_
+		)_
+	),_
+	select4(_
+		text("Select Physiology (monster type) or Boost Physiology if you already have the skill."),_
+		pointswanted(1),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#newitem(SK:Physiology ([Monster Type]), IQ/H, tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences),x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Physiology")) #codes(upto 1pts)),_
+			#newitem(AD:_Increase Physiology ([Monster Type]), 1, gives(+1pts to "SK:Physiology"), taboo("SK:Physiology"), needs("SK:Physiology"), x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Physiology")), existing(SK:Physiology ([Monster Type])))_
+		)_
+	),_
+	select5(_
+		text("Select Psychology (monster type) or Boost Psychology if you already have the skill."),_
+		pointswanted(1),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#newitem(SK:Psychology ([Monster Type]), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities),x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Psychology")) #codes(upto 1pts)),_
+			#newitem(AD:_Increase Psychology ([Monster Type]), 1, gives(+1pts to "SK:Psychology"), taboo("SK:Psychology"), needs("SK:Psychology"), x(#InputReplace("Please specify a monster type:", "[Monster Type]", "monster", "Psychology")), existing(SK:Psychology ([Monster Type])))_
+		)_
+	),_
+	select6(_
+		text("Select 24 points total in Holy abilities and/or additional skills."),_
+		pointswanted(24),_
+		tagwith(HolyWarrior(yes)),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where HolyWarrior is "yes", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+1pts) )),_
+			#list(Holy Abilities),_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts),_
+			#newitem(AD:_Increase Exorcism Skill, 1/1, upto(3), gives(+1pts to "SK:Exorcism"), taboo("SK:Exorcism"), needs("SK:Exorcism"), existing(SK:Exorcism) )_
+			#newitem(SK:Physiology ([Secondary Monster Type]), IQ/H, tl(0-12), default(IQ - 6, SK:Diagnosis - 5, SK:Physician - 5, SK:Surgery - 5), page(B213), cat(_General, Medical, Natural Sciences),x(#InputReplace("Please specify a monster type:", "[Secondary Monster Type]", "monster", "Physiology")) #codes(upto 2pts)),_
+			#newitem(SK:Psychology ([Secondary Monster Type]), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities),x(#InputReplace("Please specify a monster type:", "[Secondary Monster Type]", "monster", "Psychology")) #codes(upto 2pts))_
+			)_
+	)
+
+Scholar-Knight (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:Hit Points" with "maxscore(ST:ST * 1.5)"),_
+	description(Scholar-knights mostly serve as tacticians and strategists in high places, but a few are willing to go delving.),_
+	page(DF4:10),_
+	sets(_
+			ST:ST=ST:ST+1,_
+			ST:HT=ST:HT+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Combat Reflexes,_
+			AD:High Pain Threshold,_
+			SK:Connoisseur (Weapons)=1pts,_
+			SK:Leadership=1pts,_
+			SK:Tactics=2pts_
+	),_
+	select1(_
+		text(Please add 4 points to your primary Combat skill:),_
+		pointswanted(4),_
+		tagwith(Knight(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+4pts) ))_
+		)_
+	),_
+	select2(_
+		text("Select an Armoury skill."),_
+		tagwith(Knight(yes)),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Armoury (Body Armor) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select3(_
+		text("Add Strategy if you don't already have it, otherwise select Boost Strategy Skill."),_
+		tagwith(Knight(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Strategy (Land) #codes(upto 1pts),_
+			SK:Strategy (Naval) #codes(upto 1pts),_
+			#newitem(AD:_Increase Strategy Skill (Land), 1, gives(+1pts to "SK:Strategy (Land)"), taboo("SK:Strategy (Land)"), needs("SK:Strategy (Land)"), existing(SK:Strategy (Land)) ),_
+			#newitem(AD:_Increase Strategy Skill (Naval), 1, gives(+1pts, to "SK:Strategy (Naval)"), taboo("SK:Strategy (Naval)"), needs("SK:Strategy (Naval)"), existing(SK:Strategy (Naval)) )_
+		)_
+	)
+
+Scholar-Martial Artist (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Enlightenment comes only to seekers who perfect both body and mind.),_
+	page(DF4:10),_
+	adds(_
+			AD:Chi Talent=1,_
+			AD:Trained by a Master,_
+			DI:Disciplines of Faith (Chi Rituals),_
+			%unarmedcombattypealiaslist%,_
+			SK:Acrobatics=1pts,_
+			SK:Jumping=1pts_
+	),_
+	x(_
+			#ChoiceList(_
+				name(unarmedcombattype),_
+				title(Unarmed Combat Specialty),_
+		text(Choose your unarmed combat skills),_
+				picksallowed(1),_
+				method(bynumber),_
+		list(_
+				"Grappler (Judo better than Karate)",_
+				"Striker (Karate better than Judo)"_
+	),_
+	aliaslist(_
+				"SK:Judo=2pts, SK:Karate=1pts",_
+				"SK:Judo=1pts, SK:Karate=2pts"_
+			)_
+		)_
+	),_
+	select1(_
+		text("Select 10 points in Chi abilities and/or chi skills."),_
+		tagwith(MartialArtist(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(10),_
+		multitype(yes),_
+		list(_
+			#list(Martial Artist Abilities),_
+			#buildlist(list(#list(Martial Artist Skills)), template(%ListItem% #codes(upto 4pts, downto 1pts)))_
+		)_
+	)
+
+Scholar-Scout (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:Basic Move" with "maxscore(ST:Basic Speed + 6)"),_
+	description(Dashing curators who go treasure hunting are smart enough to know that Things that guard artifacts are best fought from a safe distance.),_
+	page(DF4:10),_
+	sets(_
+			ST:DX=ST:DX+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Heroic Archer,_
+			SK:Bow=8pts,_
+			SK:Camouflage=1pts,_
+			SK:Fast-Draw (Arrow)=2pts,_
+			SK:Mimicry (Bird Calls)=1pts,_
+			SK:Tracking=1pts_
+	),_
+	select1(_
+		text("Add Navigation (Land) if you don't already have it, otherwise select Boost Navigation Skill."),_
+		tagwith(Scout(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Navigation (Land) #codes(upto 1pts),_
+			#newitem(AD:_Increase Land Navigation Skill, 1, gives(+1pts to "SK:Navigation (Land)"), taboo("SK:Navigation (Land)"), needs("SK:Navigation (Land)"), existing(SK:Navigation (Land)) )_
+		)_
+	),_
+	select2(_
+		text("Add Stealth if you don't already have it, otherwise select Boost Stealth Skill."),_
+		tagwith(Scout(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Stealth #codes(upto 1pts),_
+			#newitem(AD:_Increase Stealth Skill, 1, gives(+1pts to "SK:Stealth"), taboo("SK:Stealth"), needs("SK:Stealth"), existing(SK:Stealth) )_
+		)_
+	)
+
+Scholar-Swashbuckler (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:Basic Speed" with "maxscore(((ST:DX + ST:HT) / 4) + 4)"),_
+	description(Many young scholars spend more time in the salle than in the library, honing their fencing skills by whacking each other with sabers.),_
+	page(DF4:11),_
+	sets(_
+			ST:DX=ST:DX+1,_
+			ST:Basic Speed=ST:Basic Speed-.25_
+	),_
+	adds(_
+			AD:Enhanced Parry (%Melee Weapon%)=1,_
+			AD:Weapon Master=1,_
+			SK:Acrobatics=2pts_
+	),_
+	select1(_
+		text("Either put [8] points into a weapon you already know, or take a new sword skill at [8] points."),_
+		tagwith(Swashbuckler(yes)),_
+		itemswanted(1),_
+		pointswanted(8),_
+		list(_
+			#BuildCharItemList(Skills where cat includes "Combat/Weapons", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+8pts, downto %points+8pts) )),_
+			SK:Broadsword #codes(upto 8pts, downto 8pts),_
+			SK:Rapier #codes(upto 8pts, downto 8pts),_
+			SK:Saber #codes(upto 8pts, downto 8pts),_
+			SK:Shortsword #codes(upto 8pts, downto 8pts),_
+			SK:Smallsword #codes(upto 8pts, downto 8pts)_
+		)_
+	)
+
+Scholar-Thief (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:DX" with "maxscore(25)"),_
+	description(Knowing a lot about what's valuable and where it's kept leads some scholars to crime.),_
+	page(DF4:11),_
+	sets(_
+			ST:DX=ST:DX+2,_
+			ST:Basic Speed=ST:Basic Speed-.5_
+	),_
+	adds(_
+			AD:Flexibility,_
+			AD:High Manual Dexterity=1,_
+			SK:Filch=1pts,_
+			SK:Forced Entry=1pts,_
+			SK:Lockpicking=1pts,_
+			SK:Pickpocket=1pts_
+	),_
+	select1(_
+		text("Select either Stealth with [4] points, or Boost Stealth Skill to raise an existing _
+skill to [4] points. Spend the remaining points on any of the other listed skills."),_
+		tagwith(Thief(yes)),_
+		itemswanted(atleast 1),_
+		pointswanted(4),_
+		multitype(yes),_
+		list(_
+			SK:Stealth #codes(upto 4pts, downto 4pts),_
+			#newitem(AD:_Increase Stealth Skill, 3, gives(+3pts to "SK:Stealth"), taboo("SK:Stealth"), needs("SK:Stealth"), existing(SK:Stealth) ),_
+			#newitem(AD:_Increase Filch Skill, 1, gives(+1pts to "SK:Filch"), taboo("SK:Filch"), needs("SK:Filch"), existing(SK:Filch) ),_
+			#newitem(AD:_Increase Forced Entry Skill, 1, gives(+1pts to "SK:Forced Entry"), taboo("SK:Forced Entry"), needs("SK:Forced Entry"), existing(SK:Forced Entry) ),_
+			#newitem(AD:_Increase Lockpicking Skill, 1, gives(+1pts to "SK:Lockpicking"), taboo("SK:Lockpicking"), needs("SK:Lockpicking"), existing(SK:Lockpicking) ),_
+			#newitem(AD:_Increase Pickpocket Skill, 1, gives(+1pts to "SK:Pickpocket"), taboo("SK:Pickpocket"), needs("SK:Pickpocket"), existing(SK:Pickpocket) )_
+		)_
+	),_
+	select2(_
+		text("Take Climbing skill, or Boost Climbing Skill to raise an existing skill."),_
+		tagwith(Thief(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Climbing #codes(upto 1pts),_
+			#newitem(AD:_Increase Climbing Skill, 1, gives(+1pts to "SK:Climbing"), taboo("SK:Climbing"), needs("SK:Climbing"), existing(SK:Climbing) )_
+		)_
+	),_
+	select3(_
+		text("Take Traps skill, or Boost Traps Skill to raise an existing skill."),_
+		tagwith(Thief(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Traps #codes(upto 1pts),_
+			#newitem(AD:_Increase Traps Skill, 1, gives(+1pts to "SK:Traps"), taboo("SK:Traps"), needs("SK:Traps"), existing(SK:Traps) )_
+		)_
+	)
+
+Scholar-Wizard (Dungeon Fantasy), displaycost(+50), cost(0), replacetags(in "ST:IQ" with "maxscore(25)"),_
+	description(Scholars make great Wizards, thanks to their IQ.),_
+	page(DF4:11),_
+	adds(_
+			AD:Magery 0,_
+			AD:Magery=2_
+		),_
+	x(#message("You must spend [22] points on twenty-two Wizardly spells.")),_
+	select1(_
+		text("Take Alchemy skill, or Boost Alchemy Skill to raise an existing skill."),_
+		tagwith(Wizard(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Alchemy #codes(upto 1pts),_
+			#newitem(AD:_Increase Alchemy Skill, 1, gives(+1pts to "SK:Alchemy"), taboo("SK:Alchemy"), needs("SK:Alchemy"), existing(SK:Alchemy) )_
+		)_
+	),_
+	select2(_
+		text("Take Occultism skill, or Boost Occultism Skill to raise an existing skill."),_
+		tagwith(Wizard(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Occultism #codes(upto 1pts),_
+			#newitem(AD:_Increase Occultism Skill, 1, gives(+1pts to "SK:Occultism"), taboo("SK:Occultism"), needs("SK:Occultism"), existing(SK:Occultism) )_
+		)_
+	),_
+	select3(_
+		text("Take Thaumatology skill, or Boost Thaumatology Skill to raise an existing skill."),_
+		tagwith(Wizard(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Thaumatology #codes(upto 1pts),_
+			#newitem(AD:_Increase Thaumatology Skill, 1, gives(+1pts to "SK:Thaumatology"), taboo("SK:Thaumatology"), needs("SK:Thaumatology"), existing(SK:Thaumatology) )_
+		)_
+	),_
+	needs(22 Spells=1pts)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Artificer, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Artificer-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	),_
+	select2(_
+		text("Take Cartography skill, or add Boost Cartography Skill to add [1] point to an existing one."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Cartography #codes(upto 1pts),_
+			#newitem(AD:_Increase Cartography Skill, 1, gives(+1pts to "SK:Cartography"), taboo("SK:Cartography"), needs("SK:Cartography"), existing(SK:Cartography) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Thief, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Thief-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	),_
+	select2(_
+		text("Take Cartography skill, or add Boost Cartography Skill to add [1] point to an existing one."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Cartography #codes(upto 1pts),_
+			#newitem(AD:_Increase Cartography Skill, 1, gives(+1pts to "SK:Cartography"), taboo("SK:Cartograpy"), needs("SK:Cartography"), existing(SK:Cartography) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Barbarian, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Barbarian-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	),_
+	x(#message("If you took Language Writen (None) you must buy that off!")),_
+	taboo(LA:Language - Native (Written)=0)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Bard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Bard-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Druid, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Druid-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Holy Warrior, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Holy Warrior-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Knight, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Knight-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Martial Artist, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Martial Artist-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Swashbuckler, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Swashbuckler-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Cleric, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Cleric-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Cartography=1pts,_
+			SK:Speed-Reading=1pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	),_
+	select2(_
+		text("Take Research skill, or add Boost Research Skill to add [1] point to an existing one."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Research #codes(upto 1pts),_
+			#newitem(AD:_Increase Research Skill, 1, gives(+1pts to "SK:Research"), taboo("SK:Research"), needs("SK:Research"), existing(SK:Research) )_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Scout, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Scout-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1,_
+			SK:Research=1pts,_
+			SK:Speed-Reading=2pts_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text("Pick a Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	)
+
+<Character Templates - Dungeon Fantasy - Mixed Professions - Wizard, Character Templates - Dungeon Fantasy - Mixed Professions, Character Templates>
+Wizard-Scholar (Dungeon Fantasy), displaycost(+50), cost(0),_
+	description(Any delver might return to school and become a scholar.),_
+	page(DF4:11),_
+	adds(_
+			AD:Eidetic Memory=1_
+	),_
+	creates(_
+		{AD:Modular Abilities (Book-Learned Wisdom), 0, displaycost(5+2/point), mods(Book-Learned Wisdom, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+				with {Skill 1, 5+2/point,formula(5+(me::level*2)),forceformula(yes),group(Book-Learned Wisdom),page(B71),mods(Modular Abilities),level(2)},_
+		{AD:Wild Talent, 20/40, mods(Wild Talent), page(B99), cat(Supernatural, Mental)}=1 _
+				with { No Advantage Requirement, +50%, group(Wild Talent), page(DF4:8) }_
+	),_
+	select1(_
+		text(Please add 2 points to one of your Hidden Lore skill:),_
+		pointswanted(2),_
+		tagwith(Scholar(yes)),_
+		itemswanted(1),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where Name includes "Hidden Lore", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+2pts, downto %points+2pts) ))_
+		)_
+	),_
+	select2(_
+		text("Pick three Hidden Lore specialties. Do not select a specialty that you already have."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(3),_
+		pointswanted(3),_
+		list(_
+			SK:Hidden Lore (Demon Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Elemental Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Lost Civilizations) #codes(upto 1pts),_
+			SK:Hidden Lore (Magic Items) #codes(upto 1pts),_
+			SK:Hidden Lore (Magical Writings) #codes(upto 1pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(upto 1pts),_
+			SK:Hidden Lore (Undead Lore) #codes(upto 1pts)_
+		)_
+	),_
+	select3(_
+		text("Add Cartography if you don't already have it, otherwise select Boost Cartography Skill and add it to the skill later."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(1),_
+		pointswanted(1),_
+		multitype(yes),_
+		list(_
+			SK:Cartography #codes(upto 1pts),_
+			#newitem(AD:_Increase Cartography Skill, 1, gives(+1pts to "SK:Cartography"), taboo("SK:Cartography"), needs("SK:Cartography"), existing(SK:Cartography) )_
+		)_
+	),_
+	select4(_
+		text("Add [2] points to your primary Hidden Lore specialty."),_
+		tagwith(Scholar(yes)),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			#newitem(AD:_Increase Demon Lore Skill, 2, gives(+2pts to "SK:Hidden Lore (Demon Lore)"), taboo("SK:Hidden Lore (Demon Lore)"), needs("SK:Hidden Lore (Demon Lore)"), existing(SK:Hidden Lore (Demon Lore)) ),_
+			#newitem(AD:_Increase Magic Items Lore Skill, 2, gives(+2pts to "SK:Hidden Lore (Magic Items Lore)"), taboo("SK:SK:Hidden Lore (Magic Items Lore)"), needs("SK:Hidden Lore (Magic Items Lore)"), existing(SK:Hidden Lore (Magic Items Lore)) ),_
+			#newitem(AD:_Increase Magical Writings Lore Skill, 2, gives(+2pts to "SK:Hidden Lore (Magical Writings Lore)"), taboo("SK:Hidden Lore (Magical Writings Lore)"), needs("SK:Hidden Lore (Magical Writings Lore)"), existing(SK:Hidden Lore (Magical Writings Lore)) ),_
+			#newitem(AD:_Increase Spirit Lore Skill, 2, gives(+2pts to "SK:Hidden Lore (Spirit Lore)"), taboo("SK:Hidden Lore (Spirit Lore)"), needs("SK:Hidden Lore (Spirit Lore)"), existing(SK:Hidden Lore (Spirit Lore)) )_
+		)_
+	)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer Advantages (Dungeon Fantasy)" with {replacetags(in "TE:Artificer Advantages (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer Lens (Dungeon Fantasy)" with {replacetags(in "TE:Artificer Lens (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer Skills (Dungeon Fantasy)" with {replacetags(in "TE:Artificer Skills (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Barbarian (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Barbarian (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Bard (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Bard (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Cleric (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Cleric (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Druid (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Druid (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Holy Warrior (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Holy Warrior (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Knight (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Knight (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Martial Artist (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Martial Artist (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Scout (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Scout (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Swashbuckler (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Swashbuckler (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Thief (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Thief (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Artificer-Wizard (Dungeon Fantasy)" with {replacetags(in "TE:Artificer-Wizard (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Barbarian-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Barbarian-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Barbarian-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Barbarian-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Bard-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Bard-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Bard-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Bard-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Cleric-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Cleric-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Cleric-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Cleric-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Druid-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Druid-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Druid-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Druid-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Holy Warrior-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Holy Warrior-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Holy Warrior-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Holy Warrior-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Knight-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Knight-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Knight-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Knight-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Martial Artist-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Martial Artist-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Martial Artist-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Martial Artist-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar Advantages (Dungeon Fantasy)" with {replacetags(in "TE:Scholar Advantages (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar Lens (Dungeon Fantasy)" with {replacetags(in "TE:Scholar Lens (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar Skills (Dungeon Fantasy)" with {replacetags(in "TE:Scholar Skills (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Barbarian (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Barbarian (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Bard (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Bard (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Cleric (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Cleric (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Druid (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Druid (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Holy Warrior (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Holy Warrior (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Knight (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Knight (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Martial Artist (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Martial Artist (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Scout (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Scout (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Swashbuckler (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Swashbuckler (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Thief (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Thief (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scholar-Wizard (Dungeon Fantasy)" with {replacetags(in "TE:Scholar-Wizard (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scout-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Scout-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scout-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Scout-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Swashbuckler-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Swashbuckler-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Swashbuckler-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Swashbuckler-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Thief-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Thief-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Thief-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Thief-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Wizard-Artificer (Dungeon Fantasy)" with {replacetags(in "TE:Wizard-Artificer (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Wizard-Scholar (Dungeon Fantasy)" with {replacetags(in "TE:Wizard-Scholar (Dungeon Fantasy)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

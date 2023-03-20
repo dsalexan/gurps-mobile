@@ -1,0 +1,106 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+				This data file contains information taken from the appendix of the GURPS Low-Tech Companion 3 Daily Life and Economics sourcebook. _
+				GURPS Low-Tech Companion 3 Daily Life and Economics is Copyright © 2011 by Steve Jackson Games Incorporated. _
+				All rights reserved.
+Incomplete=Yes
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  GURPS® Character Assistant
+//  Filename: GURPS Low-Tech Companion 3 Daily Life and Economics.gdf
+//  Created:  July 28, 2011
+//  Requires GCA v4 or later!
+// 
+// 
+//  This data file contains information taken from the appendix of the GURPS Low-Tech Companion 3 Daily Life and Economics sourcebook.
+//  GURPS Low-Tech Companion 3 Daily Life and Economics is Copyright © 2011 by Steve Jackson Games Incorporated.
+//  All rights reserved.
+// 
+//  Information in this file includes:
+// 	New Equipment.
+// 	New Perks.
+// 	New Skills (and minor fixes to defaults of Professional Skills in Characters).
+// 
+*******************************************************************************************************************
+// 
+//  Staffan Bjork		- Main contributor
+// 
+//  If you find any errors or omissions in this file please drop a message at:
+//  http://forums.sjgames.com
+// 
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Metalworking Perk(Crucible Steel), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Metalworking Perk(Graceful Blade), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Metalworking Perk(Masterwork Blade), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+
+Alchemist Perk(Greek Fire), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Glassblower Perk(Crown Glass), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Architect Perk(Concrete), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Architect Perk(Gothic Construction), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Architect Perk(Quarrying), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Architect Perk(Vaulting), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Pottering Perk(Luster Glazing), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Pottering Perk(Porcelain), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+Pottering Perk(Tin Glazing), 1, cat(Craft Secret Perks), page(LT3:24), description(Craftsmen may buy one such Craft Secret Perk per 20 points total in related craft skills. An individual who holds a craft job - or with a suitable craftsman or craft guild as his Ally or Patron - may purchase one further perk per 10 points in job skills.)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+Professional Skill (Sericulturist), IQ/A, default(IQ - 5, SK:Gardening - 5), page(LT3:50), cat(_General, Knowledge) 
+Professional Skill (Clothmaker), DX/A, default(DX - 5), page(LT3:50), cat(_General, Knowledge) 
+Professional Skill (Forester), IQ/A, default(IQ - 5, SK:Carpentry - 3), page(LT3:50), cat(_General, Knowledge) 
+Professional Skill (Glassblower), IQ/A, default(IQ - 5), page(B215), cat(_General, Knowledge) 
+Professional Skill (Charcoal-Burner), IQ/E, default(IQ - 4, "SK:Professional Skill (Forester)" - 5), page(LT3:49), cat(_General, Knowledge) 
+Professional Skill (Miller), IQ/A, default(IQ - 5, "SK:Mechanic (Mill Equipment)" - 3), page(LT3:50), cat(_General, Knowledge) 
+Professional Skill (Scribe), IQ/A, default(IQ - 5, "SK:Artist (Calligraphy)" - 3), page(LT3:50), cat(_General, Knowledge), needs(1 CA:Language Written = 2)
+Professional Skill (Brickmaker), IQ/A, default(IQ - 5, "SK:Artist (Pottery)" - 4), page(LT3:49), cat(_General, Knowledge) 
+Professional Skill (Butcher), DX/A, default(DX - 5, SK:Cooking - 3, SK:Housekeeping - 4), page(LT3:49), cat(_General, Knowledge) 
+Professional Skill (Courtesan), IQ/A, default(IQ - 5, SK:Carousing - 3, SK:Streetwise - 3), page(LT3:50), cat(_General, Knowledge) 
+Professional Skill (Masseur), IQ/A, default(IQ - 5, SK:Esoteric Medicine), page(LT3:50), cat(_General, Knowledge) 
+Professional Skill (Midwife), IQ/A, default(IQ - 5, SK:Diagnosis - 4), page(LT3:50), cat(_General, Knowledge) 
+
+//  Adding defaults to professional skills in Characters
+#MergeTags in "SK:Professional Skill (Tanner)" with "default(SK:Leatherworking - 3)"
+#MergeTags in "SK:Professional Skill (Brewer)" with "default(SK:Cooking-3, "SK:Professional Skill (Distiller)" - 4)"
+#MergeTags in "SK:Professional Skill (Distiller)" with "default("SK:Professional Skill (Brewer)" - 4)"
+#MergeTags in "SK:Professional Skill (Dyer)" with "default(SK:Chemistry - 4, SK:Naturalist - 3)"
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Low-Tech, Low-Tech - Vehicles - Watercraft, _Vehicles>
+"Badan, 30'", basecost(5600), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:73† Hnd/SR:-1/2 HT:10c Move:0.2/3 Lwt:15 Load:12 SM:+5 Occ:9 DR:2 Range:- Locations: M Draft:6. Notes: Sailing against the wind, suffers -2 to Hnd and has Top Speed 1. Unreinforced decks; can't mount cannon.), page(LT3:41), mods(Equipment), isparent(yes)
+"Boum, 60'", basecost(37000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:137† Hnd/SR:-2/3 HT:10c Move:0.15/4 Lwt:80 Load:60 SM:+7 Occ:12 DR:2 Range:- Locations: 2M Draft:10. Notes: Sailing against the wind, suffers -2 to Hnd and has Top Speed 1. Unreinforced decks; can't mount cannon.), page(LT3:41), mods(Equipment), isparent(yes)
+"Cog, 60'", basecost(140000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:147† Hnd/SR:-3/4 HT:12c Move:0.1/4 Lwt:85 Load:60 SM:+7 Occ:18 DR:5 Range:- Locations: M Draft:13. Notes: Sailing against the wind, suffers -2 to Hnd and has Top Speed 1.), page(LT3:41), mods(Equipment), isparent(yes)
+"Hulk, 60'", basecost(170000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:157† Hnd/SR:-4/5 HT:12c Move:0.05/4 Lwt:105 Load:75 SM:+7 Occ:18 DR:5 Range:- Locations: M Draft:11. Notes: Sailing against the wind, suffers -2 to Hnd and has Top Speed 1.), page(LT3:41), mods(Equipment), isparent(yes)
+"Baghlah, 120'", basecost(130000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:208† Hnd/SR:-4/4 HT:11c Move:0.1/6 Lwt:350 Load:280 SM:+9 Occ:15 DR:2 Range:- Locations: 2MS Draft:15. Notes: Sailing against the wind, suffers -2 to Hnd and has Top Speed 1. Unreinforced decks; can't mount cannon.), page(LT3:41), mods(Equipment), isparent(yes)
+"Fishing Junk, 33'", basecost(33000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:77† Hnd/SR:-1/3 HT:13c Move:0.15/3 Lwt:12 Load:8.5 SM:+5 Occ:6 DR:3 Range:- Locations: 2M Draft:2. Notes: Sailing against the wind, suffers -2 to Hnd and has Top Speed 1. Use full HT for rolls to avoid sinking, leaking, etc. Complex sails and rudders give -2 to HT rolls to avoid mechanical features, and might count as unfamiliar (-2 to Seamanship or maintenance rolls.)), page(LT3:41), mods(Equipment), isparent(yes)
+"Pole Junk, 140'", basecost(1200000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:252† Hnd/SR:-5/6 HT:13c Move:0.05/5 Lwt:300 Load:175 SM:+9 Occ:25 DR:5 Range:- Locations: 3MS Draft:10. Notes: Use full HT for rolls to avoid sinking, leaking, etc. Complex sails and rudders give -2 to HT rolls to avoid mechanical features, and might count as unfamiliar (-2 to Seamanship or maintenance rolls.)), page(LT3:41), mods(Equipment), isparent(yes)
+"Trade Junk, 70'", basecost(65000), techlvl(3), description(TL:3 Skill:Sailing/TL (Unpowered) ST/HP:96† Hnd/SR:-3/4 HT:13c Move:0.1/4 Lwt:23 Load:16 SM:+7 Occ:12 DR:4 Range:- Locations: 3M Draft:4. Notes: Use full HT for rolls to avoid sinking, leaking, etc. Complex sails and rudders give -2 to HT rolls to avoid mechanical features, and might count as unfamiliar (-2 to Seamanship or maintenance rolls.)), page(LT3:41), mods(Equipment), isparent(yes)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllPerks>
+PE:Alchemist Perk (Greek Fire)
+PE:Architect Perk (Concrete)
+PE:Architect Perk (Gothic Construction)
+PE:Architect Perk (Quarrying)
+PE:Architect Perk (Vaulting)
+PE:Glassblower Perk (Crown Glass)
+PE:Metalworking Perk (Crucible Steel)
+PE:Metalworking Perk (Graceful Blade)
+PE:Metalworking Perk (Masterwork Blade)
+PE:Pottering Perk (Luster Glazing)
+PE:Pottering Perk (Porcelain)
+PE:Pottering Perk (Tin Glazing)
+
+********************************************************************************************************\[STOP]

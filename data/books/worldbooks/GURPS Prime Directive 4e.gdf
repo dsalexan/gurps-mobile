@@ -1,0 +1,2629 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+				The accademy templates profesional certifications and equipment from the GPD, and racial templates from the GPD core book.
+Worldbook="Prime Directive"
+Requires=GURPS Basic Set 4th Ed.--Characters.gdf
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  GURPS® Character Assistant
+//  GURPS Prime Directive.GDF Data File
+//  Created:  July 22, 2005
+//  Requires GCA v4 or later!
+// 
+//  This data file is for use with GURPS Prime Directive 4th edition version.
+//  It also contains information from GURPS Klingons and GURPS Romulans.
+//  These books are published by Amarillo Designs Bureau Inc. 
+//  
+//  
+// 
+// 
+//  GURPS Basic Set: Characters is copyright 1986, 1987, 1989, 1991, 1992,_
+// 					1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+// 					Steve Jackson Games Incorporated.
+//  GURPS Prime Directive 4e is copyright © 2005 by Amarillo Design Bureau, Inc.
+//  GURPS Prime Directive Klingons 4e is copyright © 2003 & 2005 by Amarillo Design Bureau, Inc.
+//  GURPS Prime Directive Romulans 4e is copyright © 2005 by Amarillo Design Bureau, Inc.
+//  
+//  
+//  
+// 
+// 
+//  Information in this file includes:
+// 	Racial Templates, Academy Templates and Equipment
+// 	New Talents created for the races
+// 
+***************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator
+// 
+//   Richard Brown - Academy Templates, equipment
+//   Robert Gilson - Racial Templates
+// 
+// 
+***************************************************************************
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated,_
+//  used with GCA by permission of Steve Jackson Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson
+//  Games Incorporated. This product includes copyrighted material from the
+//  GURPS game, which is used by permission of Steve Jackson Games
+//  Incorporated. All rights reserved by Steve Jackson Games Incorporated.
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Mental>
+Physical Science, 5/10, upto(4), gives(+1 GR:Physical Science), cat(Mundane Mental, Mundane, Mental, Talents), page(PD72), usernotes((Astronomy, Chemistry, Geology, Meteorology, Physics)),_
+	conditional(+1 to ST:Reaction)
+Vulcan Psi Talent, 5/10, page(PD72), cat(Supernatural, Mental, Vulcan PSI), upto(4),_
+	gives(_
+			+1 to {AD:Vulcan Mind Control::skillscore},_
+			+1 to {AD:Vulcan Mind Meld (Mind Probe)::skillscore},_
+			+1 to {AD:Vulcan Mind Reading::skillscore},_
+			+1 to {AD:Vulcan Affliction (Nerve Pinch)::skillscore}_
+		)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Ultraviolet Tolerance, 1, page(PD74)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Physical>
+Increased Life Support (Soil and Water), -20, page(), cat(Mundane, Physical)
+********************************************************************************************************\[STOP]
+[QUIRKS]
+*******************************************************************************************************\[START]
+<Quirks>
+Edgy, -1, page(PD42)
+Glow, -1, page(PD48)
+Extravagance, -1, page(PD48)
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Flight>
+Paramagnetic, -25%
+<Dependency>
+Mitigator: Gravity Suit, -60%, group(_General), page(PD55), shortname(Gravity Suit)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<Physical Science>
+SK:Astronomy
+SK:Chemistry
+SK:Geology
+SK:Meteorology
+SK:Physics
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<User Items>
+Filtration Canteen,noresync(yes),techlvl(10),basecost(45),baseweight(1),lc(6),mods(Equipment), cat(_New Equipment)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<GPD>
+Piloting (Starship), DX/A,tl(12),default(IQ - 6, "SK:Piloting (High-Performance Airplane)" - 2, SK:Piloting - 4),page(B214), cat(_General, Vehicle)
+
+Piloting (Shuttlecraft), DX/A,tl(12),default(IQ - 6, "SK:Piloting (High-Performance Airplane)" - 2, SK:Piloting - 4),page(B214), cat(_General, Vehicle)
+
+Electronics Operation (Transporter), IQ/A,page(B175),noresync(yes),x(), cat(_General, Technical)
+
+Electronics Operation (Tricorder), IQ/A,page(B175),noresync(yes),x(), cat(_General, Technical)
+
+Shiphandling (Starship (Warp Powered)), IQ/H,tl(12),default(IQ - 6, SK:Spacer - 5, "SK:Piloting (High-Performance Spacecraft)" - 5, "SK:Piloting (Lightsail)" - 5, "SK:Piloting (Low-Performance Spacecraft)" - 5),needs(SK:Spacer, SK:Leadership, "SK:Navigation (Space)"),page(B220), cat(_General, Vehicle)
+
+Engineer (Auxiliary Systems), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Fighters), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Hull & Superstructure), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Impulse Drive), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Mauler), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts"),TE:Romulan Warrior),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (PF's & Interceptors), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Shipboard Phasers), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Reactors & Power), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Shuttlecraft), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Engineer (Warp Drive), IQ/H,default("SK:Mechanic (Auxiliary Systems)" - 6, "SK:Armoury (Auxiliary Systems)" - 6, SK:Engineer - 4),needs($if(me::tl > 4 THEN "SK:Mathematics (Applied) = 1pts")),noresync(yes),page(B190),tl(12), cat(_General, Design/Invention)
+
+Electronics Repair (Cloaking Device), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190),needs(TE: Romulan Warrior), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Disruptors), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Drones/Missiles), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (ESG), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190),needs(TE:Lyrans), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Fusion Beam), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Hellbore), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Mauler), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190),needs(TE:Romulan Warrior), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Medical Systems), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Personal Phasers), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Photon Torpedoes), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Sensors), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Security Systems), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Shields), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Stasis Field Device), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190) 
+Electronics Repair (Tractor Beam), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Transporter), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Electronics Repair (Tricorder), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Operation (Communications)" - 3, "SK:Engineer (Electronics)" - 3, SK:Electronics Repair - 4),page(B190), cat(_General, Repair/Maintenance)
+
+Armoury (Disruptors), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Drones/Missles), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (ESG), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Fusion Beam), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Hellbore), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Mauler), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Personal Phasers), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Shipboard Phasers), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Photon Torpedoes), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Plasma Torpedoes), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Armoury (Stasis Field Device), IQ/A,tl(12),default(IQ - 5, SK:Armoury - 4, "SK:Engineer (Battlesuits)" - 4),page(B178), cat(_General, Military, Repair/Maintenance)
+
+Electronics Operation (Cloaking Device), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Repair (Communications)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4),page(B189), cat(_General, Technical)
+
+Electronics Operation (Tractor Beam), IQ/A,tl(12),default(IQ - 5, "SK:Electronics Repair (Communications)" - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4),page(B189), cat(_General, Technical)
+
+Mechanic (Auxiliary Systems), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (Fighters), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (Hull & Superstructure), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (Impulse Drive), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (PF's & Interceptors), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (Reactors & Power), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (Shuttlecraft), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Mechanic (Warp Drive), IQ/A,tl(12),page(B207),noresync(yes),default(IQ - 5, "SK:Engineer (Auxiliary Systems)" - 4, SK:Machinist - 5, SK:Mechanic - 4), cat(_General, Repair/Maintenance)
+
+Gunner (Disruptors), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Drones/Missiles), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Fusion Beam), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Hellbore), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Personal Phasers), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Shipboard Phasers), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Photon Torpedoes), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Plasma Torpedoes), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+Gunner (Stasis Field Device), DX/E,tl(12),default(DX - 4, SK:Gunner - 4, SK:Gun!),page(B198), cat(_General, Combat/Weapons - Ranged Combat)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<GPD>
+Seniority, 0/0,displaycost(varies),noresync(yes),upto(200), cat(General)
+
+Resistant (Disease), 5/10/15/30,mods(Resistant),levelnames(Rare, Occasional, Common, Very Common),page(B80),upto(4),tl(),usernotes(),familiarities(), cat(Mundane, Physical, Mundane Physical),initmods({"Degree: +3 to HT rolls to resist", *1/3,round(Down),shortname(+3),group(Resistant),page(B81),level(1),valuenum(1/3)})
+
+<Vulcan PSI>
+Vulcan Mind Control, 50,displaycost(25),mods(Mind Control),page(B68),needs(TE:Vulcan), cat(Exotic, Mental, Exotic Mental),initmods(Puppet, -40%,group(Mind Control),page(B69),level(1) | Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1)),_
+	skillused(ST:IQ), mode(Control; R-Will)
+
+Vulcan Mind Meld (Mind Probe), 20,displaycost(14),mods(Mind Probe/Reading),page(B69),needs(TE:Vulcan), cat(Exotic, Mental, Exotic Mental),initmods(Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1) | Accessibility (Touch Based), -10%/-20%,group(_General),page(B110),level(2),basedon(Accessibility),basedgroup(_General)),_
+	skillused(ST:IQ, SK:Interrogation), mode(Probe; R-Will)
+
+Vulcan Mind Reading, 30,displaycost(21),mods(Mind Probe/Reading),page(B69),needs(TE:Vulcan), cat(Exotic, Mental, Exotic Mental),initmods(Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1) | Accessibility (Touch Only), -10%/-20%,group(_General),page(B110),level(2),basedon(Accessibility),basedgroup(_General)),_
+	skillused(ST:IQ), mode(Mind Read; R-Will)
+
+Vulcan Mind Shield, 4/8,displaycost(4/8/+),mods(Mind Shield),page(B70),needs(TE:Vulcan), cat(Exotic, Mental, Exotic Mental),initmods(Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1))
+
+Vulcan Affliction (Nerve Pinch), 10/20, displaycost(19/38/+),mods(Affliction, Affliction Enhancements, Affliction Limitations, _Attack Enhancements, _Attack Limitations, Alternative Attack),page(B35),damage(HT±$solver(me::level - 1)),damtype(aff),acc(3),rangehalfdam(10),rangemax(100),rof(1),shots(n/a),rcl(1),skillused(ST:DX, SK:Brawling),noresync(yes),dmg(),needs(TE:Vulcan), cat(Exotic, Physical, Natural Attacks, Exotic Physical),initmods(Accessibility (-4 to hit hit location), -10%/-20%,group(_General),page(B110),x(),level(2) | Contact Agent, -30%,group(Affliction Limitations),page(B111),level(1) | Melee Attack: Reach C, -30%,group(_Attack Limitations),page(B112),gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, ="C" to owner::reach$),level(1) | Racial, -20%, group(Mind Probe/Reading), page(B70) | Incapacitation: Unconsciousness, +200%,shortname(Unconsciousness),mods(Secondary),group(Affliction),page(B36),level(1) | Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1))
+
+Vulcan Special Rapport, 5,page(B88),needs(TE:Vulcan), cat(Exotic, Mental, Exotic Mental),initmods(Telepathic, -10%,group(_Psionic Power Modifier),page(B257),level(1))
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Prime Directive, Prime Directive - Miscellaneous Equipment>
+Air Mask,noresync(yes),techlvl(10),basecost(25),baseweight(.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Air Mask (primitive),basecost(100),baseweight(2),lc(6),mods(Equipment),noresync(yes),techlvl(8), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Mini Air Tank (10 minutes air),noresync(yes),techlvl(10),basecost(12.50),baseweight(1),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Mini Air Tank (10 minutes air (primitive)),basecost(50),baseweight(1),lc(6),mods(Equipment),noresync(yes),techlvl(8), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+2 hour air tank,noresync(yes),techlvl(7),basecost(100),baseweight(10),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+24 hour air tank,noresync(yes),techlvl(7),basecost(400),baseweight(73),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Autograpnel,noresync(yes),techlvl(10),basecost(100),baseweight(1.5),lc(5),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Light Combat Armor,noresync(yes),techlvl(8),basecost(1850),baseweight(36.5),lc(4),location(All),dr(20),mods(Equipment),usernotes(dr 20, Gains +5 to DR per TL), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Medium Combat Armor,noresync(yes),techlvl(8),basecost(2350),baseweight(36),lc(4),location(all),dr(30),mods(Equipment),usernotes(dr 30, adds +8 dr per TL), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Heavy Combat Armor,basecost(3100),baseweight(66.5),dr(45),lc(3),location(all),mods(Equipment),noresync(yes),techlvl(8),usernotes(dr 45, gains + 10 DR per TL), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Communicator (25 mile range),noresync(yes),techlvl(9),basecost(100),baseweight(1),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Communicator (50 mile range),noresync(yes),techlvl(10),basecost(100),baseweight(.75),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Communicator (100 mile range),noresync(yes),techlvl(11),basecost(100),baseweight(.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Communicator (250 mile range),noresync(yes),techlvl(12),basecost(100),baseweight(.25),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Communicator (500 mile range),noresync(yes),techlvl(13),basecost(100),baseweight(.0625),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Diagnostic Table,noresync(yes),techlvl(11),basecost(12000),baseweight(250),lc(6),mods(Equipment),usernotes(+5 to diagnosis, additional +1 per TL after introduction), cat(Miscellaneous Equipment - Medical Gear)
+
+Emergency Medkit,noresync(yes),techlvl(10),basecost(75),baseweight(.25),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Medical Gear)
+
+Envirobag,noresync(yes),techlvl(10),basecost(20),baseweight(1.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Envirobag Control Unit,noresync(yes),techlvl(10),basecost(6),baseweight(.25),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Enviro-Bubble,noresync(yes),techlvl(10),basecost(200),baseweight(1.25),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Federation Marine Dress Saber,armordivisor(1),basecost(300),baseweight(2),damage(sw+3|thr+4),damtype(cut|imp),lc(4),minst(7),mods(Equipment),noresync(yes),parry(0F|No),reach(1),skillused(Sword!, Saber, DX-5, Broadsword-4, Main-Gauche-3, Rapier-3, Shortsword-4, Smallsword-3|Sword!, Saber, DX-5, Broadsword-4, Main-Gauche-3, Rapier-3, Shortsword-4, Smallsword-3),techlvl(10),mode(swing|thrust), cat(Melee Weapons)
+
+Federation Marine Combat Knife,armordivisor(1|1),basecost(80),baseweight(1),damage(sw|thr+3),damtype(cut|imp),lc(4),minst(1),mods(Equipment),noresync(yes),parry(|-1|-1),reach(C,1|C),skillused(Thrown Weapon (Knife), DX-4|Sword!, Knife, DX-4, Force Sword-3, Maine-Gauche-3, Shortsword-3|Sword!, Knife, DX-4, Force Sword-3, Maine-Gauche-3, Shortsword-3),techlvl(10),mode(swing|thrust), cat(Melee Weapons)
+
+Field Pack (Holds up to 40lbs),noresync(yes),techlvl(10),basecost(700),baseweight(26.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear), isparent(yes), weightcapacity(40)
+
+Filtration Canteen Filters,noresync(yes),techlvl(10),basecost(6),baseweight(0),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Hand Thruster,noresync(yes),techlvl(10),basecost(12.50),baseweight(2),lc(6),mods(Equipment), cat(GPD)
+
+Hand Thruster refills,noresync(yes),techlvl(10),basecost(2.50),baseweight(1),lc(6),mods(Equipment), cat(GPD)
+
+Heat Suit,noresync(yes),techlvl(10),basecost(37.50),baseweight(5),lc(6),location(all),dr(2),mods(Equipment),usernotes(dr 2), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Hypercoagulin,noresync(yes),techlvl(10),basecost(7.50),baseweight(0),lc(4),mods(Equipment), cat(Miscellaneous Equipment - Medical Gear)
+
+Inertial Compass,noresync(yes),techlvl(10),basecost(62.50),baseweight(.25),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Medical Pouch,noresync(yes),techlvl(8),basecost(700),baseweight(15),lc(6),mods(Equipment),usernotes(adds +2 to first aid skill), cat(Miscellaneous Equipment - Medical Gear)
+
+Light Monocrys (vest),noresync(yes),techlvl(8),basecost(400),baseweight(3),lc(5),location(torso),dr(8/2),mods(Equipment),usernotes(dr 8, 2 vs imp), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Light Monocrys Suit,noresync(yes),techlvl(8),basecost(1000),baseweight(7),lc(5),location(all),dr(8/2),mods(Equipment),usernotes(dr 8, 2 vs imp), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Medium Monocrys Vest,noresync(yes),techlvl(8),basecost(600),baseweight(5),lc(5),location(torso),dr(16/2),mods(Equipment),usernotes(dr 16, 2 vs imp), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Medium Monocrys Suit,noresync(yes),techlvl(8),basecost(1500),baseweight(12),lc(5),location(all),dr(16/2),mods(Equipment),usernotes(dr 16, 2 vs imp), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Heavy Monocrys Vest,noresync(yes),techlvl(8),basecost(800),baseweight(7),lc(4),location(torso),dr(24/2),mods(Equipment),usernotes(dr 24, 2 vs imp), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Heavy Monocrys Suit,noresync(yes),techlvl(8),basecost(2000),baseweight(16),lc(4),location(all),dr(24/2),mods(Equipment),usernotes(dr 24, 2 vs imp), cat(Armor, Armor - Ultra-Tech Body Armor)
+
+Multiview Goggles,noresync(yes),techlvl(10),basecost(300),baseweight(1),lc(5),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear, Miscellaneous Equipment - Optics & Sensors)
+
+Plastiskin,noresync(yes),techlvl(10),basecost(2.50),baseweight(0),lc(5),mods(Equipment), cat(Miscellaneous Equipment - Medical Gear)
+
+Pneumospray Hypo,noresync(yes),techlvl(10),basecost(31.25),baseweight(.25),lc(4),mods(Equipment), cat(Miscellaneous Equipment - Medical Gear)
+
+Hypo replacement cartridge,noresync(yes),techlvl(10),basecost(10),baseweight(0),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Medical Gear)
+
+AA cell,noresync(yes),techlvl(8),basecost(2),baseweight(.02),lc(6),mods(Equipment), cat(GPD)
+
+B cell,noresync(yes),techlvl(8),basecost(30),baseweight(.5),lc(6),mods(Equipment), cat(GPD)
+
+C cell,noresync(yes),techlvl(8),basecost(100),baseweight(1),lc(6),mods(Equipment), cat(GPD)
+
+D cell,noresync(yes),techlvl(8),basecost(500),baseweight(5),lc(6),mods(Equipment), cat(GPD)
+
+E cell,noresync(yes),techlvl(8),basecost(2000),baseweight(20),lc(6),mods(Equipment), cat(GPD)
+
+Pressure Tent 1 man,noresync(yes),techlvl(10),basecost(125.00),baseweight(4),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Pressure Tent 2 man,noresync(yes),techlvl(10),basecost(375),baseweight(8),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Pressure Tent 8 man,noresync(yes),techlvl(10),basecost(1250),baseweight(40),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Resperator,basecost(75),baseweight(.75),lc(6),mods(Equipment),noresync(yes),techlvl(11), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Remote Probe,noresync(yes),techlvl(10),basecost(100000),baseweight(10),lc(3),mods(Equipment),usernotes(add additional $1000 to cost for each TL after introduction), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+
+Revive Capsules,noresync(yes),techlvl(10),basecost(1.25),baseweight(0),lc(5),mods(Equipment), cat(Miscellaneous Equipment - Medical Gear)
+
+10 yards biphase rope,noresync(yes),techlvl(8),basecost(30),baseweight(.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Star Fleet Uniform,noresync(yes),techlvl(10),basecost(325),baseweight(6),lc(5),location(torso, arms, legs, feet, groin),dr(8/2),mods(Equipment),notes(dr 8, 2 vs Imp), cat(Armor, Armor - Ultra-Tech Body Armor, Clothing)
+
+Stun Baton,armordivisor(1),basecost(100),baseweight(3),damage(sw-2|aff-2),damtype(cr|aff),lc(4),minst(1),mods(Equipment),noresync(yes),parry(0|0),reach(c,1),skillused(shortsword),techlvl(9),mode(swing|aff), cat(Melee Weapons)
+
+Televiewers,noresync(yes),techlvl(10),basecost(237.50),baseweight(.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear, Miscellaneous Equipment - Optics & Sensors)
+
+Thruster Pack,noresync(yes),techlvl(10),basecost(500),baseweight(19),lc(6),mods(Equipment), cat(GPD)
+
+Thruster Pack refill,noresync(yes),techlvl(10),basecost(7.50),baseweight(10),lc(6),mods(Equipment), cat(GPD)
+
+Tricorder TL 10,noresync(yes),techlvl(10),basecost(2500),baseweight(4),lc(5),mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+
+PADD,noresync(yes),techlvl(9),basecost(250),baseweight(4),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Tricorder TL 11,noresync(yes),techlvl(11),basecost(2500),baseweight(2),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+
+Tricorder TL 12,noresync(yes),techlvl(12),basecost(2500),baseweight(1),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+
+IRD chip,noresync(yes),techlvl(9),basecost(100),baseweight(0),lc(6),mods(Equipment),usernotes(multiply base cost by skill level), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Universal Translator,noresync(yes),techlvl(12),basecost(13000),baseweight(1),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+Vapor Canteen,noresync(yes),techlvl(10),basecost(112),baseweight(2.5),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Camp Vapor Canteen System,noresync(yes),techlvl(10),basecost(750),baseweight(75),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Camping & Survival Gear)
+
+Zero-G Worksuit,noresync(yes),techlvl(11),basecost(3750),baseweight(150),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+"Portable Shop (Mechanic, Engineer or Armory)",noresync(yes),techlvl(8),basecost(4000),baseweight(3000),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+<Prime Directive, Prime Directive - Tools>
+Portable Shop (Electronics),noresync(yes),techlvl(8),basecost(7000),baseweight(1500),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+Basic Tool Kit (Mechanic or Engineer),noresync(yes),techlvl(8),basecost(800),baseweight(300),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+Basic Tool Kit (Armory or Electronics),noresync(yes),techlvl(8),basecost(1200),baseweight(100),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+Portable Tool Kit (Mechanic or Engineer),noresync(yes),techlvl(8),basecost(600),baseweight(20),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+Portable Tool Kit (Armory or Electronics),noresync(yes),techlvl(8),basecost(900),baseweight(10),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+Mini-Toolkit,noresync(yes),techlvl(8),basecost(400),baseweight(2),lc(6),mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+Standard Vacc Suit,basecost(250),baseweight(10),dr(1),lc(6),location(all),mods(Equipment),noresync(yes),techlvl(10),usernotes(dr 1Helmet is dr 3), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Heavy Duty Vacc Suit,noresync(yes),techlvl(10),basecost(375),baseweight(20),lc(6),location(all),dr(3),mods(Equipment),usernotes(dr 3), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Armored Vacc Suit,noresync(yes),techlvl(10),basecost(1000),baseweight(80),lc(5),location(all),dr(30),mods(Equipment),usernotes(dr 30), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit HUD,noresync(yes),techlvl(9),basecost(125),baseweight(0),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Helmet Light,noresync(yes),techlvl(7),basecost(7.50),baseweight(.5),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Food Concentrates,noresync(yes),techlvl(8),basecost(125),baseweight(0),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Waste Relief,noresync(yes),techlvl(8),basecost(125),baseweight(0),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Paches,noresync(yes),techlvl(8),basecost(2.50),baseweight(0),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Magnetized Plates,noresync(yes),techlvl(p),basecost(25),baseweight(0.125),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Radiation Sheilding (PF 2),noresync(yes),techlvl(9),basecost(50),baseweight(20),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Vacc Suit Radiation Sheilding (PF 5),noresync(yes),techlvl(7),basecost(500),baseweight(40),lc(6),mods(Equipment), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Wet Suit,noresync(yes),techlvl(9),basecost(50),baseweight(5),lc(6),location(all),dr(1),mods(Equipment),usernotes(dr1), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Military Wet Suit,basecost(175),baseweight(9),dr(8/4),lc(4),location(all),mods(Equipment),noresync(yes),techlvl(9),usernotes(dr 8, 4 vs imp), cat(Armor, Armor - Ultra-Tech Environment Suits)
+
+Holdout Disruptor,noresync(yes),techlvl(10),basecost(3000),baseweight(0),lc(0),damage(2d),damtype(burn),armordivisor(2),acc(1),rangehalfdam(20),rangemax(50),rof(1),shots(10(5)),minst(1),bulk(4),rcl(1),skillused(Beam Weapons(Pistol)),mods(Equipment), cat(Firearms - Ultra-Tech Firearms)
+
+Disruptor Pistol,noresync(yes),techlvl(10),basecost(2500),baseweight(2),lc(0),damage(4d),damtype(burn),armordivisor(3),acc(5),rangehalfdam(300),rangemax(600),rof(3),shots(100(2)),minst(1),bulk(-1),rcl(1),skillused(Beam Weapons(Pistol)),mods(Equipment), cat(Firearms - Ultra-Tech Firearms)
+
+Disruptor Rifle,noresync(yes),techlvl(10),basecost(4500),baseweight(6),lc(0),damage(6d),damtype(burn),armordivisor(3),acc(8),rangehalfdam(600),rangemax(1200),rof(5),shots(200(2)),minst(1†),bulk(-6),rcl(1),skillused(Beam Weapons(Rifle)),mods(Equipment), cat(Firearms - Ultra-Tech Firearms)
+
+Phaser-1,acc(2),armordivisor(1),basecost(2000),baseweight(0),bulk(-1),damage(stun-1|1d),damtype(aff|burn),lc(2),minst(1),mode(stun 1|Kill 1),mods(Equipment),noresync(yes),rangehalfdam(50),rangemax(100),rcl(1),rof(1),shots(100(2)B),skillused(Beam Weapons(Pistol)),techlvl(10), cat(Firearms - Ultra-Tech Firearms)
+
+Phaser 2,noresync(yes),techlvl(10),basecost(3000),baseweight(1),lc(1),damage(Stun-1|Stun-2|1d|2d|4d),damtype(aff|aff|burn|burn|burn),armordivisor(1|1|1|1|3),acc(5),rangehalfdam(200),rangemax(500),rof(3),shots(100(2)C),minst(1),bulk(-2),rcl(1),skillused(Beam Weapons(Pistol)),mods(Equipment),mode(stun 1|stun 2|kill 1|kill 2|disint 1), cat(Firearms - Ultra-Tech Firearms)
+
+Phaser Rifle,noresync(yes),techlvl(10),basecost(4500),baseweight(4),lc(0),damage(stun-1|stun-2|stun-3|1d|2d|3d|4d|6d),damtype(aff|aff|aff|burn|burn|burn|burn|burn),armordivisor(1|1|1|1|1|1|3|3),acc(8),rangehalfdam(500),rangemax(1000),rof(5),shots(100(3)2C),minst(1†),bulk(-6),rcl(1),skillused(Beam Weapons(Rifle)),mods(Equipment),mode(stun 1|stun 2|stun3|Kill 1|Kill 2|Kill 3|Disint 1|Disint 2), cat(Firearms - Ultra-Tech Firearms)
+
+Pulse Phaser,noresync(yes),techlvl(11),basecost(5500),baseweight(4),lc(0),damage(stun-1|stun-2|stun-3|1d|2d|3d|2d|4d|4d|6d|8d),damtype(aff|aff|aff|burn|burn|burn|burn|burn|burn|burn|burn),armordivisor(1|1|1|1|1|1|2|2|3|3|3),acc(10),rangehalfdam(800),rangemax(1200),rof(5),shots(100(2)D),minst(1†),bulk(-6),rcl(1),skillused(Beam Weapons(Rifle)),mods(Equipment),mode(stun 1|stun 2|stun 3|kill 1|kill 2|kill 3| kill 4|kill 5|disint 1|disnint 2|disint 3), cat(Firearms - Ultra-Tech Firearms)
+
+Repeating Phaser,acc(12),armordivisor(1|1|1|1|1|1|2|2|3|3|3),basecost(5500),baseweight(8),bulk(-8),damage(stun-1|stun-2|stun-3|1d|2d|3d|2d|4d|4d|6d|8d),damtype(aff|aff|aff|burn|burn|burn|burn|burn|burn|burn|burn),lc(0),minst(1†),mode(stun 1|stun 2|stun 3|kill 1|kill 2|kill 3| kill 4|kill 5|disint 1|disnint 2|disint 3),mods(Equipment),noresync(yes),rangehalfdam(800),rangemax(1200),rcl(1),rof(5),shots(100(2)D),skillused(Beam Weapons(Rifle)),techlvl(11), cat(Firearms - Ultra-Tech Firearms)
+
+80mm LRL,noresync(yes),techlvl(10),basecost(750),baseweight(10),lc(0),damage(varies),damtype(var),armordivisor(var),acc(var),rangehalfdam(var),rangemax(var),rof(1/10),shots(1),minst(7†),bulk(-10),rcl(na),skillused(guns(Light Anti-Armor Weapon)),mods(Equipment), cat(Heavy Weapons)
+
+120mm MRL,noresync(yes),techlvl(10),basecost(4000),baseweight(20+15+5),lc(0),damage(var),damtype(var),armordivisor(var),acc(var),rangehalfdam(var),rangemax(var),rof(1/10),shots(1),minst(na†),bulk(-20),rcl(var),skillused(guns(Light Anti-Armor Weapon)),mods(Equipment), cat(Heavy Weapons)
+
+120mm How,noresync(yes),techlvl(10),basecost(4000),baseweight(20+15+5),lc(0),damage(var),damtype(var),armordivisor(var),acc(var),rangehalfdam(var),rangemax(var),rof(1/10),shots(1),minst(na†),bulk(-20),rcl(var),skillused(guns(Light Anti-Armor Weapon)),mods(Equipment), cat(Heavy Weapons)
+
+80mm Mk 9 missile,noresync(yes),techlvl(9),basecost(75),baseweight(2),lc(0),damage(6dX8),damtype(cr ex),armordivisor(10),acc(6),rangehalfdam(200),rangemax(1000),rof(1/10),shots(1),minst(lnchr†),bulk(lnchr),rcl(1),skillused(lnchr),mods(Equipment), cat(Heavy Weapons)
+
+80mm Mk 10 missile,acc(6),armordivisor(1),basecost(100),baseweight(2),bulk(lnchr),damage(6dX9 [6d]),damtype(cr ex),lc(0),minst(lnchr†),mods(Equipment),noresync(yes),rangehalfdam(300),rangemax(1500),rcl(1),rof(1/10),shots(1),skillused(lnchr),techlvl(10), cat(Heavy Weapons)
+
+120mm Mk 9 missile,acc(6),armordivisor(10),basecost(250),baseweight(4),bulk(lnchr),damage(6dX20),damtype(cr ex),lc(0),minst(lnchr†),mods(Equipment),noresync(yes),rangehalfdam(300),rangemax(5000),rcl(1),rof(1/10),shots(1),skillused(lnchr),techlvl(9), cat(Heavy Weapons)
+
+120mm Mk 10 missile,acc(6),armordivisor(1),basecost(250),baseweight(4),bulk(lnchr),damage(6dX20 [8d]),damtype(cr ex),lc(0),minst(lnchr†),mods(Equipment),noresync(yes),rangehalfdam(500),rangemax(9000),rcl(1),rof(1/10),shots(1),skillused(lnchr),techlvl(10), cat(Heavy Weapons)
+
+120mm Mk How,acc(6),armordivisor(1),basecost(400),baseweight(4),bulk(lnchr),damage(6dX20 [8d]),damtype(cr ex),lc(0),minst(lnchr†),mods(Equipment),noresync(yes),rangehalfdam(500),rangemax(20000),rcl(1),rof(1/10),shots(1),skillused(lnchr),techlvl(10), cat(Heavy Weapons)
+
+Concussion Grenade TL8,noresync(yes),techlvl(8),basecost(20),baseweight(1),lc(0),damage(6dX2),armordivisor(1),damtype(cr),acc(0),calcrange(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),minst(1),bulk(-1),skillused(Throwing),mods(Equipment), cat(Hand Grenades & Incendiaries)
+
+Concussion Grenade TL9,acc(0),armordivisor(1),basecost(20),baseweight(1),bulk(-1),calcrange(yes),damage(6dX3),damtype(cr),lc(0),minst(1),mods(Equipment),noresync(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),skillused(Throwing),techlvl(9), cat(Hand Grenades & Incendiaries)
+
+Concussion Grenade TL 10,acc(0),armordivisor(1),basecost(10),baseweight(.5),bulk(-1),calcrange(yes),damage(6dX3),damtype(cr),lc(0),minst(1),mods(Equipment),noresync(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),skillused(Throwing),techlvl(10), cat(Hand Grenades & Incendiaries)
+
+Flash Bang Grenade TL 7,noresync(yes),techlvl(7),basecost(20),baseweight(.5),lc(0),damage(stun),armordivisor(1),damtype(stun),acc(1),calcrange(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),minst(1),bulk(-1),skillused(Throwing),mods(Equipment), cat(Hand Grenades & Incendiaries)
+
+Flash Bang Grenade TL 10,acc(1),armordivisor(1),basecost(10),baseweight(.5),bulk(-1),calcrange(yes),damage(stun),damtype(stun),lc(0),minst(1),mods(Equipment),noresync(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),skillused(Throwing),techlvl(10), cat(Hand Grenades & Incendiaries)
+
+Sachel Charge TL 8,noresync(yes),techlvl(8),basecost(50),baseweight(4),lc(0),damage(6dX8),armordivisor(1),damtype(cr),acc(0),calcrange(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),minst(1),bulk(-2),skillused(Throwing),mods(Equipment), cat(Hand Grenades & Incendiaries)
+
+Stun Grenade TL 11,noresync(yes),techlvl(11),basecost(100),baseweight(.5),lc(0),damage(stun),armordivisor(1),damtype(stun),acc(0),calcrange(yes),rangehalfdam(na),rangemax(ST*2.5),rof(1),shots(1),minst(1),bulk(-1),skillused(Throwing),mods(Equipment), cat(Hand Grenades & Incendiaries)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#Delete "TE:Investigator (Basic Set)"
+#Delete "TE:Mage (Basic Set)"
+#Delete "TE:Soldier of Fortune (Basic Set)"
+#Delete "TE:Heroic Knight (Basic Set)"
+#Delete "TE:Warrior (Basic Set)"
+#Delete "TE:Warrior - Heroic (Basic Set)"
+#Delete "TE:Warrior - Knight (Basic Set)"
+
+#Delete "TE:Dragon (Basic Set)"
+#Delete "TE:Dwarf (Basic Set)"
+#Delete "TE:Elf (Basic Set)"
+#Delete "TE:Felinoid (Basic Set)"
+#Delete "TE:Vampire (Basic Set)"
+
+<Racial Templates, Racial Templates - Federation>
+Vulcan (Prime Directive), displaycost(70), cost(50), cat(Racial Templates),_
+	description(),_
+	page(PD38),_
+	race(Vulcan),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+2 to ST:IQ _
+			),_
+		adds( _
+			AD:Acute Hearing=1,_
+			AD:Extended Lifespan=1,_
+			AD:Indomitable,_
+			AD:Lightning Calculator,_
+			AD:Nictitating Membrane=1,_
+			AD:Photographic Memory,_
+			AD:Less Sleep=2,_
+			AD:Regeneration=2 _
+		with "only while in Autotrance, -30%",_
+			AD:Vulcan Psi Talent=1,_
+			AD:Unfazeable,_
+			PO:Autotrance,_
+			DI:Code of Honor (Logical behavior)=2,_
+			DI:Honesty,_
+			DI:Intolerance (Emotional or illogical behavior)=1,_
+			DI:No Sense of Humor,_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Truthfulness _
+			)
+Rigellian (Prime Directive), displaycost(11), cost(26), cat(Racial Templates),_
+	description(),_
+	page(PD38),_
+	race(Rigellian),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+2 to ST:Fatigue Points _
+			),_
+		adds( _
+			AD:Combat Reflexes,_
+			AD:Rapid Healing,_
+			PO:Ultraviolet Tolerance,_
+			DI:Fanaticism (Spread of civilization),_
+			DI:Honesty,_
+			DI:Sense of Duty (to family)=2,_
+			DI:Truthfulness,_
+			QU:Humble _
+			)
+Cygnan (Prime Directive), displaycost(16), cost(0), cat(Racial Templates),_
+	description(),_
+	page(PD39),_
+	race(Cygnan),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	adds( _
+			AD:Mathematical Ability=1,_
+			AD:Physical Science=4,_
+			AD:Versatile,_
+			DI:Gregarious,_
+			DI:Weakness (Sunlight)=1 _
+			with "Rarity: Very Common, *3, shortname(Very Common), group(Weakness)" _
+			and "Variable, -40%, group(Weakness)" _
+			)
+Alpha-Centauran - Female (Prime Directive), displaycost(50), cost(40), cat(Racial Templates),_
+	description(),_
+	page(PD39),_
+	race(Alpha-Centauran (Female)),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+2 to ST:DX _
+			),_
+		adds( _
+			AD:Charisma=1,_
+			AD:Fit _
+			)
+Alpha-Centauran - Male (Prime Directive), displaycost(24), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD39),_
+	race(Alpha-Centauran (Male)),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			-2 to ST:Will _
+			),_
+		adds( _
+			AD:Fit,_
+			QU:Humble _
+			)
+Prellarian (Prime Directive), displaycost(35), cost(10), cat(Racial Templates),_
+	description(),_
+	page(PD40),_
+	race(Prellarian),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			-1 to ST:Size Modifier _
+			),_
+		adds( _
+			AD:Improved G-Tolerance=3,_
+			AD:Intuition,_
+			AD:Pressure Support,_
+			DI:Phobia (Acrophobia: Heights) _
+				with "You resist on a roll of 6 or less (quite rarely), *2, shortname(6-), group(Self-Control)" _
+			)
+Deian (Prime Directive), displaycost(37), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD40),_
+	race(Deian),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:IQ _
+			),_
+		adds( _
+			AD:Charisma=1,_
+			AD:Appearance=2 _
+			)
+Brecon (Prime Directive), displaycost(45), cost(0), cat(Racial Templates),_
+	description(),_
+	page(PD41),_
+	race(Brecon),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:Size Modifier _
+			),_
+		adds( _
+			AD:Extra Arms=2,_
+			AD:Extra Attack=1 _
+			)
+Arcturian (Prime Directive), displaycost(35), cost(50), cat(Racial Templates),_
+	description(),_
+	page(PD41),_
+	race(Arcturian),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+2 to ST:DX,_
+			+1 to ST:Basic Speed _
+			),_
+		adds( _
+			DI:Pacifism (Self-Defense Only) _
+			)
+Mynieni (Prime Directive), displaycost(67), cost(10), cat(Racial Templates),_
+	description(),_
+	page(PD40),_
+	race(Mynieni),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			-3 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:IQ,_
+			-1 to ST:Size Modifier _
+			),_
+		adds( _
+			AD:Extra Arms=10 _
+				with "Short, -50%, group(Extra Arms)" _
+				and "No Physical Attack, -50%, group(Extra Arms)",_
+			AD:Extra Legs (7+ Legs) _
+				with "Cannot Kick, -50%, group(Extra Legs)",_
+			AD:Flexibility,_
+			AD:High Manual Dexterity=4,_
+			AD:Night Vision=9,_
+			AD:Peripheral Vision,_
+			DI:Invertebrate _
+			)
+Andorian (Prime Directive), displaycost(40), cost(45), cat(Racial Templates),_
+	description(Tall slender humaniods, with blue skin, white hair and antennae),_
+	page(PD42),_
+	race(Andorian),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:DX,_
+			+5 to ST:Perception _
+			),_
+		adds( _
+			AD:Discriminatory Smell,_
+			AD:Subsonic Hearing,_
+			AD:Ultrahearing,_
+			AD:Vibration Sense,_
+			DI:Hidebound,_
+			DI:Loner,_
+			DI:Low Pain Threshold,_
+			DI:No Sense of Humor _
+			)
+Tellarite (Prime Directive), displaycost(27), cost(36), cat(Racial Templates),_
+	description(),_
+	page(PD42),_
+	race(Tellarite),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+2 to ST:HT,_
+			+3 to ST:Hit Points _
+			),_
+		adds( _
+			AD:Fearlessness=2,_
+			AD:Damage Resistance _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Resistant (Disease)=2 _
+				with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(down), group(Resistant)",_
+			PO:Fur,_
+			DI:Bully,_
+			DI:Selfish,_
+			QU:Edgy,_
+			QU:Nosy _
+			),_
+	creates( _
+			"DI:Odious Racial Habit (Argumentative), -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem"), noresync(yes)"=1 _
+			)
+
+<Racial Templates, Racial Templates - Klingon Empire>
+Ethnic Klingon Warrior (Prime Directive), displaycost(44), cost(40), cat(Racial Templates),_
+description(),_
+page(PD:43 & G:K12),_
+race(Klingon Warrior),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:HT _
+			),_
+		adds( _
+			AD:Fit,_
+			AD:High Pain Threshold,_
+			AD:Higher Purpose (Improve heroic reputation),_
+			PE:Alcohol Tolerance,_
+			DI:Callous,_
+			DI:Short Lifespan,_
+			QU:Proud,_
+			QU:Staid _
+			)
+Ethnic Klingon Civilian (Prime Directive), displaycost(11), cost(10), cat(Racial Templates),_
+description(),_
+page(PD:43 & G:K12),_
+race(Klingon Civilian),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:HT _
+			),_
+		adds( _
+			AD:Fit,_
+			AD:High Pain Threshold,_
+			PE:Alcohol Tolerance,_
+			DI:Callous,_
+			DI:Short Lifespan,_
+			QU:Proud,_
+			QU:Staid _
+			)
+Bargantine (Prime Directive), displaycost(-66), cost(-40), cat(Racial Templates),_
+description(),_
+page(PD:43 & G:K12),_
+race(Bargantines),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:DX,_
+			-4 to ST:Will _
+			),_
+		adds( _
+			AD:Doesn't Sleep,_
+			AD:Filter Lungs,_
+			AD:Green Thumb,_
+			AD:Reduced Consumption=2,_
+			AD:Universal Digestion,_
+			DI:Absent-Mindedness,_
+			DI:Combat Paralysis,_
+			DI:Gregarious,_
+			DI:Shyness,_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=2 _
+			)
+Cromarg (Prime Directive), displaycost(34), cost(16), cat(Racial Templates),_
+description(),_
+page(PD:45 & G:K49),_
+race(Cromargs),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:IQ,_
+			-2 to ST:HT,_
+			-1 to ST:Size Modifier,_
+			-2 to Hit Points _
+			),_
+		adds( _
+			AD:Mathematical Ability,_
+			AD:Resistant (Psionics)=4 _
+				with "Degree: +3 to HT rolls to resist, *1/3, group(Resistant)",_
+			AD:Versatile,_
+			AD:Cultural Adaptability=2,_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=1,_
+			DI:Susceptible to [Very Common]=3 _
+				respond "Disease" _
+			)
+Dunker (Prime Directive), displaycost(19), cost(30), cat(Racial Templates),_
+description(),_
+page(PD:44 & G:K51),_
+race(Dunkers),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+2 to ST:IQ _
+			),_
+		adds( _
+			AD:Fearlessness=2,_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=1 _
+			)
+Hilidarian (Prime Directive), displaycost(41), cost(10), cat(Racial Templates),_
+description(),_
+page(PD:44 & G:K54),_
+race(Hilidarian),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST _
+			),_
+		adds( _
+			AD:Amphibious,_
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Enhanced Move (Ground) = 2 _
+				with "Temporary Disadvantage (No Fine Manipulators), -30%",_
+			AD:Fearlessness=5,_
+			AD:Teeth (Sharp Teeth),_
+			AD:Single-Minded,_
+			AD:Striker (Crushing; [Description]) _
+				respond "Tail",_
+			DI:Semi-Upright,_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=1 _
+			)
+Slirdarian (Prime Directive), displaycost(-6), cost(2), cat(Racial Templates),_
+description(),_
+page(PD:44 & G:K57),_
+race(Slirdarians),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+1 to ST:DX,_
+			-2 to ST:IQ,_
+			+1 to ST:Size Modifier,_
+			+2 to Hit Points _
+			),_
+		adds( _
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Claws (Sharp Claws),_
+			AD:Teeth (Sharp Teeth),_
+			AD:Temperature Tolerance=2,_
+			AD:Very Fit,_
+			PO:Fur,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=1 _
+			)
+
+Vudar (Prime Directive), displaycost(65), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD55 & G:K60),_
+	race(Vudar),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:IQ _
+			),_
+		adds( _
+			AD:Acute Vision=2,_
+			AD:Amphibious,_
+			AD:Nictitating Membrane=1,_
+			AD:Radiation Tolerance=7,_
+			AD:Resistant (Poison)=3 _
+				with "Degree: +3 to HT rolls to resist, *1/3, group(Resistant)",_
+			DI:Short Lifespan _
+			)
+Yitlian (Prime Directive), displaycost(23), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD45 & G:K63),_
+	race(Yitlians),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:DX _
+			),_
+		adds( _
+			AD:Acute Taste and Smell=4,_
+			AD:Discriminatory Smell,_
+			AD:High Manual Dexterity=2,_
+			DI:Impulsiveness,_
+			DI:Intolerance (Felinoids),_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=1 _
+			)
+Zoolie (Prime Directive), displaycost(14), cost(0), cat(Racial Templates),_
+	description(),_
+	page(PD45 & G:K65),_
+	race(Zoolies),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	adds( _
+			AD:Acute Vision=5,_
+			AD:Infravision,_
+			AD:Night Vision=9,_
+			DI:Social Stigma (Minority Group),_
+			DI:Status=1 _
+			)
+
+<Racial Templates, Racial Templates - Romulan Star Empire>
+Romulan Warrior (Prime Directive), displaycost(33), cost(60), cat(Racial Templates),_
+	description(),_
+	page(PD46 & G:R11),_
+	race(Romulan Warrior),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:IQ,_
+			+1 to ST:HT _
+			),_
+		adds( _
+			AD:Acute Hearing=1,_
+			AD:Extended Lifespan=1,_
+			DI:Code of Honor (Romulan)=2,_
+			DI:Duty (Romulan Empire)=3,_
+			DI:Intolerance (Non-Romulans)=2,_
+			QU:Careful _
+			)
+
+<Racial Templates, Racial Templates - Miscellaneous>
+Kzinti - Male (Prime Directive), displaycost(35), cost(58), cat(Racial Templates),_
+	description(),_
+	page(PD:46),_
+	race(Kzinti (Male)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+1 to ST:Size Modifier,_
+			+2 to Basic Speed _
+			),_
+		adds( _
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Night Vision=9,_
+			AD:Parabolic Hearing=2,_
+			AD:Claws (Sharp Claws),_
+			AD:Teeth (Sharp Teeth),_
+			PO:Fur,_
+			DI:Bad Temper,_
+			DI:Impulsiveness,_
+			DI:Increased Consumption,_
+			DI:Intolerance (Lyrans, Carnivons) _
+			),_
+	creates( _
+			"DI:Odious Racial Habit (Eat other sentient beings), -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem"), noresync(yes)"=3 _
+			)
+Kzinti - Female (Prime Directive), displaycost(23), cost(9), cat(Racial Templates),_
+	description(),_
+	page(PD:46),_
+	race(Kzinti (Female)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:Size Modifier _
+			),_
+		adds( _
+			AD:Appearance _
+				with "Area Effect, +100%, group(Attack Enhancements)" _
+				and "Accessibility (Own Species only), -10%, group(General)" _
+				and "Sense-Based (with Malediction), -20%, group(Sense-Based)" _
+				and "Emanation, -20%, group(Attack Limitations)",_
+			AD:Affliction _
+				with "Area Effect, +100%, group(Attack Enhancements)" _
+				and "Accessibility (Own Species only), -10%, group(General)" _
+				and "Emanation, -20%, group(Attack Limitations)" _
+				and "Sense-Based (with Malediction), -20%, group(Sense-Based)",_
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Empathy (Sensitive),_
+			AD:Fearlessness=3,_
+			AD:Night Vision=9,_
+			AD:Parabolic Hearing=2,_
+			AD:Claws (Sharp Claws),_
+			AD:Teeth (Sharp Teeth),_
+			PO:Fur,_
+			DI:Intolerance (Lyrans, Carnivons),_
+			QU:Chauvinistic _
+			),_
+	creates( _
+			"DI:Odious Racial Habit (Eat other sentient beings), -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem"), noresync(yes)"=3 _
+			)
+Gorn (Prime Directive), displaycost(18), cost(1), cat(Racial Templates),_
+	description(),_
+	page(PD47),_
+	race(Gorn),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+3 to ST:ST,_
+			-1 to ST:DX,_
+			+1 to ST:Size Modifier,_
+			+2 to Hit Points,_
+			-2 to ST:Basic Move _
+			),_
+		adds( _
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:High Pain Threshold,_
+			AD:Teeth (Sharp Teeth) _
+			)
+Skolean (Prime Directive), displaycost(-2), cost(0), cat(Racial Templates),_
+	description(),_
+	page(PD47),_
+	race(Skoleans),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+1 to ST:DX,_
+			-1 to ST:HT _
+			),_
+		adds( _
+			AD:Chameleon=2,_
+			AD:Enhanced Tracking,_
+			AD:Peripheral Vision,_
+			AD:Resistant (to Acceleration)=1 _
+				with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(down), group(Resistant)",_
+			DI:Unfit,_
+			DI:Vulnerability (Crushing)=3 _
+				with "Wounding Multiplier ×2, *1, group(Vulnerability)" _
+			)
+Tholian (Prime Directive), displaycost(101), cost(10), cat(Racial Templates),_
+	description(),_
+	page(PD48),_
+	race(Tholians),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:IQ,_
+			-1 to ST:HT _
+			),_
+		adds( _
+			AD:Doesn't Breathe,_
+			AD:Damage Resistance=5 _
+				with "Flexible, -20%, group(Damage Resistance)" _
+				and "Semi-Ablative, -20%, group(Damage Resistance)",_
+			AD:Injury Tolerance _
+				with "Homogenous, +40, group(Injury Tolerance)" _
+				and  "No Blood, +5, group(Injury Tolerance)",_
+			AD:Pressure Support=3,_
+			AD:Sealed,_
+			AD:Vacuum Support,_
+			AD:Detect=3 _
+				respond "Electric and Magnetic fields",_
+			AD:Flight _
+				with "Paramagnetic, -25%, group(Flight)" _
+				and "Low Ceiling, -25%, group(Flight)" _
+				and "Visible, -20%, group(Telekinesis)",_
+			AD:Ultrahearing,_
+			DI:Increased Life Support _
+				respond "Extreme Heat",_
+			DI:Intolerance (Non-Tholians)=2,_
+			DI:No Legs (Aerial),_
+			DI:Weakness (Oxygen/Anaerobic)=3 _
+				With "Rarity: Very Common, *3, group(Weakness)",_
+			QU:Glow,_
+			DI:Fragile (Brittle) _
+			),_
+	creates(_
+			"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)",_
+			"AD:High TL, 5/10, initmods(Tholian Physiology & Medicine Only, -50%)" = 2 _
+			) 
+Orion Pirate (Prime Directive), displaycost(21), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD48),_
+	race(Orion Pirate),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:DX _
+			),_
+		adds( _
+			AD:Fearlessness,_
+			AD:Cultural Adaptability=2,_
+			DI:Greed,_
+			DI:Intolerance (Legal systems)=1,_
+			QU:Extravagance _
+			)
+Orion Slave Girl (Prime Directive), displaycost(13), cost(10), cat(Racial Templates),_
+	description(),_
+	page(PD48),_
+	race(Orion Pirate),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+1 to ST:DX _
+			),_
+		adds( _
+			AD:Appearance=3,_
+			AD:Fashion Sense,_
+			AD:Fearlessness,_
+			AD:Pitiable,_
+			DI:Jealousy,_
+			DI:Lecherousness _
+			)
+Hydran (Prime Directive), displaycost(10), cost(10), cat(Racial Templates),_
+	description(),_
+	page(PD49),_
+	race(Hydran),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+1 to ST:IQ _
+			),_
+		adds( _
+			AD:Ambidexterity,_
+			AD:Extra Arms _
+				with "Extra-Flexible, +50%, group(Extra Arms)" _
+				and "Long, +100%, group(Extra Arms)",_
+			AD:Injury Tolerance _
+				with "No Neck, +5, group(Injury Tolerance)",_
+			AD:Extra Legs (3 Legs),_
+			DI:Increased Life Support _
+				respond "Nitrogen-methane atmosphere at cryogenic temperatures",_
+			DI:Weakness (Oxygen/Anaerobic)=3 _
+				With "Rarity: Very Common, *3, group(Weakness)" _
+			),_
+	creates(_
+			"AD:Two modified arms Extra-Flexible and Long, 30, cat(Exotic, Physical, Exotic Physical)" _
+			)
+Lyran (Prime Directive), displaycost(43), cost(50), cat(Racial Templates),_
+	description(),_
+	page(PD:50),_
+	race(Lyran),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:IQ _
+			),_
+		adds( _
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Discriminatory Smell,_
+			AD:Night Vision=9,_
+			AD:Claws (Sharp Claws),_
+			AD:Teeth (Sharp Teeth),_
+			PO:Fur,_
+			DI:Callous,_
+			DI:Curious,_
+			DI:Gregarious,_
+			DI:Intolerance (Kzintis, Carnivons and other Lyran clans),_
+			QU:Chauvinistic _
+			),_
+	creates( _
+			"DI:Odious Racial Habit (Eat other sentient beings), -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem"), noresync(yes)"=3 _
+			)
+Ranel (Prime Directive), displaycost(10), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD:50),_
+	race(Ranel),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:DX _
+			),_
+		adds( _
+			AD:Brachiator,_
+			AD:Catfall,_
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Double-Jointed,_
+			LA:Language - Native _
+				respond "Ranel Sign Language",_
+			AD:Teeth (Sharp Teeth),_
+			PO:Fur,_
+			DI:Mute,_
+			DI:Social Stigma (subjugated) _
+			)
+Phelen (Prime Directive), displaycost(40), cost(50), cat(Racial Templates),_
+	description(),_
+	page(PD:50),_
+	race(Phelen),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+2 to ST:HT,_
+			+2 to ST:Water Move _
+			),_
+		adds( _
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Doesn't Breathe _
+				with "Oxygen Storage (x200), -20%, group(Doesn't Breathe)",_
+			AD:Pressure Support=2,_
+			AD:Speak Underwater _
+				with "Interface Crossing, +50%, group(Speak Underwater)",_
+			AD:Striker (Crushing; [Description]) _
+				respond "Tail",_
+			DI:Bad Grip=2,_
+			DI:Dependency (Immersion in water)=1 _
+				with "Frequency Needed: Daily, *3, group(Dependency)",_
+			DI:No Legs (Aquatic),_
+			DI:Short Arms (2 Arms),_
+			DI:Social Stigma (subjugated) _
+			)
+Veltressai (Prime Directive), displaycost(79), cost(30), cat(Racial Templates),_
+	description(),_
+	page(PD:52),_
+	race(Veltressai),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+2 to ST:IQ _
+			),_
+		adds( _
+			AD:Common Sense,_
+			AD:Fearlessness=2,_
+			AD:Intuition,_
+			AD:Cultural Adaptability=2 _
+			)
+Veltressai Quad (Prime Directive), displaycost(141), cost(30), cat(Racial Templates),_
+	description(),_
+	page(PD:52),_
+	race(Veltressai Quad),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+2 to ST:IQ _
+			),_
+		adds( _
+			AD:Common Sense,_
+			AD:Fearlessness=2,_
+			AD:Intuition,_
+			AD:Cultural Adaptability=2,_
+			AD:Ally=4 _
+				with "Group Size (6-10), *6, group(Frequency of Appearance)" _
+				and "Frequency: roll of 15 or less, *3, group(Frequency of Appearance)" _
+				and "Sympathy (+2), -50%, group(Frequency of Appearance)" _
+				and "Nuisance Effect: ability physically inconveniences you (Medications with psychological effects have same effect on other Quad members), -5%, group(_General)",_
+			AD:Mindlink (Only with other members of Quad)=2 _
+				with "Nuisance Effect: ability physically inconveniences you (Distracted during periodic telepathic contact with other members), -10%, group(_General)",_
+			AD:Telecommunication (Telesend) _
+				with "Broadcast, +50%, group(Telecommunication)" _
+				and "Accessibility (Only to other members of the Quad), -60%, group(_General)",_
+			DI:Addiction ([Psychological])=2 _
+				with "Effect: Totally addictive (-10 on withdrawal roll), -10, group(Addiction)" _
+				and "Legality: Legal, +5, group(Addiction)" _
+				respond "Mindlinking with other Quad members",_
+			DI:Chummy _
+			)
+Q'Naabian (Prime Directive), displaycost(2), cost(50), cat(Racial Templates),_
+	description(),_
+	page(PD:52),_
+	race(Q'Naabian),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:IQ,_
+			+1 to ST:HT _
+			),_
+		adds( _
+			AD:Extended Lifespan=1,_
+			AD:Higher Purpose (Information Gathering),_
+			AD:Intuition,_
+			AD:Racial Memory,_
+			DI:Curious,_
+			DI:Honesty,_
+			DI:Increased Life Support _
+				respond "Nitrogen-ammonia atmosphere at subzero temperatures",_
+			DI:Weakness (Oxygen/Anaerobic)=3 _
+				With "Rarity: Very Common, *3, group(Weakness)" _
+			)
+Pronhoulite (Prime Directive), displaycost(43), cost(50), cat(Racial Templates),_
+description(),_
+page(PD:52),_
+race(Pronhoulites),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to Basic Speed _
+			),_
+		adds( _
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			DI:Cold-Blooded=2 _
+			)
+Rovillian (Prime Directive), displaycost(81), cost(60), cat(Racial Templates),_
+	description(),_
+	page(PD:52),_
+	race(Rovillians),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+2 to ST:HT,_
+			+4 to ST:Water Move _
+			),_
+		adds( _
+			AD:Doesn't Breathe _
+				with "Oxygen Storage (x200), -20%, group(Doesn't Breathe)",_
+			AD:Pressure Support=2,_
+			AD:Telecommunication (Telesend) _
+				with "Telepathic, -10%, group(Telecommunication)",_
+			AD:Telekinesis=5 _
+				with "Psychokinetic, -10%, group(Telekinesis)",_
+			AD:Striker (Crushing; [Description]) _
+				respond "Tail",_
+			DI:Bad Grip=2,_
+			DI:Dependency (Immersion in water)=1 _
+				with "Frequency Needed: Daily, *3, group(Dependency)",_
+			DI:No Legs (Aquatic),_
+			DI:Mute,_
+			DI:Short Arms (2 Arms) _
+			)
+Korlivilar (Prime Directive), displaycost(116), cost(70), cat(Racial Templates),_
+	description(),_
+	page(PD:53),_
+	race(Korlivilar),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-2 to ST:ST,_
+			+4 to ST:DX,_
+			+2 to ST:Perception _
+			),_
+		adds( _
+			AD:Absolute Direction,_
+			AD:Claws (Sharp Claws),_
+			AD:Combat Reflexes,_
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Enhanced Move (Ground) = 2,_
+			AD:Infravision,_
+			AD:Very Fit,_
+			PO:Fur,_
+			DI:Fearfulness,_
+			DI:Light Sleeper,_
+			DI:Loner,_
+			DI:Sleepy=2 _
+			)
+Seltorian - Queen (Prime Directive), displaycost(-100), cost(-63), cat(Racial Templates),_
+	description(),_
+	page(PD:54),_
+	race(Seltorian (Queen)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-6 to ST:IQ,_
+			+5 to ST:HT,_
+			+5 to ST:Hit Points,_
+			+3 to ST:Size Modifier _
+			),_
+		adds( _
+			AD:Extended Lifespan,_
+			AD:Filter Lungs,_
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			DI:No Legs (Sessile) _
+			)
+Seltorian - Ram (Prime Directive), displaycost(-4), cost(20), cat(Racial Templates),_
+	description(),_
+	page(PD:54),_
+	race(Seltorian (Rams)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST _
+			),_
+		adds( _
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			DI:Incurious _
+				with "You resist on a roll of  6 or less (quite rarely), *2",_
+			DI:Obsession (Mate with Queen)=2 _
+				with "You resist on a roll of  6 or less (quite rarely), *2" _
+			)
+Seltorian - Sage (Prime Directive), displaycost(30), cost(40), cat(Racial Templates),_
+	description(),_
+	page(PD:54),_
+	race(Seltorian (Sages)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:IQ _
+			),_
+		adds( _
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Extended Lifespan=2,_
+			DI:Incurious _
+				with "You resist on a roll of  6 or less (quite rarely), *2",_
+			DI:Self-Destruct _
+			)
+Seltorian - Worker (Prime Directive), displaycost(21), cost(80), cat(Racial Templates),_
+	description(),_
+	page(PD:54),_
+	race(Seltorian (Workers)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:IQ,_
+			+2 to ST:HT _
+			),_
+		adds( _
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			DI:Incurious _
+				with "You resist on a roll of  6 or less (quite rarely), *2",_
+			DI:Self-Destruct,_
+			DI:Short Lifespan=4,_
+			DI:Workaholic _
+			)
+Seltorian - Expert (Prime Directive), displaycost(65), cost(80), cat(Racial Templates),_
+	description(),_
+	page(PD:54),_
+	race(Seltorian (Experts)),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+2 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:IQ,_
+			+2 to ST:HT _
+			),_
+		adds( _
+			AD:Damage Resistance=2 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Extended Lifespan=2,_
+			DI:Incurious _
+				with "You resist on a roll of  6 or less (quite rarely), *2",_
+			DI:Self-Destruct,_
+			DI:Workaholic _
+			)
+Jindarian (Prime Directive), displaycost(141), cost(60), cat(Racial Templates),_
+	description(),_
+	page(PD:55),_
+	race(Jindarians),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+3 to ST:DX _
+			),_
+		adds( _
+			AD:Ambidexterity,_
+			AD:Doesn't Breathe _
+				with "Oxygen Storage (x200), -20%, group(Doesn't Breathe)",_
+			AD:Double-Jointed,_
+			AD:Extended Lifespan,_
+			AD:Extra Arms=2 _
+				with "Foot Manipulators, -30%, group(Extra Arms)" _
+				and "No Physical Attack, -50%, group(Extra Arms)",_
+			AD:G-Experience=10,_
+			AD:Resistant (to adverse effects of Micro-Gravity),_
+			AD:Peripheral Vision,_
+			AD:Radiation Tolerance=4,_
+			AD:Sealed,_
+			AD:3D Spatial Sense,_
+			AD:Vacuum Support,_
+			DI:Bad Smell,_
+			DI:Dependency=2 _
+				with "Frequency Needed: Constantly, *5, group(Dependency)" _
+				and "Mitigator: Gravity Suit, -60%, group(_General)" _
+				respond "Micro-gravity",_
+			DI:Miserliness,_
+			QU:Acceleration Weakness _
+			)
+Paravian (Prime Directive), displaycost(27), cost(40), cat(Racial Templates),_
+	description(),_
+	page(PD:56),_
+	race(Paravians),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			-1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:HT,_
+			+1 to Basic Speed _
+			),_
+		adds( _
+			AD:Flight _
+				with "Gliding, -50%, group(Flight)" _
+				and "Winged, -25%, group(Flight)",_
+			DI:Intolerance (Gorn),_
+			DI:Vulnerability (Crushing)=3 _
+				with "Wounding Multiplier ×2, *1, group(Vulnerability)",_
+			SK:Flight=HT _
+			)
+Carnivon (Prime Directive), displaycost(49), cost(40), cat(Racial Templates),_
+	description(),_
+	page(PD:56),_
+	race(Carnivon),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:HT _
+			),_
+		adds( _
+			AD:Combat Reflexes,_
+			AD:Damage Resistance=1 _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Discriminatory Smell,_
+			AD:Night Vision=9,_
+			AD:Teeth (Sharp Teeth),_
+			PO:Fur,_
+			DI:Gregarious,_
+			DI:Intolerance (Kzintis, Lyran and other Hordes),_
+			DI:Short Lifespan=2,_
+			QU:Chauvinistic (other packs within your Horde) _
+			)
+
+*******************************************************************************************************************
+<Character Templates, Character Templates - Star Fleet, Character Templates - Star Fleet - Academy>
+*******************************************************************************************************************
+Star Fleet Academy (Prime Directive),_
+	displaycost(37),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(Graduate of Star Fleet Academy),_
+	page(PD 57),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	adds(_
+				"AD:Fit",_
+				"AD:Resistant(Disease)"=2 _
+					with "Degree: +3 to HT rolls to resist, *1/3,round(Down),shortname(+3),group(Resistant),page(B81),level(1)",_
+				"AD:Social Regard (Respected)"=3,_
+				"AD:Seniority"=0,_
+				"DI:Sense of Duty (Federation)"=3,_
+				"SK:Administration"=1pts,_
+				"SK:Astronomy"=1pts,_
+				"SK:Beam Weapons (Pistol)"=1pts,_
+				"SK:Computer Operation"=1pts,_
+				"SK:Computer Programming"=1pts,_
+				"SK:Diplomacy"=1pts,_
+				"SK:Electronics Operation (Transporter)"=2pts,_
+				"SK:Electronics Operation (Tricorder)"=2pts,_
+				"SK:Engineer (Electronics)"=1pts,_
+				"SK:Expert Skill (Xenology)"=1pts,_
+				"SK:Free Fall"=1pts,_
+				"SK:Judo"=1pts,_
+				"SK:Leadership"=1pts,_
+				"SK:Mathematics (Applied)"=1pts,_
+				"SK:Navigation (Space)"=1pts,_
+				"SK:Physics"=1pts,_
+				"SK:First Aid"=1pts,_
+				"SK:Research"=1pts,_
+				"SK:Savoir-Faire (Military)"=1pts,_
+				"SK:Shiphandling (Starship (Warp Powered))"=1pts,_
+				"SK:Spacer"=1pts,_
+				"SK:Strategy (Space)"=1pts,_
+				"SK:Tactics"=1pts,_
+				"SK:Vacc Suit"=1pts_
+	),_
+	creates(_
+				"AD:Rank (Military), 5/10,gives(=+@if(@hasmod(Rank replaces Status) THEN %level ELSE @indexedvalue(%level,0,0,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7)) to ST:Status),mods(Rank),page(B29),upto(8), cat(Mundane, Social, Influence, Mundane Social)"=3,_
+				"DI:Code of Honor (Star Fleet), -10,page(B127), cat(Mundane, Mental, Mundane Mental)",_
+				"DI:Duty (Star Fleet), -2/-5/-10/-15,mods(Duty),page(B134),upto(4),levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), cat(Mundane, Social, Mundane Social)"=4,_
+				"SK:Expert Skill (Operations (Space)), IQ/H,page(B193), cat(_General, Knowledge, Scholarly)"=2pts,_
+				"SK:History (Recent Federation), IQ/H,default(IQ - 6),page(B200), cat(_General, Social Sciences/Humanities)"=1pts,_
+				"SK:Law (Federation Military), IQ/H,default(IQ - 6),page(B204), cat(_General, Business, Police, Social Sciences/Humanities)"=1pts_
+	),_
+	select3(_
+		text("Select a survival skill."),_
+		pointswanted(upto 1),_
+		itemswanted(1),_
+		list(_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Bank) #codes(upto 1pts),_
+			SK:Survival (Deep Ocean Vent) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Fresh-Water Lake) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Open Ocean) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Radioactive Wasteland) #codes(upto 1pts),_
+			SK:Survival (Reef) #codes(upto 1pts),_
+			SK:Survival (River/Stream) #codes(upto 1pts),_
+			SK:Survival (Salt-Water Sea) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Tropical Lagoon) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts) _
+		)_
+	),_
+	select4(_
+		text("Select your Engineer skill."),_
+		pointswanted(upto 1),_
+		itemswanted(1),_
+		list(_
+			SK:Engineer (Auxiliary Systems) #codes(upto 1pts),_
+			SK:Engineer (Fighters) #codes(upto 1pts),_
+			SK:Engineer (Hull & Superstructure) #codes(upto 1pts),_
+			SK:Engineer (Impulse Drive) #codes(upto1pts, downto 1pts),_
+			SK:Engineer (Shipboard Phasers) #codes(upto 1pts),_
+			SK:Engineer (Reactors & Power) #codes(upto 1pts),_
+			SK:Engineer (Shuttlecraft) #codes(upto 1pts),_
+			SK:Engineer (Electrical) #codes(upto 1pts),_
+			SK:Engineer (Materials) #codes(upto 1pts),_
+			SK:Engineer (Combat) #codes(upto 1pts),_
+			SK:Engineer (Artillery) #codes(upto 1pts),_
+			SK:Engineer (Mining) #codes(upto 1pts),_
+			SK:Engineer (Warp Drive) #codes(upto 1pts) _
+		)_
+	),_
+	select5(_
+		text("Select your Mechanic skill."),_
+		pointswanted(upto 1),_
+		itemswanted(1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems) #codes(upto 1pts),_
+			SK:Mechanic (Fighters) #codes(upto 1pts),_
+			SK:Mechanic (Hull & Superstructure) #codes(upto 1pts),_
+			SK:Mechanic (Impulse Drive) #codes(upto 1pts),_
+			SK:Mechanic (Reactors & Power) #codes(upto 1pts),_
+			SK:Mechanic (Shuttlecraft) #codes(upto 1pts),_
+			SK:Mechanic (Warp Drive) #codes(upto 1pts) _
+		)_
+	),_
+	select6(_
+		text("Select your Piloting skill."),_
+		pointswanted(upto 1),_
+		itemswanted(1),_
+		list(_
+			SK:Piloting (Starship) #codes(upto 1pts),_
+			SK:Piloting (Shuttlecraft) #codes(upto 1pts) _
+		)_
+	),_
+	needs(_
+			ST:ST>8,_
+			ST:DX>8,_
+			ST:IQ>11,_
+			ST:HT>8_
+	)
+
+Federation Marine Academy (Prime Directive),_
+	displaycost(63),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(Graduate of the Federation Marine Academy),_
+	page(PD 57),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	adds(_
+				"AD:Fearlessness"=3,_
+				"AD:Resistant (Disease)"=2 _
+				with "Degree: +3 to HT rolls to resist, *1/3,round(Down),shortname(+3),group(Resistant),page(B81),level(1)",_
+				"AD:Social Regard (Respected)"=3,_
+				"AD:Very Fit",_
+				"AD:Seniority"=0,_
+				"DI:Sense of Duty (Federation)"=3,_
+				"SK:Administration"=1pts,_
+				"SK:Armoury (Small Arms)"=1pts,_
+				"SK:Beam Weapons (Pistol)"=4pts,_
+				"SK:Beam Weapons (Rifle)"=4pts,_
+				"SK:Camouflage"=1pts,_
+				"SK:Climbing"=2pts,_
+				"SK:Computer Operation"=1pts,_
+				"SK:Electronics Operation (Communications)"=2pts,_
+				"SK:Free Fall"=1pts,_
+				"SK:Gunner (Beams)"=1pts,_
+				"SK:Karate"=1pts,_
+				"SK:Knife"=1pts,_
+				"SK:Leadership"=2pts,_
+				"SK:Parachuting"=1pts,_
+				"SK:Running"=1pts,_
+				"SK:Savoir-Faire (Military)"=1pts,_
+				"SK:Spacer"=1pts,_
+				"SK:Stealth"=1pts,_
+				"SK:Strategy (Land)"=1pts,_
+				"SK:Swimming"=1pts,_
+				"SK:Tactics"=2pts,_
+				"SK:First Aid"=1pts,_
+				"SK:Throwing"=1pts,_
+				"SK:Tonfa"=1pts,_
+				"SK:Vacc Suit"=1pts_
+	),_
+	creates(_
+				"AD:Rank (Military), 5/10,gives(=+@if(@hasmod(Rank replaces Status) THEN %level ELSE @indexedvalue(%level,0,0,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7)) to ST:Status),mods(Rank),page(B29),upto(8), cat(Mundane, Social, Influence, Mundane Social)"=3,_
+				"DI:Code of Honor (Star Fleet Marines), -10,page(B127), cat(Mundane, Mental, Mundane Mental)",_
+				"DI:Duty (Star Fleet Marines), -2/-5/-10/-15,mods(Duty),page(B134),upto(4),levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), cat(Mundane, Social, Mundane Social)"=4,_
+				"SK:Expert Skill (Operations (Land)), IQ/H,page(B193), cat(_General, Knowledge, Scholarly)"=2pts,_
+				"SK:History (Recent Federation), IQ/H,default(IQ - 6),page(B200), cat(_General, Social Sciences/Humanities)"=1pts,_
+				"SK:Law (Federation Military), IQ/H,default(IQ - 6),page(B204), cat(_General, Business, Police, Social Sciences/Humanities)"=1pts_
+	),_
+	select3(_
+		text("Select 2 survival skills."),_
+		pointswanted(upto 2),_
+		itemswanted(2),_
+		list(_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Bank) #codes(upto 1pts),_
+			SK:Survival (Deep Ocean Vent) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Fresh-Water Lake) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Open Ocean) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Radioactive Wasteland) #codes(upto 1pts),_
+			SK:Survival (Reef) #codes(upto 1pts),_
+			SK:Survival (River/Stream) #codes(upto 1pts),_
+			SK:Survival (Salt-Water Sea) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Tropical Lagoon) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts) _
+		)_
+	),_
+	needs(_
+			ST:ST>9,_
+			ST:DX>9,_
+			ST:IQ>11,_
+			ST:HT>11_
+	)
+
+Federation Marine Boot Camp (Prime Directive),_
+	displaycost(39),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	page(PD 57),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	adds(_
+				"AD:Fearlessness"=2,_
+				"AD:Military Rank"=0,_
+				"AD:Resistant (Disease)"=2 _
+				with "Degree: +3 to HT rolls to resist, *1/3,round(Down),shortname(+3),group(Resistant),page(B81),level(1)",_
+				"AD:Social Regard (Respected)"=3,_
+				"AD:Very Fit",_
+				"AD:Seniority"=0,_
+				"DI:Sense of Duty (Federation)"=3,_
+				"SK:Armoury (Small Arms)"=1pts,_
+				"SK:Beam Weapons (Pistol)"=4pts,_
+				"SK:Beam Weapons (Rifle)"=4pts,_
+				"SK:Camouflage"=1pts,_
+				"SK:Climbing"=2pts,_
+				"SK:Computer Operation"=1pts,_
+				"SK:Electronics Operation (Communications)"=2pts,_
+				"SK:Free Fall"=1pts,_
+				"SK:Gunner (Beams)"=1pts,_
+				"SK:Karate"=1pts,_
+				"SK:Knife"=1pts,_
+				"SK:Leadership"=1pts,_
+				"SK:Parachuting"=1pts,_
+				"SK:Running"=1pts,_
+				"SK:Savoir-Faire (Military)"=1pts,_
+				"SK:Spacer"=1pts,_
+				"SK:Stealth"=1pts,_
+				"SK:First Aid"=1pts,_
+				"SK:Swimming"=1pts,_
+				"SK:Tactics"=1pts,_
+				"SK:Throwing"=1pts,_
+				"SK:Tonfa"=1pts,_
+				"SK:Vacc Suit"=1pts_
+	),_
+	creates(_
+				"DI:Code of Honor (Star Fleet Marines), -10,page(B127), cat(Mundane, Mental, Mundane Mental)",_
+				"DI:Duty (Star Fleet Marines), -2/-5/-10/-15,mods(Duty),page(B134),upto(4),levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), cat(Mundane, Social, Mundane Social)"=4,_
+				"SK:History (Recent Federation), IQ/H,default(IQ - 6),page(B200), cat(_General, Social Sciences/Humanities)"=1pts,_
+				"SK:Law (Federation Military), IQ/H,default(IQ - 6),page(B204), cat(_General, Business, Police, Social Sciences/Humanities)"=1pts_
+	),_
+	select3(_
+		text("Select 2 survival skills."),_
+		pointswanted(upto 2),_
+		itemswanted(2),_
+		list(_
+			SK:Survival (Arctic) #codes(upto 1pts),_
+			SK:Survival (Bank) #codes(upto 1pts),_
+			SK:Survival (Deep Ocean Vent) #codes(upto 1pts),_
+			SK:Survival (Desert) #codes(upto 1pts),_
+			SK:Survival (Fresh-Water Lake) #codes(upto 1pts),_
+			SK:Survival (Island/Beach) #codes(upto 1pts),_
+			SK:Survival (Jungle) #codes(upto 1pts),_
+			SK:Survival (Mountain) #codes(upto 1pts),_
+			SK:Survival (Open Ocean) #codes(upto 1pts),_
+			SK:Survival (Plains) #codes(upto 1pts),_
+			SK:Survival (Radioactive Wasteland) #codes(upto 1pts),_
+			SK:Survival (Reef) #codes(upto 1pts),_
+			SK:Survival (River/Stream) #codes(upto 1pts),_
+			SK:Survival (Salt-Water Sea) #codes(upto 1pts),_
+			SK:Survival (Swampland) #codes(upto 1pts),_
+			SK:Survival (Tropical Lagoon) #codes(upto 1pts),_
+			SK:Survival (Woodlands) #codes(upto 1pts) _
+		)_
+	),_
+	needs(_
+			ST:ST>9,_
+			ST:DX>9,_
+			ST:IQ>11,_
+			ST:HT>11_
+	)
+
+Merchant Marine Academy (Prime Directive),_
+	displaycost(35),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	page(PD 58),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	adds(_
+				"AD:Merchant Rank"=3,_
+				"AD:Resistant (Disease)"=2 _
+				with "Degree: +3 to HT rolls to resist, *1/3,round(Down),shortname(+3),group(Resistant),page(B81),level(1)",_
+				"AD:Seniority"=0,_
+				"DI:Sense of Duty (Merchant Marine Crew)"=2,_
+				"SK:Accounting"=1pts,_
+				"SK:Administration"=2pts,_
+				"SK:Astronomy"=1pts,_
+				"SK:Beam Weapons (Pistol)"=1pts,_
+				"SK:Brawling"=1pts,_
+				"SK:Computer Operation"=1pts,_
+				"SK:Diplomacy"=4pts,_
+				"SK:Economics"=1pts,_
+				"SK:Electronics Operation (Tricorder)"=2pts,_
+				"SK:Expert Skill (Xenology)"=1pts,_
+				"SK:Fast-Talk"=1pts,_
+				"SK:Free Fall"=1pts,_
+				"SK:Freight Handling"=1pts,_
+				"SK:Leadership"=1pts,_
+				"SK:Mathematics (Applied)"=1pts,_
+				"SK:Merchant"=2pts,_
+				"SK:Navigation (Space)"=2pts,_
+				"SK:Shiphandling (Starship (Warp Powered))"=2pts,_
+				"SK:Spacer"=1pts,_
+				"SK:First Aid"=1pts,_
+				"SK:Vacc Suit"=1pts_
+	),_
+	select3(_
+		text("Select your Mechanic skill."),_
+		pointswanted(upto 1),_
+		itemswanted(1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems) #codes(upto 1pts),_
+			SK:Mechanic (Fighters) #codes(upto 1pts),_
+			SK:Mechanic (Hull & Superstructure) #codes(upto 1pts),_
+			SK:Mechanic (Impulse Drive) #codes(upto 1pts),_
+			SK:Mechanic (Reactors & Power) #codes(upto 1pts),_
+			SK:Mechanic (Shuttlecraft) #codes(upto 1pts),_
+			SK:Mechanic (Warp Drive) #codes(upto 1pts) _
+		)_
+	),_
+	creates(_
+				"DI:Code of Honor (Merchant Marine), -5,page(B127), cat(Mundane, Mental, Mundane Mental)",_
+				"DI:Duty (Merchant Marine Crew), -2/-5/-10/-15,mods(Duty),page(B134),upto(4),levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), cat(Mundane, Social, Mundane Social)"=3,_
+				"SK:Law (Federation Trade), IQ/H,default(IQ - 6),page(B204), cat(_General, Business, Police, Social Sciences/Humanities)"=4pts,_
+				"SK:Savoir-Faire (Merchant Marine), IQ/E,default(IQ - 4),page(B218), cat(_General, Knowledge, Social)"=1pts_
+	),_
+	select4(_
+		text("Select Electronics Operation skils."),_
+		pointswanted(upto 2),_
+		itemswanted(1),_
+		list(_
+			SK:Electronics Operation (Communications) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Electronic Warfare) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Medical) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Scientific) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Security) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Tractor Beam) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Transporter) #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	needs(_
+			ST:ST>7,_
+			ST:DX>7,_
+			ST:IQ>9,_
+			ST:HT>7_
+	)
+
+Merchant Marine Basic Training (Prime Directive),_
+	displaycost(3),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	adds(_
+				"AD:Merchant Rank"=0,_
+				"AD:Resistant (Disease)"=2 _
+				with "Degree: +3 to HT rolls to resist, *1/3,round(Down),shortname(+3),group(Resistant),page(B81),level(1)",_
+				"AD:Seniority"=0,_
+				"DI:Sense of Duty (Merchant Marine Crew)"=2,_
+				"SK:Administration"=1pts,_
+				"SK:Astronomy"=1pts,_
+				"SK:Beam Weapons (Pistol)"=1pts,_
+				"SK:Brawling"=1pts,_
+				"SK:Computer Operation"=1pts,_
+				"SK:Diplomacy"=1pts,_
+				"SK:Expert Skill (Xenology)"=1pts,_
+				"SK:Fast-Talk"=1pts,_
+				"SK:Free Fall"=1pts,_
+				"SK:Freight Handling"=1pts,_
+				"SK:Mathematics (Applied)"=1pts,_
+				"SK:Merchant"=1pts,_
+				"SK:First Aid"=1pts,_
+				"SK:Spacer"=1pts,_
+				"SK:Vacc Suit"=1pts_
+	),_
+	creates(_
+				"DI:Code of Honor (Merchant Marine), -5,page(B127), cat(Mundane, Mental, Mundane Mental)",_
+				"DI:Duty (Merchant Marine Crew), -2/-5/-10/-15,mods(Duty),page(B134),upto(4),levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), cat(Mundane, Social, Mundane Social)"=3,_
+				"SK:Law (Federation Trade), IQ/H,default(IQ - 6),page(B204), cat(_General, Business, Police, Social Sciences/Humanities)"=1pts,_
+				"SK:Savoir-Faire (Merchant Marine), IQ/E,default(IQ - 4),page(B218), cat(_General, Knowledge, Social)"=1pts_
+	),_
+	select3(_
+		text("Select Electronics Operation skils."),_
+		pointswanted(upto 2),_
+		itemswanted(1),_
+		list(_
+			SK:Electronics Operation (Communications) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Tricorder) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Electronic Warfare) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Medical) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Scientific) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Security) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Tractor Beam) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Transporter) #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select4(_
+		text("Select Mechanic skill."),_
+		pointswanted(upto 1),_
+		itemswanted(1),_
+		list(_
+			SK:Mechanic(Auxiliary Systems) #codes(upto 1pts),_
+			SK:Mechanic(Fighters) #codes(upto 1pts),_
+			SK:Mechanic(Hull & Superstructure) #codes(upto 1pts),_
+			SK:Mechanic(Impulse Drive) #codes(upto 1pts),_
+			SK:Mechanic(Reactors & Power) #codes(upto 1pts),_
+			SK:Mechanic(Shuttlecraft) #codes(upto 1pts),_
+			SK:Mechanic(Warp Drive) #codes(upto 1pts) _
+		)_
+	),_
+	needs(_
+			ST:ST>7,_
+			ST:DX>7,_
+			ST:IQ>9,_
+			ST:HT>7_
+	)
+
+*******************************************************************************************************************
+<Character Templates, Character Templates - Star Fleet, Character Templates - Star Fleet - Profesional Ceritification>
+*******************************************************************************************************************
+Comunications Officer (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	page(PD 58),_
+	adds(_
+				"SK:Cryptography"=12,_
+				"SK:Electronics Operation (Communications)"=15,_
+				"SK:Electronics Repair (Communications)"=15,_
+				"SK:Mathematics (Cryptology)"=12_
+	)
+
+Damage Control Technician (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	adds(_
+				"SK:Spacer"=16pts_
+	),_
+	select1(_
+		text("Select Mechanic skill must be level 15."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Mechanic(Auxiliary Systems)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(Fighters)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(Hull & Superstructure)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(Impulse Drive)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(Reactors & Power)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(Shuttlecraft)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(PF's & Interceptors)#codes(upto 40pts, downto 16pts),_
+			SK:Mechanic(Warp Drive)#codes(upto 40pts, downto 16pts) _
+		)_
+	),_
+	select2(_
+		text("Select main Electronics Repair skill must be level 15."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Electronics Repair(Cloaking Device)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Communications)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Computers)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Disruptors)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Drones/Missiles)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Electronic Warfare)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(ESG)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Fusion Beam)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Hellbore)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Mauler)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Media)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Medical)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Personal Phasers)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Photon Torpedoes)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Scientific)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Security)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Sensors)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Sheilds)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Stasis Field Device)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Surveillance)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Tractor Beam)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Transporter)#codes(upto 40pts, downto 16pts),_
+			SK:Electronics Repair(Tricorder)#codes(upto 40pts, downto 16pts) _
+		)_
+	),_
+	select3(_
+		text("Select secondary Electronics Repair skill must be level 12."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Electronics Repair(Cloaking Device)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Communications)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Computers)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Disruptors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Drones/Missiles)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Electronic Warfare)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(ESG)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Fusion Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Hellbore)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Mauler)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Media)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Medical)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Personal Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Photon Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Scientific)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Security)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sensors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sheilds)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Stasis Field Device)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Surveillance)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Tractor Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Transporter)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Tricorder)#codes(upto 40pts, downto 1pts) _
+		)_
+	),_
+	select4(_
+		text("Select Armory Repair skill must be level 12."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Armoury(Body Armor)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Disruptors)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Drones/Missles)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(ESG)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Fusion Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Heavy Weapons)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Hellbore)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Mauler)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Missile Weapons)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Personal Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Photon Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Plasma Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Shipboard Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Small Arms)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Stasis Field Device)#codes(upto 40pts, downto 1pts),_
+			SK:Armoury(Vehicular Armor)#codes(upto 40pts, downto 1pts)  _
+		)_
+	)
+
+Helm/Navigation (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	adds(_
+				"SK:Astronomy"=12,_
+				"SK:Electronics Operation (Sensors)"=15,_
+				"SK:Electronics Repair (Sensors)"=15,_
+				"SK:Mathematics (Applied)"=1pts,_
+				"SK:Navigation (Space)"=15,_
+				"SK:Piloting (Aerospace)"=15_
+	)
+
+Medical Assistant (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	adds(_
+				"SK:Electronics Operation (Medical)"=12,_
+				"SK:First Aid"=12,_
+				"SK:Diagnosis"=12,_
+				"SK:Physician"=12,_
+				"SK:Physiology"=12,_
+				"SK:Electronics Repair (Medical)"=12_
+	)
+
+Medical Doctor (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	adds(_
+				"SK:Electronics Operation (Medical)"=12,_
+				"SK:Electronics Repair (Medical)"=12,_
+				"SK:First Aid"=1pts,_
+				"SK:Physiology"=15,_
+				"SK:Physiology"=1pts,_
+				"SK:Surgery"=8pts,_
+				"SK:Physician"=18,_
+				"SK:Diagnosis"=15_
+	)
+
+Operations Officer (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	page(PD 58),_
+	adds(_
+			"SK:Computer Operation"=18_
+		),_
+	select1(_
+		text("Select Primary Electronics Operation skill final level must be 15."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Electronics Operation (Communications) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Cloaking Device) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Force Sheilds) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Tricorder) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Electronic Warfare) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Medical) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Scientific) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Security) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Tractor Beam) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Transporter) #codes(upto 40pts, downto 2pts) _
+		)_
+	),_
+	select2(_
+		text("Select Secondary Electronics Operation skills final level must be 12 for both."),_
+		pointswanted(upto 80),_
+		itemswanted(2),_
+		list(_
+			SK:Electronics Operation (Communications) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Cloaking Device) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Force Sheilds) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Tricorder) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Electronic Warfare) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Medical) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Scientific) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Security) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Tractor Beam) #codes(upto 40pts, downto 2pts),_
+			SK:Electronics Operation (Transporter) #codes(upto 40pts, downto 2pts) _
+		)_
+	),_
+	select3(_
+		text("Select Primary Electronics Repair skill must be level 15."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Electronics Repair(Cloaking Device)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Communications)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Computers)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Disruptors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Drones/Missiles)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Electronic Warfare)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(ESG)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Fusion Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Hellbore)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Mauler)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Media)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Medical)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Personal Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Photon Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Scientific)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Security)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sensors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sheilds)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Stasis Field Device)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Surveillance)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Tractor Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Transporter)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Tricorder)#codes(upto 40pts, downto 1pts) _
+		)_
+	),_
+	select4(_
+		text("Select secondary Electronics Repair skills must be level 12."),_
+		pointswanted(upto 80),_
+		itemswanted(2),_
+		list(_
+			SK:Electronics Repair(Cloaking Device)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Communications)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Computers)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Disruptors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Drones/Missiles)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Electronic Warfare)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(ESG)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Fusion Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Hellbore)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Mauler)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Media)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Medical)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Personal Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Photon Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Scientific)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Security)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sensors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sheilds)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Stasis Field Device)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Surveillance)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Tractor Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Transporter)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Tricorder)#codes(upto 40pts, downto 1pts) _
+		)_
+	)
+
+Propulsion Engineer (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	page(PD 58),_
+	adds(_
+				"SK:Electrician"=15,_
+				"SK:Engineer (Electrical)"=12,_
+				"SK:Mathematics (Applied)"=1pts,_
+				"SK:Mechanic (Impulse Drive)"=15,_
+				"SK:Mechanic (Warp Drive)"=15_
+	)
+
+Science Officer (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(),_
+	page(PD 58),_
+	adds(_
+				"SK:Computer Operation"=15,_
+				"SK:Electronics Operation (Scientific)"=18,_
+				"SK:Electronics Repair (Scientific)"=12_
+	),_
+	select1(_
+		text("Select Primary Science skill must be level 15."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Astronomy#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Ice Dwarfs)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Chemistry#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill (Epidemiology)#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill(Hydrology)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Applied)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Computer Science)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Cryptology)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Pure)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Statistics)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Surveying)#codes(upto 40pts, downto 1pts),_
+			SK:Metallurgy#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Ice Dwarfs)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Naturalist#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Micropaleontology)#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Paleoanthropology)#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Paleobotany)#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Paleozoology)#codes(upto 40pts, downto 1pts),_
+			SK:Physics#codes(upto 40pts, downto 1pts),_
+			SK:Physiology#codes(upto 40pts, downto 1pts),_
+			SK:Anthropology#codes(upto 40pts, downto 1pts),_
+			SK:Archaeology#codes(upto 40pts, downto 1pts),_
+			SK:Cartography#codes(upto 40pts, downto 1pts),_
+			SK:Criminology#codes(upto 40pts, downto 1pts),_
+			SK:Economics#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill(Political Science)#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill(Xenology)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Geograhpy(Ice Dwarfs)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Political)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:History#codes(upto 40pts, downto 1pts),_
+			SK:Linguistics#codes(upto 40pts, downto 1pts),_
+			SK:Linguistics(Comparative)#codes(upto 40pts, downto 1pts),_
+			SK:Literature#codes(upto 40pts, downto 1pts),_
+			SK:Philosophy#codes(upto 40pts, downto 1pts),_
+			SK:Psychology#codes(upto 40pts, downto 1pts),_
+			SK:Sociology#codes(upto 40pts, downto 1pts),_
+			SK:Theology#codes(upto 40pts, downto 1pts) _
+		)_
+	),_
+	select2(_
+		text("Select two Secondary or related Science skills must be level 12."),_
+		pointswanted(upto 40),_
+		itemswanted(2),_
+		list(_
+			SK:Astronomy#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Ice Dwarfs)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Biology(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Chemistry#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill (Epidemiology)#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill(Hydrology)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Geology(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Applied)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Computer Science)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Cryptology)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Pure)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Statistics)#codes(upto 40pts, downto 1pts),_
+			SK:Mathematics(Surveying)#codes(upto 40pts, downto 1pts),_
+			SK:Metallurgy#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Ice Dwarfs)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Meteorology(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Naturalist#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Micropaleontology)#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Paleoanthropology)#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Paleobotany)#codes(upto 40pts, downto 1pts),_
+			SK:Paleontology(Paleozoology)#codes(upto 40pts, downto 1pts),_
+			SK:Physics#codes(upto 40pts, downto 1pts),_
+			SK:Physiology#codes(upto 40pts, downto 1pts),_
+			SK:Anthropology#codes(upto 40pts, downto 1pts),_
+			SK:Archaeology#codes(upto 40pts, downto 1pts),_
+			SK:Cartography#codes(upto 40pts, downto 1pts),_
+			SK:Criminology#codes(upto 40pts, downto 1pts),_
+			SK:Economics#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill(Political Science)#codes(upto 40pts, downto 1pts),_
+			SK:Expert Skill(Xenology)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Earthlike)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Gas Giants)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Hostile Terrestrial)#codes(upto 40pts, downto 1pts),_
+			SK:Geograhpy(Ice Dwarfs)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Ice Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Political)#codes(upto 40pts, downto 1pts),_
+			SK:Geography(Rock Worlds)#codes(upto 40pts, downto 1pts),_
+			SK:History#codes(upto 40pts, downto 1pts),_
+			SK:Linguistics#codes(upto 40pts, downto 1pts),_
+			SK:Linguistics(Comparative)#codes(upto 40pts, downto 1pts),_
+			SK:Literature#codes(upto 40pts, downto 1pts),_
+			SK:Philosophy#codes(upto 40pts, downto 1pts),_
+			SK:Psychology#codes(upto 40pts, downto 1pts),_
+			SK:Sociology#codes(upto 40pts, downto 1pts),_
+			SK:Theology#codes(upto 40pts, downto 1pts) _
+		)_
+	)
+
+Special Forces Training (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(Elete Training),_
+	page(PD 58),_
+	adds(_
+				"SK:Armoury (Small Arms)"=15,_
+				"SK:Beam Weapons (Pistol)"=15,_
+				"SK:Beam Weapons (Rifle)"=15,_
+				"SK:Camouflage"=15,_
+				"SK:Climbing"=15,_
+				"SK:Electronics Operation (Communications)"=12,_
+				"SK:Engineer (Combat)"=12,_
+				"SK:Explosives (Demolition)"=12,_
+				"SK:Forward Observer"=12,_
+				"SK:Jumping"=12,_
+				"SK:Karate"=15,_
+				"SK:Knife"=15,_
+				"SK:Mathematics (Applied)"=1pts,_
+				"SK:Navigation (Land)"=12,_
+				"SK:Stealth"=15,_
+				"SK:Strategy (Land)"=12,_
+				"SK:Swimming"=12,_
+				"SK:Tactics"=12,_
+				"SK:Throwing"=12,_
+				"SK:Traps"=12_
+	),_
+	creates(_
+				"SK:Expert Skill (Operations), IQ/H,page(B193), cat(_General, Knowledge, Scholarly)"=12,_
+				"SK:First Aid, IQ/E,tl(12),default(IQ - 4, SK:Esoteric Medicine, SK:Physician, SK:Veterinary - 4),page(B195), cat(_General, Everyman, Medical)"=15_
+	)
+
+Transporter Operator (Prime Directive),_
+	displaycost(Varries),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(minimum training for a profesional transporter operator),_
+	page(PD 58),_
+	adds(_
+				"SK:Electronics Operation (Sensors)"=4pts,_
+				"SK:Electronics Operation (Transporter)"=18,_
+				"SK:Electronics Repair (Sensors)"==0pts,_
+				"SK:Electronics Repair (Transporter)"=16_
+	)
+
+Weapons Officer - Tactical (Prime Directive),_
+	displaycost(varies),_
+	cost(0),_
+	cat(Character Templates, Character Templates - Star Fleet),_
+	description(Weapons Control Certification),_
+	page(PD 58),_
+	adds(_
+				"SK:Armoury (Heavy Weapons)"=12,_
+				"SK:Armoury (Small Arms)"=12,_
+				"SK:Electronics Operation (Electronic Warfare)"=12,_
+				"SK:Electronics Operation (Force Shields)"=12,_
+				"SK:Electronics Operation (Sensors)"=12,_
+				"SK:Tactics"=12pts_
+	),_
+	select1(_
+		text("Select two Electronics Repair skill must be level 12."),_
+		pointswanted(upto 40),_
+		itemswanted(2),_
+		list(_
+			SK:Electronics Repair(Electronic Warfare)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Sensors)#codes(upto 40pts, downto 1pts),_
+			SK:Electronics Repair(Shields)#codes(upto 40pts, downto 1pts) _
+		)_
+	),_
+	select2(_
+		text("Select Primary Weapons skill for your Empire, must be level 15."),_
+		pointswanted(upto 40),_
+		itemswanted(1),_
+		list(_
+			SK:Gunner(Disruptors)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Drones/Missiles)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Fusion Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Hellbore)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Photon Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Plasma Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Shipboard Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Stasis Field Device)#codes(upto 40pts, downto 1pts) _
+		)_
+	),_
+	select3(_
+		text("Select two secondary Weapons skills for your Empire, must be level 12."),_
+		pointswanted(upto 40),_
+		itemswanted(2),_
+		list(_
+			SK:Gunner(Disruptors)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Drones/Missiles)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Fusion Beam)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Hellbore)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Photon Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Plasma Torpedoes)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Shipboard Phasers)#codes(upto 40pts, downto 1pts),_
+			SK:Gunner(Stasis Field Device)#codes(upto 40pts, downto 1pts) _
+		)_
+	)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Comunications Officer (Prime Directive)" with {replacetags(in "TE:Comunications Officer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Damage Control Technician (Prime Directive)" with {replacetags(in "TE:Damage Control Technician (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Federation Marine Academy (Prime Directive)" with {replacetags(in "TE:Federation Marine Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Federation Marine Boot Camp (Prime Directive)" with {replacetags(in "TE:Federation Marine Boot Camp (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Helm/Navigation (Prime Directive)" with {replacetags(in "TE:Helm/Navigation (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Medical Assistant (Prime Directive)" with {replacetags(in "TE:Medical Assistant (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Medical Doctor (Prime Directive)" with {replacetags(in "TE:Medical Doctor (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Merchant Marine Academy (Prime Directive)" with {replacetags(in "TE:Merchant Marine Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Merchant Marine Basic Training (Prime Directive)" with {replacetags(in "TE:Merchant Marine Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Operations Officer (Prime Directive)" with {replacetags(in "TE:Operations Officer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Propulsion Engineer (Prime Directive)" with {replacetags(in "TE:Propulsion Engineer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Science Officer (Prime Directive)" with {replacetags(in "TE:Science Officer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Special Forces Training (Prime Directive)" with {replacetags(in "TE:Special Forces Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Star Fleet Academy (Prime Directive)" with {replacetags(in "TE:Star Fleet Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Transporter Operator (Prime Directive)" with {replacetags(in "TE:Transporter Operator (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Weapons Officer - Tactical (Prime Directive)" with {replacetags(in "TE:Weapons Officer - Tactical (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

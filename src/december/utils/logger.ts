@@ -1,0 +1,168 @@
+import { findIndex, indexOf, isArray } from "lodash"
+import { isNilOrEmpty } from "./lodash"
+
+declare global {
+  interface Window {
+    __LOGGERS__: Record<string, Logger> | undefined
+  }
+}
+
+/**
+ *
+ */
+function hasStyles(message: any[]) {
+  const last = message[message.length - 1]
+  return isArray(last) && last.some(item => typeof item === `string` && !!item.match(/.*(color|padding|margin|font-size|font-weight):.*/))
+}
+
+export default class Logger {
+  name: string
+  openGroup: {
+    opened: boolean
+    collapsed: boolean
+    needsClosing: boolean
+  }
+  timers: Record<string, { time: Date }>
+  styles: Record<string, string>
+
+  constructor(name: string) {
+    this.name = name
+
+    this.openGroup = {
+      opened: false,
+      collapsed: false,
+      needsClosing: false,
+    }
+
+    this.timers = {}
+  }
+
+  build({ ignoreName = false }: { ignoreName?: boolean } = {}, ...message: any[]): any[] {
+    ignoreName = false
+
+    const styles = hasStyles(message) ? message.pop() : []
+
+    const args = [] as string[]
+    const formats = [] as string[]
+
+    if (!ignoreName) {
+      args.push(`color: #999; font-weight: regular;`, this.name, `|`, `color: #000; font-weight: regular;`)
+      formats.push(`%c`, `%s`, `%s`, `%c`)
+    }
+
+    for (let i = 0; i < message.length; i++) {
+      const component = message[i]
+      const style = styles[i]
+
+      if (style && !isNilOrEmpty(style)) {
+        // if (i === 0 && !ignoreName) {
+        //   args.splice(0, 0, style)
+        //   formats.splice(0, 0, `%c`)
+        // } else {
+        args.push(style)
+        formats.push(`%c`)
+        // }
+      }
+
+      if (typeof component === `string`) {
+        formats.push(`%s`)
+      } else if (typeof component === `number`) {
+        if (component % 1 > 0) formats.push(`%f`)
+        else formats.push(`%d`)
+      } else formats.push(`%O`)
+
+      args.push(component)
+    }
+
+    let formatString = ``
+    for (const format of formats) formatString += format + (format === `%c` ? `` : ` `)
+    if (formatString[formatString.length - 1] === ` `) formatString = formatString.substring(0, formatString.length - 1)
+
+    return [formatString, ...args]
+  }
+
+  info(...message: any[]) {
+    if (this.openGroup.opened) {
+      const m = this.build({}, ...message)
+
+      if (this.openGroup.collapsed) console.groupCollapsed(...m)
+      else console.group(...m)
+
+      this.openGroup.opened = false
+      this.openGroup.collapsed = false
+
+      this.openGroup.needsClosing = true
+    } else {
+      const m = this.build({ ignoreName: this.openGroup.needsClosing }, ...message)
+
+      console.log(...m)
+    }
+  }
+
+  warn(...message: any[]) {
+    console.warn(...this.build({ ignoreName: this.openGroup.needsClosing }, ...message))
+  }
+
+  error(...message: any[]) {
+    console.error(...this.build({}, ...message))
+  }
+
+  group(collapsed?: boolean) {
+    if (this.openGroup.needsClosing) {
+      console.groupEnd()
+      this.openGroup.needsClosing = false
+      return this
+    } else {
+      this.openGroup.opened = true
+      this.openGroup.collapsed = !!collapsed
+
+      return this
+    }
+  }
+
+  time(key: string | number, ...message: any[]) {
+    this.timers[key] = { time: new Date() }
+
+    if (hasStyles(message) || message.length > 1) {
+      const args = [] as any[]
+      if (hasStyles(message) && message.length === 1) args.push(key)
+      args.push(...message)
+
+      console.log(...this.build({ ignoreName: this.openGroup.needsClosing }, ...args))
+    }
+
+    return (...endMessage: any[]) => this.timeEnd(key, ...endMessage)
+  }
+
+  timeEnd(key: string | number, ...endMessage: any[]) {
+    const elapsedTime = new Date().getTime() - this.timers[key].time.getTime()
+
+    const styles = [] as string[]
+    styles.push(...(hasStyles(endMessage) ? endMessage.pop() : Array(endMessage.length)))
+
+    let timestamp = endMessage.length === 0 ? [`Elapsed Time:`, `${elapsedTime}ms`] : [`(${elapsedTime}ms)`]
+    styles.push(...(endMessage.length === 0 ? [`font-style: italic; font-weight: regular; color: #999;`, `font-weight: bold;`] : [`font-style: italic; font-weight: bold;`]))
+
+    const m = this.build({ ignoreName: this.openGroup.needsClosing }, ...endMessage, ...timestamp, styles)
+    console.log(...m)
+
+    return this
+  }
+
+  get(name: string) {
+    return Logger.get(`${this.name}∙${name}`)
+  }
+
+  static get(name: string) {
+    if (window.__LOGGERS__ === undefined) window.__LOGGERS__ = {}
+
+    let instance: Logger
+    if (window.__LOGGERS__[name] !== undefined) instance = window.__LOGGERS__[name]
+    else {
+      instance = new Logger(name)
+      window.__LOGGERS__[name] = instance
+    }
+
+    return instance
+  }
+}

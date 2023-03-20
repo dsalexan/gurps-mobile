@@ -1,0 +1,231 @@
+﻿Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Description=05/05/2021. _
+			This data file contains information taken from the GURPS Power-ups 3 - Talents sourcebook written by Sean Punch. _
+			Power-Ups 3 - Talents is Copyright © 2011 by Steve Jackson Games Incorporated. All rights reserved.
+Program=4.0.397
+Requires="GURPS Basic Set 4th Ed.--Characters.GDF", "GURPS Power-Ups 3 Talents.gdf"
+LoadAfter="GURPS Fantasy 4e.gdf",_
+			"GURPS Horror 4e.gdf",_
+			"GURPS Mysteries 4e.gdf",_
+			"GURPS Space 4e.gdf",_
+			"GURPS Action  1 - Heroes.gdf",_
+			"GURPS Banestorm 4e.gdf",_
+			"GURPS Dungeon Fantasy  1 - Adventurers.gdf",_
+			"GURPS Dungeon Fantasy  3 - Next Level.gdf",_
+			"GURPS Dungeon Fantasy  4 - Sages.gdf",_
+			"GURPS Dungeon Fantasy 12 - Ninja.gdf",_
+			"GURPS Monster Hunters  1 - Champions.gdf",_
+			"GURPS Transhuman Space Changing Times 4e.gdf",_
+			"GURPS Traveller Interstellar Wars 4e.gdf"
+Incomplete=YES
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Filename: GURPS Power-Ups 3 - Talents.GDF
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Power-ups 3 - Talents sourcebook written by Sean Punch.
+//  Power-ups 3 - Talents is Copyright © 2011 by
+//  Steve Jackson Games Incorporated. All rights reserved.
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Talents>
+_New Talent, %costaliaslist%, displaycost(varies), page(B89), upto(4), cat(Mundane, Mental, Talents), mods(_Talents),_
+	gives(%skillsaliaslist%), conditional(+1 to ST:Reaction when "[bonus]"), noresync(yes),_
+	x(#InputToTagReplace("Please enter the name of this Talent here:" , name, , "New Talent"),_
+	#InputReplace("Please describe when the reaction bonus for this talent applies. e.g. if you type in ''recognized by an Engineer'' the bonus will be listed as ''+1 from Engineering Talent when recognized by an Engineer'':", "[bonus]", "talent matters", "New Talent"),_
+	#ChoiceList(_
+			name(cost),_
+			title(New Talent: Cost),_
+			text(Choose the point cost and number of affected skills for this talent.),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+					" 1",_
+					" 2",_
+					" 3",_
+					" 4",_
+					" 5",_
+					" 6",_
+					" 7",_
+					" 8",_
+					" 9",_
+					"10",_
+					"11",_
+					"12",_
+					"13",_
+					"14",_
+					"15",_
+					"16",_
+					"17",_
+					"18",_
+					"19",_
+					"20"_
+				),_
+			aliaslist(_
+					5/10,_
+					5/10,_
+					5/10,_
+					5/10,_
+					5/10,_
+					6/12,_
+					7/14,_
+					8/16,_
+					9/18,_
+					10/20,_
+					11/22,_
+					12/23,_
+					13/24,_
+					14/25,_
+					15/30,_
+					16/32,_
+					17/33,_
+					18/34,_
+					19/36,_
+					20/40_
+				),_
+			alt1list(_
+					1,_
+					2,_
+					3,_
+					4,_
+					5,_
+					6,_
+					7,_
+					8,_
+					9,_
+					10,_
+					11,_
+					12,_
+					13,_
+					14,_
+					15,_
+					16,_
+					17,_
+					18,_
+					19,_
+					20_
+				)_
+			),_
+	#ChoiceList(_
+			name(skills),_
+			title(New Talent: Choose Skills),_
+			text(Choose which skills will receive a bonus from this Talent. NOTE: Additional skill specialties may be specified later by adding the appropriate modifier to this Talent.),_
+			picksallowed(atleast %costalt1list%, upto 100),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSkills, flags(NoPrefix))_
+				),_
+			aliaslist(_
+				#grouplist(GR:AllSkills, prepend(+1 to "), append("))_
+					)_
+			),_
+	#edit)
+
+#ReplaceTags in {AD:Academic} with {cost(5/10)}
+#ReplaceTags in {AD:Alien Friend} with {cost(5/10)}
+#ReplaceTags in {AD:Allure} with {cost(5/10)}
+#ReplaceTags in {AD:Animal Friend} with {cost(6/12)}
+#ReplaceTags in {AD:Antiquary} with {cost(6/12)}
+#ReplaceTags in {AD:Artificer} with {cost(9/18)}
+#ReplaceTags in {AD:Bard} with {cost(6/12)}
+#ReplaceTags in {AD:Beastmaster} with {cost(12/24)}
+#ReplaceTags in {AD:Born Entertainer} with {cost(6/12)}
+#ReplaceTags in {AD:Born Sailor} with {cost(6/12)}
+#ReplaceTags in {AD:Born Soldier} with {cost(5/10)}
+#ReplaceTags in {AD:Born Spacer} with {cost(6/12)}
+#ReplaceTags in {AD:Born Tactician} with {cost(8/16)}
+#ReplaceTags in {AD:Born to Be Wired} with {cost(6/12)}
+#ReplaceTags in {AD:Born War-Leader} with {cost(5/10)}
+#ReplaceTags in {AD:Business Acumen} with {cost(8/16)}
+#ReplaceTags in {AD:Chi Talent} with {cost(20/40)}
+#ReplaceTags in {AD:Circuit Sense} with {cost(5/10)}
+#ReplaceTags in {AD:Close to Heaven} with {cost(6/12)}
+#ReplaceTags in {AD:Close to Hell} with {cost(6/12)}
+#ReplaceTags in {AD:Close to the Earth} with {cost(5/10)}
+#ReplaceTags in {AD:Clown} with {cost(10/20)}
+#ReplaceTags in {AD:Computer Wizard} with {cost(6/12)}
+#ReplaceTags in {AD:Craftiness} with {cost(6/12)}
+#ReplaceTags in {AD:Cultural Chameleon} with {cost(6/12)}
+#ReplaceTags in {AD:Cunning Folk} with {cost(8/16)}
+#ReplaceTags in {AD:Cyberneticist} with {cost(5/10)}
+#ReplaceTags in {AD:Devotion} with {cost(5/10)}
+#ReplaceTags in {AD:Driver's Reflexes} with {cost(5/10)}
+#ReplaceTags in {AD:Dungeon Artificer} with {cost(6/12)}
+#ReplaceTags in {AD:Elder Gift} with {cost(5/10)}
+#ReplaceTags in {AD:Empath} with {cost(5/10)}
+#ReplaceTags in {AD:Evil Computer Talent} with {cost(6/12)}
+#ReplaceTags in {AD:Explorer} with {cost(5/10)}
+#ReplaceTags in {AD:Forceful Chi} with {cost(14/28)}
+#ReplaceTags in {AD:Forest Guardian} with {cost(5/10)}
+#ReplaceTags in {AD:Gifted Artist} with {cost(5/10)}
+#ReplaceTags in {AD:Goodwife} with {cost(5/10)}
+#ReplaceTags in {AD:Green Thumb} with {cost(5/10)}
+#ReplaceTags in {AD:Halfling Marksmanship} with {cost(5/10)}
+#ReplaceTags in {AD:Healer} with {cost(9/18)}
+#ReplaceTags in {AD:Hot Pilot} with {cost(5/10)}
+#ReplaceTags in {AD:Impersonator} with {cost(6/12)}
+#ReplaceTags in {AD:Inner Balance} with {cost(14/28)}
+#ReplaceTags in {AD:Intuitive Admiral} with {cost(8/16)}
+#ReplaceTags in {AD:Intuitive Statesman} with {cost(10/20)}
+#ReplaceTags in {AD:Jack of All Trades} with {cost(10/20)}
+#ReplaceTags in {AD:Mariner} with {cost(7/14)}
+#ReplaceTags in {AD:Master Builder} with {cost(5/10)}
+#ReplaceTags in {AD:Mathematical Ability} with {cost(8/16)}
+#ReplaceTags in {AD:Memetics} with {cost(12/24)}
+#ReplaceTags in {AD:Mesmerist} with {cost(10/20)}
+#ReplaceTags in {AD:Mr. Smash} with {cost(5/10)}
+#ReplaceTags in {AD:Musical Ability} with {cost(5/10)}
+#ReplaceTags in {AD:Natural Athlete} with {cost(11/22)}
+#ReplaceTags in {AD:Natural Copper} with {cost(10/20)}
+#ReplaceTags in {AD:Natural Diver} with {cost(5/10)}
+#ReplaceTags in {AD:Natural Scientist} with {cost(11/22)}
+#ReplaceTags in {AD:Ninja Talent} with {cost(5/10)}
+#ReplaceTags in {AD:Occultist} with {cost(12/24)}
+#ReplaceTags in {AD:Outdoorsman} with {cost(7/14)}
+#ReplaceTags in {AD:Parapsychologist} with {cost(6/12)}
+#ReplaceTags in {AD:Pickaxe Penchant} with {cost(5/10)}
+#ReplaceTags in {AD:Poet} with {cost(5/10)}
+#ReplaceTags in {AD:Pop Culture Maven} with {cost(5/10)}
+#ReplaceTags in {AD:Psientist} with {cost(6/12)}
+#ReplaceTags in {AD:Sage} with {cost(12/24)}
+#ReplaceTags in {AD:Seafarer} with {cost(9/18)}
+#ReplaceTags in {AD:Smooth Operator} with {cost(13/26)}
+#ReplaceTags in {AD:Social Scientist} with {cost(11/22)}
+#ReplaceTags in {AD:Spirit-Talker} with {cost(6/12)}
+#ReplaceTags in {AD:Stalker} with {cost(5/10)}
+#ReplaceTags in {AD:Strangler} with {cost(5/10)}
+#ReplaceTags in {AD:Street Smarts} with {cost(9/18)}
+#ReplaceTags in {AD:Street-Smart} with {cost(6/12)}
+#ReplaceTags in {AD:Strong Chi} with {cost(5/10)}
+#ReplaceTags in {AD:Superior Equilibrioception} with {cost(5/10)}
+#ReplaceTags in {AD:Super-Spy} with {cost(15/30)}
+#ReplaceTags in {AD:Survivor} with {cost(5/10)}
+#ReplaceTags in {AD:Talker} with {cost(5/10)}
+#ReplaceTags in {AD:Thanatologist} with {cost(6/12)}
+#ReplaceTags in {AD:Tough Guy} with {cost(5/10)}
+#ReplaceTags in {AD:Trivia Sponge} with {cost(5/10)}
+#ReplaceTags in {AD:Truth-Seeker} with {cost(6/12)}
+#ReplaceTags in {AD:Unseelie Talent} with {cost(6/12)}
+#ReplaceTags in {AD:Whiz Kid} with {cost(6/12)}
+#ReplaceTags in {AD:Widget-Worker} with {cost(5/10)}

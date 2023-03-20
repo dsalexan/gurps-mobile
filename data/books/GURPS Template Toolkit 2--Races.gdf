@@ -1,0 +1,551 @@
+Encoding=UTF-8
+Version=3
+//   The version information above MUST be the first line of the data file
+Program=5.0.0
+Description=2021 July 8. _
+This data file contains information taken from Template Toolkit 2: Races, plus some stuff I made up. _
+GURPS Template Toolkit 2: Races is copyright © 2019 by Steve Jackson Games Incorporated. All rights reserved.
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  
+//   GURPS® Character Assistant
+//   Filename:  GURPS Template Toolkit 2--Races.gdf
+//   Created:   May 7, 2021
+//   Updated:   July 8, 2021
+//   Requires GCA v5 or later!
+//  
+//   This data file contains information taken from GURPS Template Toolkit 2: Races.
+//   GURPS Template Toolkit 2: Races is copyright © 2019 by Steve Jackson Games Incorporated. All rights reserved.
+//  
+//   Information in this file includes:
+//  	Body Types [Body]
+//  	Hit Location tables [HitTables]
+//  
+*******************************************************************************************************************
+//  
+//   Armin D. Sykes   - Body Types
+//   Eric B. Smith	- GURPS Data File Coordinator
+//  
+//   If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//   ericbsmith42@gmail.com
+//  
+//   Or drop a message in the GURPS Character Assistant forum at:
+//   http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+//  
+//   GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//   Games. All rights reserved.
+//  
+//   The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//   copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//   rights reserved by Steve Jackson Games Incorporated.
+//  
+*******************************************************************************************************************
+//   \par	new paragraph in RTF in description() tag
+//   ~P		new paragraph in the #Message() directive
+********************************************************************************************************\[STOP]
+[BODY]
+*******************************************************************************************************\[START]
+
+// 
+// Template Toolkit 2: Races page 10
+// 
+
+<Angeloid>
+description(A humanoid with separate wings growing out of the shoulders, such as an angel or devil. TT2 9)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Wings), group(Wings, Skin, All), display(-1), expanded(-1), posx(4), posy(175)
+name(Left Wing), group(Left Wing, Wings, Skin, All)
+name(Right Wing), group(Right Wing, Wings, Skin, All)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(6), posy(50)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(155), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Groin), group(Groin, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(195), posy(275)
+name(Arms), group(Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(200), posy(130)
+name(Left Arm), group(Left Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Right Arm), group(Right Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Hands), group(Hands, Full Suit, Skin, All), display(-1), expanded(-1), posx(210), posy(180)
+name(Left Hand), group(Left Hand, Hands, Full Suit, Skin, All)
+name(Right Hand), group(Right Hand, Hands, Full Suit, Skin, All)
+name(Legs), group(Legs, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(168), posy(340)
+name(Left Leg), group(Left Leg, Legs, Limbs, Full Suit, Skin, All)
+name(Right Leg), group(Right Leg, Legs, Limbs, Full Suit, Skin, All)
+name(Feet), group(Feet, Full Suit, Skin, All), display(-1), expanded(-1), posx(168), posy(392)
+name(Left Foot), group(Left Foot, Feet, Full Suit, Skin, All)
+name(Right Foot), group(Right Foot, Feet, Full Suit, Skin, All)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Asteroid>
+description(A creature with radial symmetry and five arms, such as a starfish. TT2 9)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Eyes), group(Torso, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Arms), group(Arms, Limbs, Full Suit, Skin, All)
+name(Arm 1), group(Arm 1, Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(160)
+name(Arm 2), group(Arm 2, Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(200), posy(160)
+name(Arm 3), group(Arm 3, Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(210)
+name(Arm 4), group(Arm 4, Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(200), posy(210)
+name(Arm 5), group(Arm 5, Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(260)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Helminth>
+description(A true worm with no skeleton, such as a flatworm, roundworm, earthworm, or leech. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Scorpionoid>
+description(A scorpion-like creature with forelimb pincers and a long tail. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(6), posy(50)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(155), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Legs), group(Legs, Limbs, Full Suit, Skin, All)
+name(Fore Legs), group(Fore Legs, Legs, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(280)
+name(Mid Legs), group(Mid Legs, Legs, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(340)
+name(Hind Legs), group(Hind Legs, Legs, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(168), posy(340)
+name(Left Fore Leg), group(Left Fore Leg, Fore Legs, Legs, Limbs, Full Suit, Skin, All)
+name(Right Fore Leg), group(Right Fore Leg, Fore Legs, Legs, Limbs, Full Suit, Skin, All)
+name(Left Mid Leg), group(Left Mid Leg, Mid Legs, Legs, Limbs, Full Suit, Skin, All)
+name(Right Mid Leg), group(Right Mid Leg, Mid Legs, Legs, Limbs, Full Suit, Skin, All)
+name(Left Hind Leg), group(Left Hind Leg, Hind Legs, Legs, Limbs, Full Suit, Skin, All)
+name(Right Hind Leg), group(Right Hind Leg, Hind Legs, Legs, Limbs, Full Suit, Skin, All)
+name(Arms), group(Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(200), posy(130)
+name(Left Arm), group(Left Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Right Arm), group(Right Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Pincers), group(Pincers, Full Suit, Skin, All), display(-1), expanded(-1), posx(210), posy(180)
+name(Left Pincer), group(Left Pincer, Pincer, Full Suit, Skin, All)
+name(Right Pincer), group(Right Pincer, Pincers, Full Suit, Skin, All)
+name(Tail), group(Tail, Skin, All), display(-1), expanded(-1), posx(195), posy(275)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Serpentoid>
+description(A snake. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(6), posy(50)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(155), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Tail), group(Tail, Skin, All), display(-1), expanded(-1), posx(195), posy(275)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Tritonoid>
+description(A humanoid with a fish or dolphin's tail in place of legs, such as a classic mermaid. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Tail), group(Tail, Body, Skin, All), display(-1), expanded(-1), posx(168), posy(340)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(6), posy(50)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(155), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Groin), group(Groin, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(195), posy(275)
+name(Arms), group(Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(200), posy(130)
+name(Left Arm), group(Left Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Right Arm), group(Right Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Hands), group(Hands, Full Suit, Skin, All), display(-1), expanded(-1), posx(210), posy(180)
+name(Left Hand), group(Left Hand, Hands, Full Suit, Skin, All)
+name(Right Hand), group(Right Hand, Hands, Full Suit, Skin, All)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Ovoid>
+description(A creature with raidal symmetry and without limbs or a distinct head, such as a sea urchin. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Ovoid with Eyes>
+description(A creature with raidal symmetry and without limbs or a distinct head, such as a sea urchin. This version has eyes. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Eyes), group(Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+
+<Semi-Upright>
+description(An ape or bear. TT2 10)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(100), posy(0)
+name(LeftEye), group(Head, LeftEye, Eyes, All)
+name(RightEye), group(Head, RightEye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(100), posy(81)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(328), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(328), posy(81)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(100), posy(179)
+name(Groin), group(Groin, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(393), posy(449)
+name(Arms), group(Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(401), posy(212)
+name(LeftArm), group(LeftArm, Arms, Limbs, Full Suit, Skin, All)
+name(RightArm), group(RightArm, Arms, Limbs, Full Suit, Skin, All)
+name(Hands), group(Hands, Full Suit, Skin, All), display(-1), expanded(-1), posx(417), posy(293)
+name(LeftHand), group(LeftHand, Hands, Full Suit, Skin, All)
+name(RightHand), group(RightHand, Hands, Full Suit, Skin, All)
+name(Legs), group(Legs, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(349), posy(555)
+name(LeftLeg), group(LeftLeg, Legs, Limbs, Full Suit, Skin, All)
+name(RightLeg), group(RightLeg, Legs, Limbs, Full Suit, Skin, All)
+name(Feet), group(Feet, Full Suit, Skin, All), display(-1), expanded(-1), posx(349), posy(640)
+name(LeftFoot), group(LeftFoot, Feet, Full Suit, Skin, All)
+name(RightFoot), group(RightFoot, Feet, Full Suit, Skin, All)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+<Vespertilian>
+description(A bat or pterosaur. TT2 10)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Tail), group(Tail, Skin, All), display(-1), expanded(-1), posx(4), posy(275)
+name(Wings), group(Wings, Skin, All), display(-1), expanded(-1), posx(200), posy(130)
+name(Left Wing), group(Left Wing, Wings, Skin, All)
+name(Right Wing), group(Right Wing, Wings, Skin, All)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(6), posy(50)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(155), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Groin), group(Groin, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(195), posy(275)
+name(Legs), group(Legs, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(168), posy(340)
+name(Left Leg), group(Left Leg, Legs, Limbs, Full Suit, Skin, All)
+name(Right Leg), group(Right Leg, Legs, Limbs, Full Suit, Skin, All)
+name(Feet), group(Feet, Full Suit, Skin, All), display(-1), expanded(-1), posx(168), posy(392)
+name(Left Foot), group(Left Foot, Feet, Full Suit, Skin, All)
+name(Right Foot), group(Right Foot, Feet, Full Suit, Skin, All)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+
+// 
+// Stuff Added but NOT official
+// 
+
+
+
+<Winged Vermiform + Arms>
+description(Any slithering creature with wings and arms but no legs. B 553)
+name(Vitals), group(Skin, All, Full Suit, Body, Torso, Vitals)
+name(Head), group(Head, Skin, All)
+name(Eyes), group(Head, Eyes, All), display(-1), expanded(-1), posx(6), posy(0)
+name(Left Eye), group(Head, Left Eye, Eyes, All)
+name(Right Eye), group(Head, Right Eye, Eyes, All)
+name(Neck), group(Neck, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(6), posy(50)
+name(Skull), group(Head, Skull, Skin, All), basedr(2), dr(2), display(-1), expanded(-1), posx(155), posy(0)
+name(Face), group(Head, Face, Skin, All), display(-1), expanded(-1), posx(155), posy(50)
+name(Torso), group(Torso, Body, Full Suit, Skin, All), display(-1), expanded(-1), posx(4), posy(110)
+name(Body), group(Body, Full Suit, Skin, All)
+name(Arms), group(Arms, Limbs, Full Suit, Skin, All), display(-1), expanded(-1), posx(200), posy(130)
+name(Left Arm), group(Left Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Right Arm), group(Right Arm, Arms, Limbs, Full Suit, Skin, All)
+name(Hands), group(Hands, Full Suit, Skin, All), display(-1), expanded(-1), posx(210), posy(180)
+name(Left Hand), group(Left Hand, Hands, Full Suit, Skin, All)
+name(Right Hand), group(Right Hand, Hands, Full Suit, Skin, All)
+name(Wings), group(Wings, Skin, All), display(-1), expanded(-1), posx(4), posy(175)
+name(Left Wing), group(Left Wing, Wings, Skin, All)
+name(Right Wing), group(Right Wing, Wings, Skin, All)
+name(Full Suit), group(Full Suit, Skin, All)
+name(Skin), group(Skin, All)
+name(All), group(All)
+
+
+// 
+// Suggested but not yet written
+// 
+// 4-Armed Humanoid
+// 2-Headed Humanoid
+// Humanoid + Striking Tail (Bipedal Dinosauroid)
+// Quadruped + Striking Tail (Quadrupedal Dinosauroid)
+// 
+// 
+
+
+
+********************************************************************************************************\[STOP]
+[HitTables]
+*******************************************************************************************************\[START]
+
+// 
+// Template Toolkit 2: Races page 10
+// 
+
+
+<Angeloid>
+description(A humanoid iwth separate wings growing out of the shoulders, such as an angel or devil. TT2 9)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Skull), penalty(-7)
+roll(5), location(Face), penalty(-5)
+roll(6), location(Right Leg), penalty(-2)
+roll(7), location(Right Leg), penalty(-2)
+roll(8), location(Right Arm), penalty(-2)
+roll(9), location(Wing), penalty(-2), notes(†)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Groin), penalty(-3)
+roll(12), location(Left Arm), penalty(-2)
+roll(13), location(Left Leg), penalty(-2)
+roll(14), location(Left Leg), penalty(-2)
+roll(15), location(Hand), penalty(-4), notes(†)
+roll(16), location(Foot), penalty(-4), notes(†)
+roll(17-18), location(Neck), penalty(-5)
+roll(-), location(Vitals), penalty(-3)
+note(†), text(Roll randomly for which.)
+
+<Asteroid>
+description(A creature with radial symmetry and five arms, such as a starfish. TT2 9)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Torso), penalty(0)
+roll(5), location(Torso), penalty(0)
+roll(6), location(Arm 1), penalty(-2)
+roll(7), location(Arm 2), penalty(-2)
+roll(8), location(Arm 3), penalty(-2)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Arm 4), penalty(-2)
+roll(13), location(Arm 5), penalty(-2)
+roll(14), location(Arm 1), penalty(-2)
+roll(15), location(Torso), penalty(0)
+roll(16), location(Torso), penalty(0)
+roll(17-18), location(Torso), penalty(0)
+roll(-), location(Vitals), penalty(-3)
+
+<Helminth>
+description(A true worm with no skeleton, such as a flatworm, roundworm, earthworm, or leech. TT2 10)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Brain), penalty(-7), notes(*)
+roll(5), location(Face), penalty(-5)
+roll(6), location(Torso), penalty(0)
+roll(7), location(Torso), penalty(0)
+roll(8), location(Torso), penalty(0)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Torso), penalty(0)
+roll(13), location(Torso), penalty(0)
+roll(14), location(Torso), penalty(0)
+roll(15), location(Torso), penalty(0)
+roll(16), location(Torso), penalty(0)
+roll(17-18), location(Torso), penalty(0)
+roll(-), location(Vitals), penalty(-3)
+note(*), text(Treat as skull, but without DR2.)
+
+<Scorpionoid>
+description(A scorpion-like creature with forelimb pincers and a long tail. TT2 10)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Skull), penalty(-7)
+roll(5), location(Face), penalty(-5)
+roll(6), location(Neck), penalty(-5)
+roll(7), location(Arm), penalty(-2), notes(†)
+roll(8), location(Arm), penalty(-2), notes(†)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Tail), penalty(-3)
+roll(13), location(Leg), penalty(-2), notes(†)
+roll(14), location(Leg), penalty(-2), notes(†)
+roll(15), location(Leg), penalty(-4), notes(†)
+roll(16), location(Leg), penalty(-4), notes(†)
+roll(17-18), location(Foot), penalty(-4), notes(†)
+roll(-), location(Vitals), penalty(-3)
+note(†), text(Roll randomly for which.)
+
+<Serpentoid>
+description(A snake. TT2 10)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Skull), penalty(-7)
+roll(5), location(Face), penalty(-5)
+roll(6), location(Neck), penalty(-5)
+roll(7), location(Neck), penalty(-5)
+roll(8), location(Neck), penalty(-5)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Torso), penalty(0)
+roll(13), location(Torso), penalty(0)
+roll(14), location(Torso), penalty(0)
+roll(15), location(Torso), penalty(0)
+roll(16), location(Torso), penalty(0)
+roll(17-18), location(Tail), penalty(-3)
+roll(-), location(Vitals), penalty(-3)
+
+<Tritonoid>
+description(A humanoid with a fish or dolphin's tail in place of legs, such as a classic mermaid. TT2 10)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Skull), penalty(-7)
+roll(5), location(Face), penalty(-5)
+roll(6), location(Tail), penalty(-3)
+roll(7), location(Torso), penalty(0)
+roll(8), location(Right Arm), penalty(-2)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Groin), penalty(-3)
+roll(12), location(Left Arm), penalty(-2)
+roll(13), location(Torso), penalty(0)
+roll(14), location(Tail), penalty(-3)
+roll(15), location(Hand), penalty(-4), notes(†)
+roll(16), location(Tail), penalty(-3)
+roll(17-18), location(Neck), penalty(-5)
+roll(-), location(Vitals), penalty(-3)
+note(†), text(Roll randomly for which.)
+
+
+
+<Ovoid>
+description(A creature with raidal symmetry and without limbs or a distinct head, such as a sea urchin. TT2 10)
+roll(3-4), location(Torso), penalty(0)
+roll(5), location(Torso), penalty(0)
+roll(6), location(Torso), penalty(0)
+roll(7), location(Torso), penalty(0)
+roll(8), location(Torso), penalty(0)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Torso), penalty(0)
+roll(13), location(Torso), penalty(0)
+roll(14), location(Torso), penalty(0)
+roll(15), location(Torso), penalty(0)
+roll(16), location(Torso), penalty(0)
+roll(17-18), location(Torso), penalty(0)
+roll(-), location(Vitals), penalty(-3)
+
+<Ovoid with Eyes>
+description(A creature with raidal symmetry and without limbs or a distinct head, such as a sea urchin. This version has eyes. TT2 10)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Torso), penalty(0)
+roll(5), location(Torso), penalty(0)
+roll(6), location(Torso), penalty(0)
+roll(7), location(Torso), penalty(0)
+roll(8), location(Torso), penalty(0)
+roll(9), location(Torso), penalty(0)
+roll(10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Torso), penalty(0)
+roll(13), location(Torso), penalty(0)
+roll(14), location(Torso), penalty(0)
+roll(15), location(Torso), penalty(0)
+roll(16), location(Torso), penalty(0)
+roll(17-18), location(Torso), penalty(0)
+roll(-), location(Vitals), penalty(-3)
+
+
+<Semi-Upright>
+description(An ape or bear. TT2 10)
+roll(-), location(Eye), penalty(-9), notes(1,2)
+roll(3-4), location(Skull), penalty(-7), notes(1,3)
+roll(5), location(Face), penalty(-5), notes(1,4)
+roll(6-7), location(Right Leg), penalty(-2), notes(5)
+roll(8), location(Right Arm), penalty(-2), notes(5,6)
+roll(9-10), location(Torso), penalty(0)
+roll(11), location(Groin), penalty(-3), notes(1,7)
+roll(12), location(Left Arm), penalty(-2), notes(5,6)
+roll(13-14), location(Left Leg), penalty(-2), notes(5)
+roll(15), location(Hand), penalty(-4), notes(6,8,9)
+roll(16), location(Foot), penalty(-4), notes(8,9)
+roll(17-18), location(Neck), penalty(-5), notes(1,10)
+roll(-), location(Vitals), penalty(-3), notes(1,11)
+note(1), text(An attack that misses by 1 hits the torso instead.)
+note(2), text(Only impaling, piercing, and tight-beam burning attacks can target the eye – and only from the front or sides. Injury over HP/10 blinds the eye. Otherwise, treat as skull, but without the extra DR!)
+note(3), text(The skull gets an extra DR 2. Wounding modifier is ¥4. Knockdown rolls are at -10. Critical hits use the Critical Head Blow Table (p. 556). Exception: These special effects do not apply to toxic damage.)
+note(4), text(Jaw, cheeks, nose, ears, etc. If the target has an open-faced helmet, ignore its DR. Knockdown rolls are at -5. Critical hits use the Critical Head Blow Table. Corrosion damage gets a ¥1.5 wounding modifier, and if it inflicts a major wound, it also blinds one eye (both eyes on damage over full HP). Random attacks from behind hit the skull instead.)
+note(5), text(Limb. Reduce the wounding multiplier of large piercing, huge piercing, and impaling damage to ¥1. Any major wound (loss of over 1/2 HP from one blow) cripples the limb. Damage beyond that threshold is lost.)
+note(6), text(If holding a shield, double the penalty to hit: -4 for shield arm, -8 for shield hand.)
+note(7), text(Human males and the males of similar species suffer double shock from crushing damage, and get -5 to knockdown rolls. Otherwise, treat as a torso hit.)
+note(8), text(Extremity. Treat as a limb, except that damage over 1/3 HP in one blow inflicts a crippling major wound. Excess damage is still lost.)
+note(9), text(If rolling randomly, roll 1d: 1-3 is right, 4-6 is left.)
+note(10), text(Neck and throat. Increase the wounding multiplier of crushing and corrosion attacks to ¥1.5, and that of cutting damage to ¥2. At the GM’s option, anyone killed by a cutting blow to the neck is decapitated!)
+note(11), text(Heart, lungs, kidneys, etc. Increase the wounding modifier for an impaling or any piercing attack to ¥3. Increase the wounding modifier for a tight-beam burning attack to ¥2. Other attacks cannot target the vitals.)
+
+
+
+<Vespertilian>
+description(A bat or pterosaur. TT2 10)
+roll(-), location(Eye), penalty(-9)
+roll(3-4), location(Skull), penalty(-7)
+roll(5), location(Face), penalty(-5)
+roll(6), location(Neck), penalty(-5)
+roll(7-8), location(Wing), penalty(-2), notes(*,W)
+roll(9-10), location(Torso), penalty(0)
+roll(11), location(Torso), penalty(0)
+roll(12), location(Groin), penalty(-3)
+roll(13-14), location(Leg), penalty(-2), notes(*)
+roll(15-16), location(Foot), penalty(-4), notes(*)
+roll(17-18), location(Tail), penalty(-3), notes(T)
+roll(-), location(Vitals), penalty(-3)
+note(*), text(If using random hit location, roll 1d: 1-3 is right, 4-6 is left. If it is somehow holding a shield, double the penalty to hit: -4 for a limb, -8 for an extremity.)
+note(W), text(Wing: Treat a wing as a limb (arm, leg) for crippling purposes. A flyer with a crippled wing cannot fly.)
+note(T), text(Tail: If a tail counts as an Extra Arm or a Striker, or is a fish tail, treat it as a limb (arm, leg) for crippling purposes; otherwise, treat it as an extremity (hand, foot). A crippled tail affects balance. For a ground creature, this gives -1 DX. For a swimmer or flyer, this gives -2 DX and halves Move. If the creature has no tail, or a very short one (like a rabbit), treat as “torso.”)
+
+
+
+
+// 
+// Stuff Added but NOT official
+// 
+
+
+// <Winged Vermiform + Arms>
+
+
+
+// 
+// Suggested but not yet written
+// 
+// 4-Armed Humanoid
+// 2-Headed Humanoid
+// Humanoid + Striking Tail (Bipedal Dinosauroid)
+// Quadruped + Striking Tail (Quadrupedal Dinosauroid)
+// 
+// 
+
+
+********************************************************************************************************\[STOP]

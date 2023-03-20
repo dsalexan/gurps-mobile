@@ -1,0 +1,19 @@
+.interactible {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+
+  .value {
+    grid-area: "value";
+    font-family: Roboto;
+    font-weight: bolder;
+    color: #333;
+  }
+
+  .label {
+    grid-area: "label";
+    font-family: Roboto;
+    color: #555;
+  }
+}

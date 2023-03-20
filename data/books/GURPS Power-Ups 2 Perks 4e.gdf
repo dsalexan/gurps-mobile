@@ -1,0 +1,1641 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 December 18. _
+			This data file contains information taken from the GURPS Power-ups 2 - Perks sourcebook written by Sean Punch. _
+			Power-ups 2 - Perks is Copyright © 2008 by Steve Jackson Games Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.GDF"
+LoadAfter="GURPS Dungeon Fantasy  1 - Adventurers.GDF","GURPS Bio-Tech 4e.gdf", "GURPS Magic 4e.gdf","GURPS Supers 4e.gdf","GURPS Transhuman Space Changing Times 4e.gdf","GURPS High-Tech 4e.gdf","GURPS Martial Arts 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Filename: GURPS Power-Ups 2 Perks 4e.GDF
+//  Created: den 10 februari 2008
+//	Updated: December 18, 2021 - 0-pt traits moved to Features section
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Power-ups 2 - Perks sourcebook written by Sean Punch.
+//  Power-ups 2 - Perks is Copyright © 2008 by
+//  Steve Jackson Games Incorporated. All rights reserved.
+//
+*******************************************************************************************************************
+// 
+//  By Staffan Björk (bjork)
+//  http://forums.sjgames.com
+// 
+//  
+// 
+//  The file changes a lot of perks already described in other data files, the file "Compilation of Perks.gdf" can be loaded if not these are loaded
+// 
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+
+**** FROM CHARACTERS ***
+_New Perk, 1, noresync(yes),_
+	x(_
+		#InputToTagReplace("please enter the name of this Perk:" , name, , "New Perk"),_
+		#edit_
+	)
+Accessory, 1, page(B100)
+Alcohol Tolerance, 1, page(B100)
+Autotrance, 1, page(B100)
+Deep Sleeper, 1, page(B100), taboo(DI:Light Sleeper)
+Fur, 1, page(B100)
+Honest Face, 1, page(B100), cat(Appearance Perks)
+No Hangover, 1, page(B100)
+Penetrating Voice, 1, page(B100), taboo(DI:Mute)
+Sanitized Metabolism, 1, page(B100)
+Shtick, 1, page(B100),_
+	x(#InputToTagReplace("Please describe the Shtick:", nameext, , "Shtick"))
+
+**** FROM BIO-TECH ***
+Immunity to [Specific Disease], 1, cat(Physical Perks), page(BT211),_
+	x(#InputReplace("Specify the Disease you're immune to:", "[Specific Disease]", , "Immunity to a Specific Disease"))
+Low Rejection Threshold, 1, cat(Physical Perks), page(BT211)
+No Degeneration in Zero-G, 1, cat(Physical Perks), page(BT211)
+Pressure Tolerant Lungs (Thin), 1, cat(Physical Perks), page(BT211)
+Pressure Tolerant Lungs (Dense), 1, cat(Physical Perks), page(BT211)
+
+// Duplicated from Advantages
+Internal Taste and Smell, 1, page(BT97), cat(Physical Perks), taboo(AD:Internal Taste and Smell)
+Cross-Species Surrogacy, 1, page(BT59), cat(Physical Perks), taboo(AD:Cross-Species Surrogacy)
+Reproductive Control, 1, page(BT59), cat(Physical Perks), taboo(AD:Reproductive Control)
+
+**** FROM MARTIAL ARTS ***
+<Style Perks - Realistic>
+Armor Familiarity, 1, cat(Style Perks - Realistic), page(MA49),_
+	x(#InputToTagReplace("please enter the weapon skill that you're accustomed to fighting in armor with:" , nameext, ,"Armor Familiarity"))
+
+Biting Mastery, 1, cat(Style Perks - Realistic), page(MA49), needs(SK:Karate),_
+	gives(+@if(SK:Karate::level = ST:DX then @basethdice(ST:Bite) else @if(SK:Karate::level > ST:DX then 2 * @basethdice(ST:Bite) else 0)) to ST:Bite::damage),_
+	replacetags(in ST:Bite with "hide(yes), reach()"),_
+	mode(Bite),_
+	damage(_
+		th-1 + _
+			@if(SK:Karate::level = ST:DX then @basethdice(ST:Bite) else @if(SK:Karate::level > ST:DX then 2 * @basethdice(ST:Bite) else 0))  + _
+		-@if("DI:Weak Bite::level" = 1 then 2 * @basethdice(ST:Bite) else 0) _
+		), damtype($if("AD:Teeth (Sharp Teeth)::level" = 1 THEN "cut" ELSE $if("AD:Teeth (Sharp Beak)::level" = 1 THEN "pi+" ELSE $if("AD:Teeth (Fangs)::level" = 1 THEN "imp" ELSE $if("AD:Vampiric Bite::level" = 1 THEN "cut" ELSE "cr"))))), reach(C), parry(No), skillused(ST:DX, SK:Karate)
+
+Exotic Weapon Training, 1, cat(Style Perks - Realistic), page(MA50),_
+	x(#InputToTagReplace("Please enter the weapon you're familiar with:" , nameext, ,"Exotic Weapon Training"))
+Form Mastery, 1, cat(Style Perks - Realistic), page(MA50),_
+	x(#InputToTagReplace("please enter the weapon you have Form Mastery with:" , nameext, ,"Form Mastery"))
+Grip Mastery, 1, cat(Style Perks - Realistic), page(MA50),_
+	x(#InputToTagReplace("please enter the weapon you have Grip Mastery with:" , nameext, ,"Grip Mastery"))
+Ground Guard, 1, cat(Style Perks - Realistic), page(MA50)
+Improvised Weapons, 1, cat(Style Perks - Realistic), page(MA50),_
+	x(#InputToTagReplace("please enter the weapon skill you can use Improvied Weapons with:" , nameext, ,"Improvised Weapons"))
+Naval Training, 1, cat(Style Perks - Realistic), page(MA50)
+Neck Control (Boxing), 1, cat(Style Perks - Realistic), page(MA50), needs(SK:Boxing)
+Neck Control (Brawling), 1, cat(Style Perks - Realistic), page(MA50), needs(SK:Brawling)
+Neck Control (Karate), 1, cat(Style Perks - Realistic), page(MA50), needs(SK:Karate)
+Off-Hand Weapon Training (%Melee Weapon Skill%), 1, cat(Style Perks - Realistic), page(MA50), needs(SK:%Melee Weapon SkillList%),_
+	x(#ChoiceList(_
+			name(Melee Weapon Skill),_
+			title(Off-Hand Weapon Training: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix))_
+			)_
+		)_
+	), noresync(yes)
+Power Grappling, 1, cat(Style Perks - Realistic), page(MA51)
+Quick-Sheathe, 1, cat(Style Perks - Realistic), page(MA51),_
+	x(#InputToTag("You must specialize in a type of Weapon:", nameext, , "Quick-Sheathe"))
+Quick-Sheathe (Force Sword), 1, cat(Style Perks - Realistic), page(MA51)
+Quick-Sheathe (Knife), 1, cat(Style Perks - Realistic), page(MA51)
+Quick-Sheathe (Sword), 1, cat(Style Perks - Realistic), page(MA51)
+Quick-Sheathe (Two-Handed Sword), 1, cat(Style Perks - Realistic), page(MA51)
+Quick-Swap (%Melee Weapon Skill%), 1, cat(Style Perks - Realistic), page(MA51), needs(SK:%Melee Weapon SkillList%),_
+	x(#ChoiceList(_
+			name(Melee Weapon Skill),_
+			title(Off-Hand Weapon Training: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix))_
+			)_
+		)_
+	), noresync(yes)
+Rapid Retraction (Punches), 1, cat(Style Perks - Realistic), page(MA51)
+Rapid Retraction (Kicks), 1, cat(Style Perks - Realistic), page(MA51)
+Rapid Retraction (Bites), 1, cat(Style Perks - Realistic), page(MA51)
+Shield-Wall Training, 1, cat(Style Perks - Realistic), page(MA51), needs(SK:Shield (Shield) | SK:Shield (Force))
+Shtick, 1, cat(Style Perks - Realistic), page(B101, MA51),_
+	x(#InputToTagReplace("Please describe the Shtick:", nameext, , "Shtick"))
+Skill Adaptation, 1, cat(Style Perks - Realistic), page(MA51),_
+	x(#InputToTagReplace("Please describe the Skill Adaptation:", nameext, , "Skill Adaptation"))
+Skill Adaptation (Acrobatic Feints), 1, cat(Style Perks - Realistic), page(MA51)
+Skill Adaptation (Acrobatic Kicks), 1, cat(Style Perks - Realistic), page(MA51)
+Skill Adaptation (Clinch/%Unarmed Combat Skill%), 1, cat(Style Perks - Realistic), page(MA51),_
+	x(#ChoiceList(_
+			name(Unarmed Combat Skill),_
+			title(Skill Adaptation: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Boxing,_
+				Brawling,_
+				Karate _
+			)_
+			)_
+	), noresync(yes)
+
+Special Exercises, 1, cat(Style Perks - Realistic), page(MA51),_
+	x(#InputToTagReplace("Please describe the Special Exercises:", nameext, , "Special Exercises"))
+Special Exercises (DR 1 with Tough Skin), 1, cat(Style Perks - Realistic), page(MA51),_
+	adds(AD:Damage Resistance with "Tough Skin, -40%, group(Damage Resistance), page(B47)")
+Special Exercises (Striking ST +1), 1, cat(Style Perks - Realistic), page(MA51),_
+	adds(AD:Striking ST)
+Special Exercises (Arm ST +1), 1, cat(Style Perks - Realistic), page(MA51),_
+	adds(AD:Arm ST)
+Special Exercises (HP can exceed ST by 100%), 1, cat(Style Perks - Realistic), page(MA51), replacetags(in {ST:Hit Points} with {maxscore(2 * ST:ST)})
+Special Exercises (FP can exceed HT by 100%), 1, cat(Style Perks - Realistic), page(MA51), replacetags(in {ST:Fatigue Points} with {maxscore(2 * ST:HT)})
+Special Setup, 1, cat(Style Perks - Realistic), page(MA51),_
+	x(#InputToTagReplace("Please describe the Special Setup:", nameext, , "Special Setup"))
+Strongbow, 1, cat(Style Perks - Realistic), page(MA51),_
+	x(_
+		#Message("You will need to select a Bow with appropriatly higher ST for your character.")_
+	)
+
+Style Adaptation, 1, cat(Style Perks - Realistic), page(MA51),_
+	x(#InputToTagReplace("Please enter tye Styles you've Adapted:", nameext, , "Style Adaptation"))
+
+Suit Familiarity, 1, cat(Style Perks - Realistic), page(MA52),_
+	x(#InputToTagReplace("Please enter the Suit you're Familiar with:", nameext, , "Suit Familiarity"))
+Sure-Footed, 1, cat(Style Perks - Realistic), page(MA52),_
+	x(#InputToTagReplace("You must specialize by type of shaky ground:", nameext, , "Sure-Footed"))
+Sure-Footed (Slippery), 1, cat(Style Perks - Realistic), page(MA52)
+Sure-Footed (Uneven), 1, cat(Style Perks - Realistic), page(MA52)
+Teamwork, 1, cat(Style Perks - Realistic), page(MA52),_
+	x(#InputToTagReplace("You must specialize by Martial Arts Style or in working with a particular group:", nameext, , "Teamwork"))
+Technique Adaptation, 1, cat(Style Perks - Realistic), page(MA52),_
+	x(#InputToTagReplace("You must specialize in a particular Technique:", nameext, , "Technique Adaptation"))
+Technique Mastery ([Technique]), 1, cat(Style Perks - Realistic), page(MA52), replacetags(in "SK:[Technique]" with "upto()"),_
+	x(#InputReplace("You must specialize in a particular Technique:", "[Technique]", , "Technique Mastery"))
+
+Unique Technique, 1, cat(Style Perks - Realistic), page(MA52),_
+	x(#InputToTagReplace("You must specialize in a particular Technique:", nameext, , "Unique Technique"))
+
+//  Removed since more detailed version exists below
+//  Unusual Training, 1, cat(Style Perks - Realistic), page(MA52), x(#InputToTagReplace("You must specialize in a particular Technique, and possibly circumstances in which it can be used:", nameext, , "Unusual Training"))
+Weapon Adaptation, 1, cat(Style Perks - Realistic), page(MA52),_
+	x(#InputToTagReplace("You must specialize in a particular pair of skill adaptations:", nameext, "weapon to weapon", "Weapon Adaptation"))
+
+Weapon Bond (%Weapon%), 1, page(F132, HT250, MA53, PU2:9, DF1:14),_
+	conditional(+1 to "SK:%WeaponList%"),_
+	x(#message(_
+			"Note: You will need to add the '_Perk: Weapon Bond' modifier to the specific weapon which recieves _
+			a bonus from Weapon Bond in order for the skill level to be increased on the Weapon Table." _
+			),_
+		#ChoiceList(_
+			name(Weapon),_
+			title(Weapon Bond: Choose a Weapon Skill),_
+			text(Choose a Weapon skill from the list. If the weapon has more than one mode, using more than one skill, select them all:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:ShieldSkill, flags(NoPrefix)),_
+				#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)),_
+				#grouplist(GR:Ranged Weapon Skill, flags(NoPrefix))_
+				)_
+			)_
+	), noresync(yes)
+
+<Style Perks - Cinematic>
+Chi Resistance, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master),_
+	x(#InputToTagReplace("please enter the particlular chi-based attack form you're resistant to:" , nameext, ,"Chi-Resistance"))
+Cotton Stomach, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master)
+Drunken Fighting, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master)
+Iron Arms, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master)
+Iron Hands, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master)
+Iron Legs, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master)
+Iron Neck, 1, cat(Style Perks - Cinematic), page(MA50), needs(AD:Trained By A Master | AD:Weapon Master)
+
+<Style Familiarities>
+Style Familiarity, 1, cat(Style Familiarities), page(MA149),_
+	x(#InputToTagReplace("please enter the name of the Style you're familiar with:" , nameext, ,"Style Familiarity"))
+
+**** FROM HIGH-TECH ***
+<Gun Perks - Realistic>
+Armorer's Gift, 1, page(HT249), cat(Gun Perks),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"Armorer's Gift"))
+
+//  removed since quick-sheathe exists
+//  Quick Sheathe, 1, page(HT249), cat(Gun Perks), x(#InputToTagReplace("please specialize:" , nameext, ,"Quick-Sheathe"))
+
+Quick-Swap, 1, page(HT249), cat(Gun Perks), x(#InputToTagReplace("please specialize:" , nameext, ,"Quick-Swap"))
+
+Shtick, 1, page(HT250), cat(Gun Perks),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"Shtick"))
+Sure-Footed, 1, page(HT250), cat(Gun Perks),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"Sure-Footed"))
+Sure-Footed (Slippery), 1, page(HT250), cat(Gun Perks)
+Sure-Footed (Uneven), 1, page(HT250), cat(Gun Perks)
+Sure-Footed (Naval Training), 1, page(HT250), cat(Gun Perks)
+
+<Gun Perks, Gun Perks - Cinematic>
+Akimbo, 1, page(HT249), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"Akimbo"))
+Cross-Trained, 1, page(HT249), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"Cross-Trained"))
+One-Armed Bandit, 1, page(HT249), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"One-Armed Bandit"))
+Pants-Positive Safety, 1, page(HT249), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger)
+
+**** FROM SUPERS ***
+<Supernatural>
+Cloaked, 1, page(SU30)
+Masked, 1, page(SU30)
+Nonprotective Clothing, 1, page(SU30)
+Skintight, 1, page(SU30)
+Supersuit, 1, page(SU30)
+Burrower, 1, page(SU30)
+Climbing Line, 1, page(SU31)
+Generator, 1, page(SU31)
+Ignition, 1, page(SU31)
+Illumination, 1, page(SU31)
+Perfume, 1, page(SU31)
+Periscope, 1, page(SU31)
+Striking Surface, 1, page(SU31), needs(AD:Damage Resistance::level=3)
+Equipment Bond, 1, page(SU31), noresync(yes),_
+	x(#InputToTag("Please name the piece of equipment:", NameExt, , "Equipment Bond"))
+No Visible Damage, 1, page(SU31), needs(AD:Unkillable)
+Swinging, 1, page(SU31)
+"Unusual Training ([skill], [restriction])", 1, page(SU31), noresync(yes),_
+	x(#InputReplace("Please enter the skill:", "[skill]", , "Unusual Training"),_
+	#InputReplace("Please enter the condition under which it can be used:", "[restriction]", , "Unusual Training"),_
+	#edit_
+		)
+
+****** FROM FANTASY *****
+Named Possession, 1, page(F132)
+
+****** FROM THAUMATOLOGY *****
+
+//  Should be in a future file
+Obscure True Name , 1, page(TH245)
+Spirit Contract, 1, page(TH94)
+
+*******************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+**** Quick-fixes ***
+//  Long Fingers/Thumbs missing from Martial Arts
+"Long Fingers/Thumbs", 1, page(MA71)
+
+#Clone "PE:Skill Adaptation (Clinch/%Unarmed Combat Skill%)" as "PE:Clinch (%Unarmed Combat Skill%)"
+//  #Delete "PE:Skill Adaptation (Clinch/%Unarmed Combat Skill%)"
+
+//  #Delete "PE:Skill Adaptation (Acrobatic Feints)"
+//  #Delete "PE:Skill Adaptation (Acrobatic Kicks)"
+
+//  #Delete "PE:Sure-Footed (Naval training)"
+
+//  Off-Hand Training now covers other sklls that combat skills only
+//  #Delete "Off-Hand Weapon Training (%Melee Weapon Skill%)"
+
+//  To not force addition of advantages since the can be trained
+//  #ReplaceTags in all "Special Exercises" with "adds()"
+
+**** Does this cause problems? Cloning from advantages to perks doesn't seem to work...
+
+Courtesy Rank, 1/2, page(B29), upto(8), cat(Social),_
+	x(#InputToTag("Please describe the nature of the Courtesy Rank:", nameext, , "Courtesy Rank"))
+
+//  #Delete "AD:Courtesy Rank"
+
+#MergeTags in all "PE:Taboo Trait" with "cat(Features)"
+
+#MergeTags in all "PE:Genetic Tattoos" with "cat(Features)"
+#MergeTags in all "PE:Intron Messages" with "cat(Features)"
+#MergeTags in all "PE:No Appendix" with "cat(Features)"
+#MergeTags in all "PE:Early Maturation" with "cat(Features)"
+#MergeTags in all "PE:Digitigrade Posture" with "cat(Features)"
+#MergeTags in all "PE:Ordinary Tail" with "cat(Features)"
+#MergeTags in all "PE:Arms to Wings (Cannot Manipulate)" with "cat(Features)"
+#MergeTags in all "PE:High-Pressure Lungs" with "cat(Features)"
+#MergeTags in all "PE:Low-Pressure Lungs" with "cat(Features)"
+#MergeTags in all "PE:Altered Sex Ratio" with "cat(Features)"
+#MergeTags in all "PE:Easy Childbirth" with "cat(Features)"
+#MergeTags in all "PE:Estrus" with "cat(Features)"
+#MergeTags in all "PE:Exotic Genitalia" with "cat(Features)"
+#MergeTags in all "PE:Extended Fertility" with "cat(Features)"
+#MergeTags in all "PE:External Development" with "cat(Features)"
+#MergeTags in all "PE:Increased Fecundity" with "cat(Features)"
+#MergeTags in all "PE:Light Menses" with "cat(Features)"
+#MergeTags in all "PE:Modified Genetic Inheritance" with "cat(Features)"
+#MergeTags in all "PE:Oviparous" with "cat(Features)"
+#MergeTags in all "PE:Sexual Orientation" with "cat(Features)"
+#MergeTags in all "PE:Shorter Gestation" with "cat(Features)"
+#MergeTags in all "PE:Varient Sexual Schemes" with "cat(Features)"
+#MergeTags in all "PE:Sterile" with "cat(Features)"
+#MergeTags in all "PE:Self-Replicating" with "cat(Features)"
+
+<Appearance Perks>
+Classic Features, 1, page(PU2:4), conditional(+1 to AD:Appearance when "interacting with NPC fancying those looks",+1 to DI:Appearance when "interacting with NPC fancying those looks"), x(#InputToTagReplace("Specify the type of look:", nameext, , "Type of Look")), cat(Appearance Perks)
+
+Forgettable Face, 1, page(PU2:4), conditional(+1 to SK:Shadowing when "in crowds"), taboo(DI:Unnatural Features, QU:Distinctive Feature)
+
+#MergeTags in "PE:Honest Face" with "page(PU2:4),conditional(+1 to SK:Acting when "acting innocent")"
+
+Androgynous, 1, page(PU2:4), cat(Appearance Perks)
+
+Passing Complexion, 1, page(PU2:4), cat(Appearance Perks)
+
+Passing Appearance (Type of Look), 1, page(PU2:4), x(#InputToTagReplace("Specify the type of look:", nameext, , "Type of Look")), cat(Appearance Perks)
+
+Photogenic, 1, page(PU2:4), conditional(+1 to AD:Appearance when "seen in photo")
+
+<Combat>
+Acrobatic Feints, 1, cat(Style Perks - Realistic), page(MA51,PU2:5),description(You may use your Acrobatics skill to feint and may improve the Feint (Acrobatics) technique.)
+
+Dancing Feints, 1, cat(Style Perks - Realistic), page(MA51,PU2:5),description(You may use your Dancing skill to feint and may improve the Feint (Dancing) technique.)
+
+Sexy Feints, 1, cat(Style Perks - Realistic), page(MA51,PU2:5),description(You may use your Sex Appeal skill to feint and may improve the Feint (Sex Appeal) technique.)
+
+Acrobatic Kicks, 1, cat(Style Perks - Realistic), page(MA51,PU2:5), description(Roll against Acrobatics-2 to hit with a kick. Kicking techniques can likewise default to Acrobatics. Acrobatic kicks don't receive Brawling or Karate damage bonuses, however.)
+
+Dancing Kicks, 1, cat(Style Perks - Realistic), page(MA51,PU2:5), description(Roll against Dancing-2 to hit with a kick. Kicking techniques can likewise default to Dancing. Dancing kicks don't receive Brawling or Karate damage bonuses, however.)
+
+Aerobatic Kicks, 1, cat(Style Perks - Realistic), page(MA51,PU2:5), description(Roll against Aerobatic-2 to hit with a kick. Kicking techniques can likewise default to Aerobatic. Aerobatic kicks don't receive Brawling or Karate damage bonuses, however.)
+
+#MergeTags in "PE:Akimbo" with "cat(Combat),page(PU2:5)"
+
+#MergeTags in "PE:Armor Familiarity" with "cat(Combat),page(PU2:5)"
+
+#MergeTags in "PE:Armorer's Gift" with "cat(Combat),page(PU2:5),description(+2 on rolls to clear malfunctions)"
+
+#MergeTags in "PE:Biting Mastery" with "cat(Combat),page(PU2:5)"
+
+#MergeTags in "PE:Clinch (%Unarmed Combat Skill%)" with "cat(Combat),page(PU2:5)"
+
+Combat Vaulting (%PoleWeaponSkill%), 1, cat(Style Perks - Cinematic, Cinematic), page(PU2:5), needs(AD:Trained By A Master | AD:Weapon Master),_
+	x(#ChoiceList(_
+			name(PoleWeaponSkill),_
+			title(Combat Vaulting: Choose a pole weapon),_
+			text(Choose a pole weapon from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Halbard,_
+				Long Spear,_
+				Quarterstaff _
+			)_
+			)_
+	), noresync(yes)
+
+Dirty Fighting, 1, page(PU2:5), description(+1 to Dirty Trick rolls, see B405)
+
+Dual Ready (%LeftHand%/%RightHand%), 1, page(PU2:5), x(_
+	#ChoiceList(_
+			name(LeftHand),_
+			title(Choose weapon for left hand),_
+			text(Choose weapon for left hand from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Axe/Mace",_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Blowpipe",_
+				"Bolas",_
+				"Bow",_
+				"Broadsword",_
+				"Cloak",_
+				"Crossbow",_
+				"Flail",_
+				"Force Sword",_
+				"Force Whip",_
+				"Garrote",_
+				"Gunner (Rockets)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)",_
+				"Jitte/Sai",_
+				"Judo",_
+				"Knife",_
+				"Kusari",_
+				"Lance",_
+				"Lasso",_
+				"Liquid Projector (Flamethrower)",_
+				"Liquid Projector (Sprayer)",_
+				"Liquid Projector (Squirt Gun)",_
+				"Liquid Projector (Water Cannon)",_
+				"Main-Gauche",_
+				"Monowire Whip",_
+				"Net",_
+				"Polearm",_
+				"Rapier",_
+				"Saber",_
+				"Shield (Buckler)",_
+				"Shield (Force)",_
+				"Shield (Shield)",_
+				"Shortsword",_
+				"Sling",_
+				"Smallsword",_
+				"Spear Thrower",_
+				"Spear",_
+				"Staff",_
+				"Thrown Weapon (Axe/Mace)",_
+				"Thrown Weapon (Dart)",_
+				"Thrown Weapon (Disc)",_
+				"Thrown Weapon (Harpoon)",_
+				"Thrown Weapon (Knife)",_
+				"Thrown Weapon (Shuriken)",_
+				"Thrown Weapon (Spear)",_
+				"Thrown Weapon (Stick)",_
+				"Tonfa",_
+				"Two-Handed Axe/Mace",_
+				"Two-Handed Flail",_
+				"Two-Handed Sword",_
+				"Whip" _
+			)_
+			),_
+	#ChoiceList(_
+			name(RightHand),_
+			title(Choose weapon for right hand),_
+			text(Choose weapon for right hand from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Axe/Mace",_
+				"Beam Weapons (Pistol)",_
+				"Beam Weapons (Projector)",_
+				"Beam Weapons (Rifle)",_
+				"Blowpipe",_
+				"Bolas",_
+				"Bow",_
+				"Broadsword",_
+				"Cloak",_
+				"Crossbow",_
+				"Flail",_
+				"Force Sword",_
+				"Force Whip",_
+				"Garrote",_
+				"Gunner (Rockets)",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Musket)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)",_
+				"Jitte/Sai",_
+				"Judo",_
+				"Knife",_
+				"Kusari",_
+				"Lance",_
+				"Lasso",_
+				"Liquid Projector (Flamethrower)",_
+				"Liquid Projector (Sprayer)",_
+				"Liquid Projector (Squirt Gun)",_
+				"Liquid Projector (Water Cannon)",_
+				"Main-Gauche",_
+				"Monowire Whip",_
+				"Net",_
+				"Polearm",_
+				"Rapier",_
+				"Saber",_
+				"Shield (Buckler)",_
+				"Shield (Force)",_
+				"Shield (Shield)",_
+				"Shortsword",_
+				"Sling",_
+				"Smallsword",_
+				"Spear Thrower",_
+				"Spear",_
+				"Staff",_
+				"Thrown Weapon (Axe/Mace)",_
+				"Thrown Weapon (Dart)",_
+				"Thrown Weapon (Disc)",_
+				"Thrown Weapon (Harpoon)",_
+				"Thrown Weapon (Knife)",_
+				"Thrown Weapon (Shuriken)",_
+				"Thrown Weapon (Spear)",_
+				"Thrown Weapon (Stick)",_
+				"Tonfa",_
+				"Two-Handed Axe/Mace",_
+				"Two-Handed Flail",_
+				"Two-Handed Sword",_
+				"Whip" _
+			)_
+			)_
+	), noresync(yes)
+
+#MergeTags in "PE:Exotic Weapon Training" with "cat(Combat),page(PU2:5)"
+
+Focused Fury, 1, page(PU2:5), cat(Style Perks - Cinematic, Cinematic), needs(AD:Trained By A Master | AD:Weapon Master)
+
+#MergeTags in "PE:Form Mastery" with "cat(Combat),page(PU2:5)"
+
+#MergeTags in "PE:Grip Mastery" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:Ground Guard" with "cat(Combat),page(PU2:6),conditional(+1 to SK:Judo when "both attacker and defeender is lying down",+1 to SK:Wrestling when "both attacker and defeender is lying down",+1 to SK:Sumo Wrestling when "both attacker and defeender is lying down")"
+
+Huge Weapons (SM), 1/2, page(PU2:6), cat(Style Perks - Cinematic, Combat)
+
+Huge Weapons (ST), 1/2, page(PU2:6), cat(Style Perks - Cinematic, Combat)
+
+#MergeTags in "PE:Improvised Weapons" with "page(PU2:6), cat(Combat)"
+
+#MergeTags in "PE:Iron Arms" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:Iron Hands" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:Iron Legs" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:Iron Neck" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:Naval Training" with "cat(Gun Perks, Combat),page(MA50, HT250, PU2:6)"
+
+#MergeTags in all "PE:Neck Control" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:One-Armed Bandit" with "cat(Combat),page(PU2:6)"
+
+#MergeTags in "PE:Pants-Positive Safety" with "cat(Combat),page(PU2:6)"
+
+Peg-Leg Fighting, 1, page(PU2:6), needs(DI:Lame)
+
+Pistol-Fist (Beam Weapons (Pistol)), 1, page(PU2:6), description(Manually add close combat attack w. parry at skill/2 +3),_
+	parryat(@int("SK:Beam Weapons (Pistol)"/2)+3), needs(SK:Beam Weapons (Pistol))
+
+Pistol-Fist (Guns (Pistol)), 1, page(PU2:6), description(Manually add close combat attack w. parry at skill/2 +3),_
+	parryat(@int("SK:Guns (Pistol)"/2)+3), needs(SK:Guns (Pistol))
+
+#MergeTags in "PE:Power Grappling" with "cat(Combat, Style Perks - Realistic),page(MA51,HT249,PU2:7)"
+
+#MergeTags in all "PE:Quick-Sheathe" with "cat(Combat, Gun Perks, Style Perks - Realistic),page(MA51,HT249,PU2:7)"
+
+#MergeTags in all "PE:Quick-Swap" with "cat(Combat, Gun Perks, Style Perks - Realistic),page(MA51,HT249,PU2:7)"
+
+#MergeTags in all "PE:Rapid Retraction" with "cat(Style Perks - Realistic, Combat),page(PU2:7,MA51)"
+
+Razor Kicks, 1, page(PU2:7), cat(Combat), mode(Kick),_
+	damage(_
+		thr - 1 + _
+		@max(_
+			@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Kick) else 0),_
+			@if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0)) _
+			) _
+		), damtype(cut), reach(C,1), parry(No), skillused(ST:DX-2, SK:Brawling-2, SK:Karate-2, SK:Kicking (Karate), SK:Kicking (Brawling)), mods(Punch/Kick)
+
+High-Heeled Hurt, 1, page(PU2:7), cat(Combat, Style Perks - Cinematic, Cinematic), needs(PE:High-Heeled Heroine), mode(Kick),_
+	damage(_
+		thr - 1 + _
+		@max(_
+			@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Kick) else 0),_
+			@if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0)) _
+			) _
+		), damtype(pi+), reach(C,1), parry(No), skillused(ST:DX-2, SK:Brawling-2, SK:Karate-2, SK:Kicking (Karate), SK:Kicking (Brawling)), mods(Punch/Kick)
+
+Reach Mastery, 1, page(PU2:7), cat(Combat),x(#InputToTagReplace("Specify Weapon Skill:", nameext, , "Weapon Skill needed"))
+
+Sacrificial Parry, 1, page(PU2:7), cat(Combat),x(#InputToTagReplace("Specify the Weapon Skill:", nameext, , "Weapon Skill needed"))
+
+Secret Styles, 1/2, page(PU2:7), cat(Combat, Style Perks - Cinematic, Cinematic), needs(AD:Trained By A Master | AD:Weapon Master), x(#InputToTagReplace("Specify the Fighting Move:", nameext, , "Fighting Move needed"))
+
+#MergeTags in "PE:Shield-Wall Training" with "cat(Combat),page(PU2:7)"
+
+Shoves and Tackles, 1, page(PU2:7), cat(Combat), x(#InputToTagReplace("Specify the Melee Weapon Skill:", nameext, , "Melee Weapon Skill needed"))
+
+#MergeTags in "PE:Special Setup" with "cat(Combat),page(PU2:7), x(#InputToTagReplace("Specify the Special Setup:", nameext, , "Special Setup description needed"))"
+
+#MergeTags in "PE:Strongbow" with "cat(Combat),page(PU2:7)"
+
+Crossbow Finesse, 1, page(PU2:7), cat(Combat)
+
+#MergeTags in "PE:Style Familiarity" with "cat(Combat),page(PU2:7)"
+
+#MergeTags in all "PE:Sure-Footed" with "page(PU2:8), cat(Combat)"
+
+Sure-Footed (Ice), 1, cat(Combat),page(PU2:8)
+
+Sure-Footed (Sand), 1, cat(Combat),page(PU2:8)
+
+Sure-Footed (Snow), 1, cat(Combat),page(PU2:8)
+
+Sure-Footed (Water), 1, cat(Combat),page(PU2:8)
+
+#MergeTags in "PE:Sure-Footed" with {x(#InputToTagReplace("Specify terrain:", nameext, , "Terrain needed"))}
+
+#MergeTags in "PE:Teamwork" with "cat(Combat),page(PU2:6), x(#InputToTagReplace("Specify the Teamwork group:", nameext, , "Teamwork group needed"))"
+
+Trademark Move, 1, page(PU2:8), cat(Combat), x(#InputToTagReplace("Specify Trademark Move:", nameext, , "Melee Weapon Skill needed"))
+
+Unarmed Parry, 1, page(PU2:8), cat(Combat), x(#InputToTagReplace("Specify the Melee Weapon Skill:", nameext, , "Melee Weapon Skill needed"))
+
+#MergeTags in "PE:Weapon Adaptation" with "cat(Combat),page(PU2:6), x(#InputToTagReplace("Specify original skill and replacement skill:", nameext, , "Original skill and replacement skill needed"))"
+
+<Equipment Perks>
+Better (Gear), 1, page(PU2:8), cat(Equipment Perks), x(#InputToTagReplace("Specify gear type:", nameext, , "Gear specification needed"))
+
+Cheaper (Gear), 1, page(PU2:8), cat(Equipment Perks), x(#InputToTagReplace("Specify gear type:", nameext, , "Gear specification needed"))
+
+Doodad, 1/2, page(PU2:9), cat(Equipment Perks, Cinematic)
+
+Exotic Equipment Training, 1, page(PU2:9), x(#InputToTagReplace("Specify exotic equipment:", nameext, , "Exotic equipment needed"))
+
+#MergeTags in "PE:Equipment Bond" with "cat(Equipment Perks),page(HT7,PU2:9)"
+
+Intuitive Repairman, 1, page(PU2:9), x(#InputToTagReplace("Specify particular item to repair:", nameext, , "Particular item to repairneeded"))
+
+#MergeTags in "PE:Suit Familiarity" with "cat(Equipment Perks),page(MA52,PU2:9), x(#InputToTagReplace("Specify Environmental Suit skill:", nameext, , "Environmental Suit skill needed"))"
+
+#MergeTags in "PE:Supersuit" with "cat(Equipment Perks, Cinematic),page(SU30,PU2:9)"
+
+<Exotic Perks>
+#MergeTags in all "PE:Accessory" with "cat(Equipment Perks),page(PU2:10)"
+
+#MergeTags in "PE:Accessory" with "x(#InputToTagReplace("Specify gadget:", nameext, , "Gadget specification needed"))"
+
+Air Jet, 1, page(PU2:10), cat(Equipment Perks)
+
+#MergeTags in "PE:Burrower" with "cat(Exotic Perks),page(SU31,PU2:10)"
+
+#MergeTags in "PE:Climbing Line" with "cat(Exotic Perks),page(SU31,PU2:10)"
+
+#MergeTags in "PE:Cross-Species Surrogacy" with "cat(Exotic Perks),page(BT59,PU2:10), description(Prerequistite: Female or Androwomb.)"
+
+Extreme Sexual Dimorphism, 1, page(PU2:10), cat(Exotic Perks), gives(+1 to SK:Sex Appeal), conditional(-1 to SK:Disguise when "trying to remain anonymous", -1 to SK:Shadowing when "trying to remain anonymous"), description(Gives +1 to other's attempts to identify you.)
+
+Feathers, 1, page(PU2:10), cat(Equipment Perks)
+
+#MergeTags in "PE:Fur" with "cat(Exotic Perks),page(B100,PU2:10)"
+
+#MergeTags in "PE:Generator" with "cat(Exotic Perks),page(SU31,PU2:10)"
+
+#MergeTags in "PE:Ignition" with "cat(Exotic Perks),page(SU31,PU2:10)"
+
+#MergeTags in "PE:Illumination" with "cat(Exotic Perks),page(SU31,PU2:10)"
+
+Immunity to [Specific Hazard], 1, page(PU2:11), cat(Physical Perks), x(#InputReplace("Specify the Hazard you're immune to:", "[Specific Hazard]", , "Immunity to a Specific Hazard"))
+Immunity to [Specific Poison], 1, page(PU2:11), cat(Physical Perks), x(#InputReplace("Specify the Poison you're immune to:", "[Specific Poison]", , "Immunity to a Specific Poison"))
+
+Limited Camouflage, 1, page(PU2:11), cat(Exotic Perks), x(#InputToTagReplace("Specify terrain:", nameext, , "Terrain needed")), conditional(+2 to SK:Camouflage when "still and unclad against", +2 to SK:Stealth when "still and unclad against")
+
+#MergeTags in "PE:Long Fingers/Thumbs" with "cat(Exotic Perks),page(MA71,PU2:11)"
+
+#MergeTags in "PE:No Degeneration in Zero-G" with "cat(Exotic Perks),page(BT211,TS:CT38,PU2:11)"
+
+#MergeTags in "PE:No Visible Damage" with "cat(Exotic Perks),page(SU31,PU2:11)"
+
+#MergeTags in "PE:Parthenogenesis" with "cat(Exotic Perks),page(BT59,PU2:11)"
+
+#MergeTags in "PE:Perfume" with "cat(Exotic Perks),page(SU31,PU2:11),conditional(+1 to ST:Reaction when \"a pleasant smell makes a difference\")"
+
+#MergeTags in "PE:Periscope" with "cat(Exotic Perks),page(SU31,PU2:11)"
+
+#MergeTags in all "PE:Pressure Tolerant Lungs" with "cat(Exotic Perks, Physical Perks),page(BT211, PU2:11)"
+
+Racial Gifts, 1, page(PU2:12), cat(Exotic Perks), x(#InputToTagReplace("Specify category of gifts", nameext, , "Category of gifts"))
+
+#Delete "PE:Reproductive Control"
+
+Reproductive Control (Fertility Control), 1, page(BT59,PU2:12), cat(Physical Perks, Exotic Perks), taboo(AD:Reproductive Control)
+
+Reproductive Control (Reabsorption), 1, page(BT59,PU2:12), cat(Physical Perks, Exotic Perks), taboo(AD:Reproductive Control)
+
+Rinse, 1, page(PU2:12)
+
+#MergeTags in "PE:Sanitized Metabolism" with "cat(Exotic Perks),page(B100,PU2:12)"
+
+Scales, 1, page(PU2:12)
+
+#MergeTags in "PE:Striking Surface" with "cat(Exotic Perks),page(PU2:12)"
+
+<Mental Perks>
+Accent, 1, page(PU2:12), x(#InputToTagReplace("Specify language and accent", nameext, , "Language and accent")), cat(Mental Perks)
+
+#MergeTags in "PE:Autotrance" with "cat(Mental Perks),page(B100,PU2:12)"
+
+Call of the Wild, 1, page(PU2:12), needs(AD:Animal Empathy), cat(Mental Perks)
+
+Controllable Disadvantage (Mental), 1, page(PU2:12), x(#InputToTagReplace("Specify mental disadvantage", nameext, , "Mental disadvantage")), cat(Mental Perks)
+
+Eye for Distance, 1, page(PU2:13), cat(Mental Perks)
+
+Focused (Task), 1, page(PU2:13), x(#InputToTagReplace("Specify task", nameext, , "Task needed")), description(gives +3 to lengthy noncombat task but -5 to all other rolls.), cat(Mental Perks)
+
+Good with (Animal), 1, page(PU2:13), x(#InputToTagReplace("Specify the Animal you're good with:", nameext, , "Good with (Animal)")), cat(Mental Perks)
+
+Good with (Social Group), 1, page(PU2:13), x(#InputToTagReplace("Specify the Social Group you're good with:", nameext, , "Good with (Social Group)")), cat(Mental Perks)
+
+Headhunter, 1, page(PU2:13), cat(Mental Perks)
+
+Job Hunter, 1, page(PU2:13), cat(Mental Perks)
+
+One-Way Fluency, 1, page(PU2:13), x(#InputToTagReplace("Specify speaks/understands and language", nameext, , "speaks/understands and language needed")), cat(Mental Perks)
+
+One-Way Literacy, 1, page(PU2:13), x(#InputToTagReplace("Specify reads/writes and language", nameext, , "reads/writes and language needed")), cat(Mental Perks)
+
+Patience of Job, 1, page(PU2:13), cat(Mental Perks)
+
+Rule of 15, 1, page(PU2:13), cat(Mental Perks)
+
+<Physical Perks>
+
+Acceleration Tolerance, 1, page(PU2:13), cat(Physical Perks)
+
+#MergeTags in "PE:Alcohol Tolerance" with "page(B100,PU2:13), cat(Physical Perks)"
+
+Carrier, 1, page(PU2:13), cat(Physical Perks)
+
+Compact Frame, 1, page(PU2:13), conditional(+1 to SK:Espace when "fitting through a narrow space"), cat(Physical Perks)
+
+Controllable Disadvantage (Physical), 1, page(PU2:13), x(#InputToTagReplace("Specify physical disadvantage", nameext, , "Physical disadvantage")), cat(Physical Perks)
+
+#MergeTags in "PE:Deep Sleeper" with "cat(Physical Perks),page(B100,PU2:13)"
+
+Extended Hearing (High), 1, page(PU2:14), cat(Physical Perks)
+
+Extended Hearing (Low), 1, page(PU2:14), cat(Physical Perks)
+
+#MergeTags in "PE:Immunity to [Specific Disease]" with "cat(Physical Perks),page(PU2:14)"
+
+#MergeTags in "PE:Low Rejection Threshold" with "cat(Physical Perks),page(BT211, PU2:14)"
+
+Natural Pockets, 1, page(PU2:14), cat(Physical Perks)
+
+#MergeTags in "PE:No Hangover" with "cat(Physical Perks),page(PU2:14)"
+
+#MergeTags in "PE:Penetrating Voice" with "cat(Physical Perks),page(PU2:14)"
+
+Resistant to (Specific Poison), 1, page(PU2:14), cat(Physical Perks), x(#InputToTagReplace("Specify the Poison you're resistant to:", nameext, , "Resistant to a Specific Poison"))
+
+Robust (Sense), 1, page(PU2:14), cat(Physical Perks), x(#InputToTagReplace("Specify sense", nameext, , "Sense needed"))
+
+Robust (Hearing), 1, page(PU2:14), cat(Physical Perks)
+
+Robust (Vision), 1, page(PU2:14), cat(Physical Perks)
+
+Sea Legs, 1, page(PU2:14), cat(Physical Perks)
+
+<Shticks>
+#MergeTags in "PE:Shtick" with "cat(Shticks),page(PU2:14)"
+
+#MergeTags in "PE:Cloaked" with "cat(Shticks, Shticks - Clothing, Cinematic),page(SU30,PU2:14),conditional(+1 to ST:Reaction when \"sudden revelation would impress\")"
+
+High-Heeled Heroine, 1, page(PU2:14,SU30), cat(Shticks, Shticks - Clothing, Cinematic), conditional(+1 to ST:Reaction when "best left to the imagination", +1 to SK:Sex Appeal when "best left to the imagination")
+
+Looks Good in Uniform, 1, page(PU2:14), cat(Shticks, Shticks - Clothing), conditional(+1 to ST:Reaction when "using for official purposes")
+
+#Clone "PE:Masked" as "PE:Masked Shtick"
+#Delete "PE:Masked"
+#MergeTags in "PE:Masked Shtick" with "cat(Shticks, Shticks - Clothing, Cinematic),page(SU30,PU2:14)"
+
+Sartorial Integrity, 1, page(PU2:14), cat(Shticks, Shticks - Clothing, Cinematic)
+
+Skintight Shtick, 1, page(PU2:14), cat(Shticks, Shticks - Clothing, Cinematic)
+
+Flourish Shtick, 1, page(PU2:15), cat(Shticks, Shticks - Combat, Combat), conditional(+4 to SK:Intimidation when "successfully performed an impressive flourish on knocked down or killed foe")
+
+Follow-Through Shtick, 1, page(PU2:15), cat(Shticks, Shticks - Combat, Combat), description(Successful use of weapon skill allows free intimidation roll after knocking down or killing an enemy.)
+
+Twirl Shtick, 1, page(PU2:15), cat(Shticks, Shticks - Combat, Combat)
+
+Convincing Nod, 1, page(PU2:15), cat(Shticks, Shticks - Influence), description(Allows use of Fast-Talk without talking.)
+
+Disarming Smile, 1, page(PU2:15), cat(Shticks, Shticks - Influence), description(Allows use of Diplomacy without talking.)
+
+Fearsome Stare, 1, page(PU2:15), cat(Shticks, Shticks - Influence), description(Allows use of Intimidation without talking.)
+
+Gangster Swagger, 1, page(PU2:15), cat(Shticks, Shticks - Influence), description(Allows use of Streetwise without talking.)
+
+Haughty Sneer, 1, page(PU2:15), cat(Shticks, Shticks - Influence), description("Allows use of Savoir-Faire (High Society) without talking.")
+
+Sexy Pose, 1, page(PU2:15), cat(Shticks, Shticks - Influence), description(Allows use of Sex Appeal without talking.)
+
+Standard Operating Procedure, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure), x(#InputToTagReplace("Specify standard operating procedure", nameext, , "Standard operating procedure needed"))
+
+Back to the Wall, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure)
+Energizer, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure, Cinematic)
+Full Tank, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure, Cinematic)
+Last Man Out, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure)
+Off-Screen Reload, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure, Cinematic)
+On Alert, 1, page(PU2:15), cat(Shticks, Shticks - Standard Operating Procedure)
+
+<Skill Perks>
+Attribute Substitution ([Skill] based on %AttributeAliasList%), 1, page(PU2:15), adds(SK:[Skill]),_
+	replacetags(in "SK:[Skill]" with "type(%AttributeList%), noresync(yes)"),_
+	x(_
+		#InputReplace("Please enter name (and extention, if applicable) of the target skill:", "[Skill]", Name (Extention), "Attribute Substitution"),_
+		#ChoiceList(_
+				name(Attribute),_
+				title(Attribute Substitution),_
+				text(Choose the attribute and difficulty that this skill is floating to (note that this perk doesn't change skill difficulty, however for GCA to process the change you must select the correct attribute and difficulty):),_
+				picksallowed(1),_
+				method(bynumber),_
+				list(_
+					"IQ/E",_
+					"IQ/A",_
+					"IQ/H",_
+					"IQ/VH",_
+					"DX/E",_
+					"DX/A",_
+					"DX/H",_
+					"DX/VH",_
+					"Per/E",_
+					"Per/A",_
+					"Per/H",_
+					"Per/VH",_
+					"Will/E",_
+					"Will/A",_
+					"Will/H",_
+					"Will/VH",_
+					"HT/E",_
+					"HT/A",_
+					"HT/H",_
+					"HT/VH"_
+					),_
+			aliaslist(_
+					"IQ",_
+					"IQ",_
+					"IQ",_
+					"IQ",_
+					"DX",_
+					"DX",_
+					"DX",_
+					"DX",_
+					"Per",_
+					"Per",_
+					"Per",_
+					"Per",_
+					"Will",_
+					"Will",_
+					"Will",_
+					"Will",_
+					"HT",_
+					"HT",_
+					"HT",_
+					"HT"_
+					)_
+				)_
+		)
+
+Background Knowledge, 1, page(PU2:16), cat(Skill Perks), x(#InputToTagReplace("Specify locale or profession", nameext, , "Locale or profession needed"))
+
+#MergeTags in "PE:Cross-Trained" with "cat(Skill Perks),page(PU2:15)"
+
+Cutting-Edge Training, 1/2, page(PU2:16), cat(Skill Perks), x(#InputToTagReplace("Specify TL-based skill", nameext, , "TL-based skill needed"))
+
+Dabbler (%DefPlusOneAliaslist%), 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+		=+@if({SK:%DefPlusOne1%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne1%,_
+		=+@if({SK:%DefPlusOne2%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne2%,_
+		=+@if({SK:%DefPlusOne3%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne3%,_
+		=+@if({SK:%DefPlusOne4%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne4%,_
+		=+@if({SK:%DefPlusOne5%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne5%,_
+		=+@if({SK:%DefPlusOne6%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne6%,_
+		=+@if({SK:%DefPlusOne7%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne7%,_
+		=+@if({SK:%DefPlusOne8%::deflevel} = 0 THEN 0 ELSE 1) to SK:%DefPlusOne8%,_
+		=+@if({SK:%DefPlusTwo1%::deflevel} = 0 THEN 0 ELSE 2) to SK:%DefPlusTwo1%,_
+		=+@if({SK:%DefPlusTwo2%::deflevel} = 0 THEN 0 ELSE 2) to SK:%DefPlusTwo2%,_
+		=+@if({SK:%DefPlusTwo3%::deflevel} = 0 THEN 0 ELSE 2) to SK:%DefPlusTwo3%,_
+		=+@if({SK:%DefPlusTwo4%::deflevel} = 0 THEN 0 ELSE 2) to SK:%DefPlusTwo4%,_
+		=+@if({SK:%DefPlusThree1%::deflevel} = 0 THEN 0 ELSE 3) to SK:%DefPlusThree1%,_
+		=+@if({SK:%DefPlusThree2%::deflevel} = 0 THEN 0 ELSE 3) to SK:%DefPlusThree2%_
+	),_
+	x(_
+	#ChoiceList(_
+			name(skills),_
+			title(Racial Skill Bonus: Choose a Skill),_
+			text(Choose which skill the Racial Skill Bonus is for:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"def+3 x2",_
+				"def+3 x1, def+2 x2",_
+				"def+3 x1, def+2 x1, def+1 x2",_
+				"def+3 x1, def+1 x4",_
+				"def+2 x4",_
+				"def+2 x3, def+1 x2",_
+				"def+2 x2, def+1 x4",_
+				"def+2 x1, def+1 x6",_
+				"def+1 x8"_
+				),_
+				comment(//def+1 quantity),_
+				alt1list(_
+				0, 0, 2, 4, 0, 2, 4, 6, 8_
+				),_
+				comment(//def+2 quantity),_
+				alt2list(_
+				0, 2, 1, 0, 4, 3, 2, 1, 0_
+				),_
+				comment(//def+3 quantity),_
+				alt2list(_
+				2, 1, 1, 1, 0, 0, 0, 0, 0_
+				),_
+			),_
+	#ChoiceList(_
+			name(DefPlusOne),_
+			title(Dabbler),_
+			text(Choose %skillsalt1list% skills to get at Def+1:),_
+			picksallowed(atleast %skillsalt1list%, upto %skillsalt1list%),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSkills, flags(NoPrefix))_
+				),_
+			aliaslist(_
+				#grouplist(GR:AllSkills, flags(NoPrefix), append(@def+1))_
+				)_
+			),_
+	#ChoiceList(_
+			name(DefPlusTwo),_
+			title(Dabbler),_
+			text(Choose %skillsalt2list% skills to get at Def+2:),_
+			picksallowed(atleast %skillsalt2list%, upto %skillsalt2list%),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSkills, flags(NoPrefix))_
+				),_
+			aliaslist(_
+				#grouplist(GR:AllSkills, flags(NoPrefix), append(@def+2))_
+				)_
+			),_
+	#ChoiceList(_
+			name(DefPlusThree),_
+			title(Dabbler),_
+			text(Choose %skillsalt3list% skills to get at Def+3:),_
+			picksallowed(atleast %skillsalt3list%, upto %skillsalt3list%),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSkills, flags(NoPrefix))_
+				),_
+			aliaslist(_
+				#grouplist(GR:AllSkills, flags(NoPrefix), append(@def+3))_
+				)_
+			)_
+		)
+#Delete "PE:Dabbler (%DefPlusOneAliaslist%)"
+
+// 1111 1111
+"Dabbler ([Skill_1] def+1, [Skill_2] def+1, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1, [Skill_6] def+1, [Skill_7] def+1, [Skill_8] def+1)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_4],_
+			=+@if({SK:[Skill_5]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_5],_
+			=+@if({SK:[Skill_6]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_6],_
+			=+@if({SK:[Skill_7]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_7],_
+			=+@if({SK:[Skill_8]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_8]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_5]", "name (extension)" , "Dabbler Skill 5"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_6]", "name (extension)" , "Dabbler Skill 6"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_7]", "name (extension)" , "Dabbler Skill 7"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_8]", "name (extension)" , "Dabbler Skill 8")_
+		)
+
+// 211 1111
+"Dabbler ([Skill_1] def+2, [Skill_2] def+1, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1, [Skill_6] def+1, [Skill_7] def+1)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_4],_
+			=+@if({SK:[Skill_5]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_5],_
+			=+@if({SK:[Skill_6]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_6],_
+			=+@if({SK:[Skill_7]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_7]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_5]", "name (extension)" , "Dabbler Skill 5"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_6]", "name (extension)" , "Dabbler Skill 6"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_7]", "name (extension)" , "Dabbler Skill 7")_
+		)
+
+// 22 1111
+"Dabbler ([Skill_1] def+2, [Skill_2] def+2, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1, [Skill_6] def+1)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_4],_
+			=+@if({SK:[Skill_5]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_5],_
+			=+@if({SK:[Skill_6]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_6]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_5]", "name (extension)" , "Dabbler Skill 5"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_6]", "name (extension)" , "Dabbler Skill 6")_
+		)
+
+// 2 2211
+"Dabbler ([Skill_1] def+2, [Skill_2] def+2, [Skill_3] def+2, [Skill_4] def+1, [Skill_5] def+1)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_4],_
+			=+@if({SK:[Skill_5]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_5]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_5]", "name (extension)" , "Dabbler Skill 5")_
+		)
+
+// 3 1111
+"Dabbler ([Skill_1] def+3, [Skill_2] def+1, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 3) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_4],_
+			=+@if({SK:[Skill_5]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_5]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +3 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_5]", "name (extension)" , "Dabbler Skill 5")_
+		)
+
+// 2222
+"Dabbler ([Skill_1] def+2, [Skill_2] def+2, [Skill_3] def+2, [Skill_4] def+2)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_4]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4")_
+		)
+
+// 3211
+"Dabbler ([Skill_1] def+3, [Skill_2] def+2, [Skill_3] def+1, [Skill_4] def+1)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 3) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_3],_
+			=+@if({SK:[Skill_4]::deflevel} = 0 THEN 0 ELSE 1) to SK:[Skill_4]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +3 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3"),_
+		#InputReplace("Enter the name of the skill that will receive +1 to it's default:", "[Skill_4]", "name (extension)" , "Dabbler Skill 4")_
+		)
+
+// 322
+"Dabbler ([Skill_1] def+3, [Skill_2] def+2, [Skill_3] def+2)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 3) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_2],_
+			=+@if({SK:[Skill_3]::deflevel} = 0 THEN 0 ELSE 2) to SK:[Skill_3]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +3 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2"),_
+		#InputReplace("Enter the name of the skill that will receive +2 to it's default:", "[Skill_3]", "name (extension)" , "Dabbler Skill 3")_
+		)
+
+// 33
+"Dabbler ([Skill_1] def+3, [Skill_2] def+3)", 1, page(PU2:16), cat(Skill Perks),_
+	gives(_
+			=+@if({SK:[Skill_1]::deflevel} = 0 THEN 0 ELSE 3) to SK:[Skill_1],_
+			=+@if({SK:[Skill_2]::deflevel} = 0 THEN 0 ELSE 3) to SK:[Skill_2]_
+			),_
+	x(_
+		#InputReplace("Enter the name of the skill that will receive +3 to it's default:", "[Skill_1]", "name (extension)" , "Dabbler Skill 1"),_
+		#InputReplace("Enter the name of the skill that will receive +3 to it's default:", "[Skill_2]", "name (extension)" , "Dabbler Skill 2")_
+		)
+
+Efficient, 1, page(PU2:16), cat(Skill Perks), x(#InputToTagReplace("Specify skill", nameext, , "Specify skill")), description(Allows PC to ignore up to -2 for haste.)
+
+Hands-Free, 1, page(PU2:16), cat(Skill Perks), x(#InputToTagReplace("Specify skill and body part", nameext, , "Specify skill and body part"))
+
+Combat Hands-Free, 1, page(PU2:16), cat(Skill Perks, Combat, Cinematic), x(#InputToTagReplace("Specify skill, task, and body part", nameext, , "Specify skill, task, and body part")), needs(AD:Trained By A Master | AD:Weapon Master)
+
+Hyper-Specialization, 1, page(PU2:16), cat(Skill Perks), x(#InputToTagReplace("Specify knowledge or scientific skill", nameext, , "Knowledge or scientific kill needed")), description(This perk isn't reflected in the skill level.)
+
+No Nuisance Rolls, 1, page(PU2:16), cat(Skill Perks, Combat, Cinematic, Unusual Background), x(#InputToTagReplace("Specify a background non-adeventuring task", nameext, , "A background non-adeventuring task needed")), needs(AD:Trained By A Master | AD:Weapon Master)
+
+No Nuisance Rolls (Swinging), 1, page(PU2:16), cat(Skill Perks, Combat, Cinematic, Unusual Background)
+
+No Nuisance Rolls (Transporter), 1, page(PU2:16), cat(Skill Perks, Combat, Cinematic, Unusual Background)
+
+Off-Hand Training, 1, page(PU2:16-17), cat(Skill Perks, Combat), x(#InputToTagReplace("Specify skill", nameext, , "Specify skill"))
+
+One-Task Wonder, 1, page(PU2:17), cat(Skill Perks), x(#InputToTagReplace("Specify skill", nameext, , "Specify skill"))
+
+#MergeTags in "PE:Skill Adaptation" with "cat(Skill Perks),page(MA51,PU2:17)"
+
+#MergeTags in "PE:Technique Adaptation" with "cat(Skill Perks),page(MA51,PU2:17)"
+
+#MergeTags in "PE:Technique Mastery ([Technique])" with "cat(Skill Perks),page(MA51,PU2:17)"
+
+Unusual Posture, 1, page(PU2:17), cat(Skill Perks, Combat), x(#InputToTagReplace("Specify skill and posture", nameext, , "Specify skill and posture"))
+
+<Social>
+Base, 1, page(PU2:17), cat(Social), x(#InputToTagReplace("Specify base", nameext, , "Base needed"))
+
+Brotherhood, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify group", nameext, , "Group needed"))
+
+Citizenship, 1, page(PU2:17), cat(Social), x(#InputToTagReplace("Specify nation", nameext, , "Nation needed"))
+
+#MergeTags in "PE:Courtesy Rank" with "cat(Socials),page(B29,PU2:18), conditional(+1 to AD:Rank when "using title and avoiding penalties for not having rank")"
+
+Courtesy Administrative Rank, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Administrative Rank when "using title and avoiding penalties for not having rank")
+
+Courtesy Merchant Rank, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Merchant Rank when "using title and avoiding penalties for not having rank")
+
+Courtesy Military Rank, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Military Rank when "using title and avoiding penalties for not having rank")
+
+Courtesy Police Rank, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Police Rank when "using title and avoiding penalties for not having rank")
+
+Courtesy Religious Rank, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Religious Rank when "using title and avoiding penalties for not having rank")
+
+Emeritus Professor, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Tenure when "using title and avoiding penalties for not having rank")
+
+Ex-Cop, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Lega Enforcement Powers when "using title and avoiding penalties for not having rank")
+
+Honorary Title, 1/2, page(PU2:18), cat(Social), conditional(+1 to AD:Status when "using title and avoiding penalties for not having rank")
+
+Disposable Identity, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify identity", nameext, , "Identity needed"))
+
+Friend, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify friend and place of residence", nameext, , "Friend and place of residence needed"))
+
+License, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify type of license", nameext, , "Type of license needed"))
+
+Office, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify type of office", nameext, , "Type of office needed"))
+
+Permit, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify type of of permit", nameext, , "Type of permit needed"))
+
+Pet, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify type of pet", nameext, , "Type of pet needed"))
+
+Trivial Reputation, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify trivial reputation", nameext, , "Trivial reputation needed"))
+
+Vehicle, 1, page(PU2:18), cat(Social), x(#InputToTagReplace("Specify vehicle", nameext, , "Vehicle needed"))
+
+<Supernatural>
+Charms ([Spell]), 1, page(PU2:19), cat(Supernatural, Supernatural), x(#InputReplace("Charms: Specify the spell you can bypass the prerequisites for:", "[Spell]", , "Charms: Specify spell"))
+Charms (%SpellsList%), 1, page(PU2:19), cat(Supernatural, Supernatural),_
+	x(_
+	#ChoiceList(_
+			name(Spells),_
+			title(Charms),_
+			text(Choose which Spell you can bypass the prerequisite for:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:AllSpellsMagical, flags(NoPrefix))_
+				)_
+			)_
+		)
+
+#MergeTags in "PE:Chi Resistance" with "page(PU2:19), cat(Supernatural, Supernatural, Cinematic)"
+
+Covenant of Rest, 1, page(PU2:19), cat(Supernatural, Supernatural)
+
+Dramatic Death, 1, page(PU2:19), cat(Supernatural, Supernatural, Cinematic)
+
+Magical School Familiarity, 1, page(PU2:19), x(#InputToTagReplace("Specify magic school", nameext, , "Magic school needed"))
+
+#MergeTags in "PE:Named Possession" with "cat(Supernatural, Supernatural),page(F132,PU2:19), x(#InputToTagReplace("Specify possession", nameext, , "Possession needed"))"
+
+#MergeTags in "PE:Obscure True Name" with "page(PU2:19), cat(Supernatural)"
+
+Purpose, 1, page(PU2:19), cat(Supernatural, Supernatural, Cinematic), x(#InputToTagReplace("Specify purpose", nameext, , "Purpose needed"))
+
+Rest in Pieces, 1, page(PU2:19-20), cat(Supernatural, Supernatural)
+
+Rule of 17, 1/2, page(PU2:20), cat(Supernatural, Supernatural), x(#InputToTagReplace("Specify skill", nameext, , "Skill needed"))
+
+#MergeTags in "PE:Spirit Contract" with "cat(Supernatural),page(PU2:19), x(#InputToTagReplace("Specify spirit", nameext, , "Spirit needed"))"
+
+Trivial Destiny, 1/2, page(PU2:20), cat(Supernatural, Cinematic), x(#InputToTagReplace("Specify minor destiny", nameext, , "Minor destiny needed"))
+
+<Unusual Background>
+Extra Option, 1, page(PU2:20), cat(Unusual Background), x(#InputToTagReplace("Specify optional rules", nameext, , "Optional rule needed"))
+
+Rules Exemption, 1, page(PU2:20), cat(Unusual Background), x(#InputToTagReplace("Specify detrimental optional rule in use", nameext, , "Detrimental optional rule in use needed"))
+
+School Adaptation, 1, page(PU2:20), cat(Unusual Background), x(#InputToTagReplace("Please enter tye Styles you've Adapted:", nameext, , "Style Adaptation"))
+
+#MergeTags in "PE:Style Adaptation" with "cat(Unusual Background), page(PU2:20)"
+
+Template Adaptation, 1, page(PU2:20), cat(Unusual Background), x(#InputToTagReplace("Please enter tye Styles you've Adapted:", nameext, , "Style Adaptation"))
+
+Secret Knowledge, 1, page(PU2:20), cat(Unusual Background), x(#InputToTagReplace("Specify skill", nameext, , "Skill needed"))
+
+#MergeTags in all "PE:Special Exercises" with "cat(Unusual Background),page(PU2:21)"
+
+Special Exercises (DX), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:DX} with {maxscore(20 + {PE:Special Exercises (DX)::level})})
+
+Special Exercises (IQ), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:IQ} with {maxscore(20 + {PE:Special Exercises (IQ)::level})})
+
+Special Exercises (HT), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:HT} with {maxscore(20 + {PE:Special Exercises (HT)::level})})
+
+Special Exercises (Will), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:Will} with {maxscore(@max(20, ST:IQ) + {2 * PE:Special Exercises (Will)::level})})
+
+Special Exercises (Per), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:Perception} with {maxscore(@max(20, ST:IQ) + {2 * PE:Special Exercises (Per)::level})})
+
+Special Exercises (Basic Speed), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:Basic Speed} with {maxscore(((ST:DX + ST:HT) / 4) + 2 + {PE:Special Exercises (Basic Speed)::level})})
+
+Special Exercises (Basic Move), 1/2, cat(Unusual Background),page(PU2:21), replacetags(in {ST:Basic Move} with {maxscore(ST:Basic Speed + 3 + {PE:Special Exercises (Basic Move)::level})})
+
+Special Exercises (DR 1 with Ablative), 1, cat(Style Perks - Realistic), page(MA51),_
+	adds(AD:Damage Resistance with "Ablative, -80%, group(Damage Resistance), page(B47)")
+
+#MergeTags in "PE:Unique Technique" with "cat(Unusual Background),page(PU2:21)"
+
+#MergeTags in all "PE:Unusual Training" with "cat(Unusual Background),page(PU2:21)"
+
+*******************************************************************************************************\[STOP]
+//  Euipment Modifiers
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Bow Quality>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Bow Quality), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Guns>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Guns), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Beams>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Beams), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Shield>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Shield), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Melee Quality>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Melee Quality), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllPerksDabbler>
+PE:Dabbler ([Skill_1] def+1, [Skill_2] def+1, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1, [Skill_6] def+1, [Skill_7] def+1, [Skill_8] def+1)
+PE:Dabbler ([Skill_1] def+2, [Skill_2] def+1, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1, [Skill_6] def+1, [Skill_7] def+1)
+PE:Dabbler ([Skill_1] def+2, [Skill_2] def+2, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1, [Skill_6] def+1)
+PE:Dabbler ([Skill_1] def+2, [Skill_2] def+2, [Skill_3] def+2, [Skill_4] def+1, [Skill_5] def+1)
+PE:Dabbler ([Skill_1] def+2, [Skill_2] def+2, [Skill_3] def+2, [Skill_4] def+2)
+PE:Dabbler ([Skill_1] def+3, [Skill_2] def+1, [Skill_3] def+1, [Skill_4] def+1, [Skill_5] def+1)
+PE:Dabbler ([Skill_1] def+3, [Skill_2] def+2, [Skill_3] def+1, [Skill_4] def+1)
+PE:Dabbler ([Skill_1] def+3, [Skill_2] def+2, [Skill_3] def+2)
+PE:Dabbler ([Skill_1] def+3, [Skill_2] def+3)
+
+<AllPerks>
+PE:Racial Gifts
+PE:Air Jet
+PE:Extreme Sexual Dimorphism
+PE:Feathers
+PE:Accessory
+PE:Immunity to [Specific Hazard]
+PE:Immunity to [Specific Poison]
+PE:Limited Camouflage
+PE:Pressure Tolerant Lungs (Dense)
+PE:Pressure Tolerant Lungs (Thin)
+PE:Accent
+PE:Call of the Wild
+PE:Controllable Disadvantage (Mental)
+PE:Rinse
+PE:Scales
+PE:Striking Surface
+PE:Acceleration Tolerance
+PE:Carrier
+PE:Compact Frame
+PE:Controllable Disadvantage (Physical)
+PE:Eye for Distance
+PE:Focused (Task)
+PE:Good with (Animal)
+PE:Good with (Social Group)
+PE:Headhunter
+PE:Job Hunter
+PE:One-Way Fluency
+PE:One-Way Literacy
+PE:Patience of Job
+PE:Rule of 15
+PE:Extended Hearing (High)
+PE:Extended Hearing (Low)
+PE:High-Heeled Heroine
+PE:Looks Good in Uniform
+PE:Natural Pockets
+PE:Resistant to (Specific Poison)
+PE:Robust (Hearing)
+PE:Robust (Sense)
+PE:Robust (Vision)
+PE:Sartorial Integrity
+PE:Sea Legs
+PE:Skintight Shtick
+PE:Immunity to [Specific Disease]
+PE:No Hangover
+PE:Penetrating Voice
+PE:Shtick
+PE:Low Rejection Threshold
+PE:Attribute Substitution ([Skill] based on %AttributeAliasList%)
+PE:Back to the Wall
+PE:Convincing Nod
+PE:Disarming Smile
+PE:Energizer
+PE:Fearsome Stare
+PE:Flourish Shtick
+PE:Follow-Through Shtick
+PE:Full Tank
+PE:Gangster Swagger
+PE:Haughty Sneer
+PE:Last Man Out
+PE:Off-Screen Reload
+PE:On Alert
+PE:Sexy Pose
+PE:Standard Operating Procedure
+PE:Twirl Shtick
+PE:Cross-Trained
+PE:Background Knowledge
+PE:Combat Hands-Free
+PE:Cutting-Edge Training
+PE:Efficient
+PE:Hands-Free
+PE:Hyper-Specialization
+PE:No Nuisance Rolls (Swinging)
+PE:No Nuisance Rolls (Transporter)
+PE:No Nuisance Rolls
+PE:Off-Hand Training
+PE:Base
+PE:Citizenship
+PE:One-Task Wonder
+PE:Unusual Posture
+PE:Brotherhood
+PE:Courtesy Administrative Rank
+PE:Courtesy Merchant Rank
+PE:Courtesy Military Rank
+PE:Courtesy Police Rank
+PE:Courtesy Religious Rank
+PE:Disposable Identity
+PE:Emeritus Professor
+PE:Ex-Cop
+PE:Friend
+PE:Honorary Title
+PE:License
+PE:Office
+PE:Permit
+PE:Pet
+PE:Trivial Reputation
+PE:Vehicle
+PE:Charms (%SpellsList%)
+PE:Charms ([Spell])
+PE:Covenant of Rest
+PE:Dramatic Death
+PE:Magical School Familiarity
+PE:Purpose
+PE:Chi Resistance
+PE:Obscure True Name
+PE:Spirit Contract
+PE:Rest in Pieces
+PE:Extra Option
+PE:Rule of 17
+PE:Rules Exemption
+PE:School Adaptation
+PE:Secret Knowledge
+PE:Template Adaptation
+PE:Trivial Destiny
+PE:Style Adaptation
+PE:Special Exercises (Basic Move)
+PE:Special Exercises (Basic Speed)
+PE:Special Exercises (DX)
+PE:Special Exercises (HT)
+PE:Special Exercises (IQ)
+PE:Special Exercises (Per)
+PE:Special Exercises (Will)
+PE:Special Exercises
+PE:Special Exercises (Arm ST +1)
+PE:Special Exercises (DR 1 with Tough Skin)
+PE:Special Exercises (FP can exceed HT by 100%)
+PE:Special Exercises (HP can exceed ST by 100%)
+PE:Special Exercises (Magery)
+PE:Special Exercises (Mana Enhancer)
+PE:Special Exercises (Striking ST +1)
+PE:Special Exercises (Wild Talent)
+PE:Unique Technique
+PE:Unusual Training
+PE:Unusual Training ([skill], [restriction])
+PE:Androgynous
+PE:Classic Features
+PE:Forgettable Face
+PE:Passing Appearance (Type of Look)
+PE:Passing Complexion
+PE:Photogenic
+PE:Honest Face
+PE:Combat Vaulting (%PoleWeaponSkill%)
+PE:Dirty Fighting
+PE:Dual Ready (%LeftHand%/%RightHand%)
+PE:Focused Fury
+PE:Akimbo
+PE:Armor Familiarity
+PE:Armorer's Gift
+PE:Biting Mastery
+PE:Clinch (%Unarmed Combat Skill%)
+PE:Exotic Weapon Training
+PE:Form Mastery
+PE:Huge Weapons (SM)
+PE:Huge Weapons (ST)
+PE:Peg-Leg Fighting
+PE:Pistol-Fist (Beam Weapons (Pistol))
+PE:Pistol-Fist (Guns (Pistol))
+PE:Grip Mastery
+PE:Ground Guard
+PE:Improvised Weapons
+PE:Iron Arms
+PE:Iron Hands
+PE:Iron Legs
+PE:Iron Neck
+PE:Neck Control (Boxing)
+PE:Neck Control (Brawling)
+PE:Neck Control (Karate)
+PE:One-Armed Bandit
+PE:Pants-Positive Safety
+PE:Teamwork
+PE:Weapon Adaptation
+PE:Naval Training
+PE:Crossbow Finesse
+PE:High-Heeled Hurt
+PE:Razor Kicks
+PE:Reach Mastery
+PE:Sacrificial Parry
+PE:Secret Styles
+PE:Shoves and Tackles
+PE:Rapid Retraction (Bites)
+PE:Rapid Retraction (Kicks)
+PE:Rapid Retraction (Punches)
+PE:Shield-Wall Training
+PE:Special Setup
+PE:Strongbow
+PE:Style Familiarity
+PE:Better (Gear)
+PE:Cheaper (Gear)
+PE:Sure-Footed (Ice)
+PE:Sure-Footed (Sand)
+PE:Sure-Footed (Snow)
+PE:Sure-Footed (Water)
+PE:Trademark Move
+PE:Unarmed Parry
+PE:Sure-Footed
+PE:Sure-Footed (Naval Training)
+PE:Sure-Footed (Slippery)
+PE:Sure-Footed (Uneven)
+PE:Doodad
+PE:Exotic Equipment Training
+PE:Intuitive Repairman
+PE:Weapon Bond (%Weapon%)
+
+<ShieldSkill>
+SK:Shield (Shield)
+SK:Shield (Buckler)
+SK:Shield (Force)
+
+<Melee Weapon Skill>
+SK:Axe/Mace
+SK:Broadsword
+SK:Cloak
+SK:Flail
+SK:Force Sword
+SK:Force Whip
+SK:Garrote
+SK:Jitte/Sai
+SK:Knife
+SK:Kusari
+SK:Lance
+SK:Main-Gauche
+SK:Monowire Whip
+SK:Parry Missile Weapons
+SK:Polearm
+SK:Rapier
+SK:Saber
+SK:Shortsword
+SK:Smallsword
+SK:Spear
+SK:Staff
+SK:Tonfa
+SK:Two-Handed Axe/Mace
+SK:Two-Handed Flail
+SK:Two-Handed Sword
+SK:Whip
+
+<Ranged Weapon Skill>
+SK:Artillery (Beams)
+SK:Artillery (Bombs)
+SK:Artillery (Cannon)
+SK:Artillery (Catapult)
+SK:Artillery (Guided Missile)
+SK:Artillery (Torpedoes)
+SK:Beam Weapons (Pistol)
+SK:Beam Weapons (Projector)
+SK:Beam Weapons (Rifle)
+SK:Blowpipe
+SK:Bolas
+SK:Bow
+SK:Crossbow
+SK:Dropping
+SK:Gunner (Beams)
+SK:Gunner (Cannon)
+SK:Gunner (Catapult)
+SK:Gunner (Machine Gun)
+SK:Gunner (Rockets)
+SK:Guns (Grenade Launcher)
+SK:Guns (Gyroc)
+SK:Guns (Light Anti-Armor Weapon)
+SK:Guns (Light Machine Gun)
+SK:Guns (Musket)
+SK:Guns (Pistol)
+SK:Guns (Rifle)
+SK:Guns (Shotgun)
+SK:Guns (Submachine Gun)
+SK:Innate Attack (Beam)
+SK:Innate Attack (Breath)
+SK:Innate Attack (Gaze)
+SK:Innate Attack (Projectile)
+SK:Lasso
+SK:Liquid Projector (Flamethrower)
+SK:Liquid Projector (Sprayer)
+SK:Liquid Projector (Squirt Gun)
+SK:Liquid Projector (Water Cannon)
+SK:Net
+SK:Sling
+SK:Spear Thrower
+SK:Thrown Weapon (Axe/Mace)
+SK:Thrown Weapon (Dart)
+SK:Thrown Weapon (Harpoon)
+SK:Thrown Weapon (Knife)
+SK:Thrown Weapon (Shuriken)
+SK:Thrown Weapon (Spear)
+SK:Thrown Weapon (Stick)
+
+********************************************************************************************************\[STOP]
+[FEATURES]
+*******************************************************************************************************\[START]
+<Features>
+Taboo Trait (Genetic Defects), 0, page(BT65), taboo(ST:ST < -20pts, ST:DX < -40pts, ST:IQ < -40pts, ST:HT < -20pts, DI:Bad Sight, DI:Colorblindness, DI:Dwarfism, DI:Dyslexia, DI:Gigantism, DI:Hemophilia, DI:Innumerate, DI:Night Blindness, DI:No Sense of Smell/Taste, DI:Non-Iconographic, DI:Short Attention Span)
+Taboo Trait (Unattractiveness), 0, page(BT65), taboo(DI:Appearance, DI:Bad Smell, DI:Bowlegged, DI:Fat, DI:Overweight, DI:Very Fat, DI:Very Unfit)
+Taboo Trait (Aggressiveness), 0, page(BT65), taboo(DI:Bad Temper, DI:Berserk, DI:Bully, DI:Stubbornness)
+Taboo Trait (Mental Instability), 0, page(BT65), taboo(DI:Chronic Depression, DI:Delusions, DI:Flashbacks, DI:Guilt Complex, DI:Kleptomania, DI:Low Self-Image, DI:Lunacy, DI:Manic-Depressive, DI:Megalomania, DI:Obsession, DI:On the Edge, DI:Paranoia, DI:Phantom Voices, DI:Pyromania, DI:Compulsive Behavior <= -10pts, DI:Compulsive Lying, DI:Phobia <= -10pts)
+
+// Duplicated from Advantages
+Genetic Tattoos, 0, page(BT45), taboo(AD:Genetic Tattoos)
+Intron Messages, 0, page(BT45), taboo(AD:Intron Messages)
+No Appendix, 0, page(BT47), taboo(AD:No Appendix)
+Early Maturation, 0/0, upto(5), page(BT48,212), taboo(AD:Early Maturation)
+Digitigrade Posture, 0, page(BT51), taboo(AD:Digitigrade Posture)
+Ordinary Tail, 0, page(BT51), taboo(AD:Ordinary Tail)
+Arms to Wings (Cannot Manipulate), 0, displaycost(0/variable), page(BT52),_
+	adds(_
+		AD:Flight _
+			with "Winged, -25%, group(Flight), page(B56)",_
+		DI:No Fine Manipulators _
+		), owns(yes), hides(yes), taboo(AD:Arms to Wings (Cannot Manipulate))
+
+High-Pressure Lungs, 0, page(BT55), taboo(AD:High-Pressure Lungs)
+Low-Pressure Lungs, 0, page(BT55), taboo(AD:Low Pressure Lungs)
+Altered Sex Ratio, 0, page(BT59), taboo(AD:Altered Sex Ratio)
+Easy Childbirth, 0, page(BT59), taboo(AD:Easy Childbirth)
+Estrus, 0, page(BT59), taboo(AD:Estrus)
+Exotic Genitalia, 0, upto(4), page(BT59), taboo(AD:Exotic Genitalia)
+Extended Fertility, 0, page(BT59), taboo(AD:Extended Fertility)
+External Development, 0, page(BT59), taboo(AD:External Development)
+Increased Fecundity, 0, page(BT59), taboo(AD:Increased Fecundity)
+Light Menses, 0, page(BT59), taboo(AD:Light Menses)
+Modified Genetic Inheritance, 0, page(BT59), taboo(AD:Modified Genetic Inheritance)
+Oviparous, 0, page(BT59), taboo(AD:Oviparous)
+Parthenogenesis, 0/1, upto(2), levelnames(Single origin only,Dual origin), page(BT59), taboo(AD:Parthenogenesis), cat(_General)
+Sexual Orientation, 0, page(BT59), taboo(AD:Sexual Orientation)
+Shorter Gestation, 0, page(BT59), taboo(AD:Shorter Gestation)
+Varient Sexual Schemes, 0, page(BT59), taboo(AD:Varient Sexual Schemes)
+Sterile, 0, page(B165), taboo(AD:Sterile)
+Self-Replicating, 0, page(BT61), taboo(AD:Self-Replicating)

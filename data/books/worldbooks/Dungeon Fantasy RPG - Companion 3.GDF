@@ -1,0 +1,910 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file, 
+* or the first line AFTER the 'Encoding=UTF-8' line, when that is included.
+
+Description=2022 July 14. Dungeon Fantasy RPG Companion 3,_
+               Edited and updated for the Dungeon Fantasy RPG by Matthew Woods. _
+               Huge thanks to Emily Smirle (Bruno), RobKamm, and Eric B. Smith for the original _
+               GURPS Dungeon Fantasy files, which made this much easier.
+Program=5.0.168
+WorldBook=Dungeon Fantasy RPG
+Taboo="GURPS Basic Set 4th Ed.--Characters.gdf"
+Requires="Dungeon Fantasy RPG.gdf"
+LoadAfter="Dungeon Fantasy RPG.gdf", "Delvers to Grow.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant Data File
+* Created: Thursday, June 9, 2022
+* Modified: Thursday, July 13, 2022, Armin Sykes 	- included header updates, updated page numbers
+*			Thursday, July 14, 2022, Armin Sykes	- Changed a bunch of 'Armoury' to 'Armory'
+*													- Added version of Energy Reserve (Holy), restructured Undead Hunter template
+* Requires GCA v4 or later!
+*
+*   This data file contains information taken from Dungeon Fantasy: Companion 3.
+*   Dungeon Fantasy Copyright © 2022 by Steve Jackson Games Incorporated. All rights reserved.
+*
+************************************************************************************************************************
+//  
+//   Based on GURPS Dungeon Fantasy data files by Emily Smirle (Bruno), RobKamm, and Eric B. Smith.
+//   Matthew Woods - Created, Edited, and Updated.
+//   
+//  
+//   If you find any errors or omissions in this file please contact me at:
+//   matthew.woods6243@gmail.com
+//  
+//  
+*******************************************************************************************************************
+//  
+//   GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//   Games. All rights reserved.
+//  
+//   The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//   copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//   rights reserved by Steve Jackson Games Incorporated.
+//  
+*******************************************************************************************************************
+
+[Templates]
+<Companion 3>
+Wrestler, displaycost(250), cost(0),
+page(DFRPG:C3: 38),
+noresync(yes),
+sets(_
+     {ST}=15,
+     {DX}=14,
+     {HT}=13,
+     {Basic Speed}=6_
+     ),
+adds(_
+     {AD:Enhanced Parry (Unarmed)}=3,
+     {AD:Lifting ST}=3,
+     {AD:Tough Skin}=3,
+     {AD:Wrestling Master}=1,
+     {SK:Brawling}=4pts,
+     {SK:Immovable Stance}=4pts,
+     {SK:Judo}=4pts,
+     {SK:Push}=4pts,
+     {SK:Wrestling}=24pts_
+     ),
+select1(_
+     text("Please select from these Advantages."),
+     pointswanted(exactly 45),
+     itemswanted(atleast 1),
+     list(_
+          AD:Trademark Move,
+          AD:Recovery,
+          AD:Rapid Healing,
+          AD:Very Rapid Healing,
+          AD:Magic Resistance,
+          AD:Luck,
+          AD:Extraordinary Luck,
+          AD:Lifting ST #codes(upto 6),
+          AD:High Pain Threshold,
+          AD:Hard to Subdue,
+          AD:Hard to Kill,
+          AD:Very Fit,
+          AD:Fit,
+          AD:Fearlessness,
+          AD:Unfazeable,
+          AD:Enhanced Dodge #codes(upto 3),
+          AD:Combat Reflexes,
+          AD:Extra Basic Move #codes(upto 3),
+          AD:Extra Will #codes(upto 9),
+          AD:Extra Hit Points #codes(upto 5),
+          AD:Extra HT #codes(upto 4),
+          AD:Extra DX #codes(upto 2),
+          AD:Extra ST #codes(upto 4)_
+     )_
+),
+select2(_
+     text("Please select from these Disadvantages."),
+     pointswanted(exactly -15),
+     itemswanted(atleast 1),
+     list(_
+          DI:Greed,
+          DI:Obsession (Wrestle and defeat specific type of monster),
+          DI:Vow (Never refuse a challenge to combat),
+          DI:Vow (Always fight unarmed),
+          DI:Wealth #codes(upto 3)_
+     )_
+),
+select3(_
+     text("Please select from these Disadvantages."),
+     pointswanted(exactly -20),
+     itemswanted(atleast 1),
+     list(_
+          DI:Greed,
+          DI:Obsession (Wrestle and defeat specific type of monster),
+          DI:Vow (Always fight unarmed),
+          DI:Vow (Never refuse a challenge to combat),
+          DI:Wealth #codes(upto 3),
+          DI:Appearance,
+          DI:Bad Temper,
+          DI:Bloodlust,
+          DI:Bully,
+          DI:Callous,
+          DI:Compulsive Carousing,
+          DI:Gluttony,
+          DI:Odious Personal Habit (Unrefined manners),
+          DI:Overconfidence,
+          DI:Sense of Duty (Adventuring companions),
+          DI:Stubbornness_
+     )_
+),
+select4(_
+     text("Please select from these Skills."),
+     pointswanted(atleast 2),
+     itemswanted(exactly 1),
+     list(_
+          SK:Axe/Mace #codes(upto 2pts, downto 2pts),
+          SK:Broadsword #codes(upto 2pts, downto 2pts),
+          SK:Flail #codes(upto 2pts, downto 2pts),
+          SK:Jitte/Sai #codes(upto 2pts, downto 2pts),
+          SK:Knife #codes(upto 2pts, downto 2pts),
+          SK:Main-Gauche #codes(upto 2pts, downto 2pts),
+          SK:Shortsword #codes(upto 2pts, downto 2pts),
+          SK:Smallsword #codes(upto 2pts, downto 2pts),
+          SK:Staff #codes(upto 2pts, downto 2pts),
+          SK:Tonfa #codes(upto 2pts, downto 2pts),
+          SK:Whip #codes(upto 2pts, downto 2pts)_
+     )_
+),
+select5(_
+     text("Please select from these Skills."),
+     pointswanted(atleast 2),
+     itemswanted(exactly 5),
+     list(_
+          SK:Acrobatics #codes(upto 2pts, downto 2pts),
+          SK:Carousing #codes(upto 2pts, downto 2pts),
+          SK:Climbing #codes(upto 2pts, downto 2pts),
+          Fast-Draw (Any) #codes(upto 2pts, downto 2pts),
+          SK:First Aid #codes(upto 2pts, downto 2pts),
+          SK:Forced Entry #codes(upto 2pts, downto 2pts),
+          SK:Gesture #codes(upto 2pts, downto 2pts),
+          SK:Hiking #codes(upto 2pts, downto 2pts),
+          SK:Intimidation #codes(upto 2pts, downto 2pts),
+          SK:Knot-Tying #codes(upto 2pts, downto 2pts),
+          SK:Lifting #codes(upto 2pts, downto 2pts),
+          SK:Parry Missile Weapons (Wrestler) #codes(upto 2pts, downto 2pts),
+          SK:Stealth #codes(upto 2pts, downto 2pts),
+          SK:Streetwise #codes(upto 2pts, downto 2pts),
+          SK:Sumo Wrestling #codes(upto 2pts, downto 2pts),
+          SK:Thrown Weapon (Any) #codes(upto 2pts, downto 2pts)_
+     )_
+)
+
+Shield-Bearer, displaycost(250), cost(0),
+page(DFRPG:C3: 42),
+noresync(yes),
+sets(_
+     {ST}=13,
+     {DX}=14,
+     {HT}=13,
+     {Basic Speed}=6_
+     ),
+adds(_
+     {AD:Enhanced Block (Shield)}=2,
+     {AD:Hold the Line},
+     {AD:Sacrificial Block},
+     {AD:Shield Familiarity}=1,
+     {AD:Shield Mastery},
+     {AD:Shield Wall Training},
+     {AD:Weapon Bond},
+     {AD:Weapon Master (Shields)},
+     {DI:Sense of Duty (Adventuring companions)},
+     {DI:Vow (Always fight with at least one shield in hand)},
+     {SK:Armory (Melee Weapons)}=2pts,
+     {SK:Connoisseur (Weapons)}=2pts,
+     {SK:Immovable Stance}=4pts,
+     {SK:Leadership}=2pts,
+     {SK:Push}=4pts,
+     {SK:Shield (Buckler)}=12pts,
+     {SK:Tactics}=4pts,
+     {SK:Thrown Weapon (Shield)}=4pts_
+     ),
+select1(_
+     text("Select from these Advantages"),
+     pointswanted(60),
+     itemswanted(atleast 1),
+     list(_
+          AD:Extra ST #codes(upto 6),
+          AD:Extra DX #codes(upto 3),
+          AD:Extra HT #codes(upto 6),
+          AD:Extra Hit Points #codes(upto 4),
+          AD:Extra Basic Speed #codes(upto 2),
+          AD:Extra Basic Move #codes(upto 6),
+          AD:Born War-Leader #codes(upto 4),
+          AD:Combat Reflexes,
+          #newitem(AD:Increase Enhanced Block (Shield), cost(5/10), existing(AD:Enhanced Block (Shield))) #codes(upto 6, downto %level+1),
+          AD:Extra Attack #codes(upto 2),
+          AD:Fearlessness,
+          AD:Unfazeable,
+          AD:Fit,
+          AD:Very Fit,
+          AD:Hard to Kill,
+          AD:Hard to Subdue,
+          AD:High Pain Threshold,
+          AD:Extraordinary Luck,
+          AD:Luck,
+          AD:Peripheral Vision,
+          AD:Rapid Healing,
+          AD:Recovery,
+          AD:Shield Familiarity #codes(upto 3, downto 2),
+          AD:Signature Gear,
+          AD:Striking ST #codes(upto 2),
+          AD:Trademark Move,
+          AD:Weapon Bond_
+     )_
+),
+select2(_
+     text("Select from these Disadvantages"),
+     pointswanted(-25),
+     itemswanted(atleast 1),
+     list(_
+          DI:Bad Temper,
+          DI:Bloodlust,
+          DI:Chummy,
+          DI:Gregarious,
+          DI:Code of Honor (Chivalry),
+          DI:Code of Honor (Soldier's),
+          DI:Compulsive Carousing,
+          DI:Compulsive Vowing,
+          DI:Greed,
+          DI:Honesty,
+          DI:Impulsiveness,
+          DI:Obsession (Finding a fabled shield),
+          DI:Overconfidence,
+          DI:Selfless,
+          DI:Stubbornness,
+          DI:Wounded_
+     )_
+),
+select3(_
+     text("Select from these Weapon skills"),
+     pointswanted(2),
+     itemswanted(1),
+     list(_
+          SK:Axe/Mace #codes(upto 2pts, downto 2pts),
+          SK:Broadsword #codes(upto 2pts, downto 2pts),
+          SK:Flail #codes(upto 2pts, downto 2pts),
+          SK:Knife #codes(upto 2pts, downto 2pts),
+          SK:Shortsword #codes(upto 2pts, downto 2pts),
+          SK:Spear #codes(upto 2pts, downto 2pts)_
+     )_
+),
+select4(_
+     text("Select one of these two fighting styles"),
+     pointswanted(2),
+     itemswanted(1),
+     list(_
+          SK:Boxing #codes(upto 2pts, downto 2pts),
+          SK:Brawling #codes(upto 2pts, downto 2pts)_
+     )_
+),
+select5(_
+     text("Select one of these two wrestling styles"),
+     pointswanted(2),
+     itemswanted(1),
+     list(_
+          SK:Sumo Wrestling #codes(upto 2pts, downto 2pts),
+          SK:Wrestling #codes(upto 2pts, downto 2pts)_
+     )_
+),
+select6(_
+     text("Select from these skills"),
+     pointswanted(5),
+     itemswanted(5),
+     list(_
+          SK:Armory (Body Armor) #codes(upto 1pts, downto 1pts),
+          SK:Carousing #codes(upto 1pts, downto 1pts),
+          SK:Climbing #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Any) #codes(upto 1pts, downto 1pts),
+          SK:First Aid #codes(upto 1pts, downto 1pts),
+          SK:Forced Entry #codes(upto 1pts, downto 1pts),
+          SK:Gambling #codes(upto 1pts, downto 1pts),
+          SK:Gesture #codes(upto 1pts, downto 1pts),
+          SK:Heraldry #codes(upto 1pts, downto 1pts),
+          SK:Hiking #codes(upto 1pts, downto 1pts),
+          SK:Intimidation #codes(upto 1pts, downto 1pts),
+          SK:Observation #codes(upto 1pts, downto 1pts),
+          SK:Riding (Horse) #codes(upto 1pts, downto 1pts),
+          SK:Savoir-Faire #codes(upto 1pts, downto 1pts),
+          SK:Scrounging #codes(upto 1pts, downto 1pts),
+          SK:Stealth #codes(upto 1pts, downto 1pts),
+          SK:Strategy #codes(upto 1pts, downto 1pts),
+          SK:Streetwise #codes(upto 1pts, downto 1pts)_
+     )_
+)
+
+Undead Hunter, displaycost(250), cost(0),
+page(DFRPG:C3: 48),
+noresync(yes),
+needs(8 Spells), ident(Clerical),_
+triggers(_
+	replacetags(in char with "Profession(Undead Hunter)"),_
+	sets(_
+		 {ST}=13,
+		 {DX}=12,
+		 {IQ}=13,
+		 {HT}=12,
+		 {Will}=14_
+		 ),
+	adds(_
+		 %weapontypesaliaslist%,
+		 {AD:Clerical Investment},
+		 {AD:Higher Purpose (Slay Undead)}=1,
+		 {AD:Power Investiture}=2,
+		 {AD:Rest in Pieces},
+		 {AD:Turning},
+		 {DI:Obsession (Undead Hunting)},
+		 {SK:Hidden Lore (Undead)}=2pts,
+		 {SK:Occultism}=2pts,
+		 {SK:Physiology (Undead)}=4pts,
+		 {SK:Psychology (Undead)}=4pts,
+		 {SK:Religious Ritual}=2pts,
+		 {SK:Theology}=2pts,
+		 {SK:Exorcism}=4pts,
+		 {SP:Sense Spirit (Clerical)}=1pts,
+		 {SP:Final Rest (Clerical)}=1pts_        
+	),
+	select1(_
+		 text("Please select from these Advantages"),
+		 pointswanted(30),
+		 itemswanted(atleast 1),
+		 list(_
+			  AD:Extra ST #codes(upto 3),
+			  AD:Extra DX #codes(upto 1, downto 1),
+			  AD:Extra IQ #codes(upto 1, downto 1),
+			  AD:Extra HT #codes(upto 3),
+			  AD:Extra Hit Points #codes(upto 5),
+			  AD:Extra Will #codes(upto 6),
+			  AD:Extra Fatigue Points #codes(upto 4),
+			  AD:Energy Reserve (Holy) #codes(upto 10),
+			  AD:Fearlessness,
+			  AD:Unfazeable,
+			  AD:Very Fit,
+			  AD:Fit,
+			  AD:Hard to Kill,
+			  AD:Hard to Subdue,
+			  AD:High Pain Threshold,
+			  #newitem(AD:Increase Higher Purpose (Slay Undead), cost(5/10), existing(AD:Higher Purpose (Slay Undead))) #codes(upto 3, downto %level+1),
+			  AD:Extraordinary Luck,
+			  AD:Luck,
+			  AD:Night Vision #codes(upto 9),
+			  #newitem(AD:Increase Power Investiture, cost(10/20), existing(AD:Power Investiture)) #codes(upto 5, downto %level+1),
+			  AD:Rapid Healing,
+			  AD:Recovery,
+			  AD:Resistant to Disease #codes(upto 6),
+			  AD:Signature Gear,
+			  AD:Spirit Empathy,
+			  AD:Trademark Move,
+			  AD:Weapon Bond_
+		 )_
+	),
+	select2(_
+		 text("Please select from these Disadvantages"),
+		 pointswanted(-20),
+		 itemswanted(atleast 1),
+		 list(_
+			  DI:Charitable,
+			  DI:Compulsive Generosity,
+			  DI:Disciplines of Faith (Mysticism),
+			  DI:Disciplines of Faith (Ritualism),
+			  DI:Honesty,
+			  DI:Intolerance ("Evil" religions),
+			  DI:Intolerance (All other religions),
+			  DI:Selfless,
+			  DI:Sense of Duty (Good entities),
+			  DI:Truthfulness,
+			  DI:Vow (Chastity),
+			  DI:Vow (Vegetarianism),
+			  DI:Vow (Own no more than horse can carry)_
+		 )_
+	),
+	select3(_
+		 text("Please select from these additional Disadvantages"),
+		 pointswanted(-20),
+		 itemswanted(atleast 1),
+		 list(_
+			  DI:Charitable,
+			  DI:Compulsive Generosity,
+			  DI:Disciplines of Faith (Mysticism),
+			  DI:Disciplines of Faith (Ritualism),
+			  DI:Honesty,
+			  DI:Intolerance ("Evil" religions),
+			  DI:Intolerance (All other religions),
+			  DI:Selfless,
+			  DI:Sense of Duty (Good entities),
+			  DI:Truthfulness,
+			  DI:Vow (Chastity),
+			  DI:Vow (Vegetarianism),
+			  DI:Vow (Own no more than horse can carry),
+			  DI:Bloodlust,
+			  DI:Compulsive Vowing,
+			  DI:Loner,
+			  DI:No Sense of Humor,
+			  DI:Overconfidence,
+			  DI:Sense of Duty (Adventuring companions),
+			  DI:Stubbornness,
+			  DI:Weirdness Magnet_
+		 )_
+	),
+	select4(_
+		 text("Please select one of these skills"),
+		 pointswanted(4),
+		 itemswanted(1),
+		 list(_
+			  SK:Crossbow #codes(upto 4pts, downto 4pts),
+			  SK:Sling #codes(upto 4pts, downto 4pts),
+			  SK:Throwing #codes(upto 4pts, downto 4pts),
+			  SK:Thrown Weapon (Axe/Mace) #codes(upto 4pts, downto 4pts)_
+		 )_
+	),
+	select5(_
+		 text("Please select five of these skills"),
+		 pointswanted(10),
+		 itemswanted(5),
+		 list(_
+			  SK:Armory (Body Armor) #codes(upto 2pts, downto 2pts),
+			  SK:Armory (Melee Weapons) #codes(upto 2pts, downto 2pts),
+			  SK:Armory (Missile Weapons) #codes(upto 2pts, downto 2pts),
+			  SK:Boxing #codes(upto 2pts, downto 2pts),
+			  SK:Brawling #codes(upto 2pts, downto 2pts),
+			  SK:Climbing #codes(upto 2pts, downto 2pts),
+			  SK:Connoisseur (Weapons) #codes(upto 2pts, downto 2pts),
+			  SK:Diagnosis #codes(upto 2pts, downto 2pts),
+			  SK:Esoteric Medicine (Holy) #codes(upto 2pts, downto 2pts),
+			  SK:Fast-Draw (Arrow) #codes(upto 2pts, downto 2pts),
+			  SK:Fast-Draw (Knife) #codes(upto 2pts, downto 2pts),
+			  SK:Fast-Draw (Potion) #codes(upto 2pts, downto 2pts),
+			  SK:Fast-Draw (Scroll) #codes(upto 2pts, downto 2pts),
+			  SK:Fast-Draw (Sword) #codes(upto 2pts, downto 2pts),
+			  SK:Fast-Draw (Two-Handed Sword) #codes(upto 2pts, downto 2pts),
+			  SK:First Aid #codes(upto 2pts, downto 2pts),
+			  SK:Gesture #codes(upto 2pts, downto 2pts),
+			  SK:Hazardous Materials #codes(upto 2pts, downto 2pts),
+			  SK:Hidden Lore (%specify%) #codes(upto 2pts, downto 2pts),
+			  SK:Hiking #codes(upto 2pts, downto 2pts),
+			  SK:Knife #codes(upto 2pts, downto 2pts),
+			  SK:Meditation #codes(upto 2pts, downto 2pts),
+			  SK:Observation #codes(upto 2pts, downto 2pts),
+			  SK:Research #codes(upto 2pts, downto 2pts),
+			  SK:Stealth #codes(upto 2pts, downto 2pts),
+			  SK:Tactics #codes(upto 2pts, downto 2pts),
+			  SK:Thaumatology #codes(upto 2pts, downto 2pts),
+			  SK:Wrestling #codes(upto 2pts, downto 2pts)_          
+		 )_
+	),
+	select6(_
+		 text("Select eight spells in clerical spells."),
+		 pointswanted(8),
+		 itemswanted(8),
+			  list(_
+				   #grouplist(GR:allspellsclerical)_
+			 )_
+		 )_
+),_
+x(_
+          #ChoiceList(_
+                    name(weapontypes),_
+                    title(Combat specialty),_
+                    text(Choose your melee skill package.),_
+                    picksallowed(1),_
+                    method(bynumber),_
+                    list(_
+                              "Polearm [16]",_
+                              "Staff [16]",_
+                              "Two-Handed Axe/Mace [16]",_
+                              "Two-Handed Flail [16]",_
+                              "Two-Handed Sword [16]",_
+                              "Axe/Mace [12] and Shield [4]",_
+                              "Broadsword [12] and Shield [4]",_
+                              "Flail [12] and Shield [4]"_
+                    ),_
+                    aliaslist(_
+                              "{SK:Polearm}=16pts",_
+                              "{SK:Staff}=16pts",_
+                              "{SK:Two-Handed Axe/Mace}=16pts",_
+                              "{SK:Two-Handed Flail}=16pts",_
+                              "{SK:Two-Handed Sword}=16pts",_
+                              "{SK:Axe/Mace}=12pts, {SK:Shield (Shield)}=4pts",_
+                              "{SK:Broadsword}=12pts, {SK:Shield (Shield)}=4pts",_
+                              "{SK:Flail}=12pts, {SK:Shield (Shield)}=4pts"_
+                    )_
+          )_
+)
+
+Mage Hunter, displaycost(250), cost(0),
+page(DFRPG:C3: 52),
+noresync(yes),
+sets(_
+     {ST}=12,
+     {DX}=15,
+     {IQ}=12,
+     {HT}=12,
+     {Basic Speed}=7_
+     ),
+adds(_
+     %weapontypesaliaslist%,
+     {AD:Dead Stop},
+     {AD:Magical Toughening}=1,
+     {AD:Mage-Hunter Gear},
+     {AD:Selective Magic Resistance}=1,
+     {AD:Spellpiercer},
+     {SK:Brawling}=1pts,
+     {SK:Stealth}=2pts,
+     {SK:Hazardous Materials}=2pts,
+     {SK:Tactics}=1pts,
+     %hiddenlorealiaslist%,
+//     {SK:Hidden Lore (Magic Items)}=2pts,
+     {SK:Thaumatology}=4pts,
+//     {SK:Hidden Lore (Magical Writings)}=2pts,
+     {SK:Wrestling}=2pts,
+     {SK:Occultism}=2pts,
+     {SK:Dispel Magic}=4pts,
+     {SK:Mental Strength}=2pts,
+     {SK:Mind Block}=2pts_        
+),
+ReplaceTags(in "SK:Mental Strength" with "needs()", in "SK:Mind Block" with "needs()"),_
+x(_
+          #ChoiceList(_
+                    name(weapontypes),_
+                    title(Combat specialty),_
+                    text(Choose your melee skill package.),_
+                    picksallowed(1),_
+                    method(bynumber),_
+                    list(_
+                              "Polearm [12]",_
+                              "Staff [12]",_
+                              "Spear [12]",_
+                              "Two-Handed Axe/Mace [12]",_
+                              "Two-Handed Sword [12]",_
+                              "Axe/Mace [4] and Shield [8]",_
+                              "Broadsword [4] and Shield [8]",_
+                              "Shortsword [4] and Shield [8]",_
+                              "Spear [4] and Shield [8]"_
+                    ),_
+                    aliaslist(_
+                              "{SK:Polearm}=12pts",_
+                              "{SK:Staff}=12pts",_
+                              "{SK:Spear}=12pts",_
+                              "{SK:Two-Handed Axe/Mace}=12pts",_
+                              "{SK:Two-Handed Sword}=12pts",_
+                              "{SK:Axe/Mace}=4pts, {SK:Shield (Shield)}=8pts",_
+                              "{SK:Broadsword}=4pts, {SK:Shield (Shield)}=8pts",_
+                              "{SK:Shortsword}=4pts, {SK:Shield (Shield)}=8pts",_
+                              "{SK:Spear}=4pts, {SK:Shield (Shield)}=8pts"_
+                    )_
+          ),
+          #ChoiceList(_
+                    name(hiddenlore),_
+                    title(Lore specialty),_
+                    text(Choose your lore specialty.),_
+                    picksallowed(1),_
+                    method(bynumber),_
+                    list(_
+                              "Hidden Lore (Magic Items) [2]",_
+                              "Hidden Lore (Magical Writings) [2]"_
+                    ),_
+                    aliaslist(_
+                              "{SK:Hidden Lore (Magic Items)}=2pts",_
+                              "{SK:Hidden Lore (Magical Writings)}=2pts"_
+                    )_
+          )_
+),_
+select1(_
+     text("Please select from these Advantages"),
+     pointswanted(40),
+     itemswanted(atleast 1),
+     list(_
+          AD:Extra ST #codes(upto 4),
+          AD:Extra DX #codes(upto 2),
+          AD:Extra HT #codes(upto 4),
+          AD:Extra Fatigue Points #codes(upto 4),
+          AD:Extra Basic Speed #codes(upto 2),
+          AD:Caster Sense,
+          AD:Combat Reflexs,
+          AD:Extra Attack #codes(upto 1),
+          AD:Fearlessness,
+          AD:Unfazeable,
+          AD:Languages (Ancient),
+          AD:Languages (Demontongue),
+          AD:Languages (Elder Tongue),
+          AD:Acute Caster Sense,
+          AD:Extraordinary Luck,
+          AD:Luck,
+          #newitem(AD:Increase Magical Toughening, cost(10/20), existing(AD:Magical Toughening)) #codes(downto %level+1),
+          AD:Mind Shield,
+          AD:Night Vision #codes(upto 9),
+          AD:Nondetection,
+          AD:Rapid Healing,
+          AD:Resistant to Disease #codes(upto 6),
+          AD:Resistant to Poison #codes(upto 6),
+          AD:Fit,
+          AD:Very Fit,
+          AD:Hard to Subdue,
+          AD:High Pain Threshold,
+          AD:Higher Purpose (Mage-Hunting) #codes (upto 3),
+          #newitem(AD:Increase Selective Magic Resistance, cost(4/8), existing(AD:Selective Magic Resistance)) #codes(downto %level+1),
+          AD:Signature Gear,
+          AD:Trademark Move,
+          ADS:Weapon Bond_
+     )_
+),
+select2(_
+     text("Please select from these Disadvantages"),
+     pointswanted(-15),
+     itemswanted(atleast 1),
+     list(_
+          DI:Bloodlust,
+          DI:Code of Honor (Soldier’s),
+          DI:Greed,
+          #newitem(DI:Intolerance (Spellcasters), cost(-5)),
+          #newitem(DI:Obsession (Slay some specific type of powerful magic using foe), cost(-5)),
+          #newitem(DI:Vow (Never use magic items), cost(-10))_
+     )_
+),
+select3(_
+     text("Please select from these additional Disadvantages"),
+     pointswanted(-15),
+     itemswanted(atleast 1),
+     list(_
+          DI:Bloodlust,
+          DI:Code of Honor (Soldier’s),
+          DI:Greed,
+          #newitem(DI:Intolerance (Spellcasters), cost(-5)),
+          #newitem(DI:Obsession (Slay some specific type of powerful magic using foe), cost(-5)),
+          #newitem(DI:Vow (Never use magic items), cost(-10)),
+          DI:Frightens Animals,
+          DI:Unnatural Features #codes(upto 5),
+          DI:Paranoia,
+          DI:Social Stigma (Criminal Record),
+          DI:Social Stigma (Excommunicated),
+          DI:Weirdness Magnet,
+          DI:Wounded_
+     )_
+),
+select4(_
+     text("Please select from these additional Disadvantages"),
+     pointswanted(-20),
+     itemswanted(atleast 1),
+     list(_
+          DI:Bloodlust,
+          DI:Code of Honor (Soldier’s),
+          DI:Greed,
+          #newitem(DI:Intolerance (Spellcasters), cost(-5)),
+          #newitem(DI:Obsession (Slay some specific type of powerful magic using foe), cost(-5)),
+          #newitem(DI:Vow (Never use magic items), cost(-10)),
+          DI:Frightens Animals,
+          DI:Unnatural Features #codes(upto 5),
+          DI:Paranoia,
+          DI:Social Stigma (Criminal Record),
+          DI:Social Stigma (Excommunicated),
+          DI:Weirdness Magnet,
+          DI:Wounded,
+          DI:Callous,
+          DI:Selfless,
+          DI:Honesty,
+          DI:Sense of Duty (Adventuring Companions),
+          DI:Loner,
+          DI:No Sense of Humor,
+          DI:Stubbornness,
+          DI:Overconfidence_
+     )_
+),
+select5(_
+     text("Please select one of these skills"),
+     pointswanted(8),
+     itemswanted(1),
+     list(_
+          SK:Crossbow #codes(upto 8pts, downto 8pts),
+          SK:Bow #codes(upto 8pts, downto 8pts),
+          SK:Throwing #codes(upto 8pts, downto 8pts),
+          SK:Thrown Weapon (Axe/Mace) #codes(upto 8pts, downto 8pts),
+          SK:Thrown Weapon (Spear) #codes(upto 8pts, downto 8pts)_
+     )_
+),
+select6(_
+     text("Please select five of these skills"),
+     pointswanted(5),
+     itemswanted(5),
+     list(_
+          SK:Alchemy #codes(upto 1pts, downto pts),
+          SK:Armory (Melee Weapons) #codes(upto 1pts, downto 1pts),
+          SK:Armory (Missile Weapons) #codes(upto 1pts, downto 1pts),
+          SK:Body Sense #codes(upto 1pts, downto 1pts),
+          SK:Carousing #codes(upto 1pts, downto 1pts),
+          SK:Climbing #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Arrow) #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Knife) #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Potion) #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Scroll) #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Sword) #codes(upto 1pts, downto 1pts),
+          SK:Fast-Draw (Two-Handed Sword) #codes(upto 1pts, downto 1pts),
+          SK:First Aid #codes(upto 1pts, downto 1pts),
+          SK:Gesture #codes(upto 1pts, downto 1pts),
+          SK:Hiking #codes(upto 1pts, downto 1pts),
+          SK:Intimidation #codes(upto 1pts, downto 1pts),
+          SK:Knot-Tying #codes(upto 1pts, downto 1pts),
+          SK:Observation #codes(upto 1pts, downto 1pts),
+          SK:Scrounging #codes(upto 1pts, downto 1pts),
+          SK:Streetwise #codes(upto 1pts, downto 1pts)_          
+     )_
+)
+
+
+[Skills]
+<Companion 3>
+Push, DX/H,page(DFRPG:A33),needs(AD:Trained by a Master | AD:Wrestling Master | AD:Weapon Master (Shields)),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Chi Skills, Wrestler Skills, Shield-Master Skills)
+
+Parry Missile Weapons, DX/H,parryat(@int(%level/2)+3),page(DFRPG:A33),needs(AD:Trained by a Master | AD:Wrestling Master),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Chi Skills, Wrestler Skills)
+
+Immovable Stance, DX/H,page(DFRPG:A32),needs(AD:Trained by a Master | AD:Wrestling Master | AD:Weapon Master (Shields)),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Chi Skills, Wrestler Skills, Shield-Master Skills)
+
+Thrown Weapon (Shield), DX/E,page(DFRPG:A91),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Combat/Weapons - Ranged Combat, Shield-Master Skills)
+
+Dispel Magic, Will/H,page(DFRPG:C3: 55),needs(AD:Dead Stop, AD:Magical Toughening, AD:Selective Magic Resistance, AD:Spellpiercer),tl(),usernotes(),familiarities(),baseapppoints(1), cat(Mage-Hunter Skills)
+
+
+[Advantages]
+<Companion 3>
+Wrestling Master, 10,tl(),usernotes(),familiarities(), cat(Mundane, Physical, Special Wrestler Traits)
+
+Weapon Master (Shields), 25,page(DFRPG:A54),tl(),usernotes(),familiarities(), cat(Cinematic, Mundane, Physical, Mundane Mental, Special Shield-Bearer Traits)
+
+Shield Familiarity, 1/2,upto(4),page(DFRPG:A37),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, Special Shield-Bearer Traits)
+
+Hold the Line, 1,page(DFRPG:A53),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, Perks, Special Shield-Bearer Traits)
+
+Caster Sense, 10,tl(),usernotes(),familiarities(),page(DFRPG:C3: 54), cat(Mundane, Physical, Special Mage-Hunter Traits)
+
+Dead Stop, 1,page(DFRPG:C3: 54),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, Perks, Special Mage-Hunter Traits)
+
+Mage-Hunter Gear, 1,page(DFRPG:C3: 55),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, Perks, Special Mage-Hunter Traits)
+
+Magical Toughening, 5/10,page(DFRPG:C3: 55),taboo(),tl(),usernotes(),familiarities(), cat(Supernatural, Mental, Supernatural Mental, Special Mage-Hunter Traits)
+
+Nondetection, 5/10,page(DFRPG:C3: 55),taboo(),tl(),usernotes(),familiarities(), cat(Supernatural, Mental, Supernatural Mental, Special Mage-Hunter Traits)
+
+Selective Magic Resistance, 4/8,page(DFRPG:C3: 55),taboo(),tl(),usernotes(),familiarities(), cat(Supernatural, Mental, Supernatural Mental, Special Mage-Hunter Traits)
+
+Spellpiercer, 15,page(DFRPG:C3: 55),taboo(),tl(),usernotes(),familiarities(), cat(Supernatural, Mental, Supernatural Mental, Special Mage-Hunter Traits)
+
+Higher Purpose (Mage Hunting), 5/10,page(DFRPG:C3: 54),upto(3),conditional(+1 to CL:Combat/Weapons - Melee Combat::skillscore when "making attack, damage, defense, and resistance rolls against the known magic user", +1 to CL:Combat/Weapons - Ranged Combat::skillscore when "making attack, damage, defense, and resistance rolls against the known magic user"),tl(),usernotes(),familiarities(), cat(Supernatural, Mental, Supernatural Mental, Special Mage-Hunter Traits)
+
+Acute Caster Sense, 2/4,gives(+1 to ST:Caster Sense::skillscore, +1 to AD:Caster Sense::skillscore),needs(AD:Caster Sense),page(DFRPG:C3: 52),tl(),usernotes(),familiarities(), cat(Exotic, Physical, Exotic Physical, Special Mage-Hunter Traits)
+
+Energy Reserve (Holy), 3/6,
+	cat(Attributes, Exotic, Physical, Exotic Physical),
+	upto(_
+		@if(_
+			me::control_upto > 3 then me::control_upto _
+			elseif "TE:Cleric" then 20 _
+			elseif "TE:Undead Hunter" then 20 _
+			elseif @sametext($val(char::profession),"Cleric") then 20 _ 
+			elseif @sametext($val(char::profession),"Undead Hunter") then 20 _ 
+			else 3_
+		)_
+	),
+	page(DFRPG:A48)
+
+//			elseif "TE:Cleric" then 20 _
+//			elseif "TE:Undead Hunter" then 20 _
+//			elseif @sametext($val(char::profession),"Cleric") then 20 _ 
+//			elseif @sametext($val(char::profession),"Undead Hunter") then 20 _ 
+
+
+[Disadvantages]
+<Companion 3>
+Vow (Always fight with at least one shield in hand), -5,page(DFRPG:A67),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, _General)
+
+Obsession (Finding a fabled shield), -5,displaycost(-5*),mods(Self-Control),page(DFRPG:A63),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, _General),initmods({"You resist on a roll of 12 or less (quite often)", *1,shortname(12),group(Self-Control),page(DFRPG:A55),level(1),valuenum(1)})
+
+Obsession (Undead Hunting), -10,displaycost(-10*),page(DFRPG:A63),mods(Self-Control),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, _General),initmods({"You resist on a roll of 12 or less (quite often)", *1,shortname(12),group(Self-Control),page(DFRPG:A55),level(1),valuenum(1)})
+
+[GROUPS]
+<allspellsclerical>
+SP:Purify Air (Clerical)
+SP:Might (Clerical)
+SP:Resist Pain (Clerical)
+SP:Vigor (Clerical)
+SP:Compel Truth (Clerical)
+SP:Dispel Possession (Clerical)
+SP:Gift of Letters (Clerical)
+SP:Gift of Tongues (Clerical)
+SP:Hide Thoughts (Clerical)
+SP:Persuasion (Clerical)
+SP:Sense Evil (Clerical)
+SP:Sense Life (Clerical)
+SP:Truthsayer (Clerical)
+SP:Earthquake (Clerical)
+SP:Stone to Flesh (Clerical)
+SP:Flaming Weapon (Clerical)
+SP:Resist Cold (Clerical)
+SP:Resist Fire (Clerical)
+SP:Warmth (Clerical)
+SP:Create Food (Clerical)
+SP:Essential Food (Clerical)
+SP:Monk's Banquet (Clerical)
+SP:Purify Food (Clerical)
+SP:Test Food (Clerical)
+SP:Sanctuary (Clerical)
+SP:Awaken (Clerical)
+SP:Cleansing (Clerical)
+SP:Cure Disease (Clerical)
+SP:Detect Poison (Clerical)
+SP:Final Rest (Clerical)
+SP:Great Healing (Clerical)
+SP:Healing Slumber (Clerical)
+SP:Instant Neutralize Poison (Clerical)
+SP:Lend Energy (Clerical)
+SP:Lend Vitality (Clerical)
+SP:Major Healing (Clerical)
+SP:Minor Healing (Clerical)
+SP:Neutralize Poison (Clerical)
+SP:Recover Energy (Clerical)
+SP:Regeneration (Clerical)
+SP:Relieve Paralysis (Clerical)
+SP:Relieve Sickness (Clerical)
+SP:Resist Disease (Clerical)
+SP:Resist Poison (Clerical)
+SP:Restoration (Clerical)
+SP:Restore Hearing (Clerical)
+SP:Restore Memory (Clerical)
+SP:Restore Sight (Clerical)
+SP:Restore Speech (Clerical)
+SP:Share Energy (Clerical)
+SP:Share Vitality (Clerical)
+SP:Stop Bleeding (Clerical)
+SP:Stop Paralysis (Clerical)
+SP:Stop Spasm (Clerical)
+SP:Astral Vision (Clerical)
+SP:Aura (Clerical)
+SP:Detect Magic (Clerical)
+SP:See Secrets (Clerical)
+SP:Seeker (Clerical)
+SP:Continual Light (Clerical)
+SP:Glow (Clerical)
+SP:Light (Clerical)
+SP:Light Jet (Clerical)
+SP:Sunbolt (Clerical)
+SP:Sunlight (Clerical)
+SP:Bless (Clerical)
+SP:Curse (Clerical)
+SP:Dispel Magic (Clerical)
+SP:Magic Resistance (Clerical)
+SP:Pentagram (Clerical)
+SP:Remove Curse (Clerical)
+SP:Bravery (Clerical)
+SP:Command (Clerical)
+SP:Strengthen Will (Clerical)
+SP:Vigil (Clerical)
+SP:Wisdom (Clerical)
+SP:Affect Spirits (Clerical)
+SP:Astral Block (Clerical)
+SP:Banish (Clerical)
+SP:Command Spirit ([Spirit]; Clerical)
+SP:Entrap Spirit (Clerical)
+SP:Repel Spirits (Clerical)
+SP:Sense Spirit (Clerical)
+SP:Summon Spirit (Clerical)
+SP:Turn Spirit (Clerical)
+SP:Turn Zombie (Clerical)
+SP:Armor (Clerical)
+SP:Protection from Evil (Clerical)
+SP:Watchdog (Clerical)
+SP:Great Voice (Clerical)
+SP:Silence (Clerical)
+SP:Silver Tongue (Clerical)
+SP:Thunderclap (Clerical)
+SP:Breathe Water (Clerical)
+SP:Coolness (Clerical)
+SP:Create Water (Clerical)
+SP:Purify Water (Clerical)
+SP:Resist Acid (Clerical)
+SP:Umbrella (Clerical)
+SP:Resist Lightning (Clerical)
+

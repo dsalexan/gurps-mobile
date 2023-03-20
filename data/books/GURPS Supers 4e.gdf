@@ -1,0 +1,1404 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.1
+Description=2022 June 8. _
+		This data file contains information taken from the GURPS Supers sourcebook. GURPS Supers is copyright _
+		© 1989, 1991, 1996, 2000, 2007 by Steve Jackson Games Incorporated. All rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf", "GURPS Powers 4e.gdf"
+LoadAfter="GURPS Powers 4e.gdf"
+Incomplete=Yes
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//  
+//  GURPS® Character Assistant
+//  Filename: Supers4e.gdf
+//  Created: August 9, 2007
+//  Requires GCA v4 or later!
+//  
+//  This data file contains information taken from the GURPS Supers sourcebook.
+//  GURPS Supers is Copyright © 1989, 1991, 1996, 2000, 2007 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+//	Power Modifiers
+//	New Trait Modifiers
+//	New Advantages, Perks, Disadvantages, Quirks, & Abilities
+//	New Skills
+//	New Templates (work in progress)
+//		Updated with Acrobat
+//		Updated with Archetype
+//  
+*******************************************************************************************************************
+//  
+//  Eric B. Smith	- GURPS Data File Coordinator
+//  Emily Smirle	- Initial file setup
+//  Armin D. Sykes - Updated Punch & Kick modes for AD:Super ST, attribute visibility changing with hideme()
+//  
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+//  
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+//  
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+//  
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+//  
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+
+// @if( @itemhasmod(AD:Lifting ST, Super-Effort) = 0 & @itemhasmod(AD:Striking ST, Super-Effort)=0 & @itemhasmod(AD:Super ST, Super ST)=0 then 1 else 0)
+// @if(AD:Telekinesis=0 then 1 else 0)
+
+// * From Powers
+Super-Effort Lifting ST, basevalue(ST:Lifting ST), maxscore(1000000), minscore(0), hide(yes), display(yes), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Basic Lift, basevalue("ST:Super-Effort Lifting ST" * "ST:Super-Effort Lifting ST" / @if(ST:Metric = 1 THEN 11 ELSE 5)), maxscore(1000000), minscore(0), round(-1), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort One-Handed Lift, basevalue(2 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Two-Handed Lift, basevalue(8 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Shove/Knock Over, basevalue(12 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Carry on Back, basevalue(15 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+Super-Effort Shift Slightly, basevalue(50 * "ST:Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:Super-Effort Lifting Strength::score"=0 then 1 else 0) )
+
+TK Super-Effort ST, basevalue(ST:TK ST), maxscore(1000000), minscore(0), hide(yes), display(yes), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Basic Lift, basevalue("ST:TK Super-Effort ST" * "ST:TK Super-Effort ST"  / @if(ST:Metric = 1 THEN 11 ELSE 5)), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), round(-1), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Max Lift, basevalue(8 * "ST:TK Super-Effort Basic Lift"), maxscore(1000000), minscore(0), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Shove/Knock Over, basevalue(12 * "ST:TK Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+TK Super-Effort Shift Slightly, basevalue(50 * "ST:TK Super-Effort Basic Lift"), maxscore(1000000), minscore(0), page(B353), units(lb|kg), hide(yes), display(no), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+
+//  Helper stats
+Super-Effort Lifting Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:Super-Effort Lifting ST)
+TK Super-Effort Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:TK Super-Effort ST)
+
+*******************************************************************************************************************
+//  new for supers.
+Super-Effort ST, basevalue(ST:ST), maxscore(1000000), minscore(0), hide(yes), display(yes), mainwin(1), 
+	hideme( @if( "ST:Super-Effort Strength::score"=0 then 1 else 0) )
+Super-Effort Striking ST, basevalue(ST:Striking ST), maxscore(1000000), minscore(0), hide(yes), display(yes), 
+	hideme( @if( "ST:Super-Effort Striking Strength::score"=0 then 1 else 0) )
+TK Super-Effort Striking ST, basevalue(ST:TK ST), maxscore(1000000), minscore(0), hide(yes), display(yes), 
+	hideme( @if( "ST:TK Super-Effort Strength::score"=0 then 1 else 0) ) 
+
+Super-Effort Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:Super-Effort ST)
+Super-Effort Striking Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:Super-Effort Striking ST)
+TK Super-Effort Striking Strength, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no),_
+	gives(=+((@indexedvalue((me::score - (6 * @int(me::score / 6))) + 1, 2,3,5,7,10,15) * (10 ^ @int(me::score / 6))) - me::score) to ST:TK Super-Effort Striking ST)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+#ReplaceTags in "AD:Daredevil" with "cost(15/30), upto(4)"
+#ReplaceTags in "AD:Higher Purpose" with "cost(5/10), upto(4)"
+#MergeTags in "AD:Super Jump" with "mods(Super Jump)"
+#MergeTags in "AD:Clerical Investment" with "mods(Informal)"
+#MergeTags in "AD:Legal Enforcement Powers" with "mods(Informal)"
+#MergeTags in "AD:Legal Immunity" with "mods(Informal)"
+#MergeTags in "AD:Security Clearance" with "mods(Informal)"
+#MergeTags in "AD:Tenure" with "mods(Informal)"
+#ReplaceTags in "AD:Warp" with "rapidfire(0)"
+#ReplaceTags in "AD:Striking ST" with "upto(@if(@hasmod(Super-Effort) THEN @max(1,50 - "AD:Super ST::level")))"
+
+<Mundane Social>
+Ally (Less than 25% of starting points), 1/1, displaycost(0.2/0.4/+), upto(4),_
+	x(#InputToTagReplace("Please describe the nature of the Ally:", nameext, , "Ally")),_
+	levelnames(5% of starting points, 10% of starting points, 15% of starting points, 20% of starting points),_
+	mods(Ally, Frequency of Appearance, Favor), page(B36, SU68), cat(Mundane, Social),_
+	initmods(_
+			Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) |
+			Cost, *1, forceformula(yes), formula(owner::level * 0.2), page(SU68) _
+			)
+
+<Attributes>
+Super ST, 10/20, displaycost(40/80/+), upto(50), mods(Super ST, Extra ST, Size, No Fine Manipulators), page(SU24),_
+	levelnames(+1/+3,+2/+5,+3/+7,+4/+10,+5/+15,+6/+20,+7/+30,+8/+50,+9/+70,+10/+100,+11/+150,+12/+200,+13/+300,+14/+500,+15/+700,+16/+1000,+17/+1500,+18/+2000,+19/+3000,+20/+5000,+21/+7000,+22/+10000,+23/+15000,+24/+20000,+25/+30000,+26/+50000,+27/+70000,+28/+100000,+29/+150000,+30/+200000,+31/+300000,+32/+500000,+33/+700000,+34/+1000000,+35/+1500000,+36/+2000000,+37/+3000000,+38/+5000000,+39/+7000000,+40/+10000000,+41/+15000000,+42/+20000000,+43/+30000000,+44/+50000000,+45/+70000000,+46/+100000000,+47/+150000000,+48/+200000000,+49/+300000000,+50/+500000000),_
+	damagebasedon("ST:Super-Effort Striking ST"),_
+	newmode( _
+		swing, damage(sw), damtype(sw), reach(N/A), parry(), skillused() _
+		),_
+	newmode( _
+		thrust, damage(thr), damtype(thr), reach(N/A), parry(), skillused() _
+		),_
+	newmode( _
+		punch, damage(@thr($modetag(chareffectivest)) _
+			-1 + @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice($modetag(chareffectivest)) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice($modetag(chareffectivest)) else 0)) + _
+			@max(_
+				@if("SK:Brawling::level" > ST:DX+1 THEN @basethdice($modetag(chareffectivest)) ELSE 0),_
+				@if("SK:Boxing::level" = ST:DX+1   then @basethdice($modetag(chareffectivest)) else @if( "SK:Boxing::level" > ST:DX+1 then 2*@basethdice($modetag(chareffectivest)) else 0 )),_
+				@if("SK:Karate::level" = ST:DX	then @basethdice($modetag(chareffectivest)) else @if( "SK:Karate::level" > ST:DX   then 2*@basethdice($modetag(chareffectivest))	else 0 )) _
+			) _
+			), reach(C), parry(0), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))),_
+			skillused(ST:DX, SK:Brawling, SK:Boxing, SK:Karate) _
+		),_
+	newmode( _
+		kick, damage(@thr($modetag(chareffectivest)) _
+			+ @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice($modetag(chareffectivest)) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice($modetag(chareffectivest)) else 0)) + _
+			@max(_
+				@if("SK:Brawling::level" > ST:DX+1 THEN @basethdice($modetag(chareffectivest)) ELSE 0),_
+				@if("SK:Karate::level" = ST:DX	then @basethdice($modetag(chareffectivest)) else @if( "SK:Karate::level" > ST:DX   then 2*@basethdice($modetag(chareffectivest))	else 0 )) _
+			) _
+			), reach(C,1), parry(No), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))),_
+			skillused(ST:DX, SK:Kicking (Brawling), SK:Kicking (Karate), SK:Brawling-2, SK:Karate-2) _
+		),_
+	initmods( _
+		Super ST, +300%, gives(+owner::level to ST:Super-Effort Strength, +owner::level to ST:Super-Effort Lifting Strength, +@min(owner::level,50) to ST:Super-Effort Striking Strength), page(SU24) |_
+		Affects displayed ST score, +0%, gives(+Owner::Level to ST:ST), group(Extra ST), description(This modifier causes the Extra ST advantage to affect the displayed attribute score. If you don't wish this advantage to affect the displayed score remove this modifier.) | _
+		Size, -10%, formula(-@if(ST:Size Modifier::score > 0 then ST:Size Modifier*10 else 0)), forceformula(yes), group(Size), page(B15) _
+	)
+
+<Exotic Mental>
+Modular Abilities (Grimoire), 0, displaycost(5+3/point), mods(Grimoire, Modular Ability), page(B71), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Grimoire),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Grimoire),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 5+3/point, formula(5+(me::level*3)), forceformula(yes), group(Grimoire), page(B71), mods(Modular Abilities), level([level]) )
+Modular Abilities (Spirit Trapping), 0, displaycost(6+4/point), mods(Spirit Trapping, Modular Ability), page(B71), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Spirit Trapping),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Spirit Trapping),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 6+4/point, formula(6+(me::level*4)), forceformula(yes), group(Spirit Trapping), page(B71), mods(Modular Abilities), level([level]) )
+Modular Abilities (Internal Reconfigurable Mechanisms), 0, displaycost(6+4/point), mods(Internal Reconfigurable Mechanisms, Modular Ability), page(B71), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",Internal Reconfigurable Mechanisms),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Internal Reconfigurable Mechanisms),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 6+4/point, formula(6+(me::level*4)), forceformula(yes), group(Internal Reconfigurable Mechanisms), page(B71), mods(Modular Abilities), level([level]) )
+Modular Abilities (External Reconfigurable Mechanisms), 0, displaycost(6+3/point), mods(External Reconfigurable Mechanisms, Modular Ability), page(B71), cat(Exotic Physical, Exotic, Mental, Physical),_
+	x(_
+		#InputReplace("Specify the name of this Modular slot","_Per point of abilities","Slot 1",External Reconfigurable Mechanisms),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",External Reconfigurable Mechanisms),_
+		#buildit _
+	),_
+	initmods( _Per point of abilities, 6+3/point, formula(6+(me::level*3)), forceformula(yes), group(Internal Reconfigurable Mechanisms), page(B71), mods(Modular Abilities), level([level]) )
+
+<Exotic Physical>
+Field Sense, 10, mods(Scanning Sense), page(B81), cat(Exotic, Physical)
+Super Throw, 10/20, cat(Exotic,Physical), page(SU30)
+Ultra Power, 50, cat(Exotic,Physical), page(SU30), mods(Ultra Power) 
+
+<Mundane Mental>
+Unusual Background: Being a Super, 0/10/50, upto(3), levelnames(Anyone can be super,Uncommon supers,Rare supers), page(SU29), cat(Mundane, Mental)
+Unusual Background: Has a Super Friend, 15, page(SU29), cat(Mundane, Mental)
+Unusual Background: Omnilingual, 40, page(SU29), cat(Mundane, Mental)
+Unusual Background: Xeno-Omnilingual, 80, page(SU29), cat(Mundane, Mental)
+
+<Supernatural Mental>
+//  Talents
+
+#Clone "AD:Air Talent" as "AD:Animal Function Talent"
+#Clone "AD:Air Talent" as "AD:Cat Function Talent"
+#Clone "AD:Air Talent" as "AD:Fish Function Talent"
+#Clone "AD:Air Talent" as "AD:Elasticity Talent"
+#Clone "AD:Air Talent" as "AD:Phasing Talent"
+#Clone "AD:Air Talent" as "AD:Plant Function Talent"
+#Clone "AD:Air Talent" as "AD:Speed Talent"
+
+#MergeTags in "AD:Animal Function Talent" with "page(SU39)"
+#MergeTags in "AD:Cat Function Talent" with "page(SU39)"
+#MergeTags in "AD:Fish Function Talent" with "page(SU39)"
+#MergeTags in "AD:Elasticity Talent" with "page(SU39)"
+#MergeTags in "AD:Phasing Talent" with "page(SU39)"
+#MergeTags in "AD:Plant Function Talent" with "page(SU40)"
+#MergeTags in "AD:Speed Talent" with "page(SU40)"
+
+<Abilities>
+//  	Adaptation: Doesn't Breathe
+//  (Oxygen Storage •25, -50%; Super, -10%)
+//  [8] + Sealed (Super, -10%) [14] + Temperature
+//  Tolerance 8 (Super, -10%) [8].
+Adaptation, 0, displaycost(30), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Doesn't Breathe with "Oxygen Storage •25, -50%, group(Doesn't Breathe)" and "Super, -10%, group(Power Modifier)",_
+	AD:Sealed with "Super, -10%, group(Power Modifier)",_
+	AD:Temperature Tolerance (Super) = 8 with "Super, -10%, group(Power Modifier)" _
+	)
+//  	Amphibian: Amphibious (Super,-10%) [9] + Doesn't
+//  Breathe (Gills,-50%; Super,-10%) [8] + Pressure Support 2
+//  (Super,-10%) [9] + Temperature Tolerance 4 (Colder; Super,_
+//  -10%) [4].
+Amphibian, 0, displaycost(30), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Amphibious with "Super, -10%, group(Power Modifier)",_
+	AD:Doesn't Breathe with "Gills, -50%, group(Doesn't Breathe)" and "Super, -10%, group(Power Modifier)",_
+	AD:Pressure Support =2 with "Super, -10%, group(Power Modifier)",_
+	AD:Temperature Tolerance (Colder) = 4 with "Super, -10%, group(Power Modifier)" _
+	)
+//  	Flying: Flight (Cannot Hover, -15%; Super, -10%) [30].
+Flying, 0, displaycost(30), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Flight with "Cannot Hover, -15%, group(Flight)" and "Super, -10%, group(Power Modifier)"_
+	)
+//  	Heat Vision: Burning Attack 6d (Accurate, +1, +5%;
+//  Super, -10%; Variable, +5%) [30] (Power Parry: 12).
+Heat Vision, 0, displaycost(30), page(SU42), owns(yes), adds(_
+	AD:Burning Attack = 6 with _
+		"Accurate, +5%/+10%, level(1), group(_Attack Enhancements), page(B102),gives(+1 to owner::acc)" and _
+		"Variable, +5%, group(_Attack Enhancements)" and _
+		"Super, -10%, group(Power Modifier)"_
+	)
+//  	Super-Senses: Microscopic Vision 1 (Super, -10%) [5] +
+//  Parabolic Hearing 3 (Super, -10%) [11] + Telescopic Vision 3
+//  (Super, -10%) [14].
+Super-Senses, 0, displaycost(30), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Microscopic Vision = 1 with "Super, -10%, group(Power Modifier)",_
+	AD:Parabolic Hearing = 3 with "Super, -10%, group(Power Modifier)",_
+	AD:Telescopic Vision = 3 with "Super, -10%, group(Power Modifier)"_
+	)
+//  	Underground Movement: Tunneling 1 (Cost Fatigue: 1
+//  FP/use, -5%; Super, -10%) [30].
+Underground Movement, 0, displaycost(30), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Tunneling with _
+		"Costs Fatigue, -5%/-10%, mods(Costs Fatigue), group(_General), page(B111)" and _
+		"Tunneling Move, +5/+10, group(Tunneling), page(B94)" and _
+		"Super, -10%, group(Power Modifier)"_
+	)
+//  	Hyper-Reflexes: Basic Speed +1.5 (Super, -10%) [27] +
+//  Enhanced Time Sense (Super, -10%) [41].
+Hyper-Reflexes, 0, displaycost(68), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Extra Basic Speed=6 with _
+	"Affects displayed score, +0%, gives(+(Owner::Level/4) to ST:Basic Speed), group(Extra Basic Speed)" and _
+	"Super, -10%, group(Power Modifier)",_
+	AD:Enhanced Time Sense with "Super, -10%, group(Power Modifier)"_
+	)
+//  	Super-Speed: Basic Move +10 (Super, -10%) [45].
+Super-Speed, 0, displaycost(45), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Extra Basic Move=10 with _
+	"Affects displayed score, +0%, gives(+Owner::Level to ST:Basic Move), group(Extra Basic Move)" and _
+	"Super, -10%, group(Power Modifier)"_
+	)
+//  	Super-Flying:Enhanced Move 4 (Air Speed 320; Must
+//  have Flying ability; Super, -10%) [72].
+Super-Flying, 0, displaycost(72), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Enhanced Move (Air)=8 with "Super, -10%, group(Power Modifier)"_
+	), needs(AD:Flying)
+//  	Super-Mobility: Enhanced Move 1 (Ground Move 40;
+//  Super, -10%) [18] and Super Jump 6 (Super, -10%) [54].
+Super-Mobility, 0, displaycost(72), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Enhanced Move (Ground)=2 with "Super, -10%, group(Power Modifier)",_
+	AD:Super Jump=6 with "Super, -10%, group(Power Modifier)"_
+	)
+//  	Super-Swimming: Enhanced Move 4 (Water Speed 64;
+//  Must have Amphibian ability; Super, -10%) [72].
+Super-Swimming, 0, displaycost(72), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Enhanced Move (Water)=8 with "Super, -10%, group(Power Modifier)"_
+	), needs(AD:Amphibian)
+
+//  Cat Function (Super; Talent 1 [5])
+
+//  • Catlike Reflexes: DX +4 (Super, -10%) [36] + Catfall
+//  (Super, -10%) [9] + Extra Attack 1 (Super, -10%; Multi-Strike,_
+//  +20%) [28].
+Catlike Reflexes, 0, displaycost(108), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Extra DX=4 with "Super, -10%, group(Power Modifier)",_
+	AD:Catfall with "Super, -10%, group(Power Modifier)",_
+	AD:Extra Attack=1 with "Super, -10%, group(Power Modifier)" and "Multi-Strike,+20%,group(Extra Attack)"_
+	)
+
+//  • Cat's Claws: Sharp Claws (Super, -10%; Switchable,_
+//  +10%) [5] + Perk: Accessory (Climbing Spikes: +2 to Climbing)
+//  [1].
+Cat's Claws, 0, displaycost(6), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Claws (Sharp Claws) with "Super, -10%, group(Power Modifier)" and "Switchable, +10%, group(_General)"_
+	),_
+	creates(_
+	"PE:Accessory (Climbing Spikes), 1, gives(+2 to SK:Climbing), initmods(Super, -10%), group(Power Modifier)"_
+	)
+
+//  • Cat's Eyes: Night Vision 5 (Super, -10%) [5].
+Cat's Eyes, 0, displaycost(5), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Night Vision=5 with "Super, -10%, group(Power Modifier)"_
+	)
+
+//  • Cat's Whiskers: Vibration Sense (Air; Super, -10%) [9].
+Cat's Whiskers, 0, displaycost(9), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Vibration Sense (Air) with "Super, -10%, group(Power Modifier)"_
+	)
+
+//  • Incredible Hearing:Discriminatory Hearing (Super, -10%)
+//  [14] + Parabolic Hearing 2 (Super, -10%) + Ultrahearing
+//  (Super, -10%) [5].
+Incredible Hearing, 0, displaycost(27), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Discriminatory Hearing with "Super, -10%, group(Power Modifier)",_
+	AD:Parabolic Hearing=2 with "Super, -10%, group(Power Modifier)",_
+	AD:Ultrahearing with "Super, -10%, group(Power Modifier)"_
+	)
+
+//  • Little Cat Feet: Silence 5 (Super, -10%) [23].
+Little Cat Feet, 0, displaycost(23), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Silence=5 with "Super, -10%, group(Power Modifier)"_
+	)
+
+//  • Might of the Tiger: ST +5 (Super, -10%) [45] + Damage
+//  Resistance 1 (Super, -10%; Flexible, -20%) [4].
+Might of the Tiger, 0, displaycost(49), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Extra ST=5 with "Super, -10%, group(Power Modifier)" and _
+		"Affects displayed score, +0%, gives(+Owner::Level to ST:ST), group(Extra ST)",_
+	AD:Damage Resistance=1 with "Super, -10%, group(Power Modifier)" and "Flexible, -20%, group(Damage Resistance)"_
+	)
+
+//  • Roar of the Lion: Terror (Hearing-Based; All-Out, -25%;
+//  Super, -10%; Selective Effect, +20%) [26] + Perk: Penetrating
+//  Voice [1].
+Roar of the Lion, 0, displaycost(27), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Terror (Hearing Based) with "All-out, -25%, group(_General)" and "Super, -10%, group(Power Modifier)" and "Selective Area, +20%, group(_Attack Enhancements), page(B108)",_
+	PE:Penetrating Voice with "Super, -10%, group(Power Modifier)"_
+	)
+
+//  • Speed of the Cheetah: Basic Move +8 (Super, -10%) [36] +
+//  Enhanced Speed 1 (Ground Move 32; Super, -10%) [18].
+Speed of the Cheetah, 0, displaycost(54), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Extra Basic Move=8 with "Super, -10%, group(Power Modifier)",_
+	AD:Enhanced Move (Ground) = 2 with "Super, -10%, group(Power Modifier)"_
+	)
+
+//  • Body Electricity: Affliction 5 (Area Effect, Radius 2 yards, +50%; Emanation, -20%; Super, -10%; Takes Recharge, 5 seconds, -10%; Underwater Only, +0%) [55] + Alternate Ability: Field Sense (Extended Arc, 360º, +125%; Super, -10%) [5].
+Body Electricity, 0, displaycost(60), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Affliction=5 with _
+		"Area Effect: ability has no base radius, +50%/+100%, group(_Attack Enhancements), page(B102), upto(25), shortname(Area Effect),	levelnames(2, 4, 8, 16, 32, 64, 128, 256, 512, 1¸024, 2¸048, 4¸096, 8¸192, 16¸384, 32¸768, 65¸536, 131¸072, 262¸144, 524¸288, 1¸048¸576, 2¸097¸152, 4¸194¸304, 8¸388¸608, 16¸777¸216, 33¸554¸432), gives(=+(2^me::level) to owner::radius)" and _
+		"Emanation, -20%, group(_Attack Limitations), page(B112), gives(=-3 to owner::acc, =nobase to owner::rangehalfdam$, =nobase to owner::rangemax$,	=0 to owner::rangemax$)" and _
+		"Super, -10%, group(Power Modifier)" and _
+		"Takes Recharge, -10%/-20%, levelnames(5 seconds, 15 seconds, 1 hour), upto(3), group(_General), page(B115)" respond "Body Electricity",_
+	AD:Field Sense with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" and _
+		"Super, -10%, group(Power Modifier)" and _
+		"Alternative Ability: Affliction, *1/5, group(_General), page(P11)"_
+	)
+
+//  • Breathing Water: Discriminatory Smell (Super, -10%; Profiling, +50%; Underwater Only, -0%) [21] + Doesn't Breathe (Super, -10%; Gills, -50%) [8] + Pressure Support 1 [5].
+Breathing Water, 0, displaycost(34), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Discriminatory Smell with "Super, -10%, group(Power Modifier)" and _
+		"Profiling, +50%, group(Discriminatory Smell), page(P47)" and _
+		"Underwater Only, -0%",_
+	AD:Doesn't Breathe with "Super, -10%, group(Power Modifier)" and _
+		"Gills, -50%, group(Doesn't Breathe), page(B49)",_
+	AD:Pressure Support with "Super, -10%, group(Power Modifier)"_
+	)
+//  • Fish's Mail: Damage Resistance 4 (Super, -10%; Tough Skin, -40%) [10] (Power Block: 10 in air, 15 in water).
+Fish's Mail, 0, displaycost(10), page(SU43), owns(yes), hides(yes), adds(_
+	AD:Damage Resistance=4 with "Super, -10%, group(Power Modifier)" and _
+		"Tough Skin, -40%, group(Damage Resistance), page(B47)"_
+	)
+//  • Oceanic Might: ST+9 (Accessibility, Only in water, -30%; Super, -10%) [54] + HT+9 (Accessibility, Only in water, -30%; Super, -10%) [54].
+Oceanic Might, 0, displaycost(108), page(SU108), owns(yes), hides(yes), adds(_
+	AD:Extra ST=9 with "Accessibility: Only in Water, -30%, shortname(Only In Water), group(_Accessibilities,_General), page(B110), mods(Accessibility)" and _
+		"Super, -10%, group(Power Modifier)" and _
+		"Affects displayed score, +0%, gives(+Owner::Level to ST:ST), group(Extra ST)",_
+	AD:Extra HT=9 with  "Accessibility: Only in Water, -30%, shortname(Only In Water), group(_Accessibilities,_General), page(B110), mods(Accessibility)" and _
+		"Super, -10%, group(Power Modifier)" and _
+		"Affects displayed score, +0%, gives(+Owner::Level to ST:HT), group(Extra HT)"_
+	)
+//  • Super Swimming: Amphibious (Super, -10%) [9] + Enhanced Move 2 (Water Speed 24; Super, -10%) [36].
+Super Swimming, 0, displaycost(45), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Amphibious with "Super, -10%, group(Power Modifier)",_
+	AD:Enhanced Move (Water)=4 with "Super, -10%, group(Power Modifier)" _
+	)
+//  • Underwater Vision:Nictitating Membrane 2 (Super, -10%) [2] + Night Vision 4 (Super, -10%) [6].
+Underwater Vision, 0, displaycost(6), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Nictitating Membrane=2 with "Super, -10%, group(Power Modifier)",_
+	AD:Night Vision=4 with "Super, -10%, group(Power Modifier)" _
+	)
+
+//  Plant Function (Super; Talent 1 [5])
+//  • Bark Skin: Damage Resistance 4 (Can't Wear Armor, -40%; Super, -10%; Switchable, +10%) [12] (Power Block: 12).
+Bark Skin, 0, displaycost(12), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Damage Resistance=4 with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)" and _
+		"Super, -10%, group(Power Modifier)" and _
+		"Switchable, +10%, group(_General), page(P109)" _
+	)
+//  • Camouflage: Chameleon 8 (Always On, -10%; Environmental, Dense vegetation, -40%; Super, -10%) [16] (Sensory Power Dodge: 11).
+Camouflage, 0, displaycost(16), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Chameleon=8 with "Always On, -10%, group(_General), page(B110)" and _
+		"Environmental (Dense vegetation), -5%/-10%/-20%/-40%/-80%, upto(5), level(4), levelnames(Very Common, Common, Occasional, Rare, Very Rare), group(_General), page(P110)" and _
+		"Super, -10%, group(Power Modifier)" _
+	)
+//  • Forest Movement: Brachiator (Super, -10%) [5] + Terrain Adaptation (Dense Vegetation; Super, -10%) [5].
+Forest Movement, 0, displaycost(10), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Brachiator with "Super, -10%, group(Power Modifier)",_
+	AD:Terrain Adaptation (Dense Vegetation) with "Super, -10%, group(Power Modifier)"_
+	)
+//  • Perfume: Affliction 3 (Ecstasy, +100%; Malediction, -1/yard, +100%; Super, -10%; Scent-Based, -20%; Secondary Effect, Hallucinating, +10%) [84].
+Perfume, 0, displaycost(84), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Affliction=3 with "Incapacitation: Ecstasy, +100%, shortname(Ecstasy), mods(Secondary), group(Affliction), page(B36)" and _
+		"Malediction, +100%/+150%/+200%, upto(3), group(_Attack Enhancements), page(B106), levelnames(Recieves -1/yard range, Uses Speed/Range Table, Uses Long-Distance Modifiers), gives(=nobase to owner::reach$,=nobase to owner::acc$,=nobase to owner::rangehalfdam$,=nobase to owner::rangemax$,=nobase to owner::rof$,=nobase to owner::shots$,=nobase to owner::rcl$,=" mal" to owner::damtype$,=0 to owner::rangemax$,=-3 to owner::acc,=$indexedvalue(me::level, "-1/yard range", "Speed/Range", "Long-Distance") to owner::rof$)" and _
+		"Super, -10%, group(Power Modifier)" and _
+		"Sense-Based (with Malediction), -20%/-15%/-10%, upto(3), group(_Attack Limitations), page(B115), levelnames(One sense, Two senses, Three senses)" and _
+		"Secondary Incapacitation: Hallucinating, +10%, shortname(Secondary Hallucinating), group(Affliction), page(B36)" respond "Perfume"_
+	)
+//  • Photosynthesis: Doesn't Eat or Drink (Food Only, -50%; Super, -10%) [4].
+Photosynthesis, 0, displaycost(4), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Doesn't Eat or Drink with "Food Only, -50%, group(Doesn't Eat or Drink), page(B80)" and _
+		"Super, -10%, group(Power Modifier)"_
+	)
+//  • Poison Ivy: Affliction 1 (Aura, +80%; Contact Agent, -30%; Itching, +10%; Melee Attack, Reach C, -30%; Onset, 1 minute -10%; Super, -10%) [11].
+Poison Ivy, 0, displaycost(11), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Affliction=1 with "Aura, +80%, group(_Attack Enhancements), page(B102)" and _
+		"Contact Agent, -30%, group(Affliction Limitations), page(B111)" and _
+		"Irritant: Itching, +10%, shortname(Itching), mods(Secondary), group(Affliction), page(SU25)" and _
+		"Melee Attack: Reach C, -30%, group(_Attack Limitations), page(B112),gives(=nobase to owner::rangehalfdam$,=nobase to owner::rangemax$,=nobase to owner::reach$,="C" to owner::reach$)" and _
+		"Onset, -10%/-20%, levelnames(Delay 1 minute, Delay 1 hour, Delay 1 day, Delay 1 week or more), upto(4), group(_Attack Limitations), page(B113)" and _
+		"Super, -10%, group(Power Modifier)" respond "Poison Ivy"_
+	)
+//  • Vegetative Renewal: Regrowth (Super, -10%) [36] + HT+4 (Super, -10%) [36].
+Vegetative Renewal, 0, displaycost(72), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Regrowth with "Super, -10%, group(Power Modifier)",_
+	AD:Extra HT=4 with "Super, -10%, group(Power Modifier)" and _
+		"Affects displayed score, +0%, gives(+Owner::Level to ST:HT), group(Extra HT)"_
+	)
+//  • Vine Grasp: Binding 20 (Constricting, +75%; Melee Attack, Reach C, Cannot Parry, -35%; Only Damage by Burning, Corrosion, or Cutting, +10%; Super, -10%) [56].
+Vine Grasp, 0, displaycost(56), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Binding=20 with "Constricting, +75%, group(Binding), page(P43)" and _
+		"Melee Attack: Cannot Parry, -5%, shortname(Cannot Parry), group(_Attack Limitations), page(B112),gives(=nobase to owner::parry$,="No" to owner::parry$)" and _
+		"Melee Attack: Reach C, -30%, group(_Attack Limitations), page(B112),gives(=nobase to owner::rangehalfdam$,=nobase to owner::rangemax$,=nobase to owner::reach$,="C" to owner::reach$)" and _
+		"Only Damaged By Burning or Corrosion or Cutting, +10%, group(Binding), page(B40)" and _
+		"Super, -10%, group(Power Modifier)" respond "Vine Grasp"_
+	)
+
+// * Electricity (Elemental, Super; Talent 2 [10])
+// * • Electrogenesis:  Create Electricity 6 (Aura, +80%; Elemental, -10%; Super, -10%) [192]   --  Alternative Ability.
+// * • Electrified Skin:  Affliction 6 (Aura, +80%; Elemental, -10%; Melee Attack, Reach C, -30%; Super, -10%) [80]   --  Alternative Ability.
+// * • Lightning Bolt: Burning Attack 12d (Elemental, -10%; Inaccurate, -3, -15%; Increased 1/2D, •10, +15%; Increased Range, •10, +30%; Link, +10%; Nuisance Effect, Thunderclap, -5%; Side Effect, Stunning, +50%; Super, -10%; Surge, +20%; Takes Recharge, 5 seconds, -10%) [105]   --  Alternative Ability + Affliction 1 (HT; Area Effect, 4 yards, +100%; Disadvantage, Blindness, +50%; Elemental, -10%; Inaccurate, -3, -15%; Increased 1/2D, •10, +15%; Increased Range, •10, +30%; Link, +10%; Super, -10%; Vision-Based, +150%) [42]   --  Alternative Ability (Power Parry: 13).
+// * • Field Sense: Detect Electric Fields (Elemental, -10%; Precise, +100%; Signal Detection, +0%; Super, -10%) [18].
+// * • Resistance:Damage Resistance 7 (Elemental, -10%; Force Field, +20%; Limited, Electricity, -40%; Super, -10%) [21] (Power Block: 10).
+// * • Static Shield: Enhanced Dodge 4 (Elemental, -10%; Super, -10%) [48].
+
+// * Heat/Fire  (Elemental, Super; Talent 2 [10])
+// * • Flame Shield: Damage Resistance 13 (Elemental, -10%; Limited, Ranged Projectiles, -40%; Super, -10%) [26] (Power Block: 10).
+// * • JATO: Super Jump 6 (Elemental, -10%; Nuisance Effect: Flame exhaust, -5%; Super, -10%) [45].
+// * • Pyrogenesis: Create Fire 12 (Destruction, +100%; Elemental, -10%; Super, -10%) [216]   --  Alternative Ability.
+// * • Fireball: Burning Attack 4d (Elemental, -10%; Increased Range, •10, +30%; Super, -10%; Variable, +5%) [23]   --  Alternative Ability (Power Parry: 13).
+// * • Flame Jet:Burning Attack 8d (Elemental, -10%; Increased Range, 9 levels, +90%; Jet, +0%; Super, -10%; Variable, +5%) [70]   --  Alternative Ability (Power Parry: 13).
+// * • Flame Wall: Burning Attack 6d (Area Effect, 2 yards, +50%; Elemental, -10%; Persistent, +40%; Super, -10%; Wall, Permeable, 3 yards • 2 yards, +30%) [60]   --  Alternative Ability.
+// * • Flaming Sword: Burning Attack 10d (Elemental, -10%; Melee Attack, Reach 1, Destructive Parry, -15%; Super, -10%; Variable, +5%) [35]   --  Alternative Ability.
+
+// * Light (Elemental, Super; Talent 2 [10])
+// * • Lightwarp: Invisibility (Affects Machines, +50%; Fringe, -10%; Switchable, +10%) [60] (Sensory Power Dodge: 11).
+// * • Photogenesis: Create Visible Light 30 (Elemental, -10%; Super, -10%) [240]   --  Alternative Ability (Power Block: 10).
+// * • Laser Pulse:  Burning Attack 10d (Accurate +2, +10%; Armor Divisor (2), +50%; Elemental, -10%; Increased Range,* •100, +60%; Super, -10%; Variable, +5%) [103]   --  Alternative Ability (Power Parry: 13).
+// * • Polarized Eyes: Protected Vision (Elemental, -10%; Super, -10%) [4].
+
+<Powers>
+Cat Function Power, 0, displaycost(274), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Cat Function Talent,_
+	AD:Catlike Reflexes,_
+	AD:Cat's Claws,_
+	AD:Cat's Eyes,_
+	AD:Cat's Whiskers,_
+	AD:Incredible Hearing,_
+	AD:Little Cat Feet,_
+	AD:Might of the Tiger,_
+	AD:Roar of the Lion,_
+	AD:Speed of the Cheetah_
+)
+
+Fish Function Power, 0, displaycost(274), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Fish Function Talent=1,_
+	AD:Body Electricity,_
+	AD:Breathing Water,_
+	AD:Fish's Mail,_
+	AD:Oceanic Might,_
+	AD:Super Swimming,_
+	AD:Underwater Vision_
+)
+
+Plant Function Power, 0, displaycost(274), page(SU42), owns(yes), hides(yes), adds(_
+	AD:Plant Function Talent=1,_
+	AD:Bark Skin,_
+	AD:Camouflage,_
+	AD:Forest Movement,_
+	AD:Perfume,_
+	AD:Photosynthesis,_
+	AD:Poison Ivy,_
+	AD:Vegetative Renewal,_
+	AD:Vine Grasp_
+)
+
+Electricity Power, 0, page(SU43), owns(yes), hides(yes)
+Heat/Fire Power, 0, page(SU43), owns(yes), hides(yes)
+Light Power, 0, page(SU43), owns(yes), hides(yes)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Supers>
+Cloaked, 1, page(SU30)
+Masked, 1, page(SU30)
+Nonprotective Clothing, 1, page(SU30)
+Skintight, 1, page(SU30)
+Supersuit, 1, page(SU30)
+Burrower, 1, page(SU30)
+Climbing Line, 1, page(SU31)
+Generator, 1, page(SU31)
+Ignition, 1, page(SU31)
+Illumination, 1, page(SU31)
+Perfume, 1, page(SU31)
+Periscope, 1, page(SU31)
+Striking Surface, 1, page(SU31), needs(AD:Damage Resistance::level=3)
+Equipment Bond, 1, page(SU31), noresync(yes),_
+	x(#InputToTag("Please name the piece of equipment:", NameExt, , "Equipment Bond"))
+No Visible Damage, 1, page(SU31), needs(AD:Unkillable)
+Swinging, 1, page(SU31)
+"Unusual Training ([skill], [restriction])", 1, page(SU31), noresync(yes),_
+	x(#InputReplace("Please enter the skill:", "[skill]", , "Unusual Training"),_
+	#InputReplace("Please enter the condition under which it can be used:", "[restriction]", , "Unusual Training"),_
+	#edit_
+		)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Mental>
+Code of Honor (Comics Code), -15, page(B127), cat(Mundane, Mental)
+Compulsive Behavior: Compulsive Rhetoric, -5, displaycost(-5*), mods(Self-Control), page(SU31), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+Mania, -5, displaycost(-5*), mods(Self-Control), page(SU32), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+
+<Mundane Social>
+Social Stigma (Freak), -10, page(SU31), cat(Mundane, Social),_
+	conditional(-2 to ST:Reaction), taboo("DI:Social Stigma (Monster)")
+
+#ReplaceTags in "DI:Dependent" with "cost(-1/-2/-5/-10/-11/-12/-13/-14/-15), levelnames(No more than 100%, No more than 75%, No more than 50%, No more than 25%, No more than 20%, No more than 15%, No more than 10%, No more than 5%, 0 or fewer points), page(B131, SU68), upto(9)"
+
+<Supernatural Mental>
+Origins Magnet, -15, page(SU32), cat(Supernatural, Mental)
+
+********************************************************************************************************\[STOP]
+[QUIRKS]
+*******************************************************************************************************\[START]
+<Mental>
+Dual Identity, -1, page(SU33)
+Forgetful, -1, page(SU33)
+Third Person, -1, page(SU33)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Knowledge>
+Hidden Lore (Supers), IQ/A, page(B199), cat(_General, Knowledge)
+Hidden Lore (Wilderness Lore), IQ/A, page(B199), cat(_General, Knowledge, Occult/Magical)
+Hidden Lore (Mysteries of Nature), IQ/A, page(B199), cat(_General, Knowledge, Occult/Magical)
+
+<Wildcard!>
+Boat!, DX/WC, page(SU36), cat(_General, Vehicle, Wildcard!),_
+	description(Boating (all specializations), IQ-based roll for Shiphandling (Ship or Submarine), combat rolls),_
+	usernotes(Boating (all specializations), IQ-based roll for Shiphandling (Ship or Submarine), combat rolls)
+Bow!, DX/WC, page(SU36), cat(_General, Combat/Weapons - Ranged Combat, Wildcard!),_
+	description(Blowpipe, Bow, Crossbow, Sling, Spear Thrower, and Thrown Weapon (Dart), all related fast-draw and IQ based related Armory),_
+	usernotes(Blowpipe, Bow, Crossbow, Sling, Spear Thrower, and Thrown Weapon (Dart), all related fast-draw and IQ based related Armory)
+Businessman!, IQ/WC, page(SU36), cat(_General, Business, Wildcard!),_
+	description(Accounting, Administration, Current Affairs (Business), Diplomacy (for business negotiaions), Economics, Finance, Gambling, Law (Contract or Corporate), Market Analysis, Merchant, and Propaganda (for commercial advertising)),_
+	usernotes(Accounting, Administration, Current Affairs (Business), Diplomacy (for business negotiaions), Economics, Finance, Gambling, Law (Contract or Corporate), Market Analysis, Merchant, and Propaganda (for commercial advertising))
+Cleric!, IQ/WC, page(SU36), cat(_General, Occult/Magical, Wildcard!),_
+	description(Exorcism (Will-based), Group Performance (Conducting), Law (canon law), Meditation (Will-based), Public Speaking, Religious Ritual, Theology),_
+	usernotes(Exorcism (Will-based), Group Performance (Conducting), Law (canon law), Meditation (Will-based), Public Speaking, Religious Ritual, Theology)
+Computers!, IQ/WC, page(SU36), cat(_General, Design/Invention, Wildcard!),_
+	description(Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers), Expert Skill (Computer Security), Mathematics (Computer Science & Cryptology)),_
+	usernotes(Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers), Expert Skill (Computer Security), Mathematics (Computer Science & Cryptology))
+Drive!, DX/WC, page(SU37), cat(_General, Vehicle, Wildcard!),_
+	description(Bicycling, Driving),_
+	usernotes(Bicycling, Driving)
+Encyclopedist!, IQ/WC, page(SU37), cat(_General, Knowledge, Wildcard!),_
+	description(Area Knowledge, Current Affairs, all Expert Skills, Games (only for knowledge of rules), all IQ-based Hobby Skills, Research),_
+	usernotes(Area Knowledge, Current Affairs, all Expert Skills, Games (only for knowledge of rules), all IQ-based Hobby Skills, Research)
+Explorer!, Per/WC, page(SU37), cat(_General, Outdoor/Exploration, Wildcard!),_
+	description(Fishing, Survival, Tracking, Observation, or IQ-based roll for any of Anthropology, Camouflage, Cartography, Geography, Gesture, Meteorology, Naturalist, Navigation, or Traps),_
+	usernotes(Fishing, Survival, Tracking, Observation, or IQ-based roll for any of Anthropology, Camouflage, Cartography, Geography, Gesture, Meteorology, Naturalist, Navigation, or Traps)
+Fake!, IQ/WC, page(SU37), cat(_General, Social, Wildcard!),_
+	description(Acting, Disguise, Fast-Talk, Forgery, Fortune-Telling, Mimicry (Speech), Savoir-Faire, and Streetwise),_
+	usernotes(Acting, Disguise, Fast-Talk, Forgery, Fortune-Telling, Mimicry (Speech), Savoir-Faire, and Streetwise)
+Fist!, DX/WC, page(SU37), cat(_General, Combat/Weapons - Melee Combat, Wildcard!), parryat(@int(%level/2)+3), mods(Punch/Kick),_
+	newmode(Punch, damage(_
+				thr - 1 + _
+					@if(me::level = ST:DX then owner::basethdice else @if(me::level > ST:DX then 2 * owner::basethdice else 0)) + _
+					@if("AD:Claws (Blunt Claws)::level" = 1 then owner::basethdice else @if("AD:Claws (Long Talons)::level" = 1 then owner::basethdice else 0)) _
+				), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(C), parry(0), skillused(SK:Karate)),_
+	newmode(Bite, damage(_
+				thr-1 + _
+				@if(me::level > ST:DX+1 then owner::basethdice else 0) + _
+				-@if("DI:Weak Bite::level" = 1 then 2 * owner::basethdice else 0)_
+				), damtype($if("AD:Teeth (Sharp Teeth)::level" = 1 THEN "cut" ELSE $if("AD:Teeth (Sharp Beak)::level" = 1 THEN "pi+" ELSE $if("AD:Teeth (Fangs)::level" = 1 THEN "imp" ELSE $if("AD:Vampiric Bite::level" = 1 THEN "cut" ELSE "cr"))))), reach(C), parry(No), skillused(SK:Brawling)_
+		),_
+	newmode(Kick, damage(_
+				thr + _
+					@if(me::level = ST:DX then owner::basethdice else @if(me::level > ST:DX then 2 * owner::basethdice else 0)) + _
+					@if("AD:Claws (Blunt Claws)::level" = 1 then owner::basethdice else @if("AD:Claws (Long Talons)::level" = 1 then owner::basethdice else @if("AD:Claws (Hooves)::level" = 1 then owner::basethdice else 0))) _
+				), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(C,1), parry(No), skillused(SK:Karate-2, SK:Kicking (Karate))),_
+	replacetags(in "ST:Punch" with "hide(yes), reach()", in "ST:Kick" with "hide(yes), reach()"),_
+	description(Notes: Calculated damage takes into account bonuses from Claws and skill level. You may add the modifier "Has Gauntlets/Brass Knuckles" or "Has Boots" to apply the +1 damage to Punch or Kick, as appropriate. /par _
+				Acrobatics, Boxing, Brawling, Judo, Jumping, Karate, Parry Missile Weapons, Savoir-Faire (Dojo) (IQ-based), Staff, Sumo Wrestling, Tonfa, and Wrestling),_
+	usernotes(Acrobatics, Boxing, Brawling, Judo, Jumping, Karate, Parry Missile Weapons, Savoir-Faire (Dojo) (IQ-based), Staff, Sumo Wrestling, Tonfa, and Wrestling)
+Inventor!, IQ/WC, page(SU37), cat(_General, Design/Invention, Wildcard!),_
+	description(Armoury, Bioengineering, Computer Programming, Electrician, Electronics Repair, Engineer, Explosives, Machinist, Mathematics (Applied Mathematics), Mechanic, Metallurgy, Smith, Traps, Expert Skill (appropriate), Weird Science),_
+	usernotes(Armoury, Bioengineering, Computer Programming, Electrician, Electronics Repair, Engineer, Explosives, Machinist, Mathematics (Applied Mathematics), Mechanic, Metallurgy, Smith, Traps, Expert Skill (appropriate), Weird Science)
+Magic!, IQ/WC, page(SU37), cat(_General, Occult/Magical, Wildcard!),_
+	description(Hazardous Materials (Magical), Occultism, and Thaumatology. Used for Spellcasting.),_
+	usernotes(Hazardous Materials (Magical), Occultism, and Thaumatology. Used for Spellcasting.)
+Medicine!, IQ/WC, page(SU37), cat(_General, Medical, Wildcard!),_
+	description(Biology, Diagnosis, Electronics Operation (Medical), Expert Skill (Epidemiology), First Aid, Hypnotism, Pharmacy, Physician, Physiology, Poisons, Psychology, Surgery, and Veterinary. Bioengineering & Esoteric Medicine at GM's option),_
+	usernotes(Biology, Diagnosis, Electronics Operation (Medical), Expert Skill (Epidemiology), First Aid, Hypnotism, Pharmacy, Physician, Physiology, Poisons, Psychology, Surgery, and Veterinary. Bioengineering & Esoteric Medicine at GM's option)
+Move!, DX/WC, page(SU37), cat(_General, Athletic, Wildcard!),_
+	description(Acrobatics, Aerobatics, Aquabatics, Body Sense, Climbing, Escape, Free Fall, Jumping, and Stealth. Dancing and Erotic Art at GM’s option. HT-based roll for Flight, Hiking, Jumping, Running, Skating, Skiing, and Swimming),_
+	usernotes(Acrobatics, Aerobatics, Aquabatics, Body Sense, Climbing, Escape, Free Fall, Jumping, and Stealth. Dancing and Erotic Art at GM’s option. HT-based roll for Flight, Hiking, Jumping, Running, Skating, Skiing, and Swimming)
+Perform!, IQ/WC, page(SU37), cat(_General, Social, Wildcard!),_
+	description(Current Affairs (High Culture or Popular Culture), Electronics Operation (Media), Fire Eating, Fortune-Telling, Group Performance, Makeup, Mimicry, Musical Instrument, Performance, Public Speaking, and Ventriloquism. Make a DX-based roll for Dancing, Sleight of Hand, or Stage Combat; make HT-based rolls for Singing),_
+	usernotes(Current Affairs (High Culture or Popular Culture), Electronics Operation (Media), Fire Eating, Fortune-Telling, Group Performance, Makeup, Mimicry, Musical Instrument, Performance, Public Speaking, and Ventriloquism. Make a DX-based roll for Dancing, Sleight of Hand, or Stage Combat; make HT-based rolls for Singing)
+Pilot!, DX/WC, page(SU37), cat(_General, Vehicle, Wildcard!),_
+	description(Replaces Piloting (all specializations). In addition, it permits an IQ-based roll for Shiphandling (Airship, Spaceship, or Starship). Use it for combat rolls to operate any weapons system installed in an air or space vehicle, or for attack maneuvers with the vehicle itself.),_
+	usernotes(Replaces Piloting (all specializations). In addition, it permits an IQ-based roll for Shiphandling (Airship, Spaceship, or Starship). Use it for combat rolls to operate any weapons system installed in an air or space vehicle, or for attack maneuvers with the vehicle itself.)
+Psychologist!, IQ/WC, page(SU37), cat(_General, Social, Wildcard!),_
+	description(Replaces Brainwashing, Criminology, Hypnotism, Interrogation, Propaganda, and Psychology. Make a Per-based roll to use it for Body Language or Detect Lies; make a Will-based roll to use it for Interrogation or Mind Block.),_
+	usernotes(Replaces Brainwashing, Criminology, Hypnotism, Interrogation, Propaganda, and Psychology. Make a Per-based roll to use it for Body Language or Detect Lies; make a Will-based roll to use it for Interrogation or Mind Block.)
+Scholar!, IQ/WC, page(SU37), cat(_General, Knowledge, Wildcard!),_
+	description(Replaces Anthropology, Archaeology, Cartography, Economics, Geography, Heraldry, History, Literature, Occultism, Philosophy, Public Speaking, Sociology, Teaching, Theology, and Writing (scholarly works and popularizations, but not fiction or poetry). It can also be used for Research in any field within the humanities or social sciences.),_
+	usernotes(Replaces Anthropology, Archaeology, Cartography, Economics, Geography, Heraldry, History, Literature, Occultism, Philosophy, Public Speaking, Sociology, Teaching, Theology, and Writing (scholarly works and popularizations, but not fiction or poetry). It can also be used for Research in any field within the humanities or social sciences.)
+Stick!, DX/WC, page(SU37), cat(_General, Combat/Weapons - Melee Combat, Wildcard!),_
+	description(Replaces Axe/Mace, Broadsword, Flail, Shortsword, Smallsword, Staff, Thrown Weapon (Stick), Two-Handed Axe/Mace, Two-Handed Flail, and Two-Handed Sword for crushing weapons only. Use this in place of such skills as Acrobatics and Jumping in combat situations. Make an IQ-based roll for Armoury pertaining to these weapons. Users can wield two one-handed sticks at full skill without off-hand penalties.),_
+	usernotes(Replaces Axe/Mace, Broadsword, Flail, Shortsword, Smallsword, Staff, Thrown Weapon (Stick), Two-Handed Axe/Mace, Two-Handed Flail, and Two-Handed Sword for crushing weapons only. Use this in place of such skills as Acrobatics and Jumping in combat situations. Make an IQ-based roll for Armoury pertaining to these weapons. Users can wield two one-handed sticks at full skill without off-hand penalties.)
+Thief!, IQ/WC, page(SU37), cat(_General, Criminal/Street, Wildcard!),_
+	description(Replaces Climbing, Escape, Filch, Forced Entry, Pickpocket, and Stealth. Make an IQ-based roll for Electronics Operation (Security), Lockpicking, Traps, or Streetwise; for Shadowing to follow an intended victim; and for Merchant to sell stolen goods.),_
+	usernotes(Replaces Climbing, Escape, Filch, Forced Entry, Pickpocket, and Stealth. Make an IQ-based roll for Electronics Operation (Security), Lockpicking, Traps, or Streetwise; for Shadowing to follow an intended victim; and for Merchant to sell stolen goods.)
+Throw!, DX/WC, page(SU37), cat(_General, Combat/Weapons - Ranged Combat, Wildcard!),_
+	description(Replaces Bolas, Spear Thrower, Throwing, the thrown uses of Cloak, Lasso, and Net, and all Thrown Weapon skills, as well as all related Fast-Draw skills. Make an IQ-based roll for Armoury pertaining to these weapons and for Games skills such as darts. Use this in place of such skills as Acrobatics and Climbing for actions that benefit from throwing, such as climbing a tossed grappling line.),_
+	usernotes(Replaces Bolas, Spear Thrower, Throwing, the thrown uses of Cloak, Lasso, and Net, and all Thrown Weapon skills, as well as all related Fast-Draw skills. Make an IQ-based roll for Armoury pertaining to these weapons and for Games skills such as darts. Use this in place of such skills as Acrobatics and Climbing for actions that benefit from throwing, such as climbing a tossed grappling line.)
+Whip!, DX/WC, page(SU37), cat(_General, Combat/Weapons - Melee Combat, Wildcard!),_
+	description(Replaces Flail, Force Whip, Kusari, Lasso, Monowire Whip, Two-Handed Flail, and Whip, as well as the thrown uses of Cloak, Lasso, and Net. Make an IQ-based roll for Armoury pertaining to these weapons. Use it in place of such skills as Acrobatics and Climbing to climb up or swing from a whip; Garrote or Knot-Tying when choking or binding a foe with a flexible weapon; and suitable specializations of Erotic Art.),_
+	usernotes(Replaces Flail, Force Whip, Kusari, Lasso, Monowire Whip, Two-Handed Flail, and Whip, as well as the thrown uses of Cloak, Lasso, and Net. Make an IQ-based roll for Armoury pertaining to these weapons. Use it in place of such skills as Acrobatics and Climbing to climb up or swing from a whip; Garrote or Knot-Tying when choking or binding a foe with a flexible weapon; and suitable specializations of Erotic Art.)
+
+<Techniques, Techniques - Combat>
+Bullet Parry, Tech/H, default("SK:Parry Missile Weapons::parrylevel"-5), needs(SK:Parry Missile Weapons,AD:Enhanced Time Sense), upto(prereq), page(SU38)
+Camouflaged Mind Block, Tech/H, default("SK:Mind Block::level"-4), needs(SK:Mind Block), upto(prereq), page(SU38)
+Coded Thoughts, Tech/H, default("SK:Mind Block::level"-6), needs(SK:Mind Block,SK:Cryptography), upto(prereq), page(SU38)
+Human Missile (Acrobatics), Tech/H, default("SK:Acrobatics::level"-3),_
+	needs(SK:Acrobatics, AD:Super Jump), upto(prereq), page(SU38)
+Human Missile (Aerobatics), Tech/H, default("SK:Aerobatics::level"-3),_
+	needs(SK:Aerobatics,AD:Flight), upto(prereq), page(SU38)
+Human Missile (Aquabatics), Tech/H, default("SK:Aquabatics::level"-3),_
+	needs(SK:Aquabatics,(AD:Amphibious|DI:No Legs (Aquatic)|AD:Enhanced Move (Water)|AD:Flight)), upto(prereq), page(SU38)
+Human Missile (Jumping), Tech/H, default("SK:Jumping::level"-3),_
+	needs(SK:Jumping, AD:Super Jump), upto(prereq), page(SU38)
+
+Multiport, Tech/H, default("SK:Body Sense::level"), upto(prereq), page(SU38),_
+	needs(SK:Body Sense,AD:Warp = @if(@itemhasmod(AD:Warp, Rapid Fire) THEN 1 ELSE 100) ), x( _
+	#Message(Your Warp advantage MUST have the Rapid Fire enhancement.) _
+	)
+
+No-Mind, Tech/H, default("SK:Mind Block::level"-5), needs(SK:Mind Block,SK:Invisibility Art), upto(prereq), page(SU38) 
+Remote Hypnosis, Tech/H, default("SK:Hypnotism::level"), needs(SK:Hypnotism,AD:Telepathy Talent=1), page(SU38)
+Tight Beam, Tech/H, default("SK:Innate Attack (Beam)::level"-2), needs(SK:Innate Attack (Beam),PE:Unusual Training), upto(prereq), page(SU38)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Meta-Traits>
+Defense Bonus, displaycost(30/level), cost(0/0), lockstep(yes),_
+	description(As described for shields (p.B287), this adds to all of your active defense rolls),_
+	page(SU34),_
+	cat(Meta-Traits, Supers),_
+	noresync(yes),_
+	owns(yes),_
+	adds(_
+		AD:Enhanced Block,_
+		AD:Enhanced Dodge,_
+		AD:Enhanced Parry (all parries) _
+	)
+
+<Character Templates>
+Acrobat (Supers), displaycost(250), cost(0),_
+	cat(Character Templates - Supers, Supers),_
+	description(Your focus is high DX and the skills that it supports, particularly agile movement, unarmed combat, and sometimes the use of muscle-powered weapons. You can be stealthy, but that 's not your focus; see Nightstalker (p.49) for a stealth-oriented hero.),_
+	page(SU41),_
+	noresync(yes),_
+	sets(_
+		ST:ST=12,_
+		ST:DX=16,_
+		ST:HT=12_
+	),_
+	adds(_
+		AD:Combat Reflexes,_
+		AD:Fit _
+	),_
+	select1(text("Choose 25 points of advantages from the following"), pointswanted(25), itemswanted(atleast 1),_
+		list(_
+		AD:Catfall,_
+		AD:Daredevil #codes(upto 1, downto 1),_
+		AD:Enhanced Dodge #codes(upto 1, downto 1),_
+		AD:Extra Attack #codes(upto 1, downto 1),_
+		AD:Flexibility,_
+		AD:Perfect Balance,_
+		AD:Signature Gear,_
+		AD:Super Climbing,_
+		AD:Super Jump,_
+		AD:Weapon Master #codes(upto 2, downto 1),_
+		AD:Very Fit _
+		)_
+	),_
+	select2(text("Choose one perk:"), itemswanted(1), pointswanted(1),_
+		list(_
+		PE:Cloaked,_
+		PE:Shtick,_
+		PE:Swinging _
+		)_
+	),_
+	select3(text("Choose -20 points of disadvantages from the following:"), pointswanted(-20), itemswanted(atleast 1),_
+		list(_
+		DI:Code of Honor,_
+		DI:Code of Honor (Comics Code),_
+		DI:Code of Honor (Pirate's),_
+		DI:Code of Honor (Chivalry),_
+		DI:Code of Honor (Gentleman's),_
+		DI:Code of Honor (Professional),_
+		DI:Code of Honor (Soldier's),_
+		DI:Impulsiveness,_
+		DI:Overconfidence,_
+		DI:Trademark #codes(upto 1, downto 1),_
+		DI:Trickster _
+		)_
+	),_
+	select4(text("Choose one Wildcard skill:"), itemswanted(1), pointswanted(48),_
+		list(_
+		SK:Bow! #codes(upto 48pts, downto 48pts),_
+		SK:Move! #codes(upto 48pts, downto 48pts),_
+		SK:Stick! #codes(upto 48pts, downto 48pts),_
+		SK:Sword! #codes(upto 48pts, downto 48pts),_
+		SK:Throw! #codes(upto 48pts, downto 48pts),_
+		SK:Whip! #codes(upto 48pts, downto 48pts) _
+		)_
+	),_
+	select5(text("Choose one of these two skills:"), itemswanted(1), pointswanted(8),_
+		list(_
+		SK:Body Language #codes(upto 8pts, downto 8pts),_
+		SK:Observation #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(text("Choose one of these skills:"), itemswanted(1), pointswanted(4),_
+		list(_
+		SK:Acrobatics #codes(upto 4pts, downto 4pts),_
+		SK:Boxing #codes(upto 4pts, downto 4pts),_
+		SK:Climbing #codes(upto 4pts, downto 4pts),_
+		SK:Jumping #codes(upto 4pts, downto 4pts),_
+		SK:Stealth #codes(upto 4pts, downto 4pts),_
+		SK:Wrestling #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select7(text("Choose two of these skills:"), itemswanted(2), pointswanted(4),_
+		list(_
+		SK:Acrobatics #codes(upto 2pts, downto 2pts),_
+		SK:Boxing #codes(upto 2pts, downto 2pts),_
+		SK:Climbing #codes(upto 2pts, downto 2pts),_
+		SK:Jumping #codes(upto 2pts, downto 2pts),_
+		SK:Stealth #codes(upto 2pts, downto 2pts),_
+		SK:Wrestling #codes(upto 2pts, downto 2pts),_
+		SK:Axe/Mace #codes(upto 2pts, downto 2pts),_
+		SK:Broadsword #codes(upto 2pts, downto 2pts),_
+		SK:Cloak #codes(upto 2pts, downto 2pts),_
+		SK:Flail #codes(upto 2pts, downto 2pts),_
+		SK:Force Sword #codes(upto 2pts, downto 2pts),_
+		SK:Force Whip #codes(upto 2pts, downto 2pts),_
+		SK:Garrote #codes(upto 2pts, downto 2pts),_
+		SK:Jitte/Sai #codes(upto 2pts, downto 2pts),_
+		SK:Knife #codes(upto 2pts, downto 2pts),_
+		SK:Kusari #codes(upto 2pts, downto 2pts),_
+		SK:Lance #codes(upto 2pts, downto 2pts),_
+		SK:Main-Gauche #codes(upto 2pts, downto 2pts),_
+		SK:Monowire Whip #codes(upto 2pts, downto 2pts),_
+		SK:Polearm #codes(upto 2pts, downto 2pts),_
+		SK:Rapier #codes(upto 2pts, downto 2pts),_
+		SK:Saber #codes(upto 2pts, downto 2pts),_
+		SK:Shield (Shield) #codes(upto 2pts, downto 2pts),_
+		SK:Shield (Buckler) #codes(upto 2pts, downto 2pts),_
+		SK:Shield (Force) #codes(upto 2pts, downto 2pts),_
+		SK:Shortsword #codes(upto 2pts, downto 2pts),_
+		SK:Smallsword #codes(upto 2pts, downto 2pts),_
+		SK:Spear #codes(upto 2pts, downto 2pts),_
+		SK:Staff #codes(upto 2pts, downto 2pts),_
+		SK:Tonfa #codes(upto 2pts, downto 2pts),_
+		SK:Two-Handed Axe/Mace #codes(upto 2pts, downto 2pts),_
+		SK:Two-Handed Flail #codes(upto 2pts, downto 2pts),_
+		SK:Two-Handed Sword #codes(upto 2pts, downto 2pts),_
+		SK:Whip #codes(upto 2pts, downto 2pts) _
+		)_
+	)
+
+Archetype (Supers), displaycost(2,000), cost(0),_
+	cat(Character Templates - Supers, Supers),_
+	description(You fit the most common of all heroic patterns: amazing strength, speed, and durability, plus the ability to fly - or something close to it. You're powerful enough to be almost immune to forcible restraint. If you're a hero, you're law-abiding or honorable because of your personal convictions; if you're a villain or anti-hero, you're driven by a sense of superiority to ordinary mortals.),_
+	page(SU42),_
+	noresync(yes),_
+	sets(_
+		ST:ST=20,_
+		ST:DX=14,_
+		ST:IQ=14,_
+		ST:HT=20,_
+		ST:Will=20,_
+		ST:Fatigue Points=40_
+	),_
+	adds( _
+		AD:Appearance=1,_
+		AD:Damage Resistance = 100 with "Super, -10%, group(Power Modifiers)",_
+		AD:Injury Tolerance with _
+			"Super, -10%, group(Power Modifiers)" and _
+			"Damage Reduction, +125/+150, level(8), mods(Limited Defense), group(Injury Tolerance), page(P118), levelnames(/5, /10, /15, /20, /30, /50, /70, /100, /150, /200, /300, /500, /700, /1000, /1500, /2000, /3000, /5000, /7000, /10000)",_
+		AD:Longevity,_
+		AD:Nictitating Membrane = 15 with "Super, -10%, group(Power Modifiers)",_
+		AD:Regeneration = 1 with _
+			"Super, -10%, group(Power Modifiers)",_
+		AD:Resistant = 4 with _
+			"Super, -10%, group(Power Modifiers)" and _
+			"Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond {Metabolic Hazards},_
+		AD:Super ST = 13 with _
+			{Super, -10%, group(Power Modifiers)} and _
+			{Super ST, +300%, gives(+@min(owner::level,50) to ST:Super-Effort Strength), page(SU24)} and _
+			{Size, -10%, formula(-@if(ST:Size Modifier::score > 0 then ST:Size Modifier*10 else 0)), forceformula(yes), group(Size), page(B15)},_
+		AD:Temperature Tolerance = 8,_
+		AD:Very Fit,_
+		PE:Striking Surface _
+	),_
+	select1(text("Choose one of the following abilities:"), pointswanted(30), itemswanted(1),_
+		list(_
+		AD:Adaptation,_
+		AD:Amphibian,_
+		AD:Flying,_
+		AD:Heat Vision,_
+		AD:Super-Senses,_
+		AD:Underground Movement _
+		)_
+	),_
+	select2(text("Spend a total of 190 points on the Talents and abilities of this speed power"), pointswanted(190), itemswanted(atleast 1),_
+		list(_
+		AD:Speed Talent,_
+		AD:Hyper-Reflexes,_
+		AD:Super-Speed,_
+		AD:Super-Flying,_
+		AD:Super-Mobility,_
+		AD:Super-Swimming _
+		)_
+	),_
+	select3(text("Choose -20 points of disadvantages from the following:"), pointswanted(-20), itemswanted(atleast 1),_
+		list(_
+		DI:Callous,_
+		DI:Code of Honor,_
+		DI:Code of Honor (Comics Code),_
+		DI:Code of Honor (Pirate's),_
+		DI:Code of Honor (Chivalry),_
+		DI:Code of Honor (Gentleman's),_
+		DI:Code of Honor (Professional),_
+		DI:Code of Honor (Soldier's),_
+		DI:Fanaticism,_
+		DI:Honesty,_
+		DI:Megalomania,_
+		DI:Pacifism (Reluctant Killer),_
+		DI:Pacifism (Cannot Harm Innocents),_
+		DI:Pacifism (Cannot Kill),_
+		DI:Pacifism (Self-Defense Only),_
+		DI:Pacifism (Total Nonviolence),_
+		DI:Selfish,_
+		DI:Selfless,_
+		DI:Sense of Duty _
+		)_
+	),_
+	select4(text("Choose one of these skills:"), itemswanted(1), pointswanted(4),_
+		list(_
+		SK:Brawling #codes(upto 4pts, downto 4pts),_
+		SK:Intimidation #codes(upto 4pts, downto 4pts),_
+		SK:Leadership #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select5(text("Choose two of these skills:"), itemswanted(2), pointswanted(8),_
+		list(_
+		SK:Flight #codes(upto 4pts, downto 4pts),_
+		SK:Jumping #codes(upto 4pts, downto 4pts),_
+		SK:Running #codes(upto 4pts, downto 4pts),_
+		SK:Swimming #codes(upto 4pts, downto 4pts) _
+		)_
+	),_
+	select6(text("Choose three of these skills:"), itemswanted(3), pointswanted(12),_
+		list(_
+		SK:Aerobatics #codes(upto 4pts, downto 4pts),_
+		SK:Aquabatics #codes(upto 4pts, downto 4pts),_
+		SK:Dropping #codes(upto 4pts, downto 4pts),_
+		SK:Forced Entry #codes(upto 4pts, downto 4pts),_
+		SK:Innate Attack (Gaze) #codes(upto 4pts, downto 4pts),_
+		SK:Lifting #codes(upto 4pts, downto 4pts),_
+		SK:Observation #codes(upto 4pts, downto 4pts),_
+		SK:Parry Missile Weapons #codes(upto 4pts, downto 4pts),_
+		SK:Stealth #codes(upto 4pts, downto 4pts),_
+		SK:Throwing #codes(upto 4pts, downto 4pts) _
+		)_
+	)
+
+Biomorph (Supers), displaycost(500), cost(0),_
+	cat(Character Templates - Supers, Supers),_
+	description(You have powers based on those of other living species - usually animals, but plants, fungi, or even microorganisms are possible. Your heroic identity evokes those creatures as well. Your body may be completely human or have some anatomical peculiarities, but you don't actually turn into another species; see Metamorph (p. 49) for that option.),_
+	page(SU42),_
+	noresync(yes),_
+	sets(_
+		ST:ST=12,_
+		ST:DX=12,_
+		ST:IQ=10,_
+		ST:HT=12,_
+		ST:Perception=15,_
+		ST:Basic Speed=7_
+	),_
+	adds( _
+		AD:Combat Reflexes,_
+		AD:Very Fit,_
+		AD:Very Rapid Healing,_
+		SK:Move! = 48pts,_
+		SK:Brawling = 4pts _
+	),_
+	select1(text(Pick a total of 30 points from the following advantages), pointswanted(30), itemswanted(atleast 1),_
+		list( _
+			AD:Animal Empathy,_
+			AD:Appearance #codes(upto 2 downto 1),_
+			AD:Danger Sense,_
+			AD:Enhanced Dodge,_
+			AD:Fearlessness,_
+			AD:High Pain Threshold,_
+			AD:Higher Purpose (Defend plants),_
+			AD:Higher Purpose (Defend animals),_
+			AD:Higher Purpose (Defend the environment),_
+			AD:Perfect Balance,_
+			AD:Plant Empathy,_
+			AD:Single-Minded_
+		)_
+	),_
+	select2(text(Pick one of the following powers), pointswanted(atleast 0), itemswanted(1),_
+		list(_
+			AD:Cat Function Power,_
+			AD:Fish Function Power,_
+			AD:Plant Function Power_
+		)_
+	),_
+	select3(text(Pick a total of -30 points from the following disadvantages), pointswanted(-30), itemswanted(atleast 1),_
+		list(_
+			DI:Appearance #codes(upto 2 downto 1),_
+			DI:Berserk,_
+			DI:Bestial,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			DI:Sense of Duty,_
+			DI:Unnatural Features_
+		)_
+	),_
+	select4(text(Pick two of the following skills), pointswanted(8), itemswanted(2),_
+		list(_
+			SK:Body Language #codes(upto 4pts, downto 4pts),_
+			SK:Hidden Lore (Mysteries of Nature) #codes(upto 4pts, downto 4pts),_
+			SK:Knot-Tying #codes(upto 4pts, downto 4pts),_
+			SK:Naturalist #codes(upto 4pts, downto 4pts),_
+			SK:Observation #codes(upto 4pts, downto 4pts),_
+			SK:Survival #codes(upto 4pts, downto 4pts),_
+			SK:Tracking #codes(upto 4pts, downto 4pts),_
+			SK:Traps #codes(upto 4pts, downto 4pts)_
+		)_
+	)
+
+Blaster (Supers), displaycost(500), cost(0),_
+	cat(Character Templates - Supers, Supers),_
+	description(You're the ranged-attack specialist of your team: You can hurl beams, blasts, or bolts at the enemy and take them out of action. Many different forms of energy, and sometimes of matter, can be used as the basis for such attacks.),_
+	page(SU42),_
+	noresync(yes),_
+	sets(_
+		ST:ST=11,_
+		ST:DX=14,_
+		ST:IQ=10,_
+		ST:HT=11,_
+		ST:Perception=14,_
+		ST:Basic Speed=6_
+	),_
+	adds( _
+		AD:Combat Reflexes _
+	),_
+	select1(text(Pick a total of 25 points from the following advantages), pointswanted(25), itemswanted(atleast 1),_
+		list(_
+			AD:Acute Vision,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge,_
+			AD:Extra Attack #codes(upto 1, downto 1),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Single-Minded_
+		)_
+	),_
+	select2(text(Pick a perk), pointswanted(1), itemswanted(1),_
+		list(_
+			#newitem(PE:Accessory (Generator), 1, page(B100), cat(Perks)),_
+			#newitem(PE:Accessory (Ignition), 1, page(B100), cat(Perks)),_
+			#newitem(PE:Accessory (Lamp), 1, page(B100), cat(Perks)),_
+			#newitem(PE:Accessory (Periscope), 1, page(B100), cat(Perks)) _
+		)_
+	),_
+	select3(text(Pick a power), pointswanted(atleast 0), itemswanted(1),_
+		list(_
+			AD:Electricity Power,_
+			AD:Heat/Fire Power,_
+			AD:Light Power_
+		)_
+	),_
+	select4(text(Pick a total of -20 points from the following disadvantages), pointswanted(-20), itemswanted(atleast 1),_
+		list(_
+			DI:Code of Honor,_
+			DI:Code of Honor (Comics Code),_
+			DI:Code of Honor (Pirate's),_
+			DI:Code of Honor (Chivalry),_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Professional),_
+			DI:Code of Honor (Soldier's),_
+			DI:Impulsiveness,_
+			DI:Mania,_
+			DI:Overconfidence,_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Pacifism (Cannot Kill),_
+			DI:Pacifism (Self-Defense Only)_
+		)_
+	),_
+	select5(text(Select an Innate Attack skill), pointswanted(8), itemswanted(1),_
+		list(_
+			SK:Innate Attack #codes(upto 8pts, downto 8pts),_
+			SK:Innate Attack (Beam) #codes(upto 8pts, downto 8pts),_
+			SK:Innate Attack (Breath) #codes(upto 8pts, downto 8pts),_
+			SK:Innate Attack (Gaze) #codes(upto 8pts, downto 8pts),_
+			SK:Innate Attack (Projectile) #codes(upto 8pts, downto 8pts) _
+		)_
+	),_
+	select6(text(Pick a skill), pointswanted(1), itemswanted(1),_
+		list(_
+			SK:Electrician #codes(upto 1pts),_
+			SK:Jumping #codes(upto 1pts),_
+			SK:Saber #codes(upto 1pts),_
+			SK:Stealth #codes(upto 1pts)_
+		)_
+	)
+
+// * Powers:Choose one of the powers below:
+// * Electricity (Elemental, Super; Talent 2 [10])
+// * 	Electrogenesis:  Create Electricity 6 (Aura, +80%; Elemental, -10%; Super, -10%) [192]   --  Alternative Ability.
+// * 	Electrified Skin:  Affliction 6 (Aura, +80%; Elemental, -10%; Melee Attack, Reach C, -30%; Super, -10%) [80]   --  Alternative Ability.
+// * 	Lightning Bolt: Burning Attack 12d (Elemental, -10%; Inaccurate, -3, -15%; Increased 1/2D, •10, +15%; Increased Range, •10, +30%; Link, +10%; Nuisance Effect, Thunderclap, -5%; Side Effect, Stunning, +50%; Super, -10%; Surge, +20%; Takes Recharge, 5 seconds, -10%) [105]   --  Alternative Ability + Affliction 1 (HT; Area Effect, 4 yards, +100%; Disadvantage, Blindness, +50%; Elemental, -10%; Inaccurate, -3, -15%; Increased 1/2D, •10, +15%; Increased Range, •10, +30%; Link, +10%; Super, -10%; Vision-Based, +150%) [42]   --  Alternative Ability (Power Parry: 13).
+// * 	Field Sense: Detect Electric Fields (Elemental, -10%; Precise, +100%; Signal Detection, +0%; Super, -10%) [18].
+// * 	Resistance:Damage Resistance 7 (Elemental, -10%; Force Field, +20%; Limited, Electricity, -40%; Super, -10%) [21] (Power Block: 10).
+// * 	Static Shield: Enhanced Dodge 4 (Elemental, -10%; Super, -10%) [48].
+
+// * Heat/Fire  (Elemental, Super; Talent 2 [10])
+// * 	Flame Shield: Damage Resistance 13 (Elemental, -10%; Limited, Ranged Projectiles, -40%; Super, -10%) [26] (Power Block: 10).
+// * 	JATO: Super Jump 6 (Elemental, -10%; Nuisance Effect: Flame exhaust, -5%; Super, -10%) [45].
+// * 	Pyrogenesis: Create Fire 12 (Destruction, +100%; Elemental, -10%; Super, -10%) [216]   --  Alternative Ability.
+// * 	Fireball: Burning Attack 4d (Elemental, -10%; Increased Range, •10, +30%; Super, -10%; Variable, +5%) [23]   --  Alternative Ability (Power Parry: 13).
+// * 	Flame Jet:Burning Attack 8d (Elemental, -10%; Increased Range, 9 levels, +90%; Jet, +0%; Super, -10%; Variable, +5%) [70]   --  Alternative Ability (Power Parry: 13).
+// * 	Flame Wall: Burning Attack 6d (Area Effect, 2 yards, +50%; Elemental, -10%; Persistent, +40%; Super, -10%; Wall, Permeable, 3 yards • 2 yards, +30%) [60]   --  Alternative Ability.
+// * 	Flaming Sword: Burning Attack 10d (Elemental, -10%; Melee Attack, Reach 1, Destructive Parry, -15%; Super, -10%; Variable, +5%) [35]   --  Alternative Ability.
+
+// * Light (Elemental, Super; Talent 2 [10])
+// * 	Lightwarp: Invisibility (Affects Machines, +50%; Fringe, -10%; Switchable, +10%) [60] (Sensory Power Dodge: 11).
+// * 	Photogenesis: Create Visible Light 30 (Elemental, -10%; Super, -10%) [240]   --  Alternative Ability (Power Block: 10).
+// * 	Laser Pulse:  Burning Attack 10d (Accurate +2, +10%; Armor Divisor (2), +50%; Elemental, -10%; Increased Range,* •100, +60%; Super, -10%; Variable, +5%) [103]   --  Alternative Ability (Power Parry: 13).
+// * 	Polarized Eyes: Protected Vision (Elemental, -10%; Super, -10%) [4].
+
+// * Ü Alternative abilities. The most expensive ability is at full cost; all others are at 1/5 the listed cost.
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+********* CHARACTER ********
+<_General>
+Accessibility: Percentage of the time, -5%/-10%, shortname(%age of the time), levelnames([94-100%],82-93%,69-81%,57-68%,44-56%,32-43%,19-31%,7-18%,1-6%,<1%,Remote), upto(9), page(P99), mods(Accessibility)
+Accessibility: Only while Moving, -10%/-20%/-30%, shortname(Only While Moving), levelnames(One step per second,Half Move,Full Move), upto(3), page(P99), mods(Accessibility)
+Accessibility: Only on Electrical, -20%, shortname(Electrical Only), group(_Accessibilities,_General), page(B110,B134), mods(Accessibility)
+Accessibility: Only on Machines, -20%, shortname(Machines Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only on Women, -20%, shortname(Women Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only on Men, -20%, shortname(Men Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only on Psis, -50%, shortname(Psis Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Not on Redheads, -10%, shortname(Not Redheads), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only at Day, -20%, shortname(Daytime Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only in Direct Sunlight, -30%, shortname(In Direct Sunlight), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only at Night, -20%, shortname(Nighttime Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only in Darkness, -30%, shortname(Only In Dark), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only in Water, -30%, shortname(Only In Water), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only During Full Moon, -40%, shortname(Only During Full Moon), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only During New Moon, -40%, shortname(Only During New Moon), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Useless Under Stress, -60%, shortname(Useless Under Stress), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only in Altered Body Form, -10%, shortname(Altered Body Form Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only when using another Ability, -10%, shortname(With Other Ability Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only while Playing Trumpet, -20%, shortname(Playing Trumpet Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only while Flying, -30%, shortname(Flying Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only while Swimming, -30%, shortname(Swimming Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only while in Hypnotic Trance, -30%, shortname(Hypnotic Trance Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+Accessibility: Only by One Side Of Split Personality, -30%, shortname(One Personality Only), group(_Accessibilities,_General), page(B110), mods(Accessibility)
+
+//  New Enhancement
+Wildcard Power!, *4, tier(1), group(_General), page(SU41)
+
+//  New Limitations
+Glamour (IQ), -5%/-10%, levelnames(IQ-5, IQ-4, IQ-3, IQ-2, IQ-1, IQ), group(_General), page(P111,S33)
+Glamour (Per), -5%/-10%, levelnames(Per-5, Per-4, Per-3, Per-2, Per-1, Per), group(_General), page(P111,S33)
+Glamour (HT), -5%/-10%, levelnames(HT-5, HT-4, HT-3, HT-2, HT-1, HT), group(_General), page(P111,S33)
+Periodic Recharge, -5%/-10%/-20%/-40%/-80%, levelnames(Up to 24 hours,Up to 8 hours,Up to 1 hour,Up to 10 minutes,Up to 1 minute), group(_General), page(SU33)
+Skill Enhancement Only, -60%, group(_General), page(SU33)
+Substantial Only,-10%, group(_General), page(SU33)
+
+<_Power Modifiers>
+Electronic, -30%, group(_Power Modifiers), page(SU34)
+Mechanical, -10%, group(_Power Modifiers), page(SU34)
+Mutant, -10%, group(_Power Modifiers), page(SU34)
+Nanotech, -15%, group(_Power Modifiers), page(SU34)
+Savant, -10%, group(_Power Modifiers), page(SU34)
+Superscience, -10% , group(_Power Modifiers), page(SU34)
+
+<Super ST>
+Super ST, +300%, gives(+@min(owner::level,50) to ST:Super-Effort Strength), page(SU24)
+
+<Burning Attack Limitations>
+Damage Modifier: Non-Incendiary, -10%/-20%, shortname(Missing Damage Effect), group(_Attack Limitations), page(P102)
+
+<_Attack Limitations>
+Resistible (HT),   -5%/-10%, group(_Attack Limitations), page(B115), Levelnames(HT-5,HT-4,HT-3,HT-2,HT-1,HT,HT+1,HT+2,HT+3,HT+4,HT+5,HT+6,HT+7,HT+8,HT+9,HT+10)
+Resistible (DX),   -5%/-10%, group(_Attack Limitations), page(B115), Levelnames(DX-5,DX-4,DX-3,DX-2,DX-1,DX,DX+1,DX+2,DX+3,DX+4,DX+5,DX+6,DX+7,DX+8,DX+9,DX+10)
+Resistible (IQ),   -5%/-10%, group(_Attack Limitations), page(B115), Levelnames(IQ-5,IQ-4,IQ-3,IQ-2,IQ-1,IQ,IQ+1,IQ+2,IQ+3,IQ+4,IQ+5,IQ+6,IQ+7,IQ+8,IQ+9,IQ+10)
+Resistible (ST),   -5%/-10%, group(_Attack Limitations), page(B115), Levelnames(ST-5,ST-4,ST-3,ST-2,ST-1,ST,ST+1,ST+2,ST+3,ST+4,ST+5,ST+6,ST+7,ST+8,ST+9,ST+10)
+Resistible (Will), -5%/-10%, group(_Attack Limitations), page(B115), Levelnames(Will-5,Will-4,Will-3,Will-2,Will-1,Will,Will+1,Will+2,Will+3,Will+4,Will+5,Will+6,Will+7,Will+8,Will+9,Will+10)
+Resistible (Per),  -5%/-10%, group(_Attack Limitations), page(B115), Levelnames(Per-5,Per-4,Per-3,Per-2,Per-1,Per,Per+1,Per+2,Per+3,Per+4,Per+5,Per+6,Per+7,Per+8,Per+9,Per+10)
+
+<Affliction>
+Irritant: Itching, +10%, shortname(Itching), mods(Secondary), group(Affliction), page(SU25)
+
+<Binding>
+Super-Binding, +400%, group(Binding), page(SU25)
+
+<Compartmentalized Mind>
+Switchable, +10%, group(Compartmentalized Mind), page(SU26)
+Massively Parallel, +20%, group(Compartmentalized Mind), page(SU26)
+
+<Duplication>
+Multiplication, +20%, group(Duplication), page(SU26)
+
+<Enhanced Move>
+Cosmic (Instantaneous Acceleration), +50%, group(Enhanced Move), page(SU27)
+Cosmic (Complete Maneuverability), +50%, group(Enhanced Move), page(SU27)
+
+<Grimoire>
+_Per point of abilities, 5+3/point, formula(5+(me::level*3)), forceformula(yes), group(Grimoire), page(B71), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Grimoire),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Grimoire) _
+	), level([level]) 
+
+<Spirit Trapping>
+_Per point of abilities, 6+4/point, formula(6+(me::level*4)), forceformula(yes), group(Spirit Trapping), page(B71), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Spirit Trapping),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Spirit Trapping) _
+	), level([level]) 
+
+<Internal Reconfigurable Mechanisms>
+_Per point of abilities, 6+4/point, formula(6+(me::level*4)), forceformula(yes), group(Internal Reconfigurable Mechanisms), page(B71), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",Internal Reconfigurable Mechanisms),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",Internal Reconfigurable Mechanisms) _
+	), level([level]) 
+
+<External Reconfigurable Mechanisms>
+_Per point of abilities, 6+3/point, formula(6+(me::level*3)), forceformula(yes), group(External Reconfigurable Mechanisms), page(B71), mods(Modular Abilities),_
+	x(_
+		#InputToTagReplace("Specify the name of this Modular slot",name,"Slot 2",External Reconfigurable Mechanisms),_
+		#InputReplace("How many points does this Modular slot have:","[level]","1",External Reconfigurable Mechanisms) _
+	), level([level]) 
+
+<Alternate Form>
+Preventable, -10%, group(Alternate Form, Morph), page(SU28)
+
+<Super Jump>
+Bouncing Only, -50%, group(Super Jump), page(SU28)
+
+<Telekinesis>
+Animate Life-forms, +100%, group(Telekinesis), page(SU28)
+Animate Life-forms (Partial), +20%, group(Telekinesis), page(SU28)
+Super-Effort, +400%, gives(+owner::level to ST:TK Super-Effort Strength), group(Telekinesis), page(P83,S29)
+Super-Damage, +900%, gives(+owner::level to ST:TK Super-Effort Strength, +@min(owner::level,50) to ST:TK Super-Effort Striking Strength), group(Telekinesis), page(SU29),_
+	addmode(_
+		{Super-Effort Swing, damage(sw), damtype(sw), reach(%copyfirst), rangehalfdam(%copyfirst), rangemax(%copyfirst), skillused(%copyfirst), damagebasedon("ST:TK Super-Effort Striking ST")} | _
+		{Super-Effort Thrust, damage(thr), damtype(thr), reach(%copyfirst), rangehalfdam(%copyfirst), rangemax(%copyfirst), skillused(%copyfirst), damagebasedon("ST:TK Super-Effort Striking ST")} _
+		)
+
+<Warp>
+Mental Carrying Capacity, +20%, group(Warp), page(SU29)
+Rapid Fire, +0%/+40%/+50%/+70%/+70%/+70%/+70%/+100%/+100%/+100%/+100%/+100%/+100%/+100%/+100%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+150%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+200%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+250%/+300%/+300%,_
+	shortname(Rapid Fire), group(Warp), page(SU29), level(2), upto(300)
+Telekinetic Carrying Capacity, +20%, group(Warp), page(SU29)
+Exoteleport, -50%, group(Warp), page(SU30)
+
+<Ultra Power>
+Externally Boosted, -50%, group(Ultra Power), page(SU30)
+
+<Informal>
+Informal, -50%, group(Informal), page(SU33)
+
+<Lifting ST>
+Super-Effort, +400%, gives(+@min(owner::level,50) to ST:Super-Effort Lifting Strength), group(Lifting ST), page(P58,S24)
+
+<Striking ST>
+Super-Effort, +400%, gives(+@min(owner::level,50) to ST:Super-Effort Striking Strength), group(Striking ST), page(P58,S24)
+
+<Extra ST>
+Super Attribute, +25%, page(SU23)
+
+<Extra DX>
+Super Attribute, +25%, page(SU23)
+
+<Extra IQ>
+Super Attribute, +25%, page(SU23)
+
+<Extra HT>
+Super Attribute, +25%, page(SU23)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllMetaTraits>
+TE:Defense Bonus
+
+<AllAdvantages>
+AD:Oceanic Might
+AD:Super ST
+AD:Unusual Background
+AD:Super Throw
+AD:Ultra Power
+AD:Animal Function Talent
+AD:Cat Function Talent
+AD:Elasticity Talent
+AD:Fish Function Talent
+AD:Phasing Talent
+AD:Plant Function Talent
+AD:Speed Talent
+AD:Adaptation
+AD:Amphibian
+AD:Bark Skin
+AD:Camouflage
+AD:Cat Function Power
+AD:Fish Function Power
+AD:Flying
+AD:Forest Movement
+AD:Heat Vision
+AD:Hyper-Reflexes
+AD:Perfume
+AD:Photosynthesis
+AD:Plant Function Power
+AD:Poison Ivy
+AD:Super Swimming
+AD:Super-Flying
+AD:Super-Mobility
+AD:Super-Senses
+AD:Super-Speed
+AD:Super-Swimming
+AD:Underground Movement
+AD:Underwater Vision
+AD:Vegetative Renewal
+AD:Vine Grasp
+AD:Body Electricity
+AD:Breathing Water
+AD:Catlike Reflexes
+AD:Cat's Claws
+AD:Cat's Eyes
+AD:Cat's Whiskers
+AD:Electricity Power
+AD:Fish's Mail
+AD:Heat/Fire Power
+AD:Incredible Hearing
+AD:Light Power
+AD:Little Cat Feet
+AD:Might of the Tiger
+AD:Roar of the Lion
+AD:Speed of the Cheetah
+AD:Ally (Less than 25% of starting points)
+
+<AllAdvantagesMental>
+AD:Unusual Background
+AD:Animal Function Talent
+AD:Cat Function Talent
+AD:Elasticity Talent
+AD:Fish Function Talent
+AD:Phasing Talent
+AD:Plant Function Talent
+AD:Speed Talent
+
+<AllAdvantagesPhysical>
+AD:Super Throw
+AD:Ultra Power
+AD:Super ST
+
+<AllAdvantagesSocial>
+AD:Ally (Less than 25% of starting points)
+
+<AllPerks>
+PE:Burrower
+PE:Cloaked
+PE:Masked Shtick
+PE:Nonprotective Clothing
+PE:Skintight
+PE:Supersuit
+PE:Cloaked
+PE:Masked Shtick
+PE:Supersuit
+PE:Climbing Line
+PE:Equipment Bond
+PE:Generator
+PE:Ignition
+PE:Illumination
+PE:No Visible Damage
+PE:Perfume
+PE:Periscope
+PE:Striking Surface
+PE:Swinging
+PE:Unusual Training ([skill], [restriction])
+PE:Burrower
+PE:Climbing Line
+PE:Generator
+PE:Ignition
+PE:Illumination
+PE:No Visible Damage
+PE:Perfume
+PE:Periscope
+
+<AllDisadvantages>
+DI:Compulsive Behavior
+DI:Social Stigma (Freak)
+DI:Mania
+DI:Origins Magnet
+DI:Dependent
+
+<AllQuirks>
+QU:Dual Identity
+QU:Forgetful
+QU:Third Person
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Acrobat (Supers)" with {replacetags(in "TE:Acrobat (Supers)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Archetype (Supers)" with {replacetags(in "TE:Archetype (Supers)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Biomorph (Supers)" with {replacetags(in "TE:Biomorph (Supers)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Blaster (Supers)" with {replacetags(in "TE:Blaster (Supers)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

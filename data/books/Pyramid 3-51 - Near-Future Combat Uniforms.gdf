@@ -1,0 +1,168 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Description=12/28/2017. This file contains changes outlined in Dan Howard's Pyramid 3/51 article Near-Future Combat Uniforms.
+Program=4.0.283
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf", "GURPS Ultra-Tech 4e.gdf"
+Incomplete=Yes
+
+[AUTHOR]
+******************************************************************************************************\[START]
+*
+* GURPS® Character Assistant
+* Filename: Pyramid 3-51 - Near-Future Combat Uniforms.gdf
+* Created: 12/28/2017
+* Modified: 12/28/2017 
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS sourcebook.
+* GURPS  is Copyright(C)  by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*
+*
+******************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is copyright (c) 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+******************************************************************************************************************
+
+*******************************************************************************************************\[STOP]
+[EQUIPMENT]
+* Armor
+******************************************************************************************************\[START]
+<_Armor, _Armor - Ultra-Tech, Ultra-Tech, Ultra-Tech - Armor, Ultra-Tech - Armor - Concealable Ballistic Armor>
+* Fix Nanoweave Armor modifiers
+#MergeTags in "EQ:Nanoweave Suit" with "mods(Equipment, NBCU, NBCU-TL10)"
+#MergeTags in "EQ:Nanoweave Bodysuit" with "mods(Equipment, NBCU, NBCU-TL10)"
+#MergeTags in "EQ:Nanoweave Tacsuit" with "mods(Equipment, NBCU, NBCU-TL10)"
+#MergeTags in "EQ:Nanoweave Vacc Suit" with "mods(Equipment, NBCU, NBCU-TL10)"
+#MergeTags in "EQ:Nanoweave Vest" with "mods(Equipment, NBCU)"
+#MergeTags in "EQ:Nanoweave Jacket" with "mods(Equipment, NBCU)"
+#MergeTags in "EQ:Nanoweave Tactical Vest" with "mods(Equipment, NBCU)"
+#MergeTags in "EQ:Nanoweave Trousers" with "mods(Equipment, NBCU)"
+
+Concealable NanoShield Bodysuit, page(P3/51:31), techlvl(9), basecost(1250), baseweight(5), lc(3), location(body, limbs), dr(14/5*), mods(Equipment, NBCU, NBCU-TL9),
+	description(TL:9 LC:3 DR:14/5* Location:body, limbs Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Concealable NanoShield Gloves, page(P3/51:31), techlvl(9), basecost(50), baseweight(neg.), lc(4), location(hands), dr(7/3*), mods(Equipment, NBCU),
+	description(TL:9 LC:4 DR:9/3* Location:hands Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Concealable NanoShield Jacket, page(P3/51:31), techlvl(9), basecost(750), baseweight(3), lc(3), location(arms, torso), dr(14/5*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:14/5* Location:arms, torso Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Concealable NanoShield Suit, page(P3/51:31), techlvl(9), basecost(1525), baseweight(6.1), lc(3), location(all), dr(14/5*), mods(Equipment, NBCU, NBCU-TL9),
+	description(TL:9 LC:3 DR:14/5* Location:all Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Concealable NanoShield Trousers, page(P3/51:31), techlvl(9), basecost(525), baseweight(2.1), lc(3), location(groin, legs), dr(14/5*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:14/5* Location:groin, legs Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Concealable NanoShield Vest, page(P3/51:31), techlvl(9), basecost(500), baseweight(2), lc(3), location(torso), dr(14/5*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:14/5* Location:all Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor, NBCU)
+
+Tactical NanoShield Bodysuit, page(P3/51:31), techlvl(9), basecost(2000), baseweight(15), lc(3), location(body, limbs), dr(20/10*), mods(Equipment, NBCU, NBCU-TL9),
+	description(TL:9 LC:3 DR:20/10* Location:body, limbs Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Tactical NanoShield Gloves, page(P3/51:31), techlvl(9), basecost(80), baseweight(.6), lc(4), location(hands), dr(10/5*), mods(Equipment, NBCU),
+	description(TL:9 LC:4 DR:10/5* Location:hands Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Tactical NanoShield Jacket, page(P3/51:31), techlvl(9), basecost(1200), baseweight(9), lc(3), location(arms, torso), dr(20/10*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:20/10* Location:arms, torso Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Tactical NanoShield Suit, page(P3/51:31), techlvl(9), basecost(2440), baseweight(18.3), lc(3), location(all), dr(20/10*), mods(Equipment, NBCU, NBCU-TL9),
+	description(TL:9 LC:3 DR:20/10* Location:all Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Tactical NanoShield Trousers, page(P3/51:31), techlvl(9), basecost(800), baseweight(6), lc(3), location(groin, legs), dr(20/10*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:20/10* Location:groin, legs Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Tactical NanoShield Vest, page(P3/51:31), techlvl(9), basecost(800), baseweight(6), lc(3), location(torso), dr(20/10*), mods(Equipment), NBCU,
+	description(TL:9 LC:3 DR:20/10* Location:all Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor, NBCU)
+
+Assault NanoShield Bodysuit, page(P3/51:31), techlvl(9), basecost(5000), baseweight(30), lc(3), location(body, limbs), dr(36/16*), mods(Equipment, NBCU, NBCU-TL9),
+	description(TL:9 LC:3 DR:36/16* Location:body, limbs Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Assault NanoShield Gloves, page(P3/51:31), techlvl(9), basecost(200), baseweight(1.2), lc(4), location(hands), dr(18/8*), mods(Equipment, NBCU),
+	description(TL:9 LC:4 DR:18/8* Location:hands Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Assault NanoShield Jacket, page(P3/51:31), techlvl(9), basecost(3000), baseweight(8), lc(3), location(arms, torso), dr(36/16*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:36/16* Location:arms, torso Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Assault NanoShield Suit, page(P3/51:31), techlvl(9), basecost(6100), baseweight(36.6), lc(3), location(all), dr(36/16*), mods(Equipment, NBCU, NBCU-TL9),
+	description(TL:9 LC:3 DR:36/16* Location:all Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Assault NanoShield Trousers, page(P3/51:31), techlvl(9), basecost(2100), baseweight(12.6), lc(3), location(groin, legs), dr(36/16*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:36/16* Location:groin, legs Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor)
+Assault NanoShield Vest, page(P3/51:31), techlvl(9), basecost(1200), baseweight(8), lc(3), location(torso), dr(36/16*), mods(Equipment, NBCU),
+	description(TL:9 LC:3 DR:36/16* Location:all Notes:*Flexible), cat(Ultra-Tech, Ultra-Tech - Armor, NBCU)
+
+
+
+*******************************************************************************************************\[STOP]
+* EQUIPMENT MODIFIERS
+[MODIFIERS]
+******************************************************************************************************\[START]
+<NBCU>
+"NanoComp (TL  9)", 400, gives(+1.2 to owner::baseweight), group(Armor), tier(1), 
+	description(TL: 9 LC: 4 Power: B/1 day Complexity:3 Storage: 0.01 TB ), page(P3/51:31)
+"NanoComp (TL  10)", 400, gives(+1.2 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 10 LC: 4 Power: B/1 day Complexity:3 Storage: 0.01 TB ), page(P3/51:31)
+"Additional 0.1 TB Storage", 20/40, gives(+0.02 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 10 LC: 4 Power: B/1 day Complexity:3 Storage: 0.01 TB ), page(P3/51:31)
+"NanoComp Applications: Dynamic Camouflage (Basic) ", 500, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 4 Power: A/1 hour), page(P3/51:32)
+"NanoComp Applications: Dynamic Camouflage (Deluxe) ", 5000, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 3 Power: 2 A/1 hour), page(P3/51:33)
+"NanoComp Applications: Heat Shield", 5000, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 4), page(P3/51:33)
+"NanoComp Applications: NanoFlex", 2000, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 4 Power: B/1 attack ), page(P3/51:33)
+"NanoComp Applications: NanoMed", 3000, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 4 Power: A/1 hour ), page(P3/51:33)
+"NanoComp Applications: NanoRepair", 500, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 4 Power: A/10 minutes ), page(P3/51:33)
+"NanoComp Applications: ScentMask", 500, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(LC: 4 Power: A/1 day ), page(P3/51:33)
+"NanoComp Applications: SensorWeave Detectors", 500, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(Power: A/12 Hours), page(P3/51:33)
+"NanoComp Applications: Focused Light", 500, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(Power: B/3Hours), page(P3/51:33)
+"NanoComp Applications: Media Recording", 100, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(100 hours of recording per 0.1 TB of storage), page(P3/51:33)
+"NanoComp Applications: Resistance Training", 100, gives(+.02 to owner::baseweight), group(Armor), tier(1),
+	description(Power: C/1 Hour), page(P3/51:33)
+
+<NBCU-TL9>
+"NanoCaps (TL 9)", 80/160, gives(+.6 to owner::baseweight), group(Armor), tier(1),
+	description(TL:9 Notes: Treat as a flexible (Ultra-Tech, p. 19), rugged (Ultra-Tech, p. 15) C cell), page(P3/51:31)
+"NanoFilter (TL 9)", 1000, gives(+1 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 Notes: A/1 day LC: 4.), page(P3/51:31)
+"NanoGen (TL 9)", 5000/10000, gives(+8 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 4.), page(P3/51:31)
+"NanoMuscles (TL 9)", 5000/10000, upto(2), gives(+8 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 3. Notes: Each second of use requires the capacity of an entire B cell for +1 and a C cell for +2, so it can't be used for long.), page(P3/51:31)
+"NanoRes (TL 9)", 2000, gives(+1 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 4 ), page(P3/51:31)
+"SensorWeave (TL 9)", 3000, gives(+2 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 4 Notes: A/1 day. ), page(P3/51:32)
+"SolarWeave (TL 9)", 1000, gives(+1 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 4 Notes: Has to be outermost layer, can not be combined with NanoRes ), page(P3/51:32)
+"ThermoWeave (MC) (TL 9)", 3000, gives(+2 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 4.), page(P3/51:31)
+"ThermoWeave (IR) (TL 9)", 3000, gives(+2 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 3.), page(P3/51:31)
+"WRWRS (Waste Reclamation and Water Recycling System) (TL 9)", 5000, gives(+12 to owner::baseweight), group(Armor), tier(1),
+	description(TL: 9 LC: 4 Power: B/1 day), page(P3/51:31)
+
+<NBCU-TL10>
+"NanoCaps (TL 10)", 80/160, group(Armor), tier(1),
+	description(TL:10 Notes: Treat as a flexible (Ultra-Tech, p. 19), rugged (Ultra-Tech, p. 15) C cell), page(P3/51:31)
+"NanoFilter (TL 10)", 1000, group(Armor), tier(1),
+	description(TL: 10 Notes: A/1 day LC: 4.), page(P3/51:31)
+"NanoGen (TL 10)", 5000/1000, group(Armor), tier(1),
+	description(TL: 10 LC: 4.), page(P3/51:31)
+"NanoMuscles (TL 10)", 5000/10000, upto(2), group(Armor), tier(1),
+	description(TL: 10 LC: 3. Notes: Each second of use requires the capacity of an entire B cell for +1 and a C cell for +2, so it can't be used for long.), page(P3/51:31)
+"NanoRes (TL 10)", 2000, group(Armor), tier(1),
+	description(TL: 10 LC: 4 ), page(P3/51:31)
+"SensorWeave (TL  10)", 3000,group(Armor), tier(1),
+	description(TL: 10 LC: 4 Notes: A/1 day. ), page(P3/51:32)
+"SolarWeave (TL  10)", 1000, group(Armor), tier(1),
+	description(TL: 10 LC: 4 Notes: Has to be outermost layer, can not be combined with NanoRes ), page(P3/51:32)
+"ThermoWeave (MC) (TL  10)", 3000, group(Armor), tier(1),
+	description(TL: 10 LC: 4.), page(P3/51:31)
+"ThermoWeave (IR) (TL  10)", 3000, group(Armor), tier(1),
+	description(TL: 10 LC: 3.), page(P3/51:31)
+"WRWRS (Waste Reclamation and Water Recycling System) (TL  10)", 5000, group(Armor), tier(1),
+	description(TL: 10 LC: 4 Power: B/1 day), page(P3/51:31)

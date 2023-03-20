@@ -1,0 +1,90 @@
+import { cloneDeep, flattenDeep, get, isArray, isNil, isNumber, isString, set } from "lodash"
+import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
+import ContextManager from "../manager"
+import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
+import BaseFeature from "../../../../core/feature/base"
+import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
+import LOGGER from "../../../../logger"
+import TagBuilder, { FastTag } from "../tag"
+import FeatureBaseContextTemplate from "./base"
+
+import { IWeaponizableFeature } from "../../../../core/feature/compilation/templates/weaponizable"
+import WeaponFeature from "../../../../core/feature/variants/weapon"
+import WeaponFeatureContextTemplate, { WeaponFeatureContextSpecs } from "./variants/weapon"
+import { IWeaponFeature } from "../../../../core/feature/compilation/templates/weapon"
+
+export interface FeatureWeaponsDataContextSpecs extends ContextSpecs {
+  feature: BaseFeature & IWeaponizableFeature
+  //
+  weapons: ContextSpecs
+}
+
+export interface IWeaponizableFeatureContext extends IContext {
+  children: Record<string, IFeatureDataContext[]> & { weapons?: IFeatureDataContext[] }
+}
+
+export default class FeatureWeaponsDataContextTemplate extends BaseContextTemplate {
+  static pre(context: IContext, specs: ContextSpecs, manager: ContextManager): IContext {
+    super.pre(context, specs, manager)
+
+    context._template.push(`feature-weapons`)
+    if (context._metadata?.childrenKeys === undefined) set(context, `_metadata.childrenKeys`, [])
+    context._metadata?.childrenKeys.push([5, `weapons`])
+
+    return context
+  }
+
+  /**
+   * Builds N FeatureData's, one for every weapon linked to feature
+   */
+  static weapons(data: IFeatureDataContext[], specs: FeatureWeaponsDataContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
+    if (data === undefined) data = []
+    const feature = getSpec(specs, `feature`)
+
+    const hasWeapons = feature.weapons && feature.weapons.length > 0
+    if (!hasWeapons) return null
+
+    // WARN: Unimplemented pre-defined featureData array
+    // eslint-disable-next-line no-debugger
+    if (data.length > 0) debugger
+
+    const weaponsSpecs = get(specs, `weapons`) ?? {}
+
+    for (const weapon of feature.weapons) {
+      const _specs = { ...cloneDeep(weapon._context.specs ?? {}), ...cloneDeep(weaponsSpecs) } as WeaponFeatureContextSpecs
+      push(_specs, `innerClasses`, `swipe-variant`)
+
+      const context = manager.feature(weapon, _specs)
+
+      const main = context.children.main[0]
+      main.variants = WeaponFeatureContextTemplate.skillsVariants(main.variants, _specs, manager)
+
+      main.actions = false
+      main.classes = main.classes.filter(classe => classe !== `has-swipe`)
+      data.push(main)
+    }
+
+    if (data.length === 0) return null
+    return data
+  }
+
+  static base(context: IFeatureContext, specs: FeatureWeaponsDataContextSpecs, manager: ContextManager): IWeaponizableFeatureContext {
+    super.base(context, specs, manager)
+
+    const children = get(context, `children`) ?? {}
+
+    const weapons = this.weapons(children.weapons, specs, manager)
+    if (!weapons) return context
+
+    context = {
+      ...context,
+      // {key: FeatureData} -> {main, ...secondaries}
+      children: {
+        ...children,
+        weapons,
+      },
+    }
+
+    return context
+  }
+}

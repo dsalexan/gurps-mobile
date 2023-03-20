@@ -1,0 +1,159 @@
+@use "../../../../december/utils/styles" as utils;
+
+body.mobile {
+  .app.actor.sheet.gurps-mobile {
+    & > header.window-header {
+      display: none;
+    }
+  }
+}
+
+.app.actor.sheet.gurps-mobile {
+  & > section.window-content {
+    @include utils.no-scroll;
+
+    padding: 0;
+
+    & > form {
+      background: #c1b3a2;
+      display: flex;
+      flex-direction: column;
+
+      @import "./tabs";
+      @import "./panels";
+      @import "./modal";
+      @import "./floating";
+      @import "./feature";
+
+      @import "./header";
+      @import "./content";
+
+      & > .modal.portrait {
+        & > .wrapper {
+          flex-direction: row;
+          justify-content: center;
+          position: relative;
+
+          & > .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            //
+            justify-content: flex-start;
+            //
+            padding: var(--s2);
+
+            // CUSTOM CONTENT REGARDLESS OF MODAL
+            & > .spacer {
+              flex-grow: 1;
+            }
+
+            & > .name {
+              color: #eee;
+              line-height: var(--s1-5);
+              font-size: var(--s2);
+              font-weight: 500;
+            }
+
+            & > .icon {
+              cursor: pointer;
+              color: #eee;
+              margin-right: var(--s2);
+              line-height: var(--s1-5);
+              font-size: var(--s2-5);
+              left: var(--s2-5);
+              right: var(--s2-5);
+            }
+          }
+
+          // CUSTOM CONTENT REGARDLESS OF MODAL
+          & > img {
+            flex-grow: 1;
+            object-fit: cover;
+          }
+        }
+      }
+
+      & > .modal.pin {
+        & > .wrapper {
+          --bottom: calc(var(--spacing) + var(--s2) + var(--spacing));
+
+          left: var(--spacing);
+          top: var(--spacing);
+          bottom: var(--bottom);
+          width: calc(100vw - 2 * var(--s1));
+          max-height: calc(100vh - var(--s2-5) - var(--bottom));
+          padding: 0;
+          margin-bottom: var(--s1-5);
+
+          & > svg.chevron {
+            width: var(--s1);
+            height: var(--s1);
+            position: absolute;
+            bottom: calc(var(--s1) * -1);
+            left: calc(var(--s1) + 7px);
+
+            .triangle {
+              fill: rgb(var(--background-color), 1);
+            }
+          }
+
+          & > .children {
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none; /* Firefox */
+            &::-webkit-scrollbar {
+              display: none;
+            }
+
+            width: 100%;
+            padding: var(--s2);
+
+            & > div.empty {
+              font-style: italic;
+              opacity: 0.75;
+              color: #333;
+              font-size: 14px;
+            }
+
+            & > .feature {
+              padding: var(--padding-size) 0;
+              margin-top: var(--s1-5);
+              &:first-of-type {
+                margin-top: 0;
+              }
+
+              & > .children {
+                min-width: calc(100% - 2px);
+                & > .wrapper {
+                  margin-left: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      & > .modal.skills {
+        & > .wrapper {
+          & > .auto-complete {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+
+            & > .result {
+              flex: 1 1 auto;
+              height: 0;
+              overflow-y: scroll;
+              @include utils.no-scroll;
+            }
+          }
+        }
+      }
+
+      @import "./_color/light";
+      @import "./_color/dark";
+    }
+  }
+}

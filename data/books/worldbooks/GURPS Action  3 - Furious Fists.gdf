@@ -1,0 +1,2011 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+			This data file contains information taken from the GURPS Actions 3: Furious Fists sourcebook. _
+			GURPS Actions 3: Furious Fists is Copyright © 2009 by Steve Jackson Games _
+			Incorporated. All rights reserved.
+Incomplete=Yes
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf","GURPS Action  1 - Heroes.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+//
+// GURPS® Character Assistant
+// Filename: GURPS Action  3 - Furious Fists.gdf
+// Created: 
+// Modified: 
+// Requires GCA v4 or later!
+//
+// This data file contains information taken from the GURPS Actions 3: Furious Fists sourcebook.
+// GURPS Actions 3: Furious Fists is Copyright © 2009 by Steve Jackson Games
+// Incorporated. All rights reserved.
+//
+// Information in this file includes:
+//		Perks
+//		Techniques
+//		Templates
+//
+************************************************************************************************************************
+//
+// Eric B. Smith	- GURPS Data File Coordinator, Major Work
+//
+// If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+// eric.frogkiller@gmail.com
+//
+// Or drop a message at:
+// http://forums.sjgames.com
+// 
+************************************************************************************************************************
+//
+// GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+// Games. All rights reserved.
+//
+// The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+// copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+// rights reserved by Steve Jackson Games Incorporated.
+//
+********************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Action>
+Acrobatic Feints, 1, page(A3:15)
+Acrobatic Kicks, 1, page(A3:15), needs(SK:Kicking (Acrobatics)==0pts)
+Combat Pole-Vaulting, 1, page(A3:15)
+Compact Frame, 1, page(A3:15),_
+	conditional(+1 to SK:Escape when "fitting through tight spaces")
+Cowpoker, 1, page(A3:15),_
+	damage(_
+			thr+ _
+			@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + _
+			@if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) + _
+			@max(_
+				@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+				@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+			)_
+			), damtype(pi), reach(C,1), parry(No), skillused(ST:DX-2, SK:Brawling-2, SK:Karate-2, SK:Kicking, SK:Kicking (Karate), SK:Kicking (Brawling)), mods(Punch/Kick),_
+	damagebasedon(ST:Kick), reachbasedon(ST:Leg Reach)
+Deadly Pose, 1, page(A3:15),
+	skillused(SK:Indimidation-5),
+	conditional(_
+			+2 to PE:Deadly Pose when "knockout blow",_
+			+5 to PE:Deadly Pose when "fatality",_
+			+1 to PE:Deadly Pose when "body parts come off!"_
+			)
+Dirty Fighting, 1/2, upto(3), page(A3:15),_
+	levelnames(_
+			"+1 to pre-combat feint or attack",_
+			"+2 to pre-combat feint or attack",_
+			"+3 to pre-combat feint or attack"_
+			)
+Finishing Move, 1, page(A3:15), levelnames("+1/die damage"),_
+	x(#InputToTagReplace("Please describe your finishing move:", nameext, , "Finishing Move"))
+Focused Fury, 1, page(A3:15), needs(AD:Trained by a Master | AD:Weapon Master)
+High-Heeled Heroine, 1, page(A3:15)
+High-Heeled Hurt, 1, page(A3:15), needs(PE:High-Heeled Heroine),_
+	damage(_
+			thr+ _
+			@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + _
+			@if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) + _
+			@max(_
+				@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+				@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+			)_
+			), damtype(pi+), reach(C,1), parry(No), skillused(ST:DX-2, SK:Brawling-2, SK:Karate-2, SK:Kicking, SK:Kicking (Karate), SK:Kicking (Brawling)), mods(Punch/Kick),_
+	damagebasedon(ST:Kick), reachbasedon(ST:Leg Reach)
+Iron Hands, 1, page(A3:15), dr(1), location(hands)
+Trademark Move, 1, page(A3:15),_
+	x(#InputToTagReplace("Please describe your trademark move:", nameext, , "Finishing Move"))
+Urban Jungle Gym, 1, page(A3:15),_
+	needs(SK:Acrobatics=16, SK:Climbing=16, SK:Jumping=16)
+
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Techniques, Techniques - Combat, Techniques - Actions 3 Furious Fists, Techniques - Realistic>
+Acrobatic Stand (Acrobatics), Tech/A, default("SK:Acrobatics::level" - 6), needs(SK:Acrobatics), upto(prereq), page(A3:16,MA65)
+Arm Lock (Judo), Tech/A, default("SK:Judo::level"), needs(SK:Judo), upto(prereq + 4), page(A3:16,MA65, B230), cat(Techniques - Combat)
+Arm Lock (Wrestling), Tech/A, default("SK:Wrestling::level"), needs(SK:Wrestling), upto(prereq + 4), page(A3:16,MA65, B230)
+Back Kick (Karate), Tech/H, default("SK:Karate::level" - 4), needs(SK:Karate), upto(prereq), page(A3:16,MA67, B230)
+Back Kick (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 4), needs(SK:Acrobatics, PE:Acrobatic Kicks), upto(prereq), page(A3:16,MA67, B230)
+Balancing (Acrobatics), Tech/A, default("SK:Acrobatics::level"), needs(SK:Acrobatics), upto(prereq + 5), page(A3:16)
+Choke Hold (Judo), Tech/H, default("SK:Judo::level" - 2), needs(SK:Judo), upto(prereq), page(A3:16,MA69, B230)
+Choke Hold (Wrestling), Tech/H, default("SK:Wrestling::level" - 3), needs(SK:Wrestling), upto(prereq), page(A3:16,MA69, B230)
+Disappear (Stealth), Tech/H, default("SK:Stealth::level" - 10), needs(SK:Stealth), upto(prereq), page(A3:16)
+Disarming ([Melee Combat Skill]), Tech/H, default("SK:[Melee Combat Skill]::level"), needs(SK:[Melee Combat Skill]), upto(prereq + 5), page(A3:16,MA70, B230),_
+	x(#InputReplace("You must specialize by Melee Combat Skill:", "[Melee Combat Skill]", "", "Disarming"))
+Disarming (%Melee Combat Skill%), Tech/H, default("SK:%Melee Combat SkillList%::level"), needs(SK:%Melee Combat SkillList%), upto(prereq + 5), page(A3:16,MA70, B230),_
+	x(#ChoiceList(_
+			name(Melee Combat Skill),_
+			title(Disarming: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix)), #grouplist(GR:Unarmed Combat Skill, flags(NoPrefix))_
+			)_
+			)_
+	), noresync(yes)
+Dive n' Roll (Acrobatics), Tech/A, default("SK:Acrobatics::level" - 4), needs(SK:Acrobatics), upto(prereq), page(A3:16)
+Dual-Weapon Attack (Guns (Pistol)), Tech/H, default("SK:Guns (Pistol)::level" - 4, SK:Gun! - 4), needs(SK:Guns (Pistol) | SK:Gun!), upto(Prereq), page(A3:16,MA83, B230)
+Dual-Weapon Attack ([One Handed Combat Skill]), Tech/H, default("SK:[One Handed Combat Skill]::level" - 4), needs(SK:[One Handed Combat Skill]), upto(prereq), page(A3:16,MA83),_
+	x(#InputReplace("You must specialize by One Handed Combat Skill:", "[One Handed Combat Skill]", "", "Dual-Weapon Attack"))
+Dual-Weapon Attack (%One Handed Combat Skill%), Tech/H, default("SK:%One Handed Combat SkillList%::level" - 4), needs(SK:%One Handed Combat SkillList%), upto(prereq), page(A3:16,MA83, B230),_
+	x(#ChoiceList(_
+			name(One Handed Combat Skill),_
+			title(Dual-Weapon Attack: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Unarmed Combat Skill, flags(NoPrefix)), #grouplist(GR:One-Handed Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix))_
+			)_
+			)_
+	), noresync(yes)
+Elbow Drop (Brawling), Tech/H, default("SK:Brawling::level" - 4), needs(SK:Brawling), upto(prereq), page(A3:16,MA70),_
+	mods(Combat Techniques Punch), damage(thr+@max(2,@basethdice(ST:Punch)) + @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) else 0)), damtype(cr), reach(C), parry(No), skillused(SK:Elbow Drop (Brawling)), damagebasedon(ST:Punch)
+Elbow Drop (Wrestling), Tech/H, default("SK:Wrestling::level" - 5), needs(SK:Wrestling), upto(prereq), page(A3:16,MA70),_
+	mods(Combat Techniques Punch), damage(thr+@max(2,@basethdice(ST:Punch)) + @if("SK:Wrestling::level" = ST:DX+1 then @basethdice(ST:Punch) else @if("SK:Wrestling::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) else 0))), damtype(cr), reach(C), parry(No), skillused(SK:Elbow Drop (Wrestling)), damagebasedon(ST:Punch)
+Elbow Strike (Brawling), Tech/A, default("SK:Brawling::level" - 2), needs(SK:Brawling), upto(prereq), page(A3:16,MA71, B230),_
+	mods(Combat Techniques Punch), damage(thr-1 + @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) else 0)), damtype(cr), reach(C), parry(No), skillused(SK:Elbow Strike (Brawling)), damagebasedon(ST:Punch)
+Elbow Strike (Karate), Tech/A, default("SK:Karate::level" - 2), needs(SK:Karate), upto(prereq), page(A3:16,MA71, B230),_
+	mods(Combat Techniques Punch), damage(thr-1 + @if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) else 0))), damtype(cr), reach(C), parry(No), skillused(SK:Elbow Strike (Karate)), damagebasedon(ST:Punch)
+Evade (Acrobatics), Tech/A, default("SK:Acrobatics::level"), needs(SK:Acrobatics), upto(prereq + 5), page(A3:16,MA71)
+Evade (Judo), Tech/A, default("SK:Judo::level"), needs(SK:Judo), upto(prereq + 5), page(A3:16,MA71)
+Feint ([Melee Combat Skill]), Tech/H, default("SK:[Melee Combat Skill]::level"), needs(SK:[Melee Combat Skill]), upto(prereq + 4), page(A3:17,MA73, B231),_
+	x(#InputReplace("You must specialize by Melee Combat Skill:", "[Melee Combat Skill]", "", "Feint"))
+Feint (%Melee Combat Skill%), Tech/H, default("SK:%Melee Combat SkillList%::level"), needs(SK:%Melee Combat SkillList%), upto(prereq + 4), page(A3:17,MA73, B231),_
+	x(#ChoiceList(_
+			name(Melee Combat Skill),_
+			title(Feint: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix)), #grouplist(GR:Unarmed Combat Skill, flags(NoPrefix))_
+			)_
+		)_
+	), noresync(yes)
+Flying Jump Kick (Karate), Tech/H, default("SK:Karate::level" - 7), needs(SK:Karate, AD:Trained by a Master), upto(prereq), page(A3:17,MA83)
+Flying Jump Kick (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 7), needs(SK:Acrobatics, PE:Acrobatic Kicks, AD:Trained by a Master), upto(prereq), page(A3:17,MA83)
+Ground Fighting ([Melee Combat Skill]), Tech/H, default("SK:[Melee Combat Skill]::level" - 4), needs(SK:[Melee Combat Skill]), upto(prereq), page(A3:17,MA73, B231),_
+	x(#InputReplace("You must specialize by Melee Combat Skill:", "[Melee Combat Skill]", "", "Ground Fighting"))
+Ground Fighting (%Melee Combat Skill%), Tech/H, default("SK:%Melee Combat SkillList%::level" - 4), needs(SK:%Melee Combat SkillList%), upto(prereq), page(A3:17,MA73, B231),_
+	x(#ChoiceList(_
+			name(Melee Combat Skill),_
+			title(Ground Fighting: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix)), #grouplist(GR:Unarmed Combat Skill, flags(NoPrefix))_
+			)_
+		)_
+	), noresync(yes)
+Jump Kick (Karate), Tech/H, default("SK:Karate::level" - 4), needs(SK:Karate), upto(prereq), page(A3:17,MA75, B231),_
+	mods(Combat Techniques Kick), damage(thr+@max(2,@basethdice(ST:Kick)) + @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + @if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0))), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(1,2), parry(No), skillused(SK:Jump Kick (Karate)), damagebasedon(ST:Kick)
+Jump Kick (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 4), needs(SK:Acrobatics), upto(prereq), page(A3:17,MA75, B231),_
+	mods(Combat Techniques Kick), damage(thr+@max(2,@basethdice(ST:Kick)) + @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + @if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0))), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(1,2), parry(No), skillused(SK:Jump Kick (Acrobatics)), damagebasedon(ST:Kick)
+Kicking (Brawling), Tech/H, default("SK:Brawling::level" - 2), needs(SK:Brawling), upto(prereq), page(A3:17,MA75, B231),_
+	gives(=$if(me::level >= ST:DX-2 THEN nobase) to ST:Kick::reach$)
+Kicking (Karate), Tech/H, default("SK:Karate::level" - 2), needs(SK:Karate), upto(prereq), page(A3:17,MA75, B231),_
+	gives(=$if(me::level >= ST:DX-2 THEN nobase) to ST:Kick::reach$)
+Kicking (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 2), needs(SK:Acrobatics), upto(prereq), page(A3:17,MA75),_
+	 mods(Combat Techniques Kick),_
+	 damage(_
+			thr+ _
+			@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + _
+			@if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) _
+			), damtype(_
+			$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Hands Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 & @itemhasmod(AD:Claws (Talons), Hands Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 THEN "cut/imp" ELSE "cr")))_
+			), mods(Punch/Kick),_
+	reachbasedon(ST:Leg Reach), damagebasedon(ST:Kick),_
+	reach(C,1), parry(No), skillused(SK:Kicking (Acrobatics)),_
+	gives(=$if(me::level >= ST:DX-2 THEN nobase) to ST:Kick::reach$)
+Knee Strike (Brawling), Tech/A, default("SK:Brawling::level" - 1), needs(SK:Brawling), upto(prereq), page(A3:17,MA76, B232),_
+	mods(Combat Techniques Punch), damage(thr+@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Kick) else 0)), damtype(cr), reach(C), parry(No), skillused(SK:Knee Strike (Brawling)), damagebasedon(ST:Kick)
+Knee Strike (Karate), Tech/A, default("SK:Karate::level" - 1), needs(SK:Karate), upto(prereq), page(A3:17,MA76, B232),_
+	mods(Combat Techniques Punch), damage(thr+@if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0))), damtype(cr), reach(C), parry(No), skillused(SK:Knee Strike (Karate)), damagebasedon(ST:Kick)
+Leg Lock (Wrestling), Tech/A, default("SK:Wrestling::level"), needs(SK:Wrestling), upto(prereq + 4), page(A3:17,MA76)
+Leg Lock (Judo), Tech/A, default("SK:Judo::level"), needs(SK:Judo), upto(prereq + 4), page(A3:17,MA76)
+Lethal Kick (Karate), Tech/H, default("SK:Karate::level" - 4), needs(SK:Karate, AD:Trained by a Master), upto(prereq), page(A3:17,MA85)
+Lethal Strike (Karate), Tech/H, default("SK:Karate::level" - 2), needs(SK:Karate, AD:Trained by a Master), upto(prereq), page(MA85)
+Neck Snap (ST), Tech/H, default("ST:ST::score" - 4), needs(ST:ST = 1), upto(ST:ST+3), page(A3:17,MA77, B232),_
+	mods(Combat Techniques Punch), damage(sw), damtype(cr), reach(C), parry(No), skillused(SK:Neck Snap (ST))
+Piledriver (Wrestling), Tech/H, default("SK:Wrestling::level" - 5), needs(SK:Wrestling, AD:Trained by a Master), upto(prereq), page(A3:17,MA85)
+Proxy Fighting (Boxing), Tech/H, default("SK:Boxing::level" - 4), needs(SK:Boxing), upto(prereq), page(A3:18)
+Proxy Fighting (Brawling), Tech/H, default("SK:Brawling::level" - 4), needs(SK:Brawling), upto(prereq), page(A3:18)
+Proxy Fighting (Karate), Tech/H, default("SK:Karate::level" - 4), needs(SK:Karate), upto(prereq), page(A3:18)
+Rappelling (Climbing), Tech/A, default("SK:Climbing::level"), needs(SK:Climbing), upto(prereq + 4), page(A3:18)
+Retain Weapon ([Ranged Weapon]), Tech/H, default("ST:DX::score"), needs(ST:DX > 0), upto(ST:DX::score + 5), page(A3:18,MA78, B232),_
+	x(#InputReplace("You must specialize by Ranged Weapon Skill:", "[Ranged Weapon]", "", "Retain Weapon"))
+Retain Weapon (%Ranged Weapon Skill%), Tech/H, default("ST:DX::score"), needs(ST:DX > 0), upto(ST:DX::score + 5), page(A3:18,MA78, B232),_
+	x(_
+	#ChoiceList(_
+			name(Ranged Weapon Skill),_
+			title(Retain Weapon: Choose a Ranged Weapon skill),_
+			text(Choose a Ranged Weapon skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Ranged Weapon Skill, flags(NoPrefix))_
+			)_
+		)_
+	), noresync(yes)
+Retain Weapon ([Melee Weapon]), Tech/H, default("SK:[Melee Weapon]::level"), needs(SK:[Melee Weapon]), upto(prereq + 5), page(A3:18,MA78, B232),_
+	x(#InputReplace("You must specialize by Melee Weapon Skill:", "[Melee Weapon]", "", "Retain Weapon"))
+Retain Weapon (%Melee Weapon Skill%), Tech/H, default("SK:%Melee Weapon SkillList%::level"), needs(SK:%Melee Weapon SkillList%), upto(prereq + 5), page(A3:18,MA78, B232),_
+	x(#ChoiceList(_
+			name(Melee Weapon Skill),_
+			title(Retain Weapon: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)), #grouplist(GR:ShieldSkill, flags(NoPrefix))_
+			)_
+			)_
+	), noresync(yes)
+Roll with Blow (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 2), needs(SK:Acrobatics), upto(prereq), page(A3:18,MA87)
+Roll with Blow ([Unarmed Combat Skill]), Tech/H, default("SK:[Unarmed Combat Skill]::level" - 2), needs(SK:[Unarmed Combat Skill]), upto(prereq), page(A3:18,MA87),_
+	x(#InputReplace("You must specialize by Unarmed Combat Skill:", "[Unarmed Combat Skill]", "", "Roll with Blow"))
+Roll with Blow (%Unarmed Combat Skill%), Tech/H, default("SK:%Unarmed Combat SkillList%::level" - 2), needs(SK:%Unarmed Combat SkillList%), upto(prereq), page(A3:18,MA87),_
+	x(#ChoiceList(_
+			name(Unarmed Combat Skill),_
+			title(Roll with Blow: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+			#grouplist(GR:Unarmed Combat Skill, flags(NoPrefix))_
+			)_
+			)_
+	), noresync(yes)
+Rope Up (Climbing), Tech/A, default("SK:Climbing::level" - 2), needs(SK:Climbing), upto(prereq), page(A3:18)
+Running Climb (Climbing), Tech/H, default("SK:Climbing::level"), needs(SK:Climbing), upto(prereq + 6), page(A3:18)
+Running Climb (Jumping), Tech/H, default("SK:Jumping::level"), needs(SK:Jumping), upto(prereq + 6), page(A3:18)
+Scaling (Climbing), Tech/H, default("SK:Climbing::level" - 3), needs(SK:Climbing), upto(prereq), page(A3:18)
+Skiddding (DX), Tech/A, default("ST:DX::score" - 2) upto(ST:DX), page(A3:18)
+Sliding (Acrobatics), Tech/A, default("SK:Acrobatics::level"), needs(SK:Acrobatics), upto(prereq + 6), page(A3:18)
+Spinning (Acrobatics), Tech/A, default("SK:Acrobatics::level" - 2), needs(SK:Acrobatics), upto(prereq), page(A3:18)
+Spinning (Running), Tech/A, default("SK:Running::level" - 2), needs(SK:Running), upto(prereq), page(A3:18)
+Spinning Kick (Karate), Tech/H, default("SK:Karate::level" - 3), needs(SK:Karate), upto(prereq), page(A3:18,MA79)
+Spinning Kick (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 3), needs(SK:Acrobatics, PE:Acrobatic Kicks), upto(prereq), page(A3:18,MA79)
+Spinning Punch (Karate), Tech/H, default("SK:Karate::level" - 2), needs(SK:Karate), upto(prereq), page(A3:19,MA79)
+Stamp Kick (Brawling), Tech/H, default("SK:Brawling::level" - 3), needs(SK:Brawling), upto(prereq), page(A3:19,MA80),_
+	mods(Combat Techniques Kick), damage(thr+1 + @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Kick) else 0)), damtype(cr), reach(C,1), parry(No), skillused(SK:Stamp Kick (Brawling)), damagebasedon(ST:Kick)
+Stamp Kick (Karate), Tech/H, default("SK:Karate::level" - 3), needs(SK:Karate), upto(prereq), page(A3:19,MA80),_
+	mods(Combat Techniques Kick), damage(thr+1 + @if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0))), damtype(cr), reach(C,1), parry(No), skillused(SK:Stamp Kick (Karate)), damagebasedon(ST:Kick)
+Stamp Kick (Acrobatics), Tech/H, default("SK:Acrobatics::level" - 3), needs(SK:Acrobatics, PE:Acrobatic Kicks), upto(prereq), page(A3:19,MA80),_
+	mods(Combat Techniques Kick), damage(thr+1), damtype(cr), reach(C,1), parry(No), skillused(SK:Stamp Kick (Acrobatics)), damagebasedon(ST:Kick)
+Sweeping Kick (Judo), Tech/H, default(SK:Judo::level - 3), needs(SK:Judo), upto(Prereq), page(A3:19,MA81, B232)
+Sweeping Kick (Karate), Tech/H, default(SK:Karate::level - 3), needs(SK:Karate), upto(Prereq), page(A3:19,MA81, B232)
+Sweeping Kick (Sumo Wrestling), Tech/H, default(SK:Sumo Wrestling::level - 3), needs(SK:Sumo Wrestling), upto(Prereq), page(A3:19,MA81, B232)
+Sweeping Kick (Acrobatics), Tech/H, default(SK:Acrobatics::level - 3), needs(SK:Acrobatics, PE:Acrobatic Kicks), upto(Prereq), page(A3:19,MA81, B232)
+Toe Flip (DX), Tech/A, default("ST:DX::level" - 5), needs(ST:DX), upto(ST:DX), page(A3:18)
+Uppercut (Boxing), Tech/A, default("SK:Boxing::level" - 1), needs(SK:Boxing), upto(prereq), page(A3:19,MA81),_
+	mods(Combat Techniques Punch), damage(thr+@if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0)) + @if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) else @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) else 0))), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(C), parry(No), skillused(SK:Uppercut (Boxing)), damagebasedon(ST:Punch)
+Uppercut (Brawling), Tech/A, default("SK:Brawling::level" - 1), needs(SK:Brawling), upto(prereq), page(A3:19,MA81),_
+	mods(Combat Techniques Punch), damage(thr+@if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0)) + @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) else 0)), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(C), parry(No), skillused(SK:Uppercut (Brawling)), damagebasedon(ST:Punch)
+Uppercut (Karate), Tech/A, default("SK:Karate::level" - 1), needs(SK:Karate), upto(prereq), page(A3:19,MA81),_
+	mods(Combat Techniques Punch), damage(thr+@if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0)) + @if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) else 0))), damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))), reach(C), parry(No), skillused(SK:Uppercut (Karate)), damagebasedon(ST:Punch)
+Wrench [Limb] (ST), Tech/H, default("ST:ST::score" - 4), needs(ST:ST = 1), upto(ST:ST + 3), page(A3:19,MA82),_
+	x(#InputReplace("Please enter the type of Limb that can be Wrenched:", "[Limb]", , "Wrench Limb")),_
+	mods(Combat Techniques Punch), damage(sw), damtype(cr), reach(C), parry(No), skillused(SK:Wrench [Limb] (ST))
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+#Clone "EQ:Light Club" as "EQ:Cane"
+#Clone "EQ:Large Knife" as "EQ:Commando Knife"
+#Clone "EQ:Quarterstaff" as "EQ:Bo"
+Jo, cat(_Melee Weapons), page(MA227, MA230), basecost(10), baseweight(2), techlvl(0), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), lc(4),_
+	description(TL:0 LC:4 \par [Mode:one-handed swing Damage:sw cr Reach:1 Parry:0 ST:9 Skill:Broadsword] \par [Mode:one-handed thrust Damage:thr cr Reach:1 Parry:0 ST:9 Skill:Broadsword] \par [Mode:two-handed swing Damage:sw+1 cr Reach:1 Parry:0 ST:8† Skill:Two-Handed Sword] \par [Mode:two-handed thrust Damage:thr+1 cr Reach:1 Parry:0 ST:8† Skill:Two-Handed Sword] \par [Mode:staff swing Damage:sw+1 cr Reach:1 Parry:+2 ST:6† Skill:Staff] \par [Mode:staff thrust Damage:thr+1 cr Reach:1 Parry:+2 ST:6† Skill:Staff]),_
+	newmode(1H Swing, damage(sw), damtype(cr), minst(9), reach(1), parry(0), skillused(SK:Sword!, SK:Broadsword, ST:DX-5, SK:Force Sword-4, SK:Rapier-4, SK:Saber-4, SK:Shortsword-2, SK:Two-Handed Sword-4)),_
+	newmode(1H Thrust, damage(thr), damtype(cr), minst(9), reach(1), parry(0), skillused(SK:Sword!, SK:Broadsword, ST:DX-5, SK:Force Sword-4, SK:Rapier-4, SK:Saber-4, SK:Shortsword-2, SK:Two-Handed Sword-4)),_
+	newmode(2H Swing, damage(sw+1), damtype(cr), minst(8†), reach(1), parry(0), skillused(SK:Sword!, SK:Two-Handed Sword, ST:DX-5, SK:Broadsword-4, SK:Force Sword-4)),_
+	newmode(2H Thrust, damage(thr+1), damtype(cr), minst(8†), reach(1), parry(0), skillused(SK:Sword!, SK:Two-Handed Sword, ST:DX-5, SK:Broadsword-4, SK:Force Sword-4)),_
+	newmode(Staff swing, damage(sw+1), damtype(cr), minst(6†), reach(1), parry(+2), skillused(SK:Staff, ST:DX-5, SK:Polearm-4, SK:Spear-2)),_
+	newmode(Staff thrust, damage(thr+1), damtype(cr), minst(6†), reach(1), parry(+2), skillused(SK:Staff, ST:DX-5, SK:Polearm-4, SK:Spear-2))
+Sai, cat(_Melee Weapons), page(MA227, MA228, MA231), basecost(60), baseweight(1.5), techlvl(3), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	itemnotes(_
+			{Can be thrown.},_
+			{Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401.}|_
+			{}|_
+			{Can be thrown.}|_
+			{}|_
+			{}_
+		),_
+	description(TL:3 LC:4 \par [Mode:jitte/sai swing Damage:sw cr Reach:1 Parry:0 ST:7 Skill:Jitte/Sai Notes:[1, 10]] \par [Mode:jitte/sai thrust Damage:thr imp Reach:1 Parry:0 ST:7 Skill:Jitte/Sai] \par [Mode:main-gauche swing Damage:sw cr Reach:1 Parry:0F ST:7 Skill:Main-Gauche Notes:[1]] \par [Mode:main-gauche thrust Damage:thr imp Reach:1 Parry:0F ST:7 Skill:Main-Gauche] \par [Mode:thrown Damage:thr imp Acc:0 Range:ST*0.8/ST*1.5 RoF:1 Shots:T(1) ST:7 Bulk:-3 Skill:Thrown Weapon (Knife)], [1] Can be thrown. [10] Gets +2 to disarm when wielded with Jitte/Sai skill; see pp. B208, B401. ),_
+	newmode(Jitte/sai swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0), notes([1, 10]), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Jitte/sai thrust, damage(thr), damtype(imp), minst(7), reach(1), parry(0), skillused(SK:Sword!, SK:Jitte/Sai, ST:DX-5, SK:Force Sword-4, SK:Main-Gauche-4, SK:Shortsword-3)),_
+	newmode(Main-gauche swing, damage(sw), damtype(cr), minst(7), reach(1), parry(0F), notes([1]), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Main-gauche thrust, damage(thr), damtype(imp), minst(7), reach(1), parry(0F), skillused(SK:Sword!, SK:Main-Gauche, ST:DX-5, SK:Jitte/Sai-4, SK:Knife-4, SK:Rapier-3, SK:Saber-3, SK:Smallsword-3)),_
+	newmode(Thrown, damage(thr), damtype(imp), minst(7), rangehalfdam(ST*0.8), rangemax(ST*1.5), calcrange(yes), acc(0), rof(1), shots(T(1)), bulk(-3), skillused(SK:Thrown Weapon (Knife), ST:DX-4))
+Kukri, cat(_Melee Weapons), page(MA228), basecost(50), baseweight(1.5), techlvl(2), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	description(TL:2 LC:4 \par [Mode:swing Damage:sw-1 cut Reach:C,1 Parry:0 ST:7 Skill:Knife] \par [Mode:thrust Damage:thr-1 imp Reach:C Parry:0 ST:7 Skill:Knife]),_
+	newmode(Swing, damage(sw-1), damtype(cut), minst(7), reach(C,1), parry(0), skillused(SK:Sword!, SK:Knife, ST:DX-4, SK:Force Sword-3, SK:Main-Gauche-3, SK:Shortsword-3)),_
+	newmode(Thrust, damage(thr-1), damtype(imp), minst(7), reach(C), parry(0), skillused(SK:Sword!, SK:Knife, ST:DX-4, SK:Force Sword-3, SK:Main-Gauche-3, SK:Shortsword-3))
+Kusari, cat(_Melee Weapons), page(MA228), basecost(80), baseweight(4.5), techlvl(3), mods(Equipment, Melee Quality, Sword Class Quality), lc(4),_
+	itemnotes(_
+			{Attempts to parry flails and kusaris are at -4; fencing weapons (''F'' parry) can't parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, nunchaku, thonged club, and weighted scarf.}|_
+			{Attempts to parry flails and kusaris are at -4; fencing weapons (''F'' parry) can't parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, nunchaku, thonged club, and weighted scarf.},_
+			{When swinging the kama on the end of the chain, the kusarigama can't disarm or entangle like a regular kusari (p. B406).}_
+		),_
+	description(TL:3 LC:4 \par [Mode:kusari Damage:sw+2 cr Reach:1,2* Parry:-2U ST:10† Skill:Kusari Notes:[8]] \par [Mode:kama Damage:sw+2 cut Reach:1,2* Parry:-2U ST:11† Skill:Kusari Notes:[8, 14]], [8] Attempts to parry flails and kusaris are at -4; fencing weapons ("F" parry) can't parry at all! Attempts to block such weapons are at -2. Halve these penalties for the bola perdida, bolas, life-preserver, and weighted scarf. ),_
+	newmode(Kusari, damage(sw+2), damtype(cr), minst(10†), reach(1,2*), parry(-2U), notes([8]), skillused(SK:Kusari, ST:DX-6, SK:Monowire Whip-3, SK:Two-Handed Flail-4, SK:Whip-3)),_
+	newmode(Kama, damage(sw+2), damtype(cut), minst(11†), reach(1,2*), parry(-2U), notes([8, 14]), skillused(SK:Kusari, ST:DX-6, SK:Monowire Whip-3, SK:Two-Handed Flail-4, SK:Whip-3))
+#Clone "EQ:Short Staff" as "EQ:Escrima Stick"
+#Clone "EQ:Shortsword" as "EQ:Ninja-To"
+#Clone "EQ:Shortsword" as "EQ:Wakizashi"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<Fencing Weapon Skill>
+SK:Main-Gauche
+SK:Rapier
+SK:Saber
+SK:Smallsword
+
+<ShieldSkill>
+SK:Shield (Shield)
+SK:Shield (Buckler)
+SK:Shield (Force)
+
+<Melee Weapon Skill>
+SK:Axe/Mace
+SK:Broadsword
+SK:Cloak
+SK:Flail
+SK:Force Sword
+SK:Force Whip
+SK:Garrote
+SK:Jitte/Sai
+SK:Knife
+SK:Kusari
+SK:Lance
+SK:Main-Gauche
+SK:Monowire Whip
+SK:Parry Missile Weapons
+SK:Polearm
+SK:Rapier
+SK:Saber
+SK:Shortsword
+SK:Smallsword
+SK:Spear
+SK:Staff
+SK:Tonfa
+SK:Two-Handed Axe/Mace
+SK:Two-Handed Flail
+SK:Two-Handed Sword
+SK:Whip
+
+<One-Handed Melee Weapon Skill>
+SK:Axe/Mace
+SK:Broadsword
+SK:Flail
+SK:Force Sword
+SK:Force Whip
+SK:Garrote
+SK:Jitte/Sai
+SK:Knife
+SK:Kusari
+SK:Main-Gauche
+SK:Monowire Whip
+SK:Polearm
+SK:Rapier
+SK:Saber
+SK:Shortsword
+SK:Smallsword
+SK:Spear
+SK:Staff
+SK:Tonfa
+SK:Whip
+
+<Ranged Weapon Skill>
+SK:Artillery (Beams)
+SK:Artillery (Bombs)
+SK:Artillery (Cannon)
+SK:Artillery (Catapult)
+SK:Artillery (Guided Missile)
+SK:Artillery (Torpedoes)
+SK:Beam Weapons (Pistol)
+SK:Beam Weapons (Projector)
+SK:Beam Weapons (Rifle)
+SK:Blowpipe
+SK:Bolas
+SK:Bow
+SK:Crossbow
+SK:Dropping
+SK:Gunner (Beams)
+SK:Gunner (Cannon)
+SK:Gunner (Catapult)
+SK:Gunner (Machine Gun)
+SK:Gunner (Rockets)
+SK:Guns (Grenade Launcher)
+SK:Guns (Gyroc)
+SK:Guns (Light Anti-Armor Weapon)
+SK:Guns (Light Machine Gun)
+SK:Guns (Musket)
+SK:Guns (Pistol)
+SK:Guns (Rifle)
+SK:Guns (Shotgun)
+SK:Guns (Submachine Gun)
+SK:Innate Attack (Beam)
+SK:Innate Attack (Breath)
+SK:Innate Attack (Gaze)
+SK:Innate Attack (Projectile)
+SK:Lasso
+SK:Liquid Projector (Flamethrower)
+SK:Liquid Projector (Sprayer)
+SK:Liquid Projector (Squirt Gun)
+SK:Liquid Projector (Water Cannon)
+SK:Net
+SK:Sling
+SK:Spear Thrower
+SK:Thrown Weapon (Axe/Mace)
+SK:Thrown Weapon (Dart)
+SK:Thrown Weapon (Disc)
+SK:Thrown Weapon (Harpoon)
+SK:Thrown Weapon (Knife)
+SK:Thrown Weapon (Shuriken)
+SK:Thrown Weapon (Spear)
+SK:Thrown Weapon (Stick)
+
+<Thrusting Melee Weapon Skill>
+SK:Shield (Shield)
+SK:Shield (Buckler)
+SK:Shield (Force)
+SK:Axe/Mace
+SK:Broadsword
+SK:Cloak
+SK:Flail
+SK:Force Sword
+SK:Jitte/Sai
+SK:Knife
+SK:Kusari
+SK:Main-Gauche
+SK:Polearm
+SK:Rapier
+SK:Saber
+SK:Shortsword
+SK:Smallsword
+SK:Spear
+SK:Staff
+SK:Tonfa
+SK:Two-Handed Axe/Mace
+SK:Two-Handed Flail
+SK:Two-Handed Sword
+
+<Two-Handed Melee Weapon Skill>
+SK:Force Sword
+SK:Force Whip
+SK:Garrote
+SK:Jitte/Sai
+SK:Kusari
+SK:Main-Gauche
+SK:Monowire Whip
+SK:Polearm
+SK:Rapier
+SK:Saber
+SK:Shortsword
+SK:Smallsword
+SK:Spear
+SK:Staff
+SK:Tonfa
+SK:Two-Handed Axe/Mace
+SK:Two-Handed Flail
+SK:Two-Handed Sword
+SK:Whip
+
+<Unarmed Combat Skill>
+SK:Boxing
+SK:Brawling
+SK:Karate
+SK:Judo
+SK:Sumo Wrestling
+SK:Wrestling
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Action, Character Templates - Action - Primary Templates>
+Big Guy (Action), displaycost(250),_
+		description(_
+				You're a master of barehanded combat - but not the sort who _
+				jumps readily to mind. In fact, you prefer not to jump, and favor _
+				physical strength and grit over acrobatics. This doesn't mean _
+				that you lack finesse; you simply like to settle scraps with solid _
+				hits, not by dancing around. As far as you're concerned, leaping _
+				is a way to exit moving vehicles and second-story windows . . . _
+				and in those situations, you're tough enough to take the fall! _
+		),_
+		page(A3:5),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+			(_
+				%LensAliasList% | _
+				1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+			ST:ST = 15,_
+			ST:DX = 13,_
+			ST:IQ = 10,_
+			ST:HT = 14,_
+			ST:Basic Speed = 7 _
+		),_
+	adds(_
+			AD:Damage Resistance (Crushing) _
+			with {Limited: Crushing, -40%, shortname(Limited)},_
+			AD:Luck,_
+			AD:Trained by a Master _
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Big Guy),_
+		text(Advantages: Select 30 points from the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			%LensAlt1List%,_
+			AD:Extra ST #codes(upto 3),_
+			AD:Extra DX #codes(upto 1),_
+			AD:Extra HT #codes(upto 3),_
+			AD:Extra Hit Points #codes(upto 5),_
+			AD:Extra Will #codes(upto 6),_
+			AD:Extra Fatigue Points #codes(upto 5),_
+			AD:Arm ST #codes(upto 2),_
+			AD:Combat Reflexes,_
+			AD:Daredevil,_
+			AD:Enhanced Parry (Bare Hands),_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill #codes(upto 2),_
+			AD:Hard to Subdue #codes(upto 2),_
+			AD:High Pain Threshold,_
+			AD:Lifting ST #codes(upto 2),_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing,_
+			AD:Serendipity #codes(upto 2),_
+			#newitem(AD:Striker (Crushing), 5, displaycost(4), mods(Striker, Alternative Attack), page(B88), cat(Exotic, Physical, Natural Attacks), levelnames(Shin,#buildlist(list(#list(LevelName Step 1)), template(%listitem% Shin))), damage(thr+@if(@hasmod(Weak) then 0 else @basethdice(me::chareffectivest)) + @max( @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0), @if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)), @if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0)) ) ), damtype(cr), reach(C), parry(0), skillused(ST:DX, SK:Brawling, SK:Karate), reachbasedon(0), mode(Shin), initmods(Shin, -20%)),_
+			AD:Striking ST #codes(upto 2),_
+			AD:Strong Chi #codes(upto 4),_
+			AD:Wild Talent #codes(upto 1),_
+			#newitem(AD:_Increase DR, 3, displaycost(+3), existing(AD:Damage Resistance (Crushing))) #codes(upto 2, downto 2),_
+			#newitem(AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2) _
+		)_
+	),_
+	select3(comment(Big Guy),_
+		text(Disadvantages: Select -20 points from the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Brawling), -10, mods(Self-Control), page(B128), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			DI:Duty,_
+			DI:Sense of Duty (Team),_
+			#newitem(DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Which rival to you want to beat or tournament do you want to win?", nameext, , "Obsession"))),_
+			#newitem(DI:Vow (Always fight unarmed), -15, page(B160), cat(Mundane, Mental)) _
+		)_
+	),_
+	select4(comment(Big Guy),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Brawling), -10, mods(Self-Control), page(B128), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			DI:Duty,_
+			DI:Sense of Duty (Team),_
+			#newitem(DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Which rival to you want to beat or tournament do you want to win?", nameext, , "Obsession"))),_
+			#newitem(DI:Vow (Always fight unarmed), -15, page(B160), cat(Mundane, Mental)) _
+			DI:Bad Temper,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Stubbornness _
+		)_
+	),_
+	select5(comment(Big Guy),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Brawling), -10, mods(Self-Control), page(B128), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			DI:Duty,_
+			DI:Sense of Duty (Team),_
+			#newitem(DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Which rival to you want to beat or tournament do you want to win?", nameext, , "Obsession"))),_
+			#newitem(DI:Vow (Always fight unarmed), -15, page(B160), cat(Mundane, Mental)) _
+			DI:Bad Temper,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Stubbornness,_
+			DI:Reduced Basic Move #codes(upto 2, downto 1),_
+			DI:Alcoholism,_
+			DI:Appearance #codes(upto 2, downto 1),_
+			DI:Chummy,_
+			DI:Loner,_
+			DI:Gluttony,_
+			DI:Ham-Fisted #codes(upto 2, downto 1),_
+			DI:Odious Personal Habit,_
+			DI:Overweight,_
+			DI:Fat,_
+			DI:Social Stigma (Criminal Record) _
+		)_
+	),_
+	select6(comment(Big Guy),_
+		text(Primary Skills: Select at least 1 of the following; you should take one attack skill (Boxing, Brawling, or Karate) and one grappling skill (Judo, Sumo Wrestling, or Wrestling):),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(16),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Boxing #codes(upto 16pts, downto 4pts),_
+			SK:Brawling #codes(upto 16pts, downto 4pts),_
+			SK:Sumo Wrestling #codes(upto 16pts, downto 4pts),_
+			SK:Wrestling #codes(upto 16pts, downto 4pts),_
+			SK:Judo #codes(upto 16pts, downto 4pts),_
+			SK:Karate #codes(upto 16pts, downto 4pts) _
+		)_
+	),_
+	select7(comment(Big Guy),_
+		text(Secondary Skills: Select at least 4-5 of the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(10),_
+		itemswanted(atleast 4, upto 5),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Fast-Draw (Knife) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 4pts, downto 2pts),_
+			SK:Forced Entry #codes(upto 4pts, downto 2pts),_
+			SK:Garrote #codes(upto 4pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 4pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 4pts, downto 2pts),_
+			SK:Jumping #codes(upto 4pts, downto 2pts),_
+			SK:Knife #codes(upto 4pts, downto 2pts),_
+			SK:Axe/Mace #codes(upto 4pts, downto 2pts),_
+			SK:Broadsword #codes(upto 4pts, downto 2pts),_
+			SK:Shortsword #codes(upto 4pts, downto 2pts),_
+			SK:Staff #codes(upto 4pts, downto 2pts),_
+			SK:Stealth #codes(upto 4pts, downto 2pts),_
+			SK:Two-Handed Axe/Mace #codes(upto 4pts, downto 2pts),_
+			SK:Acrobatics #codes(upto 4pts, downto 2pts),_
+			SK:Flail #codes(upto 4pts, downto 2pts),_
+			SK:Acting #codes(upto 4pts, downto 2pts),_
+			SK:Leadership #codes(upto 4pts, downto 2pts),_
+			SK:Streetwise #codes(upto 4pts, downto 2pts),_
+			SK:Carousing #codes(upto 4pts, downto 2pts),_
+			SK:Lifting #codes(upto 4pts, downto 2pts),_
+			SK:Intimidation #codes(upto 4pts, downto 2pts),_
+			SK:Scrounging #codes(upto 4pts, downto 2pts),_
+			SK:Urban Survival #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select8(comment(Big Guy),_
+		text(Background Skills: Select 1 of the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts, downto 1pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 1pts, downto 1pts),_
+			SK:Driving (Motorcycle) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select9(comment(Big Guy),_
+		text(Martial-Arts Abilities & Skills: Select at least 1 of the following:),_
+		tagwith(BigGuy(yes)),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			PE:Cowpoker,_
+			PE:Deadly Pose,_
+			PE:Dirty Fighting,_
+			PE:Finishing Move,_
+			PE:Focused Fury,_
+			PE:Iron Hands,_
+			PE:Trademark Move,_
+			SK:Immovable Stance #codes(upto 12pts, downto 1pts),_
+			SK:Push #codes(upto 12pts, downto 1pts),_
+			SK:Kiai #codes(upto 12pts, downto 1pts),_
+			SK:Power Blow #codes(upto 12pts, downto 1pts),_
+			SK:Arm Lock (Judo) #codes(upto 4pts, downto 1pts),_
+			SK:Arm Lock (Wrestling) #codes(upto 4pts, downto 1pts),_
+			SK:Choke Hold (Judo) #codes(upto 3pts, downto 2pts),_
+			SK:Choke Hold (Wrestling) #codes(upto 3pts, downto 2pts),_
+			SK:Disarming (%Melee Combat Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Disarming ([Melee Combat Skill]) #codes(upto 6pts, downto 2pts),_
+			SK:Dual-Weapon Attack (%One Handed Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack ([One Handed Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Elbow Drop (Brawling) #codes(upto 5pts, downto 2pts),_
+			SK:Elbow Drop (Wrestling) #codes(upto 5pts, downto 2pts),_
+			SK:Elbow Strike (Brawling) #codes(upto 2pts, downto 1pts),_
+			SK:Elbow Strike (Karate) #codes(upto 2pts, downto 1pts),_
+			SK:Feint (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Feint ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Ground Fighting (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Ground Fighting ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Kicking (Brawling) #codes(upto 3pts, downto 2pts),_
+			SK:Kicking (Karate) #codes(upto 3pts, downto 2pts),_
+			SK:Knee Strike (Brawling) #codes(upto 1pts, downto 1pts),_
+			SK:Knee Strike (Karate) #codes(upto 1pts, downto 1pts),_
+			SK:Leg Lock (Judo) #codes(upto 4pts, downto 1pts),_
+			SK:Leg Lock (Wrestling) #codes(upto 4pts, downto 1pts),_
+			SK:Neck Snap (ST) #codes(upto 8pts, downto 2pts),_
+			SK:Piledriver (Wrestling) #codes(upto 6pts, downto 2pts),_
+			SK:Proxy Fighting (Boxing) #codes(upto 5pts, downto 2pts),_
+			SK:Proxy Fighting (Brawling) #codes(upto 5pts, downto 2pts),_
+			SK:Proxy Fighting (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Roll with Blow (%Unarmed Combat Skill%) #codes(upto 3pts, downto 2pts),_
+			SK:Roll with Blow ([Unarmed Combat Skill]) #codes(upto 3pts, downto 2pts),_
+			SK:Stamp Kick (Brawling) #codes(upto 4pts, downto 2pts),_
+			SK:Stamp Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Judo) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Sumo Wrestling) #codes(upto 4pts, downto 2pts),_
+			SK:Uppercut (Boxing) #codes(upto 1pts, downto 1pts),_
+			SK:Uppercut (Brawling) #codes(upto 1pts, downto 1pts),_
+			SK:Uppercut (Karate) #codes(upto 1pts, downto 1pts),_
+			SK:Wrench [Limb] (ST) #codes(upto 8pts, downto 2pts) _
+		)_
+	),_
+	select10(#list(QuirkSelection))
+
+Fast Guy (Action), displaycost(250),_
+	description(_
+				You're what most people think of as a "martial artist": lean, _
+				agile, and lethally skilled at unarmed combat. In the world of _
+				Action, this makes you the closest thing to a wuxia or chambara _
+				star. You can't quite break the laws of physics, but you're _
+				working on it! Until you succeed, you satisfy yourself with _
+				breaking boards, bricks, and records. You perform feats at the _
+				edge of human capability with ease - frequently to the surprise _
+				of friend and foe alike. _
+		),_
+	page(A3:6),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+			(_
+				%LensAliasList% | _
+				1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 16,_
+			ST:HT = 12,_
+			ST:Basic Speed = 8 _
+		),_
+	adds(_
+			SK:Acrobatics = 1pts,_
+			SK:Jumping = 1pts,_
+			SK:Stealth = 1pts,_
+			AD:Luck,_
+			AD:Trained by a Master _
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Fast Guy),_
+		text(Advantages: Select 25 points from the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			%LensAlt1List%,_
+			#newitem(AD:Extraordinary Luck, 15, displaycost(+15), existing(AD:Luck)) #codes(upto 2, downto 2),_
+			#newitem(AD:Striker (Crushing), 5, displaycost(4), mods(Striker, Alternative Attack), page(B88), cat(Exotic, Physical, Natural Attacks), levelnames(Shin,#buildlist(list(#list(LevelName Step 1)), template(%listitem% Shin))), damage(thr+@if(@hasmod(Weak) then 0 else @basethdice(me::chareffectivest)) + @max( @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0), @if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)), @if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0)) ) ), damtype(cr), reach(C), parry(0), skillused(ST:DX, SK:Brawling, SK:Karate), reachbasedon(0), mode(Shin), initmods(Shin, -20%)),_
+			AD:Extra ST #codes(upto 2, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 2, downto 1),_
+			AD:Extra Hit Points #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto 5, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Extra Fatigue Points #codes(upto 3, downto 1),_
+			AD:Extra Basic Speed #codes(upto 1, downto 1),_
+			AD:Extra Basic Move #codes(upto 3, downto 1),_
+			AD:Appearance #codes(upto 1, downto 1),_
+			AD:Claws (Blunt Claws),_
+			AD:Combat Reflexes,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge #codes(upto 1, downto 1),_
+			AD:Enhanced Parry (Bare Hands) #codes(upto 3, downto 1),_
+			AD:Extra Attack #codes(upto 1, downto 1),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Flexibility,_
+			AD:Double-Jointed,_
+			AD:Hard to Kill #codes(upto 4, downto 1),_
+			AD:Hard to Subdue #codes(upto 4, downto 1),_
+			AD:High Pain Threshold,_
+			AD:Perfect Balance,_
+			AD:Serendipity #codes(upto 4, downto 1),_
+			AD:Striking ST #codes(upto 2, downto 1),_
+			AD:Strong Chi #codes(upto 4, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1) _
+		)_
+	),_
+	select3(comment(Fast Guy),_
+		text(Disadvantages: Select -20 points from the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Thrill-seeking), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Obsession(Beat a specific rival or win a certain tournament), -5, displaycost(-5*), page(B140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Which rival to you want to beat or tournament do you want to win?", nameext, , "Obsession"))),_
+			#newitem(DI:Vow (Always fight unarmed), -15, page(B160), cat(Mundane, Mental)),_
+			DI:Sense of Duty (Team),_
+			DI:Duty _
+		)_
+	),_
+	select4(comment(Fast Guy),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Thrill-seeking), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Obsession(Beat a specific rival or win a certain tournament), -5, displaycost(-5*), page(B140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Which rival to you want to beat or tournament do you want to win?", nameext, , "Obsession"))),_
+			#newitem(DI:Vow (Always fight unarmed), -15, page(B160), cat(Mundane, Mental)),_
+			DI:Sense of Duty (Team),_
+			DI:Duty,_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			#newitem(DI:Code of Honor (Fight Fair!), -5, page(B127), cat(Mundane, Mental)),_
+			#newitem(DI:Delusion (Skill always beats strength!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)),_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents) _
+		)_
+	),_
+	select5(comment(Fast Guy),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Code of Honor (Fight Fair!), -5, page(B127), cat(Mundane, Mental)),_
+			#newitem(DI:Delusion (Skill always beats strength!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)),_
+			#newitem(DI:Compulsive Behavior (Thrill-seeking), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Obsession(Beat a specific rival or win a certain tournament), -5, displaycost(-5*), page(B140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Which rival to you want to beat or tournament do you want to win?", nameext, , "Obsession"))),_
+			#newitem(DI:Vow (Always fight unarmed), -15, page(B160), cat(Mundane, Mental)),_
+			DI:Sense of Duty (Team),_
+			DI:Duty,_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Reduced Hit Points #codes(upto 3, downto 1),_
+			DI:Chummy,_
+			DI:Loner,_
+			DI:Jealousy,_
+			DI:Skinny,_
+			DI:Social Stigma (Criminal Record),_
+			DI:Stubbornness,_
+			DI:Trickster,_
+			DI:Workaholic _
+		)_
+	),_
+	select6(comment(Fast Guy),_
+		text(Unarmed Combat Skills: Select at least 1 of the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(16),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Boxing #codes(upto 16pts, downto 4pts),_
+			SK:Wrestling #codes(upto 16pts, downto 4pts),_
+			SK:Judo #codes(upto 16pts, downto 4pts),_
+			SK:Karate #codes(upto 16pts, downto 4pts) _
+		)_
+	),_
+	select7(comment(Fast Guy),_
+		text(Secondary Skills: Select 5 of the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(5),_
+		itemswanted(5),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#newitem(SK:_Increase Acrobatics, existing(SK:Acrobatics)) #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:_Increase Jumping, existing(SK:Jumping)) #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:_Increase Stealth, existing(SK:Stealth)) #codes(upto 2pts, downto 2pts),_
+			SK:Forced Entry #codes(upto 1pts, downto 1pts),_
+			SK:Garrote #codes(upto 1pts, downto 1pts),_
+			SK:Guns (Pistol) #codes(upto 1pts, downto 1pts),_
+			SK:Knife #codes(upto 1pts, downto 1pts),_
+			SK:Climbing #codes(upto 1pts, downto 1pts),_
+			SK:Dancing #codes(upto 1pts, downto 1pts),_
+			SK:Jitte/Sai #codes(upto 1pts, downto 1pts),_
+			SK:Shortsword #codes(upto 1pts, downto 1pts),_
+			SK:Staff #codes(upto 1pts, downto 1pts),_
+			SK:Throwing #codes(upto 1pts, downto 1pts),_
+			SK:Tonfa #codes(upto 1pts, downto 1pts),_
+			SK:Escape #codes(upto 1pts, downto 1pts),_
+			SK:Flail #codes(upto 1pts, downto 1pts),_
+			SK:Kusari #codes(upto 1pts, downto 1pts),_
+			SK:Carousing #codes(upto 1pts, downto 1pts),_
+			SK:Swimming #codes(upto 1pts, downto 1pts),_
+			SK:Running #codes(upto 1pts, downto 1pts),_
+			SK:Sex Appeal #codes(upto 1pts, downto 1pts),_
+			SK:Intimidation #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Ammo) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Force Sword) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Knife) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Long Arm) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Sword) #codes(upto 1pts, downto 1pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select8(comment(Fast Guy),_
+		text(Secondary Skills: Select 1 of the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts, downto 1pts),_
+			SK:Driving (Motorcycle) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select9(comment(Fast Guy),_
+		text(Martial-Arts Abilities & Skills: Select at least 1 of the following:),_
+		tagwith(FastGuy(yes)),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			PE:Acrobatic Feints,_
+			PE:Acrobatic Kicks,_
+			PE:Cowpoker,_
+			PE:Dirty Fighting,_
+			PE:Finishing Move,_
+			PE:Focused Fury,_
+			PE:High-Heeled Heroine,_
+			PE:High-Heeled Hurt,_
+			PE:Iron Hands,_
+			PE:Trademark Move,_
+			SK:Breaking Blow #codes(upto 12pts, downto 1pts),_
+			SK:Flying Leap #codes(upto 12pts, downto 1pts),_
+			SK:Pressure Points #codes(upto 12pts, downto 1pts),_
+			SK:Pressure Secrets #codes(upto 12pts, downto 1pts),_
+			SK:Immovable Stance #codes(upto 12pts, downto 1pts),_
+			SK:Push #codes(upto 12pts, downto 1pts),_
+			SK:Kiai #codes(upto 12pts, downto 1pts),_
+			SK:Power Blow #codes(upto 12pts, downto 1pts),_
+			SK:Acrobatic Stand (Acrobatics) #codes(upto 6pts, downto 1pts),_
+			SK:Arm Lock (Judo) #codes(upto 4pts, downto 1pts),_
+			SK:Arm Lock (Wrestling) #codes(upto 4pts, downto 1pts),_
+			SK:Back Kick (Acrobatics) #codes(upto 5pts, downto 2pts),_
+			SK:Back Kick (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Choke Hold (Judo) #codes(upto 3pts, downto 2pts),_
+			SK:Choke Hold (Wrestling) #codes(upto 3pts, downto 2pts),_
+			SK:Disarming (%Melee Combat Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Disarming ([Melee Combat Skill]) #codes(upto 6pts, downto 2pts),_
+			SK:Dual-Weapon Attack (%One Handed Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack ([One Handed Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack (Guns (Pistol)) #codes(upto 5pts, downto 2pts),_
+			SK:Elbow Strike (Karate) #codes(upto 2pts, downto 1pts),_
+			SK:Evade (Acrobatics) #codes(upto 5pts, downto 1pts),_
+			SK:Evade (Judo) #codes(upto 5pts, downto 1pts),_
+			SK:Feint (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Feint ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Flying Jump Kick (Acrobatics) #codes(upto 8pts, downto 2pts),_
+			SK:Flying Jump Kick (Karate) #codes(upto 8pts, downto 2pts),_
+			SK:Ground Fighting (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Ground Fighting ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Jump Kick (Acrobatics) #codes(upto 5pts, downto 2pts),_
+			SK:Jump Kick (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Kicking (Acrobatics) #codes(upto 3pts, downto 2pts),_
+			SK:Kicking (Karate) #codes(upto 3pts, downto 2pts),_
+			SK:Knee Strike (Karate) #codes(upto 1pts, downto 1pts),_
+			SK:Leg Lock (Judo) #codes(upto 4pts, downto 1pts),_
+			SK:Leg Lock (Wrestling) #codes(upto 4pts, downto 1pts),_
+			SK:Lethal Kick (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Lethal Strike (Karate) #codes(upto 3pts, downto 2pts),_
+			SK:Proxy Fighting (Boxing) #codes(upto 5pts, downto 2pts),_
+			SK:Proxy Fighting (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Roll with Blow (%Unarmed Combat Skill%) #codes(upto 3pts, downto 2pts),_
+			SK:Roll with Blow ([Unarmed Combat Skill]) #codes(upto 3pts, downto 2pts),_
+			SK:Running Climb (Climbing) #codes(upto 7pts, downto 2pts),_
+			SK:Running Climb (Jumping) #codes(upto 7pts, downto 2pts),_
+			SK:Spinning (Acrobatics) #codes(upto 2pts, downto 1pts),_
+			SK:Spinning (Running) #codes(upto 2pts, downto 1pts),_
+			SK:Spinning Kick (Acrobatics) #codes(upto 4pts, downto 2pts),_
+			SK:Spinning Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Spinning Punch (Karate) #codes(upto 3pts, downto 2pts),_
+			SK:Stamp Kick (Acrobatics) #codes(upto 4pts, downto 2pts),_
+			SK:Stamp Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Acrobatics) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Judo) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Uppercut (Boxing) #codes(upto 1pts, downto 1pts),_
+			SK:Uppercut (Karate) #codes(upto 1pts, downto 1pts) _
+		)_
+	),_
+	select10(#list(QuirkSelection))
+
+Ninja (Action), displaycost(250),_
+	description(_
+				Hooded, black-clad, armed with an arsenal of deadly _
+				weapons, and able to come and go undetected, you are ninja. _
+				In many ways, you're an assassin (Heroes, p. 7) without the _
+				rifle. Your methods date to an earlier era, though, and are often _
+				seen as "impossible" by modern-day folks - a misperception _
+				you encourage. Note that being a ninja doesn't make you a _
+				murderous bad guy; some ninjas are killers for hire, but just as _
+				many serve only the most honorable causes. _
+		),_
+	page(A3:8),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+			(_
+				%LensAliasList% | _
+				1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 15,_
+			ST:IQ = 11,_
+			ST:HT = 11,_
+			ST:Basic Speed = 7 _
+		),_
+	adds(_
+			AD:Craftiness = 2,_
+			AD:Luck,_
+			AD:Weapon Master (Ninja Weapons) = 4,_
+			SK:Stealth = 2pts,_
+			SK:Judo = 4pts,_
+			SK:Karate = 4pts,_
+			SK:Jumping = 1pts,_
+			SK:Climbing = 2pts,_
+			SK:Acrobatics = 2pts,_
+			SK:Holdout = 1pts,_
+			SK:Shadowing = 1pts _
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Ninja),_
+		text(Advantages: Select 25 points from the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			%LensAlt1List%,_
+			#newitem(AD:Craftiness 3-4, displaycost(+5-10), existing(AD:Craftiness)) #codes(upto 4, downto 3),_
+			#newitem(AD:Extraordinary Luck, 15, displaycost(+15), existing(AD:Luck)) #codes(upto 2, downto 2),_
+			AD:Extra ST #codes(upto 2, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 2, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 1),_
+			AD:Extra Basic Move #codes(upto 3, downto 1),_
+			AD:Acute Vision,_
+			AD:Acute Taste and Smell,_
+			AD:Acute Hearing,_
+			AD:Acute Touch,_
+			AD:Ambidexterity,_
+			AD:Combat Reflexes,_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge #codes(upto 1, downto 1),_
+			AD:Enhanced Parry (All Parries) #codes(upto 2, downto 1),_
+			AD:Enhanced Parry (%Melee Weapon%) #codes(upto 3, downto 1),_
+			AD:Extra Attack #codes(upto 1, downto 1),_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Night Vision,_
+			AD:Perfect Balance,_
+			AD:Peripheral Vision,_
+			AD:Serendipity #codes(upto 1, downto 1),_
+			AD:Signature Gear,_
+			#newitem(AD:Striking ST, displaycost(2/4/+), initmods(Assassinations, -60%), mods(Striking ST, No Fine Manipulators, Size), page(B89), cat(Exotic, Physical, Exotic Physical), conditional(+1 to ST:ST)),_
+			AD:Strong Chi #codes(upto 4, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			AD:Zeroed,_
+			#newitem(AD:Zeroed (Ninja), 10, page(B100), cat(Mundane, Social, Mundane Social)) _
+		)_
+	),_
+	select3(comment(Ninja),_
+		text(Disadvantages: Select -5 points from the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(-5),_
+		itemswanted(atleast 1),_
+		list(_
+			DI:Callous,_
+			DI:Loner _
+		)_
+	),_
+	select4(comment(Ninja),_
+		text(Disadvantages: Select -25 points from the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(-25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Code of Honor (Stays bought),_
+			DI:Code of Honor (Bushido),_
+			DI:Duty,_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			#newitem(DI:Obsession (Assassinate a particular target), -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Describe the target you'd like to assassinate:", nameext, "Assassinate ", "Obsession"))),_
+			DI:Secret (Professional killer),_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record) _
+		)_
+	),_
+	select5(comment(Ninja),_
+		text(Disadvantages: Select -20 points from the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Code of Honor (Stays bought),_
+			DI:Code of Honor (Bushido),_
+			DI:Duty,_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			#newitem(DI:Obsession (Assassinate a particular target), -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Describe the target you'd like to assassinate:", nameext, "Assassinate ", "Obsession"))),_
+			DI:Secret (Professional killer),_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record) _
+			DI:Bloodlust,_
+			DI:Callous,_
+			#newitem(DI:Delusion (Guns are no match for ninjutsu!), -5, levelnames(Minor), page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)),_
+			DI:Insomniac,_
+			DI:Loner,_
+			DI:No Sense of Humor,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Stubbornness,_
+			#newitem(DI:Vow (Use only muscle-powered attacks), -10, levelnames(Major), page(B160), cat(Mundane, Mental)),_
+			DI:Workaholic _
+		)_
+	),_
+	select6(comment(Ninja),_
+		text(Primary Skills: Select at least 3 of the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(12),_
+		itemswanted(atleast 3),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#newitem(SK:_Increase Stealth, existing(SK:Stealth)) #codes(upto 4pts, downto 4pts),_
+			SK:Garrote #codes(upto 4pts, downto 2pts),_
+			SK:Knife #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 4pts, downto 2pts),_
+			SK:Axe/Mace #codes(upto 4pts, downto 2pts),_
+			SK:Broadsword #codes(upto 4pts, downto 2pts),_
+			SK:Jitte/Sai #codes(upto 4pts, downto 2pts),_
+			SK:Shortsword #codes(upto 4pts, downto 2pts),_
+			SK:Spear #codes(upto 4pts, downto 2pts),_
+			SK:Staff #codes(upto 4pts, downto 2pts),_
+			SK:Throwing #codes(upto 4pts, downto 2pts),_
+			SK:Tonfa #codes(upto 4pts, downto 2pts),_
+			SK:Blowpipe #codes(upto 4pts, downto 2pts),_
+			SK:Flail #codes(upto 4pts, downto 2pts),_
+			SK:Kusari #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Ammo) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Force Sword) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Knife) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Long Arm) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Sword) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select7(comment(Ninja),_
+		text(Secondary Skills: Select at least 2 of the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(6),_
+		itemswanted(atleast 2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#newitem(SK:_Increase Jumping, existing(SK:Jumping)) #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:_Increase Shadowing, existing(SK:Shadowing)) #codes(upto 2pts, downto 2pts),_
+			SK:Forced Entry #codes(upto 2pts, downto 1pts),_
+			SK:Knot-Tying #codes(upto 2pts, downto 1pts),_
+			SK:Escape #codes(upto 2pts, downto 1pts),_
+			SK:Camouflage #codes(upto 2pts, downto 1pts),_
+			SK:Acting #codes(upto 2pts, downto 1pts),_
+			SK:Disguise #codes(upto 2pts, downto 1pts),_
+			SK:Lockpicking #codes(upto 2pts, downto 1pts),_
+			SK:Traps #codes(upto 2pts, downto 1pts),_
+			SK:Poisons #codes(upto 2pts, downto 1pts),_
+			SK:Tactics #codes(upto 2pts, downto 1pts),_
+			SK:Swimming #codes(upto 2pts, downto 1pts),_
+			SK:Running #codes(upto 2pts, downto 1pts),_
+			SK:Observation #codes(upto 2pts, downto 1pts),_
+			SK:Tracking #codes(upto 2pts, downto 1pts),_
+			SK:Garrote #codes(upto 2pts, downto 1pts),_
+			SK:Knife #codes(upto 2pts, downto 1pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 2pts, downto 1pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 2pts, downto 1pts),_
+			SK:Axe/Mace #codes(upto 2pts, downto 1pts),_
+			SK:Broadsword #codes(upto 2pts, downto 1pts),_
+			SK:Jitte/Sai #codes(upto 2pts, downto 1pts),_
+			SK:Shortsword #codes(upto 2pts, downto 1pts),_
+			SK:Spear #codes(upto 2pts, downto 1pts),_
+			SK:Staff #codes(upto 2pts, downto 1pts),_
+			SK:Throwing #codes(upto 2pts, downto 1pts),_
+			SK:Tonfa #codes(upto 2pts, downto 1pts),_
+			SK:Blowpipe #codes(upto 2pts, downto 1pts),_
+			SK:Flail #codes(upto 2pts, downto 1pts),_
+			SK:Kusari #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Ammo) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Arrow) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Force Sword) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Knife) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Long Arm) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Sword) #codes(upto 2pts, downto 1pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 2pts, downto 1pts) _
+		)_
+	),_
+	select8(comment(Ninja),_
+		text(Martial-Arts Abilities & Skills: Select at least 1 of the following:),_
+		tagwith(Ninja(yes)),_
+		pointswanted(10),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			PE:Acrobatic Feints,_
+			PE:Compact Frame,_
+			PE:Deadly Pose,_
+			PE:Dirty Fighting,_
+			PE:Finishing Move,_
+			PE:High-Heeled Heroine,_
+			PE:High-Heeled Hurt,_
+			PE:Off-Hand Weapon Training (%MeleeWeaponSkillList%),_
+			PE:Trademark Move,_
+			SK:Flying Leap #codes(upto 8pts, downto 1pts),_
+			SK:Pressure Points #codes(upto 8pts, downto 1pts),_
+			SK:Light Walk #codes(upto 8pts, downto 1pts),_
+			SK:Throwing Art #codes(upto 8pts, downto 1pts),_
+			SK:Power Blow #codes(upto 8pts, downto 1pts),_
+			SK:Blind Fighting #codes(upto 8pts, downto 1pts),_
+			SK:Arm Lock (Judo) #codes(upto 4pts, downto 1pts),_
+			SK:Back Kick (Acrobatics) #codes(upto 5pts, downto 2pts),_
+			SK:Back Kick (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Balancing (Acrobatics) #codes(upto 5pts, downto 1pts),_
+			SK:Disappear (Stealth) #codes(upto 11pts, downto 2pts),_
+			SK:Disarming (%Melee Combat Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Disarming ([Melee Combat Skill]) #codes(upto 6pts, downto 2pts),_
+			SK:Dual-Weapon Attack (%One Handed Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack ([One Handed Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack (Guns (Pistol)) #codes(upto 5pts, downto 2pts),_
+			SK:Elbow Strike (Karate) #codes(upto 2pts, downto 1pts),_
+			SK:Evade (Acrobatics) #codes(upto 5pts, downto 1pts),_
+			SK:Evade (Judo) #codes(upto 5pts, downto 1pts),_
+			SK:Feint (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Feint ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Kicking (Acrobatics) #codes(upto 3pts, downto 2pts),_
+			SK:Kicking (Karate) #codes(upto 3pts, downto 2pts),_
+			SK:Knee Strike (Karate) #codes(upto 1pts, downto 1pts),_
+			SK:Neck Snap (ST) #codes(upto 8pts, downto 2pts),_
+			SK:Rappelling (Climbing) #codes(upto 4pts, downto 1pts),_
+			SK:Retain Weapon (%Melee Weapon Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Retain Weapon (%Ranged Weapon Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Retain Weapon ([Melee Weapon]) #codes(upto 6pts, downto 2pts),_
+			SK:Retain Weapon ([Ranged Weapon]) #codes(upto 6pts, downto 2pts),_
+			SK:Roll with Blow (%Unarmed Combat Skill%) #codes(upto 3pts, downto 2pts),_
+			SK:Roll with Blow ([Unarmed Combat Skill]) #codes(upto 3pts, downto 2pts),_
+			SK:Rope Up (Climbing) #codes(upto 2pts, downto 1pts),_
+			SK:Scaling (Climbing) #codes(upto 4pts, downto 2pts),_
+			SK:Toe Flip (DX) #codes(upto 5pts, downto 1pts) _
+		)_
+	),_
+	select9(#list(QuirkSelection))
+
+Traceur (Action), displaycost(250),_
+	description(_
+				You're a traceur: a Parkour (PK) practitioner. Your discipline _
+				isn't strictly a martial art - it's about moving from A to B _
+				as efficiently and directly as possible, surmounting obstacles _
+				using your body and objects in the environment. But "obstacles" _
+				might include enemies, so traceurs sometimes regard PK _
+				as the martial art of the chase before or after a fight. Technically, _
+				PK isn't about acrobatics, either; adding that makes it _
+				"free running." You might not be a purist about this, however! _
+		),_
+	page(A3:9),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+			(_
+				%LensAliasList% | _
+				1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 15,_
+			ST:HT = 13,_
+			ST:Perception = 12,_
+			ST:Basic Speed = 7,_
+			ST:Basic Move = 8 _
+		),_
+	adds(_
+			AD:Luck,_
+			AD:Perfect Balance,_
+			AD:Trained by a Master _
+				with {Evasion, -50%, page(A3:14)},_
+			PE:Urban Jungle Gym,_
+			SK:Acrobatics = 4pts,_
+			SK:Climbing = 4pts,_
+			SK:Jumping = 4pts,_
+			SK:Running = 4pts,_
+			SK:Escape = 2pts,_
+			SK:Urban Survival = 2pts _
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Traceur),_
+		text(Advantages: Select 30 points from the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			%LensAlt1List%,_
+			#newitem(AD:Damage Resistance (Crushing), 5/10, displaycost(3/6), initmods(Crushing, -40%), upto(2)),_
+			#newitem(AD:Trained by a Master (Full), 15, displaycost(+15), removemods(Evasion from AD:Trained by a Master), existing(AD:Trained by a Master)),_
+			#newitem(AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck)) #codes(upto 2, downto 2),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto 6, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Extra Fatigue Points #codes(upto 4, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 1),_
+			AD:Extra Basic Move #codes(upto 2, downto 1) +1,_
+			AD:Absolute Direction,_
+			AD:3D Spatial Sense,_
+			AD:Arm ST #codes(upto 2, downto 1),_
+			AD:Catfall,_
+			AD:Combat Reflexes,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge #codes(upto 2, downto 1),_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Flexibility,_
+			AD:Double-Jointed,_
+			AD:Hard to Kill #codes(upto 3, downto 1),_
+			AD:High Pain Threshold,_
+			AD:Lifting ST #codes(upto 2, downto 1),_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1) _
+		)_
+	),_
+	select3(comment(Traceur),_
+		text(Disadvantages: Select -20 points from the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Physical fitness), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Compulsive Behavior (Reaching ''inaccessible'' locations), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Compulsive Behavior (Thrill-seeking), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Delusion (I can win any chase on foot!), -5, upto(1), levelnames(Minor, Major, Severe), page(B130), cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction)),_
+			DI:Duty,_
+			DI:Sense of Duty (Team) _
+		)_
+	),_
+	select4(comment(Traceur),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Physical fitness), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Compulsive Behavior (Reaching ''inaccessible'' locations), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Compulsive Behavior (Thrill-seeking), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Delusion (I can win any chase on foot!), -5, upto(1), levelnames(Minor, Major, Severe), page(B130), cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction)),_
+			DI:Duty,_
+			DI:Sense of Duty (Team),_
+			DI:Impulsiveness,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Post-Combat Shakes,_
+			DI:Trickster _
+		)_
+	),_
+	select5(comment(Traceur),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Compulsive Behavior (Physical fitness), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ))[-5*],_
+			#newitem(DI:Compulsive Behavior (Reaching ''inaccessible'' locations), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Compulsive Behavior (Thrill-seeking), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+			#newitem(DI:Delusion (I can win any chase on foot!), -5, upto(1), levelnames(Minor, Major, Severe), page(B130), cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction)),_
+			DI:Duty,_
+			DI:Sense of Duty (Team),_
+			DI:Impulsiveness,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Post-Combat Shakes,_
+			DI:Trickster,_
+			DI:Chummy,_
+			DI:Loner,_
+			DI:Curious,_
+			DI:Honesty,_
+			#newitem(DI:Intolerance (Nonathletic people), -5, page(B140), cat(Mundane, Mental, Mundane Mental)),_
+			DI:Jealousy,_
+			DI:Social Stigma (Criminal Record),_
+			DI:Stubbornness,_
+			#newitem(DI:Vow (No alcohol, drugs, or fatty food, just ''health food''), -5, levelnames(Minor), page(B160), cat(Mundane, Mental, Mundane Mental)),_
+			DI:Workaholic _
+		)_
+	),_
+	select6(comment(Traceur),_
+		text(Secondary Skills: Select at least 1 of the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Brawling #codes(upto 4pts, downto 2pts),_
+			SK:Boxing #codes(upto 4pts, downto 2pts),_
+			SK:Sumo Wrestling #codes(upto 4pts, downto 2pts),_
+			SK:Wrestling #codes(upto 4pts, downto 2pts),_
+			SK:Judo #codes(upto 4pts, downto 2pts),_
+			SK:Karate #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select7(comment(Traceur),_
+		text(Secondary Skills: Select at least 4-5 of the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(10),_
+		itemswanted(atleast 4),_
+		list(_
+			#BuildSelectList(Skills where Traceur includes "yes", template(#newitem(SK:_Increase %ListItem%, IQ/A, existing(SK:%ListItem%)) #codes(upto %points+2pts, downto %points+2pts) )),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Area Knowledge ([Area]) #codes(upto 4pts, downto 2pts),_
+			SK:Bicycling #codes(upto 4pts, downto 2pts),_
+			SK:Forced Entry #codes(upto 4pts, downto 2pts),_
+			SK:Knife #codes(upto 4pts, downto 2pts),_
+			SK:Knot-Tying #codes(upto 4pts, downto 2pts),_
+			SK:Dancing #codes(upto 4pts, downto 2pts),_
+			SK:Driving (Automobile) #codes(upto 4pts, downto 2pts),_
+			SK:Driving (Motorcycle) #codes(upto 4pts, downto 2pts),_
+			SK:Shortsword #codes(upto 4pts, downto 2pts),_
+			SK:Staff #codes(upto 4pts, downto 2pts),_
+			SK:Stealth #codes(upto 4pts, downto 2pts),_
+			SK:Throwing #codes(upto 4pts, downto 2pts),_
+			SK:Tonfa #codes(upto 4pts, downto 2pts),_
+			SK:Computer Operation #codes(upto 4pts, downto 2pts),_
+			SK:Lockpicking #codes(upto 4pts, downto 2pts),_
+			SK:Navigation (Land) #codes(upto 4pts, downto 2pts),_
+			SK:Shadowing #codes(upto 4pts, downto 2pts),_
+			SK:Streetwise #codes(upto 4pts, downto 2pts),_
+			SK:Swimming #codes(upto 4pts, downto 2pts),_
+			SK:Hiking #codes(upto 4pts, downto 2pts),_
+			SK:Lifting #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select8(comment(Traceur),_
+		text(Martial-Arts Abilities & Skills: Select at least 1 of the following:),_
+		tagwith(Traceur(yes)),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			PE:Acrobatic Feints,_
+			PE:Acrobatic Kicks,_
+			PE:Combat Pole-Vaulting,_
+			PE:Compact Frame,_
+			PE:High-Heeled Heroine,_
+			SK:Flying Leap #codes(upto 12pts, downto 1pts),_
+			SK:Immovable Stance #codes(upto 12pts, downto 1pts),_
+			SK:Light Walk #codes(upto 12pts, downto 1pts),_
+			SK:Acrobatic Stand (Acrobatics) #codes(upto 6pts, downto 1pts),_
+			SK:Disappear (Stealth) #codes(upto 11pts, downto 2pts),_
+			SK:Dive n' Roll (Acrobatics) #codes(upto 4pts, downto 1pts),_
+			SK:Evade (Acrobatics) #codes(upto 5pts, downto 1pts),_
+			SK:Evade (Judo) #codes(upto 5pts, downto 1pts),_
+			SK:Feint (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Feint ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Flying Jump Kick (Acrobatics) #codes(upto 8pts, downto 2pts),_
+			SK:Flying Jump Kick (Karate) #codes(upto 8pts, downto 2pts),_
+			SK:Jump Kick (Acrobatics) #codes(upto 5pts, downto 2pts),_
+			SK:Jump Kick (Karate) #codes(upto 5pts, downto 2pts),_
+			SK:Rappelling (Climbing) #codes(upto 4pts, downto 1pts),_
+			SK:Roll with Blow (%Unarmed Combat Skill%) #codes(upto 3pts, downto 2pts),_
+			SK:Roll with Blow ([Unarmed Combat Skill]) #codes(upto 3pts, downto 2pts),_
+			SK:Rope Up (Climbing) #codes(upto 2pts, downto 1pts),_
+			SK:Running Climb (Climbing) #codes(upto 7pts, downto 2pts),_
+			SK:Running Climb (Jumping) #codes(upto 7pts, downto 2pts),_
+			SK:Scaling (Climbing) #codes(upto 4pts, downto 2pts),_
+			SK:Skiddding (DX) #codes(upto 2pts, downto 1pts),_
+			SK:Sliding (Acrobatics) #codes(upto 6pts, downto 1pts),_
+			SK:Spinning (Acrobatics) #codes(upto 2pts, downto 1pts),_
+			SK:Spinning (Running) #codes(upto 2pts, downto 1pts),_
+			SK:Spinning Kick (Acrobatics) #codes(upto 4pts, downto 2pts),_
+			SK:Spinning Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Acrobatics) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Judo) #codes(upto 4pts, downto 2pts),_
+			SK:Sweeping Kick (Karate) #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select9(#list(QuirkSelection))
+
+Weapon Master (Action), displaycost(250),_
+	description(_
+				You're an expert with a specific hand-to-hand combat _
+				weapon, and have few rivals at its use; it is to you as the gun _
+				is to the shooter (Heroes, p. 14). Indeed, in your hands, it is _
+				in many ways deadlier than a firearm. However, you realize _
+				that range is an advantage and that your favorite toy is no _
+				less detectable than a gun, so you also value stealth and concealment _
+				- although perhaps not as rabidly as the ninja _
+				(pp. 8-9). _
+		),_
+	page(A3:11),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+			(_
+				%LensAliasList% | _
+				1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+			ST:ST = 13,_
+			ST:DX = 15,_
+			ST:HT = 11,_
+			ST:Basic Speed = 7 _
+		),_
+	adds(_
+			AD:Enhanced Parry (%Melee Weapon%),_
+			AD:Luck,_
+			PE:Weapon Bond (%Weapon%),_
+			AD:Weapon Master,_
+			SK:Acrobatics = 2pts,_
+			SK:Holdout = 8pts,_
+			SK:Jumping = 1pts,_
+			SK:Stealth = 2pts _
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Weapon Master),_
+		text(Advantages: Select 30 points from the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			%LensAlt1List%,_
+			#newitem(AD:Extraordinary Luck, 15, displaycost(+15), existing(AD:Luck)) #codes(upto 2, downto 2),_
+			#BuildCharItemList(Advantages where name includes "Weapon Master", template(#newitem(AD:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto 3, downto 2)) ),_
+			#BuildCharItemList(Advantages where name includes "Enhanced Parry", template(#newitem(AD:_Increase %ListItem%, displaycost(+5-10), existing(SK:%ListItem%)) #codes(upto 3, downto 2)) ),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 1),_
+			AD:Extra Basic Move #codes(upto 3, downto 1),_
+			AD:Ambidexterity,_
+			AD:Arm ST #codes(upto 2, downto 1),_
+			AD:Combat Reflexes,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge #codes(upto 2, downto 1),_
+			AD:Extra Attack #codes(upto 1, downto 1),_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Peripheral Vision,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 2, downto 1),_
+			AD:Striking ST #codes(upto 2, downto 1),_
+			AD:Strong Chi #codes(upto 4, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1) _
+		)_
+	),_
+	select3(comment(Weapon Master),_
+		text(Disadvantages: Select -20 points from the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Obsession (Beat a specific rival), -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Describe the rival you want to beat:", nameext, , "Obsession"))),_
+			#newitem(DI:Secret (Illegal tournament deaths), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")),_
+			#newitem(DI:Code of Honor (Fight fair!), -5, page(B127), cat(Mundane, Mental, Mundane Mental)),_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Bushido),_
+			DI:Duty,_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record) _
+		)_
+	),_
+	select4(comment(Weapon Master),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Obsession (Beat a specific rival), -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Describe the rival you want to beat:", nameext, , "Obsession"))),_
+			#newitem(DI:Secret (Illegal tournament deaths), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")),_
+			#newitem(DI:Code of Honor (Fight fair!), -5, page(B127), cat(Mundane, Mental, Mundane Mental)),_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Bushido),_
+			DI:Duty,_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			#newitem(DI:Delusion (Guns are no match for my favorite weapon!), -5, levelnames(Minor), page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)),_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			#newitem(DI:Vow (Use only muscle-powered attacks), -10, levelnames(Major), page(B160), upto(3), cat(Mundane, Mental)) _
+		)_
+	),_
+	select5(comment(Weapon Master),_
+		text(Disadvantages: Select -15 points from the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(-15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			#newitem(DI:Obsession (Beat a specific rival), -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ), x(#InputToTag("Describe the rival you want to beat:", nameext, , "Obsession"))),_
+			#newitem(DI:Secret (Illegal tournament deaths), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")),_
+			#newitem(DI:Code of Honor (Fight fair!), -5, page(B127), cat(Mundane, Mental, Mundane Mental)),_
+			DI:Code of Honor (Gentleman's),_
+			DI:Code of Honor (Bushido),_
+			DI:Duty,_
+			DI:Fanaticism,_
+			DI:Intolerance,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Bad Temper,_
+			DI:Bloodlust,_
+			DI:Callous,_
+			#newitem(DI:Delusion (Guns are no match for my favorite weapon!), -5, levelnames(Minor), page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)),_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			#newitem(DI:Vow (Use only muscle-powered attacks), -10, levelnames(Major), page(B160), upto(3), cat(Mundane, Mental)),_
+			#newitem(QU:Distinctive Features (Dueling scars), -1, page(B165)),_
+			DI:Jealousy,_
+			DI:Loner,_
+			DI:Odious Personal Habit,_
+			DI:Stubbornness,_
+			DI:Trademark,_
+			DI:Workaholic _
+		)_
+	),_
+	select6(comment(Weapon Master),_
+		text(Primary Skills: Select at least 1 of the following:),_
+		tagwith(WeaponMaster(primary)),_
+		pointswanted(16),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 16pts, downto 4pts))),_
+			SK:Knife #codes(upto 16pts, downto 4pts),_
+			SK:Axe/Mace #codes(upto 16pts, downto 4pts),_
+			SK:Broadsword #codes(upto 16pts, downto 4pts),_
+			SK:Cloak #codes(upto 16pts, downto 4pts),_
+			SK:Jitte/Sai #codes(upto 16pts, downto 4pts),_
+			SK:Main-Gauche #codes(upto 16pts, downto 4pts),_
+			SK:Rapier #codes(upto 16pts, downto 4pts),_
+			SK:Saber #codes(upto 16pts, downto 4pts),_
+			SK:Shortsword #codes(upto 16pts, downto 4pts),_
+			SK:Smallsword #codes(upto 16pts, downto 4pts),_
+			SK:Spear #codes(upto 16pts, downto 4pts),_
+			SK:Staff #codes(upto 16pts, downto 4pts),_
+			SK:Tonfa #codes(upto 16pts, downto 4pts),_
+			SK:Two-Handed Sword #codes(upto 16pts, downto 4pts),_
+			SK:Whip #codes(upto 16pts, downto 4pts),_
+			SK:Flail #codes(upto 16pts, downto 4pts),_
+			SK:Kusari #codes(upto 16pts, downto 4pts),_
+			SK:Two-Handed Flail #codes(upto 16pts, downto 4pts),_
+			SK:Fast-Draw #codes(upto 16pts, downto 4pts),_
+			SK:Fast-Draw (Knife) #codes(upto 16pts, downto 4pts),_
+			SK:Fast-Draw (Sword) #codes(upto 16pts, downto 4pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Axe/Mace) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Dart) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Harpoon) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Spear) #codes(upto 16pts, downto 4pts),_
+			SK:Thrown Weapon (Stick) #codes(upto 16pts, downto 4pts) _
+		)_
+	),_
+	select7(comment(Weapon Master),_
+		text(Secondary Skills: Select 1 of the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select8(comment(Weapon Master),_
+		text(Secondary Skills: Select 1 of the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts) _
+		)_
+	),_
+	select9(comment(Weapon Master),_
+		text(Secondary Skills: Select at least 4 of the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(10),_
+		itemswanted(atleast 4),_
+		list(_
+			#BuildSelectList(Skills where WeaponMaster includes "yes", template(#newitem(SK:_Increase %ListItem%, IQ/A, existing(SK:%ListItem%)) #codes(upto %points+2pts, downto %points+2pts) )),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Guns (Pistol) #codes(upto 4pts, downto 2pts),_
+			SK:Throwing #codes(upto 4pts, downto 2pts),_
+			SK:Parry Missile Weapons #codes(upto 4pts, downto 2pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 4pts, downto 2pts),_
+			#newitem(SK:Connoisseur (Melee Weapons), IQ/A, default(IQ - 5), page(B185), cat(_General, Arts/Entertainment, Knowledge, Social)) #codes(upto 4pts, downto 2pts),_
+			SK:Soldier #codes(upto 4pts, downto 2pts),_
+			SK:Streetwise #codes(upto 4pts, downto 2pts),_
+			SK:Tactics #codes(upto 4pts, downto 2pts),_
+			SK:Hiking #codes(upto 4pts, downto 2pts),_
+			SK:Running #codes(upto 4pts, downto 2pts),_
+			SK:Intimidation #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Knife) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Sword) #codes(upto 4pts, downto 2pts),_
+			SK:Fast-Draw (Two-Handed Sword) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Axe/Mace) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Dart) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Harpoon) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Knife) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Shuriken) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Spear) #codes(upto 4pts, downto 2pts),_
+			SK:Thrown Weapon (Stick) #codes(upto 4pts, downto 2pts) _
+		)_
+	),_
+	select10(comment(Weapon Master),_
+		text(Background Skills: Select 1 of the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Motorcycle) _
+		)_
+	),_
+	select11(comment(Weapon Master),_
+		text(Martial-Arts Abilities & Skills: Select at least 1 of the following:),_
+		tagwith(WeaponMaster(yes)),_
+		pointswanted(15),_
+		itemswanted(atleast 1), mutlitype(yes),_
+		list(_
+			PE:Deadly Pose,_
+			PE:Dirty Fighting,_
+			PE:Finishing Move,_
+			PE:Focused Fury,_
+			PE:Off-Hand Weapon Training (%MeleeWeaponSkillList%),_
+			PE:Trademark Move,_
+			PE:Weapon Bond (%GunList%),_
+			PE:Weapon Bond (%Weapon%),_
+			SK:Flying Leap #codes(upto 12pts, downto 1pts),_
+			SK:Pressure Points #codes(upto 12pts, downto 1pts),_
+			SK:Throwing Art #codes(upto 12pts, downto 1pts),_
+			SK:Kiai #codes(upto 12pts, downto 1pts),_
+			SK:Power Blow #codes(upto 12pts, downto 1pts),_
+			SK:Blind Fighting #codes(upto 12pts, downto 1pts),_
+			SK:Acrobatic Stand (Acrobatics) #codes(upto 6pts, downto 1pts),_
+			SK:Arm Lock (Judo) #codes(upto 4pts, downto 1pts),_
+			SK:Arm Lock (Wrestling) #codes(upto 4pts, downto 1pts),_
+			SK:Disarming (%Melee Combat Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Disarming ([Melee Combat Skill]) #codes(upto 6pts, downto 2pts),_
+			SK:Dual-Weapon Attack (%One Handed Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack ([One Handed Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Dual-Weapon Attack (Guns (Pistol)) #codes(upto 5pts, downto 2pts),_
+			SK:Evade (Acrobatics) #codes(upto 5pts, downto 1pts),_
+			SK:Evade (Judo) #codes(upto 5pts, downto 1pts),_
+			SK:Feint (%Melee Combat Skill%) #codes(upto 5pts, downto 2pts),_
+			SK:Feint ([Melee Combat Skill]) #codes(upto 5pts, downto 2pts),_
+			SK:Kicking (Acrobatics) #codes(upto 3pts, downto 2pts),_
+			SK:Kicking (Brawling) #codes(upto 3pts, downto 2pts),_
+			SK:Kicking (Karate) #codes(upto 3pts, downto 2pts),_
+			SK:Retain Weapon (%Melee Weapon Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Retain Weapon (%Ranged Weapon Skill%) #codes(upto 6pts, downto 2pts),_
+			SK:Retain Weapon ([Melee Weapon]) #codes(upto 6pts, downto 2pts),_
+			SK:Retain Weapon ([Ranged Weapon]) #codes(upto 6pts, downto 2pts),_
+			SK:Roll with Blow (%Unarmed Combat Skill%) #codes(upto 3pts, downto 2pts),_
+			SK:Roll with Blow ([Unarmed Combat Skill]) #codes(upto 3pts, downto 2pts),_
+			SK:Stamp Kick (Acrobatics) #codes(upto 4pts, downto 2pts),_
+			SK:Stamp Kick (Brawling) #codes(upto 4pts, downto 2pts),_
+			SK:Stamp Kick (Karate) #codes(upto 4pts, downto 2pts),_
+			SK:Toe Flip (DX) #codes(upto 5pts, downto 1pts) _
+		)_
+	),_
+	select12(#list(QuirkSelection))
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Big Guy (Action)" with {replacetags(in "TE:Big Guy (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Fast Guy (Action)" with {replacetags(in "TE:Fast Guy (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Ninja (Action)" with {replacetags(in "TE:Ninja (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Traceur (Action)" with {replacetags(in "TE:Traceur (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Weapon Master (Action)" with {replacetags(in "TE:Weapon Master (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

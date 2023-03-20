@@ -1,0 +1,3904 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		Templates and Equipment from Gurps Prime Directive Romulans
+Worldbook="Prime Directive"
+Requires=GURPS Prime Directive 4e.gdf
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 07-11-2009
+//  Requires GCA v4 or later!
+// 
+//  This data file is for use with GURPS Prime Directive 4th edition version.
+//  It also contains information from GURPS Klingons and GURPS Romulans.
+//  These books are published by Amarillo Designs Bureau Inc. 
+//  
+//  
+// 
+// 
+//  GURPS Basic Set: Characters is copyright 1986, 1987, 1989, 1991, 1992,_
+// 					1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+// 					Steve Jackson Games Incorporated.
+//  GURPS Prime Directive 4e is copyright © 2005 by Amarillo Design Bureau, Inc.
+//  GURPS Prime Directive Klingons 4e is copyright © 2003 & 2005 by Amarillo Design Bureau, Inc.
+//  GURPS Prime Directive Romulans 4e is copyright © 2005 by Amarillo Design Bureau, Inc.
+//  
+//  
+//  
+// 
+// 
+//  Information in this file includes:
+// 	Racial Templates
+// 	New Talents created for the races
+// 
+***************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator
+// 
+//   Richard Brown - Major Work
+// 
+// 
+***************************************************************************
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated,_
+//  used with GCA by permission of Steve Jackson Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson
+//  Games Incorporated. This product includes copyrighted material from the
+//  GURPS game, which is used by permission of Steve Jackson Games
+//  Incorporated. All rights reserved by Steve Jackson Games Incorporated.
+*******************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<GPD>
+Code of Honor (Romulan Military), -10,page(PD:K84),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, GPD)
+
+Code of Honor (Police), -10,page(B127),tl(),usernotes(),familiarities(), cat(Mundane, Mental, Mundane Mental, GPD)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<GPD>
+Operations (Space), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Operations (Air), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Operations (Land), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Operations (Sea), IQ/H,familiarities(),noresync(yes),page(PD:K82),tl(),usernotes(),baseapppoints(1), cat(_GPD)
+
+Tactics (Infantry), IQ/H,default(IQ - 6, SK:Strategy - 6),page(B224),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Military, Police)
+
+Tactics (Space), IQ/H,default(IQ - 6, SK:Strategy - 6),page(B224),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Military, Police)
+
+Professional Skill (Lawyer), IQ/A,default(IQ - 5),page(B215),tl(),usernotes(),familiarities(),baseapppoints(1), cat(_General, Knowledge)
+
+Lar-pan-tak, DX/H,page(B175),noresync(yes),parryat(@int(%level/2)+3+2),blockat(),tl(),usernotes(),familiarities(),baseapppoints(1), cat(GPD, Romulan)
+
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<Prime Directive>
+Romulan Uniform,noresync(yes),techlvl(10),basecost(325),baseweight(6),lc(5),location(torso, arms, legs, feet, groin),dr(8/2),mods(Equipment),precountcost(325),precountweight(6),tl(),usernotes(),familiarities(),notes(dr 8, 2 vs Imp), cat(Armor - High- & Ultra- Tech Body Armor, Clothing, GPD)
+
+<Prime Directive, Prime Directive - Romulan Weapons>
+Romulan Laser Pistol,noresync(yes),techlvl(8),basecost(1000),baseweight(2),lc(0),damage(1d),damtype(burn),armordivisor( ),acc(7),rangehalfdam(200),rangemax(400),rof(4),shots(20/C),minst(7),bulk(-1),rcl(1),skillused(Beam Weapons (Pistol)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1000),precountweight(2),charminst(7),dmg(1), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Laser Rifle,noresync(yes),techlvl(8),basecost(2000),baseweight(5),lc(0),damage(2d),damtype(burn),armordivisor( ),acc(9),rangehalfdam(400),rangemax(800),rof(8),shots(12/C),minst(7†),bulk(-5),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(2000),precountweight(5),charminst(7†),dmg(2), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Slug Pistol 10mm,noresync(yes),techlvl(8),basecost(500),baseweight(2),lc(2),damage(3d),damtype(pi+),armordivisor( ),acc(4),rangehalfdam(150),rangemax(1800),rof(3),shots(20),minst(9),bulk(-1),rcl(2),skillused(Guns (Pistol)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(500),precountweight(2),charminst(9),dmg(3), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Submachine Gun 10mm,noresync(yes),techlvl(8),basecost(700),baseweight(5),lc(1),damage(3d),damtype(pi+),armordivisor( ),acc(9),rangehalfdam(160),rangemax(1900),rof(12),shots(60),minst(10†),bulk(-4),rcl(2),skillused(Guns (Submachine Gun)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(700),precountweight(5),charminst(10†),dmg(3), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Combat Rifle 6.7mm,noresync(yes),techlvl(8),basecost(1100),baseweight(8),lc(1),damage(7d),damtype(pi+),armordivisor( ),acc(11),rangehalfdam(500),rangemax(2500),rof(10),shots(60),minst(9†),bulk(-6),rcl(2),skillused(Guns (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1100),precountweight(8),charminst(9†),dmg(7), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Machine Gun 6.7mm,noresync(yes),techlvl(8),basecost(1400),baseweight(11),lc(0),damage(7d),damtype(pi+),armordivisor(),acc(7),rangehalfdam(800),rangemax(3900),rof(10!),shots(100),minst(12B†),bulk(-8),rcl(5),skillused(Gunner (Machine Gun)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1400),precountweight(11),charminst(12B†),dmg(7), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Holdout Plasma Pistol,noresync(yes),techlvl(9),basecost(2000),baseweight(1),lc(0),damage(12d),damtype(burn/cor),armordivisor(0.33),acc(0),rangehalfdam(20),rangemax(40),rof(jet),shots(4C),minst(5),bulk(0),rcl(1),skillused(Beam Weapons (projector)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(2000),precountweight(1),charminst(5),dmg(12), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Plasma Pistol,acc(-),armordivisor(0.33),basecost(3000),baseweight(4),bulk(-1),charminst(7),damage(16d),damtype(burn/cor),dmg(16),familiarities(),lc(0),minst(7),mods(Equipment),noresync(yes),precountcost(3000),precountweight(4),rangehalfdam(70),rangemax(150),rcl(1),rof(jet),shots(8/C),skillused(Beam Weapons (Projector)),techlvl(9),tl(),usernotes(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Plasma Rifle,noresync(yes),techlvl(9),basecost(4100),baseweight(12),lc( 0),damage(10dx2),damtype(burn/cor),armordivisor(0.33),acc(-),rangehalfdam(80),rangemax(250),rof(jet),shots(70/D),minst(7†),bulk(-6),rcl(1),skillused(Beam Weapons (Projector)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(4100),precountweight(12),charminst(7†),dmg(20), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Plasma Infantry Gun,noresync(yes),techlvl(9),basecost(8500),baseweight(9R),lc(0),damage(8dx3),damtype(burn/cor),armordivisor(0.33),acc(-),rangehalfdam(90),rangemax(275),rof(jet),shots(90/D),minst(9R†),bulk(-7),rcl(1),skillused(Beam Weapons (Projector)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(8500),precountweight(9),charminst(9R†),dmg(24), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Plasma Infantry Cannon,noresync(yes),techlvl(9),basecost(10000),baseweight(12R),lc(0),damage(4dx10),damtype(burn/cor),armordivisor(0.33),acc(-),rangehalfdam(100),rangemax(300),rof(jet),shots(100/D),minst(12R†),bulk(-10),rcl(1),skillused(Beam Weapons (Projector)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(10000),precountweight(12),charminst(12R†),dmg(40), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Holdout Laser,noresync(yes),techlvl(9),basecost(500),baseweight(0.5),lc(0),damage(1d-1),damtype(burn),armordivisor( ),acc(4),rangehalfdam(50),rangemax(100),rof(2),shots(6/B),minst(4),bulk(0),rcl(1),skillused(Beam Weapons (Pistol)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(500),precountweight(0.5),charminst(4),dmg(1), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Combat Laser Rifle,noresync(yes),techlvl(9),basecost(4000),baseweight(8),lc(0),damage(2d),damtype(burn),armordivisor( ),acc(10),rangehalfdam(450),rangemax(900),rof(8),shots(80/D),minst(7†),bulk(-4),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(4000),precountweight(8),charminst(7†),dmg(2), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Combat Laser Carbine,noresync(yes),techlvl(9),basecost(3000),baseweight(7),lc(0),damage(1d+2),damtype(burn),armordivisor( ),acc(8),rangehalfdam(350),rangemax(700),rof(8),shots(80/D),minst(6†),bulk(-3),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(3000),precountweight(7),charminst(6†),dmg(1), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Laser Infantry Gun,noresync(yes),techlvl(9),basecost(8000),baseweight(16),lc(0),damage(2d),damtype(burn),armordivisor( ),acc(12),rangehalfdam(900),rangemax(1800),rof(8),shots(160/D),minst(9R†),bulk(-8),rcl(1),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(8000),precountweight(16),charminst(9R†),dmg(2), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Heavy Defense Laser,noresync(yes),techlvl(9),basecost(12000),baseweight(75),lc(0),damage(20d),damtype(burn),armordivisor( ),acc(14),rangehalfdam(1100),rangemax(2200),rof(4),shots(120/E),minst(12M†),bulk(-12),rcl(1),skillused(Gunner (Beams)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(12000),precountweight(75),charminst(12M†),dmg(20), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Personal Grenade Launcher,noresync(yes),techlvl(9),basecost(3900),baseweight(6.5),lc(0),damage(var),damtype(grenade),armordivisor( ),acc(7),rangehalfdam(-),rangemax(1100),rof(1),shots(13/D),minst(9†),bulk(-2),rcl(4),skillused(Guns (Grenade Launcher)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(3900),precountweight(6.5),charminst(9†),dmg(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Under Barrel Grenade Launcher,noresync(yes),techlvl(10),basecost(300),baseweight(0.75),lc(0),damage(var),damtype(grenade),armordivisor( ),acc(5),rangehalfdam(-),rangemax(600),rof(1),shots(12/C),minst(9†),bulk(-1),rcl(4),skillused(Guns (Grenade Launcher)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(300),precountweight(0.75),charminst(9†),dmg(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Primary Phaser,acc(13),armordivisor(1|1|1|1|1|1|2|2|3|3|3),basecost(6000),baseweight(6),bulk(-4),charminst(7),damage(stun-1|stun-2|stun-3|1d|2d|3d|2d|4d|4d|6d|8d),damtype(aff|aff|aff|burn|burn|burn|burn|burn|burn|burn|burn),dmg(| | |1|2|3|2|4|4|6|8),familiarities(),lc(0),minst(7),mode(stun 1|stun 2|stun 3|kill 1|kill 2|kill 3| kill 4|kill 5|disint 1|disnint 2|disint 3),mods(Equipment),noresync(yes),precountcost(6000),precountweight(6),rangehalfdam(800),rangemax(1200),rcl(1),rof(5),shots(150/D),skillused(Beam Weapons(Rifle)),techlvl(12),tl(),usernotes(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Plasma Burster,noresync(yes),techlvl(12),basecost(4000),baseweight(5),lc(0),damage(16d),damtype(burn/cor),armordivisor(0.33),acc(-),rangehalfdam(70),rangemax(150),rof(jet),shots(sp),minst(9†),bulk(-2),rcl(1),skillused(Beam Weapons (Projector)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(4000),precountweight(5),charminst(9†),dmg(16), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Grenade Launcher,noresync(yes),techlvl(12),basecost(1000),baseweight(1),lc(0),damage(var),damtype(grenade),armordivisor( ),acc(8),rangehalfdam(-),rangemax(600),rof(1),shots(sp),minst(9†),bulk(-2),rcl(4),skillused(Guns (Grenade Launcher)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1000),precountweight(1),charminst(9†),dmg(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Phaser Booster,noresync(yes),techlvl(12),basecost(2500),baseweight(4),lc( ),damage(var),damtype(var),armordivisor( ),acc(13),rangehalfdam(1200),rangemax(1800),rof(5),shots(sp),minst(na†),bulk(na),rcl(na),skillused(Beam Weapons (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(2500),precountweight(4),charminst(na†),dmg(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Slug Launcher,noresync(yes),techlvl(12),basecost(1500),baseweight(3),lc(0),damage(var),damtype(pi+),armordivisor( ),acc(9),rangehalfdam(50),rangemax(150),rof(1),shots(2),minst(9†),bulk(-4),rcl(3),skillused(Guns (Rifle)),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(1500),precountweight(3),charminst(9†),dmg(), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS AP round,noresync(yes),techlvl(12),basecost(5),baseweight(neg),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(0),description(depleted pergium round 4d pi+ dmg shows up strongly on sensors and tricorders), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS APDS round,noresync(yes),techlvl(12),basecost(10),baseweight(neg),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(10),precountweight(0),description(increases 1/2 dmg and max range by 50% 4d+4(2) pi+ dmg depleted pergium shows up strongly on sensors and tricorder), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Explosive round,noresync(yes),techlvl(12),basecost(20),baseweight(neg),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(20),precountweight(0),description(4d-4 pi+(0.5) and 1d explosive burning dmg or 1dx5 if it penetrates armor), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Shot round,noresync(yes),techlvl(12),basecost(10),baseweight(neg),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(10),precountweight(0),description(a shotgun round 1d pi- rof 4), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan PMWS Solid Slug,noresync(yes),techlvl(12),basecost(5),baseweight(neg),lc(0),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(5),precountweight(0),description(4d pi++ dmg 3x1/2 dmg and 5x max range), cat(Firearms - Ultra-Tech Firearms, Romulan Weapons, GPD)
+
+Romulan Stun Baton,armordivisor(),basecost(100),baseweight(1),charminst(7),damage(HT-3 | 2d),damtype(aff | fat),dmg(|2),familiarities(),lc(1),minst(7),mods(Equipment),noresync(yes),parry(),precountcost(100),precountweight(1),reach(c,1),skillused(Tonfa),techlvl(10),tl(),usernotes(),mode(sw | followup), cat(Romulan Weapons, GPD, Melee Weapons)
+
+Lar-Pan-Tak,noresync(yes),techlvl(4),basecost(600),baseweight(10),lc(3),damage(thr+2 | sw-2),damtype(cut | cr),armordivisor( ),reach(1, 2),parry(+0),minst(12†),skillused(Lar-pan-tak),mods(Equipment),tl(),usernotes(),familiarities(),precountcost(600),precountweight(10),charminst(12†),dmg(thr|sw),mode(thrust | swing),description(takes a ready manuver to switch from thrust to swing), cat(Romulan Weapons, GPD, Melee Weapons)
+
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Racial Templates, Racial Templates - Romulan>
+Romulan Civilian (Prime Directive), displaycost(33), cost(50), cat(Racial Templates, Racial Templates - Romulan),_
+	description(),_
+	page(PD:R11),_
+	race(Romulan Civilian),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:DX,_
+			+1 to ST:IQ _
+			),_
+		adds( _
+			AD:Acute Hearing=1,_
+			AD:Extended Lifespan=1,_
+			DI:Code of Honor (Romulan)=2,_
+			DI:Intolerance (Non-Romulans)=2,_
+			QU:Careful _
+			)
+Satha'hi (Prime Directive), displaycost(-9), cost(-10), cat(Racial Templates, Racial Templates - Romulan),_
+	description(),_
+	page(PD:R60),_
+	race(Satha'hi),_
+		locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+		hides(yes),_
+	gives(_
+			-1 to ST:ST _
+			),_
+		adds( _
+			AD:Eidetic Memory,_
+			AD:Empathy,_
+			AD:Racial Memory=2 _
+				with "Telepathic, -10%, group(Psionic Power Modifier)",_
+			AD:Radiation Tolerance=7,_
+			AD:Telepathy Talent,_
+			DI:Chummy,_
+			DI:Honesty,_
+			DI:Increased Life Support (Radioactive),_
+			DI:Low Pain Threshold,_
+			DI:Pacifism (Total Nonviolence),_
+			DI:Vulnerability (Crushing)=3 _
+				with "Wounding Multiplier ×1, *1, group(Vulnerability)" _
+			)
+Gerlunians (Prime Directive), displaycost(14), cost(25), cat(Racial Templates, Racial Templates - Romulan),_
+	description(),_
+	page(PD:R62),_
+	race(Gerlunian),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+1 to ST:ST,_
+			+1 to ST:HT,_
+			+1 to ST:Will _
+			),_
+		adds( _
+			AD:Amphibious,_
+			AD:Damage Resistance _
+				with "Tough Skin, -40%, group(Damage Resistance)",_
+			AD:Teeth (Sharp Teeth),_
+			DI:Bloodlust,_
+			DI:Incurious,_
+			DI:Sense of Duty (Nation-State)=3 _
+			)
+Dionaeans (Prime Directive), displaycost(63), cost(-90), cat(Racial Templates, Racial Templates - Romulan),_
+	description(),_
+	page(PD:R64),_
+	race(Dionaeans),_
+	locks(yes),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	gives(_
+			+4 to ST:ST,_
+			-3 to ST:IQ,_
+			-10 to ST:Tech Level,_
+			-4 to ST:Basic Move _
+			),_
+		adds( _
+			AD:360° Vision _
+				with "Easy to Hit (eyestalks), -20%, group(360°+Peripheral Vision)",_
+			AD:Ambidexterity,_
+			AD:Constriction Attack,_
+			AD:Damage Resistance=6 _
+				with "Can't Wear Body Armor, -40%, group(Damage Resistance)" _
+				and "Flexible, -20%, group(Damage Resistance)",_
+			AD:Doesn't Breathe _
+				with "Oxygen Absorption, -25%, group(Doesn't Breathe)",_
+			AD:Extra Arms _
+				with "Extra-Flexible, +50%, group(Extra Arms)" _
+				and "Long, +100%, group(Extra Arms)",_
+			AD:Hard to Subdue=4,_
+			AD:Injury Tolerance _
+				with "Homogenous, +40, group(Injury Tolerance)" _
+				and "No Head, +7, group(Injury Tolerance)" _
+				and "No Neck, +5, group(Injury Tolerance)",_
+			AD:Lifting ST=4 _
+				with "Accessibility (Only in direct Sunlight), -30%, group(General)",_
+			AD:Longevity,_
+			AD:Plant Empathy,_
+			AD:Radiation Tolerance=2,_
+			AD:Regrowth,_
+			AD:Resistant (Psionics)=4 _
+				with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(down), group(Resistant)",_
+			AD:Striking ST=4 _
+				with "Accessibility (Only in direct Sunlight), -30%, group(General)",_
+			AD:Teeth (Sharp Beak),_
+			AD:Telecommunication (Infrared Communication) _
+				with "Racial, -20%, group(Telecommunication)",_
+			AD:Universal Digestion,_
+			AD:Vampiric Bite=4,_
+			AD:Vibration Sense _
+				with "Universal, +50%, group(Vibration Sense)",_
+			DI:Bad Grip=2,_
+			DI:Callous,_
+			DI:Cannot Speak,_
+			DI:Dependency (homeworld soil)=4 _
+				with "Frequency Needed: Weekly, *2, group(Dependency)" _
+				and "Aging, +30%, group(Dependency)",_
+			DI:Dyslexia,_
+			DI:Ham-Fisted=2,_
+			DI:Hard of Hearing,_
+			DI:Increased Life Support (Soil and Water),_
+			DI:Loner,_
+			DI:Unusual Biochemistry _
+			)
+
+<Character Templates, Character Templates - Romulan, Character Templates - Romulan - Military Templates>
+Romulan Enlisted Basic Training (Prime Directive),_
+	displaycost(12), cost(0),_
+	description(A Romulan graduate of basic training),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Military Rank}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=1pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=1pts,_
+		{SK:Soldier}=2pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)}_
+	),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an Electronics Operation skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Survival skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Radioactive Wasteland),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	)
+
+Romulan Officer Cantidate School (Prime Directive),_
+	displaycost(29), cost(0),_
+	description(A talented member of the romulan military promoted through the ranks and sent to OCS, includes the Romulan Enlisted Basic Training  template),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Military Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=2pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=2pts,_
+		{SK:Soldier}=2pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Imperal Military Academy graduates)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}_
+	),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each or one skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Survival skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Radioactive Wasteland),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	),_
+	select5(_
+		text("Chose an Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (Materials),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select6(_
+		text("Chose and operations skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select7(_
+		text("Chose a Strategy skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select8(_
+		text("Chose a Tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics (Infantry),_
+			SK:Tactics,_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Imperial Military Academy (Prime Directive),_
+	displaycost(34), cost(0),_
+	description(A romulan officer who got into the Academy due to political conections),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Military Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=2pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=2pts,_
+		{SK:Soldier}=2pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)}_
+	),_
+	select1(_
+		text("Chose an armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose and Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose and Operations skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose a Strategy skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("chose a Tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Imperial Leadership School - Academy Graduate (Prime Directive),_
+	displaycost(64), cost(0),_
+	description(A romulan officer who got into the Academy due to political conections and went to Leadership school.  Includes the Romulan Military Academy template),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Military Rank}=5,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=1pts,_
+		{SK:Navigation (Space)}=1pts,_
+		{SK:Politics}=1pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)}_
+	),_
+	select1(_
+		text("Chose an armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose and Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose and Operations skill for four point"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose two Strategy skills one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("chose a two Tactics skills, one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Imperial Command School - Academy Graduate (Prime Directive),_
+	displaycost(85), cost(0),_
+	description(A romulan officer who got into the Academy due to political conections and went to Leadership and Command schools.  Includes the Imperial Military Academy and Leadeship School Templates.),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Military Rank}=6,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=2pts,_
+		{SK:Beam Weapons (Rifle)}=2pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=2pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=4pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=2pts,_
+		{SK:Navigation (Space)}=2pts,_
+		{SK:Politics}=2pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=2pts,_
+		{SK:Leadership}=2pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)}_
+	),_
+	select1(_
+		text("Chose an armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose and Engineer skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose and Operations skill for eight points"),_
+		pointswanted(atleast 8),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose two Strategy skills one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("chose a two Tactics skills, one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Imperial Leadership School - OCS Grauate (Prime Directive),_
+	displaycost(57), cost(0),_
+	description(A talented Romulan officer who was promoted through the ranks and qualified for leadership school.  includes Basic Training and OCS templates.),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Military Rank}=5,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Navigation (Space)}=1pts,_
+		{SK:Politics}=1pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=1pts,_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Imperal Military Academy graduates)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}_
+	),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Electronics Operation skill for two points or two Electronics Operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose an Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Civil),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose an Operations skill for four points"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose a Strategy skill for one point an a second strategy skill for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("Chosed a Tactics skill for one point and a second for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Imperial Command School - OCS Grauate (Prime Directive),_
+	displaycost(78), cost(0),_
+	description(A talented Romulan officer who was promoted through the ranks and qualified for command school.  includes Basic Training, OCS, and leadership school templates.),_
+	page(PD:R81),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Military Rank}=6,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Code of Honor (Romulan Military)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=2pts,_
+		{SK:Beam Weapons (Rifle)}=2pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=2pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Military)}=4pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Military)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=2pts,_
+		{SK:Leadership}=2pts,_
+		{SK:Navigation (Space)}=2pts,_
+		{SK:Politics}=2pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=2pts,_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Imperal Military Academy graduates)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}_
+	),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Electronics Operation skill for two points or two Electronics Operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose an Engineer skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Civil),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose an Operations skill for eight points"),_
+		pointswanted(atleast 8),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose a Strategy skill for one point an a second strategy skill for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("Chosed a Tactics skill for one point and a second for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+<Character Templates, Character Templates - Romulan, Character Templates - Romulan - State Security Administration Templates>
+Romulan State Security Administration Basic Training (Prime Directive),_
+	displaycost(64), cost(0),_
+	description(A starting SSA agent),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=3,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=1,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{SK:Acting}=1pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Computer Programming}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Cryptography}=1pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Mathematics (Cryptology)}=1pts,_
+		{SK:Law (Romuan Military)}=2pts,_
+		{SK:Law (Romulan Civil)}=2pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Search}=2pts,_
+		{SK:Shadowing}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose a strategy skill for one point."),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose a tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Internal Security Directorate Training (Prime Directive),_
+	displaycost(76), cost(0),_
+	description(A Romulan ISD member, incudes SSA Basic training.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=3,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=1,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{SK:Acting}=1pts,_
+		{SK:Beam Weapons (Pistol)}=2pts,_
+		{SK:Beam Weapons (Rifle)}=2pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Computer Programming}=1pts,_
+		{SK:Criminology}=4pts,_
+		{SK:Cryptography}=4pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Mathematics (Cryptology)}=2pts,_
+		{SK:Law (Romulan Military)}=2pts,_
+		{SK:Law (Romulan Civil)}=2pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Search}=2pts,_
+		{SK:Shadowing}=4pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Streetwise}=2pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose a strategy skill for one point."),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose a tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Inteligence Directorate Training (Prime Directive),_
+	displaycost(76), cost(0),_
+	description(A Romulan ID member, incudes SSA Basic training.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=3,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=1,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{SK:Acting}=1pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:Computer Programming}=4pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Cryptography}=4pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Intelligence Analysis}=4pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=2pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Mathematics (Cryptology)}=2pts,_
+		{SK:Law (Romulan Military)}=2pts,_
+		{SK:Law (Romulan Civil)}=2pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Search}=2pts,_
+		{SK:Shadowing}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose three Electronics operations skills for one point each"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 3),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose a strategy skill for one point."),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose a tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Operations Directorate Training (Prime Directive),_
+	displaycost(80), cost(0),_
+	description(A Romulan OD member, incudes SSA Basic training.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=3,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=1,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{SK:Acting}=2pts,_
+		{SK:Beam Weapons (Pistol)}=4pts,_
+		{SK:Beam Weapons (Rifle)}=4pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Computer Programming}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Cryptography}=1pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=2pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=4pts,_
+		{SK:Mathematics (Applied)}=1pts,_
+		{SK:Mathematics (Cryptology)}=1pts,_
+		{SK:Law (Romulan Military)}=2pts,_
+		{SK:Law (Romulan Civil)}=2pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Search}=4pts,_
+		{SK:Shadowing}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose a strategy skill for one point."),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose a tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan State Security Administration Officer Training (Prime Directive),_
+	displaycost(99), cost(0),_
+	description(A SSA Officer),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=4,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=2,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{AD:Social Regard (Respected)}=1,_
+		{SK:Administration}=4pts,_
+		{SK:Astronomy}=2pts,_
+		{SK:Acting}=1pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:Computer Programming}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Cryptography}=1pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=2pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Mathematics (Cryptology)}=1pts,_
+		{SK:Law (Romuan Military)}=4pts,_
+		{SK:Law (Romulan Civil)}=4pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Search}=2pts,_
+		{SK:Savoir-Faire (Military)}=2pts,_
+		{SK:Shadowing}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for two points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose two strategy skills for one point each."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose two tactics skill for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	),_
+	select4(_
+		text("Chose an Operations skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	)
+
+Romulan Internal Security Directorate Officer (Prime Directive),_
+	displaycost(110), cost(0),_
+	description(A Romulan ISD Officer, incudes SSA Officer training.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=4,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=2,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{AD:Social Regard (Respected)}=1,_
+		{SK:Acting}=1pts,_
+		{SK:Administration}=4pts,_
+		{SK:Astronomy}=2pts,_
+		{SK:Beam Weapons (Pistol)}=2pts,_
+		{SK:Beam Weapons (Rifle)}=2pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Computer Programming}=1pts,_
+		{SK:Criminology}=4pts,_
+		{SK:Cryptography}=4pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=2pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Mathematics (Cryptology)}=2pts,_
+		{SK:Law (Romulan Military)}=4pts,_
+		{SK:Law (Romulan Civil)}=4pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Savoir-Faire (Military)}=2pts,_
+		{SK:Search}=2pts,_
+		{SK:Shadowing}=4pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Streetwise}=2pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for two point each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose two strategy skills for one point each."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose two tactics skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	),_
+	select4(_
+		text("Chose an Operations skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	)
+
+Romulan Inteligence Directorate Officer (Prime Directive),_
+	displaycost(110), cost(0),_
+	description(A Romulan ID Officer, incudes SSA Officer training.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=4,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=2,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{AD:Social Regard (Respected)}=1,_
+		{SK:Acting}=1pts,_
+		{SK:Administration}=4pts,_
+		{SK:Astronomy}=2pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:Computer Programming}=4pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Cryptography}=4pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Intelligence Analysis}=4pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=2pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Mathematics (Cryptology)}=2pts,_
+		{SK:Law (Romulan Military)}=4pts,_
+		{SK:Law (Romulan Civil)}=4pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Savoir-Faire (Military)}=2pts,_
+		{SK:Search}=2pts,_
+		{SK:Shadowing}=2pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for two point each and one skill for one point"),_
+		pointswanted(atleast 5),_
+		itemswanted(atleast 3),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose two strategy skills for one point each."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose two tactics skill for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	),_
+	select4(_
+		text("Chose an Operations skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	)
+
+Romulan Operations Directorate Officer Training (Prime Directive),_
+	displaycost(115), cost(0),_
+	description(A Romulan OD member, incudes SSA Basic training.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=3,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Rank (SSA)}=4,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Security Clearance}=2,_
+		{AD:Very Fit},_
+		{DI:Code of Honor (SSA)}=1,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{AD:Social Regard (Feared)}=1,_
+		{AD:Social Regard (Respected)}=1,_
+		{SK:Administration}=4pts,_
+		{SK:Astronomy}=2pts,_
+		{SK:Acting}=2pts,_
+		{SK:Beam Weapons (Pistol)}=4pts,_
+		{SK:Beam Weapons (Rifle)}=4pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:Computer Programming}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Cryptography}=1pts,_
+		{SK:Escape}=1pts,_
+		{SK:Explosives (Demolition)}=1pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Garrote}=2pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Intimidation}=4pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Mathematics (Cryptology)}=1pts,_
+		{SK:Law (Romulan Military)}=4pts,_
+		{SK:Law (Romulan Civil)}=4pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Lockpicking}=1pts,_
+		{SK:Search}=4pts,_
+		{SK:Savoir-Faire (Military)}=2pts,_
+		{SK:Shadowing}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Traps}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{DI:Duty (Romulan Empire)}=4 _
+				with {"Extremely Hazardous", -5,group(Duty),page(B134),level(1),valuenum(-5)}_
+	),_
+	select1(_
+		text("Chose two Electronics operations skills for two points each"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select2(_
+		text("Chose two strategy skills for one point each."),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select3(_
+		text("chose two tactics skill for one point eacg"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	),_
+	select4(_
+		text("Chose an Operations skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	)
+
+<Character Templates, Character Templates - Romulan, Character Templates - Romulan - Star Police Templates>
+Romulan Star Police Basic Training (Prime Directive),_
+	displaycost(20), cost(0),_
+	description(A Romulan Police starship crewman),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Police Rank}=1,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=1pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Soldier}=2pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose an Electronics Operation skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Survival skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Radioactive Wasteland),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	)
+
+Romulan Star Police Officer School (Prime Directive),_
+	displaycost(40), cost(0),_
+	description(A talented member of the romulan Police promoted through the ranks and sent to OCS, includes the Romulan Star Police Basic Training  template),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Police Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=2pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=2pts,_
+		{SK:Soldier}=2pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military or Academy graduates)", -10%/-20%,group(_General),page(B110),x(),level(1),valuenum(-10)}),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each or one skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Survival skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Radioactive Wasteland),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	),_
+	select5(_
+		text("Chose an Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (Materials),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select6(_
+		text("Chose and operations skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select7(_
+		text("Chose a Strategy skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select8(_
+		text("Chose a Tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics (Infantry),_
+			SK:Tactics,_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Star Police Academy (Prime Directive),_
+	displaycost(42), cost(0),_
+	description(A romulan Star Police officer who got into the Academy due to political conections),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Police Rank}=4,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=2pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=2pts,_
+		{SK:Soldier}=2pts,_
+		{SK:Spacer}=2pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}),_
+	select1(_
+		text("Chose an armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose and Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose and Operations skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose a Strategy skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("chose a Tactics skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Star Police Leadership School - Academy Graduate (Prime Directive),_
+	displaycost(72), cost(0),_
+	description(A romulan Star Police Officer who got into the Academy due to political conections and went to Leadership school. Includes the Romulan Military Academy template),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Police Rank}=5,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=1pts,_
+		{SK:Navigation (Space)}=1pts,_
+		{SK:Politics}=1pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=1pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}_
+	),_
+	select1(_
+		text("Chose an armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose and Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose and Operations skill for four point"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose two Strategy skills one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("chose a two Tactics skills, one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Star Police Command School - Academy Graduate (Prime Directive),_
+	displaycost(93), cost(0),_
+	description(A romulan star police officer who got into the Academy due to political conections and went to Leadership and Command schools.  Includes the Imperial Military Academy and Leadeship School Templates.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Fit},_
+		{AD:Police Rank}=6,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=2pts,_
+		{SK:Beam Weapons (Rifle)}=2pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=2pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan MCivil)}=4pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=2pts,_
+		{SK:Navigation (Space)}=2pts,_
+		{SK:Politics}=2pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=2pts,_
+		{SK:Leadership}=2pts,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military)", -10%/-20%,group(_General),page(B110),x(),level(5),valuenum(-50)}_
+	),_
+	select1(_
+		text("Chose an armoury skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose two Electronics Operation skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose and Engineer skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose and Operations skill for eight points"),_
+		pointswanted(atleast 8),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose two Strategy skills one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("chose a two Tactics skills, one for one point the other for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Star Police Leadership School - OCS Grauate (Prime Directive),_
+	displaycost(65), cost(0),_
+	description(A talented Romulan Star Police officer who was promoted through the ranks and qualified for leadership school.includes Star Police Basic Training and OCS templates.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Police Rank}=5,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Seniority}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Legal Enforcement Powers}=1,_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Beam Weapons (Rifle)}=1pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=1pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=1pts,_
+		{SK:Leadership}=1pts,_
+		{SK:Navigation (Space)}=1pts,_
+		{SK:Politics}=1pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=1pts,_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military or Academy Graduates)", -10%/-20%,group(_General),page(B110),x(),level(1),valuenum(-10)}_
+	),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Electronics Operation skill for two points or two Electronics Operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose an Engineer skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Civil),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose an Operations skill for four points"),_
+		pointswanted(atleast 4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose a Strategy skill for one point an a second strategy skill for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("Chosed a Tactics skill for one point and a second for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+Romulan Star Police Command School - OCS Grauate (Prime Directive),_
+	displaycost(86), cost(0),_
+	description(A talented Romulan star policeofficer who was promoted through the ranks and qualified for command school.  includes Star Police Basic Training, OCS, and leadership school templates.),_
+	page(PD:R82),_
+	noresync(yes),_
+	adds(_
+		{AD:Fearlessness}=1,_
+		{AD:Police Rank}=6,_
+		{AD:Resistant (Disease)}=2,_
+		{AD:Social Regard (Respected)}=1,_
+		{AD:Seniority}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{DI:Code of Honor (Romulan Police)},_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Astronomy}=4pts,_
+		{SK:Beam Weapons (Pistol)}=2pts,_
+		{SK:Beam Weapons (Rifle)}=2pts,_
+		{SK:Boxing}=1pts,_
+		{SK:Computer Operation}=4pts,_
+		{SK:First Aid}=2pts,_
+		{SK:Free Fall}=1pts,_
+		{SK:Gunner (Beams)}=2pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=4pts,_
+		{SK:Mathematics (Applied)}=2pts,_
+		{SK:Running}=2pts,_
+		{SK:Savoir-Faire (Police)}=4pts,_
+		{SK:Soldier}=4pts,_
+		{SK:Spacer}=4pts,_
+		{SK:Stealth}=2pts,_
+		{SK:Survival}=1pts,_
+		{SK:Vacc Suit}=1pts,_
+		{SK:Administration}=2pts,_
+		{SK:Diplomacy}=2pts,_
+		{SK:Leadership}=2pts,_
+		{SK:Navigation (Space)}=2pts,_
+		{SK:Politics}=2pts,_
+		{SK:Shiphandling (Starship (Warp Powered))}=2pts,_
+		{DI:Social Stigma (Second-Class Citizen)} _
+				with {"Accessibility (Only from Romulan Military or Academy graduates)", -10%/-20%,group(_General),page(B110),x(),level(1),valuenum(-10)}_
+	),_
+	select1(_
+		text("Chose an Armory skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Armoury (Body Armor),_
+			SK:Armoury (Disruptors),_
+			SK:Armoury (Force Shields),_
+			SK:Armoury (Heavy Weapons),_
+			SK:Armoury (Mauler),_
+			SK:Armoury (Melee Weapons),_
+			SK:Armoury (Missile Weapons),_
+			SK:Armoury (Personal Phasers),_
+			SK:Armoury (Plasma Torpedoes),_
+			SK:Armoury (Shipboard Phasers),_
+			SK:Armoury (Small Arms),_
+			SK:Armoury (Vehicular Armor)_
+		)_
+	),_
+	select2(_
+		text("Chose a Electronics Operation skill for two points or two Electronics Operations skills for one point each"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Communications),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	),_
+	select3(_
+		text("Chose a Mechanic skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Mechanic (Auxiliary Systems),_
+			SK:Mechanic (Fighters),_
+			SK:Mechanic (Hull & Superstructure),_
+			SK:Mechanic (Impulse Drive),_
+			SK:Mechanic (PF's & Interceptors),_
+			SK:Mechanic (Reactors & Power),_
+			SK:Mechanic (Shuttlecraft),_
+			SK:Mechanic (Warp Drive)_
+		)_
+	),_
+	select4(_
+		text("Chose an Engineer skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Auxiliary Systems),_
+			SK:Engineer (Civil),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Fighters),_
+			SK:Engineer (Hull & Superstructure),_
+			SK:Engineer (Impulse Drive),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Mauler),_
+			SK:Engineer (Mining),_
+			SK:Engineer (PF's & Interceptors),_
+			SK:Engineer (Reactors & Power),_
+			SK:Engineer (Shipboard Phasers),_
+			SK:Engineer (Shuttlecraft),_
+			SK:Engineer (Warp Drive)_
+		)_
+	),_
+	select5(_
+		text("Chose an Operations skill for eight points"),_
+		pointswanted(atleast 8),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Operations (Air),_
+			SK:Operations (Land),_
+			SK:Operations (Sea),_
+			SK:Operations (Space)_
+		)_
+	),_
+	select6(_
+		text("Chose a Strategy skill for one point an a second strategy skill for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Strategy (Air),_
+			SK:Strategy (Interstellar),_
+			SK:Strategy (Land),_
+			SK:Strategy (Naval),_
+			SK:Strategy (Space)_
+		)_
+	),_
+	select7(_
+		text("Chosed a Tactics skill for one point and a second for two points"),_
+		pointswanted(atleast 3),_
+		itemswanted(atleast 2),_
+		list(_
+			SK:Tactics,_
+			SK:Tactics (Infantry),_
+			SK:Tactics (Space)_
+		)_
+	)
+
+<Character Templates, Character Templates - Romulan, Character Templates - Romulan - Civilian Templates>
+Romulan Civilian Housed Nobilty (Prime Directive),_
+	displaycost(varies), cost(0),_
+	description(A romulan noble on the board of directors equivalent or a senator, or perhaps his idiot niece/nephew),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{AD:Status}=2,_
+		{AD:Wealth}=6,_
+		{LA:Language - Native}=1,_
+		{CU:Cultural Familiarity (Native)},_
+		{AD:Independent Income}=1,_
+		{AD:Patron (House)}=1,_
+		{SK:Savoir-Faire (High Society)}=1pts,_
+		{DI:Duty (House)}=2_
+	),_
+	select1(_
+		text("Chose at least one profesional skill at level 14+"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Accounting,_
+			SK:Administration,_
+			SK:Architecture,_
+			SK:Computer Programming,_
+			SK:Diplomacy,_
+			SK:Economics,_
+			SK:Engineer (%type%),_
+			SK:Expert Skill (Computer Security),_
+			SK:Expert Skill (Epidemiology),_
+			SK:Expert Skill (Hydrology),_
+			SK:Expert Skill (Political Science),_
+			SK:Expert Skill (Xenology),_
+			SK:Finance,_
+			SK:Jeweler,_
+			SK:Law,_
+			SK:Leadership,_
+			SK:Linguistics,_
+			SK:Market Analysis,_
+			SK:Masonry,_
+			SK:Mathematics (Surveying),_
+			SK:Mathematics (Statistics),_
+			SK:Merchant,_
+			SK:Metallurgy,_
+			SK:Musical Composition,_
+			SK:Physician,_
+			SK:Physics,_
+			SK:Politics,_
+			SK:Professional Skill ([IQ based]),_
+			SK:Professional Skill (Air Traffic Controller),_
+			SK:Professional Skill (Brewer),_
+			SK:Professional Skill (Distiller),_
+			SK:Professional Skill (Dyer),_
+			SK:Professional Skill (Florist),_
+			SK:Professional Skill (Game Designer),_
+			SK:Professional Skill (Glassblower),_
+			SK:Professional Skill (Journalist),_
+			SK:Professional Skill (Law Enforcement),_
+			SK:Professional Skill (Tailor),_
+			SK:Professional Skill (Tanner),_
+			SK:Professional Skill (Vinter),_
+			SK:Professional Skill (Weaver),_
+			SK:Propaganda,_
+			SK:Prospecting,_
+			SK:Public Speaking,_
+			SK:Research,_
+			SK:Surgery,_
+			SK:Writing_
+		)_
+	)
+
+Romulan Civilian Affiliated House Member (Prime Directive),_
+	displaycost(varies), cost(0),_
+	description(A senior manager or corperate VP),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Patron (House)}=1,_
+		{AD:Status}=3,_
+		{AD:Wealth}=3,_
+		{DI:Duty (House)}=2_
+	),_
+	select1(_
+		text("Chose at least one professional skill at level 14+"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Accounting,_
+			SK:Administration,_
+			SK:Architecture,_
+			SK:Computer Programming,_
+			SK:Diplomacy,_
+			SK:Economics,_
+			SK:Engineer (%type%),_
+			SK:Expert Skill (Computer Security),_
+			SK:Expert Skill (Epidemiology),_
+			SK:Expert Skill (Hydrology),_
+			SK:Expert Skill (Political Science),_
+			SK:Expert Skill (Xenology),_
+			SK:Finance,_
+			SK:Jeweler,_
+			SK:Law,_
+			SK:Leadership,_
+			SK:Linguistics,_
+			SK:Market Analysis,_
+			SK:Masonry,_
+			SK:Mathematics (Surveying),_
+			SK:Mathematics (Statistics),_
+			SK:Merchant,_
+			SK:Metallurgy,_
+			SK:Musical Composition,_
+			SK:Physician,_
+			SK:Physics,_
+			SK:Politics,_
+			SK:Professional Skill ([IQ based]),_
+			SK:Professional Skill (Air Traffic Controller),_
+			SK:Professional Skill (Brewer),_
+			SK:Professional Skill (Distiller),_
+			SK:Professional Skill (Dyer),_
+			SK:Professional Skill (Florist),_
+			SK:Professional Skill (Game Designer),_
+			SK:Professional Skill (Glassblower),_
+			SK:Professional Skill (Journalist),_
+			SK:Professional Skill (Law Enforcement),_
+			SK:Professional Skill (Tailor),_
+			SK:Professional Skill (Tanner),_
+			SK:Professional Skill (Vinter),_
+			SK:Professional Skill (Weaver),_
+			SK:Propaganda,_
+			SK:Prospecting,_
+			SK:Public Speaking,_
+			SK:Research,_
+			SK:Surgery,_
+			SK:Writing_
+		)_
+	)
+
+Romulan Civilian Associated House Member (Prime Directive),_
+	displaycost(varies), cost(0),_
+	description(A manager,  department supervisor, skilled technician or artizan.),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Status}=2,_
+		{AD:Wealth}=2,_
+		{AD:Patron (House)}=1,_
+		{DI:Duty (House)}=2_
+	),_
+	select1(_
+		text("Chose one or more professional skills at level 13+"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Accounting,_
+			SK:Administration,_
+			SK:Architecture,_
+			SK:Computer Programming,_
+			SK:Diplomacy,_
+			SK:Economics,_
+			SK:Engineer (%type%),_
+			SK:Expert Skill (Computer Security),_
+			SK:Expert Skill (Epidemiology),_
+			SK:Expert Skill (Hydrology),_
+			SK:Expert Skill (Political Science),_
+			SK:Expert Skill (Xenology),_
+			SK:Finance,_
+			SK:Jeweler,_
+			SK:Law,_
+			SK:Leadership,_
+			SK:Linguistics,_
+			SK:Market Analysis,_
+			SK:Masonry,_
+			SK:Mathematics (Surveying),_
+			SK:Mathematics (Statistics),_
+			SK:Merchant,_
+			SK:Metallurgy,_
+			SK:Musical Composition,_
+			SK:Physician,_
+			SK:Physics,_
+			SK:Politics,_
+			SK:Professional Skill ([IQ based]),_
+			SK:Professional Skill (Air Traffic Controller),_
+			SK:Professional Skill (Brewer),_
+			SK:Professional Skill (Distiller),_
+			SK:Professional Skill (Dyer),_
+			SK:Professional Skill (Florist),_
+			SK:Professional Skill (Game Designer),_
+			SK:Professional Skill (Glassblower),_
+			SK:Professional Skill (Journalist),_
+			SK:Professional Skill (Law Enforcement),_
+			SK:Professional Skill (Tailor),_
+			SK:Professional Skill (Tanner),_
+			SK:Professional Skill (Vinter),_
+			SK:Professional Skill (Weaver),_
+			SK:Propaganda,_
+			SK:Prospecting,_
+			SK:Public Speaking,_
+			SK:Research,_
+			SK:Surgery,_
+			SK:Writing_
+		)_
+	)
+
+Romulan Civilian House Employee (Prime Directive),_
+	displaycost(varies), cost(0),_
+	description(A long term employee of a romulan house),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Status}=1,_
+		{AD:Wealth}=1,_
+		{AD:Patron (House)}=1,_
+		{DI:Duty (House)}=2_
+	),_
+	select1(_
+		text("Chose one or more professional skills at level 12+"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Accounting,_
+			SK:Administration,_
+			SK:Architecture,_
+			SK:Computer Programming,_
+			SK:Diplomacy,_
+			SK:Economics,_
+			SK:Engineer (%type%),_
+			SK:Expert Skill (Computer Security),_
+			SK:Expert Skill (Epidemiology),_
+			SK:Expert Skill (Hydrology),_
+			SK:Expert Skill (Political Science),_
+			SK:Expert Skill (Xenology),_
+			SK:Finance,_
+			SK:Jeweler,_
+			SK:Law,_
+			SK:Leadership,_
+			SK:Linguistics,_
+			SK:Market Analysis,_
+			SK:Masonry,_
+			SK:Mathematics (Surveying),_
+			SK:Mathematics (Statistics),_
+			SK:Merchant,_
+			SK:Metallurgy,_
+			SK:Musical Composition,_
+			SK:Physician,_
+			SK:Physics,_
+			SK:Politics,_
+			SK:Professional Skill ([IQ based]),_
+			SK:Professional Skill (Air Traffic Controller),_
+			SK:Professional Skill (Brewer),_
+			SK:Professional Skill (Distiller),_
+			SK:Professional Skill (Dyer),_
+			SK:Professional Skill (Florist),_
+			SK:Professional Skill (Game Designer),_
+			SK:Professional Skill (Glassblower),_
+			SK:Professional Skill (Journalist),_
+			SK:Professional Skill (Law Enforcement),_
+			SK:Professional Skill (Tailor),_
+			SK:Professional Skill (Tanner),_
+			SK:Professional Skill (Vinter),_
+			SK:Professional Skill (Weaver),_
+			SK:Propaganda,_
+			SK:Prospecting,_
+			SK:Public Speaking,_
+			SK:Research,_
+			SK:Surgery,_
+			SK:Writing_
+		)_
+	)
+
+Romulan civilian Houseless (Prime Directive),_
+	displaycost(varies), cost(0),_
+	page(User),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{DI:Wealth}=1,_
+		{DI:Status}=1_
+	),_
+	select1(_
+		text("Chose a profrssional skill at level 10+ and decide if this character has a house as an enemy"),_
+		pointswanted(upto 30),_
+		pointswanted(atleast -30),_
+		itemswanted(atleast 1),_
+		multitype(yes),_
+		list(_
+			DI:Enemy (Formidable group),_
+			SK:Accounting,_
+			SK:Administration,_
+			SK:Architecture,_
+			SK:Computer Programming,_
+			SK:Diplomacy,_
+			SK:Economics,_
+			SK:Engineer (%type%),_
+			SK:Expert Skill (Computer Security),_
+			SK:Expert Skill (Epidemiology),_
+			SK:Expert Skill (Hydrology),_
+			SK:Expert Skill (Political Science),_
+			SK:Expert Skill (Xenology),_
+			SK:Finance,_
+			SK:Jeweler,_
+			SK:Law,_
+			SK:Leadership,_
+			SK:Linguistics,_
+			SK:Market Analysis,_
+			SK:Masonry,_
+			SK:Mathematics (Surveying),_
+			SK:Mathematics (Statistics),_
+			SK:Merchant,_
+			SK:Metallurgy,_
+			SK:Musical Composition,_
+			SK:Physician,_
+			SK:Physics,_
+			SK:Politics,_
+			SK:Professional Skill ([IQ based]),_
+			SK:Professional Skill (Air Traffic Controller),_
+			SK:Professional Skill (Brewer),_
+			SK:Professional Skill (Distiller),_
+			SK:Professional Skill (Dyer),_
+			SK:Professional Skill (Florist),_
+			SK:Professional Skill (Game Designer),_
+			SK:Professional Skill (Glassblower),_
+			SK:Professional Skill (Journalist),_
+			SK:Professional Skill (Law Enforcement),_
+			SK:Professional Skill (Tailor),_
+			SK:Professional Skill (Tanner),_
+			SK:Professional Skill (Vinter),_
+			SK:Professional Skill (Weaver),_
+			SK:Propaganda,_
+			SK:Prospecting,_
+			SK:Public Speaking,_
+			SK:Research,_
+			SK:Surgery,_
+			SK:Writing_
+		)_
+	)
+
+<Character Templates, Character Templates - Romulan, Character Templates - Romulan - Police>
+Romulan Policeman (Prime Directive),_
+	displaycost(16), cost(0),_
+	description(The typical cop on the beat, "Papers please."),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Police Rank}=1,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (Police)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Forensics}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=1pts,_
+		{SK:Professional Skill (Law Enforcement)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Tonfa}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an Electronics Operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Romulan Police Supervisor (Prime Directive),_
+	displaycost(26), cost(0),_
+	description(The supervisor the cop on the beat takes you to.),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Police Rank}=2,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (Police)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Forensics}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=4pts,_
+		{SK:Professional Skill (Law Enforcement)}=2pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Tonfa}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Administration}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an Electronics Operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Romulan Undercover Detective (Prime Directive),_
+	displaycost(25), cost(0),_
+	description(The secret cop on the beat.),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Fearlessness}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Police Rank}=2,_
+		{AD:Reputation (police)}=1,_
+		{AD:Security Clearance}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (Police)},_
+		{DI:Duty (Empire)}=4,_
+		{DI:Sense of Duty (Empire)}=3,_
+		{SK:Beam Weapons (Pistol)}=1pts,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Electronics Operation (Communications)}=2pts,_
+		{SK:First Aid}=1pts,_
+		{SK:Forensics}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Judo}=1pts,_
+		{SK:Karate}=1pts,_
+		{SK:Knife}=1pts,_
+		{SK:Law (Romulan Civil)}=2pts,_
+		{SK:Professional Skill (Law Enforcement)}=1pts,_
+		{SK:Running}=1pts,_
+		{SK:Savoir-Faire (Police)}=1pts,_
+		{SK:Tonfa}=1pts,_
+		{SK:Stealth}=1pts,_
+		{SK:Swimming}=1pts,_
+		{SK:Acting}=1pts,_
+		{SK:Intelligence Analysis}=1pts,_
+		{SK:Research}=1pts_
+	),_
+	select1(_
+		text("Chose a Driving skill for one point"),_
+		pointswanted(atleast 1),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Driving (Automobile),_
+			SK:Driving (Construction Equipment),_
+			SK:Driving (Halftrack),_
+			SK:Driving (Heavy Wheeled),_
+			SK:Driving (Hovercraft),_
+			SK:Driving (Locomotive),_
+			SK:Driving (Mecha),_
+			SK:Driving (Motorcycle),_
+			SK:Driving (Tracked)_
+		)_
+	),_
+	select2(_
+		text("Chose an Electronics Operation skill for two points"),_
+		pointswanted(atleast 2),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Electronics Operation (Cloaking Device),_
+			SK:Electronics Operation (Electronic Warfare),_
+			SK:Electronics Operation (Force Shields),_
+			SK:Electronics Operation (Media),_
+			SK:Electronics Operation (Medical),_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Security),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Surveillance),_
+			SK:Electronics Operation (Tractor Beam),_
+			SK:Electronics Operation (Transporter),_
+			SK:Electronics Operation (Tricorder)_
+		)_
+	)
+
+Romulan Magistrate (Prime Directive),_
+	displaycost(15), cost(0),_
+	description(The local Judge. skills may be higher and may include house affiliation.),_
+	page(PD:R141),_
+	noresync(yes),_
+	adds(_
+		{CU:Cultural Familiarity (Native)},_
+		{LA:Language - Native}=1,_
+		{AD:Legal Enforcement Powers}=1,_
+		{AD:Reputation (Judge)}=1,_
+		{AD:Security Clearance}=1,_
+		{AD:Status}=1,_
+		{DI:Code of Honor (Law)}=2,_
+		{DI:Duty (Romulan Empire)}=4,_
+		{DI:Sense of Duty (Romulan Empire)}=3,_
+		{SK:Computer Operation}=1pts,_
+		{SK:Criminology}=2pts,_
+		{SK:Detect Lies}=1pts,_
+		{SK:Interrogation}=2pts,_
+		{SK:Law (Romulan Civil)}=8pts,_
+		{SK:Professional Skill (Lawyer)}=12pts,_
+		{SK:Public Speaking}=4pts_
+	)
+
+<Racial Templates - Romulan Star Empire - Birds of Prey>
+Ru'Ahkthur - Romulan Eagle (Prime Directive),_
+	displaycost(105), cost(0), cat(Racial Templates, Racial Templates - Romulan Star Empire),_
+	description(a virtualy invisible bird of prey),_
+	page(PD:R68),_
+	race(Ru'Ahkthur (Romulan Eagle)),_
+	noresync(yes),_
+	owns(yes),_
+	adds(_
+		{AD:Chameleon}=4 _
+				with {"Accessibility (Only in an outdoor environment)", -10%/-20%,group(_General),page(B110),x(),level(1),valuenum(-10)},_
+		{AD:Claws (Sharp Claws)},_
+		{AD:Enhanced Dodge}=3,_
+		{AD:Enhanced Move (Air)}=4,_
+		{AD:Flight} _
+				with {"Winged", -25%,group(Flight),page(B56),level(1),valuenum(-25)},_
+		{AD:Parabolic Hearing}=6,_
+		{AD:Silence}=2,_
+		{AD:Teeth (Sharp Beak)},_
+		{PE:Penetrating Voice},_
+		{DI:Bestial},_
+		{DI:Cannot Speak},_
+		{DI:Hidebound},_
+		{DI:No Fine Manipulators},_
+		{DI:Sleepy}=1,_
+		{SK:Camouflage}==0pts,_
+		{SK:Survival}=1.0pts_
+	),_
+	creates(_
+		{DI:Air Move Penalty from Ru'Ahkthur (Romulan Eagle), -10, gives(-5.0 to ST:Air Move)},_
+		{DI:Basic Move Penalty from Ru'Ahkthur (Romulan Eagle), -20, gives(-4.0 to ST:Basic Move)},_
+		{AD:DX Bonus from Ru'Ahkthur (Romulan Eagle), 48, gives(+4.0 to ST:DX)},_
+		{AD:HT Bonus from Ru'Ahkthur (Romulan Eagle), 20, gives(+2.0 to ST:HT)},_
+		{DI:IQ Penalty from Ru'Ahkthur (Romulan Eagle), -80, gives(-4.0 to ST:IQ)},_
+		{AD:Perception Bonus from Ru'Ahkthur (Romulan Eagle), 60, gives(+12.0 to ST:Perception)},_
+		{DI:ST Penalty from Ru'Ahkthur (Romulan Eagle), -40, gives(-4.0 to ST:ST)},_
+		{AD:Will Bonus from Ru'Ahkthur (Romulan Eagle), 20, gives(+4.0 to ST:Will)},_
+		{DI:Size Modifier Penalty from Ru'Ahkthur (Romulan Eagle), 0, gives(-1 to ST:Size Modifier)}_
+	)
+
+An'Rulak - Female - Romulan Kestrel  (Prime Directive),_
+	displaycost(28), cost(0), cat(Racial Templates, Racial Templates - Romulan Star Empire),_
+	description(a smaller cousin to the romulan eagle),_
+	page(PD:R69),_
+race(An'Rulak (Romulan Kestrel) female),_
+	noresync(yes),_
+owns(yes),_
+	adds(_
+		{AD:Claws (Sharp Claws)},_
+		{AD:Enhanced Move (Air)}=2,_
+		{AD:Enhanced Dodge}=3,_
+		{AD:Flight} _
+				with {"Winged", -25%,group(Flight),page(B56),level(1),valuenum(-25)},_
+		{AD:Infravision},_
+		{AD:Parabolic Hearing}=6,_
+		{AD:Peripheral Vision},_
+		{AD:Silence}=3,_
+		{AD:Teeth (Sharp Beak)},_
+		{AD:Temperature Tolerance}=2 _
+				with {"Accessibility (Cold only)", -10%/-20%,group(_General),page(B110),x(),level(3),valuenum(-30)},_
+		{AD:Ultrahearing},_
+		{DI:Bestial},_
+		{DI:Cannot Speak},_
+		{DI:Colorblindness},_
+		{DI:Hidebound},_
+		{DI:No Fine Manipulators},_
+		{SK:Survival}=1.0pts_
+	),_
+	creates(_
+		{DI:Basic Move Penalty from An'Rulak (Romulan Kestrel) female, -20, gives(-4.0 to ST:Basic Move)},_
+		{AD:DX Bonus from An'Rulak (Romulan Kestrel) female, 60, gives(+5.0 to ST:DX)},_
+		{DI:IQ Penalty from An'Rulak (Romulan Kestrel) female, -100, gives(-5.0 to ST:IQ)},_
+		{AD:Perception Bonus from An'Rulak (Romulan Kestrel) female, 50, gives(+10.0 to ST:Perception)},_
+		{DI:ST Penalty from An'Rulak (Romulan Kestrel) female, -90, gives(-9.0 to ST:ST)},_
+		{AD:Will Bonus from An'Rulak (Romulan Kestrel) female, 25, gives(+5.0 to ST:Will)},_
+		{DI:Size Modifier Penalty from An'Rulak (Romulan Kestrel) female, 0, gives(-5 to ST:Size Modifier)}_
+	)
+
+An'Rulak - Male - Romulan Kestrel (Prime Directive),_
+	displaycost(36), cost(0), cat(Racial Templates, Racial Templates - Romulan Star Empire),_
+	description(a smaller cousin of the romulan eagle),_
+	page(PD:R69),_
+race(An'Rulak (Romulan Kestrel) male),_
+	noresync(yes),_
+owns(yes),_
+	adds(_
+		{AD:Claws (Sharp Claws)},_
+		{AD:Enhanced Move (Air)}=2,_
+		{AD:Enhanced Dodge}=3,_
+		{AD:Flight} _
+				with {"Winged", -25%,group(Flight),page(B56),level(1),valuenum(-25)},_
+		{AD:Infravision},_
+		{AD:Parabolic Hearing}=6,_
+		{AD:Peripheral Vision},_
+		{AD:Silence}=3,_
+		{AD:Teeth (Sharp Beak)},_
+		{AD:Temperature Tolerance}=2 _
+				with {"Accessibility (Cold only)", -10%/-20%,group(_General),page(B110),x(),level(3),valuenum(-30)},_
+		{AD:Ultrahearing},_
+		{DI:Bestial},_
+		{DI:Cannot Speak},_
+		{DI:Colorblindness},_
+		{DI:Hidebound},_
+		{DI:No Fine Manipulators},_
+		{SK:Survival}=1.0pts_
+	),_
+	creates(_
+		{AD:Striker (Impaling; head ridges), 8,mods(Striker, Alternative Attack),page(B88),damage(thr + @if(@hasmod(Weak) then 0 else owner::basethdice) + @if("SK:Brawling::level" > ST:DX+1 then owner::basethdice else 0)),damtype(imp),reach(C),parry(0),skillused(ST:DX, SK:Brawling),dmg(thr), cat(Exotic, Physical, Natural Attacks, Exotic Physical)},_
+		{DI:Basic Move Penalty from An'Rulak (Romulan Kestrel) male, -20, gives(-4.0 to ST:Basic Move)},_
+		{AD:DX Bonus from An'Rulak (Romulan Kestrel) male, 60, gives(+5.0 to ST:DX)},_
+		{DI:IQ Penalty from An'Rulak (Romulan Kestrel) male, -100, gives(-5.0 to ST:IQ)},_
+		{AD:Perception Bonus from An'Rulak (Romulan Kestrel) male, 50, gives(+10.0 to ST:Perception)},_
+		{DI:ST Penalty from An'Rulak (Romulan Kestrel) male, -90, gives(-9.0 to ST:ST)},_
+		{AD:Will Bonus from An'Rulak (Romulan Kestrel) male, 25, gives(+5.0 to ST:Will)},_
+		{DI:Size Modifier Penalty from An'Rulak (Romulan Kestrel) male, 0, gives(-5 to ST:Size Modifier)}_
+	)
+
+Hur'Kaz - Remean Hawk (Prime Directive),_
+	displaycost(16), cost(0), cat(Racial Templates, Racial Templates - Romulan Star Empire),_
+	description(A hawk like predetor native to Remus),_
+	page(PD:R70),_
+race(Hur'Kaz (Remean Hawk)),_
+	noresync(yes),_
+owns(yes),_
+	adds(_
+		{AD:Acute Hearing}=2,_
+		{AD:Claws (Sharp Claws)},_
+		{AD:Enhanced Dodge}=4,_
+		{AD:Enhanced Move (Air)}=2,_
+		{AD:Flight} _
+				with {"Winged", -25%,group(Flight),page(B56),level(1),valuenum(-25)},_
+		{AD:Night Vision}=9,_
+		{AD:Parabolic Hearing}=6,_
+		{AD:Peripheral Vision},_
+		{AD:Silence}=2,_
+		{AD:Teeth (Sharp Beak)},_
+		{AD:Temperature Tolerance}=2 _
+				with {"Accessibility (cold only)", -10%/-20%,group(_General),page(B110),x(),level(3),valuenum(-30)},_
+		{AD:Ultrahearing},_
+		{PE:Fur},_
+		{PE:Penetrating Voice},_
+		{DI:Bestial},_
+		{DI:Cannot Speak},_
+		{DI:Colorblindness},_
+		{DI:Hidebound},_
+		{DI:No Fine Manipulators},_
+		{DI:Sleepy}=1,_
+		{SK:Survival}=1.0pts_
+	),_
+	creates(_
+		{AD:Air Move Bonus from Hur'Kaz (Remean Hawk), 2, gives(+1.0 to ST:Air Move)},_
+		{DI:Basic Move Penalty from Hur'Kaz (Remean Hawk), -15, gives(-3.0 to ST:Basic Move)},_
+		{AD:DX Bonus from Hur'Kaz (Remean Hawk), 24, gives(+2.0 to ST:DX)},_
+		{DI:IQ Penalty from Hur'Kaz (Remean Hawk), -100, gives(-5.0 to ST:IQ)},_
+		{AD:Perception Bonus from Hur'Kaz (Remean Hawk), 50, gives(+10.0 to ST:Perception)},_
+		{DI:ST Penalty from Hur'Kaz (Remean Hawk), -80, gives(-8.0 to ST:ST)},_
+		{AD:Will Bonus from Hur'Kaz (Remean Hawk), 25, gives(+5.0 to ST:Will)},_
+		{DI:Size Modifier Penalty from Hur'Kaz (Remean Hawk), 0, gives(-4 to ST:Size Modifier)}_
+	)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Romulan Civilian Affiliated House Member (Prime Directive)" with {replacetags(in "TE:Romulan Civilian Affiliated House Member (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Civilian Associated House Member (Prime Directive)" with {replacetags(in "TE:Romulan Civilian Associated House Member (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Civilian House Employee (Prime Directive)" with {replacetags(in "TE:Romulan Civilian House Employee (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Civilian Housed Nobilty (Prime Directive)" with {replacetags(in "TE:Romulan Civilian Housed Nobilty (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan civilian Houseless (Prime Directive)" with {replacetags(in "TE:Romulan civilian Houseless (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Enlisted Basic Training (Prime Directive)" with {replacetags(in "TE:Romulan Enlisted Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Imperial Command School - Academy Graduate (Prime Directive)" with {replacetags(in "TE:Romulan Imperial Command School - Academy Graduate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Imperial Command School - OCS Grauate (Prime Directive)" with {replacetags(in "TE:Romulan Imperial Command School - OCS Grauate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Imperial Leadership School - Academy Graduate (Prime Directive)" with {replacetags(in "TE:Romulan Imperial Leadership School - Academy Graduate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Imperial Leadership School - OCS Grauate (Prime Directive)" with {replacetags(in "TE:Romulan Imperial Leadership School - OCS Grauate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Imperial Military Academy (Prime Directive)" with {replacetags(in "TE:Romulan Imperial Military Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Inteligence Directorate Officer (Prime Directive)" with {replacetags(in "TE:Romulan Inteligence Directorate Officer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Inteligence Directorate Training (Prime Directive)" with {replacetags(in "TE:Romulan Inteligence Directorate Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Internal Security Directorate Officer (Prime Directive)" with {replacetags(in "TE:Romulan Internal Security Directorate Officer (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Internal Security Directorate Training (Prime Directive)" with {replacetags(in "TE:Romulan Internal Security Directorate Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Magistrate (Prime Directive)" with {replacetags(in "TE:Romulan Magistrate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Officer Cantidate School (Prime Directive)" with {replacetags(in "TE:Romulan Officer Cantidate School (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Operations Directorate Officer Training (Prime Directive)" with {replacetags(in "TE:Romulan Operations Directorate Officer Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Operations Directorate Training (Prime Directive)" with {replacetags(in "TE:Romulan Operations Directorate Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Police Supervisor (Prime Directive)" with {replacetags(in "TE:Romulan Police Supervisor (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Policeman (Prime Directive)" with {replacetags(in "TE:Romulan Policeman (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Academy (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Academy (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Basic Training (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Command School - Academy Graduate (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Command School - Academy Graduate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Command School - OCS Grauate (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Command School - OCS Grauate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Leadership School - Academy Graduate (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Leadership School - Academy Graduate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Leadership School - OCS Grauate (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Leadership School - OCS Grauate (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Star Police Officer School (Prime Directive)" with {replacetags(in "TE:Romulan Star Police Officer School (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan State Security Administration Basic Training (Prime Directive)" with {replacetags(in "TE:Romulan State Security Administration Basic Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan State Security Administration Officer Training (Prime Directive)" with {replacetags(in "TE:Romulan State Security Administration Officer Training (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Romulan Undercover Detective (Prime Directive)" with {replacetags(in "TE:Romulan Undercover Detective (Prime Directive)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

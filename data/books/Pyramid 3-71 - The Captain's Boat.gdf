@@ -1,0 +1,85 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Description=05/05/2021.
+Program=4.0.283
+Incomplete=Yes
+
+[AUTHOR]
+******************************************************************************************************\[START]
+*
+* GURPS® Character Assistant
+* Filename: Pyramid 3-71 - The Captain's Boad.gdf
+* Created: 
+* Modified: 
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS  sourcebook.
+* GURPS  is Copyright(C)  by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*
+*
+******************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* eric.frogkiller@gmail.com
+*
+* Or drop a message at:
+* http://forums.sjgames.com
+* 
+******************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is copyright (c) 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+*******************************************************************************************************\[STOP]
+[ADVANTAGES]
+******************************************************************************************************\[START]
+<Mundane Social>
+Patron (Spaceship), 1/2/3/5/10/15/20/25, mods(Frequency of Appearance, Patron, Patron Spaceship),_
+	upto(8), page(B72, p3/71:32), cat(Mundane, Social),_
+	levelnames(,,,,,,,), init(%PatronAliasList%),_
+	x(_
+		#ChoiceList(_
+				name(Patron),_
+				title(Patron Power),_
+				text(Select the approximate size of the ship:),_
+				picksallowed(1),_
+				method(bynumber),_
+				list(_
+						"[ 1] Hulk (2x Starting Wealth)",_
+						"[ 2] Fishing Boat (5x Starting Wealth)",_
+						"[ 3] Flying Wreck (20x Starting Wealth)",_
+						"[ 5] Shuttle (100x Starting Wealth)",_
+						"[10] Small Freighter (1,000x Starting Wealth)",_
+						"[15] Yacht (10,000x Starting Wealth)",_
+						"[20] Large Commercial (100,000x Starting Wealth)",_
+						"[25] Large Military (1,000,000x Starting Wealth)"_
+				),_
+			aliaslist(_
+					"1",_
+					"2",_
+					"3",_
+					"4",_
+					"5",_
+					"6",_
+					"7",_
+					"8"_
+					)_
+				)_
+			)
+
+*******************************************************************************************************\[STOP]
+[MODIFIERS]
+******************************************************************************************************\[START]
+<Patron Spaceship>
+Informal, -50%, group(Patron Spaceship), page(P3/71:33)
+Fixed Location, -50%, group(Patron Spaceship), page(P3/71:33)

@@ -1,0 +1,409 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+			This data file contains information taken from the GURPS High-Tech Pulp Guns Volume 2 sourcebook. _
+			GURPS High-Tech Pulp Guns Volume 2 is Copyright © 2008 by Steve Jackson Games
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS High-Tech Pulp Guns Volume 2.gdf
+//  Created: June 22, 2008
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS High-Tech Pulp Guns Volume 2 sourcebook.
+//  GURPS High-Tech Pulp Guns Volume 1 is Copyright © 2008 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com''
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<High-Tech, High-Tech Pulp Guns V2, High-Tech Pulp Guns V2 - Rifles, _Firearms, _Firearms - High-Tech>
+"Lebel Mle 1886, 8x50mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.5 lb.), page(PG2:14), basecost(600), baseweight(10), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.5 lb. Damage:6d+2 pi Acc:5 Range:1000/4200 RoF:1 Shots:8+2(3i) ST:10† Bulk:-6 Rcl:4 Skill:Guns (Rifle)),_
+	damage(6d+2), damtype(pi), minst(10†), rangehalfdam(1000), rangemax(4200), acc(5), rof(1), shots(8+2(3i)), rcl(4), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Mannlicher-Carcano Mod 91, 6.5x52mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(800), baseweight(8.9), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:5d+2 pi Acc:5 Range:750/3200 RoF:1 Shots:6(3) ST:9† Bulk:-6 Rcl:3 Skill:Guns (Rifle)),_
+	damage(5d+2), damtype(pi), minst(9†), rangehalfdam(750), rangemax(3200), acc(5), rof(1), shots(6(3)), rcl(3), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 92, .44-40", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.6 lb.), page(PG2:14), basecost(420), baseweight(7.6), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.6 lb. Damage:3d+1 pi Acc:3 Range:300/2200 RoF:2 Shots:15+1(2i) ST:9† Bulk:-5 Rcl:2 Skill:Guns (Rifle)),_
+	damage(3d+1), damtype(pi), minst(9†), rangehalfdam(300), rangemax(2200), acc(3), rof(2), shots(15+1(2i)), rcl(2), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 94, .30-30", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(450), baseweight(7.2), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:6d pi Acc:5 Range:900/3700 RoF:2 Shots:5+1(2i) ST:9† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(6d), damtype(pi), minst(9†), rangehalfdam(900), rangemax(3700), acc(5), rof(2), shots(5+1(2i)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 86, .45-70", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(650), baseweight(7.6), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:5d pi+ Acc:3 Range:470/3000 RoF:2 Shots:4+1(2i) ST:10† Bulk:-5 Rcl:4 Skill:Guns (Rifle)),_
+	damage(5d), damtype(pi+), minst(10†), rangehalfdam(470), rangemax(3000), acc(3), rof(2), shots(4+1(2i)), rcl(4), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Savage Model 99A, .303 Savage", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.27 lb.), page(PG2:14), basecost(700), baseweight(8.3), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.27 lb. Damage:6d+2 pi Acc:5 Range:1000/4200 RoF:2 Shots:5+1(2i) ST:9† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(6d+2), damtype(pi), minst(9†), rangehalfdam(1000), rangemax(4200), acc(5), rof(2), shots(5+1(2i)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Mauser Gew98, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(900), baseweight(9.5), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4600 RoF:1 Shots:5(3) ST:11† Bulk:-5 Rcl:4 Skill:Guns (Rifle)),_
+	damage(7d+1), damtype(pi), minst(11†), rangehalfdam(1100), rangemax(4600), acc(5), rof(1), shots(5(3)), rcl(4), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 03, .22 Winchester Auto", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.1 lb.), page(PG2:14), basecost(450), baseweight(5.9), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.1 lb. Damage:1d+2 pi- Acc:3 Range:75/1500 RoF:3 Shots:10(2i) ST:8† Bulk:-5 Rcl:2 Skill:Guns (Rifle)),_
+	damage(1d+2), damtype(pi-), minst(8†), rangehalfdam(75), rangemax(1500), acc(3), rof(3), shots(10(2i)), rcl(2), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"H&H Royal Double-Express, .600 NE", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.4 lb.), page(PG2:14), basecost(19500), baseweight(16.4), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.4 lb. Damage:5dx2 pi++ Acc:5 Range:800/4600 RoF:1 Shots:2(3i) ST:14† Bulk:-7 Rcl:7 Skill:Guns (Rifle) Notes:[1, 2, 3], [1] Lacks sling swivels (High-Tech, p. 154)., [2] Fine (accurate).),_
+	itemnotes(_
+				{Lacks sling swivels (High-Tech, p. 154).},{Fine (accurate).},{Always decorated (see Styling on p. 10 of High-Tech).}_
+			),_
+	damage(5dx2), damtype(pi++), minst(14†), rangehalfdam(800), rangemax(4600), acc(5), rof(1), shots(2(3i)), rcl(7), bulk(-7), notes([1, 2, 3]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 95, .405 Winchester", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.2 lb.), page(PG2:14), basecost(650), baseweight(8.2), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.2 lb. Damage:7d-1 pi+ Acc:4 Range:800/3400 RoF:1 Shots:3+1(2i) ST:11† Bulk:-5 Rcl:5 Skill:Guns (Rifle)),_
+	damage(7d-1), damtype(pi+), minst(11†), rangehalfdam(800), rangemax(3400), acc(4), rof(1), shots(3+1(2i)), rcl(5), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Mannlicher-Schönauer Modell 1903, 6.5x54mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(800), baseweight(6.9), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:5d+2 pi Acc:5 Range:600/3200 RoF:1 Shots:5+1(3) ST:10† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(5d+2), damtype(pi), minst(10†), rangehalfdam(600), rangemax(3200), acc(5), rof(1), shots(5+1(3)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 06, .22 LR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.1 lb.), page(PG2:14), basecost(225), baseweight(5), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.1 lb. Damage:1d+2 pi- Acc:3 Range:75/1500 RoF:2 Shots:12+1(2i) ST:7† Bulk:-5 Rcl:2 Skill:Guns (Rifle)),_
+	damage(1d+2), damtype(pi-), minst(7†), rangehalfdam(75), rangemax(1500), acc(3), rof(2), shots(12+1(2i)), rcl(2), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Remington Model 8, .35 Remington", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(800), baseweight(7.9), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:5d+2 pi Acc:5 Range:800/3500 RoF:3 Shots:5(3) ST:9† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(5d+2), damtype(pi), minst(9†), rangehalfdam(800), rangemax(3500), acc(5), rof(3), shots(5(3)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Springfield M1903, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(900), baseweight(8.8), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:1 Shots:5+1(3) ST:9† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(7d+1), damtype(pi), minst(9†), rangehalfdam(1100), rangemax(4500), acc(5), rof(1), shots(5+1(3)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Arisaka Meiji 38 Shiki, 6.5x50mmSR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.25 lb.), page(PG2:14), basecost(700), baseweight(9.4), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.25 lb. Damage:6d+1 pi Acc:5 Range:600/3200 RoF:1 Shots:5(3) ST:10† Bulk:-6 Rcl:3 Skill:Guns (Rifle)),_
+	damage(6d+1), damtype(pi), minst(10†), rangehalfdam(600), rangemax(3200), acc(5), rof(1), shots(5(3)), rcl(3), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Enfield SMLE Mk III, .303", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.6 lb.), page(PG2:14), basecost(700), baseweight(9.2), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.6 lb. Damage:6d+2 pi Acc:5 Range:800/3300 RoF:1 Shots:10(5) ST:10† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(6d+2), damtype(pi), minst(10†), rangehalfdam(800), rangemax(3300), acc(5), rof(1), shots(10(5)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 07, .351 Winchester", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(750), baseweight(7.8), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:4d pi Acc:4 Range:350/3800 RoF:3 Shots:5+1(3) ST:8† Bulk:-5 Rcl:2 Skill:Guns (Rifle)),_
+	damage(4d), damtype(pi), minst(8†), rangehalfdam(350), rangemax(3800), acc(4), rof(3), shots(5+1(3)), rcl(2), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Rigby Best Quality Double, .470 NE", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.24 lb.), page(PG2:14), basecost(17000), baseweight(11.2), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.24 lb. Damage:8d+2 pi+ Acc:4 Range:640/4000 RoF:1 Shots:2(3i) ST:14† Bulk:-6 Rcl:5 Skill:Guns (Rifle) Notes:[3]),_
+	itemnotes(_
+				{Always decorated (see Styling on p. 10 of High-Tech).}_
+			),_
+	damage(8d+2), damtype(pi+), minst(14†), rangehalfdam(640), rangemax(4000), acc(4), rof(1), shots(2(3i)), rcl(5), bulk(-6), notes([3]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"SIG-Mondragon Mod 1908, 7x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.6 lb.), page(PG2:14), basecost(1200), baseweight(10), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.6 lb. Damage:6d+2 pi Acc:5 Range:900/3600 RoF:3 Shots:8(3) ST:10† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(6d+2), damtype(pi), minst(10†), rangehalfdam(900), rangemax(3600), acc(5), rof(3), shots(8(3)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Stevens Number 14 1/2 Little Scout, .22 LR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.0077 lb.), page(PG2:14), basecost(70), baseweight(2.75), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.0077 lb. Damage:1d+2 pi- Acc:3 Range:75/1500 RoF:1 Shots:1(3) ST:6† Bulk:-4 Rcl:2 Skill:Guns (Rifle)),_
+	damage(1d+2), damtype(pi-), minst(6†), rangehalfdam(75), rangemax(1500), acc(3), rof(1), shots(1(3)), rcl(2), bulk(-4), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"H&H Best Quality Magazine, .375 H&H Magnum", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.35 lb.), page(PG2:14), basecost(4700), baseweight(10.3), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.35 lb. Damage:8d pi Acc:5 Range:1100/4600 RoF:1 Shots:4+1(2i) ST:11† Bulk:-6 Rcl:5 Skill:Guns (Rifle) Notes:[3]),_
+	itemnotes(_
+				{Always decorated (see Styling on p. 10 of High-Tech).}_
+			),_
+	damage(8d), damtype(pi), minst(11†), rangehalfdam(1100), rangemax(4600), acc(5), rof(1), shots(4+1(2i)), rcl(5), bulk(-6), notes([3]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Sestrorests AVF-16, 6.5x50mmSR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.7 lb.), page(PG2:14), basecost(1500), baseweight(10.8), techlvl(6), mods(Guns, Equipment), lc(2), description(TL:6 LC:2 Ammo:1.7 lb. Damage:6d+1 pi Acc:5 Range:600/3200 RoF:10 Shots:25(3) ST:10† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(6d+1), damtype(pi), minst(10†), rangehalfdam(600), rangemax(3200), acc(5), rof(10), shots(25(3)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Enfield M1917, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(800), baseweight(9.3), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:1 Shots:5+1(3) ST:9† Bulk:-6 Rcl:3 Skill:Guns (Rifle)),_
+	damage(7d+1), damtype(pi), minst(9†), rangehalfdam(1100), rangemax(4500), acc(5), rof(1), shots(5+1(3)), rcl(3), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Mauser T-Gew18, 13x92mmSR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.26 lb.), page(PG2:14), basecost(10000), baseweight(40), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:0.26 lb. Damage:5dx2 (2) pi Acc:5 Range:2100/8800 RoF:1 Shots:1(3i) ST:16B† Bulk:-8 Rcl:6 Skill:Guns (Rifle) Notes:[1, 4], [1] Lacks sling swivels (High-Tech, p. 154).),_
+	itemnotes(_
+				{Lacks sling swivels (High-Tech, p. 154).},{Effective LC2 during the pulp era.}_
+			),_
+	damage(5dx2), armordivisor(2), damtype(pi), minst(16B†), rangehalfdam(2100), rangemax(8800), acc(5), rof(1), shots(1(3i)), rcl(6), bulk(-8), notes([1, 4]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Browning M1918 BAR, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.6 lb.), page(PG2:14), basecost(2700), baseweight(17.1), techlvl(6), mods(Guns, Equipment), lc(2), description(TL:6 LC:2 Ammo:1.6 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:9 Shots:20(3) ST:10† Bulk:-6 Rcl:2 Skill:Guns (Rifle)),_
+	damage(7d+1), damtype(pi), minst(10†), rangehalfdam(1100), rangemax(4500), acc(5), rof(9), shots(20(3)), rcl(2), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Greener Light Harpoon Gun, .38 Special", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.6 lb.), page(PG2:14), basecost(1250), baseweight(13.1), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:1.6 lb. Damage:6d imp Acc:2 Range:35/120 RoF:1 Shots:1(45) ST:11† Bulk:-6 Rcl:4 Skill:Guns (Rifle) Notes:[1, 5]),_
+	itemnotes(_
+				{Lacks sling swivels (High-Tech, p. 154).},{Fires a harpoon; see description on Pulp Guns Vol 2, p. 12 for details.}_
+			),_
+	damage(6d), damtype(imp), minst(11†), rangehalfdam(35), rangemax(120), acc(2), rof(1), shots(1(45)), rcl(4), bulk(-6), notes([1, 5]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Mauser Modell 10E, 9.3x62mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.35 lb.), page(PG2:14), basecost(1800), baseweight(7.5), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.35 lb. Damage:7d+2 pi Acc:5 Range:1000/4200 RoF:1 Shots:5(3) ST:10† Bulk:-6 Rcl:5 Skill:Guns (Rifle) Notes:[3]),_
+	itemnotes(_
+				{Always decorated (see Styling on p. 10 of High-Tech).}_
+			),_
+	damage(7d+2), damtype(pi), minst(10†), rangehalfdam(1000), rangemax(4200), acc(5), rof(1), shots(5(3)), rcl(5), bulk(-6), notes([3]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Mannlicher-Schönauer Grosswildbüchse, 12.7x70mmRB", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.7 lb.), page(PG2:14), basecost(1300), baseweight(11.7), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.7 lb. Damage:5dx2 pi+ Acc:4 Range:900/3600 RoF:1 Shots:5+1(3) ST:12† Bulk:-6 Rcl:7 Skill:Guns (Rifle)),_
+	damage(5dx2), damtype(pi+), minst(12†), rangehalfdam(900), rangemax(3600), acc(4), rof(1), shots(5+1(3)), rcl(7), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Savage Model 23A, .22 LR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.1 lb.), page(PG2:14), basecost(200), baseweight(6.1), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.1 lb. Damage:1d+2 pi- Acc:3 Range:75/1500 RoF:1 Shots:5+1(3) ST:8† Bulk:-5 Rcl:2 Skill:Guns (Rifle)),_
+	damage(1d+2), damtype(pi-), minst(8†), rangehalfdam(75), rangemax(1500), acc(3), rof(1), shots(5+1(3)), rcl(2), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Winchester Model 54, .270 Winchester", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:14), basecost(675), baseweight(7.8), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:7d pi Acc:5 Range:900/3600 RoF:1 Shots:5+1(2i) ST:9† Bulk:-6 Rcl:3 Skill:Guns (Rifle)),_
+	damage(7d), damtype(pi), minst(9†), rangehalfdam(900), rangemax(3600), acc(5), rof(1), shots(5+1(2i)), rcl(3), bulk(-6), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Savage Model 45 Super, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.3 lb.), page(PG2:15), basecost(615), baseweight(7.7), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:1 Shots:4+1(3) ST:9† Bulk:-5 Rcl:3 Skill:Guns (Rifle) Notes:[3]),_
+	itemnotes(_
+				{Always decorated (see Styling on p. 10 of High-Tech).}_
+			),_
+	damage(7d+1), damtype(pi), minst(9†), rangehalfdam(1100), rangemax(4500), acc(5), rof(1), shots(4+1(3)), rcl(3), bulk(-5), notes([3]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"ZB ZH29, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.8 lb.), page(PG2:15), basecost(1000), baseweight(11.7), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:1.8 lb. Damage:7d+1 pi Acc:5 Range:1100/4600 RoF:3 Shots:20+1(3) ST:11† Bulk:-5 Rcl:3 Skill:Guns (Rifle)),_
+	damage(7d+1), damtype(pi), minst(11†), rangehalfdam(1100), rangemax(4600), acc(5), rof(3), shots(20+1(3)), rcl(3), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Remington Model 34, .22 LR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.12 lb.), page(PG2:15), basecost(210), baseweight(5.4), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.12 lb. Damage:1d+2 pi- Acc:3 Range:75/1500 RoF:1 Shots:15+1(2i) ST:8† Bulk:-5 Rcl:2 Skill:Guns (Rifle)),_
+	damage(1d+2), damtype(pi-), minst(8†), rangehalfdam(75), rangemax(1500), acc(3), rof(1), shots(15+1(2i)), rcl(2), bulk(-5), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Steyr-Solothurn S18-100, 20x105mmB", cat(High-Tech, High-Tech Pulp Guns V2), ammo(10.8 lb.), page(PG2:15), basecost(20000), baseweight(99), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:10.8 lb. Damage:5dx2 (2) pi++ Acc:5+1 Range:1500/6400 RoF:1 Shots:10+1(5) ST:17B† Bulk:-9 Rcl:3 Skill:Guns (Rifle) Notes:[1, 4], [1] Lacks sling swivels (High-Tech, p. 154).),_
+	itemnotes(_
+				{Lacks sling swivels (High-Tech, p. 154).},{Effective LC2 during the pulp era.}_
+			),_
+	damage(5dx2), armordivisor(2), damtype(pi++), minst(17B†), rangehalfdam(1500), rangemax(6400), acc(5+1), rof(1), shots(10+1(5)), rcl(3), bulk(-9), notes([1, 4]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Kokura 97 Shiki Jidouhou, 20x125mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(8 lb.), page(PG2:15), basecost(22000), baseweight(114), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:8 lb. Damage:6dx2 (2) pi++  inc Acc:5 Range:2000/7700 RoF:1 Shots:7+1(5) ST:18B† Bulk:-10 Rcl:3 Skill:Guns (Rifle) Notes:[1, 4], [1] Lacks sling swivels (High-Tech, p. 154).),_
+	itemnotes(_
+				{Lacks sling swivels (High-Tech, p. 154).},{Effective LC2 during the pulp era.}_
+			),_
+	damage(6dx2), armordivisor(2), damtype(pi++  inc), minst(18B†), rangehalfdam(2000), rangemax(7700), acc(5), rof(1), shots(7+1(5)), rcl(3), bulk(-10), notes([1, 4]), skillused(SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+
+<High-Tech, High-Tech Pulp Guns V2, High-Tech Pulp Guns V2 - Machine Guns and Auto Cannons, _Firearms, _Firearms - High-Tech>
+"Maxim MG08, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(16 lb.), page(PG2:26), basecost(7000), baseweight(59.4), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:16 lb. Damage:7d+1 pi Acc:6 Range:1000/4400 RoF:8! Shots:250(5) ST:19M Bulk:-8 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d+1), damtype(pi), minst(19M), rangehalfdam(1000), rangemax(4400), acc(6), rof(8!), shots(250(5)), rcl(2), bulk(-8), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"TOZ PM-1910, 7.62x54mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(22.7 lb.), page(PG2:26), basecost(5500), baseweight(52.5), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:22.7 lb. Damage:7d pi Acc:6 Range:1000/4400 RoF:10! Shots:250(5) ST:19M Bulk:-8 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(19M), rangehalfdam(1000), rangemax(4400), acc(6), rof(10!), shots(250(5)), rcl(2), bulk(-8), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Steyr-Schwarzlose M.07 12, 8x50mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(18.2 lb.), page(PG2:26), basecost(4000), baseweight(49.3), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:18.2 lb. Damage:6d+2 pi Acc:5 Range:1000/4200 RoF:6! Shots:250(5) ST:19M Bulk:-8 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6d+2), damtype(pi), minst(19M), rangehalfdam(1000), rangemax(4200), acc(5), rof(6!), shots(250(5)), rcl(2), bulk(-8), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Vickers Mk I, .303", cat(High-Tech, High-Tech Pulp Guns V2), ammo(16 lb.), page(PG2:26), basecost(5500), baseweight(40), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:16 lb. Damage:6d+2 pi Acc:6 Range:800/3300 RoF:10! Shots:250(5) ST:18M Bulk:-7 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6d+2), damtype(pi), minst(18M), rangehalfdam(800), rangemax(3300), acc(6), rof(10!), shots(250(5)), rcl(2), bulk(-7), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Colt Model 1914, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(15.3 lb.), page(PG2:26), basecost(7500), baseweight(36), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:15.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:10! Shots:250(5) ST:17M Bulk:-7 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1, 2], [1] Effective LC2 during Pulp era., [2] Unreliable. Malfunctions on 16+ (see p. B407).),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.},{Unreliable. Malfunctions on 16+ (see p. B407).}_
+			),_
+	damage(7d+1), damtype(pi), minst(17M), rangehalfdam(1100), rangemax(4500), acc(5), rof(10!), shots(250(5)), rcl(2), bulk(-7), notes([1, 2]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"FIAT-Revelli Mod 14, 6.5x52mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(3 lb.), page(PG2:26), basecost(5000), baseweight(46.5), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:3 lb. Damage:6d pi Acc:5 Range:900/3600 RoF:8 Shots:50(5) ST:18M Bulk:-7 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1, 3], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.},{Very Unreliable. Malfunctions on 15+ (see p. B407).}_
+			),_
+	damage(6d), damtype(pi), minst(18M), rangehalfdam(900), rangemax(3600), acc(5), rof(8), shots(50(5)), rcl(2), bulk(-7), notes([1, 3]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Hotchkiss Mle 1914, 8x50mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.9 lb.), page(PG2:26), basecost(5000), baseweight(57.1), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1.9 lb. Damage:6d+2 pi Acc:5 Range:1000/4200 RoF:8! Shots:30(5) ST:19M Bulk:-8 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6d+2), damtype(pi), minst(19M), rangehalfdam(1000), rangemax(4200), acc(5), rof(8!), shots(30(5)), rcl(2), bulk(-8), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Browning M1917, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(15.3 lb.), page(PG2:26), basecost(7000), baseweight(36.8), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:15.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:10! Shots:250(5) ST:17M Bulk:-7 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d+1), damtype(pi), minst(17M), rangehalfdam(1100), rangemax(4500), acc(5), rof(10!), shots(250(5)), rcl(2), bulk(-7), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Oerlikon Type L, 20x100mmRB", cat(High-Tech, High-Tech Pulp Guns V2), ammo(15 lb.), page(PG2:26), basecost(18000), baseweight(99), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:15 lb. \par [Mode:Primary Damage:6dx2 pi++ Acc:5 Range:1700/6400 RoF:6 Shots:20(5) ST:22M Bulk:-9 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1]] \par [Mode:Follow-up Damage:1d+2 [1d] cr ex ST: Skill:Gunner (Machine Gun)], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	newmode(Primary, damage(6dx2), damtype(pi++), minst(22M), rangehalfdam(1700), rangemax(6400), acc(5), rof(6), shots(20(5)), rcl(2), bulk(-9), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)),_
+	newmode(Follow-up, damage(1d+2), damtype([1d] cr ex), minst(), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!))
+"Browning M1921, .50", cat(High-Tech, High-Tech Pulp Guns V2), ammo(28.4 lb.), page(PG2:26), basecost(16500), baseweight(96), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:28.4 lb. Damage:6dx2 pi+ Acc:5 Range:1700/7100 RoF:8 Shots:110(5) ST:22M Bulk:-8 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6dx2), damtype(pi+), minst(22M), rangehalfdam(1700), rangemax(7100), acc(5), rof(8), shots(110(5)), rcl(2), bulk(-8), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Browning M1919A4, .30-06", cat(High-Tech, High-Tech Pulp Guns V2), ammo(15.3 lb.), page(PG2:26), basecost(7500), baseweight(30.9), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:15.3 lb. Damage:7d+1 pi Acc:5 Range:1100/4500 RoF:10! Shots:250(5) ST:17M Bulk:-6 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d+1), damtype(pi), minst(17M), rangehalfdam(1100), rangemax(4500), acc(5), rof(10!), shots(250(5)), rcl(2), bulk(-6), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"TOZ ShKAS, 7.62x54mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(9.1 lb.), page(PG2:26), basecost(4000), baseweight(21.6), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:9.1 lb. Damage:5d (2) pi- inc Acc:5 Range:1000/4200 RoF:30! Shots:100(5) ST:15M Bulk:-6 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(5d), armordivisor(2), damtype(pi- inc), minst(15M), rangehalfdam(1000), rangemax(4200), acc(5), rof(30!), shots(100(5)), rcl(2), bulk(-6), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)
+"Rheinmetall FlAK30, 20x138mmB", cat(High-Tech, High-Tech Pulp Guns V2), ammo(20 lb.), page(PG2:26), basecost(40500), baseweight(141), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:20 lb. \par [Mode:Primary Damage:6dx3 pi++ inc Acc:5 Range:1200/2200 RoF:4 Shots:20(5) ST:24M Bulk:-10 Rcl:2 Skill:Gunner (Machine Gun) Notes:[1]] \par [Mode:Follow-up Damage:2d-1 [1d] cr ex ST: Skill:Gunner (Machine Gun)], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	newmode(Primary, damage(6dx3), damtype(pi++ inc), minst(24M), rangehalfdam(1200), rangemax(2200), acc(5), rof(4), shots(20(5)), rcl(2), bulk(-10), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)),_
+	newmode(Follow-up, damage(2d-1), damtype([1d] cr ex), minst(), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!))
+"Rigsby Electric Gun, 20mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(10 lb.), page(PG2:26), basecost(50000), baseweight(150), techlvl(6+2), mods(Guns, Equipment), lc(1), description(TL:6+2 LC:1 Ammo:10 lb. \par [Mode:Primary Damage:5dx3 pi++ Acc:5 Range:750/3200 RoF:3 Shots:50(5) ST:24M Bulk:-10 Rcl:2 Skill:Gunner (Machine Gun)] \par [Mode:Follow-up Damage:1d+2 [1d] cr ex ST: Skill:Gunner (Machine Gun)]),_
+	newmode(Primary, damage(5dx3), damtype(pi++), minst(24M), rangehalfdam(750), rangemax(3200), acc(5), rof(3), shots(50(5)), rcl(2), bulk(-10), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)),_
+	newmode(Follow-up, damage(1d+2), damtype([1d] cr ex), minst(), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!))
+"Ikaria-Oerlikon MG-FF, 20x80mmRB", cat(High-Tech, High-Tech Pulp Guns V2), ammo(44.7 lb.), page(PG2:26), basecost(10000), baseweight(61.6), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:44.7 lb. \par [Mode:Primary Damage:6dx2 pi++ inc Acc:4 Range:800/4800 RoF:9! Shots:60(5) ST:15M Bulk:-8 Rcl:3 Skill:Gunner (Machine Gun) Notes:[1]] \par [Mode:Follow-up Damage:1d+1 [1d] cr ex ST: Skill:Gunner (Machine Gun)], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	newmode(Primary, damage(6dx2), damtype(pi++ inc), minst(15M), rangehalfdam(800), rangemax(4800), acc(4), rof(9!), shots(60(5)), rcl(3), bulk(-8), notes([1]), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!)),_
+	newmode(Follow-up, damage(1d+1), damtype([1d] cr ex), minst(), skillused(SK:Gunner (Machine Gun), ST:DX-4, SK:Gunner (Beams)-4, SK:Gunner (Cannon)-4, SK:Gunner (Catapult)-4, SK:Gunner (Machine Gun)-4, SK:Gunner (Rockets)-4, SK:Gun!))
+"Madsen M 03, 8x58mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(2.9 lb.), page(PG2:26), basecost(4500), baseweight(25.4), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:2.9 lb. Damage:7d pi Acc:5 Range:1000/4200 RoF:7! Shots:30(3) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(11B†), rangehalfdam(1000), rangemax(4200), acc(5), rof(7!), shots(30(3)), rcl(2), bulk(-7), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"BSA Lewis Mk I, .303", cat(High-Tech, High-Tech Pulp Guns V2), ammo(4.5 lb.), page(PG2:26), basecost(5000), baseweight(32.8), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:4.5 lb. Damage:6d+2 pi Acc:5 Range:800/3300 RoF:9! Shots:47(5) ST:12B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6d+2), damtype(pi), minst(12B†), rangehalfdam(800), rangemax(3300), acc(5), rof(9!), shots(47(5)), rcl(2), bulk(-7), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"FIAT-Villar Perosa Mod 15, 9x19mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1 lb.), page(PG2:26), basecost(2500), baseweight(16.3), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1 lb. Damage:2d+1 pi Acc:3 Range:160/1700 RoF:25!x2 Shots:25x2(3x2) ST:10B† Bulk:-5 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1, 4], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.},{Double-barreled weapon using two triggers and two magazines. See Pulp Guns Vol 2, pp. 19-20.}_
+			),_
+	damage(2d+1), damtype(pi), minst(10B†), rangehalfdam(160), rangemax(1700), acc(3), rof(25!x2), shots(25x2(3x2)), rcl(2), bulk(-5), notes([1, 4]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"CSRG Mle 1915, 8x50mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(2.1 lb.), page(PG2:26), basecost(2000), baseweight(23), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:2.1 lb. Damage:6d pi Acc:5 Range:900/3800 RoF:4 Shots:20(3) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1, 3], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.},{Very Unreliable. Malfunctions on 15+ (see p. B407).}_
+			),_
+	damage(6d), damtype(pi), minst(11B†), rangehalfdam(900), rangemax(3800), acc(5), rof(4), shots(20(3)), rcl(2), bulk(-7), notes([1, 3]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Hotchkiss Mk I, .303 British", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.9 lb.), page(PG2:26), basecost(4500), baseweight(29.9), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1.9 lb. Damage:6d+2 pi Acc:5 Range:800/3300 RoF:8 Shots:30(3) ST:12B† Bulk:-7* Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6d+2), damtype(pi), minst(12B†), rangehalfdam(800), rangemax(3300), acc(5), rof(8), shots(30(3)), rcl(2), bulk(-7*), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Nambu Taishou 11 Shiki Kikanjuu, 6.5x50mmSR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.5 lb.), page(PG2:26), basecost(4000), baseweight(23.9), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1.5 lb. Damage:5d+2 pi Acc:5 Range:600/3200 RoF:8! Shots:30(12) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1, 2], [1] Effective LC2 during Pulp era., [2] Unreliable. Malfunctions on 16+ (see p. B407).),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.},{Unreliable. Malfunctions on 16+ (see p. B407).}_
+			),_
+	damage(5d+2), damtype(pi), minst(11B†), rangehalfdam(600), rangemax(3200), acc(5), rof(8!), shots(30(12)), rcl(2), bulk(-7), notes([1, 2]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"ZB ZB26, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.8 lb.), page(PG2:26), basecost(4100), baseweight(21.2), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1.8 lb. Damage:7d pi Acc:5 Range:1100/4400 RoF:8 Shots:20(3) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(11B†), rangehalfdam(1100), rangemax(4400), acc(5), rof(8), shots(20(3)), rcl(2), bulk(-7), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"SIG KE7, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(2.3 lb.), page(PG2:26), basecost(6000), baseweight(19.5), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:2.3 lb. Damage:7d pi Acc:5 Range:1100/4400 RoF:9 Shots:25(3) ST:10B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(10B†), rangehalfdam(1100), rangemax(4400), acc(5), rof(9), shots(25(3)), rcl(2), bulk(-7), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Vickers-Berthier Mk III, .303", cat(High-Tech, High-Tech Pulp Guns V2), ammo(2.4 lb.), page(PG2:26), basecost(5000), baseweight(24.4), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:2.4 lb. Damage:6d+2 pi Acc:5 Range:800/3300 RoF:10 Shots:30(3) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(6d+2), damtype(pi), minst(11B†), rangehalfdam(800), rangemax(3300), acc(5), rof(10), shots(30(3)), rcl(2), bulk(-7), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"ZiD DP, 7.62x54mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(6.2 lb.), page(PG2:26), basecost(3000), baseweight(26.2), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:6.2 lb. Damage:7d pi Acc:5 Range:1000/4200 RoF:9 Shots:47(5) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(11B†), rangehalfdam(1000), rangemax(4200), acc(5), rof(9), shots(47(5)), rcl(2), bulk(-7), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Steyr-Solothurn S2-200, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(2.3 lb.), page(PG2:26), basecost(4500), baseweight(19.2), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:2.3 lb. Damage:7d pi Acc:5 Range:1100/4400 RoF:13 Shots:25(3) ST:10B† Bulk:-6 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(10B†), rangehalfdam(1100), rangemax(4400), acc(5), rof(13), shots(25(3)), rcl(2), bulk(-6), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Breda Mod 30, 6.5x52mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1 lb.), page(PG2:26), basecost(4000), baseweight(23.6), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1 lb. Damage:6d pi Acc:5 Range:750/3200 RoF:8! Shots:20(5) ST:11B† Bulk:-7 Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1, 2], [1] Effective LC2 during Pulp era., [2] Unreliable. Malfunctions on 16+ (see p. B407).),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.},{Unreliable. Malfunctions on 16+ (see p. B407).}_
+			),_
+	damage(6d), damtype(pi), minst(11B†), rangehalfdam(750), rangemax(3200), acc(5), rof(8!), shots(20(5)), rcl(2), bulk(-7), notes([1, 2]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+"Simson-Dreyse MG13, 7.92x57mm", cat(High-Tech, High-Tech Pulp Guns V2), ammo(2.3 lb.), page(PG2:26), basecost(4500), baseweight(26.5), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:2.3 lb. Damage:7d pi Acc:5 Range:1100/4400 RoF:9 Shots:25(3) ST:11B† Bulk:-7* Rcl:2 Skill:Guns (Light Machine Gun) Notes:[1], [1] Effective LC2 during Pulp era.),_
+	itemnotes(_
+				{Effective LC2 during the pulp era.}_
+			),_
+	damage(7d), damtype(pi), minst(11B†), rangehalfdam(1100), rangemax(4400), acc(5), rof(9), shots(25(3)), rcl(2), bulk(-7*), notes([1]), skillused(SK:Guns (Light Machine Gun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2|Gun!, SK:Guns (Light Machine Gun), DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2, SK:Gun!)
+
+<High-Tech, High-Tech Pulp Guns V2, High-Tech Pulp Guns V2 - Cannon, _Firearms, _Firearms - High-Tech>
+"Hotchkiss 6-pdr Mk II, 57x305mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(9 lb.), page(PG2:28), basecost(20000), baseweight(849), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:9 lb. \par [Mode:Primary Damage:6dx6 (0.5) pi++ Acc:4+1 Range:1000/6200 RoF:1 Shots:1(3) ST:42M Bulk:-13 Rcl:3 Skill:Artillery (Cannon)] \par [Mode:Follow-up Damage:6d [3d] cr ex ST: Skill:Artillery (Cannon)]),_
+	newmode(Primary, damage(6dx6), armordivisor(0.5), damtype(pi++), minst(42M), rangehalfdam(1000), rangemax(6200), acc(4+1), rof(1), shots(1(3)), rcl(3), bulk(-13), skillused(SK:Artillery (Cannon), ST:IQ-5)),_
+	newmode(Follow-up, damage(6d), damtype([3d] cr ex), minst(), skillused(SK:Artillery (Cannon), ST:IQ-5))
+"APX Mle 1916TRP, 37x94mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(1.4 lb.), page(PG2:28), basecost(10000), baseweight(88), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Ammo:1.4 lb. \par [Mode:Primary Damage:5dx2 (0.5) pi++ Acc:4+1 Range:400/2600 RoF:1 Shots:1(3) ST:24M Bulk:-10 Rcl:3 Skill:Artillery (Cannon)] \par [Mode:Follow-up Damage:2d [2d] cr ex ST: Skill:Artillery (Cannon)]),_
+	newmode(Primary, damage(5dx2), armordivisor(0.5), damtype(pi++), minst(24M), rangehalfdam(400), rangemax(2600), acc(4+1), rof(1), shots(1(3)), rcl(3), bulk(-10), skillused(SK:Artillery (Cannon), ST:IQ-5)),_
+	newmode(Follow-up, damage(2d), damtype([2d] cr ex), minst(), skillused(SK:Artillery (Cannon), ST:IQ-5))
+
+<High-Tech, High-Tech Pulp Guns V2, High-Tech Pulp Guns V2 - Launchers, _Firearms, _Firearms - High-Tech>
+"Webley Number 1 Mk I, 37x122mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.37 lb.), page(PG2:28), basecost(500), baseweight(8.3), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.37 lb. Damage:1d+1 (0.5) cr Acc:1 Range:10/200 RoF:1 Shots:1(3) ST:8† Bulk:-4 Rcl:2 Skill:Guns (Grenade Launcher) Notes:[1], [1] First Range figure is minimum range, not 1/2D.),_
+	itemnotes(_
+				{First Range figure is minimum range, not 1/2D.}_
+			),_
+	damage(1d+1), armordivisor(0.5), damtype(cr), minst(8†), rangehalfdam(10), rangemax(200), acc(1), rof(1), shots(1(3)), rcl(2), bulk(-4), notes([1]), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)
+"Remington MK III, 10G 2''", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.1 lb.), page(PG2:28), basecost(200), baseweight(2.9), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.1 lb. Damage: Spec. Acc:1 Range:10/120 RoF:1 Shots:1(3) ST:8 Bulk:-3 Rcl:2 Skill:Guns (Grenade Launcher) Notes:[1], [1] First Range figure is minimum range, not 1/2D.),_
+	itemnotes(_
+				{First Range figure is minimum range, not 1/2D.}_
+			),_
+	damage(), damtype(spcl.), minst(8), rangehalfdam(10), rangemax(120), acc(1), rof(1), shots(1(3)), rcl(2), bulk(-3), notes([1]), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)
+"Walther Leuchtpistole, 26.5x103mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.2 lb.), page(PG2:28), basecost(500), baseweight(3.1), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.2 lb. Damage: Spec. Acc:1 Range:10/330 RoF:1 Shots:1(3) ST:9 Bulk:-3 Rcl:2 Skill:Guns (Grenade Launcher) Notes:[1, 2], [1] First Range figure is minimum range, not 1/2D., [2] Lanyard ring (High-Tech, p. 154).),_
+	itemnotes(_
+				{First Range figure is minimum range, not 1/2D.},{Lanyard ring (High-Tech, p. 154).}_
+			),_
+	damage(), damtype(spcl.), minst(9), rangehalfdam(10), rangemax(330), acc(1), rof(1), shots(1(3)), rcl(2), bulk(-3), notes([1, 2]), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)
+"Federal Model 201-Z Gas Gun, 37x122mmR", cat(High-Tech, High-Tech Pulp Guns V2), ammo(0.37 lb.), page(PG2:28), basecost(700), baseweight(8), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:0.37 lb. \par [Mode:Primary Damage:1d+1 (0.5) cr Acc:1 Range:30/150 RoF:1 Shots:1(3) ST:8† Bulk:-4 Rcl:2 Skill:Guns (Grenade Launcher) Notes:[1]] \par [Mode:Follow-up Damage:1d cr ex  ST: Skill:Guns (Grenade Launcher)] \par [Mode:Tear Gas Damage:Spcl.  (3 yd) ST: Skill:Guns (Grenade Launcher)], [1] First Range figure is minimum range, not 1/2D.),_
+	itemnotes(_
+				{First Range figure is minimum range, not 1/2D.}_
+			),_
+	newmode(Primary, damage(1d+1), armordivisor(0.5), damtype(cr), minst(8†), rangehalfdam(30), rangemax(150), acc(1), rof(1), shots(1(3)), rcl(2), bulk(-4), notes([1]), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)),_
+	newmode(Follow-up, damage(1d cr ex), damtype(), minst(), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)),_
+	newmode(Tear Gas, damage(Spcl.), damtype(), radius(3), minst(), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!))
+"Manville Machine Gas Projector, 1''", cat(High-Tech, High-Tech Pulp Guns V2), ammo(3.6 lb.), page(PG2:28), basecost(1800), baseweight(18.9), techlvl(6), mods(Guns, Equipment), lc(3), description(TL:6 LC:3 Ammo:3.6 lb. \par [Mode:Primary Damage:1d-1 (0.5) cr Acc:0 Range:25/100 RoF:3 Shots:18(3i) ST:10† Bulk:-6 Rcl:2 Skill:Guns (Grenade Launcher) Notes:[3]] \par [Mode:Follow-up Damage:1d-2 cr ex  ST: Skill:Guns (Grenade Launcher)] \par [Mode:Tear Gas Damage:Spcl.  (2 yd) ST: Skill:Guns (Grenade Launcher)]),_
+	itemnotes(_
+				{Sling swivels (High-Tech, p. 154).}_
+			),_
+	newmode(Primary, damage(1d-1), armordivisor(0.5), damtype(cr), minst(10†), rangehalfdam(25), rangemax(100), acc(0), rof(3), shots(18(3i)), rcl(2), bulk(-6), notes([3]), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)),_
+	newmode(Follow-up, damage(1d-2 cr ex), damtype(), minst(), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!)),_
+	newmode(Tear Gas, damage(Spcl.), damtype(), radius(2), minst(), skillused(SK:Guns (Grenade Launcher), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)-4, SK:Guns (Musket)-4, SK:Guns (Pistol)-4, SK:Guns (Rifle)-4, SK:Guns (Shotgun)-4, SK:Guns (Submachine Gun)-4, SK:Gun!))
+
+<High-Tech, High-Tech Pulp Guns V2, High-Tech Pulp Guns V2 - Grenades, _Grenades>
+"Stielhandgranate", page(HT192), techlvl(6), lc(1), bulk(-3), fuse(4-5), baseweight(1.3), basecost(20), notes([1,2]),_
+	itemnotes(_
+				{Effectively LC2 during the pulp era.},{Takes two Ready maneuvers to unscrew the cap and pull the cord.}_
+			),_
+	damage(5d), damtype(cr ex), acc(0), rof(1), shots(T(1)), minst(5), rcl(0), skillused(SK:Throwing, ST:DX-3, SK:Dropping-4),_
+	rangemax(@int(_
+					@indexedvalue(ST:Lifting ST,_
+									0.09,0.3,0.7,0.8,1.1,1.5,2,2.5,2.5,2.5,2.5,3.5_
+								) * _
+					(ST:Striking ST  + @MAX(@IF(SK:Throwing::level = ST:DX+1 THEN 1 ELSE @IF(SK:Throwing::level > ST:DX+1 THEN 2 ELSE 0)),@IF(SK:Throwing Art::level = ST:DX THEN 1 ELSE @IF(SK:Throwing Art::level > ST:DX THEN 2 ELSE 0))))_
+			))
+"Mills Number 36M Mk I", page(HT192), techlvl(6), lc(1), bulk(-2), fuse(7), baseweight(1.7), basecost(20), notes([1,3]),_
+	itemnotes(_
+				{Effectively LC2 during the pulp era.},{Takes a Ready maneuver to pull the pin or string.}_
+			),_
+	damage(5d-1), damtype([2d] cr ex), acc(0), rof(1), shots(T(1)), minst(5), rcl(0), skillused(SK:Throwing, ST:DX-3, SK:Dropping-4),_
+	rangemax(@int(_
+					@indexedvalue(ST:Lifting ST,_
+									0.07,0.25,0.6,0.7,1,1.2,1.5,2,2,2.5,2.5,2.5,3.5_
+								) * _
+					(ST:Striking ST  + @MAX(@IF(SK:Throwing::level = ST:DX+1 THEN 1 ELSE @IF(SK:Throwing::level > ST:DX+1 THEN 2 ELSE 0)),@IF(SK:Throwing Art::level = ST:DX THEN 1 ELSE @IF(SK:Throwing Art::level > ST:DX THEN 2 ELSE 0))))_
+			))
+"Mills Number 36M MK II KJ", page(HT192), techlvl(6), lc(2), bulk(-2), fuse(5), baseweight(1.4), basecost(45), notes([3,4]),_
+	itemnotes(_
+				{Takes a Ready maneuver to pull the pin or string.},{Fills a 5-yard radius with tear gas (High-Tech, p. 171). Cloud lasts about 30 seconds under normal conditions.}_
+			),_
+	newmode(Explosion, damage(1d-2), damtype(cr ex), acc(0), rof(1), shots(T(1)), minst(5), rcl(0), skillused(SK:Throwing, ST:DX-3, SK:Dropping-4),_
+	rangemax(@int(_
+					@indexedvalue(ST:Lifting ST,_
+									0.09,0.3,0.6,0.8,1.1,1.5,2,2,2.5,2.5,2.5,3.5_
+								) * _
+					(ST:Striking ST  + @MAX(@IF(SK:Throwing::level = ST:DX+1 THEN 1 ELSE @IF(SK:Throwing::level > ST:DX+1 THEN 2 ELSE 0)),@IF(SK:Throwing Art::level = ST:DX THEN 1 ELSE @IF(SK:Throwing Art::level > ST:DX THEN 2 ELSE 0))))_
+			))_
+		),_
+	newmode(follow-up, damage(spcl.), damtype((5 yd.)), acc(0), rof(1), shots(T(1)), minst(5), rcl(0), skillused(SK:Throwing, ST:DX-3, SK:Dropping-4),_
+	rangemax(@int(_
+					@indexedvalue(ST:Lifting ST,_
+									0.09,0.3,0.6,0.8,1.1,1.5,2,2,2.5,2.5,2.5,3.5_
+								) * _
+					(ST:Striking ST  + @MAX(@IF(SK:Throwing::level = ST:DX+1 THEN 1 ELSE @IF(SK:Throwing::level > ST:DX+1 THEN 2 ELSE 0)),@IF(SK:Throwing Art::level = ST:DX THEN 1 ELSE @IF(SK:Throwing Art::level > ST:DX THEN 2 ELSE 0))))_
+			))_
+	)
+"Mills Number 36M MK II WP", page(HT192), techlvl(6), lc(1), bulk(-2), fuse(5), baseweight(1.2), basecost(50), notes([3,5]),_
+	itemnotes(_
+				{Takes a Ready maneuver to pull the pin or string.},{Fills a 5-yard radius with smoke; see p. B439. Cloud lasts about 60 seconds under normal conditions.}_
+			),_
+	damage(1d-2), damtype([1d(0.2)] burn ex), acc(0), rof(1), shots(T(1)), minst(5), rcl(0), skillused(SK:Throwing, ST:DX-3, SK:Dropping-4),_
+	rangemax(@int(_
+					@indexedvalue(ST:Lifting ST,_
+									0.1,0.4,0.7,1,1.2,1.5,2,2.5,2.5,2.5,3.5_
+								) * _
+					(ST:Striking ST  + @MAX(@IF(SK:Throwing::level = ST:DX+1 THEN 1 ELSE @IF(SK:Throwing::level > ST:DX+1 THEN 2 ELSE 0)),@IF(SK:Throwing Art::level = ST:DX THEN 1 ELSE @IF(SK:Throwing Art::level > ST:DX THEN 2 ELSE 0))))_
+			))
+"Mills Number 36M MK II", page(HT192), techlvl(6), lc(1), bulk(-2), fuse(5), baseweight(1.3), basecost(20), notes([1,3]),_
+	itemnotes(_
+				{Effectively LC2 during the pulp era.},{Takes a Ready maneuver to pull the pin or string.}_
+			),_
+	damage(4d+1), damtype([2d] cr ex), acc(0), rof(1), shots(T(1)), minst(5), rcl(0), skillused(SK:Throwing, ST:DX-3, SK:Dropping-4),_
+	rangemax(@int(_
+					@indexedvalue(ST:Lifting ST,_
+									0.09,0.3,0.7,0.8,1.1,1.5,2,2.5,2.5,2.5,2.5,3.5_
+								) * _
+					(ST:Striking ST  + @MAX(@IF(SK:Throwing::level = ST:DX+1 THEN 1 ELSE @IF(SK:Throwing::level > ST:DX+1 THEN 2 ELSE 0)),@IF(SK:Throwing Art::level = ST:DX THEN 1 ELSE @IF(SK:Throwing Art::level > ST:DX THEN 2 ELSE 0))))_
+			))
+
+<High-Tech, High-Tech Pulp Guns V2, High-Tech Pulp Guns V2 - Flamethrowers, _Firearms, _Firearms - High-Tech>
+Schilt Number 3, cat(High-Tech, High-Tech Pulp Guns V2), page(PG2:32), basecost(1500), baseweight(65), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Damage:3d burn Acc:0 Range:20/30 RoF:Jet Shots:8x1s ST:11† Bulk:-8 Rcl:0 Skill:Liquid Projector (Flamethrower) Notes:[1, 2], [1] Effectively LC4 during the pulp era., [2] Takes two Ready maneuvers to prepare for firing.),_
+	itemnotes(_
+				{Effectively LC4 during the pulp era.},{Takes two Ready maneuvers to prepare for firing.}_
+			),_
+	damage(3d), damtype(burn), minst(11†), rangehalfdam(20), rangemax(30), acc(0), rof(Jet), shots(8x1s), rcl(0), bulk(-8), notes([1, 2]), skillused(SK:Liquid Projector (Flamethrower), ST:DX-4, SK:Liquid Projector-4, SK:Gun!)
+HAG WEX17, cat(High-Tech, High-Tech Pulp Guns V2), page(PG2:32), basecost(2000), baseweight(55), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Damage:3d burn Acc:0 Range:20/30 RoF:Jet Shots:18x1s ST:10† Bulk:-8 Rcl:0 Skill:Liquid Projector (Flamethrower) Notes:[1, 2], [1] Effectively LC4 during the pulp era., [2] Takes two Ready maneuvers to prepare for firing.),_
+	itemnotes(_
+				{Effectively LC4 during the pulp era.},{Takes two Ready maneuvers to prepare for firing.}_
+			),_
+	damage(3d), damtype(burn), minst(10†), rangehalfdam(20), rangemax(30), acc(0), rof(Jet), shots(18x1s), rcl(0), bulk(-8), notes([1, 2]), skillused(SK:Liquid Projector (Flamethrower), ST:DX-4, SK:Liquid Projector-4, SK:Gun!)
+Kuusinen LH 44, cat(High-Tech, High-Tech Pulp Guns V2), page(PG2:32), basecost(2000), baseweight(63.6), techlvl(6), mods(Guns, Equipment), lc(1), description(TL:6 LC:1 Damage:3d burn Acc:0 Range:10/15 RoF:Jet Shots:25x1s ST:11† Bulk:-8 Rcl:0 Skill:Liquid Projector (Flamethrower) Notes:[1, 3], [1] Effectively LC4 during the pulp era.),_
+	itemnotes(_
+				{Effectively LC4 during the pulp era.},{Weight includes an empty KP/31 – add the weight of the magazine actually used (High-Tech, pp. 122, 124, and Pulp Guns Vol 1, p. 31).}_
+			),_
+	damage(3d), damtype(burn), minst(11†), rangehalfdam(10), rangemax(15), acc(0), rof(Jet), shots(25x1s), rcl(0), bulk(-8), notes([1, 3]), skillused(SK:Liquid Projector (Flamethrower), ST:DX-4, SK:Liquid Projector-4, SK:Gun!)

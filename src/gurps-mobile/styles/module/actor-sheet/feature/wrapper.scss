@@ -1,0 +1,14 @@
+.feature-wrapper {
+  & > .children {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // VARIANTS
+  // horizontal
+  // ------------------------------------------------
+  &.horizontal > .children {
+    flex-direction: row;
+  }
+  // ------------------------------------------------
+}

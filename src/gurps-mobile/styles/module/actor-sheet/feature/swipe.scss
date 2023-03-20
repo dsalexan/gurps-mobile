@@ -1,0 +1,109 @@
+@use "../../../../../december/utils/styles" as utils;
+
+// https://stackblitz.com/edit/css-swipe-3?file=index.html
+
+.feature {
+  & > .children > .feature-data {
+    &.has-swipe {
+      --padding: calc(var(--s1) * 1);
+      --action-width: calc(9px * 9 + var(--padding) * 2);
+
+      // .swipe-container
+      //    scroll snap takes care of restoring scroll position
+      display: flex;
+      flex-direction: row;
+      //
+      overflow: auto;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      @include utils.no-scroll;
+
+      // scroll-margin-inline-start: var(--action-width);
+
+      & > .children {
+        // .swipe-element
+        //    main element should always snap into view
+        //    actions and element should be 100% wide
+
+        min-width: 100%;
+        //
+        z-index: 2;
+        scroll-snap-align: end;
+        // flex-grow: 1;
+      }
+
+      & > .action {
+        // .action
+        //    actions and element should be 100% wide
+        --background-color: var(--main-color);
+
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        //
+        min-width: var(--action-width);
+        padding: 0 var(--padding);
+        opacity: 0;
+
+        &.right {
+          scroll-snap-align: end;
+          background: linear-gradient(
+            90deg,
+            rgb(var(--background-color), 0) 0%,
+            rgb(var(--background-color), 0) calc(100% - var(--action-width)),
+            rgb(var(--background-color), 1) calc(100% - var(--action-width)),
+            rgb(var(--background-color), 1) 100%
+          );
+          margin-left: calc(-1 * var(--padding));
+          padding-left: calc(2 * var(--padding));
+        }
+
+        &.left {
+          // scroll-snap-align: end; // TODO: this makes left shit appears before swipe-element
+          background: linear-gradient(
+            90deg,
+            rgb(var(--background-color), 1) 0%,
+            rgb(var(--background-color), 1) calc(0% + var(--action-width)),
+            rgb(var(--background-color), 0) calc(0% + var(--action-width)),
+            rgb(var(--background-color), 0) 100%
+          );
+          margin-right: calc(-1 * var(--padding));
+          padding-right: calc(2 * var(--padding));
+        }
+      }
+    }
+
+    // #region VARIANTS
+
+    &:not(.has-swipe) {
+      overflow: visible;
+      scroll-snap-type: none;
+
+      & > .action {
+        display: none;
+      }
+
+      & > .children {
+        scroll-snap-align: initial;
+        & .feature-variant > .wrapper {
+          margin-left: 0;
+        }
+      }
+    }
+
+    &.no-left {
+      & > .action.left {
+        display: none;
+      }
+    }
+
+    &.no-right {
+      & > .action.right {
+        display: none;
+      }
+    }
+
+    // #endregion
+  }
+}

@@ -1,0 +1,107 @@
+directiveless;36;x,0,#InputReplace;#InputReplace;#InputReplace<#ρ1.a> → <#κ2.a>, <#κ2.b>, , <#κ2.c>
+directiveless;36;x,0,#InputReplace;#InputReplace;#InputReplace<#ρ1.a> → <#κ2.a>, <#κ2.b>, , <#κ2.c>
+directiveless;36;x,1,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.b> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>
+directiveless;36;x,1,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.b> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>
+directiveless;47;x,0,#InputToTagReplace;#InputToTagReplace;#InputToTagReplace<#ρ1.a> → <#κ2.a> , name, ,<#κ2.b>
+directiveless;47;x,0,#InputToTagReplace;#InputToTagReplace;#InputToTagReplace<#ρ1.a> → <#κ2.a> , name, ,<#κ2.b>
+directiveless;47;x,1,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.b>#edit → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>,aliaslist<#ρ2.g>
+directiveless;47;x,1,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.b>#edit → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>,aliaslist<#ρ2.g>
+directiveless;50;x,0,#InputReplace;#InputReplace;#InputReplace<#ρ1.a> → <#κ2.a>, <#κ2.b>, , <#κ2.c>
+directiveless;50;x,0,#InputReplace;#InputReplace;#InputReplace<#ρ1.a> → <#κ2.a>, <#κ2.b>, , <#κ2.c>
+directiveless;50;select1,list;list;list<#ρ1.e> → #newitem<#ρ2.a>,#newitem<#ρ2.b>,#newitem<#ρ2.c>,#newitem<#ρ2.d>,#newitem<#ρ2.e>,#newitem<#ρ2.f>,#newitem<#ρ2.g>,#newitem<#ρ2.h>,#newitem<#ρ2.i>,#newitem<#ρ2.j>,#newitem<#ρ2.k>,#newitem<#ρ2.l>,#newitem<#ρ2.m>,#newitem<#ρ2.n>,#newitem<#ρ2.o>,#newitem<#ρ2.p>,#newitem<#ρ2.q>,#newitem<#ρ2.r>,#newitem<#ρ2.s>,#newitem<#ρ2.t>,#newitem<#ρ2.u>,#newitem<#ρ2.v>,#newitem<#ρ2.w>,#newitem<#ρ2.x>,#newitem<#ρ2.y>,#newitem<#ρ2.z>,#newitem<#ρ2.aa>,#newitem<#ρ2.ab>,#newitem<#ρ2.ac>
+directiveless;50;select1,list;list;list<#ρ1.e> → #newitem<#ρ2.a>,#newitem<#ρ2.b>,#newitem<#ρ2.c>,#newitem<#ρ2.d>,#newitem<#ρ2.e>,#newitem<#ρ2.f>,#newitem<#ρ2.g>,#newitem<#ρ2.h>,#newitem<#ρ2.i>,#newitem<#ρ2.j>,#newitem<#ρ2.k>,#newitem<#ρ2.l>,#newitem<#ρ2.m>,#newitem<#ρ2.n>,#newitem<#ρ2.o>,#newitem<#ρ2.p>,#newitem<#ρ2.q>,#newitem<#ρ2.r>,#newitem<#ρ2.s>,#newitem<#ρ2.t>,#newitem<#ρ2.u>,#newitem<#ρ2.v>,#newitem<#ρ2.w>,#newitem<#ρ2.x>,#newitem<#ρ2.y>,#newitem<#ρ2.z>,#newitem<#ρ2.aa>,#newitem<#ρ2.ab>,#newitem<#ρ2.ac>
+directiveless;50;select2,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select2,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select3,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select3,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select4,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select4,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select5,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select5,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select6,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select6,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select7,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select7,list;list;list<#ρ1.e> → #grouplist<#ρ2.a>
+directiveless;50;select8,list;list;list<#ρ1.e> → <#κ2.a>,<#κ2.b>,<#κ2.c>,<#κ2.d>,<#κ2.e>
+directiveless;50;select8,list;list;list<#ρ1.e> → <#κ2.a>,<#κ2.b>,<#κ2.c>,<#κ2.d>,<#κ2.e>
+directiveless;68;x#InputToTagReplace;x#InputToTagReplace;x(#InputToTagReplace<#ρ0.k> → <#κ1.a> , name, , <#κ1.b>
+directiveless;68;x#InputToTagReplace;x#InputToTagReplace;x(#InputToTagReplace<#ρ0.k> → <#κ1.a> , name, , <#κ1.b>
+directiveless;68;#InputReplace;#InputReplace;#InputReplace<#ρ0.l> → <#κ1.a>, <#κ1.b>, <#κ1.c>, <#κ1.d>
+directiveless;68;#InputReplace;#InputReplace;#InputReplace<#ρ0.l> → <#κ1.a>, <#κ1.b>, <#κ1.c>, <#κ1.d>
+directiveless;68;#ChoiceList;#ChoiceList;#ChoiceList<#ρ0.m> → name<#ρ1.a>,title<#ρ1.b>,text<#ρ1.c>,picksallowed<#ρ1.d>,method<#ρ1.e>,list<#ρ1.f>,aliaslist<#ρ1.g>,alt1list<#ρ1.h>
+directiveless;68;#ChoiceList;#ChoiceList;#ChoiceList<#ρ0.m> → name<#ρ1.a>,title<#ρ1.b>,text<#ρ1.c>,picksallowed<#ρ1.d>,method<#ρ1.e>,list<#ρ1.f>,aliaslist<#ρ1.g>,alt1list<#ρ1.h>
+directiveless;68;_#ChoiceList;#ChoiceList;#ChoiceList<#ρ0.n> → name<#ρ1.a>,title<#ρ1.b>,text<#ρ1.c>,picksallowed<#ρ1.d>,method<#ρ1.e>,list<#ρ1.f>,aliaslist<#ρ1.g>,#edit
+directiveless;68;_#ChoiceList;#ChoiceList;#ChoiceList<#ρ0.n> → name<#ρ1.a>,title<#ρ1.b>,text<#ρ1.c>,picksallowed<#ρ1.d>,method<#ρ1.e>,list<#ρ1.f>,aliaslist<#ρ1.g>,#edit
+directiveless;92;select1,#List;#List;#List<#ρ1.a> → Languages
+directiveless;92;select1,#List;#List;#List<#ρ1.a> → Languages
+directiveless;92;select2,#List;#List;#List<#ρ1.a> → CulturalFamiliarity
+directiveless;92;select2,#List;#List;#List<#ρ1.a> → CulturalFamiliarity
+directiveless;92;select3,list;list;list<#ρ1.d> → #list<#ρ2.a>,AD:Extra IQ #codes<#ρ2.b>,AD:Claim to Hospitality #codes<#ρ2.c>,AD:Eidetic Memory,AD:Language Talent,AD:Single-Minded,AD:Status,AD:Tenure,AD:Versatility
+directiveless;92;select3,list;list;list<#ρ1.d> → #list<#ρ2.a>,AD:Extra IQ #codes<#ρ2.b>,AD:Claim to Hospitality #codes<#ρ2.c>,AD:Eidetic Memory,AD:Language Talent,AD:Single-Minded,AD:Status,AD:Tenure,AD:Versatility
+directiveless;92;select4,list;list;list<#ρ1.d> → #list<#ρ2.a>,DI:Absent-Mindedness,#newitem<#ρ2.b>,#newitem<#ρ2.c>,DI:Bad Temper,DI:Clueless,DI:Code of Honor <#ρ2.d>,DI:Combat Paralysis,DI:Curious,#newitem<#ρ2.e>,#newitem<#ρ2.f>,DI:Hard of Hearing,DI:Indecisive,DI:Jealousy,#newitem<#ρ2.g>,DI:Oblivious,#newitem<#ρ2.h>,DI:Pacifism <#ρ2.i>,DI:Pacifism <#ρ2.j>,DI:Pacifism <#ρ2.k>,DI:Pacifism <#ρ2.l>,DI:Pacifism <#ρ2.m>,DI:Post-Combat Shakes,DI:Stubbornness,DI:Unfit
+directiveless;92;select4,list;list;list<#ρ1.d> → #list<#ρ2.a>,DI:Absent-Mindedness,#newitem<#ρ2.b>,#newitem<#ρ2.c>,DI:Bad Temper,DI:Clueless,DI:Code of Honor <#ρ2.d>,DI:Combat Paralysis,DI:Curious,#newitem<#ρ2.e>,#newitem<#ρ2.f>,DI:Hard of Hearing,DI:Indecisive,DI:Jealousy,#newitem<#ρ2.g>,DI:Oblivious,#newitem<#ρ2.h>,DI:Pacifism <#ρ2.i>,DI:Pacifism <#ρ2.j>,DI:Pacifism <#ρ2.k>,DI:Pacifism <#ρ2.l>,DI:Pacifism <#ρ2.m>,DI:Post-Combat Shakes,DI:Stubbornness,DI:Unfit
+directiveless;92;select5,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Anthropology #codes<#ρ2.b>,SK:Archaeology #codes<#ρ2.c>,SK:Economics #codes<#ρ2.d>,SK:Expert Skill #codes<#ρ2.e>,SK:Geography #codes<#ρ2.f>,SK:History #codes<#ρ2.g>,SK:Literature #codes<#ρ2.h>,SK:Mathematics <#ρ2.i> #codes<#ρ2.j>,SK:Mathematics <#ρ2.k> #codes<#ρ2.l>,SK:Psychology #codes<#ρ2.m>,SK:Sociology #codes<#ρ2.n>
+directiveless;92;select5,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Anthropology #codes<#ρ2.b>,SK:Archaeology #codes<#ρ2.c>,SK:Economics #codes<#ρ2.d>,SK:Expert Skill #codes<#ρ2.e>,SK:Geography #codes<#ρ2.f>,SK:History #codes<#ρ2.g>,SK:Literature #codes<#ρ2.h>,SK:Mathematics <#ρ2.i> #codes<#ρ2.j>,SK:Mathematics <#ρ2.k> #codes<#ρ2.l>,SK:Psychology #codes<#ρ2.m>,SK:Sociology #codes<#ρ2.n>
+directiveless;92;select6,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Administration #codes<#ρ2.b>,SK:Public Speaking #codes<#ρ2.c>,SK:Teaching #codes<#ρ2.d>,SK:Writing #codes<#ρ2.e>
+directiveless;92;select6,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Administration #codes<#ρ2.b>,SK:Public Speaking #codes<#ρ2.c>,SK:Teaching #codes<#ρ2.d>,SK:Writing #codes<#ρ2.e>
+directiveless;92;select7,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Savoir-Faire <#ρ2.b>,#newitem<#ρ2.c>,SK:Anthropology,SK:Archaeology,SK:Economics,SK:Expert Skill,SK:Geography,SK:History,SK:Literature,SK:Mathematics <#ρ2.d>,SK:Mathematics <#ρ2.e>,SK:Psychology,SK:Sociology,LA:Language
+directiveless;92;select7,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Savoir-Faire <#ρ2.b>,#newitem<#ρ2.c>,SK:Anthropology,SK:Archaeology,SK:Economics,SK:Expert Skill,SK:Geography,SK:History,SK:Literature,SK:Mathematics <#ρ2.d>,SK:Mathematics <#ρ2.e>,SK:Psychology,SK:Sociology,LA:Language
+directiveless;92;select8,#List;#List;#List<#ρ1.a> → QuirkSelection
+directiveless;92;select8,#List;#List;#List<#ρ1.a> → QuirkSelection
+directiveless;112;x,0,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>,aliaslist<#ρ2.g>
+directiveless;112;x,0,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>,aliaslist<#ρ2.g>
+directiveless;112;initmods,0,level;level;level<#ρ2.e> → 10
+directiveless;112;initmods,0,level;level;level<#ρ2.e> → 10
+directiveless;112;initmods,3,level;level;level<#ρ2.e> → 3
+directiveless;112;initmods,3,level;level;level<#ρ2.e> → 3
+directiveless;112;initmods,3,formula;formula;formula<#ρ2.g> → @int<#ρ3.a>
+directiveless;112;initmods,3,formula;formula;formula<#ρ2.g> → @int<#ρ3.a>
+directiveless;112;initmods,3,forceformula;forceformula;forceformula<#ρ2.h> → yes
+directiveless;112;initmods,3,forceformula;forceformula;forceformula<#ρ2.h> → yes
+directiveless;122;select1,#List;#List;#List<#ρ1.a> → Languages
+directiveless;122;select1,#List;#List;#List<#ρ1.a> → Languages
+directiveless;122;select2,#List;#List;#List<#ρ1.a> → CulturalFamiliarity
+directiveless;122;select2,#List;#List;#List<#ρ1.a> → CulturalFamiliarity
+directiveless;122;select3,list;list;list<#ρ1.d> → #list<#ρ2.a>,AD:Ally,AD:Charisma,AD:Clerical Investment,AD:Contact,AD:Fearlessness,AD:Fit,AD:Indomitable,AD:Reputation,AD:Outdoorsman,AD:Smooth Operator,AD:Tenure,AD:Zeroed 
+directiveless;122;select3,list;list;list<#ρ1.d> → #list<#ρ2.a>,AD:Ally,AD:Charisma,AD:Clerical Investment,AD:Contact,AD:Fearlessness,AD:Fit,AD:Indomitable,AD:Reputation,AD:Outdoorsman,AD:Smooth Operator,AD:Tenure,AD:Zeroed 
+directiveless;122;select4,list;list;list<#ρ1.d> → #list<#ρ2.a>,DI:Bad Temper,DI:Fanaticism,DI:Gullibility,DI:Impulsiveness,#newitem<#ρ2.b>,DI:Intolerance,DI:No Sense of Humor,DI:Obsession,DI:Overconfidence,DI:Pacifism <#ρ2.c>,DI:Pacifism <#ρ2.d>,DI:Pacifism <#ρ2.e>,DI:Pacifism <#ρ2.f>,DI:Pacifism <#ρ2.g>,DI:Selfless,DI:Sense of Duty #codes<#ρ2.h>,DI:Stubbornness,DI:Trickster 
+directiveless;122;select4,list;list;list<#ρ1.d> → #list<#ρ2.a>,DI:Bad Temper,DI:Fanaticism,DI:Gullibility,DI:Impulsiveness,#newitem<#ρ2.b>,DI:Intolerance,DI:No Sense of Humor,DI:Obsession,DI:Overconfidence,DI:Pacifism <#ρ2.c>,DI:Pacifism <#ρ2.d>,DI:Pacifism <#ρ2.e>,DI:Pacifism <#ρ2.f>,DI:Pacifism <#ρ2.g>,DI:Selfless,DI:Sense of Duty #codes<#ρ2.h>,DI:Stubbornness,DI:Trickster 
+directiveless;122;select5,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Forced Entry #codes<#ρ2.b>,#newitem<#ρ2.c> #codes<#ρ2.d>,#newitem<#ρ2.e> #codes<#ρ2.f>,SK:Propaganda #codes<#ρ2.g>,SK:Stealth #codes<#ρ2.h> 
+directiveless;122;select5,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Forced Entry #codes<#ρ2.b>,#newitem<#ρ2.c> #codes<#ρ2.d>,#newitem<#ρ2.e> #codes<#ρ2.f>,SK:Propaganda #codes<#ρ2.g>,SK:Stealth #codes<#ρ2.h> 
+directiveless;122;select6,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Acting #codes<#ρ2.b>,SK:Biology <#ρ2.c> #codes<#ρ2.d>,SK:Computer Operation #codes<#ρ2.e>,SK:Current Affairs <#ρ2.f> #codes<#ρ2.g>,SK:Current Affairs <#ρ2.h> #codes<#ρ2.i>,SK:Fast-Talk #codes<#ρ2.j>,SK:Leadership #codes<#ρ2.k>,SK:Lockpicking #codes<#ρ2.l>,SK:Naturalist #codes<#ρ2.m>,SK:Photography #codes<#ρ2.n>,SK:Observation #codes<#ρ2.o>,SK:Teaching #codes<#ρ2.p>,SK:Writing #codes<#ρ2.q> 
+directiveless;122;select6,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Acting #codes<#ρ2.b>,SK:Biology <#ρ2.c> #codes<#ρ2.d>,SK:Computer Operation #codes<#ρ2.e>,SK:Current Affairs <#ρ2.f> #codes<#ρ2.g>,SK:Current Affairs <#ρ2.h> #codes<#ρ2.i>,SK:Fast-Talk #codes<#ρ2.j>,SK:Leadership #codes<#ρ2.k>,SK:Lockpicking #codes<#ρ2.l>,SK:Naturalist #codes<#ρ2.m>,SK:Photography #codes<#ρ2.n>,SK:Observation #codes<#ρ2.o>,SK:Teaching #codes<#ρ2.p>,SK:Writing #codes<#ρ2.q> 
+directiveless;122;select7,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Bicycling,SK:Boating <#ρ2.b>,SK:Boating <#ρ2.c>,SK:Boating <#ρ2.d>,SK:Boating <#ρ2.e>,SK:Driving <#ρ2.f>,SK:Driving <#ρ2.g>,SK:Driving <#ρ2.h>,SK:Driving <#ρ2.i>,SK:Driving <#ρ2.j>,SK:Driving <#ρ2.k>,SK:Driving <#ρ2.l>,SK:Driving <#ρ2.m>,SK:Driving <#ρ2.n>,SK:Climbing,SK:First Aid,SK:Hiking,SK:Meditation,SK:Philosophy,SK:Politics,SK:Psychology,SK:Public Speaking,SK:Scrounging,SK:Survival,SK:Survival <#ρ2.o>,SK:Survival <#ρ2.p>,SK:Survival <#ρ2.q>,SK:Survival <#ρ2.r>,SK:Survival <#ρ2.s>,SK:Survival <#ρ2.t>,SK:Survival <#ρ2.u>,SK:Survival <#ρ2.v>,SK:Survival <#ρ2.w>,SK:Survival <#ρ2.x>,SK:Survival <#ρ2.y>,SK:Survival <#ρ2.z>,SK:Survival <#ρ2.aa>,SK:Survival <#ρ2.ab>,SK:Survival <#ρ2.ac>,SK:Survival <#ρ2.ad>,SK:Survival <#ρ2.ae>,SK:Theology 
+directiveless;122;select7,list;list;list<#ρ1.d> → #buildlist<#ρ2.a>,SK:Bicycling,SK:Boating <#ρ2.b>,SK:Boating <#ρ2.c>,SK:Boating <#ρ2.d>,SK:Boating <#ρ2.e>,SK:Driving <#ρ2.f>,SK:Driving <#ρ2.g>,SK:Driving <#ρ2.h>,SK:Driving <#ρ2.i>,SK:Driving <#ρ2.j>,SK:Driving <#ρ2.k>,SK:Driving <#ρ2.l>,SK:Driving <#ρ2.m>,SK:Driving <#ρ2.n>,SK:Climbing,SK:First Aid,SK:Hiking,SK:Meditation,SK:Philosophy,SK:Politics,SK:Psychology,SK:Public Speaking,SK:Scrounging,SK:Survival,SK:Survival <#ρ2.o>,SK:Survival <#ρ2.p>,SK:Survival <#ρ2.q>,SK:Survival <#ρ2.r>,SK:Survival <#ρ2.s>,SK:Survival <#ρ2.t>,SK:Survival <#ρ2.u>,SK:Survival <#ρ2.v>,SK:Survival <#ρ2.w>,SK:Survival <#ρ2.x>,SK:Survival <#ρ2.y>,SK:Survival <#ρ2.z>,SK:Survival <#ρ2.aa>,SK:Survival <#ρ2.ab>,SK:Survival <#ρ2.ac>,SK:Survival <#ρ2.ad>,SK:Survival <#ρ2.ae>,SK:Theology 
+directiveless;122;select8,#list;#list;#list<#ρ1.a> → QuirkSelection
+directiveless;122;select8,#list;#list;#list<#ρ1.a> → QuirkSelection
+directiveless;166;x,0,#InputReplace;#InputReplace;#InputReplace<#ρ1.a> → <#κ2.a>, <#κ2.b>, <#κ2.c>, <#κ2.d>
+directiveless;166;x,0,#InputReplace;#InputReplace;#InputReplace<#ρ1.a> → <#κ2.a>, <#κ2.b>, <#κ2.c>, <#κ2.d>
+directiveless;308;x,0,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a>#ChoiceList<#ρ1.b>#ChoiceList<#ρ1.c> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>,aliaslist<#ρ2.g>
+directiveless;308;x,0,#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a>#ChoiceList<#ρ1.b>#ChoiceList<#ρ1.c> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>,aliaslist<#ρ2.g>
+directiveless;308;x,0,_#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a>#ChoiceList<#ρ1.b>#ChoiceList<#ρ1.c> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>
+directiveless;308;x,0,_#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a>#ChoiceList<#ρ1.b>#ChoiceList<#ρ1.c> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>
+directiveless;308;x,0,__#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a>#ChoiceList<#ρ1.b>#ChoiceList<#ρ1.c> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>
+directiveless;308;x,0,__#ChoiceList;#ChoiceList;#ChoiceList<#ρ1.a>#ChoiceList<#ρ1.b>#ChoiceList<#ρ1.c> → name<#ρ2.a>,title<#ρ2.b>,text<#ρ2.c>,picksallowed<#ρ2.d>,method<#ρ2.e>,list<#ρ2.f>
+
+
+unbalanced;68;225;(←10);name(_New Talent),cat(Mundane, Mental, Talents, Mundane Mental),cost(%costaliaslist%),displaycost(varies),page(B89),upto(4),mods(_Talents),gives(%skillsaliaslist%),conditional(+1 to ST:Reaction when "[bonus]"),noresync(yes),x(#InputToT
+unbalanced;68;1418;(10→);end(+1 to "), append(")))),#edit)
+unbalanced;68;1429;(10→);), append(")))),#edit)
+unbalanced;11893;392;(←10);name(Travel Mass Speed),cat(Exotic, Physical, Natural Attacks, Exotic Physical),cost(10/20),mods(Affliction, Affliction Enhancements, Affliction Limitations, _Attack Enhancements, _Attack Limitations, Alternative Attack),page(B35, P39),damage(HT±$solver(me::level - 1)),damtype(aff),acc(3),rangehalfdam(10),rangemax(100),rof(1),shots(),rcl(1),skillused(ST:HT),mode(Primary),x(),noresync(yes),"displayco
+
+
+repeatedKey;68;_#ChoiceList;_#ChoiceList;name<#ρ0.a>,cat<#ρ0.b>,cost<#ρ0.c>,displaycost<#ρ0.d>,page<#ρ0.e>,upto<#ρ0.f>,mods<#ρ0.g>,gives<#ρ0.h>,conditional<#ρ0.i>,noresync<#ρ0.j>,x(#InputToTagReplace<#ρ0.k>,#InputReplace<#ρ0.l>,#ChoiceList<#ρ0.m>,#ChoiceList<#ρ0.n>
+repeatedKey;308;x,0,_#ChoiceList;_#ChoiceList;x<#ρ0.o>
+repeatedKey;308;x,0,__#ChoiceList;__#ChoiceList;x<#ρ0.o>
+
+
+implicit;205;;"[\"x\",\"\"]" @ 8;x<#ρ0.i>
+implicit;205;initmods,0;" = 1" @ 8;gives<#ρ1.f> = 1
+implicit;3375;;"[\"x\",\"#buildit\"]" @ 6;x<#ρ0.g>
+implicit;11893;;"[\"x\",\"\"]" @ 15;x<#ρ0.p>
+
+
+chunking;308;x;#ChoiceList,#ChoiceList,#ChoiceList;x<#ρ0.o>
+chunking;308;x;#ChoiceList,#ChoiceList,#ChoiceList;x<#ρ0.o>
+chunking;308;x,0;#ChoiceList,#ChoiceList,#ChoiceList;x<#ρ0.o>
+

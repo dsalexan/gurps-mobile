@@ -1,0 +1,58 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016.  This data file Implements the Essence Casting rules from p. 51 of the GURPS Thaumatology sourcebook. _
+			GURPS Thaumatology is Copyright © 2008 by Steve Jackson Games _
+			Incorporated. Al rights reserved.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadBefore="GURPS Banestorm 4e.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: GURPS Thaumatology 4e.gdf
+* Created: July 4, 2008
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Thaumatology sourcebook.
+* GURPS Thaumatology is Copyright © 2008 by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[ATTRIBUTES]
+************************************************************************************************************************
+Essence, basevalue(ST:DX), display(yes), maxscore(10000000), minscore(0 - me::syslevels),
+	step(1), up(3), down(-3), mainwin(17), checkbox(score)
+
+************************************************************************************************************************
+[ADVANTAGES]
+************************************************************************************************************************
+<Attributes, Exotic Physical, Exotic, Physical>
+Extra Essence, 3/6, gives(+1 to ST:Essence)
+

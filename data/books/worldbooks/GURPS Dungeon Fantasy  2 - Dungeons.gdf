@@ -1,0 +1,1616 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2022 February 25. _
+		This data file contains Sample Monsters taken from the GURPS Dungeon Fantasy 2: Dungeons sourcebook. _
+		GURPS Dungeon Fantasy 2: Dungeons is Copyright © 2008 by Steve Jackson Games Incorporated. _
+		All rights reserved.
+WorldBook=Dungeon Fantasy
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter="GURPS Dungeon Fantasy  1 - Adventurers.GDF"
+Incomplete=Yes
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Filename: GURPS Dungeon Fantasy 2 - Dungeons.gdf
+//  Created: 10-25-2010
+//  Modified: 2022 February 24
+//  Requires GCA v4 or later!
+//  
+//  This data file primarily contains information taken from the GURPS Dungeon Fantasy 2: Dungeons sourcebook.
+//  Certain Skills and Modifiers are repeated here from both GURPS Powers and GURPS Dungeon Fantasy 1 - Adventurers
+//  sourcebooks.
+// 
+//  GURPS Powers is Copyright © 2005 by Steve Jackson Games Incorporated. All rights reserved.
+//  GURPS Dungeon Fantasy 1: Adventurers is Copyright © 2007 by Steve Jackson Games Incorporated. All rights reserved.
+//  GURPS Dungeon Fantasy 2: Dungeons is Copyright © 2008 by Steve Jackson Games Incorporated. All rights reserved.
+// 
+// 	Version 1.5 of Sample Monsters
+//  Information in this file includes:
+// 	Exotic Physical Advantages/Disadvantages
+// 	Skills and Modifiers
+// 	Melee Weapons
+//  	Sample Monsters Racial Templates
+// 
+*************************************************************************************************************************
+// 
+//  Eric B. Smith	-	GURPS Data File Coordinator
+//  Marvin Zak, Jr. a.k.a. Orin_Sonders
+// 					-	Exotic Physical Advantages/Disadvantages,_
+// 							Sample Monsters Racial Templates
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message at:
+//  http://forums.sjgames.com
+//  
+*************************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*************************************************************************************************************************
+// 
+//  You may need to change character sheet display settings for Hidden Trait Options to allow viewing of
+//  	Spells, Melee Attacks, Ranged Attacks, Spell Grimoire, and Equipment
+// 
+*************************************************************************************************************************
+// 
+// 	Innate Attack response list
+// 	Burning Attack, Corrosion Attack, Crushing Attack, Cutting Attack, Fatigue Attack, Impaling Attack,_
+// 	Small Piercing Attack, Piercing Attack, Large Piercing Attack, Huge Piercing Attack, Toxic Attack:
+// 		respond 1 for Based On gives skillused	_None of these
+// 		respond 2 for Based On gives skillused	Will
+// 		respond 3 for Based On gives skillused	DX, Brawling
+// 		respond 4 for Based On gives skillused	Innate Attack (Beam)
+// 		respond 5 for Based On gives skillused	Innate Attack (Breath)
+// 		respond 6 for Based On gives skillused	Innate Attack (Gaze)
+// 		respond 7 for Based On gives skillused	Innate Attack (Projectile)
+// 
+*************************************************************************************************************************
+// 
+// 	Development Log		Changes listed in reverse order of completion:
+// 	******************************************************************
+// 
+// 	*	means completed
+// 	* *	means in process
+// 	//	means wishlist
+// 
+// 	Look into ability to choose IQ-based skills for the Mindwarper
+// 	Add ability to upgrade as-Sharak to Wizard as-Sharak
+// 
+// 	Toxifier received minor changes to shortname () on Dread modifier, Rarity: Rare (Blessed Objects)
+// 	Set Stone Golem armor #ChoiceList default() to Gauntlets Only to match Stone Fist damage description. _
+// 		Added NOTE: on applying armor selection.
+// 	Golem-Armor Swordsman: Corrected name. Added Golem-Armor plate suit (200 lbs.) as equipment with DR 0. _
+// 		Removed Reduced Basic Move to get encumbered Move 2, Dodge 8. _
+// 		Updated DR to Damage Resistance (Golem-Armor) to reflect that the suit is integrated. _
+// 		Cloned a "readied" version of Medium Shield that may be added. Added NOTE: on applying armor selection. _
+// 		Adjusted cost() & displaycost() tags
+// 	Added AD:Indomitable to Flaming Skull template. Updated displaycost() tag
+// 	Created system to remove Block & Parry for Animals. Added to relevant templates
+// 	Racial Attacks updated to new basic set code base
+// 	Neck Snap (Strength) substituted for Neck Snap (Wrestling) in the Flesh-Eating Ape, Peshkali and Horde Zombie. _
+//  		New trait in creates() tag assumes the character always qualifies for the bonus from Wrestling @ DX+2 level _
+// 		Neck Snap (Wrestling) was removed from the data file.
+// 	Flesh-Eating Ape needed 8 points in Climbing, not just 2. Updated displaycost() tag
+// 	Added version of Alternative Attack modifier to Racial Attack modifier sections
+// 	Triger's Racial Bite Attack now indicates number of attacks
+// 	Returned Bite Only modifiers to standard code in Foul Bat, Foul Bat Demonic Leader, Frost Snake and Giant Rat templates
+// 	Created a modifier to adjust Foul Bat & Foul Bat Demonic Leader's Sonar rangemax$ to 20 yards, and remove rangehalddam$ _
+// 		value. Adjusted their displaycost() tags to reflect -60% (my best guess) on cost of Sonar
+// 	Updated Partial Dice modifiers with new 12/24/2011 code for formula() tags
+// 	Now that phoenix is able to display mode names of traits with a single mode in the attack tables, Racial Bite Attack _
+// 		has been removed from templates that only use a Bite attack: Dire Wolf, Foul Bat, Foul Bat Demonic Leader, _
+// 		Frost Snake and Giant Rat
+// 	Added appearance() tags to relevant templates
+// 	Added No Physical Attack (2 Arms) as a taboo trait for Racial Punch Attack
+// 	Added missing/incorrect modifiers to AD:Slimeball (Toxic Attack). Updated affected displaycost() tags
+// 	Changed Dire Wolf - Alpha Male to use displaycost(82) instead of displaycost(+57)
+// 	Added PE:Fur to as-Sharak template
+// 	Appended listed Class to end of template features() tags
+// 	Adjusted the <Racial Templates - Dungeon Fantasy - Dire Animal> sub-head to also include Racial Templates and _
+// 		Racial Templates - Dungeon Fantasy. Dire Animals were missing from those categories on the dropdown list.
+// 	Racial Kick Attack contains the new code in Brawling:Kick to check for Horizontal with Claws
+// 	Acid Spider template uses the new version of Extra Legs (7+ Legs). Removed Acid Spider Extra Legs (8 Legs)
+// 	Fixed the missing "[" error in Silver [Coin] reported to the forum by thalassogen
+// 	Removed the series of Follow-Up modifiers fixes addressed in the 12/12/2011 Characters.gdf
+// 	Removed the #ReplaceTags in "DI:No Legs (nnnn)" series of fixes addressed in the 12/12/2011 Characters.gdf
+// 
+// 	12/12/2011	Release version of Sample Monsters v1.5 with <_Money, Dungeon Fantasy - Money> section added
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+
+<Mundane Physical>
+Immunity to Metabolic Hazards, 30, page(B80), cat(Mundane, Physical)
+Immunity to All Mind Control, 30, page(B80), cat(Mundane, Physical)
+
+<Mundane Mental>
+// 	Changes to Combat Reflexes, Enhanced Block, Enhanced Parry (bare hands) & Enhanced Parry (all parries) to support
+// 	removing the active physical defenses (Block & Parry) from display on the character sheet. As noted in the basic set; 
+// 	Animals In Combat - Defense: (B461). See notes to [DISADVANTAGES] <Mundane Physical>
+
+// 	Consider making Cannot Parry as a modifier to No Fine Manipulators & No Manipulators instead of Combat Reflexes _
+// 		Explored -- Seems to complicate matters unnecessarily.
+
+// 	Added taboo traits list, mods(Animal Characteristics), code to check mods before assigning bonuses
+//   This is bugged and I don't think it's necessary anyways. REMing it for not ^^^^
+// 
+// #MergeTags in "AD:Combat Reflexes" with _
+// 	taboo(_
+// 		DI:No Block, DI:No Parry,_
+// 		@hasmod(Cannot Block) + @hasmod(Cannot Block or Parry) > 1,_
+// 		@hasmod(Cannot Block) <= AD:Enhanced Block,_
+// 		@hasmod(Cannot Block or Parry) <= AD:Enhanced Block,_
+// 		@hasmod(Cannot Block or Parry) <= "AD:Enhanced Parry (bare hands)" _
+// 		),_
+// 	gives(_
+// 		=-@if(@hasmod(Cannot Block) + @hasmod(Cannot Block or Parry) > 0 THEN 1) To GR:Combat Reflexes,_
+// 		=-@hasmod(Cannot Parry) To ST:Parry,_
+// 		=-@hasmod(Cannot Block) To ST:Block,_
+// 		=-@hasmod(Cannot Block or Parry) To ST:Parry,_
+// 		=-@hasmod(Cannot Block or Parry) To ST:Block_
+// 		)
+
+// 	Added taboo traits list
+#MergeTags in "AD:Enhanced Block" with "taboo(DI:No Block, @itemhasmod(Combat Reflexes, Cannot Block), @itemhasmod(Combat Reflexes, Cannot Block or Parry))"
+
+// 	Trait was giving double bonus to Striker Parry. Reported to Eric 1/4/2012. Implemented suggested fix 1/5/2012.
+// 	Added taboo traits list
+
+// 	Added taboo traits list
+#MergeTags in "AD:Enhanced Parry (all parries)" with "taboo(DI:No Parry, @itemhasmod(Combat Reflexes, Cannot Block or Parry))"
+
+<Exotic Physical>
+// 	Racial Attack Features
+// 
+// 	These racial features create new 0-point Racial Attack advantages to replace the default attack attributes in the 
+// 	combat table. They automatically figure in damage bonuses/penalties normally handled by the Brawling skill. They 
+// 	should be used when the default attack attribute needs to be renamed or receive a modifier.
+// 
+// 	Renaming is accomplished by the shortname() tag being filled from user input, and used by phoenix.gcs in place of 
+// 	the advantage name in the combat table entry.
+// 	NOTE: This method of renaming is not supported by the basic charactersheet.gcs
+// 
+// 	A trait with a mode() tag having only one mode will display in the combat table as its trait name instead of its 
+// 	mode name. For example, when removing both Kick & Punch modes from Brawling skill, the combat table entry reverts 
+// 	to 'Brawling' instead of 'Brawling:Bite'. To put Bite back on the table, use the Racial Bite Attack feature.
+// 
+// 	NOTE: This default behavior may be changed by phoenix users. Go to Character Sheet Options | Sheet Profile.
+// 	Select phoenix.gcs, then select Melee/Ranged Attacks Table Options. Change the 'Print attack mode names even for 
+// 	attacks with only one mode?' option button to Yes under both melee and ranged Attacks Options sections.
+// 
+
+Racial Bite Attack, 0, cat(_General, Combat/Weapons - Melee Combat), shortname([Name]), mods(Racial Bite Attack),_
+	description(This racial feature creates a new Racial Bite Attack advantage to replace the default Bite attribute in the combat table. It should be used when the default Bite attribute needs to be renamed or receive a modifier. This attack automatically figures in damage bonuses/penalties normally handled by the Brawling skill. Brawling Bite mode (if present) should be removed by adding the appropriate modifier to that skill.),_
+	taboo(DI:No Bite), noresync(yes),_
+	gives(=nobase ST:Bite::reach$),_
+	mode(Bite),_
+		damage(thr-1 + @if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Bite) else 0) + -@if("DI:Weak Bite::level" = 1 then 2 * @basethdice(ST:Bite) else 0)),_
+		damtype($if("AD:Teeth (Sharp Teeth)::level" = 1 THEN "cut" ELSE $if("AD:Teeth (Sharp Beak)::level" = 1 THEN "pi+" ELSE $if("AD:Teeth (Fangs)::level" = 1 THEN "imp" ELSE $if("AD:Vampiric Bite::level" = 1 THEN "cut" ELSE "cr"))))),_
+		reach(C), parry(No), skillused(ST:DX, SK:Brawling), basevalue(ST:Striking ST), damagebasedon(ST:Bite), reachbasedon(ST:Neck Reach),_
+	x(#InputReplace("Please enter the name of the Bite attack:", "[Name]", , "Racial Bite Attack"))
+
+Racial Kick Attack, 0, cat(_General, Combat/Weapons - Melee Combat), shortname([Name]), mods(Racial Kick Attack),_
+	description(This racial feature creates a new Racial Kick Attack advantage to replace the default Kick attribute in the combat table. It should be used when the default Kick attribute needs to be renamed or receive a modifier. This attack automatically figures in damage bonuses/penalties normally handled by the Brawling and Karate skills. Brawling and Karate Kick modes (if present) should be removed by adding the appropriate modifier to those skills.),_
+	noresync(yes),_
+	gives(=nobase ST:Kick::reach$),_
+	taboo(DI:No Kick, DI:No Legs (Aerial), DI:No Legs (Aquatic), DI:No Legs (Bounces), DI:No Legs (Rolls), DI:No Legs (Slithers), DI:No Legs (Semi-Aquatic), DI:No Legs (Sessile), DI:No Legs (Tracked), DI:No Legs(Wheeled)),_
+	mode(Kick),_
+		damage(thr + @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + @if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) + @max(@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Kick) else 0), @if("SK:Karate::level" = ST:DX then @basethdice(ST:Kick) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Kick) else 0)) ) ),_
+		damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))),_
+		reach(C,1), parry(No), skillused(ST:DX-2, SK:Brawling-2, SK:Karate-2, SK:Kicking (Karate), SK:Kicking (Brawling)),  basevalue(ST:Striking ST), damagebasedon(ST:Kick), reachbasedon(ST:Leg Reach),_
+	x(#InputReplace("Please enter the name of the Kick attack:", "[Name]", , "Racial Kick Attack"))
+
+Racial Punch Attack, 0, cat(_General, Combat/Weapons - Melee Combat), shortname([Name]), mods(Racial Punch Attack),_
+	description(This racial feature creates a new Racial Punch Attack advantage to replace the default Punch attribute in the combat table. It should be used when the default Punch attribute needs to be renamed or receive a modifier. This attack automatically figures in damage bonuses/penalties normally handled by the Boxing, Brawling and Karate skills. Boxing, Brawling and Karate Punch modes (if present) should be removed by adding the appropriate modifier to those skills.),_
+	noresync(yes),_
+	gives(=nobase ST:Punch::reach$),_
+	taboo(DI:No Punch, DI:No Physical Attack (2 Arms)),_
+	mode(Punch),_
+		damage(thr-1 + @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0)) + @max(@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) else 0), @if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) else @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) else 0)), @if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) else @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) else 0)) ) ),_
+		damtype($if("AD:Claws (Sharp Claws)::level" = 1 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 THEN "cut/imp" ELSE "cr")))),_
+		reach(C), parry(0), skillused(ST:DX, SK:Brawling, SK:Boxing, SK:Karate), basevalue(ST:One Arm Striking ST), damagebasedon(ST:Punch), reachbasedon(ST:One Arm Reach),_
+	x(#InputReplace("Please enter the name of the Punch attack:", "[Name]", , "Racial Punch Attack"))
+
+#Clone "AD:Affliction" as "AD:Stench (Affliction)"
+#MergeTags in "AD:Stench (Affliction)" with "page(DF2:23)"
+#ReplaceTags in "AD:Stench (Affliction)" with "displaycost(31/62/+),_
+	description(Smell-based emanation in one-yard radius. Those who don't resist are nauseated (-2 to attribute and skill rolls, -1 to active defenses, and possible vomiting; see p. B428) for minutes equal to margin of failure.),_
+	usernotes(Smell-based emanation in one-yard radius. Those who don't resist are nauseated (-2 to attribute and skill rolls, -1 to active defenses, and possible vomiting; see p. B428) for minutes equal to margin of failure.),_
+	initmods(_
+		{"Area Effect", +50%/+100%, shortname(Area Effect), group(_Attack Enhancements), page(B102), upto(25), levelnames("2 yd",#list(LevelName Area Effect)), gives(=+@if(owner::radius = 0 THEN (2^me::level)) to owner::radius, =*@if(owner::radius > 0 THEN (2^me::level)) to owner::radius)} | _
+		{"Irritant: Nauseated", +30%, shortname(Nauseated), mods(Secondary), group(Affliction), page(B36)} | _
+		{"Sense-Based (Smell)", +150%/+200%/+250%, group(_Attack Enhancements), page(B109), levelnames(One sense, Two senses, Three senses), basedon(Sense-Based), basedgroup(_Attack Enhancements)} | _
+		{"Emanation", -20%, group(_Attack Limitations), page(B112), gives(="$solver(owner::charradius) yd" to owner::reach$, =nobase to owner::rangehalfdam$, =nobase to owner::rangemax$)})"
+
+#Clone "AD:Burning Attack" as "AD:Breath of Flame (Burning Attack)"
+#MergeTags in "AD:Breath of Flame (Burning Attack)" with "page(DF2:21)"
+#ReplaceTags in "AD:Breath of Flame (Burning Attack)" with "displaycost(10/17/+),_
+	description(Can breathe a 5-yard-wide x 20-yard-long cone of magic breath once a day.),_
+	initmods(_
+		{"Cone", +60%/+70%, group(_Attack Enhancements), page(B103), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.), level(5)} | _
+		{"Limited Use", -10%/-20%/-30%/-40%, group(_General), page(B112), upto(10), level(10), levelnames(10/day,9/day,8/day,7/day,6/day,5/day,4/day,3/day,2/day,1/day), formula(@indexedvalue(me::level, -10%,-10%,-10%,-10%,-10%,-10%,-20%,-20%,-30%,-40%)), forceformula(yes), gives(=nobase to owner::shots$, =$solver(owner::charrof * (11 - me::level)) to owner::shots$)} | _
+		{"Reduced Range", -10%/-20%, levelnames(x1/2, x1/5, x1/10), group(_Attack Limitations), page(B115), upto(3), level(2), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax)} | _
+		{"Partial Dice", +2/+3/+, group(Burning Attack Enhancements), page(B62), formula(@int(me::level * (owner::premodspoints / owner::level) * 0.3 + 0.9)), forceformula(yes), gives(+1 to owner::damage)})"
+
+#Clone "AD:Burning Attack" as "AD:Chill Breath (Burning Attack)"
+#MergeTags in "AD:Chill Breath (Burning Attack)" with "page(DF2:21)"
+#ReplaceTags in "AD:Chill Breath (Burning Attack)" with "displaycost(13/25/+),_
+	description(1d(5) burning (Jet, Range 5/10). This is extreme cold, not Fire!),_
+	usernotes(This is extreme cold, not Fire!),_
+	initmods(_
+		{"Armor Divisor", +50%/+100%, group(_Attack Enhancements), page(B102), upto(4), level(3), levelnames(2, 3, 5, 10), gives(=@indexedvalue(me::level, 2, 3, 5, 10) to owner::armordivisor)} | _
+		{"Jet", +0%, group(_Attack Enhancements), page(B106), gives(-3 to owner::acc, *0.5 to owner::rangehalfdam, *0.1 to owner::rangemax)})"
+
+#Clone "AD:Burning Attack" as "AD:Death Blast (Burning Attack)"
+#MergeTags in "AD:Death Blast (Burning Attack)" with "page(DF2:22)"
+#ReplaceTags in "AD:Death Blast (Burning Attack)" with "displaycost(6/12/+),_
+	description(Burning explosion + linked 1d cutting fragmentation (flying bone shards!) on dying.),_
+	usernotes(Burning explosion + linked 1d cutting fragmentation (flying bone shards!) on dying.),_
+	initmods(_
+		{"Damage Modifier: Explosion (on dying)", +50%/+100%, shortname(Explosive), group(_Attack Enhancements), page(B104), upto(3), levelnames(Damage / 3xYards, Damage / 2xYards, Damage / 1xYards), gives(=" ex/$solver(4-me::level)" to owner::damtype$), basedon(Damage Modifier: Explosion), basedgroup(_Attack Enhancements)} | _
+		{"Damage Modifier: Fragmentation (flying bone shards!)", +15%/+30%, shortname(Fragmentation), group(_Attack Enhancements), page(B104), upto(@min(owner::level, 12)), levelnames([0d], [1d], [2d], [3d], [4d], [5d], [6d], [7d], [8d], [9d], [10d], [11d], [12d]), gives(=" frag cut " to owner::damtype$, =$indexedvalue(me::level, "[1d]", "[2d]", "[3d]", "[4d]", "[5d]", "[6d]", "[7d]", "[8d]", "[9d]", "[10d]", "[11d]", "[12d]") to owner::damtype$), basedon(Damage Modifier: Fragmentation), basedgroup(_Attack Enhancements)} | _
+		{"Inaccurate", -5%/-10%, group(_Attack Limitations), page(B112), upto(owner::acc), level(3), levelnames(-1,-2,-3,-4,-5,-6,-7,-8,-9,-10), gives(-1 to owner::acc)} | _
+		{"Reduced Range", -10%/-20%, group(_Attack Limitations), page(B115), upto(3), level(3), levelnames(x1/2, x1/5, x1/10), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax)})"
+
+#Clone "AD:Burning Attack" as "AD:Flaming Bite (Burning Attack)"
+#MergeTags in "AD:Flaming Bite (Burning Attack)" with "page(DF2:23)"
+#ReplaceTags in "AD:Flaming Bite (Burning Attack)" with "displaycost(15),_
+	description(2 points burning. This Cosmic attack ignores all DR!),_
+	usernotes(2 points burning. This Cosmic attack ignores all DR!),_
+	initmods(_
+		{"Cosmic: Irresistible attack (ignores all DR)", +300%, group(_General), page(B103), basedon(Cosmic: Irresistible attack), basedgroup(_General)} | _
+		{"Melee Attack: Cannot Parry", -5%, shortname(Cannot Parry), group(_Attack Limitations), page(B112), gives(=nobase to owner::parry$, ="No" to owner::parry$)} | _
+		{"Melee Attack: Reach C", -30%, group(_Attack Limitations), page(B112), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, ="C" to owner::reach$), addmode(Primary, skillused(ST:DX, SK:Brawling))} | _
+		{"Damage Multiplier", *2/*3, group(_Attack Enhancements), page(), levelnames(#buildlist(list(#list(LevelName Step 1)), template(x%listitem%))), gives(=nocalc to owner::damage$, ="x$solver(1+me::level)" to owner::damage$)} | _
+		{"Partial Dice (Does only 1 pt)", *0.25, group(Innate Attack), page(B62), tier(-1), gives(=nobase to owner::damage$, =1 to owner::damage)})"
+
+#Clone "AD:Corrosion Attack" as "AD:Acidic Bite (Corrosion Attack)"
+#MergeTags in "AD:Acidic Bite (Corrosion Attack)" with "page(DF2:21)"
+#ReplaceTags in "AD:Acidic Bite (Corrosion Attack)" with "displaycost(10/20/+),_
+	description(A follow-up attack to a bite inflicting enough damage to penetrate DR injects fast-acting corrosive venom that partially digests its prey, doing 1d-3 corrosion damage per second for 10 cycles.),_
+	initmods(_
+		{"Cyclic (1 second interval)", +0%/+100%/+200%, group(Corrosion Attack Enhancements), page(B103), mods(Cyclic), level(10), levelnames(1 cycle, 2 cycles, 3 cycles, 4 cycles, 5 cycles, 6 cycles, 7 cycles, 8 cycles, 9 cycles, 10 cycles, 11 cycles, 12 cycles, 13 cycles, 14 cycles, 15 cycles, 16 cycles, 17 cycles, 18 cycles, 19 cycles, 20 cycles, 21 cycles, 22 cycles, 23 cycles, 24 cycles, 25 cycles, 26 cycles, 27 cycles, 28 cycles, 29 cycles, 30 cycles, 31 cycles, 32 cycles, 33 cycles, 34 cycles, 35 cycles, 36 cycles, 37 cycles, 38 cycles, 39 cycles, 40 cycles, 41 cycles, 42 cycles, 43 cycles, 44 cycles, 45 cycles, 46 cycles, 47 cycles, 48 cycles, 49 cycles, 50 cycles, 51 cycles, 52 cycles, 53 cycles, 54 cycles, 55 cycles, 56 cycles, 57 cycles, 58 cycles, 59 cycles, 60 cycles, 61 cycles, 62 cycles, 63 cycles, 64 cycles, 65 cycles, 66 cycles, 67 cycles, 68 cycles, 69 cycles, 70 cycles, 71 cycles, 72 cycles, 73 cycles, 74 cycles, 75 cycles, 76 cycles, 77 cycles, 78 cycles, 79 cycles, 80 cycles, 81 cycles, 82 cycles, 83 cycles, 84 cycles, 85 cycles, 86 cycles, 87 cycles, 88 cycles, 89 cycles, 90 cycles, 91 cycles, 92 cycles, 93 cycles, 94 cycles, 95 cycles, 96 cycles, 97 cycles, 98 cycles, 99 cycles, 100 cycles), gives(=" {x$solver(me::level)/sec}" to owner::damtype$)} | _
+		{"Follow-Up", +0%/+5%, group(_Attack Enhancements), page(B105), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =nobase to owner::parry$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)} | _
+		{"Melee Attack: Cannot Parry", -5%, shortname(Cannot Parry), group(_Attack Limitations), page(B112), gives(=nobase to owner::parry$, ="No" to owner::parry$)} | _
+		{"Partial Dice (per die)", -3/-6/+, group(Corrosion Attack Limitations), page(B62), upto(3), level(3), levelnames(-1/die,-2/die,-3/die), formula(@int(me::level * -owner::premodspoints * 0.3 + 0.9)), forceformula(yes), gives(-owner::level to owner::damage)})"
+
+#Clone "AD:Crushing Attack" as "AD:Desert's Sand (Crushing Attack)"
+#MergeTags in "AD:Desert's Sand (Crushing Attack)" with "page(DF2:22)"
+#ReplaceTags in "AD:Desert's Sand (Crushing Attack)" with "displaycost(15/25/+),_
+	description(Can breathe a 5-yard-wide x 20-yard-long cone of magic breath once a day. Roll vs. HT at -1 per 2 points of penetrating damage or be blinded for (20 - HT) minutes, minimum 1 minute.),_
+	usernotes(Roll vs. HT at -1 per 2 points of penetrating damage or be blinded for (20 - HT) minutes, minimum 1 minute.),_
+	initmods(_
+		{"Cone", +60%/+70%, group(_Attack Enhancements), page(B103), level(5), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)} | _
+		{"Limited Use", -10%/-20%/-30%/-40%, group(_General), page(B112), upto(10), level(10), levelnames(10/day,9/day,8/day,7/day,6/day,5/day,4/day,3/day,2/day,1/day), formula(@indexedvalue(me::level, -10%,-10%,-10%,-10%,-10%,-10%,-20%,-20%,-30%,-40%)), forceformula(yes), gives(=nobase to owner::shots$, =$solver(owner::charrof * (11 - me::level)) to owner::shots$)} | _
+		{"Reduced Range", -10%/-20%, group(_Attack Limitations), page(B115), upto(3), level(2), levelnames(x1/2, x1/5, x1/10), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax)} | _
+		{"Side Effect (blindness)", +50%/+51%/+52%, group(_Attack Enhancements), page(B109), level(16), basedon(Side Effect), basedgroup(_Attack Enhancements)} | _
+		{"Partial Dice", +2/+3/+, group(Burning Attack Enhancements), page(B62), formula(@int(me::level * (owner::premodspoints / owner::level) * 0.3 + 0.9)), forceformula(yes), gives(+1 to owner::damage)})"
+
+#Clone "AD:Crushing Attack" as "AD:Ocean's Frozen Spray (Crushing Attack)"
+#MergeTags in "AD:Ocean's Frozen Spray (Crushing Attack)" with "page(DF2:21)"
+#ReplaceTags in "AD:Ocean's Frozen Spray (Crushing Attack)" with "displaycost(7/16/+),_
+	description(Can breathe a 5-yard-wide x 20-yard-long cone of magic breath once a day for 3d-1 cr damage. No Blunt Trauma. No Knockback. Roll vs. HT at -1 per 2 points of penetrating damage or be frozen (paralyzed) for (20 - HT) minutes, minimum 1 minute.),_
+	usernotes(Roll vs. HT at -1 per 2 points of penetrating damage or be frozen (paralyzed) for (20 - HT) minutes, minimum 1 minute.),_
+	initmods(_
+		{"Cone", +60%/+70%, group(_Attack Enhancements), page(B103), level(5), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)} | _
+		{"Limited Use", -10%/-20%/-30%/-40%, group(_General), page(B112), upto(10), level(10), levelnames(10/day,9/day,8/day,7/day,6/day,5/day,4/day,3/day,2/day,1/day), formula(@indexedvalue(me::level, -10%,-10%,-10%,-10%,-10%,-10%,-20%,-20%,-30%,-40%)), forceformula(yes), gives(=nobase to owner::shots$, =$solver(owner::charrof * (11 - me::level)) to owner::shots$)} | _
+		{"Reduced Range", -10%/-20%, levelnames(x1/2, x1/5, x1/10), group(_Attack Limitations), page(B115), upto(3), level(2), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax)} | _
+		{"Side Effect (frozen (paralyzed))", +50%/+51%/+52%, group(_Attack Enhancements), page(B109), level(16), basedon(Side Effect), basedgroup(_Attack Enhancements)} | _
+		{"Damage Limitation: No Blunt Trauma", -20%, shortname(No Blunt Trauma), group(Crushing Attack Limitations), page(B111), gives(=" nbt" to owner::damtype$)} | _
+		{"Damage Limitation: No Knockback", -10%, shortname(No Knockback), group(Crushing Attack Limitations), page(B111), gives(=" nkb" to owner::damtype$)} | _
+		{"Partial Dice", -1/-3/+, group(Crushing Attack Limitations), page(B62), levelnames(-1,#buildlist(list(#list(LevelName Step 1)), template(-%listitem%))), formula(@max(@int(%level * -(owner::premodspoints / owner::level) * 0.3 + 0.9), 1 - owner::premodspoints)), forceformula(yes), upto(@int(owner::level * 10/3)), gives(-1 to owner::damage)})"
+
+#Clone "AD:Crushing Attack" as "AD:Psychokinetic Lash (Crushing Attack)"
+#MergeTags in "AD:Psychokinetic Lash (Crushing Attack)" with "page(DF2:25)"
+#ReplaceTags in "AD:Psychokinetic Lash (Crushing Attack)" with "displaycost(5/10/+),_
+	description(This ranged attack (Acc 3, Range 10/100) can be dodged but not blocked or parried.),_
+	usernotes(This ranged attack can be dodged but not blocked or parried.)"
+
+#Clone "AD:Crushing Attack" as "AD:Rending Storm (Crushing Attack)"
+#MergeTags in "AD:Rending Storm (Crushing Attack)" with "page(DF2:22)"
+#ReplaceTags in "AD:Rending Storm (Crushing Attack)" with "displaycost(10/17/+),_
+	description(Can breathe a 5-yard-wide x 20-yard-long cone of magic breath once a day.),_
+	initmods(_
+		{"Cone", +60%/+70%, group(_Attack Enhancements), page(B103), level(5), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)} | _
+		{"Limited Use", -10%/-20%/-30%/-40%, group(_General), page(B112), upto(10), level(10), levelnames(10/day,9/day,8/day,7/day,6/day,5/day,4/day,3/day,2/day,1/day), formula(@indexedvalue(me::level, -10%,-10%,-10%,-10%,-10%,-10%,-20%,-20%,-30%,-40%)), forceformula(yes), gives(=nobase to owner::shots$, =$solver(owner::charrof * (11 - me::level)) to owner::shots$)} | _
+		{"Reduced Range", -10%/-20%, group(_Attack Limitations), page(B115), upto(3), level(2), levelnames(x1/2, x1/5, x1/10), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax)} | _
+		{"Partial Dice", +2/+3/+, group(Burning Attack Enhancements), page(B62), formula(@int(me::level * (owner::premodspoints / owner::level) * 0.3 + 0.9)), forceformula(yes), gives(+1 to owner::damage)})"
+
+#Clone "AD:Fatigue Attack" as "AD:Foul Bat Bite Toxin (Fatigue Attack)"
+#MergeTags in "AD:Foul Bat Bite Toxin (Fatigue Attack)" with "page(DF2:24)"
+#ReplaceTags in "AD:Foul Bat Bite Toxin (Fatigue Attack)" with "displaycost(3), shortname(Bite Toxin),_
+	description(A follow-up attack to a bite inflicting enough damage to penetrate DR delivers toxins that make wounds weep and bleed, causing weakness.),_
+	initmods(_
+		{"Follow-Up", +0%/+5%, group(_Attack Enhancements), page(B105), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =nobase to owner::parry$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)} | _
+		{"Partial Dice (Does only 1 pt)", *0.25, group(Innate Attack), page(B62), tier(-1), gives(=nobase to owner::damage$, =1 to owner::damage)})"
+
+#Clone "AD:Fatigue Attack" as "AD:Removal of Life (Fatigue Attack)"
+#MergeTags in "AD:Removal of Life (Fatigue Attack)" with "page(DF2:21)"
+#ReplaceTags in "AD:Removal of Life (Fatigue Attack)" with "displaycost(19/38/+),_
+	description(Can breathe a 5-yard-wide x 20-yard-long cone of magic breath once a day. DR has no effect on this respiratory attack, but Doesn't Breathe protects completely.),_
+	usernotes(DR has no effect on this respiratory attack, but Doesn't Breathe protects completely.),_
+	initmods(_
+		{"Cone", +60%/+70%, group(_Attack Enhancements), page(B103), level(5), gives(=" ($solver(me::level)yd)" to owner::damtype$), description(The first level of Cone *includes* the base +50% cost and the +10% for the first yard of width.)} | _
+		{"Limited Use", -10%/-20%/-30%/-40%, group(_General), page(B112), upto(10), level(10), levelnames(10/day,9/day,8/day,7/day,6/day,5/day,4/day,3/day,2/day,1/day), formula(@indexedvalue(me::level, -10%,-10%,-10%,-10%,-10%,-10%,-20%,-20%,-30%,-40%)), forceformula(yes), gives(=nobase to owner::shots$, =$solver(owner::charrof * (11 - me::level)) to owner::shots$)} | _
+		{"Reduced Range", -10%/-20%, levelnames(x1/2, x1/5, x1/10), group(_Attack Limitations), page(B115), upto(3), level(2), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax)} | _
+		{"Damage Modifier: Suffocation Hazard", +0%, shortname(Suffocation Hazard), group(Fatigue Attack Enhancements), page(B104), gives(=" suf haz" to owner::damtype$)} | _
+		{"Respiratory Agent", +50%, group(_Attack Enhancements), page(B108)})"
+
+#Clone "AD:Toxic Attack" as "AD:Frost Snake Bite Toxin (Toxic Attack)"
+#MergeTags in "AD:Frost Snake Bite Toxin (Toxic Attack)" with "page(DF2:24)"
+#ReplaceTags in "AD:Frost Snake Bite Toxin (Toxic Attack)" with "displaycost(4/8/+), shortname(Bite Toxin),_
+	description(A follow-up attack to a bite inflicting enough damage to penetrate DR delivers venom (HT-4 to resist).),_
+	initmods(_
+		{"Follow-Up", +0%/+5%, group(_Attack Enhancements), page(B105), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, =nobase to owner::acc$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =nobase to owner::parry$, =-3 to owner::acc, ="Fol-Up" to owner::reach$, ="No" to owner::parry$)} | _
+		{"Resistible", -5%/-10%, group(Toxic Attack Limitations), page(B115), level(2), levelnames(HT-5, HT-4, HT-3, HT-2, HT-1, HT), gives(=" R-HT$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$)})"
+
+#Clone "AD:Toxic Attack" as "AD:Slimeball (Toxic Attack)"
+#MergeTags in "AD:Slimeball (Toxic Attack)" with "page(DF2:23)"
+#ReplaceTags in "AD:Slimeball (Toxic Attack)" with "displaycost(10/19/+),_
+	description(Penetrates armor in DR seconds, and then delivers toxic damage, reduced to half damage with a HT roll.),_
+	usernotes(Penetrates armor in DR seconds, and then delivers toxic damage, reduced to half damage with a HT roll.),_
+	initmods(_
+		{"Contact Agent (Penetrates armor in DR seconds)", +150%, group(Toxic Attack Enhancements), page(B103), basedon(Contact Agent), basedgroup(Toxic Attack Enhancements)} | _
+		{"Resistible", -5%/-10%, group(Toxic Attack Limitations), page(B115), level(6), levelnames(HT-5, HT-4, HT-3, HT-2, HT-1, HT), gives(=" R-HT$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$), initmods({"Still take 1/2 Damage on a successful resistance roll", -50%, group(_General)})})"
+
+#Clone "AD:Toxic Attack" as "AD:Toxifier Toxic Attack"
+#MergeTags in "AD:Toxifier Toxic Attack" with "page(DF2:26)"
+#ReplaceTags in "AD:Toxifier Toxic Attack" with "displaycost(5/10/+), shortname(Toxic Attack),_
+	description(Contact agent emanated in a two-yard radius. Those who fail to resist take toxic damage and are nauseated (-2 to attribute and skill rolls, -1 to active defenses, and possible vomiting; see p. B428) if injury reaches 2/3 of HP. Nausea lasts until healed above 2/3 HP. Resisted by HT-4.),_
+	usernotes(Contact agent emanated in a two-yard radius. Those who fail to resist take toxic damage and are nauseated (-2 to attribute and skill rolls, -1 to active defenses, and possible vomiting; see p. B428) if injury reaches 2/3 of HP. Nausea lasts until healed above 2/3 HP.),_
+	initmods(_
+		{"Area Effect", +50%/+100%, shortname(Area Effect), group(_Attack Enhancements), page(B102), upto(25), levelnames("2 yd",#list(LevelName Area Effect)), gives(=+@if(owner::radius = 0 THEN (2^me::level)) to owner::radius, =*@if(owner::radius > 0 THEN (2^me::level)) to owner::radius)} | _
+		{"Contact Agent", -30%, group(Toxic Attack Limitations), page(B111), basedon(Contact Agent), basedgroup(Toxic Attack Limitations)} | _
+		{"Emanation", -20%, group(_Attack Limitations), page(B112), gives(="$solver(owner::charradius) yd" to owner::reach$, =nobase to owner::rangehalfdam$, =nobase to owner::rangemax$)} | _
+		{"Irritant: Nauseated", +30%, shortname(Nauseated), mods(Secondary), group(Affliction), page(B36)} | _
+		{"Resistible", -5%/-10%, group(Toxic Attack Limitations), page(B115), level(2), levelnames(HT-5, HT-4, HT-3, HT-2, HT-1, HT), gives(=" R-HT$if(me::level>5 THEN "+$solver(me::level-6)" ELSE "$solver(me::level-6)")" to owner::damtype$), basedon(Resistible), basedgroup(Toxic Attack Limitations)})"
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Physical>
+// 
+// 	These two Features (0-point Disadvantages) are used to remove default physical defenses from display on the character  
+// 	sheet. As noted in the basic set; Animals In Combat - Defense (B461): "Most animals have No Fine Manipulators 
+// 	(included in Ichthyoid, Quadruped, and Vermiform) and, therefore, cannot parry. Those with manipulators (e.g., apes) 
+// 	can parry. Unarmed Parry is (DX/2) + 3 or (Brawling/2) + 3. No natural animal can block."
+
+// 	Features
+No Block, 0, page(B461), taboo(AD:Combat Reflexes, AD:Enhanced Block),_
+	gives(_
+		=nobase to ST:DX::blockat$ listAs "Cannot Block"),_
+	description(This Feature (0-point Disadvantage) is used to remove the default physical Block from display on the character. If the character has Combat Relexes, but cannot Block; use the proper modifier to Combat Reflexes instead.)
+
+No Parry, 0, page(B461), taboo(AD:Combat Reflexes, AD:Enhanced Parry),_
+	gives(_
+		=nobase to ST:DX::parryat$ listAs "Cannot Parry",_
+		=nobase to SK:Brawling::parryat$ listAs "Cannot Parry",_
+		=nobase to ST:Punch::Parry$, ="No" to ST:Punch::Parry$,_
+		=nobase to SK:Brawling::Parry$ listAs "Cannot Parry", ="No" to SK:Brawling::Parry$,_
+		=nobase to AD:Racial Punch Attack::Parry$ listAs "Cannot Parry", ="No" to AD:Racial Punch Attack::Parry$),_
+	description(This Feature (0-point Disadvantage) is used to remove the default physical Parry from display on the character. If the character has Combat Relexes, but cannot Parry; use the proper modifier to Combat Reflexes instead.)
+
+<Exotic Physical>
+// 
+// 	These three Features (0-point Disadvantages) are used to remove default physical attacks from the combat table, as 
+// 	well as their listing in the Attributes tab. They are derived from their namesakes in the <Punch/Kick> mods section 
+// 	of GURPS Basic Set 4th Ed.--Characters.gdf as well as the No Bite Disadvantage found in GURPS Transhuman Space 
+// 	Shell-Tech.GDF.
+
+// 	Features
+No Bite, 0, taboo(AD:Racial Bite Attack), gives(=nobase ST:Bite::reach$), ReplaceTags(in "ST:Bite" with "hide(yes)"),_
+	description(This Feature (0-point Disadvantage) is used to remove the default Bite physical attack from the combat table, as well as the listing in the Attributes tab.)
+
+No Kick, 0, taboo(AD:Racial Kick Attack), gives(=nobase ST:Kick::reach$), ReplaceTags(in "ST:Kick" with "hide(yes)"),_
+	description(This Feature (0-point Disadvantage) is used to remove the default Kick physical attack from the combat table, as well as the listing in the Attributes tab.)
+
+No Punch, 0, taboo(AD:Racial Punch Attack), gives(=nobase ST:Punch::reach$), ReplaceTags(in "ST:Punch" with "hide(yes)"),_
+	description(This Feature (0-point Disadvantage) is used to remove the default Punch physical attack from the combat table, as well as the listing in the Attributes tab.)
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+*******************************************************************************************************\[START]
+<_Money, Dungeon Fantasy - Money>
+Copper Farthing, basecost(1), baseweight(0.016), page(DF2:14)
+Copper Bar, basecost(62.5), baseweight(1), page(DF2:14)
+Silver Penny, basecost(4), baseweight(0.004), page(DF2:14)
+Silver Bar, basecost(1000), baseweight(1), page(DF2:14)
+Gold Piece, basecost(80), baseweight(0.004), page(DF2:14)
+Gold Bar, basecost(20000), baseweight(1), page(DF2:14)
+
+Copper [Coin], basecost([Varies]), baseweight([Varies]/62.5), displaycost(varies), displayweight(varies), page(DF2:14),_
+	x(_
+		#InputReplace("What is the name of this coin?", "[Coin]", , "Copper Coin"),_
+		#InputReplace("What is the face value ($) of this coin?", "[Varies]", "0.00", "Copper Coin")_
+	)
+
+Silver [Coin], basecost([Varies]), baseweight([Varies]/1000), displaycost(varies), displayweight(varies), page(DF2:14),_
+	x(_
+		#InputReplace("What is the name of this coin?", "[Coin]", , "Silver Coin"),_
+		#InputReplace("What is the face value ($) of this coin?", "[Varies]", "0.0", "Silver Coin")_
+	)
+
+Gold [Coin], basecost([Varies]), baseweight([Varies]/20000), displaycost(varies), displayweight(varies), page(DF2:14),_
+	x(_
+		#InputReplace("What is the name of this coin?", "[Coin]", , "Gold Coin"),_
+		#InputReplace("What is the face value ($) of this coin?", "[Varies]", "0.0", "Gold Coin")_
+	)
+
+<Shields - Dungeon Fantasy>
+#Clone "EQ:Medium Shield" as "EQ:Medium Shield (Readied Left Arm)"
+#ReplaceTags in "EQ:Medium Shield (Readied Left Arm)" with "shieldarc(Left Arm), _
+	initmods({"Shield: Gives Defense Bonus to Dodge/Block/Parry", +0, gives(=+owner::chardb to ST:Dodge, =+owner::chardb to ST:Block, =+owner::chardb to ST:Parry), group(Shield), shortname(Gives DB)})"
+
+<_Melee Weapons - Dungeon Fantasy>
+#Clone "EQ:Cavalry Saber" as "EQ:Shamshir"
+#MergeTags in "EQ:Shamshir" with "cat(_Melee Weapons - Dungeon Fantasy, _Melee Weapons, Dungeon Fantasy, Dungeon Fantasy - Weapons - Melee)"
+#Clone "EQ:Cavalry Saber" as "EQ:Heavy Scimitar"
+#MergeTags in "EQ:Heavy Scimitar" with "cat(_Melee Weapons - Dungeon Fantasy, _Melee Weapons, Dungeon Fantasy, Dungeon Fantasy - Weapons - Melee)"
+Siege Beast Hammer, techlvl(2), break(0), lc(4), basecost(50), baseweight(5), page(B271, B276, DF2:25), mods(Equipment, Melee Quality, Crushing/Imp Class Quality),_
+	newmode(Swing, damage(sw+3), damtype(cr), reach(1), parry(0U), minst(12), notes([1]), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3)),_
+	description(TL:2 LC:4, A massive hammer like a meat tenderizer riveted to one hand (Cannot be dropped!) \par [Mode:swing Dam:sw+3 cr Reach:1 Parry:0U ST:12 Skill:Axe/Mace]),_
+	usernotes(Cannot be dropped!),_
+	cat(_Melee Weapons - Dungeon Fantasy, _Melee Weapons, Dungeon Fantasy, Dungeon Fantasy - Weapons - Melee)
+#Clone "EQ:Maul" as "EQ:Huge Maul (SM +1)"
+#MergeTags in "EQ:Huge Maul (SM +1)" with "_
+	page(DF2:26), cat(_Melee Weapons - Dungeon Fantasy, _Melee Weapons, Dungeon Fantasy, Dungeon Fantasy - Weapons - Melee),_
+	initmods(_
+		{"Dungeon Fantasy: Oversized", *1.5, shortname(Oversized), group(Melee Quality), page(DF1:27), gives(*1.5 to owner::baseweight, *1.5 to owner::minst, +$/textindexedvalue( {$modetag(damage)}, ( "sw+4", 2 ), ( "thr+4", 2 ), ( "sw+5", 2 ), ( "thr+5", 2 ), ( "sw+6", 3 ), ( "thr+6", 3 ), ( "sw+7", 3 ), ( "thr+7", 3 ), else 1 ) to owner::damage$ listAs "Damage bonus from Oversized")})"
+#ReplaceTags in "EQ:Huge Maul (SM +1)" with "_
+	description(TL:0 LC:4, Dam:sw+6 cr Reach:1,2* Parry:0U ST:20‡ Skill:Two-Handed Axe/Mace Notes: Requires two hands; becomes unready after attack.)"
+#Clone "EQ:Greatsword" as "EQ:Executioner's Sword"
+#MergeTags in "EQ:Executioner's Sword" with "_
+	page(DF2:26), cat(_Melee Weapons - Dungeon Fantasy, _Melee Weapons, Dungeon Fantasy, Dungeon Fantasy - Weapons - Melee),_
+	initmods(_
+		{"Dungeon Fantasy: Oversized", *1.5, shortname(Oversized), group(Melee Quality), page(DF1:27), gives(*1.5 to owner::baseweight, *1.5 to owner::minst, +$/textindexedvalue( {$modetag(damage)}, ( "sw+4", 2 ), ( "thr+4", 2 ), ( "sw+5", 2 ), ( "thr+5", 2 ), ( "sw+6", 3 ), ( "thr+6", 3 ), ( "sw+7", 3 ), ( "thr+7", 3 ), else 1 ) to owner::damage$ listAs "Damage bonus from Oversized")})"
+#ReplaceTags in "EQ:Executioner's Sword" with "_
+	description(TL:3 LC:4 \par [Mode:swing Dam:sw+4 cut Reach:1,2 Parry:0 ST:18† Skill:Two-Handed Sword Notes: Requires two hands.] \par [Mode:thrust Dam:thr+3 cr Reach:2 Parry:0 ST:18† Skill:Two-Handed Sword Notes: Requires two hands.])"
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Animal Characteristics>
+Cannot Block, +0, page(B461), gives(=nobase to ST:DX::blockat$ listAs "Cannot Block"),_
+	description(No natural animal can block.)
+Cannot Block or Parry, +0, page(B461),_
+	gives(_
+		=nobase to ST:DX::blockat$ listAs "Cannot Block",_
+		=nobase to ST:DX::parryat$ listAs "Cannot Parry",_
+		=nobase to SK:Brawling::parryat$ listAs "Cannot Parry",_
+		=nobase to ST:Punch::Parry$, ="No" to ST:Punch::Parry$,_
+		=nobase to SK:Brawling::Parry$ listAs "Cannot Parry", ="No" to SK:Brawling::Parry$,_
+		=nobase to AD:Striker::Parry$ listAs "Cannot Parry", ="No" to AD:Striker::Parry$,_
+		=nobase to AD:Racial Punch Attack::Parry$ listAs "Cannot Parry", ="No" to AD:Racial Punch Attack::Parry$ _
+		),_
+	description(Most animals have No Fine Manipulators (included in Ichthyoid, Quadruped, and Vermiform) and, therefore, cannot parry. Those with manipulators (e.g., apes) can parry. No natural animal can block.)
+
+<Diffuse>
+Infiltration, +40%, group(Diffuse), page(P53)
+
+<Neck Snap>
+ST Based, +0, gives(+(ST:ST - ST:DX) to owner::level)
+
+<Armor>
+Dungeon Fantasy: Oversized Armor, *2, shortname(Oversized), page(DF1:28), gives(*2 to owner::baseweight)
+
+<Melee Quality>
+// 	Oversized: plus 1/2 of damage bonus, round down,  minimum 1
+Dungeon Fantasy: Oversized Weapon, *1.5, page(DF1:27),_
+	shortname(Oversized),_
+	group(Melee Quality),_
+	gives(_
+		*1.5 to owner::baseweight,_
+		*1.5 to owner::minst,_
+		+$/textindexedvalue( {$modetag(damage)},_
+			( "sw+4", 2 ), ( "thr+4", 2 ),_
+			( "sw+5", 2 ), ( "thr+5", 2 ),_
+			( "sw+6", 3 ), ( "thr+6", 3 ),_
+			( "sw+7", 3 ), ( "thr+7", 3 ),_
+		else 1 ) to owner::damage$ listAs "Damage bonus from Oversized"_
+	)
+
+// 	Racial Attack Modifiers
+// 
+// 	Collected below are relevant modifiers from <Punck/Kick> & <Striker> as well as Reliable from Powers.
+// 	All their costs have been zeroed because AFAIK default attacks are cost free in the game.
+// 
+<Racial Bite Attack>
+Alternative Attack, *1, group(Alternative Attack), page(B61), tier(2)
+Clumsy, -0%/-0%,_
+	levelnames([-0],-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20),_
+	gives(-1 to owner::skillscore)
+Increased Bite Damage, +0/+0,_
+	gives(=+@textindexedvalue( $modetag(mode), ("Bite", $solver(me::level)) ) to owner::damage$ listAs "+X Bite damage")
+Long: any reach, +0%/+0%, shortname(Long),_
+	gives(=nobase to owner::reach$, ="C,$if(me::level=1 THEN "1" ELSE "1-$solver(me::level)")" to owner::reach$)
+Reliable, +0%/+0%, upto(10),_
+	levelnames([+0],+1,+2,+3,+4,+5,+6,+7,+8,+9,+10),_
+	gives(+1 to owner::skillscore)
+
+<Racial Kick Attack>
+Alternative Attack, *1, group(Alternative Attack), page(B61), tier(2)
+Add Kick w/Boots Combat Table Entry, +0, shortname(Kick w/Boots),_
+	addmode(Kick w/Boots,_
+		damage(1 + %copyprev - @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Kick) else 0))), damtype(cr), reach(%copyprev), parry(%copyprev), skillused(%copyprev) _
+	)
+Clumsy, -0%/-0%,_
+	levelnames([-0],-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20),_
+	gives(-1 to owner::skillscore)
+Include +1 damage from Boots in base damage, +0, shortname(Has Boots),_
+	gives(=+@textindexedvalue( $modetag(mode), ("Kick", 1) ) to owner::damage$ listAs "+1 damage from Boots")
+Increased Kick Damage, +0/+0,_
+	gives(=+@textindexedvalue( $modetag(mode), ("Kick", $solver(me::level)) ) to owner::damage$ listAs "+X Kick damage")
+Reliable, +0%/+0%, upto(10),_
+	levelnames([+0],+1,+2,+3,+4,+5,+6,+7,+8,+9,+10),_
+	gives(+1 to owner::skillscore)
+
+<Racial Punch Attack>
+Alternative Attack, *1, group(Alternative Attack), page(B61), tier(2)
+Add Punch w/Brass Knuckles Combat Table Entry, +0, shortname(Punch w/Brass Knuckles),_
+	addmode(Punch w/Brass Knuckles,_
+		damage(1 + %copyfirst - @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0))), damtype(cr), reach(%copyfirst), parry(%copyfirst), skillused(%copyfirst) _
+	)
+Add Punch w/Gauntlets Combat Table Entry, +0, shortname(Punch w/Gauntlets),_
+	addmode(Punch w/Gauntlets,_
+		damage(1 + %copyfirst - @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0))), damtype(cr), reach(%copyfirst), parry(%copyfirst), skillused(%copyfirst) _
+	)
+Cannot Parry, -0%,_
+	gives(=nobase to owner::parry$, ="No" to owner::parry$)
+Clumsy, -0%/-0%,_
+	levelnames([-0],-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20),_
+	gives(-1 to owner::skillscore)
+Increased Punch Damage, +0/+0,_
+	gives(=+@textindexedvalue( $modetag(mode), ("Punch", $solver(me::level)) ) to owner::damage$ listAs "+X Punch damage")
+Include +1 damage from Gauntlets/Brass Knuckles in base damage, +0, shortname(Has Gauntlets),_
+	gives(=+@textindexedvalue( $modetag(mode), ("Punch", 1) ) to owner::damage$ listAs "+1 damage from Gauntlets/Brass Knuckles")
+Reliable, +0%/+0%, upto(10),_
+	levelnames([+0],+1,+2,+3,+4,+5,+6,+7,+8,+9,+10),_
+	gives(+1 to owner::skillscore)
+
+<Melee Quality>
+Dungeon Fantasy: Self-Crafted, -20%/+10%, upto(2), levelnames(,Failed roll), page(DF2:3), group(Melee Quality), shortname(Self-Crafted),_
+	description(Heroes with appropriate Armoury skill can start with /ordinary/ arms and armor of their own making at a cost discount. Roll against skill, on a success reduce cost, on a failure increase it.)
+
+<Shield>
+Dungeon Fantasy: Self-Crafted, -20%/+10%, upto(2), levelnames(,Failed roll), page(DF2:3), group(Shield), shortname(Self-Crafted),_
+	description(Heroes with appropriate Armoury skill can start with /ordinary/ arms and armor of their own making at a cost discount. Roll against skill, on a success reduce cost, on a failure increase it.)
+
+<Arrow>
+Dungeon Fantasy: Self-Crafted, -20%/+10%, upto(2), levelnames(,Failed roll), page(DF2:3), group(Arrow), shortname(Self-Crafted),_
+	description(Heroes with appropriate Armoury skill can start with /ordinary/ arms and armor of their own making at a cost discount. Roll against skill, on a success reduce cost, on a failure increase it.)
+
+<Bow Quality>
+Dungeon Fantasy: Self-Crafted, -20%/+10%, upto(2), levelnames(,Failed roll), page(DF2:3), group(Bow Quality), shortname(Self-Crafted),_
+	description(Heroes with appropriate Armoury skill can start with /ordinary/ arms and armor of their own making at a cost discount. Roll against skill, on a success reduce cost, on a failure increase it.)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+// 
+// 	Any of the following templates that modify ST, DX or HP do so with a Racial Bonus/Penalty so modifiers can be
+// 	applied. The modifiers used here will automatically calculate their costs based on the value of the Size and
+// 	No Fine Manipulators stats. Note the modifier cost will often show +0% cost because not all conditions have been met
+// 	for a discount.
+// 
+// 	The racial stat Bonus/Penalty traits are added with the creates() tag because it is only within that tag that
+// 	GCA is able to correctly calculate their modifier costs due to a possible calculation order bug.
+// 
+*************************************************************************************************************************
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Dire Animal>
+
+Acid Spider (Dungeon Fantasy), 10, displaycost(190),_
+	appearance(This giant spider has a relatively tiny body – “only” 7' across – attached to long, hairy legs that lift it 7' off the ground.),_
+	description(Class: Dire Animal. This giant spider has a relatively tiny body – “only” 7' across – attached to long, hairy legs that lift it 7' off the ground. It can walk unhindered over all but the tallest of men. A hunting spider, it lurks in dark cracks, waiting for warm prey to happen by. It then jumps on its quarry, bites with fangs capable of penetrating plate armor, and injects fast-acting corrosive venom that partially digests its prey.),_
+	page(DF2:21),_
+	race(Acid Spider),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-5 to ST:IQ,_
+		+3 to ST:HT,_
+		+7 to ST:Perception,_
+		+7 to ST:Will,_
+		+2 to ST:Basic Move,_
+		+2 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Bite Attack respond "Acidic Bite",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Jumping",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Stealth",_
+		AD:360° Vision,_
+		AD:Acidic Bite (Corrosion Attack) = 1 respond 1,_
+		AD:Combat Reflexes _
+			with "Cannot Block or Parry, +0, group(Animal Characteristics), page(B461), gives(=nobase to ST:DX::blockat$ listAs "Cannot Block", =nobase to ST:DX::parryat$ listAs "Cannot Parry", =nobase to SK:Brawling::parryat$ listAs "Cannot Parry", =nobase to ST:Punch::Parry$, ="No" to ST:Punch::Parry$, =nobase to SK:Brawling::Parry$ listAs "Cannot Parry", ="No" to SK:Brawling::Parry$, =nobase to AD:Striker::Parry$ listAs "Cannot Parry", ="No" to AD:Striker::Parry$, =nobase to AD:Racial Punch Attack::Parry$ listAs "Cannot Parry", ="No" to AD:Racial Punch Attack::Parry$), description(Most animals have No Fine Manipulators (included in Ichthyoid, Quadruped, and Vermiform) and, therefore, cannot parry. Those with manipulators (e.g., apes) can parry. No natural animal can block.)",_
+		AD:Damage Resistance = 4,_
+		AD:Extra Legs (7+ Legs) _
+			with "Long, +100%/+200%, group(Extra Legs), page(B55), gives(+1 to ST:Leg SM)" _
+			respond 8,_
+		AD:Infravision,_
+		AD:Super Jump (10-yard jump) = 1,_
+		AD:Teeth (Fangs),_
+		DI:Horizontal,_
+		DI:No Kick,_
+		DI:No Punch,_
+		DI:No Fine Manipulators,_
+		SK:Jumping==0pts#DoNotOwn,_
+		SK:Stealth==0pts#DoNotOwn,_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 16,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 5 _
+		),_
+	features(Can walk over SM 0 or smaller adventurers without needing to evade. Acid glands contain enough acid for 3d acid grenades ($10 each). Specimens with higher ST and HP aren't unheard of; Move, leaping distance, and acid are unchanged. Class: Dire Animal.)
+
+Flesh-Eating Ape (Dungeon Fantasy), -25, displaycost(101),_
+	appearance(Flesh-eating apes superficially resemble the bananaeating kind, but have a mouth full of meat-tearing teeth and a predatory temperament.),_
+	description(Class: Dire Animal. Flesh-eating apes superficially resemble the bananaeating kind, but have a mouth full of meat-tearing teeth and a predatory temperament. They're strong, combative, and have a nose for flesh, tracking tasty humans by scent. Due to their physical power, adventurers are advised to slay them before they get into close combat and grapple! Arm ST and Wrestling skill give effective ST 21 for grappling, and some apes like to use Neck Snap (at ST-4, or 17, for 3d-1 damage; see p. B404) on grappled victims.),_
+	page(DF2:23),_
+	race(Flesh-Eating Ape),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-4 to ST:IQ,_
+		+2 to ST:HT,_
+		+4 to ST:Will,_
+		+4 to ST:Perception,_
+		+1 to ST:Basic Move,_
+		+1 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Climbing",_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Wrestling",_
+		AD:Arm ST = 2 _
+			with "Two arms, *5/3, group(Arm ST), page(B40), gives(+owner::level to ST:One Arm Lifting ST, +owner::level to ST:One Arm Striking ST, +owner::level to ST:Two Arm Lifting ST, +owner::level to ST:Two Arm Striking ST)",_
+		AD:Brachiator,_
+		AD:Damage Resistance = 1,_
+		AD:Discriminatory Smell,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance (3° to 70°) = 1,_
+		PE:Fur,_
+		DI:Ham-Fisted = 1,_
+		DI:No Block,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Climbing==0pts#DoNotOwn,_
+		SK:Wrestling==0pts#DoNotOwn,_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 7,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 2,_
+		{SK:Neck Snap (Strength), Tech/H, damage(sw), damtype(cr), default(ST:ST - 2, ST:Two Arm Striking ST - 2), dmg(sw), page(B232), parry(No), reach(C), skillused(SK:Neck Snap (Strength)), upto(ST:Two Arm Striking ST + 5), usernotes(Roll a Quick Contest: your ST-4 vs. the higher of your victim's ST or HT. If you win, you inflict swing/crushing damage on the neck. (Neck Snap, p. B404) Damage to neck is x1.5.), damagebasedon(ST:Two Arm Striking ST + 2), cat(Techniques, Techniques - Combat)#DoNotOwn} _
+		),_
+	features(Flesh-eating apes are smart enough that Animal spells won't work – use Mind Control magic. Class: Dire Animal.)
+
+Foul Bat {Batchala} (Dungeon Fantasy), -50, displaycost(60),_
+	description(Class: Dire Animal. These gigantic bats lack the fear of fire and men possessed by normal beasts. Their stench at close proximity can overcome victims before a single bite is delivered, and their mouth carries toxins that make wounds weep and bleed, causing weakness. Some colonies have a demonic leader who has IQ 10+, Indomitable, Magic Resistance 10, and Unfazeable. This is a demon, not a dire animal with the Wild Animal meta-trait.),_
+	page(DF2:23),_
+	race(Foul Bat {Batchala}),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-7 to ST:IQ,_
+		+2 to ST:HT,_
+		+7 to ST:Will,_
+		+7 to ST:Perception_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Aerobatics",_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Acute Hearing = 8,_
+		AD:Foul Bat Bite Toxin (Fatigue Attack) = 1 respond 1,_
+		AD:Damage Resistance = 1,_
+		AD:Flight,_
+		AD:Stench (Affliction) = 1 respond 1,_
+		AD:Sonar _
+			with "20 yards, -60%, group(_General), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =20 to owner::rangemax$)",_
+		AD:Striking ST = 5 _
+			with "Bite Only, -60%, group(Striking ST), page(P79), gives(-owner::level to ST:Striking ST, +owner::level to ST:Bite)",_
+		AD:Teeth (Sharp Teeth),_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:No Fine Manipulators,_
+		SK:Aerobatics==0pts#DoNotOwn,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 4 _
+		),_
+	features( Class: Dire Animal.)
+
+Frost Snake (Dungeon Fantasy), -40, displaycost(84),_
+	appearance(A white-furred serpent.),_
+	description(Class: Dire Animal. This white-furred serpent is feared by barbarian cultures in the Frozen North. It hunts by seeking body heat, and can function even in extreme cold. Its surprisingly strong bite delivers venom, and it can also weaken prey with an exhalation of pure cold.),_
+	page(DF2:24),_
+	race(Frost Snake),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-8 to ST:IQ,_
+		+2 to ST:HT,_
+		+8 to ST:Will,_
+		+10 to ST:Perception,_
+		+0.5 to ST:Basic Speed_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Innate Attack (Breath)",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Stealth",_
+		AD:Chill Breath (Burning Attack) = 1 respond 5,_
+		AD:Damage Resistance = 2,_
+		AD:Damage Resistance (Cold/Ice) = 20 _
+			with "Limited Defense (Cold/Ice), -40%, group(Limited Defense), page(B46), shortname(Limited (Cold/Ice))",_
+		AD:Frost Snake Bite Toxin (Toxic Attack) = 2 respond 1,_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Striking ST = 3 _
+			with "Bite Only, -60%, group(Striking ST), page(P79), gives(-owner::level to ST:Striking ST, +owner::level to ST:Bite)",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance (-135° to 40°) = 10,_
+		AD:Terrain Adaptation (Ice),_
+		DI:No Block,_
+		DI:No Parry,_
+		PE:Fur,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Innate Attack (Breath)==0pts#DoNotOwn,_
+		SK:Stealth==0pts#DoNotOwn,_
+		TE:Vermiform,_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 4 _
+		),_
+	features(Cold organ worth $50 to alchemists, who use it in liquid ice potions. Class: Dire Animal.)
+
+Triger (Dungeon Fantasy), -15, displaycost(139*),_
+	appearance(A triger is nothing more than a mutant tiger with three heads.),_
+	description(Class: Dire Animal. A triger is nothing more than a mutant tiger with three heads. It can bite three times instead of just once – and this bite is deadlier than a regular tiger bite due to the unusual strength needed to support two extra necks and heads! Some mutant tigers have even more heads! For every Extra Head, add +1 to ST and HP (increasing damage to match), plus another Extra Attack.),_
+	page(DF2:26),_
+	race(Triger -- %heads1%),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-6 to ST:IQ,_
+		+1 to ST:HT,_
+		+8 to ST:Perception,_
+		+7 to ST:Will,_
+		+4 to ST:Basic Move,_
+		+1 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Bite Attack respond "Bite (x%headsaliaslist%)",_
+		AD:Racial Kick Attack respond "Hind Claw",_
+		AD:Racial Punch Attack respond "Front Claw",_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Stealth",_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Swimming",_
+		AD:Claws (Sharp Claws),_
+		AD:Combat Reflexes _
+			with "Cannot Block or Parry, +0, group(Animal Characteristics), page(B461), gives(=nobase to ST:DX::blockat$ listAs "Cannot Block", =nobase to ST:DX::parryat$ listAs "Cannot Parry", =nobase to ST:Punch::Parry$, ="No" to ST:Punch::Parry$, =nobase to SK:Brawling::Parry$ listAs "Cannot Parry", ="No" to SK:Brawling::Parry$, =nobase to AD:Racial Punch Attack::Parry$ listAs "Cannot Parry", ="No" to AD:Racial Punch Attack::Parry$)",_
+		AD:Damage Resistance = 1,_
+		AD:Extra Attack = %headsaliaslist% - 1,_
+		AD:Extra Head = %headsaliaslist% - 1,_
+		AD:Night Vision = 5,_
+		AD:Peripheral Vision,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance (24° to 90°) = 1,_
+		PE:Fur,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Bite Mode, +0, addmode(Bite, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Stealth==0pts#DoNotOwn,_
+		SK:Swimming==0pts#DoNotOwn,_
+		TE:Quadruped,_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 6 + %headsaliaslist%,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 3 _
+		),_
+	features(Triger skins are prized for rugs, and can fetch up to $1,000 apiece. Class: Dire Animal.),_
+x(_
+	#ChoiceList(_
+		name(heads),_
+		title(Triger Head Selection),_
+		text(Some mutant tigers have more than three heads! Every Extra Head adds +1 to ST and HP (increasing damage to match), plus another Extra Attack.),_
+		default(1),_
+		picksallowed(1),_
+		method(bynumber),_
+		list(_
+			3 Heads=0,_
+			4 Heads=45,_
+			5 Heads=90,_
+			6 Heads=135,_
+			7 Heads=180 _
+		),_
+		aliaslist(_
+			3,_
+			4,_
+			5,_
+			6,_
+			7 _
+		)_
+	)_
+)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Demons>
+
+as-Sharak (Dungeon Fantasy), 60, displaycost(540*),_
+	appearance(The as-Sharak have the physique of great cats (but upright, like men).),_
+	description("Class: Demon. The as-Sharak are elemental sorcerers who sold their souls for power . . . only to be turned into monsters in Hell and returned to the living world to punish similarly arrogant mortals. With the physique of great cats (but upright, like men) and some of the magical powers they so craved as mortals – but their mind shattered by madness – these demons guard troves of hidden lore, lying in wait for power-hungry wizards. They believe that taking sufficient mortal lives will eventually break their curse. Some wear armor; if so, add armor DR to natural DR 2. Treat a shamshir as an ordinary cavalry saber (p. B271). Wizard as-Sharak with IQ 12+, Magery 2+, and spells are rumored to exist."),_
+	page(DF2:21),_
+	race(%lense1%),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+4 to ST:Will,_
+		+4 to ST:Perception_
+		),_
+	adds(_
+		AD:Racial Bite Attack respond "Bite",_
+		AD:Racial Kick Attack respond "Hind Claw",_
+		AD:Racial Punch Attack respond "Front Claw",_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Broadsword",_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Innate Attack (Breath)",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Stealth",_
+		AD:Claws (Sharp Claws),_
+		AD:Combat Reflexes,_
+		AD:Damage Resistance = 2,_
+		AD:Detect (Supernatural),_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Higher Purpose (Punish invaders of protected place),_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)" _
+			and "No Vitals, +5, group(Injury Tolerance), page(B61)",_
+		AD:Night Vision = 5,_
+		AD:Supernatural Durability (Can only be killed by supernatural damage),_
+		AD:Teeth (Sharp Teeth),_
+		PE:Fur,_
+		%lensealiaslist%,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Bite Mode, +0, addmode(Bite, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Broadsword==0pts#DoNotOwn,_
+		SK:Innate Attack (Breath)==0pts#DoNotOwn,_
+		SK:Stealth==0pts#DoNotOwn,_
+		EQ:Shamshir#DoNotOwn _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 8,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 4 _
+		),_
+	features(Affected by True Faith and Pentagram. Unwilling to negotiate. Truly evil. Class: Demon.),_
+x(_
+	#ChoiceList(_
+		name(lense),_
+		title(as-Sharak Lense),_
+		text(Select one of the following as-Sharak lenses.),_
+		picksallowed(1),_
+		method(bynumber),_
+		list(_
+		Agni (Fire) as-Sharak=38,_
+		Akasha (Spirit) as-Sharak=38,_
+		Jala (Water) as-Sharak=25,_
+		Prithvi (Earth) as-Sharak=35,_
+		Vayu (Wind) as-Sharak=38 _
+		),_
+		aliaslist(_
+		{AD:Breath of Flame (Burning Attack)} = 5 respond 5,_
+		{AD:Removal of Life (Fatigue Attack)} = 2 respond 5,_
+		{AD:Ocean's Frozen Spray (Crushing Attack)} = 3 respond 5,_
+		{AD:Desert's Sand (Crushing Attack)} = 3 respond 5,_
+		{AD:Rending Storm (Crushing Attack)} = 5 respond 5 _
+		)_
+	)_
+)
+
+Doom Child (Dungeon Fantasy), -25, displaycost(284),_
+	appearance(Bulging eyes and bloated heads mar the disturbingly childlike appearance of these pintsized demons.),_
+	description("Class: Demon. Doomchildren (plural – there's always a horde) are pintsized demons, barely sapient, that attack viciously with unexpected strength and speed. Bulging eyes and bloated heads mar their disturbingly childlike appearance. They're very fragile; one solid hit will kill them. On dying, though, they explode in a cloud of flame, just like a magical fireball."),_
+	page(DF2:22),_
+	race(Doom Child),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-4 to ST:IQ,_
+		+4 to ST:Will,_
+		+4 to ST:Perception,_
+		+3 to ST:Basic Move,_
+		-1 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 1 respond "Knife",_
+		AD:Death Blast (Burning Attack) = 3 respond 1,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Striking ST = 10,_
+		AD:Unfazeable,_
+		DI:Berserk,_
+		SK:Knife==0pts#DoNotOwn,_
+		EQ:Large Knife#DoNotOwn _
+		),_
+	creates(_
+		{DI:Racial ST Penalty, -10/-20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(-1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} ) } = 2,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 8 _
+		),_
+	features(Affected by True Faith and Pentagram. Unwilling to negotiate. Truly evil. Class: Demon.)
+
+Foul Bat {Batchala} Demonic Leader (Dungeon Fantasy), 20, displaycost(210),_
+	description(Class: Demon. These gigantic bats lack the fear of fire and men possessed by normal beasts. Their stench at close proximity can overcome victims before a single bite is delivered, and their mouth carries toxins that make wounds weep and bleed, causing weakness. Some colonies have a demonic leader who has IQ 10+, Indomitable, Magic Resistance 10, and Unfazeable. This is a demon, not a dire animal with the Wild Animal meta-trait.),_
+	page(DF2:23),_
+	race(Foul Bat {Batchala} Demonic Leader),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+2 to ST:HT_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Aerobatics",_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Acute Hearing = 8,_
+		AD:Foul Bat Bite Toxin (Fatigue Attack) = 1 respond 3,_
+		AD:Damage Resistance = 1,_
+		AD:Flight,_
+		AD:Indomitable,_
+		AD:Magic Resistance = 10,_
+		AD:Stench (Affliction) = 1 respond 1,_
+		AD:Sonar _
+			with "20 yards, -60%, group(_General), gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =20 to owner::rangemax$)",_
+		AD:Striking ST = 5 _
+			with "Bite Only, -60%, group(Striking ST), page(P79), gives(-owner::level to ST:Striking ST, +owner::level to ST:Bite)",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Unfazeable,_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:No Fine Manipulators,_
+		SK:Aerobatics==0pts#DoNotOwn,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+		),_
+	creates(_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 4 _
+		),_
+	features(Affected by True Faith and Pentagram. Unwilling to negotiate. Truly evil. Class: Demon.)
+
+Peshkali (Dungeon Fantasy), 60, displaycost(760),_
+	appearance(Peshkali have a muscular, vaguely humanoid torso with six arms, while their lower body is that of a great serpent.),_
+	description(Class: Demon. Peshkali are powerful demonic sentinels set to guard forgotten places. They have a muscular, vaguely humanoid torso with six arms, while their lower body is that of a great serpent. What they lack in sorcery or astonishing powers they make up in strength and martial prowess.),_
+	page(DF2:25),_
+	race(Peshkali),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+4 to ST:Will,_
+		+4 to ST:Perception_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 24 respond "%weaponaliaslist%",_
+		AD:Racial Skill Point Bonus ([Skill]) = 16 respond "Wrestling",_
+		AD:Combat Reflexes,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance = 4,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Double-Jointed,_
+		AD:Extra Arms = 4,_
+		AD:Extra Attack = 5,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Infravision,_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)" _
+			and "No Brain, +5, group(Injury Tolerance), page(B61)" _
+			and "No Neck, +5, group(Injury Tolerance), page(B61)" _
+			and "No Vitals, +5, group(Injury Tolerance), page(B61)",_
+		AD:Supernatural Durability (Can only be killed if all six arms are crippled.),_
+		AD:Unfazeable,_
+		DI:No Legs (Slithers),_
+		SK:%weaponaliaslist%==0pts#DoNotOwn,_
+		SK:Wrestling==0pts#DoNotOwn,_
+		EQ:%weapon1%=6#DoNotOwn _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 10,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 2,_
+		{SK:Neck Snap (Strength), Tech/H, damage(sw), damtype(cr), default(ST:ST - 2, ST:Two Arm Striking ST - 2), dmg(sw), page(B232), parry(No), reach(C), skillused(SK:Neck Snap (Strength)), upto(ST:Two Arm Striking ST + 5), usernotes(Roll a Quick Contest: your ST-4 vs. the higher of your victim's ST or HT. If you win, you inflict swing/crushing damage on the neck. (Neck Snap, p. B404) Damage to neck is x1.5.), damagebasedon(ST:Two Arm Striking ST + 2), cat(Techniques, Techniques - Combat)#DoNotOwn} _
+		),_
+	features(Affected by True Faith and Pentagram. +2 to grapple and ST per arm used after first two! Unwilling to negotiate. Truly evil. Class: Demon.),_
+x(_
+	#ChoiceList(_
+		name(weapon),_
+		title(Peshkali Weapon Selection),_
+		text(Select one of the following weapon types.),_
+		picksallowed(1),_
+		method(bynumber),_
+		list(_
+		Light Club,_
+		Heavy Scimitar,_
+		Spear _
+		),_
+		aliaslist(_
+		Broadsword,_
+		Broadsword,_
+		Spear _
+		)_
+	)_
+)
+
+Toxifier (Dungeon Fantasy), 30, displaycost(240),_
+	appearance(Toxifiers might be mistaken for ghosts due to their greenish, smudgy, semisolid appearance.),_
+	description("Class: Demon. Toxifiers might be mistaken for ghosts due to their smudgy, semisolid appearance. However, they're actually demonic clouds of greenish poison vapor. They attack simply by standing near victims and engulfing them in a lethal mist of contact poison. They're largely unaffected by weapons other than those specifically designed to injure spirits, and are unusually strong-willed and hard to repel with magic."),_
+	page(DF2:26),_
+	race(Toxifier),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+6 to ST:Will_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 12 respond "Aerobatics",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Stealth",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "Diffuse, +100, group(Injury Tolerance), page(B61)",_
+		AD:Silence = 2,_
+		AD:Toxifier Toxic Attack = 1 respond 1,_
+		AD:Unkillable = 1 _
+			with "Achilles' Heel (Magic Weapons), -10%/-30%/-50%, group(Unkillable), page(B95), levelnames(Rare, Occasional, Common or Very Common), upto(3), basedon(Achilles' Heel), basedgroup(Unkillable)",_
+		AD:Vibration Sense (Air),_
+		DI:Dread _
+			with "Rarity: Rare (Blessed Objects), *1/2, shortname(Rare (Blessed Objects)), group(Dread), page(B133), round(Down), basedon(Rarity: Rare), basedgroup(Dread)" _
+			and "Larger Radius, -1/-2, group(Dread), page(B133), level(4), upto(10), levelnames(2 yards, 3 yards, 4 yards, 5 yards, 6 yards, 7 yards, 8 yards, 9 yards, 10 yards, 11 yards)",_
+		DI:No Bite,_
+		DI:No Punch,_
+		DI:No Legs (Aerial),_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:No Manipulators,_
+		DI:Vulnerability (Wind) = 3 _
+			with "Wounding Multiplier x2, *1, shortname(x2), group(Vulnerability), page(B161)",_
+		SK:Aerobatics==0pts#DoNotOwn,_
+		SK:Stealth (18 vs. Hearing)==0pts#DoNotOwn _
+		),_
+	creates(_
+		{DI:Racial ST Penalty, -10/-20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(-1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} )} = 10,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 4,_
+		{AD:Racial Hit Point Bonus, 2/4, cat(Attributes), mods(Extra Hit Points, Size HP), gives(+1 to ST:Hit Points), initmods({"Size" , -10%, group(Size HP), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)})} = 10 _
+		),_
+	features(Affected by True Faith and Pentagram. Unwilling to negotiate. Truly evil. Class: Demon.)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Plant>
+
+Crushroom (Dungeon Fantasy), -80, displaycost(250),_
+	appearance(A crushroom is a man-sized, ambulatory fungus. It resembles a huge mushroom with dozens of tentacle-like “feet” surrounding its base and a gaping maw on top.),_
+	description("Class: Plant. A crushroom is a man-sized, ambulatory fungus. It resembles a huge mushroom with dozens of tentacle-like “feet” surrounding its base (allowing it to move) and a gaping maw on top (permitting it to eat delvers). Made of solid vegetable “muscle,” it's fantastically strong. Druids believe that crushrooms are nonsapient, although rumors abound of intelligent fungus-men with hallucinogenic spores."),_
+	page(DF2:22),_
+	race(Crushroom),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-8 to ST:IQ,_
+		+2 to ST:HT,_
+		+8 to ST:Will,_
+		+8 to ST:Perception,_
+		-1 to ST:Basic Speed_
+		),_
+	adds(_
+		AD:Constriction Attack,_
+		AD:Damage Resistance = 2,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Sleep,_
+		AD:High Pain Threshold,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "Homogenous, +40, group(Injury Tolerance), page(B60)" _
+			and "No Blood, +5, group(Injury Tolerance), page(B61)",_
+		AD:Unfazeable,_
+		DI:No Kick,_
+		DI:No Punch,_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:No Fine Manipulators _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 30 _
+		),_
+	features(Bite counts as a grapple on opponents of SM 0 or smaller, and is followed by the Constriction Attack. Crushrooms aren't intelligent enough to negotiate. Plant spells affect them normally. Class: Plant.)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Giant Animal>
+
+Dire Wolf (Dungeon Fantasy), 0, displaycost(25),_
+	appearance(Dire wolves are huge, strong, fast wolves with thick, wooly coats.),_
+	description("Class: Giant Animal (despite the name). Dire wolves are huge, strong, fast wolves with thick, wooly coats, keen senses, and a taste for human flesh. Tales of orcs using them as mounts are apocryphal – they'll eat orcs, too. While one dire wolf might be no challenge for adventurers, they tend to occur in packs of up to 20 . . . . Each pack has an alpha male with ST 17, IQ 5, HP 17, Will 12, Per 15, damage 1d+2 cutting, and Tactics-12."),_
+	page(DF2:22),_
+	race(Dire Wolf),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-6 to ST:IQ,_
+		+2 to ST:HT,_
+		+7 to ST:Will,_
+		+10 to ST:Perception,_
+		+3 to ST:Basic Move,_
+		+1 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Tracking",_
+		AD:Damage Resistance = 2,_
+		AD:Discriminatory Smell,_
+		AD:Night Vision = 2,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Temperature Tolerance (3° to 70°) = 1,_
+		DI:No Block,_
+		DI:No Parry,_
+		PE:Fur,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Tracking==0pts#DoNotOwn,_
+		TE:Quadruped,_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 6,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 2 _
+		),_
+	features("While not sapient, dire wolves use effective pack tactics.", "Class: Giant Animal")
+
+Dire Wolf - Alpha Male(Dungeon Fantasy), 20, displaycost(82),_
+	page(DF2:22),_
+	race(Dire Wolf),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+1 to ST:IQ_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 32 respond "Tactics",_
+		SK:Tactics==0pts#DoNotOwn _
+		),_
+	creates(_
+		{AD:Alpha Male Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 1 _
+		),_
+	needs("TE:Dire Wolf (Dungeon Fantasy)")
+
+Giant Rat (Dungeon Fantasy), -5, displaycost(38),_
+	description("Class: Giant Animal. There's little to be said about giant rats: they're as cunning and dextrous as regular rats, but huge, the size of the children they carry off as food. Almost all dungeons have them – especially sewers. They're fodder for well-equipped adventurers, but every now and then, 20 or 30 of them will get crazy and swarm a party anyway."),_
+	page(DF2:24),_
+	race(Giant Rat),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-5 to ST:IQ,_
+		+3 to ST:HT,_
+		+5 to ST:Will,_
+		+7 to ST:Perception,_
+		+1 to ST:Basic Move,_
+		-1 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 4 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Stealth",_
+		AD:Damage Resistance = 1,_
+		AD:Night Vision = 5,_
+		AD:Striking ST = 2 _
+			with "Bite Only, -60%, group(Striking ST), page(P79), gives(-owner::level to ST:Striking ST, +owner::level to ST:Bite)",_
+		AD:Teeth (Sharp Teeth),_
+		PE:Fur,_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:Semi-Upright,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Stealth==0pts#DoNotOwn,_
+		TE:Wild Animal _
+		),_
+	creates(_
+		{DI:Racial ST Penalty, -10/-20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(-1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} )} = 1,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 3 _
+		),_
+	features(Anyone wounded by giant rats must make a HT roll to avoid infection with some disease or other. Sewer rot (-1 on all attribute and skill rolls until stopped with Cure Disease) is typical. Class: Giant Animal)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Slime>
+
+Erupting Slime (Dungeon Fantasy), -155, displaycost(-22),_
+	description("Class: Slime. Most slime is only dangerous if touched or if it drips on a careless delver. This one is unusual in that it oozes around, spewing globs of toxic gunk at anything that moves, with the goal of killing the target in order to engulf it and thus reproduce. Left undestroyed in an area with dead bodies, erupting slime will convert a body into a new slime in an hour. This doubling will continue until the slimes run out of corpses. Someone turned to slime cannot be resurrected! A dead slime can be used (or sold) as one dose of Oozing Doom."),_
+	page(DF2:23),_
+	race(Erupting Slime),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-10 to ST:IQ,_
+		+2 to ST:HT,_
+		+10 to ST:Perception,_
+		-5 to ST:Basic Move_
+		),_
+	adds(_
+		AD:Amphibious,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Sleep,_
+		AD:High Pain Threshold,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Injury Tolerance _
+			with "Diffuse, +100, group(Injury Tolerance), page(B61)" _
+			and "Infiltration, +40%, group(Diffuse), page(P53)",_
+		AD:Slimeball (Toxic Attack) = 2 respond 3,_
+		AD:Vibration Sense (Air),_
+		DI:Invertebrate,_
+		DI:No Bite,_
+		DI:No Punch,_
+		DI:No Legs (Slithers),_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:No Manipulators _
+		),_
+	creates(_
+		{DI:Racial ST Penalty, -10/-20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(-1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} )} = 10,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 2,_
+		{AD:Racial Hit Point Bonus, 2/4, cat(Attributes), mods(Extra Hit Points, Size HP), gives(+1 to ST:Hit Points), initmods({"Size" , -10%, group(Size HP), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)})} = 10 _
+		),_
+	features(Nonsentient – can't communicate or negotiate. Unaffected by Animal or Plant spells that don't specifically target slimes. Can ooze under barriers and through tiny holes. Class: Slime.)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Undead>
+
+Flaming Skull (Dungeon Fantasy), -30, displaycost(205),_
+	appearance(Flaming skulls are semi-corporeal, resembling flying human skills wreathed in fire.),_
+	description("Class: Undead. Flaming skulls are semi-corporeal undead that resemble flying human skills wreathed in fire. Streaking into close combat, they deliver flaming bites to their living prey. Owing to their size, speed, and diffuse nature, they're difficult targets, and can often inflict great damage before being destroyed. The jury is out on whether they're necromantic creations or freewilled evil spirits who loathe mortals."),_
+	page(DF2:23),_
+	race(Flaming Skull),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-10 to ST:Fatigue Points,_
+		-5 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Stealth",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Flaming Bite (Burning Attack) = 1 respond 3,_
+		AD:Flight,_
+		AD:High Pain Threshold,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "Diffuse, +100, group(Injury Tolerance), page(B61)",_
+		AD:Unfazeable,_
+		DI:No Bite,_
+		DI:No Punch,_
+		DI:No Legs (Aerial),_
+		DI:No Block,_
+		DI:No Parry,_
+		DI:No Fine Manipulators,_
+		SK:Stealth==0pts#DoNotOwn _
+		),_
+	creates(_
+		{DI:Racial ST Penalty, -10/-20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(-1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} )} = 10,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 4,_
+		{AD:Racial Hit Point Bonus, 2/4, cat(Attributes), mods(Extra Hit Points, Size HP), gives(+1 to ST:Hit Points), initmods({"Size" , -10%, group(Size HP), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)})} = 20 _
+		),_
+	features(Unwilling to negotiate. Truly evil. Class: Undead.)
+
+Horde Zombie (Dungeon Fantasy), -61, displaycost(-25),_
+	description("Class: Undead. Horde zombies aren't necromantic servitors, but victims of a horrible curse. Anyone slain by a horde zombie will rise as one a minute later and try to eat any living person in sight. While capable of speech, horde zombies only ever moan the name of the body part they wish to eat: “Braaaain,” “Spleeeen,” “Skinnnn,” etc. They're mostly weak fodder – but if enough of them attack, the danger of being grappled, pinned, and eaten is real. On the other hand, they're easy to outrun, and usually forget about victims who duck out of sight (6 or less chance of staying on the trail)."),_
+	page(DF2:24),_
+	race(Horde Zombie),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-2 to ST:IQ,_
+		+2 to ST:HT,_
+		-12 to ST:Fatigue Points,_
+		-1 to ST:Basic Move_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 12 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 16 respond "Wrestling",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Sleep,_
+		AD:High Pain Threshold,_
+		AD:Immunity to All Mind Control,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)" _
+			and "Unliving, +20, group(Injury Tolerance), page(B61)",_
+		AD:Temperature Tolerance (-115° to 60°) = 10,_
+		AD:Unfazeable,_
+		DI:Bad Smell,_
+		DI:Cannot Learn,_
+		DI:Fragile (Unnatural),_
+		DI:Incurious _
+			with "You resist on a roll of  6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control), page(B121)",_
+		DI:Infectious Attack (Must kill victim),_
+		DI:Uncontrollable Appetite _
+			with "You resist on a roll of  6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control), page(B121)",_
+		DI:Unhealing = 2,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:Wrestling==0pts#DoNotOwn	_
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 3,_
+		{DI:Racial DX Penalty, -20/-40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(-1 to ST:DX)} = 2,_
+		{AD:Racial Hit Point Bonus, 2/4, cat(Attributes), mods(Extra Hit Points, Size HP), gives(+1 to ST:Hit Points), initmods({"Size" , -10%, group(Size HP), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)})} = 4,_
+		{SK:Neck Snap (Strength), Tech/H, damage(sw), damtype(cr), default(ST:ST - 2, ST:Striking ST - 2), dmg(sw), page(B232), parry(No), reach(C), skillused(SK:Neck Snap (Strength)), upto(ST:Two Arm Striking ST + 5), usernotes(Roll a Quick Contest: your ST-4 vs. the higher of your victim's ST or HT. If you win, you inflict swing/crushing damage on the neck. (Neck Snap, p. B404) Damage to neck is x1.5.), damagebasedon(ST:Striking ST + 2), cat(Techniques, Techniques - Combat)#DoNotOwn} _
+		),_
+	features(While “intelligent,” horde zombies are uninterested in negotiation and immune to trickery. They just want to eat. They aren't truly evil – they're more a force of nature. Usually forget about victims who duck out of sight (6 or less chance of staying on the trail). Class: Undead.)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Construct>
+
+Golem-Armor Swordsman (Dungeon Fantasy), -25, displaycost(145),_
+	description("Class: Construct. This construct consists of a flesh golem – made from a formerly living swordsman – riveted inside solid metal plates that are also animated, thereby augmenting strength. It's virtually indestructible . . . and when the flesh golem is slain, the armor reanimates on its own as an “armor golem” and must be destroyed a second time. Fortunately for delvers, the vast weight of metal used (200 lbs.) makes the thing slow and clanking, and it seems to have the usual human vulnerabilities at the head and vitals. Usually carries an ordinary broadsword and a medium shield (DB 2), but these may be magical. The golem's massive armor can't be worn by a man, but is worth $1dx100 on its own as scrap!"),_
+	page(DF2:24),_
+	race(Golem-Armor Swordsman),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+3 to ST:HT,_
+		-13 to ST:Fatigue Points,_
+		+0.5 to ST:Basic Speed_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 12 respond "Broadsword",_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "Shield (Shield)",_
+		AD:Combat Reflexes,_
+		AD:Damage Resistance (Golem-Armor) = 17,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Extra Life = 1,_
+		AD:High Pain Threshold,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)",_
+		AD:Striking ST = 5,_
+		AD:Unfazeable,_
+		DI:Berserk,_
+		DI:Cannot Learn,_
+		DI:Fragile (Unnatural),_
+		DI:No Bite,_
+		DI:Reprogrammable,_
+		DI:Unhealing = 2,_
+		SK:Broadsword==0pts#DoNotOwn,_
+		SK:Shield (Shield)==0pts#DoNotOwn,_
+		TE:Automaton,_
+		EQ:Thrusting Broadsword#DoNotOwn _
+		%shieldaliaslist% _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 3,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 3,_
+		{EQ:Golem-Armor, basecost(350), baseweight(200), dr(0*), location(all), mods(Equipment, Armor, Gauntlets, Boots, Armor - Plate, Armor - Metal, Armor - Heavy Plate), page(DF2:24), techlvl(3), description(TL:3 LC:-- DR:0* Locations: all Notes:This is a customized full suit of armor constructed of riveted solid metal plates of vast weight. The armor is an integral part of the design and is not removeable without destroying the construct.), cat(Basic Set, Basic Set - Armor - Low-Tech - Armor Suits, Basic Set - Armor - Low-Tech, Basic Set - Armor, _Armor, _Armor - Low-Tech, Basic Set - Armor, Basic Set - Armor - Low-Tech - Armor Suits)#DoNotOwn} _
+		),_
+	features(No golem will negotiate or reveal useful information. Class: Construct.),_
+	x(_
+		#ChoiceList(_
+			name(shield),_
+			title(Golem-Armor Swordsman Shield Selection),_
+			text(Select one of the following Shield options. NOTE: You will need to visit the Protection screen to ready your selection.),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Medium Shield (Readied Left Arm),_
+				No Shield _
+				),_
+			aliaslist(_
+				", EQ:Medium Shield (Readied Left Arm)#DoNotOwn",_
+				"" _
+				)_
+			)_
+		)
+
+Stone Golem (Dungeon Fantasy), -42, displaycost(126),_
+	description("Class: Construct. A stone golem is a magical automaton created as a guardian. Most golems found in dungeons have outlived their creators, and carry out obscure orders completely by the letter. Some warn delvers away from a particular place or action, and attack only those who fail to heed the warning; others simply attack on sight. This is a basic model; there's no actual limit to ST, HP, DR, or skill. If clad in barbarian-sized (SM +1) armor, add armor DR to natural DR 4; DR 5 bronze plate (total DR 9) is common."),_
+	page(DF2:26),_
+	race(Stone Golem),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-2 to ST:IQ,_
+		+4 to ST:HT,_
+		-14 to ST:Fatigue Points,_
+		+1 to ST:Size Modifier _
+		),_
+	adds(_
+		AD:Racial Punch Attack _
+			with "Add Punch w/Gauntlets Combat Table Entry, +0, shortname(Punch w/Gauntlets), addmode(Punch w/Gauntlets, damage(1 + %copyfirst - @if("AD:Claws (Blunt Claws)::level" = 1 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 then @basethdice(ST:Punch) else 0))), damtype(cr), reach(%copyfirst), parry(%copyfirst), skillused(%copyfirst))" _
+			respond "Stone Fist",_
+		AD:Racial Skill Point Bonus ([Skill]) = 2 respond "Brawling",_
+		AD:Racial Skill Point Bonus ([Skill]) = 8 respond "%weaponaliaslist%",_
+		AD:Damage Resistance = 4,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:High Pain Threshold,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Indomitable,_
+		AD:Injury Tolerance _
+			with "Homogenous, +40, group(Injury Tolerance), page(B61)" _
+			and "No Blood, +5, group(Injury Tolerance), page(B61)",_
+		AD:Pressure Support = 3,_
+		AD:Unfazeable,_
+		AD:Vacuum Support,_
+		DI:Fragile (Unnatural),_
+		DI:Reprogrammable,_
+		DI:Unhealing = 2,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Bite Mode, +0, addmode(Bite, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		SK:%weaponaliaslist%==0pts#DoNotOwn,_
+		TE:Automaton,_
+		EQ:%weapon1%#DoNotOwn _
+		),_
+	creates(_
+		%armoraliaslist% _
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 10,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 1,_
+		{AD:Racial Hit Point Bonus, 2/4, cat(Attributes), mods(Extra Hit Points, Size HP), gives(+1 to ST:Hit Points), initmods({"Size" , -10%, group(Size HP), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)})} = 10 _
+		),_
+	features(No golem will negotiate or reveal useful information. Class: Construct.),_
+	x(_
+		#ChoiceList(_
+			name(weapon),_
+			title(Stone Golem Weapon Selection),_
+			text(Select one of the following weapon types.),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Huge Maul (SM +1),_
+				Executioner's Sword _
+				),_
+			aliaslist(_
+				Two-Handed Axe/Mace,_
+				Two-Handed Sword _
+				)_
+			),_
+		#ChoiceList(_
+			name(armor),_
+			title(Stone Golem Armor Selection),_
+			text(Select one of the following armor sets. NOTE: You will need to visit the Protection screen to ready your selection.),_
+			picksallowed(1),_
+			method(bynumber),_
+			default(2),_
+			list(_
+				DR 5 Bronze Plate (Full Suit w/Helm),_
+				DR 5 Bronze Plate (Gauntlets Only),_
+				No Armor _
+				),_
+			aliaslist(_
+				"{EQ:Bronze Plate (Full Suit w/Helm; DR 5), basecost(24400), baseweight(48.8), don(45), dr(5), location(All), page(DF2:26, LT100-110), tl(1), cat(Low-Tech - Armor), initmods({"Dungeon Fantasy: Oversized", *2, shortname(Oversized), group(Armor), page(DF1:28), gives(*2 to owner::baseweight)})#DoNotOwn},",_
+				"{EQ:Bronze Plate Gauntlets (DR 5), basecost(800), baseweight(1.6), don(45), dr(5), location(Hands), page(DF2:26, LT100-110), tl(1), cat(Low-Tech - Armor), initmods({"Dungeon Fantasy: Oversized", *2, shortname(Oversized), group(Armor), page(DF1:28), gives(*2 to owner::baseweight)})#DoNotOwn},",_
+				"" _
+				)_
+			)_
+		)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Elder Thing>
+
+Mindwarper (Dungeon Fantasy), 214, displaycost(762*),_
+	appearance(No mortal has survived to describe one, but ancient lore suggests that they're humanoids with pebbly skin (similar to that of a starfish), no nose, and hands and feet that consist of suckers surrounded by writhing cilia instead of digits.),_
+	description("Class: Elder Thing. Mindwarpers are Things from Beyond Time and Space, with genius-level intellect and devastating psychic powers. No mortal has survived to describe one, but ancient lore suggests that they're humanoids with pebbly skin (similar to that of a starfish), no nose, and hands and feet that consist of suckers surrounded by writhing cilia instead of digits. An encounter with a mindwarper generally ends in madness or death. Fortunately for humans, mindwarpers don't work well together; a mindwarper is likely to be the boss of a dungeon, found on the lowest levels, surrounded by mindless fodder."),_
+	page(DF2:25),_
+	race(Mindwarper),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		+8 to ST:IQ,_
+		+2 to ST:HT,_
+		+2 to ST:Will,_
+		+8 to ST:Fatigue Points_
+		),_
+	adds(_
+		AD:Racial Skill Point Bonus ([Skill]) = 36 respond "Innate Attack (Gaze)",_
+		AD:Compartmentalized Mind = 4,_
+		AD:Damage Resistance = 10,_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Flexibility,_
+		AD:Immunity to Metabolic Hazards,_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)" _
+			and "No Vitals, +5, group(Injury Tolerance), page(B61)",_
+		AD:Magic Resistance = 6,_
+		AD:Pressure Support = 3,_
+		AD:Psychokinetic Lash (Crushing Attack) = 3 respond 6,_
+		AD:Regeneration = 4,_
+		AD:Temperature Tolerance (-15° to 100°) = 5,_
+		AD:Terror,_
+		AD:Unfazeable,_
+		DI:Dependency (Mana) = 1 _
+			with "Frequency Needed: Constantly, *5, shortname(Constantly), group(Dependency), page(B130)",_
+		SK:Innate Attack (Gaze)==0pts#DoNotOwn _
+		),_
+	features(Parry, DR, attack, and Terror are psionic. Compartmentalized Mind lets the mindwarper psychokinetically strike and parry five times per turn! Many IQ-based skills at skill 16-20. A mindwarper will often feign willingness to negotiate; it may even honor a deal that involves delvers agreeing to a horrible, soul-tainting quest. Truly evil. Class: Elder Thing.)
+
+<Racial Templates, Racial Templates - Dungeon Fantasy, Racial Templates - Dungeon Fantasy - Mundane>
+
+Siege Beast (Dungeon Fantasy), 13, displaycost(299),_
+	description("Class: Mundane. These gigantic, stooped brutes are stupid, ill-tempered, and completely loyal to the dark forces that control whatever dungeon they're found in. Their purpose in life is to tow siege engines and guard gateways. They wade into battle with a massive hammer like a meat tenderizer riveted to one hand (Cannot be dropped!) and steel bands nailed directly to their leathery hide. A siege beast's “weapon” and “armor” consist of 180 lbs. of low-quality scrap. Fortunately for delvers, siege beasts are flesh-and-blood creatures, not constructs, and thus are subject to poison, strangulation, and blows to vital areas."),_
+	page(DF2:25),_
+	race(Siege Beast),_
+	noresync(yes),_
+	owns(yes),_
+	gives(_
+		-2 to ST:IQ,_
+		+2 to ST:HT,_
+		+4 to ST:Will,_
+		+6 to ST:Fatigue Points,_
+		-1 to ST:Basic Move,_
+		+2 to ST:Size Modifier_
+		),_
+	adds(_
+		AD:Racial Kick Attack _
+			with "Include +1 damage from Boots in base damage, +0, shortname(Has Boots), group(Punch/Kick), gives(=+@textindexedvalue( $modetag(mode), ("Kick", 1) ) to owner::damage$ listAs "+1 damage from Boots")" _
+			respond "Metal Boot",_
+		AD:Racial Punch Attack _
+			with "Include +1 damage from Gauntlets in base damage, +0, shortname(Has Gauntlets), group(Punch/Kick), gives(=+@textindexedvalue( $modetag(mode), ("Punch", 1) ) to owner::damage$ listAs "+1 damage from Gauntlets")" _
+			respond "Mailed Fist",_
+		AD:Racial Skill Point Bonus ([Skill]) = 16 respond "Axe/Mace",_
+		AD:Racial Skill Point Bonus ([Skill]) = 12 respond "Brawling",_
+		AD:Damage Resistance = 10,_
+		AD:Hard to Kill = 4,_
+		AD:High Pain Threshold,_
+		AD:Very Rapid Healing,_
+		DI:Bad Temper,_
+		DI:Fanaticism,_
+		SK:Axe/Mace==0pts#DoNotOwn,_
+		SK:Brawling==0pts#DoNotOwn _
+			with "Remove Bite Mode, +0, addmode(Bite, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Kick Mode, +0, addmode(Kick, damage(), damtype(), minst(), reach()), group(Punch/Kick)" _
+			and "Remove Punch Mode, +0, addmode(Punch, damage(), damtype(), minst(), reach()), group(Punch/Kick)",_
+		EQ:Siege Beast Hammer#DoNotOwn _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Attributes), mods(Extra ST, Size, No Fine Manipulators), gives(+1 to ST:ST), initmods({"Size", -10%, group(Size ST), page(B15), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes)} | {"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators >0 then 40 else 0)), forceformula(yes)})} = 20,_
+		{AD:Racial DX Bonus, 20/40, cat(Attributes), mods(Extra DX, No Fine Manipulators), gives(+1 to ST:DX), initmods({"No Fine Manipulators", -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 then 40 else 0)), forceformula(yes)})} = 2 _
+		),_
+	features(Siege beasts aren't supernaturally bound and can be tricked or even negotiated with. Mind control also works – but given a siege beast's Will (and the triple cost to cast spells on SM +2 targets), this isn't usually practical. Class: Mundane.)
+

@@ -1,0 +1,141 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file contains all of the equipment from Infinite Worlds converted to Metric weights. _
+		It requires that you also load the Variant Basic Set - Metric Equipment.gdf data file. _
+		All weights have been rounded off; those under 1 Kilo are rounded to two decimal places; those under 10 Kilos _
+		are rounded to one decimal place; those over 10 Kilos are rounded to the nearest whole number. _
+		Range (1/2D & Max) remains in yards, but the approximate conversion of 1 yard = 1 meter should suffice.
+Requires="GURPS Infinite Worlds 4e.gdf", "Variant Basic Set 4e - Metric Equipment.gdf"
+Worldbook=Infinite Worlds
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Infinite Worlds 4e - Metric Equipment.gdf
+* Created: August 18, 2005
+* Requires GCA v3 or later!
+*
+* This data file contains information taken from the GURPS Infinite Worlds sourcebook.
+* GURPS Infinite Worlds is Copyright © 2004 by Steve Jackson Games
+* Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*	Metric Equipment
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[EQUIPMENT]
+************************************************************************************************************************
+<Infinite Worlds - Firearms>
+
+<Firearms - Ultra-Tech Firearms>
+"CF/3 Pandar, 10mm", techlvl(9^), lc(4), malf(17), units(kg), baseweight(0.16), basecost(260), damage(2HT-4(2)), damtype(aff), acc(2), rangehalfdam(200), rangemax(600), rof(3), shots(104(3)), minst(2), bulk(-1), rcl(1), notes([1]), skillused(Gun!, Beam Weapons (Pistol), DX-4, Beam Weapons-4, Guns (Pistol)-4), description(TL:9^ LC:4 Damage:2HT-4(2) aff Acc:2 Range:200/600 RoF:3 Shots:104(3) ST:2 Bulk:-1 Rcl:1 Skill: Beam Weapons (Pistol) Notes: [1] Includes "smartgun" electronics (see p. B278). EPS 0.86, C/104 eShots.), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+"Electrozap Pistol, 80mm", techlvl(9), malf(17), lc(4), units(kg), baseweight(1.6), basecost(12000), newmode(beam, damage(1d-1), damtype(burn sur), acc(4), rangehalfdam(80), rangemax(240), rof(1), shots(87(3)), minst(6), bulk(-3), rcl(1), notes([2]), skillused(Gun!, Beam Weapons (Pistol), DX-4, Beam Weapons-4, Guns (Pistol)-4)), newmode(linked, damage(HT-6(2)), damtype(aff), acc(4), rangehalfdam(80), rangemax(240), rof(1), shots(87(3)), minst(6), bulk(-3), rcl(1), notes([2]), skillused(Gun!, Beam Weapons (Pistol), DX-4, Beam Weapons-4, Guns (Pistol)-4)), description(TL:9 LC:4 Damage:1d-1 burn sur/HT-6(2) aff Acc:4 Range:80/240 RoF:1 Shots:87(3) ST:6 Bulk:-3 Rcl:1 Skill: Beam Weapons (Pistol) Notes: [2] Includes "smartgun" electronics (see p. B278). EPS 10, D/87 eShots.), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+
+"CF/3 Pandar, 10mm (Ammunition)", units(kg), baseweight(0.05), basecost(2), techlvl(9^), lc(4), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"Electrozap Pistol, 80mm (Ammunition)", units(kg), baseweight(0.45), basecost(20), techlvl(9), lc(4), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+
+<Firearms - Pistols & SMGs>
+"ISP, 10mm", techlvl(9), malf(17), lc(3), units(kg), baseweight(1.5), basecost(1200), damage(4d+1), damtype(pi+), acc(3), rangehalfdam(280), rangemax(3200), rof(10), shots(15+1(3)), minst(8), bulk(-2), rcl(3), notes([3]), skillused(Gun!, Guns (Pistol), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)- 2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2), description(TL:9 LC:3 Damage:4d+1 pi+ Acc:3 Range:280/3200 RoF:10 Shots:15+1(3) ST:8 Bulk:-2 Rcl:3 Skill: Guns (Pistol) Notes: [3] Includes "smartgun" electronics (see p. B278). EPS 2.3, C/39 eShots.), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+"Needle Pistol, 5mm", techlvl(9), malf(17), lc(4), units(kg), baseweight(0.95), basecost(200), damage(1d-1), damtype(pi), acc(1), rangehalfdam(100), rangemax(390), rof(3), shots(25+1(3)), minst(5), bulk(-3), rcl(2), notes(), skillused(Gun!, Guns (Pistol), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)- 2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2), description(TL:9 LC:4 Damage:1d-1 pi Acc:1 Range:100/390 RoF:3 Shots:25+1(3) ST:5 Bulk:-3 Rcl:2 Skill: Guns (Pistol) Notes: Includes "smartgun" electronics (see p. B278). ), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+
+"ISP, 10mm (Ammunition)", units(kg), baseweight(0.32), basecost(45), techlvl(9), lc(3), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"Needle Pistol, 5mm (Ammunition)", units(kg), baseweight(0.5), basecost(17.5), techlvl(9), lc(4), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+
+<Firearms - Rifles & Shotguns>
+"CF/4 Porpentine, 20mm", techlvl(9), malf(17), lc(1), units(kg), baseweight(10), basecost(4200), damage(7d+2), damtype(pi++), acc(2), rangehalfdam(260), rangemax(780), rof(1), shots(9+1(3)), minst(4†), bulk(-6), rcl(5), notes([4]), skillused(Gun!, Guns (Rifle), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)- 2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2), description(TL:9 LC:1 Damage:7d+2 pi++ Acc:2 Range:260/780 RoF:1 Shots:9+1(3) ST:4† Bulk:-6 Rcl:5 Skill: Guns (Rifle) Notes: [4] Includes "smartgun" electronics (see p. B278). EPS 19, 2C/9 eShots.), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+"ICW, 6.8mm", techlvl(9), malf(17), lc(1), units(kg), baseweight(2.2), basecost(430), damage(6d), damtype(pi), acc(5), rangehalfdam(570), rangemax(3700), rof(15), shots(30+1(3)), minst(10†), bulk(-3), rcl(2), notes([5]), skillused(Gun!, Guns (Rifle), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)- 2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2), description(TL:9 LC:1 Damage:6d pi Acc:5 Range:570/3700 RoF:15 Shots:30+1(3) ST:10† Bulk:-3 Rcl:2 Skill: Guns (Rifle) Notes: [5] Includes "smartgun" electronics (see p. B278). Usually mounts an integral grenade launcher.), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+"Express Rifle, 15mm", techlvl(9), malf(17), lc(2), units(kg), baseweight(17), basecost(4800), damage(6dx3), damtype(pi+), acc(5), rangehalfdam(2600), rangemax(11000), rof(1), shots(1(23)), minst(13B†), bulk(-10), rcl(6), notes(), skillused(Gun!, Guns (Rifle), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)- 2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2), description(TL:9 LC:2 Damage:6dx3 pi+ Acc:5 Range:2600/11000 RoF:1 Shots:1(23) ST:13B† Bulk:-10 Rcl:6 Skill: Guns (Rifle) Notes: Includes "smartgun" electronics (see p. B278). ), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+"StG 03, 7.92mm", techlvl(9), malf(17), lc(1), units(kg), baseweight(4.5), basecost(1000), damage(7d+1), damtype(pi), acc(4), rangehalfdam(1200), rangemax(5300), rof(20), shots(40+1(3)), minst(8†), bulk(-4), rcl(2), notes([5]), skillused(Gun!, Guns (Rifle), DX-4, Guns (Grenade Launcher)-4, Guns (Gyroc)-4, Guns (Light Anti-Armor Weapon)-4, Guns (Light Machine Gun)- 2, Guns (Musket)-2, Guns (Pistol)-2, Guns (Rifle)-2, Guns (Shotgun)-2, Guns (Submachine Gun)-2), description(TL:9 LC:1 Damage:7d+1 pi Acc:4 Range:1200/5300 RoF:20 Shots:40+1(3) ST:8† Bulk:-4 Rcl:2 Skill: Guns (Rifle) Notes: [5] Includes "smartgun" electronics (see p. B278). Usually mounts an integral grenade launcher.), page(IW200), mods(Equipment, Guns), cat(Infinite Worlds - Firearms)
+
+"CF/4 Porpentine, 20mm (Ammunition)", units(kg), baseweight(0.35), basecost(10), techlvl(9), lc(1), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"ICW, 6.8mm (Ammunition)", units(kg), baseweight(0.23), basecost(39), techlvl(9), lc(1), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"Express Rifle, 15mm (Ammunition)", units(kg), baseweight(0.18), basecost(18), techlvl(9), lc(2), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"StG 03, 7.92mm (Ammunition)", units(kg), baseweight(0.86), basecost(116), techlvl(9), lc(1), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"StG 03, 7.92mm (Ammunition, HEDP)", units(kg), baseweight(0.86), basecost(348), techlvl(9), lc(1), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+"StG 03, 7.92mm (Ammunition, HE)", units(kg), baseweight(0.86), basecost(116), techlvl(9), lc(1), mods(Equipment, Ammunition), cat(Infinite Worlds - Firearms)
+
+<Infinite Worlds - Communications and Information Gear>
+Hideout Radio, techlvl(9), basecost(50), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+Linguistic Prompt, techlvl(9), basecost(70000), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+Mission Databases, techlvl(9), basecost(36), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+Palmtop, techlvl(9), basecost(200), units(kg), baseweight(1.4), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+Storage Clip, techlvl(9), basecost(10), units(kg), baseweight(0.05), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+TacNet, techlvl(9), basecost(480), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Communications & Information Gear)
+
+<Infinite Worlds - Sensors and Recon Equipment>
+Bug Detector, techlvl(9), basecost(500), units(kg), baseweight(0.45), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+Chemical Microsensor, techlvl(9), basecost(100), units(kg), baseweight(0.09), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+Homing Beacon, techlvl(9), basecost(40), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+MiniHUD, techlvl(9), basecost(50), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+MicroNav, techlvl(9), basecost(100), units(kg), baseweight(0), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+Parachronic Detector, techlvl(9), basecost(560000), units(kg), baseweight(25), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+Parachronic Scanner, techlvl(9), basecost(56000), units(kg), baseweight(2.7), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+Quantum Analyzer, techlvl(9), basecost(200000), units(kg), baseweight(11), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+"Sidereal Chronolog (Scope, Fabric, and CPU)", techlvl(9), basecost(15000), units(kg), baseweight(44), description(TL:9), page(IW24), mods(Equipment), cat(Miscellaneous Equipment - Optics & Sensors)
+
+<Infinite Worlds - Tools and Supplies>
+All-Purpose Treatment, techlvl(9), basecost(750), units(kg), baseweight(0), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Bandage Spray, techlvl(9), basecost(15), units(kg), baseweight(0.05), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Biomonitor, techlvl(9), basecost(100), units(kg), baseweight(0), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Climbing Gear, techlvl(9), basecost(350), units(kg), baseweight(2.3), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Cracker Tools, techlvl(9), basecost(4000), units(kg), baseweight(4.5), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Crash Kit, techlvl(9), basecost(100), units(kg), baseweight(4.5), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Crediline, techlvl(9), basecost(240), units(kg), baseweight(0), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Cufftape (per 100' spool), techlvl(9), basecost(10), units(kg), baseweight(0.23), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Diving Gear, techlvl(9), basecost(430), units(kg), baseweight(5.9), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Eraser, techlvl(9), basecost(0), units(kg), baseweight(0), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Meal-in-a-Box, techlvl(9), basecost(5), units(kg), baseweight(0.45), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Nanofiber Rope (per 10 yards), techlvl(9), basecost(30), units(kg), baseweight(0.91), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Pneumospray Hypo, techlvl(9), basecost(20), units(kg), baseweight(0.03), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Portable Laboratory, techlvl(9), basecost(8000), units(kg), baseweight(4.5), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Portacam, techlvl(9), basecost(100), units(kg), baseweight(0.11), description(TL:9), page(IW25), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Quick Shelter, techlvl(9), basecost(2000), units(kg), baseweight(1818), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Sobriety Pill, techlvl(9), basecost(10), units(kg), baseweight(0), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+Surgical Insturments, techlvl(9), basecost(1250), units(kg), baseweight(6.8), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Tools)
+
+<Infinite Worlds - Spy Gear>
+Buzzbot, techlvl(9), basecost(600), units(kg), baseweight(0.91), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+Chameleon Suit, techlvl(9), basecost(12800), units(kg), baseweight(4.1), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+Disguise Kit, techlvl(9), basecost(200), units(kg), baseweight(4.5), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+Nanobug, techlvl(9), basecost(100), units(kg), baseweight(0), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+Nanocleanser, techlvl(10), basecost(100), units(kg), baseweight(0.45), description(TL:10), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+Psi Shield, techlvl(9), basecost(3000), units(kg), baseweight(0.14), description(TL:9), page(IW26), mods(Equipment), cat(Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear)
+
+<Infinite Worlds - Armor>
+
+<Armor - High- & Ultra- Tech Body Armor>
+Armor Cuirass, cat(Infinite Worlds - Armor), location(torso, groin), dr(50), basecost(1200), units(kg), baseweight(9.1), lc(2), techlvl(9), description(TL:9 LC:2 DR:50), mods(Equipment)
+Armored Uniform, cat(Infinite Worlds - Armor), location(arms, torso, groin, legs), dr(3), basecost(240), units(kg), baseweight(0.73), lc(2), techlvl(9), notes([1,2]), description(TL:9 LC:2 DR:3 Notes: [1,2] Concealable as or under clothing. It has split DR: it gets full DR vs. piercing and cutting attacks, but one-third DR (round up) against other damage types.), mods(Equipment)
+Ballistic Vest, cat(Infinite Worlds - Armor), location(torso, groin), dr(20*), basecost(630), units(kg), baseweight(1.9), lc(4), techlvl(9), notes([2]), description(TL:9 LC:4 DR:20* Notes: [2] It has split DR: it gets full DR vs. piercing and cutting attacks, but one-third DR (round up) against other damage types.), mods(Equipment)
+Mesh Cloth, cat(Infinite Worlds - Armor), location(full suit), dr(4*), basecost(375), units(kg), baseweight(1.1), lc(4), techlvl(9), notes([1,2]), description(TL:9 LC:4 DR:4* Notes: [1,2] Concealable as or under clothing. It has split DR: it gets full DR vs. piercing and cutting attacks, but one-third DR (round up) against other damage types.), mods(Equipment)
+
+<Armor - High- & Ultra- Tech Headgear>
+Combat Helmet, cat(Infinite Worlds - Armor), location(skull, neck), dr(20), basecost(120), units(kg), baseweight(1.8), lc(1), techlvl(9), description(TL:9 LC:1 DR:20), mods(Equipment)
+Combat Helmet Visor, cat(Infinite Worlds - Armor), location(eyes, face), dr(5), basecost(72), units(kg), baseweight(0.11), lc(4), techlvl(9), description(TL:9 LC:4 DR:5), mods(Equipment)
+
+<Armor - High- & Ultra- Tech Gloves & Footwear>
+Assault Boots, cat(Infinite Worlds - Armor), location(feet), dr(12/6), basecost(53), units(kg), baseweight(0.4), lc(4), techlvl(9), notes([1]), description(TL:9 LC:4 DR:12/6 Notes: [1] Concealable as or under clothing.), mods(Equipment)

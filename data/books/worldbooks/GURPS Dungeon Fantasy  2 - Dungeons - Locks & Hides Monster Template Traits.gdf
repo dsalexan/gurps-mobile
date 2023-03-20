@@ -1,0 +1,38 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2022 February 25. _
+		This data file just LOCKS the monster templates in Dungeon Fantasy 2, so they can't be edited in GCA,_
+		and HIDES the components so they don't show up as normal traits in lists.
+WorldBook=Dungeon Fantasy
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf", "GURPS Dungeon Fantasy  2 - Dungeons.GDF"
+LoadAfter="GURPS Dungeon Fantasy  2 - Dungeons.GDF"
+Incomplete=Yes
+
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+
+#ReplaceTags in "TE:Acid Spider (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Flesh-Eating Ape (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Foul Bat {Batchala} (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Frost Snake (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Triger (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:as-Sharak (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Doom Child (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Foul Bat {Batchala} Demonic Leader (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Peshkali (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Toxifier (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Crushroom (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Dire Wolf (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Dire Wolf - Alpha Male(Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Giant Rat (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Erupting Slime (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Flaming Skull (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Horde Zombie (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Golem-Armor Swordsman (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Stone Golem (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Mindwarper (Dungeon Fantasy)" with "locks(yes),hides(yes)"
+#ReplaceTags in "TE:Siege Beast (Dungeon Fantasy)" with "locks(yes),hides(yes)"

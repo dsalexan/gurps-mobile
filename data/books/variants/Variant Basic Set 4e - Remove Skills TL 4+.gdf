@@ -1,0 +1,571 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file removes all skills from the available list within GCA which are in this author's opinion only available at TL 4 or higher.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter=All
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Basic Set 4e - Delete Skills TL 04+.gdf
+* Created: August 18, 2007
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Basic Set: Characters sourcebook. GURPS Basic Set:
+* Characters is Copyright © 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+* Steve Jackson Games Incorporated. All rights reserved.
+*
+* Information in this file includes:
+* #Delete commands for any skills which are, in this author's opinion, only available at TL 4 or higher.
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+************************************************************************************************************************
+[SKILLS]
+************************************************************************************************************************
+#Delete "SK:Armoury (Battlesuits)"
+#Delete "SK:Armoury (Force Shields)"
+#Delete "SK:Armoury (Heavy Weapons)"
+#Delete "SK:Armoury (Small Arms)"
+#Delete "SK:Armoury (Vehicular Armor)"
+//#Delete "SK:Artillery"
+#Delete "SK:Artillery (Beams)"
+#Delete "SK:Artillery (Bombs)"
+#Delete "SK:Artillery (Cannon)"
+#Delete "SK:Artillery (Guided Missile)"
+#Delete "SK:Artillery (Torpedoes)"
+#Delete "SK:Battlesuit"
+//#Delete "SK:Beam Weapons"
+#Delete "SK:Beam Weapons (Pistol)"
+#Delete "SK:Beam Weapons (Projector)"
+#Delete "SK:Beam Weapons (Rifle)"
+#Delete "SK:Bicycling"
+//#Delete "SK:Bioengineering"
+#Delete "SK:Bioengineering (Cloning)"
+#Delete "SK:Bioengineering (Genetic Engineering)"
+#Delete "SK:Bioengineering (Tissue Engineering)"
+#Delete "SK:Biology (Gas Giants)"
+#Delete "SK:Biology (Hostile Terrestrial)"
+#Delete "SK:Biology (Ice Dwarfs)"
+#Delete "SK:Biology (Ice Worlds)"
+#Delete "SK:Biology (Rock Worlds)"
+#Delete "SK:Boating (Large Powerboat)"
+#Delete "SK:Boating (Motorboat)"
+#Delete "SK:Brain Hacking"
+#Delete "SK:Computer Hacking"
+#Delete "SK:Computer Operation"
+#Delete "SK:Computer Programming"
+#Delete "SK:Diving Suit"
+//#Delete "SK:Driving"
+#Delete "SK:Driving (Automobile)"
+#Delete "SK:Driving (Construction Equipment)"
+#Delete "SK:Driving (Halftrack)"
+#Delete "SK:Driving (Heavy Wheeled)"
+#Delete "SK:Driving (Hovercraft)"
+#Delete "SK:Driving (Locomotive)"
+#Delete "SK:Driving (Mecha)"
+#Delete "SK:Driving (Motorcycle)"
+#Delete "SK:Driving (Tracked)"
+#Delete "SK:Electrician"
+//#Delete "SK:Electronics Operation"
+#Delete "SK:Electronics Operation (Communications)"
+#Delete "SK:Electronics Operation (Electronic Warfare)"
+#Delete "SK:Electronics Operation (Force Shields)"
+#Delete "SK:Electronics Operation (Matter Transmitters)"
+#Delete "SK:Electronics Operation (Media)"
+#Delete "SK:Electronics Operation (Medical)"
+#Delete "SK:Electronics Operation (Parachronic)"
+#Delete "SK:Electronics Operation (Psychotronics)"
+#Delete "SK:Electronics Operation (Scientific)"
+#Delete "SK:Electronics Operation (Security)"
+#Delete "SK:Electronics Operation (Sensors)"
+#Delete "SK:Electronics Operation (Sonar)"
+#Delete "SK:Electronics Operation (Surveillance)"
+#Delete "SK:Electronics Operation (Temporal)"
+//#Delete "SK:Electronics Repair"
+#Delete "SK:Electronics Repair (Communications)"
+#Delete "SK:Electronics Repair (Computers)"
+#Delete "SK:Electronics Repair (Electronic Warfare)"
+#Delete "SK:Electronics Repair (Force Shields)"
+#Delete "SK:Electronics Repair (Matter Transmitters)"
+#Delete "SK:Electronics Repair (Media)"
+#Delete "SK:Electronics Repair (Medical)"
+#Delete "SK:Electronics Repair (Parachronic)"
+#Delete "SK:Electronics Repair (Psychotronics)"
+#Delete "SK:Electronics Repair (Scientific)"
+#Delete "SK:Electronics Repair (Security)"
+#Delete "SK:Electronics Repair (Sensors)"
+#Delete "SK:Electronics Repair (Sonar)"
+#Delete "SK:Electronics Repair (Surveillance)"
+#Delete "SK:Electronics Repair (Temporal)"
+#Delete "SK:Engineer (Electrical)"
+#Delete "SK:Engineer (Electronics)"
+#Delete "SK:Engineer (Microtechnology)"
+#Delete "SK:Engineer (Nanotechnology)"
+#Delete "SK:Engineer (Parachronic)"
+#Delete "SK:Engineer (Psychotronics)"
+#Delete "SK:Engineer (Temporal)"
+#Delete "SK:Expert Skill (Computer Security)"
+#Delete "SK:Expert Skill (Xenology)"
+#Delete "SK:Explosives (Explosive Ordnance Disposal)"
+#Delete "SK:Explosives (Nuclear Ordnance Disposal)"
+#Delete "SK:Explosives (Underwater Demolition)"
+#Delete "SK:Fast-Draw (Ammo)"
+#Delete "SK:Fast-Draw (Force Sword)"
+#Delete "SK:Fast-Draw (Long Arm)"
+#Delete "SK:Fast-Draw (Pistol)"
+#Delete "SK:Force Sword"
+#Delete "SK:Force Sword Art"
+#Delete "SK:Force Sword Sport"
+#Delete "SK:Force Whip"
+#Delete "SK:Force Whip Art"
+#Delete "SK:Force Whip Sport"
+#Delete "SK:Free Fall"
+//#Delete "SK:Geography"
+#Delete "SK:Geography (Gas Giants)"
+#Delete "SK:Geography (Hostile Terrestrial)"
+#Delete "SK:Geography (Ice Dwarfs)"
+#Delete "SK:Geography (Ice Worlds)"
+#Delete "SK:Geography (Political)"
+#Delete "SK:Geography (Rock Worlds)"
+#Delete "SK:Geology"
+#Delete "SK:Geology (Gas Giants)"
+#Delete "SK:Geology (Hostile Terrestrial)"
+#Delete "SK:Geology (Ice Dwarfs)"
+#Delete "SK:Geology (Ice Worlds)"
+#Delete "SK:Geology (Rock Worlds)"
+#Delete "SK:Gun!"
+//#Delete "SK:Gunner"
+#Delete "SK:Gunner (Beams)"
+#Delete "SK:Gunner (Cannon)"
+#Delete "SK:Gunner (Machine Gun)"
+#Delete "SK:Gunner (Rockets)"
+//#Delete "SK:Guns"
+#Delete "SK:Guns (Grenade Launcher)"
+#Delete "SK:Guns (Gyroc)"
+#Delete "SK:Guns (Light Anti-Armor Weapon)"
+#Delete "SK:Guns (Light Machine Gun)"
+#Delete "SK:Guns (Musket)"
+#Delete "SK:Guns (Pistol)"
+#Delete "SK:Guns (Rifle)"
+#Delete "SK:Guns (Shotgun)"
+#Delete "SK:Guns (Submachine Gun)"
+#Delete "SK:Hazardous Materials (Radioactive)"
+#Delete "SK:Liquid Projector (Flamethrower)"
+#Delete "SK:Liquid Projector (Sprayer)"
+#Delete "SK:Liquid Projector (Squirt Gun)"
+#Delete "SK:Mathematics (Computer Science)"
+//#Delete "SK:Meteorology"
+#Delete "SK:Mechanic (Micromachines)"
+#Delete "SK:Mechanic (Nanomachines)"
+#Delete "SK:Meteorology (Gas Giants)"
+#Delete "SK:Meteorology (Hostile Terrestrial)"
+#Delete "SK:Meteorology (Ice Dwarfs)"
+#Delete "SK:Meteorology (Ice Worlds)"
+#Delete "SK:Meteorology (Rock Worlds)"
+#Delete "SK:Monowire Whip"
+#Delete "SK:Monowire Whip Art"
+#Delete "SK:Monowire Whip Sport"
+#Delete "SK:Motion-Picture Camera (Photography)"
+#Delete "SK:Navigation (Hyperspace)"
+#Delete "SK:Navigation (Space)"
+#Delete "SK:NBC Suit"
+#Delete "SK:Pharmacy (Synthetic)"
+#Delete "SK:Photography"
+//#Delete "SK:Piloting"
+#Delete "SK:Piloting (Aerospace)"
+#Delete "SK:Piloting (Autogyro)"
+#Delete "SK:Piloting (Contragravity)"
+#Delete "SK:Piloting (Flight Pack)"
+#Delete "SK:Piloting (Heavy Airplane)"
+#Delete "SK:Piloting (Helicopter)"
+#Delete "SK:Piloting (High-Performance Airplane)"
+#Delete "SK:Piloting (High-Performance Spacecraft)"
+#Delete "SK:Piloting (Light Airplane)"
+#Delete "SK:Piloting (Lightsail)"
+#Delete "SK:Piloting (Low-G Wings)"
+#Delete "SK:Piloting (Low-Performance Spacecraft)"
+#Delete "SK:Piloting (Ultralight)"
+#Delete "SK:Piloting (Vertol)"
+#Delete "SK:Set Trap (Explosives (Demolition))"
+#Delete "SK:Professional Skill (Air Traffic Controller)"
+#Delete "SK:Science!"
+#Delete "SK:Scuba"
+#Delete "SK:Shield (Force)"
+#Delete "SK:Shiphandling (Spaceship)"
+#Delete "SK:Shiphandling (Starship)"
+#Delete "SK:Shiphandling (Submarine)"
+#Delete "SK:Spacer"
+#Delete "SK:Strategy (Interstellar)"
+#Delete "SK:Strategy (Space)"
+//#Delete "SK:Submarine"
+#Delete "SK:Submarine (Free-Flooding Sub)"
+#Delete "SK:Submarine (Large Sub)"
+#Delete "SK:Submarine (Mini-Sub)"
+#Delete "SK:Submariner"
+#Delete "SK:Survival (Radioactive Wasteland)"
+#Delete "SK:Typing"
+#Delete "SK:Vacc Suit"
+
+#Delete "SK:No-Landing Extraction (%Piloting Skill%)"
+
+#Delete "SK:Pilot!"
+#Delete "SK:Driver!"
+#Delete "SK:Technician!"
+
+#Delete "SK:Force Saber"
+#Delete "SK:Force Saber Art"
+#Delete "SK:Force Saber Sport"
+#Delete "SK:Dual-Weapon Attack (Beam Weapons (Pistol))"
+#Delete "SK:Dual-Weapon Attack (Beam Weapons Art (Pistol))"
+#Delete "SK:Dual-Weapon Attack (Beam Weapons Sport (Pistol))"
+#Delete "SK:Dual-Weapon Attack (Guns (Pistol))"
+#Delete "SK:Dual-Weapon Attack (Guns Art (Pistol))"
+#Delete "SK:Dual-Weapon Attack (Guns Sport (Pistol))"
+#Delete "SK:Dual-Weapon Defense (Shield (Force))"
+#Delete "SK:Dual-Weapon Defense (Shield Art (Force))"
+#Delete "SK:Dual-Weapon Defense (Shield Sport (Force))"
+#Delete "SK:Timed Defense (Shield (Force))"
+#Delete "SK:Timed Defense (Shield Art (Force))"
+#Delete "SK:Timed Defense (Shield Sport (Force))"
+#Delete "SK:Shield Art (Force)"
+#Delete "SK:Shield Sport (Force)"
+#Delete "TE:Force-Swordsmanship (Martial Arts)"
+
+************************************************************************************************************************
+[GROUPS]
+************************************************************************************************************************
+<AllSkills>
+#DeleteFromGroup GR:AllSkills SK:Armoury (Battlesuits)
+#DeleteFromGroup GR:AllSkills SK:Armoury (Force Shields)
+#DeleteFromGroup GR:AllSkills SK:Armoury (Heavy Weapons)
+#DeleteFromGroup GR:AllSkills SK:Armoury (Small Arms)
+#DeleteFromGroup GR:AllSkills SK:Armoury (Vehicular Armor)
+#DeleteFromGroup GR:AllSkills SK:Artillery
+#DeleteFromGroup GR:AllSkills SK:Artillery (Beams)
+#DeleteFromGroup GR:AllSkills SK:Artillery (Bombs)
+#DeleteFromGroup GR:AllSkills SK:Artillery (Cannon)
+#DeleteFromGroup GR:AllSkills SK:Artillery (Guided Missile)
+#DeleteFromGroup GR:AllSkills SK:Artillery (Torpedoes)
+#DeleteFromGroup GR:AllSkills SK:Battlesuit
+#DeleteFromGroup GR:AllSkills SK:Beam Weapons
+#DeleteFromGroup GR:AllSkills SK:Beam Weapons (Pistol)
+#DeleteFromGroup GR:AllSkills SK:Beam Weapons (Projector)
+#DeleteFromGroup GR:AllSkills SK:Beam Weapons (Rifle)
+#DeleteFromGroup GR:AllSkills SK:Bicycling
+#DeleteFromGroup GR:AllSkills SK:Bioengineering
+#DeleteFromGroup GR:AllSkills SK:Bioengineering (Cloning)
+#DeleteFromGroup GR:AllSkills SK:Bioengineering (Genetic Engineering)
+#DeleteFromGroup GR:AllSkills SK:Bioengineering (Tissue Engineering)
+#DeleteFromGroup GR:AllSkills SK:Biology (Gas Giants)
+#DeleteFromGroup GR:AllSkills SK:Biology (Hostile Terrestrial)
+#DeleteFromGroup GR:AllSkills SK:Biology (Ice Dwarfs)
+#DeleteFromGroup GR:AllSkills SK:Biology (Ice Worlds)
+#DeleteFromGroup GR:AllSkills SK:Biology (Rock Worlds)
+#DeleteFromGroup GR:AllSkills SK:Boating (Large Powerboat)
+#DeleteFromGroup GR:AllSkills SK:Boating (Motorboat)
+#DeleteFromGroup GR:AllSkills SK:Computer Hacking
+#DeleteFromGroup GR:AllSkills SK:Computer Operation
+#DeleteFromGroup GR:AllSkills SK:Computer Programming
+#DeleteFromGroup GR:AllSkills SK:Diving Suit
+#DeleteFromGroup GR:AllSkills SK:Driving
+#DeleteFromGroup GR:AllSkills SK:Driving (Automobile)
+#DeleteFromGroup GR:AllSkills SK:Driving (Construction Equipment)
+#DeleteFromGroup GR:AllSkills SK:Driving (Halftrack)
+#DeleteFromGroup GR:AllSkills SK:Driving (Heavy Wheeled)
+#DeleteFromGroup GR:AllSkills SK:Driving (Hovercraft)
+#DeleteFromGroup GR:AllSkills SK:Driving (Locomotive)
+#DeleteFromGroup GR:AllSkills SK:Driving (Mecha)
+#DeleteFromGroup GR:AllSkills SK:Driving (Motorcycle)
+#DeleteFromGroup GR:AllSkills SK:Driving (Tracked)
+#DeleteFromGroup GR:AllSkills SK:Electrician
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Communications)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Electronic Warfare)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Force Shields)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Matter Transmitters)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Media)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Medical)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Parachronic)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Psychotronics)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Scientific)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Security)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Sensors)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Sonar)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Surveillance)
+#DeleteFromGroup GR:AllSkills SK:Electronics Operation (Temporal)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Communications)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Computers)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Electronic Warfare)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Force Shields)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Matter Transmitters)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Media)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Medical)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Parachronic)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Psychotronics)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Scientific)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Security)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Sensors)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Sonar)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Surveillance)
+#DeleteFromGroup GR:AllSkills SK:Electronics Repair (Temporal)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Electrical)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Electronics)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Microtechnology)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Nanotechnology)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Parachronic)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Psychotronics)
+#DeleteFromGroup GR:AllSkills SK:Engineer (Temporal)
+#DeleteFromGroup GR:AllSkills SK:Expert Skill (Computer Security)
+#DeleteFromGroup GR:AllSkills SK:Expert Skill (Xenology)
+#DeleteFromGroup GR:AllSkills SK:Explosives (Explosive Ordnance Disposal)
+#DeleteFromGroup GR:AllSkills SK:Explosives (Nuclear Ordnance Disposal)
+#DeleteFromGroup GR:AllSkills SK:Explosives (Underwater Demolition)
+#DeleteFromGroup GR:AllSkills SK:Fast-Draw (Ammo)
+#DeleteFromGroup GR:AllSkills SK:Fast-Draw (Force Sword)
+#DeleteFromGroup GR:AllSkills SK:Fast-Draw (Long Arm)
+#DeleteFromGroup GR:AllSkills SK:Fast-Draw (Pistol)
+#DeleteFromGroup GR:AllSkills SK:Force Sword
+#DeleteFromGroup GR:AllSkills SK:Force Sword Art
+#DeleteFromGroup GR:AllSkills SK:Force Sword Sport
+#DeleteFromGroup GR:AllSkills SK:Force Whip
+#DeleteFromGroup GR:AllSkills SK:Force Whip Art
+#DeleteFromGroup GR:AllSkills SK:Force Whip Sport
+#DeleteFromGroup GR:AllSkills SK:Free Fall
+#DeleteFromGroup GR:AllSkills SK:Geography
+#DeleteFromGroup GR:AllSkills SK:Geography (Gas Giants)
+#DeleteFromGroup GR:AllSkills SK:Geography (Hostile Terrestrial)
+#DeleteFromGroup GR:AllSkills SK:Geography (Ice Dwarfs)
+#DeleteFromGroup GR:AllSkills SK:Geography (Ice Worlds)
+#DeleteFromGroup GR:AllSkills SK:Geography (Political)
+#DeleteFromGroup GR:AllSkills SK:Geography (Rock Worlds)
+//#DeleteFromGroup GR:AllSkills SK:Geology
+#DeleteFromGroup GR:AllSkills SK:Geology (Gas Giants)
+#DeleteFromGroup GR:AllSkills SK:Geology (Hostile Terrestrial)
+#DeleteFromGroup GR:AllSkills SK:Geology (Ice Dwarfs)
+#DeleteFromGroup GR:AllSkills SK:Geology (Ice Worlds)
+#DeleteFromGroup GR:AllSkills SK:Geology (Rock Worlds)
+#DeleteFromGroup GR:AllSkills SK:Gun!
+#DeleteFromGroup GR:AllSkills SK:Gunner
+#DeleteFromGroup GR:AllSkills SK:Gunner (Beams)
+#DeleteFromGroup GR:AllSkills SK:Gunner (Cannon)
+#DeleteFromGroup GR:AllSkills SK:Gunner (Machine Gun)
+#DeleteFromGroup GR:AllSkills SK:Gunner (Rockets)
+#DeleteFromGroup GR:AllSkills SK:Guns
+#DeleteFromGroup GR:AllSkills SK:Guns (Grenade Launcher)
+#DeleteFromGroup GR:AllSkills SK:Guns (Gyroc)
+#DeleteFromGroup GR:AllSkills SK:Guns (Light Anti-Armor Weapon)
+#DeleteFromGroup GR:AllSkills SK:Guns (Light Machine Gun)
+#DeleteFromGroup GR:AllSkills SK:Guns (Musket)
+#DeleteFromGroup GR:AllSkills SK:Guns (Pistol)
+#DeleteFromGroup GR:AllSkills SK:Guns (Rifle)
+#DeleteFromGroup GR:AllSkills SK:Guns (Shotgun)
+#DeleteFromGroup GR:AllSkills SK:Guns (Submachine Gun)
+#DeleteFromGroup GR:AllSkills SK:Hazardous Materials (Radioactive)
+#DeleteFromGroup GR:AllSkills SK:Liquid Projector (Flamethrower)
+#DeleteFromGroup GR:AllSkills SK:Liquid Projector (Sprayer)
+#DeleteFromGroup GR:AllSkills SK:Liquid Projector (Squirt Gun)
+#DeleteFromGroup GR:AllSkills SK:Mathematics (Computer Science)
+#DeleteFromGroup GR:AllSkills SK:Meteorology
+#DeleteFromGroup GR:AllSkills SK:Mechanic (Micromachines)
+#DeleteFromGroup GR:AllSkills SK:Mechanic (Nanomachines)
+#DeleteFromGroup GR:AllSkills SK:Meteorology (Gas Giants)
+#DeleteFromGroup GR:AllSkills SK:Meteorology (Hostile Terrestrial)
+#DeleteFromGroup GR:AllSkills SK:Meteorology (Ice Dwarfs)
+#DeleteFromGroup GR:AllSkills SK:Meteorology (Ice Worlds)
+#DeleteFromGroup GR:AllSkills SK:Meteorology (Rock Worlds)
+#DeleteFromGroup GR:AllSkills SK:Monowire Whip
+#DeleteFromGroup GR:AllSkills SK:Monowire Whip Art
+#DeleteFromGroup GR:AllSkills SK:Monowire Whip Sport
+#DeleteFromGroup GR:AllSkills SK:Motion-Picture Camera (Photography)
+#DeleteFromGroup GR:AllSkills SK:Navigation (Hyperspace)
+#DeleteFromGroup GR:AllSkills SK:Navigation (Space)
+#DeleteFromGroup GR:AllSkills SK:NBC Suit
+#DeleteFromGroup GR:AllSkills SK:Pharmacy (Synthetic)
+#DeleteFromGroup GR:AllSkills SK:Photography
+#DeleteFromGroup GR:AllSkills SK:Piloting
+#DeleteFromGroup GR:AllSkills SK:Piloting (Aerospace)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Autogyro)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Contragravity)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Flight Pack)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Heavy Airplane)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Helicopter)
+#DeleteFromGroup GR:AllSkills SK:Piloting (High-Performance Airplane)
+#DeleteFromGroup GR:AllSkills SK:Piloting (High-Performance Spacecraft)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Light Airplane)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Lightsail)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Low-G Wings)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Low-Performance Spacecraft)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Ultralight)
+#DeleteFromGroup GR:AllSkills SK:Piloting (Vertol)
+#DeleteFromGroup GR:AllSkills SK:Set Trap (Explosives (Demolition))
+#DeleteFromGroup GR:AllSkills SK:Professional Skill (Air Traffic Controller)
+#DeleteFromGroup GR:AllSkills SK:Science!
+#DeleteFromGroup GR:AllSkills SK:Scuba
+#DeleteFromGroup GR:AllSkills SK:Shield (Force)
+#DeleteFromGroup GR:AllSkills SK:Shiphandling (Spaceship)
+#DeleteFromGroup GR:AllSkills SK:Shiphandling (Starship)
+#DeleteFromGroup GR:AllSkills SK:Shiphandling (Submarine)
+#DeleteFromGroup GR:AllSkills SK:Spacer
+#DeleteFromGroup GR:AllSkills SK:Strategy (Interstellar)
+#DeleteFromGroup GR:AllSkills SK:Strategy (Space)
+#DeleteFromGroup GR:AllSkills SK:Submarine
+#DeleteFromGroup GR:AllSkills SK:Submarine (Free-Flooding Sub)
+#DeleteFromGroup GR:AllSkills SK:Submarine (Large Sub)
+#DeleteFromGroup GR:AllSkills SK:Submarine (Mini-Sub)
+#DeleteFromGroup GR:AllSkills SK:Submariner
+#DeleteFromGroup GR:AllSkills SK:Survival (Radioactive Wasteland)
+#DeleteFromGroup GR:AllSkills SK:Typing
+#DeleteFromGroup GR:AllSkills SK:Vacc Suit
+
+#DeleteFromGroup GR:ShieldSkill SK:Shield (Force)
+
+#DeleteFromGroup GR:ShieldArtSkill SK:Shield Art (Force)
+
+#DeleteFromGroup GR:ShieldSportSkill SK:Shield Sport (Force)
+
+#DeleteFromGroup GR:MeleeWeaponSkill SK:Force Sword
+#DeleteFromGroup GR:MeleeWeaponSkill SK:Force Whip
+#DeleteFromGroup GR:MeleeWeaponSkill SK:Monowire Whip
+
+#DeleteFromGroup GR:MeleeWeaponSkillArtSkill SK:Force Sword Art
+#DeleteFromGroup GR:MeleeWeaponSkillArtSkill SK:Force Whip Art
+#DeleteFromGroup GR:MeleeWeaponSkillArtSkill SK:Monowire Whip Art
+
+#DeleteFromGroup GR:MeleeWeaponSportSkill SK:Force Sword Sport
+#DeleteFromGroup GR:MeleeWeaponSportSkill SK:Force Whip Sport
+#DeleteFromGroup GR:MeleeWeaponSportSkill SK:Monowire Whip Sport
+
+#DeleteFromGroup GR:OneHandedMeleeWeaponSkill SK:Force Sword
+#DeleteFromGroup GR:OneHandedMeleeWeaponSkill SK:Force Whip
+#DeleteFromGroup GR:OneHandedMeleeWeaponSkill SK:Monowire Whip
+
+#DeleteFromGroup GR:OneHandedMeleeWeaponArtSkill SK:Force Sword Art
+#DeleteFromGroup GR:OneHandedMeleeWeaponArtSkill SK:Force Whip Art
+#DeleteFromGroup GR:OneHandedMeleeWeaponArtSkill SK:Monowire Whip Art
+
+#DeleteFromGroup GR:OneHandedMeleeWeaponSportSkill SK:Force Sword Sport
+#DeleteFromGroup GR:OneHandedMeleeWeaponSportSkill SK:Force Whip Sport
+#DeleteFromGroup GR:OneHandedMeleeWeaponSportSkill SK:Main-Gauche Sport
+
+#DeleteFromGroup GR:RangedWeaponSkill SK:Artillery (Beams)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Artillery (Bombs)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Artillery (Cannon)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Artillery (Guided Missile)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Artillery (Torpedoes)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Beam Weapons (Pistol)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Beam Weapons (Projector)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Beam Weapons (Rifle)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Gunner (Beams)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Gunner (Cannon)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Gunner (Machine Gun)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Gunner (Rockets)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Grenade Launcher)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Gyroc)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Light Anti-Armor Weapon)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Light Machine Gun)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Musket)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Pistol)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Rifle)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Shotgun)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Guns (Submachine Gun)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Liquid Projector (Flamethrower)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Liquid Projector (Sprayer)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Liquid Projector (Squirt Gun)
+#DeleteFromGroup GR:RangedWeaponSkill SK:Liquid Projector (Water Cannon)
+
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Artillery Art (Beams)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Artillery Art (Bombs)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Artillery Art (Cannon)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Artillery Art (Guided Missile)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Artillery Art (Torpedoes)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Beam Weapons Art (Pistol)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Beam Weapons Art (Projector)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Beam Weapons Art (Rifle)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Gunner Art (Beams)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Gunner Art (Cannon)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Gunner Art (Machine Gun)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Gunner Art (Rockets)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Grenade Launcher)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Gyroc)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Light Anti-Armor Weapon)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Light Machine Gun)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Musket)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Pistol)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Rifle)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Shotgun)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Guns Art (Submachine Gun)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Liquid Projector Art (Flamethrower)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Liquid Projector Art (Sprayer)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Liquid Projector Art (Squirt Gun)
+#DeleteFromGroup GR:RangedWeaponArtSkill SK:Liquid Projector Art (Water Cannon)
+
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Artillery Sport (Beams)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Artillery Sport (Bombs)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Artillery Sport (Cannon)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Artillery Sport (Guided Missile)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Artillery Sport (Torpedoes)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Beam Weapons Sport (Pistol)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Beam Weapons Sport (Projector)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Beam Weapons Sport (Rifle)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Gunner Sport (Beams)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Gunner Sport (Cannon)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Gunner Sport (Machine Gun)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Gunner Sport (Rockets)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Grenade Launcher)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Gyroc)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Light Anti-Armor Weapon)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Light Machine Gun)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Musket)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Pistol)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Rifle)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Shotgun)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Guns Sport (Submachine Gun)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Liquid Projector Sport (Flamethrower)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Liquid Projector Sport (Sprayer)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Liquid Projector Sport (Squirt Gun)
+#DeleteFromGroup GR:RangedWeaponSportSkill SK:Liquid Projector Sport (Water Cannon)
+
+#DeleteFromGroup GR:ThrustingMeleeWeaponSkill SK:Shield (Force)
+#DeleteFromGroup GR:ThrustingMeleeWeaponSkill SK:Force Sword
+
+#DeleteFromGroup GR:ThrustingMeleeWeaponArtSkill SK:Shield Art (Force)
+#DeleteFromGroup GR:ThrustingMeleeWeaponArtSkill SK:Force Sword Art
+
+#DeleteFromGroup GR:ThrustingMeleeWeaponSportSkill SK:Shield Sport (Force)
+#DeleteFromGroup GR:ThrustingMeleeWeaponSportSkill SK:Force Sword Art
+
+#DeleteFromGroup GR:TwoHandedMeleeWeaponSkill SK:Force Sword
+#DeleteFromGroup GR:TwoHandedMeleeWeaponSkill SK:Force Whip
+#DeleteFromGroup GR:TwoHandedMeleeWeaponSkill SK:Monowire Whip
+
+#DeleteFromGroup GR:TwoHandedMeleeWeaponArtSkill SK:Force Sword Art
+#DeleteFromGroup GR:TwoHandedMeleeWeaponArtSkill SK:Force Whip Art
+#DeleteFromGroup GR:TwoHandedMeleeWeaponArtSkill SK:Monowire Whip Art
+
+#DeleteFromGroup GR:TwoHandedMeleeWeaponSportSkill SK:Force Sword Sport
+#DeleteFromGroup GR:TwoHandedMeleeWeaponSportSkill SK:Force Whip Sport
+#DeleteFromGroup GR:TwoHandedMeleeWeaponSportSkill SK:Monowire Whip Sport
+

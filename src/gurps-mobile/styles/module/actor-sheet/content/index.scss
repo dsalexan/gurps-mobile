@@ -1,0 +1,135 @@
+& > .content {
+  //.dark
+  --content-background-color: 51, 51, 51;
+  --background-color: var(--dark-main-color);
+  --color: 221, 221, 221;
+  --selected-color: var(--main-color);
+
+  background-color: rgb(var(--content-background-color));
+  border-radius: 18px 18px 0 0;
+  flex-grow: 1;
+  max-width: 100vw;
+  overflow: hidden;
+  //
+  padding-bottom: calc(3 * var(--s2));
+
+  &.collapsed {
+    padding-bottom: var(--s2);
+    flex-grow: 0;
+
+    & > .tabs,
+    & > .panels {
+      display: none;
+    }
+  }
+
+  // CHILDREN
+  & > .label {
+    display: none;
+    text-align: center;
+    //
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 12px;
+    //
+    color: #555;
+  }
+
+  & > .holder {
+    touch-action: none;
+    user-select: none;
+    //
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &::before {
+      --width: 9px;
+      //
+      content: " ";
+      display: block;
+      //
+      border-radius: 8px;
+      width: calc(var(--width) * 5);
+      height: 4px;
+      //
+      margin: var(--width) 0;
+      background-color: #ccc;
+    }
+  }
+
+  @import "./combat";
+  @import "./ooc";
+
+  // COLOUR
+  & > .tabs {
+    & > .tab {
+      & > .wrapper-icon > .icon {
+        color: rgb(var(--color));
+      }
+
+      &.selected {
+        .wrapper-icon {
+          background-color: rgb(var(--background-color), 0.6);
+        }
+        .icon {
+          color: rgb(var(--selected-color), 1);
+        }
+      }
+    }
+  }
+
+  & > .panels {
+    & > .panel {
+      // TODO: fix childing
+      .feature-wrapper {
+        --border-color: 68, 68, 68;
+        --background-color: 43, 43, 43;
+        --value-color: 238, 238, 238;
+        --label-color: 153, 153, 153;
+
+        & > .feature .wrapper {
+          .background-icon {
+            color: rgb(0 0 0 / 10%);
+          }
+        }
+      }
+    }
+  }
+
+  // VARIANTS
+
+  & ~ .content {
+    margin-top: calc(var(--spacing) * -2);
+  }
+
+  &.floating {
+    z-index: 2;
+    position: absolute;
+    bottom: var(--spacing);
+    left: calc(var(--spacing) * 6.5);
+    right: calc(var(--spacing) * 6.5);
+    //
+    flex-grow: 0;
+    flex-shrink: 1;
+    //
+    margin-top: 0;
+    max-width: none;
+    border-radius: var(--spacing);
+    padding: calc(var(--spacing) * 1.55);
+    box-shadow: none;
+
+    & > .holder,
+    & > .tabs,
+    & > .panels {
+      display: none;
+    }
+
+    & > .label {
+      display: block;
+    }
+  }
+}

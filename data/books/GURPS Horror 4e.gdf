@@ -1,0 +1,2562 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 May 20. _
+		This data file contains information taken from the GURPS Horror sourcebook. _
+		GURPS Horror is Copyright © 2011 by Steve Jackson Games _
+		Incorporated. All rights reserved.
+Incomplete=Yes
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter=GURPS Powers 4e.gdf,GURPS Fantasy 4e.gdf
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Horror 4e.gdf
+//  Created: Montag, 16. Mai 2011
+//  Requires GCA v4 or later!
+//  
+// 
+*******************************************************************************************************************
+// 
+// 	Contains:
+// 	New Advantages
+// 	New Disadvantages
+// 	New Modifiers
+// 	Undead Tempalates
+// 	Spirit Templates
+// 	New Skills
+// 	Racial Templates (Vampires)
+// 	Some Occupational Templates
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith		- Data File Coordinator
+// 
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message at:
+//  http://forums.sjgames.com
+// 
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<Antiquary>
+SK:Architecture
+SK:Connoisseur
+SK:Heraldry
+SK:History
+SK:Literature
+SK:Research
+
+<Cunning Folk>
+SK:Animal Handling
+SK:Fortune-Telling
+SK:Herb Lore
+SK:Naturalist
+SK:Occultism
+SK:Poisons
+SK:Veterinary
+SK:Weather Sense
+
+<Devotion>
+SK:Autohypnosis
+SK:Exorcism
+SK:Meditation
+SK:Religious Ritual
+
+<Mesmerist>
+SK:Autohypnosis
+SK:Brainwashing
+SK:Captivate
+SK:Gesture
+SK:Hypnotism
+SK:Intimidation
+SK:Musical Influence
+SK:Persuade
+SK:Suggest
+SK:Sway Emotions
+
+<Occultist>
+SK:Alchemy
+SK:Anthropology
+SK:Archaeology
+SK:Exorcism
+SK:Hidden Lore
+SK:History
+SK:Linguistics
+SK:Literature
+SK:Occultism
+SK:Research
+SK:Ritual Magic
+SK:Thaumatology
+<Poet>
+SK:Connoisseur (Literature)
+SK:Literature
+SK:Poetry
+SK:Public Speaking
+SK:Writing
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<_General>
+Corrupts (Advantages), -20%, group(_General), page(H22)
+Corrupts (Disadvanatges), +20%, group(_General), page(H22)
+Terminal Condition, -5%/-10%/-20%, upto(3), group(_General), page(H22)
+Terminal Condition(Hard to arrange), -0%/-5%/-10%, upto(3), group(_General), page(H22)
+
+<Channeling>
+Aware, +50%,group(Channeling),page(H13)
+
+<Damage Resistance>
+Bane, -5%/-10%/-15%, levelnames(Occasional, Common, Very Common), upto(3), group(Damage Resistance), page(H14)
+
+<Energy Reserve>
+Abilities Only, -10%, group(Energy Reserve), page(P119, H20)
+One Power, -50%, group(Energy Reserve), page(P119, H20)
+Slow Recharge, -20%/-60%, upto(2), levelnames(1 pt/hr, 1 pt/day), group(Energy Reserve), page(P119, H20)
+Special Recharge, -70%/-80%, upto(2), levelnames( , energy bleeds away at 1 pt/sec), group(Energy Reserve), page(P119, H20)
+
+<Injury Tolerance>
+Diffuse, +100, group(Injury Tolerance), page(B60), mods(Injury Tolerance Diffuse)
+
+<Injury Tolerance Diffuse>
+Body of Swarm, +0%/+40%, levelnames(rat or bat sized bodies, cockroach or gnat sized bodies), upto(2), group(Injury Tolerance Diffuse), page(H14)
+Flying Swarm, +30%, group(Injury Tolerance Diffuse), page(H14)
+Humanoid Form, +50%, group(Injury Tolerance Diffuse), page(H14)
+Infiltration, +40%, group(Injury Tolerance Diffuse), page(H14)
+Scatter, +40%/+120%,upto(2), group(Injury Tolerance Diffuse), page(H14)
+Misty, -20%/-40%,upto(2), group(Injury Tolerance Diffuse), page(H15)
+Tenous Form, -50%, group(Injury Tolerance Diffuse), page(H15)
+
+<Insubstantiality>
+Reversion, +60%,group(Insubstantiality),page(H16)
+Touch, +0%/+5%,upto(2),group(Insubstantiality),page(H16)
+Difficulty Materialization, -20%,group(Insubstantiality),page(H16)
+Ectoplasmic Materialization, -35%,group(Insubstantiality),page(H16)
+No Vertical Move, -10%,group(Insubstantiality),page(H16)
+Noisy, -5%,group(Insubstantiality),page(H16)
+Projection, -50%,group(Insubstantiality),page(H16)
+
+<Jumper>
+Limited Access, 0%/-20%, upto(2), group(Jumper),page(H16)
+Projection, -0%/.-15%, upto(2), group(Jumper),page(H16)
+
+<Leech>
+Accelerated Healing, +25%, group(Leech), page(P96, H21)
+Addictive Bite, +200%/+400%, upto(2), levelnames(Gains Addiction,Gains Addiction and Uncontrollable Appetite), group(Leech), page(H21)
+Doleovore, +20%, group(Leech), page(H21)
+Hazard: Dehydration, +20%, shortname(Dehydration Hazard), group(Leech), page(B104, P96, H21)
+Hazard: Drowning, +0%, shortname(Drowning Hazard), group(Leech), page(B104, P96, H21)
+Hazard: Freezing, +20%, shortname(Freezing Hazard), group(Leech), page(B104, P96, H21)
+Hazard: Missed Sleep, +50%, shortname(Missed Sleep Hazard), group(Leech), page(B104, P96, H21)
+Hazard: Starvation, +40%, shortname(Starvation Hazard), group(Leech), page(B104, P96, H21)
+Hazard: Suffocation, +0%, shortname(Suffocation Hazard), group(Leech), page(B104, P96, H21)
+Heals FP, +30%/+60%, upto(2), levelnames(only heals FP, heals HP or FP), group(Leech), page(P96, H21)
+Metuovore, +20%, group(Leech), page(H21)
+Steal FP, -25%/+50%, upto(2), levelnames(only drains FP, drains HP when FP is 0), group(Leech), page(P96),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=$if(me::level=1 THEN " FP" ELSE " FP HP") to owner::damtype$ _
+		)
+Steal ST, +100%, group(Leech), page(P96, H21),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" ST" to owner::damtype$ _
+		)
+Steal HT, +100%, group(Leech), page(P96, H21),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" HT" to owner::damtype$ _
+		)
+Steal DX, +300%, group(Leech), page(P96, H21),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" DX" to owner::damtype$ _
+		)
+Steal IQ, +300%, group(Leech), page(P96, H21),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" IQ" to owner::damtype$ _
+		)
+Steal Youth, +300%/+450%, upto(2), levelnames(victim regains youth when you die, permanent), group(Leech), page(P96, H21),_
+	gives(_
+		=nobase to owner::damtype$,_
+		=" Youth" to owner::damtype$ _
+		)
+Obligate Doleovore, -50%, group(Leech), page(P96, H21)
+Obligate Metuovore, -50%, group(Leech), page(P96, H21)
+Only Heals FP, -20%, group(Leech), page(P96)
+Ranged, +40%, group(Leech), page(B107),_
+	addmode(Primary, damage(), damtype(spcl.), rangehalfdam(10), rangemax(100), acc(3), rof(1), shots(), rcl(1), skillused(%examplealiaslist%)),_
+	x(#ChoiceList(_
+				name(example),_
+				title(Leech: Choose a Skill),_
+				text(Choose a Skill that will be used with this Innate Attack. "DX, Brawling" is appropriate for attacks that will have one of the the Melee Attack limitations; "Will" for Maledictions:),_
+				picksallowed(atleast 1),_
+				method(bynumber),_
+				list(_
+					"_None of these",_
+					"Will",_
+					"Innate Attack (Beam)",_
+					"Innate Attack (Breath)",_
+					"Innate Attack (Gaze)",_
+					"Innate Attack (Projectile)" _
+					),_
+				aliaslist(_
+					"",_
+					"Will",_
+					"Innate Attack (Beam), DX-4, Innate Attack-2",_
+					"Innate Attack (Breath), DX-4, Innate Attack-2",_
+					"Innate Attack (Gaze), DX-4, Innate Attack-2",_
+					"Innate Attack (Projectile), DX-4, Innate Attack-2" _
+					)_
+			)_
+	)
+Malediction, +100%/+150%/+200%, upto(3), group(Leech), page(B106),_
+	levelnames(Receives -1/yd range, Uses Speed/Range Table, Uses Long-Distance Modifiers),_
+	gives(_
+		=nobase to owner::reach$,_
+		=nobase to owner::acc$,_
+		=nobasenocalc to owner::rangehalfdam$,_
+		=nobasenocalc to owner::rangemax$,_
+		=nobase to owner::rof$,_
+		=nobase to owner::shots$,_
+		=nobase to owner::rcl$,_
+		=" mal " to owner::damtype$,_
+		=$indexedvalue(me::level, "-1/yd", "Speed/Range", "Long-Distance") to owner::rangemax$_
+		)
+
+<Medium>
+Manifestation, +100%, group(Medium), page(H17)
+Universal, +50%, group(Medium), page(H17)
+Visual, +50%, group(Medium), page(H17)
+
+<Mind Control>
+Independent, +70%, group(Mind Control), page(H17)
+Emotion Control, -50%, group(Mind Control), page(H17)
+One Emotion Only, -80%, group(Mind Control), page(H17)
+Suggestion, -40%, group(Mind Control), page(H17)
+
+<Regeneration>
+Bane, -10%/-30%/-50%, levelnames(Rare, Occasional, Common), upto(3), group(Regeneration), page(H18)
+Fatigue Only, +0%, group(Regeneration), page(H18)
+
+<Morph>
+Cannot Memorize Forms, -50%, group(Morph), page(H18)
+Flawed, -10%, group(Morph), page(H18)
+Needs Sample, -5%/-15%/-50%, upto(3), group(Morph), page(H18)
+
+<Alternate Form>
+Projected Form, -50%, group(Alternate Form), page(H19)
+
+<Telekinesis>
+Animation, -20%/-30%, upto(2), group(Telekineses), page(H19)
+
+<Unfazeable>
+Familiar Horrors, -50%, group(Unfazeable), page(20)
+
+<Dread>
+Insensitive, -50%, group(Dread), page(H25)
+
+<Supernatural Feature>
+Cannot Close Eyes,-5,group(Supernatural Feature), page(H26)
+Cold Spot,-5,group(Supernatural Feature), page(H26)
+Long Tongue,-5,group(Supernatural Feature), page(H26)
+Malformed Feet,-10,group(Supernatural Feature), page(H26)
+No Pulse,-5,group(Supernatural Feature), page(H26)
+Rugose Skin,-10,group(Supernatural Feature), page(H26)
+Witch's Mark,-5,group(Supernatural Feature), page(H26)
+
+<_Power Modifiers>
+Biological, -10%, group(_Power Modifiers), page(P26, H30)
+Chi, -10%, group(_Power Modifiers), page(P26, H30)
+Cosmic, +50%, group(_Power Modifiers), page(P26, H30)
+Divine, -10%, group(_Power Modifiers), page(P26, H30)
+Magical, -10%, group(_Power Modifiers), page(P27, H31)
+Moral, -20%, group(_Power Modifiers), page(P27, H31)
+Nature, -20%, group(_Power Modifiers), page(P28, H31)
+Psionic, -10%, group(_Power Modifiers), page(P28, H31)
+Spirit, -25%, group(_Power Modifiers), page(P28, H31)
+Super, -10%, group(_Power Modifiers), page(P29, H31)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Horror>
+Expert Skill (Cryptozoology), IQ/H, page(H28), cat(_General, Knowledge, Scholarly)
+Expert Skill (Demonology), IQ/H, page(H28), cat(_General, Knowledge, Scholarly)
+Expert Skill (Pneumatology), IQ/H, page(H29), cat(_General, Knowledge, Scholarly)
+Expert Skill (Ufology), IQ/H, page(H29), cat(_General, Knowledge, Scholarly)
+Expert Skill (Vampirology), IQ/H, page(H29), cat(_General, Knowledge, Scholarly)
+Hidden Lore (Things Man Was Not Meant To Know), IQ/A, page(B199), cat(_General, Knowledge, Occult/Magical)
+Armoury (Esoteric), IQ/A, tl(0-12), default(IQ - 5, SK:Armoury - 4), page(H28), cat(_General, Military, Repair/Maintenance)
+Electronics Operation (Parapsychology), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Electronics)" - 5, SK:Electronics Operation - 4), page(B189), cat(_General, Technical)
+Photography (Spirit), IQ/A, tl(0-12), default(IQ - 5, "SK:Electronics Operation (Media)" - 5), page(B213), cat(_General, Arts/Entertainment, Spy, Technical)
+Psychology (Clinical), IQ/H, default(IQ - 6, SK:Sociology - 4), page(B216), cat(_General, Medical, Social Sciences/Humanities)
+Current Affairs (Supernatural), IQ/E, tl(0-12), default(IQ - 4, SK:Research - 4, SK:Current Affairs - 4), page(B186), cat(_General, Knowledge, Social)
+
+<Wildcard!>
+Occult!, IQ/WC, page(H29), cat(_General, Wildcard!),_
+	subsfor({SK:Alchemy}, {SK:Anthropology}, {SK:Archaeology}, {SK:Area Knowledge}, {SK:Criminology}, {SK:Current Affairs}, {SK:Dreaming}, {SK:Exorcism}, {SK:Expert Skill (Cryptozoology)}, {SK:Expert Skill (Demonology)}, {SK:Expert Skill (Pneumatology)}, {SK:Expert Skill (Ufology)}, {SK:Expert Skill (Vampirology)}, {SK:Fortune-Telling}, {SK:Herb Lore}, {SK:Hidden Lore}, {SK:History}, {SK:Literature}, {SK:Occultism}, {SK:Psychology}, {SK:Religious Ritual}, {SK:Research}, {SK:Ritual Magic}, {SK:Symbol Drawing}, {SK:Thaumatology}, {SK:Weird Science}),_
+	description(Alchemy, Anthropology, Archaeology, Area Knowledge, Criminology, Current Affairs, Dreaming, Exorcism, Expert Skill (Cryptozoology, Demonology, Pneumatology, Ufology, Vampirology), Fortune-Telling, Herb Lore, Hidden Lore, History, Literature, Occultism, Psychology, Religious Ritual, Research, Ritual Magic, Symbol Drawing, Thaumatology, Weird Science),_
+	usernotes(Alchemy, Anthropology, Archaeology, Area Knowledge, Criminology, Current Affairs, Dreaming, Exorcism, Expert Skill (Cryptozoology, Demonology, Pneumatology, Ufology, Vampirology), Fortune-Telling, Herb Lore, Hidden Lore, History, Literature, Occultism, Psychology, Religious Ritual, Research, Ritual Magic, Symbol Drawing, Thaumatology, Weird Science)
+
+<Techniques, Techniques - Combat>
+Beheading Blow ([Melee Combat Skill]), Tech/H, default("SK:[Melee Combat Skill]::level" - 5), needs(SK:[Melee Combat Skill]), upto(prereq - 2), page(H30),_
+	x(#InputReplace("You must specialize by Unarmed Combat Skill:", "[Melee Combat Skill]", "", "Beheading Blow"))
+Beheading Blow (%Melee Combat Skill%), Tech/H, default("SK:%Melee Combat SkillList%::level" - 5), needs(SK:%Melee Combat SkillList%), upto(prereq - 2), page(H30),_
+x(#ChoiceList(_
+			name(MeleeCombatSkill),_
+			title(Beheading Blow: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Axe/Mace,_
+				Broadsword,_
+				Force Sword,_
+				Force Whip,_
+				Knife,_
+				Main-Gauche,_
+				Monowire Whip,_
+				Polearm,_
+				Rapier,_
+				Saber,_
+				Shortsword,_
+				Smallsword,_
+				Two-Handed Axe/Mace,_
+				Two-Handed Sword_
+				)_
+			)_
+	), noresync(yes)
+Neck Bite, Tech/H,  default("SK:Brawling" - 5), needs(SK:Brawling, ("AD:Teeth (Sharp Teeth)" | "AD:Teeth (Fangs)")), upto(prereq - 2), page(H30)
+Stake to the Heart ([Melee Combat Skill]), Tech/H, default("SK:[Melee Combat Skill]::level" - 5), needs(SK:[Melee Combat Skill]), upto(prereq - 2), page(H30),_
+	x(#InputReplace("You must specialize by Unarmed Combat Skill:", "[Melee Combat Skill]", "", "Stake to the Heart"))
+Stake to the Heart (%Melee Combat Skill%), Tech/H, default("SK:%Melee Combat SkillList%::level" - 5), needs(SK:%Melee Combat SkillList%), upto(prereq + 2), page(H30),_
+x(#ChoiceList(_
+			name(MeleeCombatSkill),_
+			title(Neck Bite: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Axe/Mace,_
+				Broadsword,_
+				Jitte/Sai,_
+				Knife,_
+				Lance,_
+				Main-Gauche,_
+				Polearm,_
+				Rapier,_
+				Saber,_
+				Shortsword,_
+				Smallsword,_
+				Spear,_
+				Two-Handed Axe/Mace,_
+				Two-Handed Sword,_
+				)_
+			)_
+	), noresync(yes)
+Strangle Hold([Unarmed Combat Skill]), Tech/H, default("SK:[Unarmed Combat Skill]::level" - 5), needs(SK:[Unarmed Combat Skill]), upto(prereq), page(H30),_
+	x(#InputReplace("You must specialize by Unarmed Combat Skill:", "[Unarmed Combat Skill]", "", "Strangle Hold"))
+Strangle Hold(%Unarmed Combat Skill%), Tech/H, default("SK:%Unarmed Combat Skill%::level" - 5), needs(SK:%Unarmed Combat Skill%), upto(prereq), page(H30),_
+x(#ChoiceList(_
+			name(Unarmed Combat Skill),_
+			title(Strangle: Choose a combat skill),_
+			text(Choose a combat skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				Boxing,_
+				Brawling,_
+				Karate,_
+				Judo,_
+				Sumo Wrestling,_
+				Wrestling_
+				)_
+			)_
+	), noresync(yes)
+
+<Techniques, Techniques - Noncombat>
+True Tarot, Tech/H, default("ST:IQ::score" - 8), needs(AD:Precognition, SK:Fortune-Telling (Tarot)), upto("SK:Fortune-Telling(Tarot)"), page(H30)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Pestilent, 1, page(H22)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Physical, Exotic, Exotic Physical>
+Energy Reserve, 3/6, mods(Energy Reserve), cat(Attributes, Exotic, Physical), page(P119,H20),_
+	x(#InputToTag("Please specify power source to which the Energy Reserve applies (Magical, Psi, etc.):", NameExt, , "Energy Reserve"))
+
+Leech, 25/29, mods(Leech), page(H20, P96), cat(Exotic, Physical, Natural Attacks),_
+	reach(C), damage($solver(me::level)), damtype(HP/sec),_
+	levelnames(1HP/sec,#buildlist(list(#list(LevelName Step 1)), template(%listitem%HP/sec)))
+
+*******************************************************************************************************************
+// Talents
+*******************************************************************************************************************
+<Talents>
+Antiquary, 5/10, gives(+1 to GR:Antiquary), page(H19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Architecture, Connoisseur, Heraldry, History,Literature, and Research)
+Cunning Folk, 10/20, gives(+1 to GR:Cunning Folk), page(H19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Animal Handling, Fortune-Telling, Herb Lore, Naturalist, Occultism, Poisons, Veterinary, and Weather Sense)
+Devotion, 5/10, gives(+1 to GR:Devotion), page(H19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Autohypnosis, Exorcism, Meditation, and Religious Ritual)
+Mesmerist, 10/20, gives(+1 to GR:Mesmerist), page(H19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Autohypnosis, Brainwashing, Captivate, Gesture, Hypnotism, Intimidation, Musical Influence, Persuade, Suggest, and Sway Emotions)
+Occultist, 10/20, gives(+1 to GR:Occultist), page(H19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Alchemy, Anthropology, Archaeology, Exorcism, Hidden Lore, History, Linguistics, Literature, Occultism, Research, Ritual Magic, and Thaumatology)
+Poet, 5/10, gives(+1 to GR:Poet), page(H19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Connoisseur (Literature), Literature, Poetry, Public Speaking, and Writing)
+
+<Power Talents>
+Disease Talent, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+Dream/Nightmare Talent, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+Fear Talent, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+Hellish Talent, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+Madness Talent, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+Talent of the State, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+Tainted Talent, 5/10, upto(4), page(H31), cat(Supernatural, Mental, Talents - Powers), mods(Talents, Power Talents), gives(+1 to SK:Skill Name Here, +1 to SK:Skill Name Here)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane, Mental, Mundane Mental>
+Code of Honor (Cabalistic), -5, page(H23), cat(Mundane, Mental)
+Code of Honor (Oathbound), -5, page(H23), cat(Mundane, Mental)
+Code of Honor (Traditional Secret Society), -5, page(H23), cat(Mundane, Mental)
+Code of Honor (Vampire society), -15, page(H23), cat(Mundane, Mental)
+
+Sense of Duty (Victims of monsters), -5, page(B153), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")
+Sense of Duty (All humanity), -15, page(B153), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")
+
+Compulsive Behavior(Ghostly Repetition), -1/-5/-10/-15, upto(4), cat(Mundane, Mental), page(H23)
+
+Panic Attacks, -5/-10/-25, upto(3), levelnames(Mild, Severe, Crippling), cat(Mental, Mundane), page(H26)
+
+Phobia (%horrorlist%), %horrorcostlist%, displaycost(varies*), mods(Self-Control), page(H25), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+	x(#ChoiceList(_
+			name(horror),_
+			title(Phobia: Choose a Phobia),_
+			text(Choose a phobia from the list of examples provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Millenniphobia: Apocalypse"=-5,_
+				"Taphephobia: Being Buried Alive"=-10,_
+				"Spectrophobia: Ghosts (Ghosts are common)"=-15,_
+				"Spectrophobia: Ghosts (Ghosts are uncommon)"=-10,_
+				"Spectrophobia: Ghosts (Ghosts arr considered imagenary)"=-5,_
+				"Cratiphobia: Government (CR4+)"= -15,_
+				"Cratiphobia: Government (CR2-3)"= -10,_
+				"Cratiphobia: Government (CR0-1)"= -5,_
+				"Limouphobia: Hunger "=-10,_
+				"Apeirophobia: Infinity"=-5,_
+				"Dementophobia: Madness"=-10,_
+				"Traumatophobia: Mutiliation"=-10,_
+				"Toxicophobia: Poisoning"=-10,_
+				"Murophobia: Rats"=-5,_
+				"Coitophobia: Sex"=-10_
+				)_
+			)_
+	), noresync(yes)
+Untrue Beliefs, -5/-10/-15, upto(3), levelnames(Minor, Major, Severe), page(H24),_
+	cat(Mundane, Mental),_
+	x(#InputToTag("Specify your Belief here:", nameext, , "Delusion"))
+
+<Mundane, Social, Mundane Social>
+Social Stigma (Dead), -20, page(H25), cat(Mundane, Social),_
+	conditional(-1 to ST:Reaction)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllMetaTraits>
+TE:Intact Undead
+TE:Mummified Undead
+TE:Rotting Undead
+TE:Skeletal Undead
+TE:Haunt
+TE:Outsider
+TE:Specter
+TE:Threshold Entity
+
+<AllAdvantages>
+AD:Antiquary
+AD:Cunning Folk
+AD:Devotion
+AD:Mesmerist
+AD:Occultist
+AD:Poet
+AD:Leech
+AD:Disease Talent
+AD:Dream/Nightmare Talent
+AD:Fear Talent
+AD:Hellish Talent
+AD:Madness Talent
+AD:Tainted Talent
+AD:Talent of the State
+AD:Unseelie Talent
+AD:Evil Computer Talent
+
+<AllAdvantagesMental>
+AD:Antiquary
+AD:Cunning Folk
+AD:Devotion
+AD:Mesmerist
+AD:Occultist
+AD:Poet
+AD:Disease Talent
+AD:Dream/Nightmare Talent
+AD:Fear Talent
+AD:Hellish Talent
+AD:Madness Talent
+AD:Tainted Talent
+AD:Talent of the State
+AD:Unseelie Talent
+AD:Evil Computer Talent
+
+<AllAdvantagesPhysical>
+AD:Leech
+
+<AllPerks>
+PE:Pestilent
+
+<AllDisadvantages>
+DI:Code of Honor (Cabalistic)
+DI:Code of Honor (Oathbound)
+DI:Code of Honor (Traditional Secret Society)
+DI:Code of Honor (Vampire society)
+DI:Compulsive Behavior (Ghostly Repetition)
+DI:Untrue Beliefs
+DI:Phobia (%horrorlist%)
+DI:Social Stigma (Dead)
+DI:Panic Attacks
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Meta-Traits - Corporeal Undead>
+Intact Undead, displaycost(90), cost(0),_
+description(The dead person recently died and has not decayed significantly.),_
+page(H27),_
+cat(Meta-Traits),_
+noresync(yes),_
+owns(yes),_
+locks(yes),_
+hides(yes),_
+adds(_
+	AD:Doesn't Breathe,_
+	AD:High Pain Threshold,_
+	AD:Temperature Tolerance=10,_
+	AD:Injury Tolerance _
+		with "No Blood, +5, cat(Injury Tolerance)" _
+		and "Unliving, +20, cat(Injury Tolerance)",_
+	DI:Supernatural Feature _
+		with "No Body Heat, -5, cat(Supernatural Feature)" _
+		and "No Pulse, -5, cat(Supernatural Feature)" _
+		and "Pallor, -10, cat(Supernatural Feature)" _
+		AD:Unaging,_
+		PE:Sterile_
+	),_
+creates(_
+			{AD:Resistant (Metabolic Hazards), 5/10/15/30,mods(Resistant),levelnames(Rare, Occasional, Common, Very Common),page(B80),upto(4),tl(),usernotes(),familiarities(), cat(Mundane, Physical, Mundane Physical)}=4 _
+					with {"Degree: Immunity", *1,shortname(Immunity),group(Resistant),level(1),valuenum(1)}_
+)
+
+Mummified Undead, displaycost(80), cost(0),_
+	description(Whether by artificial preservation or exposure to a dry natural environment, this body dried out instead of rotting. Its desiccated tissues catch fire easily – the major vulnerability of mummified undead),_
+	page(F134, H27),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		DI:Appearance = 4 _
+			with "Universal, +25%, cat(Appearance)",_
+		AD:Doesn't Breath,_
+		AD:Doesn't Eat or Drink,_
+		DI:Fragile (Combustible),_
+		AD:High Pain Threshold,_
+		AD:Injury Tolerance _
+			with "No Blood, +5, cat(Injury Tolerance)" _
+			and "No Vitals, +5, cat(Injury Tolerance)" _
+			and "No Brain, +5, cat(Injury Tolerance)" _
+			and "Unliving, +20, cat(Injury Tolerance)",_
+		DI:Social Stigma (Dead),_
+		AD:Temperature Tolerance=10,_
+		AD:Unaging,_
+		PE:Sterile_
+	),_
+	creates(_
+		{AD:Resistant (Metabolic Hazards), 5/10/15/30,mods(Resistant),levelnames(Rare, Occasional, Common, Very Common),page(B80),upto(4),tl(),usernotes(),familiarities(), cat(Mundane, Physical, Mundane Physical)}=4 _
+			with {"Degree: Immunity", *1,shortname(Immunity),group(Resistant),level(1),valuenum(1)}_
+	)
+
+Rotting Undead, displaycost(59), cost(0),_
+	description(This corpse had time to decay before revival – or perhaps it decayed after  revival),_
+	page(F133, H27),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+		adds(_
+			AD:Doesn't Breathe,_
+			AD:Doesn't Eat or Drink,_
+			AD:High Pain Threshold,_
+			AD:Injury Tolerance _
+				with "No Blood, +5, cat(Injury Tolerance)" _
+				and "Unliving, +20, cat(Injury Tolerance)",_
+			AD:Temperature Tolerance = 10,_
+			AD:Unaging,_
+			DI:Appearance = 4 _
+				with "Universal, +25%, cat(Appearance)",_
+			DI:Bad Smell,_
+			DI:No Sense of Smell/Taste,_
+			QU:Sexless,_
+			DI:Social Stigma (Dead) _
+			),_
+	creates(_
+		"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical), noresync(yes)" _
+	)
+
+Skeletal Undead, displaycost(68), cost(20),_
+	description(The dead person's flesh has mostly or entirely rotted away; only the bones and teeth remain, held together by scraps of dried tendons or unseen magic. He's light and fast-moving, but somewhat breakable),_
+	page(F133, H27),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+1 to ST:Basic Speed _
+			),_
+	adds(_
+			AD:Doesn't Breathe,_
+			AD:Doesn't Eat or Drink,_
+			AD:Damage Resistance = 2,_
+			AD:High Pain Threshold,_
+			AD:Injury Tolerance _
+				with "No Blood, +5, cat(Injury Tolerance)" _
+				and "No Brains, +5, cat(Injury Tolerance)" _
+				and "No Eyes, +5, cat(Injury Tolerance)" _
+				and "No Vitals, +5, cat(Injury Tolerance)" _
+				and "Unliving, +20, cat(Injury Tolerance)",_
+			AD:Temperature Tolerance = 10,_
+			AD:Unaging,_
+			AD:Vacuum Support,_
+			DI:Appearance = 4 _
+				with "Universal, +25%, cat(Appearance)",_
+			DI:Fragile (Brittle),_
+			DI:No Sense of Smell/Taste,_
+			DI:Social Stigma (Dead),_
+			DI:Vulnerability (Crushing Attacks) = 3 _
+				with "Wounding Multiplier x2, *1, shortname(x2), cat(Vulnerability)",_
+			QU:Cannot Float,_
+			QU:Sexless _
+			),_
+	creates(_
+		"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical), noresync(yes)",_
+		"DI:Skinny, -5, gives(-2 To SK:Disguise), conditional(-2 to ST:ST when "you resist knockback", -2 to SK:Shadowing when "you are trying to follow someone in a crowd"), page(B18), cat(Mundane Physical, Mundane, Physical, Build), noresync(yes)" _
+	),_
+	features(_
+			Skull has only 2 total DR,_
+			Sterile _
+	)
+
+<Meta-Traits - Spirit>
+Haunt, displaycost(251), cost(0),_
+	description( A spirit that can neither materialize nor become visible, but that can affect the material world),_
+	page(H27),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Doesn't Breathe,_
+			AD:Doesn't Eat or Drink,_
+			AD:Doesn't Sleep,_
+			AD:Insubstantiality _
+			with "Always On, -50%, group(Insubstantiality)" _ 
+			and "Affect Substantial, +100%, group(Insubstantiality)",_
+			AD:Invisibility _
+			with "Substantial Only, -10%, group(Invisibility)",_
+			AD:Unaging _
+	),_
+	creates(_
+			"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)"_
+	)
+
+Outsider, displaycost(226), cost(0),_
+	description(A spirit that doesn't belong in this reality, like most demons in fiction. It can only affect this reality when summoned here, and it can only maintain itself under specialized conditions or with great effort),_
+	page(H27),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(no),_
+	hides(no),_
+	adds(_
+			AD:Doesn't Breathe,_
+			AD:Doesn't Eat or Drink,_
+			AD:Doesn't Sleep,_
+			AD:Insubstantiality _
+			with "Affects Substantial(Only if Summoned -40%), +60%, group(Insubstantiality)" _
+			and "Always On, -50%, group(Insubstantiality)" _
+			and "Always On becomes Usually On (Only if Summoned -40%), +6%, group(Insubstantiality)",_
+			AD:Invisibility _
+			with "Substantial Only, -10%, group(Invisibility)" _
+			and "Usually On (Only if Summoned -40%), +3%, group(Invisibility)",_
+			AD:Unaging _
+	),_
+	creates(_
+			"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)"_
+	)
+Specter, displaycost(279), cost(0),_
+	description(A specter (from the Latin specere, “to look”) can become visible effortlessly. It materializes with some difficulty (1 FP/minute), but more easily than normal spirits.),_
+	page(B263),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Insubstantiality _
+			with "Affect Substantial, +100%, group(Insubstantiality)" _
+			and  "Difficult Materialization, -20%, group(Insubstantiality)",_
+		AD:Invisibility _
+			with "Substantial Only, -10%, group(Invisibility)" _
+			and  "Switchable, +10%, group(Invisibility)",_
+		AD:Unaging _
+	),_
+	creates(_
+			"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)"_
+	)
+Threshold Entity, displaycost(227), cost(0),_
+	description( Like most demons in folklore, a threshold entity is either invisible and immaterial, or visible and material. It has no trouble switching between these states.),_
+	page(H27),_
+	cat(Meta-Traits),_
+	noresync(yes),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+			AD:Doesn't Breathe,_
+			AD:Doesn't Eat or Drink,_
+			AD:Doesn't Sleep,_
+			AD:Insubstantiality _
+			with "Link, +10%, group(Insubstantiality)",_
+			AD:Invisibility _
+			with "Link, +10%, group(Invisibility)" _
+			and "Substantial Only, -10%, group(Invisibility)" _
+			and "Switchable, +10%",_
+			AD:Unaging _
+	),_
+	creates(_
+			"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)"_
+	)
+
+<Racial Templates, Racial Templates - Horror>
+
+Jiangshi (Horror), displaycost(58), cost(18),_
+	cat(Racial Templates),_
+	description(The "stiff corpse" of Chinese legend moves by _
+		hopping; it's vulnerable only to fire or lightning. It may_
+		eventually buy off its reduced Move with earned points, and_
+		add Super Jump or even Flight! Some jiangshi are Hideous.),_
+	page(H58),_
+	noresync(yes),_
+	race(Jiangshi),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+			+4 to ST:Hit Points,_
+			-1 to ST:Basic Move,_
+			+3 to ST:Perception_
+			),_
+	adds(_
+		"AD:Claws (Talons)",_
+		"AD:Doesn't Breathe",_
+		"AD:Injury Tolerance" _
+			with "Unliving, +20, group(Injury Tolerance)",_
+		"AD:Night Vision"=5,_
+		"AD:Unaging",_
+		"AD:Unkillable"=2 _
+			with "Achilles' Heel (Fire and Lightning), -50%, group(Unkillable)",_
+		"AD:Vampiric Bite",_
+		"DI:Dependency (Coffin with soil of homeland)"=3 _
+			with "Frequency Needed: Daily, *3, group(Dependency), shortname(Daily)",_
+		"DI:Draining (Human Blood)" _
+			with "Illegal, -5, group(Draining)",_
+		"DI:Dread (Garlic)",_
+		"DI:Dread (Running Water)" _
+			with "Rarity: Common, *2, group(Dread)",_
+		"DI:Supernatural Feature" _
+			with "No Body Heat: Can gain warmth temporarily, -1, group(Supernatural Feature), shortname(No Body Heat (unless fed))" _
+			and  "Pallor: can gain the flush of life temporarily, -5, group(Supernatural Feature), shortname(Pallor (unless fed))",_
+		"DI:Uncontrollable Appetite (Human Blood)" _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		"DI:Unhealing",_
+		"DI:Nocturnal",_
+		"DI:Social Stigma (Monster)",_
+		"DI:Weakness (Sunlight)"=3 _
+			with "Rarity: Very Common, *3, shortname(Very Common), group(Weakness)" _
+		),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -10%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 & ST:ST::level > 0 then 40 else 0)), forceformula(yes))"=10,_
+		"AD:Alternate Form (Bird & Wolf), 30, mods(Alternate Form), page(B83), cat(Exotic, Physical, Exotic Physical)",_
+		"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)",_
+		"AD:Detect (Breath), 5/10/20/30, mods(Detect), levelnames(Rare, Occasional, Common, Very Common), upto(4), page(B48), cat(Exotic Physical, Exotic, Mental, Physical), mode(Perceive|Analyze), skillused(ST:Perception|ST:IQ)" = 2,_
+		"DI:Dread (Consecrated Incense), -10, mods(Dread), page(B133), cat(Supernatural, Mental), initmods( Rarity: Rare, *1/2, shortname(Rare), round(Down), group(Dread), page(B133) )",_
+		"DI:Dread (Peach Wood), -10, mods(Dread), page(B133), cat(Supernatural, Mental), initmods( Rarity: Rare, *1/2, shortname(Rare), round(Down), group(Dread), page(B133) )",_
+		"DI:Unnatural Feature, -1/-2, upto(5), gives(-1 To SK:Disguise, -1 To SK:Shadowing), page(B22), cat(Mundane, Physical, Other Physical Features),_
+		nameext(Greenish-white hair; Long fingernails)" = 2,_
+		"DI:Weakness (Salt), -5/-10/-20, upto(3), levelnames(1d per 30 minutes, 1d per 5 minutes, 1d per minute), mods(Weakness), page(B161), cat(Exotic, Physical),_
+			initmods(_
+				Rarity: Occasional, *1, shortname(Occasional), group(Weakness) _
+			)"= 3,_
+		"DI:Compulsive Behavior, -5/-10, displaycost(-5/-10/-15*), mods(Self-Control), page(B128), upto(3), cat(Mundane, Mental), levelnames(,,),_
+			initmods( You resist on a roll of  6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control), page(B121) ),_
+			nameext(Count small objects)" _
+	),_
+	features(Sterile)
+
+Moroi (Horror), displaycost(161), cost(23),_
+	cat(Racial Templates),_
+	description(This Romanian vampire is a spirit that emerges _
+					from a corpse at night; a similar belief was common in _
+					19th-century New England. When not materialized, it looks _
+					like a cloud of glowing dust mites),_
+	page(H58),_
+	noresync(yes),_
+	race(Moroi),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+4 to ST:Hit Points,_
+		+3 to ST:Perception_
+			),_
+	adds(_
+			"AD:Doesn't Breathe",_
+			"AD:Injury Tolerance" _
+				with "Unliving, +20, group(Injury Tolerance)",_
+			"AD:Insubstantiality" _
+				with "Difficult Materialization, -20%, group(Insubstantiality)",_
+			"AD:Night Vision"=5,_
+			"AD:Unaging",_
+			"AD:Unkillable"=2,_
+			"AD:Vampiric Bite",_
+			"DI:Infectious Attack",_
+			"DI:Nocturnal",_
+			"DI:Dependency (Own non-decapitatet corpse)"=3 _
+				with "Frequency Needed: Daily, *3, group(Dependency), shortname(Daily)",_
+			"DI:Draining (Human Blood)" _
+				with "Illegal, -5, group(Draining)",_
+			"DI:Supernatural Feature" _
+				with "No Body Heat: Can gain warmth temporarily, -1, group(Supernatural Feature), shortname(No Body Heat (unless fed))" _
+				and  "No Reflection, -10, group(Supernatural Feature)" _
+				and  "Pallor: can gain the flush of life temporarily, -5, group(Supernatural Feature), shortname(Pallor (unless fed))",_
+		"DI:Uncontrollable Appetite (Human Blood)" _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		"DI:Unhealing" _
+		),_
+	creates(_
+			"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)"_
+		),_
+	features(Sterile)
+
+Psychic Vampire (Horror), displaycost(43), cost(0),_
+	cat(Racial Templates - Horror),_
+	description(Common in Theosophical tradition, this is a human whose astral body drains the life from other people),_
+		page(H58),_
+	noresync(yes),_
+	race(Psychic Vampire),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+		adds(_
+		"AD:Leech" _
+			with "Malediction, +100%, group(Leech)" _
+			and "Ranged, +40%, group(Leech)" _
+			and "Psionic, -10%, group(_Power Modifiers), page(P28, H31)",_
+		"DI:Lifebane"_
+		),_
+	creates(_
+		"DI:Draining (Sentient life energy), -5/-10/-15, mods(Draining), levelnames(Common, Occasional, Rare), upto(3), page(B132), cat(Supernatural, Physical)" _
+		),_
+	features(Sterile)
+
+Upurina (Horror), displaycost(54), cost(23),_
+	cat(Racial Templates - Horror),_
+	description(This Serbian revenant corpse is one of many Balkan "old-school" vampires, all stinking, bloody horror.),_
+		page(H58),_
+	noresync(yes),_
+	race(Upurina),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+			+4 to ST:Hit Points,_
+			+3 to ST:Perception_
+			),_
+		adds(_
+		"AD:Doesn't Breathe",_
+		"AD:Injury Tolerance" _
+			with "Unliving, +20, group(Injury Tolerance)",_
+		"AD:Unaging",_
+		"AD:Unkillable"=2 _
+			with "Achilles' Heel (Fire), -50%, group(Unkillable)",_
+		"AD:Vampiric Bite",_
+		"DI:Dependency (Human Blood)"=2 _
+			with "Frequency Needed: Monthly, *1, group(Dependency), shortname(Monthly)" _
+			and "Illegal, -5, group(dependency)",_
+		"DI:Dread (Garlic)",_
+		"DI:Dread (Religious Symbols)" _
+			with "5 yards, -4, group(Dread)",_
+		"DI:Dread (Running Water)" _
+			with "Rarity: Common, *2, group(Dread)",_
+		"DI:Supernatural Feature" _
+			with "No Body Heat: Can gain warmth temporarily, -1, group(Supernatural Feature), shortname(No Body Heat (unless fed))" _
+			and  "No Reflection, -10, group(Supernatural Feature)" _
+			and  "Pallor: can gain the flush of life temporarily, -5, group(Supernatural Feature), shortname(Pallor (unless fed))",_
+		"DI:Bad Smell",_
+		"DI:Frightens Animals",_
+		"DI:Lecherousness" _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		"DI:Sadism" _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		"DI:Social Stigma (Dead)",_
+		"DI:Ham-Fisted"=1,_
+		"DI:Infectious Attack" _
+			with "Accessibility (Fatal attacks only), -20%, group(Infectious Attack)",_
+			"DI:Unhealing" _
+			),_
+	creates(_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -10%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 & ST:ST::level > 0 then 40 else 0)), forceformula(yes))"=6,_
+		"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)",_
+		"DI:Social Stigma (Excommunicated), -10,  page(B155), cat(Mundane, Social), conditional(-1 to ST:Reaction)",_
+		"DI:Divine Curse (Cannot enter dwelling for first time unless invited), -10, cat(Supernatural, Mental, Supernatural Mental)" _
+		),_
+	feature(Night Vision 5)
+
+Vampire Lord (Horror), displaycost(939), cost(19),_
+	cat(Racial Templates - Horror),_
+	description(This is a more powerful "Stoker-style" Western vampire - consider it a "greatest hits" collection of vampire abilities),page(H59),_
+	noresync(yes),_
+	race(Vampire Lord),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+			+3 to ST:Perception,_
+			+4pts to SK:Neck Bite _
+		),_
+	adds(_
+		"AD:Doesn't Breathe",_
+		"AD:Dominance",_
+		"AD:Injury Tolerance" _
+			with "Unliving, +20, group(Injury Tolerance)",_
+		"AD:Insubstantiality" _
+			with "Costs Fatigue: 2 FP, -10%, shortname(2 FP), group(_General)" _
+			and "Accesibility Only at night, -20%, group(_General)",_
+		"AD:Speak with Animals" _
+			with "Wolves and Bats, -60%, group(Speak with Animals)",_
+		"AD:Unaging",_
+		"AD:Claws (Sharp Claws)",_
+		"AD:Clinging",_
+		"AD:Dark Vision",_
+		"AD:Discriminatory Smell",_
+		"AD:Mind Control" _
+			with "Hearing or vision based, -15%, group(Mind Control)",_
+		"AD:Mind Reading" _
+			with "Accessibility (Only on those who have tasted his blood), -40%, group(Mind Reading)",_
+		"AD:Magery 0",_
+		"AD:Magery"=1,_
+		"AD:Regeneration"=4 _
+			with "Accessibility (Only at night), -20%, group(regeneration)",_
+		"AD:Silence"=4,_
+		"AD:Teeth (Sharp Teeth)",_
+		"AD:Telecommunication (Telesend)",_
+		"AD:Wealth"=2,_
+		{AD:Clairsentience} _
+					with {"Accessibility (Accessibility Only through those who have tasted his blood)", -10%/-20%,group(_General),page(B110),x(),level(4),valuenum(-40)} _
+					and  {"Accessibility (Only at night)", -10%/-20%,group(_General),page(B110),x(),level(2),valuenum(-20)} _
+					and  {"Increased Range", +10%/+20%,group(_General),page(B106),levelnames(#list(LevelName Doubling)),gives(=*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangehalfdam, =*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangemax),level(17),valuenum(170)},_
+		"AD:Leech"=3 _
+			with "Addictive Bite, +200%, group(Leech)" _
+			and "Blood Agent, -40%, group(Leech)" _ 
+			and "Heals FP, +60%, group(Leech)",_
+		"DI:Dependency (Coffin with soil of homeland)"=3 _
+			with "Frequency Needed: Daily, *3, group(Dependency), shortname(Daily)",_
+		"DI:Dread (Garlic)",_
+		"DI:Dread (Religious Symbols)" _
+			with "5 yards, -4, group(Dread)",_
+		"DI:Dread (Running Water)" _
+			with "Rarity: Common, *2, group(Dread)",_
+		"DI:Supernatural Feature" _
+			with "No Body Heat: Can gain warmth temporarily, -1, group(Supernatural Feature), shortname(No Body Heat (unless fed))" _
+			and  "No Reflection, -10, group(Supernatural Feature)" _
+			and  "Pallor: can gain the flush of life temporarily, -5, group(Supernatural Feature), shortname(Pallor (unless fed))",_
+		"DI:Uncontrollable Appetite (Human Blood)" _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		"DI:Weakness (Holy Water)"=3 _
+			with "Rarity: Occasional, *1, shortname(Occasional), group(Weakness)" _
+		),_
+	creates(_
+		{AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST)}=10,_
+		{AD:Racial DX Bonus, 20/40, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:DX)}=2,_
+		{AD:Supernatural Durability (Killed by fire), 150, page(B89), cat(Supernatural, Physical), taboo(DI:Low Pain Threshold, AD:High Pain Threshold), skillused(ST:Will+3), mode(ignore pain)},_
+		{AD:Racial Basic Speed Bonus, 5/10, mods(Extra Basic Speed), upto(80), initmods(Affects displayed Basic Speed score, +0%, gives(+(Owner::Level/4) to ST:Basic Speed), group(Extra Basic Speed)), levelnames(#buildlist(list(#list(LevelName Step 0.25)), template(+%listitem%)))}=12,_
+		{AD:Ally (Rat Swarm), 1/2/3/5/10,upto(5),levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points),mods(Ally, Frequency of Appearance, Favor),page(B36),tl(),usernotes(),familiarities(), cat(Mundane, Social, Mundane Social)}=1 _
+			with {"Frequency: roll of 12 or less (Quite often)", *2,shortname(12 or less),group(Frequency of Appearance),page(B36),level(1),valuenum(2)} _
+			and  {"Group Size", *6/*8,levelnames(6-10, 11-20, 21-50, 51-100, 101-200, 201-500, "501-1,000", "1,001-2,000", "2,001-5,000", "5,001-10,000", "10,001-20,000", "20,001-50,000", "50,001-10,0000", "100,001-200,000", "200,001-500,000", "500,001-1,000,000"),group(Ally),page(B37),level(1),valuenum(6)} _
+			and  {"Summonable", +100%,group(Ally),page(B38),level(1),valuenum(100)},_
+		{DI:Vulnerability (Beheading Attacks), -10/-20/-30/-40,displaycost(varies),upto(4),levelnames(Rare, Occasional, Common, Very Common),mods(Vulnerability),page(B161),tl(),usernotes(),familiarities(), cat(Exotic, Physical, Exotic Physical)}=1 _
+			with {"Wounding Multiplier x2", *1,shortname(x2),group(Vulnerability),page(B161),level(1),valuenum(1)},_
+		{DI:Vulnerability (Impaling Wood to the Heart), -10/-20/-30/-40,displaycost(varies),upto(4),levelnames(Rare, Occasional, Common, Very Common),mods(Vulnerability),page(B161),tl(),usernotes(),familiarities(), cat(Exotic, Physical, Exotic Physical)}=1 _
+			with {"Wounding Multiplier x2", *1,shortname(x2),group(Vulnerability),page(B161),level(1),valuenum(1)},_
+		{AD:Fatigue Attack, 10/20,page(B61),mods(_Attack Enhancements, _Attack Limitations, Alternative Attack, Fatigue Attack Enhancements, Fatigue Attack Limitations, Innate Attack),upto(@if(@hasmod(Partial Dice (Does only 1 pt)) THEN 1)),damage($solver(%level)d),damtype(fat),acc(3),rangehalfdam(10),rangemax(100),rof(1),shots(),rcl(1),reach(),parry(0),skillused(ST:Will),noresync(yes),dmg(1),tl(),usernotes(),familiarities(), cat(Exotic, Physical, Innate Attack, Natural Attacks, Exotic Physical)}=1 _
+			with {"Accessibility (Only on sleeping targets)", -10%/-20%,group(_General),page(B110),x(),level(2),valuenum(-20)} _
+			and  {"Damage Modifier: Missed Sleep Hazard", +50%,shortname(Missed Sleep Hazard),group(Fatigue Attack Enhancements),page(B104),gives(=" slp haz" to owner::damtype$),level(1),valuenum(50)} _
+			and  {"Malediction", +100%/+150%/+200%,upto(3),group(_Attack Enhancements),page(B106),levelnames(Receives -1/yd range, Uses Speed/Range Table, Uses Long-Distance Modifiers),gives(=nobase to owner::reach$, =nobase to owner::acc$, =nobasenocalc to owner::rangehalfdam$, =nobasenocalc to owner::rangemax$, =nobase to owner::rof$, =nobase to owner::shots$, =nobase to owner::rcl$, =" mal " to owner::damtype$, =$indexedvalue(me::level, "-1/yd", "Speed/Range", "Long-Distance") to owner::rangemax$),level(3),valuenum(200)},_
+		{AD:Mindlink (2-9 ghouls or lesser vampires and victims), 10},_
+		{AD:Alternate Form (Bat & Wolf), 30, mods(Alternate Form), page(B83), cat(Exotic, Physical, Exotic Physical)} _
+			with "Accesibility Only at night, -20%, group(_General)",_
+		{AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)},_
+		{DI:Restricted Diet (Human Blood), -10/-20/-30/-40, mods(Restricted Diet), levelnames(Very Common, Common, Occasional, Rare), page(B151), upto(4), cat(Mundane, Physical), taboo(AD:Doesn't Eat or Drink, AD:Universal Digestion)}=2 _
+			with {Substitution (Animal Blood, Retching), -50%, group(Restricted Diet), page(B151)},_
+		{DI:Divine Curse (Cannot enter dwelling for first time unless invited), -10, cat(Supernatural, Mental, Supernatural Mental)} _
+		),_
+	features(Sterile)
+
+Vetala (Horror), displaycost(401),_
+	cat(Racial Templates - Horror),_
+	description(This spirit from Hindu mythology must possess a corpse to feed. Vetalas also called baitals know much that is hidden, and are sought after by sorcerers),page(H59),_
+	noresync(yes),_
+	race(Vetala),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		AD:Doesn't Breathe,_
+		AD:Extra Hit Points = 4,_
+		AD:Acute Hearing = 4,_
+		AD:Clinging,_
+		"AD:Magery 0",_
+		"AD:Magery"= 1,_
+		"AD:Sonar",_
+		"AD:Mind Control" _
+			with "Hearing based, -20%, group(Mind Control)" _
+			and "Puppet, -40%, group(Mind Control)",_
+		"AD:Vampiric Bite",_
+		"AD:Telekinesis"=15 _
+			with {"Accesibility, Corpses Only", -20%, group(_General)} _
+			and {Animation, -30%, group(Telekinesis)},_
+		"AD:Speak With Animals" _
+			with "Specialized Bats, -80%, group(Speak With Animals)",_
+		"AD:Possession" _
+			with "Accesibility Bats or corpses only, -20%, group(_General)" _
+			and "Spiritual, -20%, group(Possession)",_
+		"DI:Uncontrollable Appetite (Human Blood)" _
+			with "You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)",_
+		"DI:Dread (Religious Symbols)" _
+			with "5 yards, -4, group(Dread)",_
+		"DI:Dependency (Human Blood)"=2 _
+			with "Frequency Needed: Monthly, *1, group(Dependency), shortname(Monthly)" _
+			and "Illegal, -5, group(Dependency)",_
+		"DI:Nocturnal",_
+		AD:Doesn't Eat or Drink,_
+		AD:Doesn't Sleep,_
+		AD:Insubstantiality _
+			with "Always On, -50%, group(Insubstantiality)" _ 
+			and "Affect Substantial, +100%, group(Insubstantiality)",_
+		AD:Invisibility _
+			with "Substantial Only, -10%, group(Invisibility)",_
+		AD:Unaging _
+	),_
+	creates(_
+		"DI:Compulsive Behavior, -5/-10, displaycost(-5/-10/-15*), mods(Self-Control), page(B128), upto(3), cat(Mundane, Mental), levelnames(,,),_
+			initmods(ou resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)),_
+			nameext(Answer Riddles)"=2,_
+		"AD:Immunity to Metabolic Hazards, 30, cat(Exotic, Physical, Exotic Physical)" _
+	)
+
+Ghoul (Horror), displaycost(100),_
+	cat(Racial Templates - Horror),_
+	description(This is a standard "funerary ghoul" from urban Arabian Persian, or Lovecraftian lore.),page(H59),_
+	noresync(yes),_
+	race(Vetala),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	adds(_
+		"AD:Acute Taste and Smell"=5,_
+		"AD:Claws (Sharp Claws)",_
+		"AD:Damage Resistance"=4 _
+			with {"Limited, Piercing", -40%, group(Damage Resistance)},_
+		"AD:Reduced Consumption"=4 _
+			with "Cast-Iron Stomach, -50%, group(Reduced Consumption)",_
+		"AD:Silence"=1,_
+		"AD:Teeth (Sharp Teeth)",_
+		"AD:Temperature Tolerance"=6,_
+		"AD:Unaging",_
+		"DI:Appearance"=4,_
+		"DI:Bad Smell",_
+		"DI:Disturbing Voice",_
+		"DI:Skinny",_
+		"DI:Social Stigma (Monster)" _
+	),_
+	creates(_
+		"DI:Odious Personal Habit, -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features),conditional(-1 to ST:Reaction when "people notice your problem"),nameext(Eats human carrion)"=3,_
+		"DI:Odious Personal Habit, -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features),conditional(-1 to ST:Reaction when "people notice your problem"),nameext(Necrophilia)"=3,_
+		{DI:Restricted Diet (Human Flesh), -10/-20/-30/-40, mods(Restricted Diet), levelnames(Very Common, Common, Occasional, Rare), page(B151), upto(4), cat(Mundane, Physical), taboo(AD:Doesn't Eat or Drink, AD:Universal Digestion)}=2 _
+			with {Substitution (Animal Blood, Retching), -50%, group(Restricted Diet), page(B151)},_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -10%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 & ST:ST::level > 0 then 40 else 0)), forceformula(yes))"=4,_
+		"AD:Racial DX Bonus, 20/40, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:DX)"=3,_
+		"AD:Resistant, 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), cat(Mundane, Physical), nameext(Disease)"=2 _ 
+		with {"Degree: +8 to HT rolls to resist", *1/2, round(Down), shortname(+8), group(Resistant), page(B81)} ,_
+		"AD:Resistant, 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), cat(Mundane, Physical), nameext(Poison)"=3 _
+			with {"Degree: +8 to HT rolls to resist", *1/2, round(Down), shortname(+8), group(Resistant), page(B81)} ,_
+		"AD:Racial HT Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:HT)"=3 _
+	)
+
+Fantasy Ghoul (Horror), displaycost(191),cost(10),_
+	description(From Lovecrafts Dreamlands ghouls came the ghouls of traditional fantasy RPGs, whose paralyzing touch evokes both the paralyzing fear of the vast desert expanses and the fear of corpse-borne disease),_
+	noresync(yes),_
+	race(Vetala),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+5 to ST:Hit Points _
+	),_
+	adds(_
+		"AD:Acute Taste and Smell"=2,_
+		"AD:Claws (Sharp Claws)",_
+		"AD:Damage Resistance"=4 _
+			with {"Limited, Piercing", -40%, group(Damage Resistance)},_
+		"AD:Silence"=1,_
+		"AD:Teeth (Sharp Teeth)",_
+		"AD:Temperature Tolerance"=6,_
+		"AD:Doesn't Sleep",_
+		"AD:Double-Jointed",_
+		"AD:High Pain Threshold",_
+		"DI:Appearance"=4,_
+		"DI:Bad Smell",_
+		"DI:Disturbing Voice",_
+		"DI:Social Stigma (Monster)" _
+	),_
+	creates(_
+		{AD:Affliction (Paralyzing Touch), 10/20,mods(Affliction, Affliction Enhancements, Affliction Limitations, _Attack Enhancements, _Attack Limitations, Alternative Attack),page(B35),damage(HT-$solver(me::level - 1)),damtype(aff),acc(3),rangehalfdam(10),rangemax(100),rof(1),shots(),rcl(1),skillused(ST:DX, SK:Brawling),noresync(yes),dmg(),tl(),usernotes(),familiarities(),mode(Primary), cat(Exotic, Physical, Natural Attacks, Exotic Physical)}=2 _
+					with {"Extended Duration", +20%/+40%/+60%/+80%/+100%/+120%/+150%/+300%,levelnames(x3, x10, x30, x100, x300, x1000, Permanent with dispelling conditions, Permanent),upto(8),group(_General),page(B105),level(1),valuenum(20)} _
+					and  {"Incapacitation: Paralysis", +150%,shortname(Paralysis),mods(Secondary),group(Affliction),page(B36),level(1),valuenum(150)} _
+					and  {"Melee Attack: Cannot Parry", -5%,shortname(Cannot Parry),group(_Attack Limitations),page(B112),gives(=nobase to owner::parry$, ="No" to owner::parry$),level(1),valuenum(-5)} _
+					and  {"Melee Attack: Reach C", -30%,group(_Attack Limitations),page(B112),gives(=nobase to owner::rangehalfdam$, =nobase to owner::rangemax$, =nobase to owner::reach$, ="C" to owner::reach$),addmode(Primary, skillused(ST:DX, SK:Brawling)),level(1),valuenum(-30)} _
+					and  {"Selective Effect", +20%,group(_General),page(P105),level(1),valuenum(20)},_
+		"DI:Odious Personal Habit, -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features),conditional(-1 to ST:Reaction when "people notice your problem"),nameext(Eats sapient beeings)"=3,_
+		"AD:Racial ST Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:ST), initmods(Size, -10%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes) | No Fine Manipulators, -40%, group(No Fine Manipulators Stat), formula(-@if(ST:No Fine Manipulators > 0 & ST:ST::level > 0 then 40 else 0)), forceformula(yes))"=2,_
+		"AD:Racial DX Bonus, 20/40, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:DX)"=3,_
+		"AD:Resistant, 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), cat(Mundane, Physical), nameext(Disease)"=2 _ 
+		with {"Degree: +8 to HT rolls to resist", *1/2, round(Down), shortname(+8), group(Resistant), page(B81)} ,_
+		"AD:Resistant, 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common), page(B80), upto(4), cat(Mundane, Physical), nameext(Poison)"=3 _
+			with {"Degree: +8 to HT rolls to resist", *1/2, round(Down), shortname(+8), group(Resistant), page(B81)} ,_
+		"AD:Racial HT Bonus, 10/20, cat(Exotic Physical, Exotic, Physical), gives(+1 to ST:HT)"=3 _
+	)
+
+<Character Templates - Horror>
+Academic (Horror), displaycost(60), cat(Character Templates), page(H33), noresync(yes),_
+	sets(_
+			ST:ST = 9,_
+			ST:IQ = 13,_
+			ST:Will = 12,_
+			ST:Perception = 12_
+	),_
+	adds(_
+			LA:Language (Written) = 2,_
+			SK:Research = 4pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points worth of advantages from the following list."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra IQ #codes(downto 1, upto 1),_
+			AD:Claim to Hospitality #codes(downto 3, upto 4),_
+			AD:Eidetic Memory,_
+			AD:Language Talent,_
+			AD:Single-Minded,_
+			AD:Status,_
+			AD:Tenure,_
+			AD:Versatility_
+		)_
+	),_
+	select4(_
+		text("Choose -30 points worth of disadvantages from the following list."),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Bad Temper,_
+			DI:Clueless,_
+			DI:Code of Honor (Professional),_
+			DI:Combat Paralysis,_
+			DI:Curious,_
+			#newitem(_
+				DI:Delusion (Crazy pet theory), -5, page(B130), gives(-1 to ST:Reaction)_
+			),_
+			#newitem(_
+				DI:Duty (Teaching), -10, displaycost(-5), page(B134), cat(Mundane, Social), levelnames("12 or less (quite often)"), initmods(Nonhazardous, +5, group(Duty), page(B134))_
+			),_
+			DI:Hard of Hearing,_
+			DI:Indecisive,_
+			DI:Jealousy,_
+			#newitem(_
+				DI:Odious Personal Habit (Lecturing), -5, displaycost(-5), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")_
+			),_
+			DI:Oblivious,_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121))_
+			),_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Pacifism (Cannot Kill),_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Pacifism (Total Nonviolence),_
+			DI:Post-Combat Shakes,_
+			DI:Stubbornness,_
+			DI:Unfit_
+		)_
+	),_
+	select5(_
+		text("Choose two from the following skills."),_
+		pointswanted(16),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 8pts, downto 8pts))),_
+			SK:Anthropology #codes(upto 8pts, downto 8pts),_
+			SK:Archaeology #codes(upto 8pts, downto 8pts),_
+			SK:Economics #codes(upto 8pts, downto 8pts),_
+			SK:Expert Skill #codes(upto 8pts, downto 8pts),_
+			SK:Geography #codes(upto 8pts, downto 8pts),_
+			SK:History #codes(upto 8pts, downto 8pts),_
+			SK:Literature #codes(upto 8pts, downto 8pts),_
+			SK:Mathematics (Pure) #codes(upto 8pts, downto 8pts),_
+			SK:Mathematics (Statistics) #codes(upto 8pts, downto 8pts),_
+			SK:Psychology #codes(upto 8pts, downto 8pts),_
+			SK:Sociology #codes(upto 8pts, downto 8pts)_
+		)_
+	),_
+	select6(_
+		text("Choose two from the following skills."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Administration #codes(upto 2pts, downto 2pts),_
+			SK:Public Speaking #codes(upto 2pts, downto 2pts),_
+			SK:Teaching #codes(upto 2pts, downto 2pts),_
+			SK:Writing #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Choose a total of 4 points from the following skills."),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Savoir-Faire (High Society),_
+			#newitem(_
+				SK:Savoir-Faire (Academic), IQ/E, default(IQ - 4), page(B218), cat(_General, Knowledge, Social)_
+			),_
+			SK:Anthropology,_
+			SK:Archaeology,_
+			SK:Economics,_
+			SK:Expert Skill,_
+			SK:Geography,_
+			SK:History,_
+			SK:Literature,_
+			SK:Mathematics (Pure),_
+			SK:Mathematics (Statistics),_
+			SK:Psychology,_
+			SK:Sociology,_
+			LA:Language_
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+ 
+Scientist (Horror), displaycost(60), cat(Character Templates), page(H33), noresync(yes),_
+	sets(_
+			ST:ST = 9,_
+			ST:IQ = 13,_
+			ST:Will = 12,_
+			ST:Perception = 12_
+	),_
+	adds(_
+			AD:Language (Written) = 2,_
+			SK:Research = 2pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points worth of advantages from the following list."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra IQ #codes(downto 1, upto 1),_
+			AD:Claim to Hospitality #codes(downto 3, upto 4),_
+			AD:Eidetic Memory,_
+			AD:Language Talent,_
+			AD:Single-Minded,_
+			AD:Status,_
+			AD:Tenure,_
+			AD:Versatility,_
+			AD:Lightning Calculator,_
+			AD:Mathematical Ability,_
+			AD:Extra Perception_
+		)_
+	),_
+	select4(_
+		text("Choose -30 points worth of disadvantages from the following list."),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Absent-Mindedness,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Bad Temper,_
+			DI:Clueless,_
+			DI:Code of Honor (Professional),_
+			DI:Combat Paralysis,_
+			DI:Curious,_
+			#newitem(DI:Delusion (Crazy pet theory), -5, page(B130), gives(-1 to ST:Reaction)),_
+			#newitem(DI:Duty (Teaching), -10, displaycost(-5), page(B134), cat(Mundane, Social), levelnames("12 or less (quite often)"), initmods(Nonhazardous, +5, group(Duty), page(B134))),_
+			DI:Hard of Hearing,_
+			DI:Indecisive,_
+			DI:Jealousy,_
+			#newitem(DI:Odious Personal Habit (Lecturing), -5, displaycost(-5), page(B22), cat(Mundane, Social, Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")),_
+			DI:Oblivious,_
+			#newitem(DI:Obsession, -5, displaycost(-5*), mods(Self-Control), levelnames(Short-Term Goal), page(B146), cat(Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121))),_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Pacifism (Cannot Kill),_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Pacifism (Total Nonviolence),_
+			DI:Post-Combat Shakes,_
+			DI:Stubbornness,_
+			DI:Unfit,_
+			DI:Loner,_
+			DI:Workaholic_
+		)_
+	),_
+	select5(_
+		text("Choose one from the following skills."),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Mathematics (Applied) #codes(upto 2pts, downto 2pts),_
+			SK:Mathematics (Computer Science) #codes(upto 2pts, downto 2pts),_
+			SK:Mathematics (Cryptology) #codes(upto 2pts, downto 2pts),_
+			SK:Mathematics (Pure) #codes(upto 2pts, downto 2pts),_
+			SK:Mathematics (Statistics) #codes(upto 2pts, downto 2pts),_
+			SK:Mathematics (Surveying) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Choose either one of Biology or Physics or two of the other skills."),_
+		pointswanted(16),_
+		itemswanted(atleast 1, upto 2),_
+		list(_
+			SK:Astronomy #codes(upto 8pts, downto 8pts),_
+			SK:Bioengineering (Cloning) #codes(upto 8pts, downto 8pts),_
+			SK:Bioengineering (Genetic Engineering) #codes(upto 8pts, downto 8pts),_
+			SK:Bioengineering (Tissue Engineering) #codes(upto 8pts, downto 8pts),_
+			SK:Chemistry #codes(upto 8pts, downto 8pts),_
+			SK:Computer Programming #codes(upto 8pts, downto 8pts),_
+			SK:Engineer ([Type]) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Artillery) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Civil) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Combat) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Electrical) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Electronics) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Materials) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Microtechnology) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Mining) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Nanotechnology) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Parachronic) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Psychotronics) #codes(upto 8pts, downto 8pts),_
+			SK:Engineer (Temporal) #codes(upto 8pts, downto 8pts),_
+			SK:Expert Skill #codes(upto 8pts, downto 8pts),_
+			SK:Geology #codes(upto 8pts, downto 8pts),_
+			SK:Metallurgy #codes(upto 8pts, downto 8pts),_
+			SK:Paleontology #codes(upto 8pts, downto 8pts),_
+			SK:Psychology #codes(upto 8pts, downto 8pts),_
+			SK:Sociology #codes(upto 8pts, downto 8pts),_
+			SK:Biology #codes(upto 16pts, downto 16pts),_
+			SK:Physics #codes(upto 16pts, downto 16pts)_
+		)_
+	),_
+	select7(_
+		text("Choose two from the following skills."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Administration #codes(upto 2pts, downto 2pts),_
+			SK:Public Speaking #codes(upto 2pts, downto 2pts),_
+			SK:Teaching #codes(upto 2pts, downto 2pts),_
+			SK:Writing #codes(upto 2pts, downto 2pts),_
+			SK:Computer Operation #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Scientific) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Sonar) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Choose a total of 4 points from the following skills."),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Savoir-Faire (High Society),_
+			#newitem(SK:Savoir-Faire (Academic), IQ/E, default(IQ - 4), page(B218), cat(_General, Knowledge, Social)),_
+			SK:Astronomy,_
+			SK:Bioengineering (Cloning),_
+			SK:Bioengineering (Genetic Engineering),_
+			SK:Bioengineering (Tissue Engineering),_
+			SK:Chemistry,_
+			SK:Computer Programming,_
+			SK:Engineer ([Type]),_
+			SK:Engineer (Artillery),_
+			SK:Engineer (Civil),_
+			SK:Engineer (Combat),_
+			SK:Engineer (Electrical),_
+			SK:Engineer (Electronics),_
+			SK:Engineer (Materials),_
+			SK:Engineer (Microtechnology),_
+			SK:Engineer (Mining),_
+			SK:Engineer (Nanotechnology),_
+			SK:Engineer (Parachronic),_
+			SK:Engineer (Psychotronics),_
+			SK:Engineer (Temporal),_
+			SK:Expert Skill,_
+			SK:Geology,_
+			SK:Metallurgy,_
+			SK:Paleontology,_
+			SK:Psychology,_
+			SK:Sociology,_
+			SK:Biology,_
+			SK:Physics,_
+			SK:Administration,_
+			SK:Public Speaking,_
+			SK:Teaching,_
+			SK:Writing,_
+			SK:Computer Operation,_
+			SK:Electronics Operation (Scientific),_
+			SK:Electronics Operation (Sensors),_
+			SK:Electronics Operation (Sonar),_
+			SK:Anthropology,_
+			SK:Archaeology,_
+			SK:Economics,_
+			SK:Expert Skill,_
+			SK:Geography,_
+			SK:History,_
+			SK:Literature,_
+			SK:Mathematics (Pure),_
+			SK:Mathematics (Statistics),_
+			SK:Psychology,_
+			SK:Sociology,_
+			SK:Hazardous Materials,_
+			LA:Language_
+		)_
+	),_
+	select9(#List(QuirkSelection))
+
+Writer (Horror), displaycost(65), cat(Character Templates), page(H44), noresync(yes),_
+	sets(_
+			ST:IQ = 12_
+	),_
+	adds(_
+			SK:Research = 4pts,_
+			SK:Writing = 8pts,_
+			SK:Speed-Reading = 1pts _
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 20 points worth of advantages from the following list."),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			PE:Alcohol Tolerance,_
+			#newitem(AD:Higher Purpose(Artistic truth and experience), 5, page(B59), cat(Supernatural, Mental)),_
+			AD:Intuition,_
+			AD:Less Sleep,_
+			AD:Poet,_
+			AD:Sensitive,_
+			AD:Serendipity #codes(downto 1, upto 1),_
+			AD:Single Minded,_
+			AD:Unfazeable,_
+			AD:Versatile_
+		)_
+	),_
+	select4(_
+		text("Choose -20 points worth of disadvantages from the following list."),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Addiction,_
+			DI:Alcoholism,_
+			#newitem(DI:Bad Sight (Nearsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Farsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is more than 1 yard away", -2 to "CL:Combat/Weapons - Melee Combat", *2 to "CL:Combat/Weapons - Ranged Combat" when "calculating range penalties"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			#newitem(DI:Bad Sight (Farsighted), -25, displaycost(-10), page(B123), cat(Mundane Physical, Mundane, Physical), taboo(DI:Blindness, DI:Bad Sight (Nearsighted), AD:Acute Vision), mods(Bad Sight), conditional( -6 to ST:Vision when "item is within 1 yard", -3 to ST:DX when "performing close manual tasks", -3 to "CL:Combat/Weapons - Melee Combat" when "in Close Combat"), initmods(Mitigator: Glasses, -60%, group(_General), page(B112), mitigator(yes), shortname(Glasses), mitigator(yes)) ),_
+			DI:Combat Paralysis,_
+			DI:Curious,_
+			#newitem(_
+				DI:Compulsive Behaviour (Bibliomania), -5/-10, displaycost(-5/-10/+*), mods(Self-Control), page(B128), upto(3), cat(Mundane, Mental),_
+					initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )_
+			),_
+			DI:Delusion,_
+			DI:Jealousy,_
+			DI:Laziness,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Shyness,_
+			DI:Slow Riser,_
+			DI:Stubbornness,_
+			DI:Truthfullness,_
+			DI:Wealth,_
+			DI:Weirdness Magnet_
+		)_
+	),_
+	select5(_
+		text("Choose one from the following skills."),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Artist (Calligraphy) #codes(upto 2pts, downto 2pts),_
+			SK:Computer Operation #codes(upto 2pts, downto 2pts),_
+			SK:Typing #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Choose two from the following skills."),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Area Knowledge #codes(upto 2pts, downto 2pts),_
+			SK:Poetry #codes(upto 2pts, downto 2pts),_
+			SK:History #codes(upto 2pts, downto 2pts),_
+			SK:Public Speaking #codes(upto 2pts, downto 2pts),_
+			SK:Literatur #codes(upto 2pts, downto 2pts),_
+			SK:Psychology #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Choose a total of 6 points from the following skills."),_
+		pointswanted(6),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Current Affairs (Politics),_
+			SK:Expert Skill (Conspiracy Theory),_
+			SK:Occultism,_
+			SK:Weird Science,_
+			SK:Criminology,_
+			SK:Cryptography,_
+			SK:Geography,_
+			#newitem(_
+				SK:Geography (Antarctic), IQ/H, tl(0-12), default(IQ - 6, SK:Geography - 5), page(B198), cat(_General, Social Sciences/Humanities)_
+			),_
+			#newitem(_
+				SK:Area Knowledge (New England), IQ/E, default(IQ - 4, "SK:Geography (New England)" - 3), page(B176), cat(_General, Everyman, Knowledge)_
+			),_
+			SK:Astronomy (Observational),_
+			#newitem(_
+				SK:Connoisseur (Architecture), IQ/A, default(IQ - 5), page(B185), cat(_General, Arts/Entertainment, Knowledge, Social)_
+			),_
+			SK:Hidden Lore (Things Man Was Not Meant To Know),_
+			SK:Expert Skill (Thanatology),_
+			SK:Forensics,_
+			SK:Poisons,_
+			SK:Law,_
+			SK:Savoir-Faire (Police)_
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Tech (Horror), displaycost(60), cat(Character Templates), page(H43), noresync(yes),_
+	sets(_
+			ST:IQ = 13,_
+			ST:Will = 10,_
+			ST:Perception = 12_
+	),_
+	adds(_
+			SK:Computer Operation = 2pts,_
+			SK:Current Affairs (Science & Technology) = 1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose 25 points worth of advantages from the following list."),_
+		pointswanted(25),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra Perception #codes(downto 1, upto 5),_
+			AD:Absolute Timing,_
+			AD:Acute Hearing,_
+			AD:Artificer,_
+			#newitem(_
+				AD:Contact Group, 5/10/15/20, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21), nameext(Online associates),_
+					upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+					Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+					| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					)_
+				) #codes(downto 2, upto 2),_
+			AD:Eidetic Memory,_
+			AD:Gadgeteer,_
+			AD:Gizmos,_
+			AD:High Manual Dexterity #codes(downt0 1, upto 4),_
+			AD:Less Sleep,_
+			AD:Lightning Calculator,_
+			AD:Intuitive Mathematician,_
+			AD:Mathematical Ability,_
+			AD:Serendipity #codes(downto 1, upto 1),_
+			AD:Signature Gear,_
+			AD:Single-Minded,_
+			AD:Versatile_
+		)_
+	),_
+	select4(_
+		text("Choose -20 points worth of disadvantages from the following list."),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			#newitem(_
+				DI:Addiction (Caffeine or diet pills), -5,mods(Addiction), page(B122), cat(Mundane, Physical)_
+			),_
+			DI:Clueless,_
+			DI:Combat Paralysis,_
+			DI:Curious,_
+			DI:Gullibility,_
+			DI:Honesty,_
+			DI:Lecherousness,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Overconfidence,_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Post-Combat Shakes,_
+			#newitem(_
+				DI:Secret (Hacker) ,-5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarrassment", "Utter Rejection")_
+			),_
+			DI:Shyness,_
+			DI:Slow Riser,_
+			DI:Stubbornness,_
+			DI:Unfit,_
+			DI:Workaholic_
+		)_
+	),_
+	select5(_
+		text("Choose three from the following skills."),_
+		pointswanted(6),_
+		itemswanted(3),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Armoury (Battlesuits) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Body Armor) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Force Shields) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Vehicular Armor) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Melee Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Small Arms) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Heavy Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Armoury (Missile Weapons) #codes(upto 2pts, downto 2pts),_
+			SK:Electrician #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Electronic Warfare) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Security) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Parachronic) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Psychotronics) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Temporal) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Medical) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Communications) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Matter Transmitters) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Scientific) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Sonar) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Electronic Warfare) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Media) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Security) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Parachronic) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Psychotronics) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Temporal) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Medical) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Surveillance) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Communications) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Matter Transmitters) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Scientific) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Sensors) #codes(upto 2pts, downto 2pts),_
+			SK:Electronic Repair (Sonar) #codes(upto 2pts, downto 2pts),_
+			SK:Machinist #codes(upto 2pts, downto 2pts),_
+			SK:Engineer #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Artillery) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Civil) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Combat) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Electrical) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Electronics) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Materials) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Microtechnology) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Mining) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Nanotechnology) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Parachronic) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Psychotronics) #codes(upto 2pts, downto 2pts),_
+			SK:Engineer (Temporal) #codes(upto 2pts, downto 2pts),_
+			SK:Mechanic (Micromachines) #codes(upto 2pts, downto 2pts),_
+			SK:Mechanic (Nanomachines) #codes(upto 2pts, downto 2pts),_
+			SK:Mechanic #codes(upto 2pts, downto 2pts),_
+			SK:Computer Programming #codes(upto 2pts, downto 2pts),_
+			SK:Computer Hacking #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Choose Five from the following skills."),_
+		pointswanted(5),_
+		itemswanted(5),_
+		list(_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Explosives (Demolition),_
+			SK:Explosives (Explosive Ordnance Disposal),_
+			SK:Explosives (Fireworks),_
+			SK:Explosives (Nuclear Ordnance Disposal),_
+			SK:Explosives (Underwater Demolition),_
+			SK:Hazardous Materials (Biological),_
+			SK:Hazardous Materials (Chemical),_
+			SK:Hazardous Materials (Radioactive),_
+			SK:Lockpicking,_
+			SK:Photography,_
+			SK:Traps,_
+			SK:Expert Skill (Computer Security),_
+			SK:Forgery,_
+			SK:Intelligence Analysis_
+		)_
+	),_
+	select7(_
+		text("Choose one from the following skills."),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Accounting ,_
+			SK:Scrounging ,_
+			SK:Speed-Reading_
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Slayer (Horror), displaycost(160), cat(Character Templates), page(H43), noresync(yes),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 13,_
+			ST:IQ = 11,_
+			ST:HT = 11,_
+			ST:Hit Points = 12,_
+			ST:Will = 12,_
+			ST:Perception = 12_
+	),_
+	adds(_
+			AD:Fit,_
+			SK:Armoury(Esoteric) = 4pts,_
+			SK:Fast-Talk = 2pts,_
+			SK:Karate = 4pts,_
+			SK:Observation = 2pts,_
+			SK:Shadowing = 2pts,_
+			SK:Stealth = 2 pts,_
+			SK:Beheading Blow (%Melee Combat Skill%) = 4pts,_
+			SK:Stake to the Heart (%Melee Combat Skill%) = 4pts_
+	),_
+	creates(_
+				"DI:Obsession (Destroy all monsters!), -5/-10, displaycost(-5/-10/+*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(B146), cat(Mundane, Mental),  initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )",_
+				"AD:Higher Purpose, 5, page(B59), cat(Supernatural, Mental),nameext(Slay two types of Monsters)"_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Choose One of"),_
+		pointswanted(15),_
+		itemswanted(1),_
+		list(_
+			AD:Combat Reflexes,_
+			AD:Danger Sense_
+		)_
+	),_
+	select4(_
+		text("Choose 15 points from among"),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra Hit Points #codes(downto 1, upto 2),_
+			AD:Extra Wil #codes(downto 1, upto 3),_
+			AD:Extra Perception #codes(downto 1, upto 3),_
+			AD:Ambidexterity,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge #codes(downto 1, upto 1),_
+			AD:Fearlessness,_
+			AD:Unfazeable,_
+			AD:Hard to Kill,_
+			AD:Magic Resistance,_
+			AD:Night Vision,_
+			AD:Serendipity,_
+			AD:Signature Gear,_
+			AD:Single Minded,_
+			#newitem(_
+				AD:improve Fit to Very Fit, 10, description(Delete replace Fit with Very Fit)_
+	),_
+			AD:True Faith_
+		)_
+	),_
+	select5(_
+		text("Choose -30 points from among the following Disadvantages"),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bloodlust,_
+			DI:Callous,_
+			#newitem(_
+				QU:Distinctive Features (Scar), -1, page(B165)_
+			),_
+			#newitem(_
+				DI:Enemy (Nemesis), -5/-10/-20, upto(3), mods(Enemy, Evil Twin, Frequency of Appearance),page(B135), cat(Mundane, Social),_
+					levelnames("Less powerful than the PC", "Equal in power to the PC", "More powerful than the PC"),_
+					initmods(Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance))_
+			),_
+			DI:Fanaticism,_
+			DI:Guilt Complex,_
+			DI:Insomniac,_
+			#newitem(_
+				DI:Intolerance (Nonhumans), -5, page(B140), cat(Mundane, Mental)_
+			),_
+			DI:Loner,_
+			DI:Nightmares,_
+			DI:No Sense of Humor,_
+			DI:Overconfidence,_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Pyromania,_
+			DI:Sense of Duty(Victims of monsters),_
+			DI:Sense of Duty(All humanity),_
+			DI:Trademark,_
+			DI:Wealth,_
+			DI:Weirdness Magnet_
+		)_
+	),_
+	select6(_
+		text("select one Skill from among"),_
+		pointswanted(8),_
+		itemswanted(1),_
+		list(_
+			SK:Occultism #codes(downto 8pts, upto 8pts),_
+			SK:Hidden Lore (Things Man Was Not Meant To Know) #codes(downto 8pts, upto 8pts),_
+			SK:Hidden Lore (Conspiracies) #codes(downto 8pts, upto 8pts),_
+			SK:Hidden Lore (Demon Lore) #codes(downto 8pts, upto 8pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(downto 8pts, upto 8pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(downto 8pts, upto 8pts),_
+			SK:Hidden Lore #codes(downto 8pts, upto 8pts),_
+			SK:Expert Skill (Vampirology) #codes(downto 8pts, upto 8pts),_
+			SK:Weird Science #codes(downto 8pts, upto 8pts)_
+		)_
+	),_
+	select7(_
+		text("select two Skill from among"),_
+		pointswanted(4),_
+		itemswanted(2),_
+		list(_
+			SK:Crossbow #codes(downto 2pts, upto 2pts),_
+			SK:Guns(Pistol) #codes(downto 2pts, upto 2pts),_
+			SK:Guns(Shotgun) #codes(downto 2pts, upto 2pts),_
+			SK:Knife #codes(downto 2pts, upto 2pts),_
+			SK:Broadsword #codes(downto 2pts, upto 2pts),_
+			SK:Shortsword #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select8(_
+		text("select one Skill from among"),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			SK:Current Affairs (Supernatural),_
+			SK:Interrogation,_
+			SK:Research,_
+			SK:Streetwise,_
+			SK:Tracking_
+		)_
+	),_
+	select9(_
+		text("select one Skill from among"),_
+		pointswanted(1),_
+		itemswanted(1),_
+		list(_
+			SK:Liquid Projector (Flamethrower),_
+			SK:Liquid Projector (Sprayer),_
+			SK:Liquid Projector (Squirt Gun),_
+			SK:Liquid Projector (Water Cannon),_
+			SK:Thrown Weapon (Axe),_
+			SK:Thrown Weapon (Harpoon),_
+			SK:Thrown Weapon (Knife),_
+			SK:Two-Handed Axe/Mace (A) #codes(downto 1, upto 1)_
+		)_
+	),_
+	select10(_
+		text("select a total of 5 points"),_
+		pointswanted(5),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Architecture,_
+			SK:Explosives (Demolition),_
+			SK:Explosives (Fireworks),_
+			SK:Explosives (Underwater Demolition),_
+			SK:Explosives (Nuclear Ordnance Disposal),_
+			SK:Explosives (Explosive Ordnance Disposal),_
+			SK:Fast-Draw (Knife),_
+			SK:Fast-Draw (Pistol),_
+			SK:Fast-Draw (Long Arm),_
+			SK:Fast-Draw (Ammo),_
+			SK:Fast-Draw (Sword),_
+			SK:Fast-Draw,_
+			SK:Forced Entry,_
+			SK:Intimidation,_
+			SK:Mind Block,_
+			SK:Physiology (monster type) (IQ/H),_
+			SK:Poisons,_
+			SK:Running,_
+			SK:Tactics,_
+			SK:Traps_
+		)_
+	),_
+	select11(#List(QuirkSelection))
+
+Retired Soldier (Horror), displaycost(65), cat(Character Templates), page(H42), noresync(yes),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 11,_
+			ST:HT = 11,_
+			ST:Will = 11,_
+			ST:Basic Move = 6_
+	),_
+	adds(_
+			SK:Guns (Rifle) = 4pts,_
+			SK:Savoir-Faire (Military) = 1pts,_
+			SK:Soldier = 8pts,_
+			SK:Brawling = 1pts,_
+			SK:Scrounging = 2pts,_
+			SK:Spear = 1pts,_
+			SK:Throwing = 1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Select 20 points chosen from among"),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra HT,_
+			AD:Extra DX,_
+			AD:Extra Will #codes(downto 1, upto 4),_
+			AD:Extra Perception #codes(downto 1, upto 4),_
+			AD:Combat Reflexes,_
+			AD:Courtesy Rank,_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill,_
+			AD:High Pain Threshold,_
+			#newitem(_
+				AD:Independent Income, 1/2, page(B26), upto(20), cat(Mundane, Social, Wealth), nameext(Military Pension)_
+	),_
+			#newitem(_
+				AD:Reputation, 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence),nameext(Decorated),_
+					initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation) ),_
+					conditional(+1 to ST:Reaction, +1 to SK:Indimidation when "your reputation counts", -1 to SK:Intimidation when "your reputation works against you")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select -30 points chosen from among"),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bloodlust,_
+			DI:Callous,_
+			QU:Careful,_
+			DI:Chummy,_
+			DI:Duty (Reactivation; 6 or less) [-2] or (9 or less) [-5],_
+			#newitem(_
+				DI:Duty, -2/-5/-10/-15, mods(Duty), page(B134), cat(Mundane, Social), upto(4),nameext(Reactivation),_
+					levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")_
+					) #codes(downto 1, upto 2),_
+			#newitem(_
+				DI:Fanaticism, -15/-15, levelnames( , Extreme), page(B136), upto(2), cat(Mundane, Mental),nameext(Patriotism),_
+					conditional(=+@if(%level = 2 THEN 3) to ST:Will when "resisting Brainwashing, Interrogation, and Mind Control")_
+			),_
+			DI:Flashbacks,_
+			DI:Intolerance,_
+			DI:Nightmares,_
+			DI:Overconfidence,_
+			DI:Post-Combat Shakes,_
+			#newitem(_
+				DI:Sense of Duty, -2/-5/-10/-15/-20, levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(B153), upto(5), cat(Mundane, Mental),nameext(Comrades in arms),_
+				conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known"),_
+				) #codes(downto 2, upto 2),_
+			#newitem(_
+				DI:Sense of Duty, -2/-5/-10/-15/-20, levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(B153), upto(5), cat(Mundane, Mental),nameext(Command),_
+				conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known"),_
+				) #codes(downto 2, upto 2),_
+			DI:Workaholic,_
+			DI:Lame (Crippled Legs),_
+			DI:Lame (Missing Legs),_
+			DI:Lame (Paraplegic),_
+			DI:Lame (Legless),_
+			DI:One Eye,_
+			DI:One Hand_
+		)_
+	),_
+	select5(_
+		text("Choos a Driving Specialty"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Construction Equipment) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Halftrack) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Heavy Wheeled) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Hovercraft) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Locomotive) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Mecha) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Motorcycle) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Tracked) #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select6(_
+		text("A total of 5 points in"),_
+		pointswanted(5),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Camouflage,_
+			SK:Electronics Operation (Communications),_
+			SK:Explosives (Demolition),_
+			SK:Explosives (Fireworks),_
+			SK:Explosives (Underwater Demolition),_
+			SK:Explosives (Nuclear Ordnance Disposal),_
+			SK:Explosives (Explosive Ordnance Disposal),_
+			SK:First Aid,_
+			SK:Forward Observer,_
+			SK:Gunner (Beams),_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Catapult),_
+			SK:Gunner (Machine Gun),_
+			SK:Gunner (Rockets),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Light Anti-Armor Weapon),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Musket),_
+			SK:Guns(Pistol),_
+			SK:Guns(Shotgun),_
+			SK:Hiking,_
+			SK:Knife,_
+			SK:Navigation (Land),_
+			SK:Observation,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Retired Soldier - NCO (Horror), displaycost(90), cat(Character Templates), page(H42), noresync(yes),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 11,_
+			ST:IQ = ST:IQ + 1,_
+			ST:HT = 11,_
+			ST:Will = 11,_
+			ST:Basic Move = 6_
+	),_
+	adds(_
+			AD:Courtesy Rank = 1,_
+			SK:Guns (Rifle) = 4pts,_
+			SK:Savoir-Faire (Military) = 1pts,_
+			SK:Soldier = 8pts,_
+			SK:Brawling = 1pts,_
+			SK:Scrounging = 2pts,_
+			SK:Spear = 1pts,_
+			SK:Throwing = 1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Select 20 points chosen from among"),_
+		pointswanted(20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra ST,_
+			AD:Extra HT,_
+			AD:Extra DX,_
+			AD:Extra Will #codes(downto 1, upto 4),_
+			AD:Extra Perception #codes(downto 1, upto 4),_
+			AD:Combat Reflexes,_
+			AD:Voice,_
+			AD:Charisma,_
+			PE:Penetrating Voice,_
+			#newitem(_
+				AD:_Additional Courtesy Rank, 1/2, existing(AD:Courtesy Rank), page(B29), upto(8), cat(Mundane, Social, Influence),description(Delete this and raise Courtesy Rank Advantage)_
+			),_
+			AD:Fearlessness,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Hard to Kill,_
+			AD:High Pain Threshold,_
+			#newitem(_
+				AD:Independent Income, 1/2, page(B26), upto(20), cat(Mundane, Social, Wealth), nameext(Military Pension)_
+			),_
+			#newitem(_
+				AD:Reputation, 5/10, mods(Reputation, Reputation Advantage), page(B27), upto(4), cat(Mundane, Social, Influence),nameext(Decorated),_
+					initmods(People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) | Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation) ),_
+					conditional(+1 to ST:Reaction, +1 to SK:Indimidation when "your reputation counts", -1 to SK:Intimidation when "your reputation works against you")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select -30 points chosen from among"),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Bloodlust,_
+			DI:Callous,_
+			QU:Careful,_
+			DI:Chummy,_
+			DI:Duty (Reactivation; 6 or less) [-2] or (9 or less) [-5],_
+			#newitem(_
+				DI:Duty, -2/-5/-10/-15, mods(Duty), page(B134), cat(Mundane, Social), upto(4),nameext(Reactivation),_
+					levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")_
+					) #codes(downto 1, upto 2),_
+			#newitem(_
+				DI:Fanaticism, -15/-15, levelnames( , Extreme), page(B136), upto(2), cat(Mundane, Mental),nameext(Patriotism),_
+					conditional(=+@if(%level = 2 THEN 3) to ST:Will when "resisting Brainwashing, Interrogation, and Mind Control")_
+			),_
+			DI:Flashbacks,_
+			DI:Intolerance,_
+			DI:Nightmares,_
+			DI:Overconfidence,_
+			#newitem(_
+				DI:Odious Personal Habit, -5/-10, upto(3), page(B22), cat(Mundane, Social, Other Physical Features),nameext(By the book),_
+					conditional(-1 to ST:Reaction when "people notice your problem")_
+			),_
+			DI:Post-Combat Shakes,_
+			#newitem(_
+				DI:Sense of Duty, -2/-5/-10/-15/-20, levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(B153), upto(5), cat(Mundane, Mental),nameext(Comrades in arms),_
+				conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known"),_
+				) #codes(downto 2, upto 2),_
+			#newitem(_
+				DI:Sense of Duty, -2/-5/-10/-15/-20, levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(B153), upto(5), cat(Mundane, Mental),nameext(Command),_
+				conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known"),_
+				) #codes(downto 2, upto 2),_
+			DI:Workaholic,_
+			DI:Lame (Crippled Legs),_
+			DI:Lame (Missing Legs),_
+			DI:Lame (Paraplegic),_
+			DI:Lame (Legless),_
+			DI:One Eye,_
+			DI:One Hand_
+		)_
+	),_
+	select5(_
+		text("Choos a Driving Specialty"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Construction Equipment) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Halftrack) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Heavy Wheeled) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Hovercraft) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Locomotive) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Mecha) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Motorcycle) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Tracked) #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select6(_
+		text("A total of 5 points in"),_
+		pointswanted(5),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Camouflage,_
+			SK:Electronics Operation (Communications),_
+			SK:Explosives (Demolition),_
+			SK:Explosives (Fireworks),_
+			SK:Explosives (Underwater Demolition),_
+			SK:Explosives (Nuclear Ordnance Disposal),_
+			SK:Explosives (Explosive Ordnance Disposal),_
+			SK:First Aid,_
+			SK:Forward Observer,_
+			SK:Gunner (Beams),_
+			SK:Gunner (Cannon),_
+			SK:Gunner (Catapult),_
+			SK:Gunner (Machine Gun),_
+			SK:Gunner (Rockets),_
+			SK:Guns (Submachine Gun),_
+			SK:Guns (Grenade Launcher),_
+			SK:Guns (Gyroc),_
+			SK:Guns (Light Anti-Armor Weapon),_
+			SK:Guns (Light Machine Gun),_
+			SK:Guns (Musket),_
+			SK:Guns(Pistol),_
+			SK:Guns(Shotgun),_
+			SK:Hiking,_
+			SK:Knife,_
+			SK:Navigation (Land),_
+			SK:Observation,_
+			SK:Survival (Arctic),_
+			SK:Survival (Desert),_
+			SK:Survival (Island/Beach),_
+			SK:Survival (Jungle),_
+			SK:Survival (Mountain),_
+			SK:Survival (Plains),_
+			SK:Survival (Swampland),_
+			SK:Survival (Woodlands)_
+		)_
+	),_
+	select7(_
+		text("A total of 4 points in"),_
+		pointswanted(4),_
+		itemswanted(atleast 1),_
+		list(_
+			SK:Tactics,_
+			SK:Leadership,_
+			#newitem(_
+				SK:_Additional Savoir-Faire (Military), 1/2/4, upto(3), existing(SK:Savoir-Faire (Military)), description(Delete and give the points to Saviour-Faire (Military))_
+			)_
+		)_
+	),_
+	select8(#List(QuirkSelection))
+
+Priest (Horror), displaycost(80), cost(0), cat(Character Templates), page(H41), noresync(yes),_
+	sets(_
+			ST:IQ = 12,_
+			ST:HT = 11_
+	),_
+	adds(_
+			AD:Clerical Investment,_
+			AD:Religious Rank = 2,_
+			LA:Language = 2,_
+			SK:Public Speaking = 2pts,_
+			SK:Religious Ritual = 8pts,_
+			SK:Theology = 4pts_
+	),_
+	creates(_
+				"SK:Area Knowledge(Parish), IQ/E, default(IQ - 4, "SK:Geography (Parish)" - 3), page(B176), cat(_General, Everyman, Knowledge)" = 2pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("Select 15 points chosen from among"),_
+		pointswanted(15),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			#newitem(_
+				AD:Ally, 1/2/3/5/10, upto(5), nameext(Congregation or elders),levelnames(25% of starting points, 50% of starting points, 75% of starting points, 100% of starting points, 150% of starting points),_
+					mods(Ally, Frequency of Appearance, Favor), page(B36), cat(Mundane, Social),_
+					initmods(_
+					Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+							)_
+				),_
+			AD:Extra Will #codes(downto 1, upto 3),_
+			AD:Blessed,_
+			AD:Charisma,_
+			AD:Devotion,_
+			AD:Higher Purpose,_
+			AD:Language Talent,_
+			LA:Language,_
+			AD:Musical Ability,_
+			AD:Sensitive,_
+			AD:Empathy,_
+			AD:Spirit Empathy,_
+			AD:True Faith,_
+			AD:Voice_
+		)_
+	),_
+	select4(_
+		text("-30 points chosen from among"),_
+		pointswanted(-30),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Charitable,_
+			#newitem(_
+				DI:Compulsive Behavior, -5/-10, displaycost(-5/-10/+*), mods(Self-Control), page(B128), upto(3), cat(Mundane, Mental), levelnames(,,), nameext(Religious Observance),_
+					initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )_
+			),_
+			DI:Compulsive Generosity,_
+			DI:Discipline of Faith,_
+			DI:Discipline of Faith (Asceticism),_
+			DI:Discipline of Faith (Monasticism),_
+			DI:Discipline of Faith (Mysticism),_
+			DI:Discipline of Faith (Ritualism),_
+			DI:Fanaticism,_
+			DI:Honesty,_
+			DI:Intolerance,_
+			DI:Pacifism (Reluctant Killer),_
+			DI:Pacifism (Cannot Harm Innocents),_
+			DI:Pacifism (Cannot Kill),_
+			DI:Pacifism (Self-Defense Only),_
+			DI:Pacifism (Total Nonviolence),_
+			#newitem(_
+				DI:Sense of Duty (Coreligionists), -10, page(B153), cat(Mundane, Mental)_
+			),_
+			#newitem(_
+				DI:Sense of Duty (All humanity), -15, page(B153), cat(Mundane, Mental)_
+			),_
+			#newitem(_
+				DI:Sense of Duty (All Creation), -20, page(B153), cat(Mundane, Mental)_
+			),_
+			DI:Truthfulness,_
+			DI:Vow,_
+			DI:Wealth_
+		)_
+	),_
+	select5(_
+		text("Select 2 skills"),_
+		pointswanted(4),_
+		itemswanted(2),list(_
+			SK:Hidden Lore (Things Man Was Not Meant To Know) #codes(downto 2pts, upto 2pts),_
+			SK:Hidden Lore (Conspiracies) #codes(downto 2pts, upto 2pts),_
+			SK:Hidden Lore (Demon Lore) #codes(downto 2pts, upto 2pts),_
+			SK:Hidden Lore (Faerie Lore) #codes(downto 2pts, upto 2pts),_
+			SK:Hidden Lore (Spirit Lore) #codes(downto 2pts, upto 2pts),_
+			SK:Hidden Lore #codes(downto 2pts, upto 2pts),_
+			SK:Poetry #codes(downto 2pts, upto 2pts),_
+			SK:Research #codes(downto 2pts, upto 2pts),_
+			SK:Teaching #codes(downto 2pts, upto 2pts),_
+			SK:Expert Skill (Demonology) #codes(downto 2pts, upto 2pts),_
+			SK:Expert Skill (Thanatology) #codes(downto 2pts, upto 2pts),_
+			SK:Musical Composition #codes(downto 2pts, upto 2pts),_
+			SK:Musical Instrument #codes(downto 2pts, upto 2pts),_
+			SK:Singing #codes(downto 2pts, upto 2pts),_
+			SK:Mental Strength #codes(downto 2pts, upto 2pts),_
+			SK:Exorcism #codes(downto 2pts, upto 2pts),_
+			SK:Meditation #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select6(_
+		text("A total of 6 points in"),_
+		pointswanted(6),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts))),_
+			SK:Administration,_
+			SK:Detect Lies,_
+			SK:Diplomacy,_
+			SK:First-Aid,_
+			SK:Leadership,_
+			SK:Literature,_
+			SK:Naturalist,_
+			SK:Occultism,_
+			SK:Psychology,_
+			SK:Writing,_
+			SK:History_
+		)_
+	),_
+	select7(#List(QuirkSelection))
+
+Police Officer (Horror), displaycost(65), cost(0), cat(Character Templates), page(H41), noresync(yes),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 11,_
+			ST:IQ = 11_
+	),_
+	adds(_
+			SK:Brawling = 1pts,_
+			SK:Criminology = 2pts,_
+			SK:First Aid = 1pts,_
+			SK:Guns (Pistol) = 2pts,_
+			SK:Guns (Shotgun) = 2pts,_
+			SK:Intimidation = 4pts,_
+			SK:Savoir-Faire (Police) = 1pts,_
+			SK:Shortsword = 2pts,_
+			SK:Wrestling = 2pts,_
+			SK:Climbing = 1pts,_
+			SK:Running = 2pts,_
+			SK:Search  = 2pts,_
+			SK:Streetwise = 2pts,_
+			AD:Legal Enforcement Powers = 1 _
+	),_
+	creates(_
+				"DI:Code of Honor (Police), -5, page(B127), cat(Mundane, Mental)",_
+				"DI:Duty (Police department), -2/-5/-10/-15, mods(Duty), page(B134), cat(Mundane, Social), upto(4), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")" = 4,_
+				"SK:Area Knowledge (Beat), IQ/E, default(IQ - 4, "SK:Geography ([Area])" - 3), page(B176), cat(_General, Everyman, Knowledge)" = 4pts_
+	),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+	select3(_
+		text("10 points chosen from among"),_
+		pointswanted(10),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMAdvantages),_
+			AD:Extra Will,_
+			AD:Extra Perception,_
+			PE:Alcohol Tolerance,_
+			AD:Fit,_
+			AD:Police Rank,_
+			#newitem(_
+				AD:Contact (Street), 1/2/3/4, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18, Effective Skill 21),_
+					upto(4), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods( Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+					| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+				)_
+			),_
+			AD:Patron_
+		)_
+	),_
+	select4(_
+		text(" -20 points chosen from among"),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			#newitem(_
+				DI:Secret, -5/-10/-20/-30, upto(4), page(B152), cat(Mundane, Social), nameext(Corrupt),_
+					levelnames("Serious Embarrassment", "Utter Rejection", "Imprisonment or Exile", "Possible Death")_
+					) #codes(downto 1, upto 2),_
+			DI:Addiction (Tobacco),_
+			DI:Bad Temper,_
+			DI:Bully,_
+			DI:Honesty,_
+			DI:Intolerance,_
+			DI:Overconfidence,_
+			DI:Sense of Duty,_
+			DI:Stubborness,_
+			DI:Pacifism (Cannot Harm Innocents)_
+		)_
+	),_
+	select5(_
+		text("Choose one of"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Bicycling #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Automobile) #codes(downto 2pts, upto 2pts),_
+			SK:Driving (Motorcycle) #codes(downto 2pts, upto 2pts),_
+			SK:Riding (Horse) #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Choose one of"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			#newitem(_
+				SK:Law (Criminal), IQ/H, default(IQ - 6), page(B204), cat(_General, Business, Police, Social Sciences/Humanities)_
+			) #codes(downto 2pts, upto 2pts),_
+			#newitem(_
+				SK:Law (Police), IQ/H, default(IQ - 6), page(B204), cat(_General, Business, Police, Social Sciences/Humanities)_
+			) #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Choose one of"),_
+		pointswanted(2),_
+		itemswanted(1),_
+		list(_
+			SK:Diplomacy #codes(downto 2pts, upto 2pts),_
+			SK:Fast-Talk #codes(downto 2pts, upto 2pts)_
+		)_
+	),_
+	select8(_
+		text("A total of 6 points in"),_
+		pointswanted(6),_
+		itemswanted(atleast 1),_
+		list(_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts))),_
+			SK:Administration,_
+			SK:Animal handling (Dogs),_
+			SK:Animal Handling (Equines),_
+			SK:Computer Operation,_
+			SK:Liquid Projector (Sprayer),_
+			SK:Psychology,_
+			SK:Shield,_
+			SK:Typing,_
+			SK:Writing_
+		)_
+	),_
+	select9(#List(QuirkSelection))
+	
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Academic (Horror)" with {replacetags(in "TE:Academic (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Scientist (Horror)" with {replacetags(in "TE:Scientist (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Police Officer (Horror)" with {replacetags(in "TE:Police Officer (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Priest (Horror)" with {replacetags(in "TE:Priest (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Retired Soldier (Horror)" with {replacetags(in "TE:Retired Soldier (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Retired Soldier - NCO (Horror)" with {replacetags(in "TE:Retired Soldier - NCO (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Slayer (Horror)" with {replacetags(in "TE:Slayer (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Tech (Horror)" with {replacetags(in "TE:Tech (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Writer (Horror)" with {replacetags(in "TE:Writer (Horror)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

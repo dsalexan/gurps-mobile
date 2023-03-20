@@ -1,0 +1,110 @@
+{{!-- {{log 'gurps-mobile' 'feature' this._feature.name this level='error'}} --}}
+<div class="feature {{join classes}}" data-id="{{id}}" data-context="{{_context}}" data-path="{{path}}" data-index="{{index}}" data-wrapper="{{_wrapper}}">
+  <div class="children">
+    {{#each _metadata.childrenKeys}}
+      {{!-- {{log 'gurps-mobile' ../children this (get ../children this 'array') level='error'}} --}}
+      {{#each (get ../children this 'array')}}
+        {{!-- {{log 'gurps-mobile' .. this ../.. level='error'}} --}}
+
+        <div class="feature-data interactible {{join classes}}">
+          {{#unless (isNilOrEmpty actions.left)}}
+            <div class="action left">
+              <div>
+                {{#each actions.left}}
+                  {{#if @index}}<div class="divider"><div></div></div>{{/if}}
+                  <div class="{{join classes}}">
+                  {{#each children}}
+                    <div class="{{join classes}}">
+                      {{#unless (isNilOrEmpty icon)}}{{gurpsIcon icon}}{{/unless}}
+                    </div>
+                  {{/each}}
+                  </div>                  
+                {{/each}}
+              </div>
+            </div>
+          {{/unless}}
+          
+          {{!-- <div class="action left">
+            <i class="material-icons">done</i>
+          </div> --}}
+
+          {{!-- <div class="children" style="font-family: sans-serif; padding: 16px; background-color: whitesmoke;">
+            <div>
+              Swipe me to the left or right
+            </div>          
+          </div> --}}
+
+          <div class="children">
+            {{#each variants}}
+              <div class="feature-variant {{join classes}} {{isNilOrEmpty tags '' 'has-tags'}} {{isNilOrEmpty notes '' 'has-notes'}} {{isNilOrEmpty value '' 'has-value'}}">
+                <div class="mark"><div>{{mark}}</div></div>
+                <div class="chevron prev"><i class="icon mdi mdi-chevron-left"></i></div>
+                <div class="wrapper">
+                  <div class="content">
+                    <div class="label {{isNilOrEmpty label 'hidden'}}">
+                      <div class="main">
+                        <div class="tray">
+                          <div class="children">
+                            <div class="icon-wrapper pin"><i class="icon mdi mdi-pin"></i></div>
+                            {{#if icon}}<div class="icon-wrapper type">{{gurpsIcon icon}}</div>{{/if}}
+                            {{!-- <div class="spacer"></div> --}}
+                            <div class="icon-wrapper collapse"><i class="icon mdi mdi-arrow-collapse"></i></div>
+                          </div>
+                        </div>
+                        <span>{{{i18n label}}}</span>
+                      </div>
+                      <div class="secondary">{{secondary_label}}</div>
+                    </div>
+                    <div class="notes {{isNilOrEmpty notes 'hidden'}}">
+                      {{#each notes}}<p>{{this}}</p>{{/each}}
+                    </div>
+                    {{#if value}}<div class="value {{isNilOrEmpty value 'hidden'}}">{{> gurps/feature_value value}}</div>{{/if}}
+                    <div class="tags"><div class="children">{{#each tags}}{{> gurps/feature_tag this}}{{/each}}</div></div>
+                    <div class="stats {{isNilOrEmpty stats 'hidden'}}">
+                      {{#each stats}}
+                        <div class="stat">
+                          <div class="label">{{this.label}}</div>
+                          <div class="value">{{this.value}}</div>
+                        </div>
+                      {{/each}}
+                    </div>
+                    {{#if buttons}}
+                      <div class="buttons">
+                        {{#each buttons}}
+                          <div class="button {{join classes}}">
+                            {{#if (not (isNilOrEmpty label))}}<div class="label">{{label}}</div>{{/if}}
+                            {{#if (not (isNilOrEmpty icon))}}<div class="icon">{{gurpsIcon icon}}</div>{{/if}}
+                            <div class="value">{{value}}</div>
+                          </div>
+                        {{/each}}
+                      </div>
+                    {{/if}}
+                  </div>
+                  {{#if icon}} <div class="background-icon"> {{gurpsIcon icon}} </div> {{/if}}
+                </div>
+                <div class="chevron next"><i class="icon mdi mdi-chevron-right"></i></div>
+              </div>
+            {{/each}}
+          </div>
+          
+          {{#unless (isNilOrEmpty actions.right)}}
+            <div class="action right">
+              <div>
+                {{#each actions.right}}
+                  {{#if @index}}<div class="divider"><div></div></div>{{/if}}
+                  <div class="{{join classes}}">
+                  {{#each children}}
+                    <div class="{{join classes}}">
+                      {{#unless (isNilOrEmpty icon)}}{{gurpsIcon icon}}{{/unless}}
+                    </div>
+                  {{/each}}
+                  </div>                  
+                {{/each}}
+              </div>
+            </div>
+          {{/unless}}
+        </div>
+      {{/each}}
+    {{/each}}
+  </div>
+</div>

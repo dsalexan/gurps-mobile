@@ -1,0 +1,49 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=12/29/2016. This file will remove all Clerical spells from the Basic Set data file.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter=All
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Basic Set 4e - Remove Spells Clerical.gdf
+* Created: August 18, 2007
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Basic Set: Characters sourcebook. GURPS Basic Set:
+* Characters is Copyright © 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+* Steve Jackson Games Incorporated. All rights reserved.
+*
+* Information in this file includes:
+* #Delete commands for all Clerical spells
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+[SPELLS]
+
+#DeleteByTag Spells, Text IgnoreEmpty, cat HasInList ~Clerical
+#Delete AD:Power Investiture
+

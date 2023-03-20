@@ -1,0 +1,118 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file contains all of the equipment from High-Tech Pulp Guns 1 converted to Metric weights. _
+		All weights have been rounded off; those under 1 Kilo are rounded to two decimal places; those under 10 Kilos _
+		are rounded to one decimal place; those over 10 Kilos are rounded to the nearest whole number. _
+		Range (1/2D & Max) remains in yards, but the approximate conversion of 1 yard = 1 meter should suffice.
+Requires="GURPS High-Tech Pulp Guns Volume 2.gdf", "Variant Basic Set 4e - Metric Equipment.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant High-Tech 4e - Metric Equipment.gdf
+* Created: August 18, 2007
+* Requires GCA v4 or later!
+*
+* Information in this file includes:
+* Conversion of all equipment to use Metric weights and measures
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[EQUIPMENT]
+************************************************************************************************************************
+#ReplaceTags in "EQ:Arisaka Meiji 38 Shiki, 6.5x50mmSR" with "units(kg), baseweight(4.3)"
+#ReplaceTags in "EQ:Browning M1918 BAR, .30-06" with "units(kg), baseweight(7.8)"
+#ReplaceTags in "EQ:Enfield M1917, .30-06" with "units(kg), baseweight(4.2)"
+#ReplaceTags in "EQ:Enfield SMLE Mk III, .303" with "units(kg), baseweight(4.2)"
+#ReplaceTags in "EQ:Greener Light Harpoon Gun, .38 Special" with "units(kg), baseweight(6)"
+#ReplaceTags in "EQ:H&H Best Quality Magazine, .375 H&H Magnum" with "units(kg), baseweight(4.7)"
+#ReplaceTags in "EQ:H&H Royal Double-Express, .600 NE" with "units(kg), baseweight(7.5)"
+#ReplaceTags in "EQ:Lebel Mle 1886, 8x50mmR" with "units(kg), baseweight(4.5)"
+#ReplaceTags in "EQ:Mannlicher-Carcano Mod 91, 6.5x52mm" with "units(kg), baseweight(4)"
+#ReplaceTags in "EQ:Mannlicher-Schönauer Grosswildbüchse, 12.7x70mmRB" with "units(kg), baseweight(5.3)"
+#ReplaceTags in "EQ:Mannlicher-Schönauer Modell 1903, 6.5x54mm" with "units(kg), baseweight(3.1)"
+#ReplaceTags in "EQ:Mauser Gew98, 7.92x57mm" with "units(kg), baseweight(4.3)"
+#ReplaceTags in "EQ:Mauser Modell 10E, 9.3x62mm" with "units(kg), baseweight(3.4)"
+#ReplaceTags in "EQ:Mauser T-Gew18, 13x92mmSR" with "units(kg), baseweight(18)"
+#ReplaceTags in "EQ:Remington Model 8, .35 Remington" with "units(kg), baseweight(3.6)"
+#ReplaceTags in "EQ:Rigby Best Quality Double, .470 NE" with "units(kg), baseweight(5.1)"
+#ReplaceTags in "EQ:Savage Model 23A, .22 LR" with "units(kg), baseweight(2.8)"
+#ReplaceTags in "EQ:Savage Model 99A, .303 Savage" with "units(kg), baseweight(3.8)"
+#ReplaceTags in "EQ:Sestrorests AVF-16, 6.5x50mmSR" with "units(kg), baseweight(4.9)"
+#ReplaceTags in "EQ:SIG-Mondragon Mod 1908, 7x57mm" with "units(kg), baseweight(4.5)"
+#ReplaceTags in "EQ:Springfield M1903, .30-06" with "units(kg), baseweight(4)"
+#ReplaceTags in "EQ:Stevens Number 14 1/2 Little Scout, .22 LR" with "units(kg), baseweight(1.3)"
+#ReplaceTags in "EQ:Winchester Model 03, .22 Winchester Auto" with "units(kg), baseweight(2.7)"
+#ReplaceTags in "EQ:Winchester Model 06, .22 LR" with "units(kg), baseweight(2.3)"
+#ReplaceTags in "EQ:Winchester Model 07, .351 Winchester" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:Winchester Model 54, .270 Winchester" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:Winchester Model 86, .45-70" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:Winchester Model 92, .44-40" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:Winchester Model 94, .30-30" with "units(kg), baseweight(3.3)"
+#ReplaceTags in "EQ:Winchester Model 95, .405 Winchester" with "units(kg), baseweight(3.7)"
+#ReplaceTags in "EQ:Kokura 97 Shiki Jidouhou, 20x125mm" with "units(kg), baseweight(52)"
+#ReplaceTags in "EQ:Remington Model 34, .22 LR" with "units(kg), baseweight(2.5)"
+#ReplaceTags in "EQ:Savage Model 45 Super, .30-06" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:Steyr-Solothurn S18-100, 20x105mmB" with "units(kg), baseweight(45)"
+#ReplaceTags in "EQ:ZB ZH29, 7.92x57mm" with "units(kg), baseweight(5.3)"
+#ReplaceTags in "EQ:Breda Mod 30, 6.5x52mm" with "units(kg), baseweight(11)"
+#ReplaceTags in "EQ:Browning M1917, .30-06" with "units(kg), baseweight(17)"
+#ReplaceTags in "EQ:Browning M1919A4, .30-06" with "units(kg), baseweight(14)"
+#ReplaceTags in "EQ:Browning M1921, .50" with "units(kg), baseweight(44)"
+#ReplaceTags in "EQ:BSA Lewis Mk I, .303" with "units(kg), baseweight(15)"
+#ReplaceTags in "EQ:Colt Model 1914, .30-06" with "units(kg), baseweight(16)"
+#ReplaceTags in "EQ:CSRG Mle 1915, 8x50mmR" with "units(kg), baseweight(10)"
+#ReplaceTags in "EQ:FIAT-Revelli Mod 14, 6.5x52mm" with "units(kg), baseweight(21)"
+#ReplaceTags in "EQ:FIAT-Villar Perosa Mod 15, 9x19mm" with "units(kg), baseweight(7.4)"
+#ReplaceTags in "EQ:Hotchkiss Mk I, .303 British" with "units(kg), baseweight(14)"
+#ReplaceTags in "EQ:Hotchkiss Mle 1914, 8x50mmR" with "units(kg), baseweight(26)"
+#ReplaceTags in "EQ:Ikaria-Oerlikon MG-FF, 20x80mmRB" with "units(kg), baseweight(28)"
+#ReplaceTags in "EQ:Madsen M 03, 8x58mmR" with "units(kg), baseweight(12)"
+#ReplaceTags in "EQ:Maxim MG08, 7.92x57mm" with "units(kg), baseweight(27)"
+#ReplaceTags in "EQ:Nambu Taishou 11 Shiki Kikanjuu, 6.5x50mmSR" with "units(kg), baseweight(11)"
+#ReplaceTags in "EQ:Oerlikon Type L, 20x100mmRB" with "units(kg), baseweight(45)"
+#ReplaceTags in "EQ:Rheinmetall FlAK30, 20x138mmB" with "units(kg), baseweight(64)"
+#ReplaceTags in "EQ:Rigsby Electric Gun, 20mm" with "units(kg), baseweight(68)"
+#ReplaceTags in "EQ:SIG KE7, 7.92x57mm" with "units(kg), baseweight(8.9)"
+#ReplaceTags in "EQ:Simson-Dreyse MG13, 7.92x57mm" with "units(kg), baseweight(12)"
+#ReplaceTags in "EQ:Steyr-Schwarzlose M.07 12, 8x50mmR" with "units(kg), baseweight(22)"
+#ReplaceTags in "EQ:Steyr-Solothurn S2-200, 7.92x57mm" with "units(kg), baseweight(8.7)"
+#ReplaceTags in "EQ:TOZ PM-1910, 7.62x54mmR" with "units(kg), baseweight(24)"
+#ReplaceTags in "EQ:TOZ ShKAS, 7.62x54mmR" with "units(kg), baseweight(9.8)"
+#ReplaceTags in "EQ:Vickers Mk I, .303" with "units(kg), baseweight(18)"
+#ReplaceTags in "EQ:Vickers-Berthier Mk III, .303" with "units(kg), baseweight(11)"
+#ReplaceTags in "EQ:ZB ZB26, 7.92x57mm" with "units(kg), baseweight(9.6)"
+#ReplaceTags in "EQ:ZiD DP, 7.62x54mmR" with "units(kg), baseweight(12)"
+#ReplaceTags in "EQ:APX Mle 1916TRP, 37x94mmR" with "units(kg), baseweight(40)"
+#ReplaceTags in "EQ:Federal Model 201-Z Gas Gun, 37x122mmR" with "units(kg), baseweight(3.6)"
+#ReplaceTags in "EQ:Hotchkiss 6-pdr Mk II, 57x305mmR" with "units(kg), baseweight(386)"
+#ReplaceTags in "EQ:Manville Machine Gas Projector, 1''" with "units(kg), baseweight(8.6)"
+#ReplaceTags in "EQ:Remington MK III, 10G 2''" with "units(kg), baseweight(1.3)"
+#ReplaceTags in "EQ:Walther Leuchtpistole, 26.5x103mmR" with "units(kg), baseweight(1.4)"
+#ReplaceTags in "EQ:Webley Number 1 Mk I, 37x122mmR" with "units(kg), baseweight(3.8)"
+#ReplaceTags in "EQ:HAG WEX17" with "units(kg), baseweight(25)"
+#ReplaceTags in "EQ:Kuusinen LH 44" with "units(kg), baseweight(29)"
+#ReplaceTags in "EQ:Schilt Number 3" with "units(kg), baseweight(30)"

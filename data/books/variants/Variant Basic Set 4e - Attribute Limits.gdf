@@ -1,0 +1,59 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file imposes Standard Attribute limits (as detailed on pp. B14-17).
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Basic Set 4e - Attribute Limits.gdf
+* Created: November 22, 2005
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Basic Set: Characters sourcebook. GURPS Basic Set:
+* Characters is Copyright © 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1998, 1999, 2002, 2004 by
+* Steve Jackson Games Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*   Standard Attribute limits (as detailed on pp. B14-17)
+*
+*	Normally GCA does not really limit the level you may set Attributes and Sub-Attributes to. For those wishing to
+* use the optional limits load this Variant data file.
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[Attributes]
+************************************************************************************************************************
+#ReplaceTags in ST:DX with "maxscore(20)"
+#ReplaceTags in ST:IQ with "maxscore(20)"
+#ReplaceTags in ST:HT with "maxscore(20)"
+#ReplaceTags in ST:Hit Points with "minscore(ST:ST * 0.7), maxscore(ST:ST * 1.3)"
+#ReplaceTags in ST:Fatigue Points with "minscore(ST:HT * 0.7), maxscore(ST:HT * 1.3)"
+#ReplaceTags in ST:Will with "minscore(@max(0, ST:IQ - 4)), maxscore(@max(20, ST:IQ))"
+#ReplaceTags in ST:Perception with "minscore(@max(0, ST:IQ - 4)), maxscore(@max(20, ST:IQ))"
+#ReplaceTags in ST:Basic Speed with "minscore(@max(0, ((ST:DX + ST:HT) / 4) - 2)), maxscore(((ST:DX + ST:HT) / 4) + 2)"
+#ReplaceTags in ST:Basic Move with "minscore(@max(0, ST:Basic Speed - 3)), maxscore(ST:Basic Speed + 3)"
+

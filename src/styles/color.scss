@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "sass:color";
+
+$color--interval: 7.6%;
+
+// Example: Map your colour names to the variables
+
+$colors: () !default;
+$colors: map.merge(
+  (
+    "proeminent": #662e25,
+    "main": #eea700,
+  ),
+  $colors
+);
+
+@function toRGB($color) {
+  @return red($color), green($color), blue($color);
+}
+
+:root {
+  @each $key, $value in $colors {
+    --RGB-very-lighter-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: $color--interval * 6.9))});
+    --RGB-lighter-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: $color--interval * 6))});
+    --RGB-semi-lighter-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: $color--interval * 4.666))});
+    --RGB-light-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: $color--interval * 3.333))});
+    --RGB-semi-light-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: $color--interval * 2))});
+    --RGB-#{$key}-color: rgb(#{toRGB($value)});
+    --RGB-semi-dark-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: -$color--interval))});
+    --RGB-dark-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: -$color--interval * 2))});
+    --RGB-semi-darker-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: -$color--interval * 3))});
+    --RGB-darker-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: -$color--interval * 4))});
+    --RGB-very-darker-#{$key}-color: rgb(#{toRGB(color.adjust($value, $lightness: -$color--interval * 5))});
+  }
+
+  @each $key, $value in $colors {
+    --very-lighter-#{$key}-color: #{toRGB(color.adjust($value, $lightness: $color--interval * 6.9))};
+    --lighter-#{$key}-color: #{toRGB(color.adjust($value, $lightness: $color--interval * 6))};
+    --semi-lighter-#{$key}-color: #{toRGB(color.adjust($value, $lightness: $color--interval * 4.666))};
+    --light-#{$key}-color: #{toRGB(color.adjust($value, $lightness: $color--interval * 3.333))};
+    --semi-light-#{$key}-color: #{toRGB(color.adjust($value, $lightness: $color--interval * 2))};
+    --#{$key}-color: #{toRGB($value)};
+    --semi-dark-#{$key}-color: #{toRGB(color.adjust($value, $lightness: -$color--interval))};
+    --dark-#{$key}-color: #{toRGB(color.adjust($value, $lightness: -$color--interval * 2))};
+    --semi-darker-#{$key}-color: #{toRGB(color.adjust($value, $lightness: -$color--interval * 3))};
+    --darker-#{$key}-color: #{toRGB(color.adjust($value, $lightness: -$color--interval * 4))};
+    --very-darker-#{$key}-color: #{toRGB(color.adjust($value, $lightness: -$color--interval * 5))};
+    // contrast colors
+  }
+}

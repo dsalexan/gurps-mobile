@@ -1,0 +1,315 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		This data file contains rune magic system from Thaumatology.  This file does not require any other magic file to use.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Thaumatology 4e.gdf
+//  Created: 08-25-2009
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Thaumatology sourcebook.
+//  GURPS Thaumatology is Copyright © 2008 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+//  Created by Richard Brown based on material in Gurps Thaumatology
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Supernatural>
+Magery (Rune), 10/20,gives(+1 to ST:Magery, +1 to Spells, +1 to SK:Thaumatology, -1 to CO:~Clerical, -1 to CO:~Ritual),mods(Magery),needs(AD:Magery 0),page(B66),taboo(AD:Magic Resistance::level * @if(@itemhasmod(AD:Magic Resistance, Improved) THEN 0 ELSE 1), AD:Mana Damper),tl(),usernotes(),familiarities(),description(WARNING: Always use the Magery modifiers with Magery and the Magery 0 modifiers with Magery 0. Using the Magery modifiers with any other trait can cause your spells to be miscalculated.), cat(Supernatural, Mental, Supernatural Mental)
+
+*******************************************************************************************************\[STOP]
+[SPELLS]
+*******************************************************************************************************\[START]
+<%NewSpellList%>
+_New Spell (%newspelllist% Rune), type(%typelist%), mods(Spells), cat(%newspelllist%, Rune), shortcat(%newspellaliaslist%, Ru), class(Rune), time(var), duration(var), needs("SK:Symbol Drawing"), castingcost([castingcost]),_
+	x(#InputToTagReplace("Please enter the name of this spell:", name, , "New Spell"),_
+	#InputReplace("Please enter the Casting Cost of this spell:", "[castingcost]", , "New Spell"),_
+	#ChoiceList(_
+			name(type),_
+			title(New Spell: Choose a Skill Type),_
+			text("Choose the type of spell from the list below:"),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"IQ/E",_
+				"IQ/A",_
+				"IQ/H",_
+				"IQ/VH" _
+			)_
+			),_
+	#ChoiceList(_
+			name(newspell),_
+			title(New Rune: Choose a Alphabet),_
+			text(Chose the Runic Alphabet from the list below),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"Futhark",_
+				"Ogham",_
+				"Hebrew",_
+				"Zodiac",_
+				"Generic",_
+				"User Defined" _
+				),_
+			aliaslist(_
+				"Fu",_
+				"Og",_
+				"He",_
+				"Zo",_
+				"Ge",_
+				"UD" _
+				)_
+			),_
+		#edit _
+	), noresync(yes)
+
+<Rune>
+"Food (Generic Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Sound (Generic Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Air (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2-3),baseapppoints(1), cat(Generic)
+
+"Image (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2-3),baseapppoints(1), cat(Generic)
+
+"Plant (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2-3),baseapppoints(1), cat(Generic, Rune)
+
+"Magic (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3-4),baseapppoints(1), cat(Generic, Rune)
+
+"Communicate (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Weaken (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Control (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2-3),baseapppoints(1), cat(Generic, Rune)
+
+"Create (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2-3),baseapppoints(1), cat(Generic, Rune)
+
+"Transform (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2-3),baseapppoints(1), cat(Generic, Rune)
+
+"Fehu-Animal-Property (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Uruz-Strengthen-Repair, Make (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Thurisaz-Transform-Gateway, Tension (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Futhark, Rune)
+
+"Ansuz-Comunicate-Insight (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Raidho-Sense-Knowledge, Name (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Kenaz-Fire (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(4),baseapppoints(1), cat(Futhark, Rune)
+
+"Gebo-Food-Offering, Gift (Futhark Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Wunjo-Air (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Futhark, Rune)
+
+"Hagalaz-Weaken-Break, Harm, End (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Nauthiz-Control-Bind (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Isa-Image-Deceit (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Jera-Plant (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Eihwaz-Earth (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Perthro-Magic-Mystery, Secrets (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Algiz-Protect-Guard (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Sowilo-Spirit (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Tiwaz-Mind-Rulership (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Futhark, Rune)
+
+"Berkano-Create-Growth (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Ehwaz-Move-Travel, Progress (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(0),baseapppoints(1), cat(Futhark, Rune)
+
+"Mannaz-Body-Human, Self (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Futhark, Rune)
+
+"Laguz-Water (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Ingwaz-Heal-Fertility (Futhark Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Futhark, Rune)
+
+"Dagaz-Light (Futhark Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Othala-Sound-Story (Futhark Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Futhark, Rune)
+
+"Destiny-Magic, Unknowable (Futhark Rune)", type(IQ/VH),mods(Spells),shortcat(Fu, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(4),baseapppoints(1), cat(Futhark, Rune)
+
+"Beth-Image-Love,  Fundamental Forms (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Luis-Air-Light,  Ghosts (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Ogham, Rune)
+
+"Fearn-Fire-Oracles,  Colors (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(4),baseapppoints(1), cat(Ogham, Rune)
+
+"Saille-Water-Death,  Cold (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Ogham, Rune)
+
+"Nion-Flight-Water in Motion (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Uath-Body-Bad Luck,  Cleanlyness (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Ogham, Rune)
+
+"Duir-Earth-Plants,  Clouds,  Portals (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Ogham, Rune)
+
+"Tinne-Protection-Good Luck (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Coll-Sense-Wisdom,  Knowledge (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Muin-Dominance-Madness,  Joy,  Food (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Gort-Strength-Skills,  Languages (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Ogham, Rune)
+
+"Ngetal-Bonds/Linkages,  Movement (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Ruis-Living Things,  Healing (Ogham Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(4),baseapppoints(1), cat(Ogham, Rune)
+
+"Ailm-Create-Enchant,  Sound (Ogham Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Onn-Amplify,  Empower-Magic,  Animal (Ogham Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Ura-Control,  Refine-Earth (Ogham Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Ogham, Rune)
+
+"Eadha-Shield,  Protect-Mind (Ogham Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Ogham, Rune)
+
+"Idho-Destroy-Spirit (Ogham Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Og, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Ogham, Rune)
+
+"Mercury-Meta, Food, Gate, Knowledge (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Venus-Sound, Comunication,  Weather,  Water (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Moon-Ilusion & Creation,  Healing (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Sun-Light & Darkness (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Mars-Body Control, Fire,  Protection & Warning (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Jupiter-Movement,  Making & Breaking,  Enchant (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Saturn-Plant,  Earth,  Necromantic,  Tech (Zodiac Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Zodiac, Rune)
+
+"Aquarius-Sound,  Air (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Pisces-Body Control-Healing (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Capricorn-Meta,  Plant (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Aries-Making & Breaking,  Mind Control (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Virgo-Food,  Earth (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Gemini-Necromantic,  Knowledge (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Cancer-Animal,  Illusion & Creation,  Water (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Taurus-Gate-Tech-Weather (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Leo-Enchantment,  Light & Darkness,  Protection (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Zodiac, Rune)
+
+"Aleph-Ox,  Vulture (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Beth-House (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Gimel-Camel (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Daleth-Fish,  Door (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"He-Jubilation,  Window (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Waw-Hook (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Zayin-Manacle,  Weapon (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Heth-Enclosure,  Fence (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Teth-Snake (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Yodh-Arm,  Hand (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Kaph-Hand,  Palm (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Lamedh-Goad (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Mem-Water (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Nun-Fish (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Samekh-Prop (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Ayin-Eye (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Pe-Mouth (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Sadhe-Plant (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Qoph-Monkey,  Back of Head (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Res-Head (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Sin-Tooth (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Taw-Signature (Hebrew Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(He, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Hebrew, Rune)
+
+"Animal (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Generic, Rune)
+
+"Earth (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3),baseapppoints(1), cat(Generic, Rune)
+
+"Body (Generic Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Fire (Generic Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Heal (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1),baseapppoints(1), cat(Generic, Rune)
+
+"Illusion (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2),baseapppoints(1), cat(Generic, Rune)
+
+"Light and Dark (Generic Rune)", type(IQ/E), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1), cat(Generic, Rune)
+
+"Mind (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3), cat(Generic, Rune)
+
+"Move (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1), cat(Generic, Rune)
+
+"Protect (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2), cat(Generic, Rune)
+
+"Sense (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1), cat(Generic, Rune)
+
+"Strengthen (Generic Rune)", type(IQ/H), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3), cat(Generic, Rune)
+
+"Undead (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3), cat(Generic, Rune)
+
+"Warn (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(1), cat(Generic, Rune)
+
+"Water (Generic Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Ge, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(3), cat(Generic, Rune)
+
+"Scorpio (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2), cat(Zodiac, Rune)
+
+"Libra-Comunication & Empathy (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2), cat(Zodiac, Rune)
+
+"Sagittarius-Movement,  Fire (Zodiac Rune)", type(IQ/A), CountAsNeeds(Rune), ident(Rune),mods(Spells),shortcat(Zo, Ru),class(Rune),time(var),duration(var),needs("SK:Symbol Drawing"),castingcost(2), cat(Zodiac, Rune)

@@ -1,0 +1,2601 @@
+Encoding=UTF-8
+Version=3
+Description=_
+    This file contains information from the GURPS Tales of the Solar _
+    Patrol sourcebook. GURPS Tales of the Solar Patrol is copyright © 2008 _
+    Steve Jackson Games Incorporated. *** There are errors in version 1.0 of _
+    GURPS Tales of the Solar Patrol. This data file interprets these errors _
+    as closely as possible to the text. See the descriptions of various _
+    templates for an explanation of which errors have been corrected. _
+    *** In GCA5, set a character's base TL to 9 in Campaign Settings, then _
+    change the front portion of the displayed TL to 6+3 and hide the base TL.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+Worldbook=Tales of the Solar Patrol
+
+[AUTHOR]
+***********************************************************************\[START]
+//  GURPS Tales of the Solar Patrol Templates, Traits, and Equipment data file
+//  for GURPS Character Assistant 5 by David Trimboli Version 2.0 Last
+//  modified 2022-08-01
+// 
+//  GURPS Tales of the Solar Patrol is copyright © 2008 by Steve Jackson Games
+//  Incorporated.
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used
+//  with GCA by permission of Steve Jackson Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games
+//  Incorporated. This product includes copyrighted material from the GURPS
+//  game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+************************************************************************\[STOP]
+
+[SETTINGS]
+
+DefaultTL=9
+
+[ADVANTAGES]
+
+#Delete "AD:Power Investiture"
+
+<Mundane Social, Mundane, Social, Tales of the Solar Patrol>
+
+Military Rank (Solar Patrol), 5/10/10/10/10/15/15/20/25/25/25/30/30/35/40,
+upto(15), cat(Influence),
+description(There are several ranks in the Solar Patrol per level of _
+    Military Rank: Rank 1: Patrolman Junior Grade; Rank 2: Patrolman, _
+    Patrolman First Class, Junior Lieutenant, Lieutenant Second Class; _
+    Rank 3: Lieutenant First Class, Full Lieutenant; Rank 4: Captain _
+    ; Rank 5: Fleet Captain, Major, Commander; Rank 6: High _
+    Commander, Admiral; Rank 7: High Admiral; Rank 8: Admiral of _
+    the Solar Patrol.),
+levelnames(_
+    "Patrolman, Junior Grade",
+    Patrolman, "Patrolman, First Class",
+    Junior Lieutenant,
+    Lieutenant Second Class,
+    Lieutenant First Class,
+    Full Lieutenant,
+    Captain,
+    Fleet Captain,
+    Major,
+    Commander,
+    High Commander,
+    Admiral,
+    High Admiral,
+    Admiral of the Solar Patrol_
+),
+gives(_
+    =@if(AD:Status::level = 0 THEN @if(@hasmod(Rank replaces Status) THEN _
+    %level ELSE @indexedvalue(%level,0,1,1,1,1,1,1,1,2,2,2,2,2,2,3)) ELSE _
+    0) to ST:Status, =@if(AD:Status::level > 0 THEN _
+    @if(@hasmod(Rank replaces Status) THEN %level ELSE _
+    @indexedvalue(%level,0,1,1,1,1,1,1,1,2,2,2,2,2,2,3)) ELSE 0) _
+    to AD:Status_
+)
+
+[DISADVANTAGES]
+
+#MergeTags in "DI:Bad Sight (Nearsighted)" with _
+    displaycost(-10),
+    initmods(_
+        Mitigator: Glasses, -60%,
+        group(_General),
+        page(B112),
+        mitigator(yes),
+        shortname(Glasses)_
+    )
+
+#MergeTags in "DI:Bad Sight (Farsighted)" with _
+    displaycost(-10),
+    initmods(_
+        Mitigator: Glasses, -60%,
+        group(_General),
+        page(B112),
+        mitigator(yes),
+        shortname(Glasses)_
+    )
+
+<Mundane Mental, Mundane, Mental, Tales of the Solar Patrol>
+
+Final Stand, -10,
+displaycost(-10*), page(TSP39), mods(Self-Control),
+initmods(_
+    You resist on a roll of 12 or less (quite often),
+    *1,
+    shortname(12 or less),
+    group(Self-Control)_
+)
+
+<Mundane Social, Mundane, Social, Tales of the Solar Patrol>
+
+Code of Honor (Solar Patrolman's), -15,
+page(TSP38),
+description(_
+    The mission is everything. Never abandon a comrade unless the _
+    mission demands it. Never take an innocent life if there is any _
+    alternative that allows completion of the mission, including _
+    sacrificing your own. Accept an honorable surrender. Women and _
+    children first! Treat prisoners fairly. Obey the law. Tell the _
+    truth. Fight bravely. Respect and honor the traditions of the Patrol._
+)
+
+[SKILLS]
+
+#Delete "SK:Computer Hacking"
+#Delete "SK:Computer Operation"
+#Delete "SK:Computer Programming"
+#Delete "SK:Enthrallment (Captivate)"
+#Delete "SK:Enthrallment (Persuade)"
+#Delete "SK:Enthrallment (Suggest)"
+#Delete "SK:Electronics Operation (Matter Transmitters)"
+#Delete "SK:Electronics Operation (Parachronic)"
+#Delete "SK:Electronics Operation (Psychotronics)"
+#Delete "SK:Electronics Operation (Temporal)"
+#Delete "SK:Electronics Repair (Matter Transmitters)"
+#Delete "SK:Electronics Repair (Parachronic)"
+#Delete "SK:Electronics Repair (Psychotronics)"
+#Delete "SK:Electronics Repair (Temporal)"
+#Delete "SK:Electronics Repair (Computers)"
+
+<_General, Tales of the Solar Patrol>
+
+Electronics Operation (Atomic Guns), IQ/A,
+cat(Technical), tl(0-12),
+default(_
+    IQ - 5,
+    "SK:Electronics Repair (Atomic Guns)" - 3,
+    "SK:Engineer (Electronics)" - 3,
+    "SK:Electronics Repair" - 4_
+)
+
+Electronics Repair (Atomic Guns), IQ/A,
+cat(Repair/Maintenance), tl(0-12),
+default(IQ - 5,
+    "SK:Electronics Operation (Atomic Guns)" - 3,
+    "SK:Engineer (Electronics)" - 3,
+    "SK:Electronics Repair" - 4_
+)
+
+Infomat Operation, IQ/E,
+tl(0-12), default(IQ - 4), page(TSP40), subsfor(SK:Computer Operation),
+cat(Everyman, Scholarly, Technical)
+
+Infomat Hacking, IQ/VH,
+tl(0-12), needs(SK:Infomat Programming = 1 pts), page(TSP40),
+cat(Criminal/Street, Spy), subsfor(SK:Computer Hacking)
+
+Infomat Programming, IQ/H,
+tl(0-12), page(TSP40), cat(Design/Invention), subsfor(SK:Computer Programming)
+
+Electronics Repair (Infomats), IQ/A,
+tl(0-12), page(B190), cat(Repair/Mainentance),
+default(_
+    IQ - 5,
+    "SK:Infomat Operation" - 5,
+    "SK:Engineer (Electronics)" - 3,
+    "SK:Electronics Repair" - 4_
+)
+
+Area Knowledge (The Solar System), IQ/E,
+default(IQ - 4), page(B176), cat(_General, Everyman, Knowledge)
+
+<Techniques, Tales of the Solar Patrol, Tales of the Solar Patrol - Techniques>
+
+Pinpoint Beam (Electronics Operation (Atomic Guns)), Tech/A,
+cat(Techniques - Combat), upto(Prereq), page(TsP26),
+default("SK:Electronics Operation (Atomic Guns)::level" - 4),
+needs(SK:Electronics Operation (Atomic Guns))
+
+Focus Nega-Barrier (Electronics Operation (Force Shields)), Tech/A,
+cat(Techniques - Combat), upto(Prereq), page(TSP27),
+default("SK:Electronics Operation (Force Shields)::level" - 4),
+needs(SK:Electronics Operation (Force Shields))
+
+Unaided Navigation (Navigation (Space)), Tech/H,
+page(TSP41), cat(Techniques - Noncombat), needs(SK:Navigation (Space)),
+upto(Prereq), default("SK:Navigation (Space)::level" - 10)
+
+[TEMPLATES]
+
+#Delete TE:Heroic Knight (Basic Set)
+#Delete TE:Investigator (Basic Set)
+#Delete TE:Mage (Basic Set)
+#Delete TE:Soldier of Fortune (Basic Set)
+#Delete TE:Warrior (Basic Set)
+#Delete TE:Warrior - Heroic (Basic Set)
+#Delete TE:Warrior - Knight (Basic Set)
+#Delete TE:Dragon (Basic Set)
+#Delete TE:Dwarf (Basic Set)
+#Delete TE:Elf (Basic Set)
+#Delete TE:Felinoid (Basic Set)
+#Delete TE:Vampire (Basic Set)
+
+<Character Templates, Tales of the Solar Patrol,
+Character Templates - Tales of the Solar Patrol>
+
+Solar Patrolman,
+displaycost(141), page(TSP42),
+description(_
+    Errors in the published template: (1) The cost of +1 to FP is 3, not 6. _
+    (2) The cost of Fearlessness 1 is 2, not 5. This makes the total cost of_
+    the Solar Patrolman template 141, not 147 as published._
+),
+sets(_
+    ST:ST = 11,
+    ST:DX = 11,
+    ST:IQ = 11,
+    ST:HT = 11,
+    ST:Hit Points = 13,
+    ST:Will = 13,
+    ST:Perception = 13,
+    ST:Fatigue Points = 12,
+    ST:Basic Move = 6_
+),
+adds(_
+    AD:Fearlessness = 1,
+    AD:Fit,
+    AD:Legal Enforcement Powers = 1,
+    AD:Military Rank (Solar Patrol) = 1,
+    DI:Code of Honor (Solar Patrolman's),
+    SK:Beam Weapons (Pistol) = 8pts,
+    SK:Piloting (High-Performance Spacecraft) = 8pts_
+),
+select1(_
+    text(_
+        Military Rank (Solar Patrol) 1, Fearlessness, Fit, and Legal _
+        Enforcement Powers [5] have already been added to this character. _
+        Select an additional 15 points from the following advantages._
+    ),
+    pointswanted(15),
+    itemswanted(atleast 1),
+    list(_
+        AD:Status #Codes(upto 3),
+        AD:Acute Hearing #Codes(upto 4),
+        AD:Acute Taste and Smell #Codes(upto 4),
+        AD:Acute Touch #Codes(upto 4),
+        AD:Acute Vision #Codes(upto 4),
+        AD:Combat Reflexes,
+        AD:Damage Resistance #Codes(upto 1),
+        AD:Daredevil,
+        AD:High Pain Threshold,
+        AD:Indomitable,
+        AD:Rapid Healing #Codes(upto 1),
+        AD:Single-Minded,
+        AD:Social Regard (Respected) #Codes(upto 4),
+        AD:Military Rank (Solar Patrol) #Codes(upto 8, downto 2)_
+    )_
+),
+select2(_
+    text(_
+        Code of Honor (Patrolman's) has already been added to this _
+        character. Select an additional -20 points from the following _
+        disadvantages._
+    ),
+    itemswanted(atleast 1),
+    pointswanted(-20),
+    list(_
+        DI:Charitable,
+        DI:Curious,
+        DI:Dependent #Codes(upto -20pts),
+        DI:Guilt Complex,
+        DI:Honesty,
+        DI:Impulsiveness,
+        DI:Overconfidence,
+        DI:Secret #Codes(upto -20pts),
+        DI:Selfless,
+        DI:Truthfulness_
+    )_
+),
+select3(_
+    text(_
+        Beam Weapons (Pistol) and Piloting (High-Performance _
+        Spacecraft) have already been added to this character. Select _
+        two more primary skills from the following._
+    ),
+    itemswanted(2),
+    pointswanted(16),
+    list(_
+        SK:Gunner (Beams) #Codes(upto 8pts, downto 8pts),
+        SK:Leadership #Codes(upto 8pts, downto 8pts),
+        SK:Navigation (Space) #Codes(upto 8pts, downto 8pts),
+        SK:Spacer #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic ([Type]) #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic (%type%) #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(Force Shields, Heavy Weapons, Small Arms, Vehicular Armor),
+            template(SK:Armoury (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        ),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(Engineer Specialties)),
+            template(SK:Engineer (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        )_
+    )_
+),
+select4(_
+    text(Select four secondary skills.),
+    itemswanted(4),
+    pointswanted(16),
+    list(#List(Solar Patrolman Secondary Skills))_
+),
+select5(_
+    text(Select two background skills.),
+    itemswanted(2),
+    pointswanted(4),
+    list(#List(Solar Patrolman Background Skills))_
+)
+
+Solar Patrol Officer,
+displaycost(165), page(TSP42), 
+description(_
+    Errors in the Solar Patrolman template: (1) The cost of +1 to FP is 3, _
+    not 6. (2) The cost of Fearlessness 1 is 2, not 5. This makes the total _
+    cost of the Solar Patrolman template 141, not 147 as published. These _
+    errors propagate to the Solar Patrol Officer lens._
+),
+sets(_
+    ST:ST = 11,
+    ST:DX = 11,
+    ST:IQ = 11,
+    ST:HT = 11,
+    ST:Hit Points = 13,
+    ST:Will = 13,
+    ST:Perception = 13,
+    ST:Fatigue Points = 12,
+    ST:Basic Move = 6_
+),
+adds(_
+    AD:Fearlessness = 1,
+    AD:Fit,
+    AD:Legal Enforcement Powers = 1,
+    AD:Military Rank (Solar Patrol) = 4,
+    DI:Code of Honor (Solar Patrolman's),
+    SK:Beam Weapons (Pistol) = 8pts,
+    SK:Piloting (High-Performance Spacecraft) = 8pts,
+    SK:Spacer = 8pts,
+    SK:Leadership = 8pts,
+    SK:Shiphandling (Spaceship) = 8pts,
+    SK:Navigation (Space) = 8pts,
+),
+select1(_
+    text(_
+        Military Rank (Junior Lieutenant, Solar Patrol) , Fearlessness, Fit, _
+        and Legal Enforcement Powers [5] have already been added to this _
+        character. Select an additional 10 points from the following _
+        advantages._
+    ),
+    pointswanted(10),
+    itemswanted(atleast 1),
+    list(_
+        AD:Status #Codes(upto 3),
+        AD:Acute Hearing #Codes(upto 4),
+        AD:Acute Taste and Smell #Codes(upto 4),
+        AD:Acute Touch #Codes(upto 4),
+        AD:Acute vision #Codes(upto 4),
+        AD:Damage Resistance #Codes(upto 1),
+        AD:High Pain Threshold,
+        AD:Rapid Healing #Codes(upto 1),
+        AD:Single-Minded,
+        AD:Social Regard (Respected) #Codes(upto 4),
+        AD:Military Rank (Solar Patrol) #Codes(upto 8, downto 5)_
+    )_
+),
+select2(_
+    text(_
+        Code of Honor (Patrolman's) has already been added to this _
+        character. Select an additional -20 points from the following _
+        disadvantages._
+    ),
+    itemswanted(atleast 1),
+    pointswanted(-20),
+    list(_
+        DI:Charitable,
+        DI:Curious,
+        DI:Dependent #Codes(upto -20pts),
+        DI:Guilt Complex,
+        DI:Honesty,
+        DI:Impulsiveness,
+        DI:Overconfidence,
+        DI:Secret #Codes(upto -20pts),
+        DI:Selfless,
+        DI:Truthfulness_
+    )_
+),
+select3(_
+    text(_
+        Beam Weapons (Pistol), Piloting (High-Performance _
+        Spacecraft), Navigation (Space), Spacer, Leadership, and _
+        Shiphandling (Spaceship) have already been added to this _
+        character. Select one more primary skill from the following._
+    ),
+    itemswanted(1),
+    pointswanted(8),
+    list(_
+        SK:Gunner (Beams) #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic ([Type]) #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic (%type%) #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(Force Shields, Heavy Weapons, Small Arms, Vehicular Armor),
+            template(SK:Armoury (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        ),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(Engineer Specialties)),
+            template(SK:Engineer (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        )_
+    )_
+),
+select4(_
+    text(Select four secondary skills.),
+    itemswanted(4),
+    pointswanted(16),
+    list(#List(Solar Patrolman Secondary Skills))_
+),
+select5(_
+    text(Select two background skills.),
+    itemswanted(2),
+    pointswanted(4),
+    list(#List(Solar Patrolman Background Skills))_
+)
+
+Space Marine,
+displaycost(141), page(TSP42),
+description(_
+    Errors in the Solar Patrolman template: (1) The cost of +1 to FP is 3, _
+    not 6. (2) The cost of Fearlessness 1 is 2, not 5. This makes the total _
+    cost of the Solar Patrolman template 141, not 147 as published. These _
+    errors propagate to the Space Marine lens._
+),
+sets(_
+    ST:ST = 12,
+    ST:DX = 11,
+    ST:IQ = 10,
+    ST:HT = 12,
+    ST:Hit Points = 14,
+    ST:Will = 12,
+    ST:Perception = 12,
+    ST:Fatigue Points = 13,
+    ST:Basic Move = 6_
+),
+adds(_
+    AD:Fearlessness = 1,
+    AD:Fit,
+    AD:Legal Enforcement Powers = 1,
+    AD:Military Rank (Solar Patrol) = 1,
+    DI:Code of Honor (Solar Patrolman's),
+    SK:Beam Weapons (Pistol) = 8pts,
+    SK:Beam Weapons (Rifle) = 8pts_
+),
+select1(_
+    text(_
+        Military Rank (Solar Patrol) 1, Fearlessness, Fit, and Legal _
+        Enforcement Powers [5] have already been added to this character. _
+        Select an additional 15 points from the following advantages._
+    ),
+    pointswanted(15),
+    itemswanted(atleast 1),
+    list(_
+        AD:Status #Codes(upto 3),
+        AD:Acute Hearing #Codes(upto 4),
+        AD:Acute Taste and Smell #Codes(upto 4),
+        AD:Acute Touch #Codes(upto 4),
+        AD:Acute vision #Codes(upto 4),
+        AD:Combat Reflexes,
+        AD:Damage Resistance #Codes(upto 1),
+        AD:Daredevil,
+        AD:High Pain Threshold,
+        AD:Indomitable,
+        AD:Rapid Healing #Codes(upto 1),
+        AD:Single-Minded,
+        AD:Social Regard (Respected) #Codes(upto 4),
+        AD:Military Rank (Solar Patrol) #Codes(upto 8, downto 2)_
+    )_
+),
+select2(_
+    text(_
+        Code of Honor (Patrolman's) has already been added to this _
+        character. Select an additional -20 points from the following _
+        disadvantages._
+    ),
+    itemswanted(atleast 1),
+    pointswanted(-20),
+    list(_
+        DI:Charitable,
+        DI:Curious,
+        DI:Dependent #Codes(upto -20pts),
+        DI:Guilt Complex,
+        DI:Honesty,
+        DI:Impulsiveness,
+        DI:Overconfidence,
+        DI:Secret #Codes(upto -20pts),
+        DI:Selfless,
+        DI:Truthfulness,
+        DI:On the Edge,
+        DI:Bad Temper_
+    )_
+),
+select3(_
+    text(_
+        Beam Weapons (Pistol) and Beam Weapons (Rifle) have already been _
+        added to this character. Select two more primary skills from the _
+        following._
+    ),
+    itemswanted(2),
+    pointswanted(16),
+    list(_
+        SK:Gunner (Beams) #Codes(upto 8pts, downto 8pts),
+        SK:Leadership #Codes(upto 8pts, downto 8pts),
+        SK:Navigation (Space) #Codes(upto 8pts, downto 8pts),
+        SK:Spacer #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic ([Type]) #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic (%type%) #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(Force Shields, Heavy Weapons, Small Arms, Vehicular Armor),
+            template(SK:Armoury (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        ),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(Engineer Specialties)),
+            template(SK:Engineer (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        )_
+    )_
+),
+select4(_
+    text(Select four secondary skills.),
+    itemswanted(4),
+    pointswanted(16),
+    list(#List(Solar Patrolman Secondary Skills))_
+),
+select5(_
+    text(Select two background skills.),
+    itemswanted(2),
+    pointswanted(4),
+    list(#List(Solar Patrolman Background Skills))_
+)
+
+Patrol Cadet,
+displaycost(48), page(TSP43),
+description(_
+    Errors in the published template: (1) With ST 9, HP 11 should be cost 4 _
+    points. (2) With IQ 10, Will 11 should cost 5 points. (3) With IQ 10, _
+    Per 11 should cost 5 points. With DX 11 and HT 11, Basic Speed 5 should _
+    be 5.5 (Patrol cadets wouldn't be slower than their scores suggest)._
+),
+sets(_
+    ST:ST = 9,
+    ST:DX = 11,
+    ST:IQ = 10,
+    ST:HT = 11,
+    ST:Hit Points = 11,
+    ST:Will = 11,
+    ST:Perception = 11_
+),
+creates(_
+    {AD:Higher Purpose (Get a Commission), 5,
+    page(B59), cat(Mundane, Mental, Mundane Mental)}_
+),
+adds(_
+    DI:Social Stigma (Minor),
+    SK:Beam Weapons (Pistol) = 2pts,
+    SK:Piloting (High-Performance Spacecraft) = 2pts_
+),
+select1(_
+    text(_
+        Higher Purpose (Get a commission) has already been added to this _
+        character. Spend another 15 points from among the following _
+        advantages._
+    ),
+    pointswanted(15),
+    itemswanted(atleast 1),
+    list(_
+        AD:Status #Codes(upto 1, downto 1),
+        AD:Acute Vision #Codes(upto 4, downto 1),
+        AD:Acute Hearing #Codes(upto 4, downto 1),
+        AD:Acute Taste and Smell #Codes(upto 4, downto 1),
+        AD:Acute Touch #Codes(upto 4, downto 1),
+        AD:Combat Reflexes,
+        AD:Daredevil,
+        AD:Fearlessness #Codes(upto 4, downto 1),
+        AD:Fit,
+        AD:High Pain Threshold,
+        AD:Luck #Codes(upto 1, downto 1),
+        AD:Rapid Healing,
+        AD:Single-Minded,
+        AD:Social Regard #Codes(upto 1, downto 1)_
+    )_
+),
+select2(_
+    text(_
+        Social Stigma (Minor) has already been added to this character. _
+        Choose another -15 points from among the following disadvantages._
+    ),
+    pointswanted(-15),
+    itemswanted(atleast 1),
+    list(_
+        DI:Charitable,
+        DI:Curious,
+        DI:Fanaticism,
+        DI:Honesty,
+        DI:Impulsiveness,
+        DI:Overconfidence,
+        DI:Selfless,
+        DI:Stubbornness,
+        DI:Truthfulness_
+    )_
+),
+select3(_
+    text(_
+        Beam Weapons (Pistol) and Piloting (High-Performance Spacecraft) _
+        have already been added to this character. Choose two more _
+        primary skills from the following list._
+    ),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Leadership #Codes(upto 2pts, downto 2pts),
+        SK:Mechanic ([Type]) #Codes(upto 2pts, downto 2pts),
+        SK:Mechanic (%type%) #Codes(upto 2pts, downto 2pts),
+        SK:Navigation (Space) #Codes(upto 2pts, downto 2pts),
+        SK:Spacer #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(#List(Engineer Specialties)),
+            template(SK:Engineer (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        ),
+        #BuildList(_
+            list(Force Shields, Heavy Weapons, Small Arms, Vehicular Armor),
+            template(SK:Armoury (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        ),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 2pts, downto 2pts)_
+            )_
+        )_
+    )_
+),
+select4(_
+    text(Select two of the following secondary skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Boxing #Codes(upto 2pts, downto 2pts),
+        SK:Climbing #Codes(upto 2pts, downto 2pts),
+        SK:Vacc Suit #Codes(upto 2pts, downto 2pts),
+        SK:Free Fall #Codes(upto 2pts, downto 2pts),
+        SK:Machinist #Codes(upto 2pts, downto 2pts),
+        SK:Astronomy #Codes(upto 2pts, downto 2pts),
+        SK:Chemistry #Codes(upto 2pts, downto 2pts),
+        SK:Diplomacy #Codes(upto 2pts, downto 2pts),
+        SK:Tactics #Codes(upto 2pts, downto 2pts),
+        SK:Survival #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(Applied, Cryptology, Pure, Surveying, Statistics),
+            template(_
+                SK:Mathematics (%listitem%) _
+                #Codes(upto 2pts, downto 2pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(World Types)),
+            template(SK:Geology (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        ),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 2pts, downto 2pts)_
+            )_
+        ),
+        #BuildList(_
+            list(_
+                Automobile,
+                Construction Equipment,
+                Halftrack,
+                Heavy Wheeled,
+                Hovercraft,
+                Locomotive,
+                Motorcycle,
+                Tracked_
+            ),
+            template(SK:Driving (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        ),
+        #NewItem(_
+            SK:Law (Solar System Patrol), IQ/H,
+            default (IQ - 6), page(B204), cat(_General, Police)_
+        ) #Codes(upto 2pts, downto 2pts)_
+    )_
+),
+select5(_
+    text(Select two of the following background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Stealth #Codes(upto 1pts, downto 1pts),
+        SK:Infomat Operation #Codes(upto 1pts, downto 1pts),
+        SK:Performance #Codes(upto 1pts, downto 1pts),
+        SK:Cryptography #Codes(upto 1pts, downto 1pts),
+        SK:Physician #Codes(upto 1pts, downto 1pts),
+        SK:Area Knowledge (The Solar System) #Codes(upto 1pts, downto 1pts),
+        #BuildList(_
+            list(Large Powerboat, Motorboat, Sailboat, Unpowered),
+            template(SK:Boating (%listitem%) #Codes(upto 1pts, downto 1pts))_
+        )_
+    )_
+)
+
+Scientist,
+displaycost(64), page(TSP43),
+sets(ST:ST = 9, ST:IQ = 13, ST:Perception = 12),
+select1(_
+    text(Select 20 points of advantages from the following list.),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    multitype(yes),
+    list(_
+        ST:Perception #Codes(upto %score+1, downto %score+1),
+        ST:Will #Codes(upto %score+1, downto %score+1),
+        AD:Artificer #Codes(upto 1, downto 1),
+        AD:Common Sense,
+        AD:Eidetic Memory #Codes(upto 1, downto 1),
+        AD:Photographic Memory,
+        AD:Gizmo #Codes(upto 2, downto 1),
+        AD:Intuition,
+        AD:Intuitive Mathematician,
+        AD:Lightning Calculator #Codes(upto 1, downto 1),
+        AD:Language Talent,
+        AD:Mathematical Ability #Codes(upto 1, downto 1),
+        AD:Single-Minded,
+        AD:Unfazeable,
+        AD:Versatile_
+    )_
+),
+select2(_
+    text(Select -35 points of disadvantages from the following list.),
+    pointswanted(-35),
+    itemswanted(atleast 1),
+    list(_
+        DI:Absent-Mindedness,
+        DI:Bad Sight (Nearsighted),
+        DI:Bad Sight (Farsighted),
+        DI:Callous,
+        DI:Clueless,
+        DI:Code of Honor (Professional),
+        DI:Curious,
+        DI:Easy to Read,
+        DI:Fearfulness #Codes(upto 2, downto 1),
+        DI:Indecisive,
+        DI:Klutz,
+        DI:Loner,
+        DI:Oblivious,
+        DI:Post-Combat Shakes,
+        DI:Unfit #Codes(upto  1, downto 1),
+        DI:Very Unfit,
+        #NewItem(_
+            DI:Delusion, -5/-10/-15,
+            upto(3), levelnames(Minor, Major, Severe), page(B130),
+            cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction),
+            x(_
+                #InputToTag(_
+                    {Specify your delusion here. "Humans are actually _
+                    aliens," "Atlantis colonized Venus," "Luna is the home _
+                    of a secret race of superhumans," or some other _
+                    "fringe" theory.},
+                    nameext,
+                    Delusion_
+                )_
+            )_
+        )_
+    )_
+),
+select3(_
+    text(_
+        Select either Science! or three primary skills from the following _
+        list._
+    ),
+    pointswanted(24),
+    itemswanted(atleast 1),
+    list(_
+        SK:Science! #Codes(upto 24pts, downto 24pts),
+        SK:Anthropology #Codes(upto 8pts, downto 8pts),
+        SK:Astronomy #Codes(upto 8pts, downto 8pts),
+        SK:Chemistry #Codes(upto 8pts, downto 8pts),
+        SK:Diagnosis #Codes(upto 8pts, downto 8pts),
+        SK:Linguistics #Codes(upto 8pts, downto 8pts),
+        SK:Naturalist #Codes(upto 8pts, downto 8pts),
+        SK:Pharmacy (Herbal) #Codes(upto 8pts, downto 8pts),
+        SK:Pharmacy (Synthetic) #Codes(upto 8pts, downto 8pts),
+        SK:Sociology #Codes(upto 8pts, downto 8pts),
+        SK:Veterinary #Codes(upto 8pts, downto 8pts),
+        SK:Physics #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(#List(Engineer Specialties)),
+            template(SK:Engineer (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        ),
+        #BuildList(_
+            list(#List(World Types)),
+            template(SK:Geology (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        ),
+        #BuildList(_
+            list(#List(SK:Paleontology Specialties)),
+            template(_
+                SK:Paleontology (%listitem%) _
+                #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(World Types)),
+            template(SK:Geology (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        )_
+    )_
+),
+select4(_
+    text(Select two of the following secondary skills.),
+    pointswanted(8),
+    itemswanted(2),
+    list(_
+        SK:Free Fall #Codes(upto 4pts, downto 4pts),
+        SK:Vacc Suit #Codes(upto 4pts, downto 4pts),
+        SK:Infomat Operation #Codes(upto 4pts, downto 4pts),
+        SK:History #Codes(upto 4pts, downto 4pts),
+        SK:Swimming #Codes(upto 4pts, downto 4pts),
+        SK:Hiking #Codes(upto 4pts, downto 4pts),
+        SK:Observation #Codes(upto 4pts, downto 4pts),
+        SK:Search #Codes(upto 4pts, downto 4pts),
+        #BuildList(_
+            list(#List(Land Terrain Types)),
+            template(SK:Survival (%listitem%) #Codes(upto 4pts, downto 4pts))_
+        )_
+    )_
+),
+select5(_
+    text(Select two of the following background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Beam Weapons (Pistol) #Codes(upto 1pts, downto 1pts),
+        SK:Jumping #Codes(upto 1pts, downto 1pts),
+        SK:Knife #Codes(upto 1pts, downto 1pts),
+        SK:Knot-Tying #Codes(upto 1pts, downto 1pts),
+        SK:Climbing #Codes(upto 1pts, downto 1pts),
+        SK:Riding (%beast%) #Codes(upto 1pts, downto 1pts),
+        SK:First Aid #Codes(upto 1pts, downto 1pts),
+        SK:Cooking #Codes(upto 1pts, downto 1pts),
+        SK:Fishing #Codes(upto 1pts, downto 1pts)_
+    )_
+)
+
+Engineer,
+displaycost(74), page(TSP44),
+sets(ST:DX = 11, ST:IQ = 12),
+x(_
+    #ChoiceList(_
+        name(primary),
+        title(Engineer's primary skills),
+        list(_
+            One Engineer skill at level 13,
+            Two Engineer skills at level 12,
+            Two Mechanic skills at level 13_
+        ),
+        aliaslist(_
+            "{SK:Engineer ([Type])} = 8pts",
+            "{SK:Engineer ([Type])} = 4pts, {SK:Engineer ([Type])} = 4pts",
+            "{SK:Mechanic ([Type])} = 4pts, {SK:Mechanic ([Type])} = 4pts"_
+        ),
+        picksallowed(1),
+        totalcost(8)_
+    )_
+),
+adds(%primaryalias%),
+select1(_
+    text(Select 20 points from the following advantages.),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Artificer #Codes(upto 1, downto 1),
+        AD:Common Sense,
+        AD:Eidetic Memory #Codes(upto 1, downto 1),
+        AD:Photographic Memory,
+        AD:Gizmo #Codes(upto 3, downto 1),
+        AD:High Manual Dexterity #Codes(upto 2, downto 1),
+        AD:Intuition,
+        AD:Intuitive Mathematician,
+        AD:Lightning Calculator #Codes(upto 1, downto 1),
+        AD:Less Sleep #Codes(upto 3, downto 1),
+        AD:Mathematical Ability #Codes(upto 1, downto 1),
+        AD:Sensitive Touch,
+        AD:Single-Minded,
+        AD:Unfazeable,
+        AD:Versatile,
+        #NewItem(_
+            AD:Radiation Tolerance, 5/10,
+            page(B79), upto(2), cat(Exotic, Physical, Exotic Physical),
+            levelnames(PF 2, PF 5),
+            description(_
+                This is somewhat cinematic and can be disallowed. However, _
+                some engineers seem to be surprisingly tough after all those _
+                years in the drive room..._
+            )_
+        )_
+    )_
+),
+select2(_
+    text(Choose -30 points of disadvantages from the following list.),
+    pointswanted(-30),
+    itemswanted(atleast 1),
+    list(_
+        DI:Alcoholism,
+        DI:Bad Back #Codes(upto 1, downto 1),
+        DI:Clueless,
+        DI:Curious,
+        DI:Easy to Read,
+        DI:Light Sleeper,
+        DI:Loner,
+        DI:Missing Digit #Codes(upto 1, downto 1),
+        DI:No Sense of Humor,
+        DI:Oblivious,
+        DI:One Eye,
+        DI:Workaholic,
+        #NewItem(_
+            DI:Phobia (Agoraphobia), -10,
+            displaycost(-10*), mods(Self-Control), page(B148),
+            cat(Mundane, Mental, Mundane Mental),
+            initmods(_
+                You resist on a roll of 12 or less (quite often),
+                *1,
+                shortname(12 or less),
+                group(Self-Control),
+                page(B121)_
+            )_
+        )_
+    )_
+),
+select3(_
+    text(Choose two more primary skills from the following list.),
+    pointswanted(8),
+    itemswanted(2),
+    list(_
+        SK:Infomat Operation #Codes(upto 4pts, downto 4pts),
+        SK:Electrician #Codes(upto 4pts, downto 4pts),
+        SK:Machinist #Codes(upto 4pts, downto 4pts),
+        SK:Infomat Programming #Codes(upto 4pts, downto 4pts),
+        SK:Physics #Codes(upto 4pts, downto 4pts),
+        SK:Weird Science #Codes(upto 4pts, downto 4pts),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Repair (%listitem%) _
+                #Codes(upto 4pts, downto 4pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(Armoury Specialties)),
+            template(SK:Armoury (%listitem%) #Codes(upto 4pts, downto 4pts))_
+        )_
+    )_
+),
+select4(_
+    text(Choose two of the following secondary skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Beam Weapons (Pistol) #Codes(upto 2pts, downto 2pts),
+        SK:Free Fall #Codes(upto 2pts, downto 2pts),
+        SK:Vacc Suit #Codes(upto 2pts, downto 2pts),
+        SK:Chemistry #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(_
+                Demolition,
+                Explosive Ordnance Disposal,
+                Fireworks,
+                Nuclear Ordnance Disposal,
+                Underwater Demolition_
+            ),
+            template(_
+                SK:Explosives (%listitem%) #Codes(upto 2pts, downto 2pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 2pts, downto 2pts)_
+            )_
+        )_
+    )_
+),
+select5(_
+    text(Choose four background skills.),
+    pointswanted(4),
+    itemswanted(4),
+    list(_
+        SK:Brawling #Codes(upto 1pts, downto 1pts),
+        SK:Knot-Tying #Codes(upto 1pts, downto 1pts),
+        SK:Piloting (High-Performance Spacecraft) _
+            #Codes(upto 1pts, downto 1pts),
+        SK:Carpentry #Codes(upto 1pts, downto 1pts),
+        SK:First Aid ([Race]) #Codes(upto 1pts, downto 1pts),
+        SK:Scrounging #Codes(upto 1pts, downto 1pts),
+        SK:Area Knowledge (The Solar System) #Codes(upto 1pts, downto 1pts),
+        #BuildList(_
+            list(_
+                Automobile,
+                Construction Equipment,
+                Halftrack,
+                Heavy Wheeled,
+                Hovercraft,
+                Locomotive,
+                Motorcycle,
+                Tracked_
+            ),
+            template(SK:Driving (%listitem%) #Codes(upto 1, downto 1))_
+        )_
+    )_
+)
+
+Pirate,
+displaycost(90), page(TSP44),
+description(_
+    The published template lists the cost as 85 points, but it actually _
+    adds up to 90 points._
+),
+sets(ST:ST = 11, ST:DX = 12, ST:HT = 11, ST:Basic Speed = 6),
+creates(_
+    {DI:Enemy (Law Enforcement of the System), -30,
+    mods(Enemy, Frequency of Appearance), page(B135),
+    cat(Mundane, Social, Mundane Social),
+    levelnames(Large group (21-1,000 people))} #DoNotOwn with _
+        "Frequency: roll of 6 or less (Quite rarely), *1/2,
+        shortname(6 or less), group(Frequency of Appearance), page(B36)" and _
+        "Intent: Hunter, *1,
+        shortname(Hunter), group(Enemy), page(B135)"_
+),
+adds(SK:Beam Weapons (Pistol) = 8pts),
+select1(_
+    text(_
+        Choose 20 points from the following advantages. Do not take more than _
+        10 points in Allies or 10 points in Contacts._
+    ),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Ally,
+        AD:Alternate Identity #Codes(upto 2, downto 2),
+        AD:Charisma #Codes(upto 3, downto 1),
+        AD:Combat Reflexes,
+        AD:Contact,
+        AD:Damage Resistance #Codes(upto 1, downto 1),
+        AD:Daredevil,
+        AD:Hard to Subdue #Codes(upto 4, downto 1),
+        AD:Rapier Wit,
+        AD:Smooth Operator #Codes(upto 1, downto 1),
+        AD:Voice,
+        AD:Zeroed_
+    )_
+),
+select2(_
+    text(_
+        Enemy (Law Enforcement of the System) has already been added to this _
+        character. Choose another -20 points from the following _
+        disadvantages. _
+    ),
+    pointswanted(-20),
+    itemswanted(atleast 1),
+    list(_
+        DI:Alcoholism,
+        DI:Bad Temper,
+        DI:Bloodlust,
+        DI:Bully,
+        DI:Code of Honor (Pirate's),
+        DI:Compulsive Carousing,
+        DI:Compulsive Gambling,
+        DI:Greed,
+        DI:Impulsiveness,
+        DI:Jealousy,
+        DI:Lecherousness,
+        DI:Miserliness,
+        DI:Overconfidence,
+        DI:Sadism,
+        DI:Selfish,
+        DI:Trickster,
+        #NewItem(_
+            DI:Secret, -5/-10/-15,
+            upto(3), page(B152), cat(Mundane, Social, Mundane Social),
+            levelnames(_
+                Serious Embarrassment,
+                Utter Rejection,
+                Imprisonment or Exile_
+            ),
+            x(_
+                #InputToTag(_
+                    Please describe the nature of your secret:,
+                    nameext,
+                    ,
+                    Secret_
+                )_
+            ),
+            description(_
+                Being a wanted pirate is not a secret, but things like _
+                "brother is a captain in the Patrol," "deserter from the _
+                Marines," or "led a mutiny against my former captain" _
+                are all good possibilities._
+            )_
+        ),
+        #NewItem(_
+            DI:One Hand, -15,
+            page(B148), cat(Mundane, Physical, Mundane Physical),
+            taboo(_
+                DI:One Arm,
+                AD:Ambidexterity,
+                DI:Quadriplegic,
+                @if(@itemhasmod(AD:Regrowth, Minor) THEN 0 ELSE 1) * _
+                    AD:Regrowth::level_
+            ),
+            description(_
+                At the GM's discretion, any pirate with this disadvantage _
+                may be given a parrot._
+            )_
+        ),
+        #NewItem(_
+            DI:One Arm, -20,
+            page(B147),
+            gives(_
+                -ST:Two Arm Lifting ST::basescore to ST:Two Arm Lifting ST,
+                -ST:Two Arm Striking ST::basescore to ST:Two Arm Striking ST_
+            )_
+            cat(Mundane, Physical, Mundane Physical),
+            description(_
+                At the GM's discretion, any pirate with this disadvantage _
+                may be given a parrot._
+            )_
+        ),
+        #NewItem(_
+            DI:One Eye, -15,
+            page(B147), cat(Mundane, Physical, Mundane Physical),
+            taboo(_
+                DI:No Depth Perception,
+                DI:Blindness,
+                @if(@itemhasmod(AD:Regrowth, Minor) THEN 0 ELSE 1) * _
+                    AD:Regrowth::level_
+            ),
+            conditional(_
+                -3 to ST:DX when "depth perception matters",
+                -3 to CL:Combat/Weapons - Ranged Combat when "not aiming"_
+            ),
+            gives(-1 to CL:Combat/Weapons - Melee Combat),
+            description(_
+                At the GM's discretion, any pirate with this disadvantage _
+                may be given a parrot._
+            )_
+        ),
+        #NewItem(_
+            DI:Delusion ("I am a dashing bold adventurer!"), -5,
+            levelnames(Minor), page(B130), gives(-1 to ST:Reaction),
+            cat(Mundane, Mental, Mundane Mental)_
+        )_
+    )_
+),
+select3(_
+    text(Choose either Knife or Brawling skill.),
+    pointswanted(8),
+    itemswanted(1),
+    list(_
+        SK:Knife #Codes(upto 8pts, downto 8pts),
+        SK:Brawling #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select4(_
+    text(_
+        Beam Weapons (Pistol) has already been added to this character. _
+        Choose two of the following primary skills._
+    ),
+    pointswanted(16),
+    itemswanted(2),
+    list(_
+        SK:Beam Weapons (Projector) #Codes(upto 8pts, downto 8pts),
+        SK:Piloting (High-Performance Spacecraft) _
+            #Codes(upto 8pts, downto 8pts),
+        SK:Piloting (Low-Performance Spacecraft) _
+            #Codes(upto 8pts, downto 8pts),
+        SK:Lockpicking #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic ([Type]) #Codes(upto 8pts, downto 8pts),
+        SK:Mechanic (%type%) #Codes(upto 8pts, downto 8pts),
+        SK:Merchant #Codes(upto 8pts, downto 8pts),
+        SK:Navigation (Space) #Codes(upto 8pts, downto 8pts),
+        SK:Smuggling #Codes(upto 8pts, downto 8pts),
+        SK:Spacer #Codes(upto 8pts, downto 8pts),
+        SK:Engineer ([Type]) #Codes(upto 8pts, downto 8pts),
+        SK:Engineer (%type%) #Codes(upto 8pts, downto 8pts),
+        SK:Carousing #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(Armoury Specialties)),
+            template(SK:Armoury (%listitem%) #Codes(upto 8pts, downto 8pts))_
+        )_
+    )_
+),
+select5(_
+    text(Choose three secondary skills.),
+    pointswanted(6),
+    itemswanted(3),
+    list(_
+        SK:Axe/Mace #Codes(upto 2pts, downto 2pts),
+        SK:Vacc Suit #Codes(upto 2pts, downto 2pts),
+        SK:Free Fall #Codes(upto 2pts, downto 2pts),
+        SK:Stealth #Codes(upto 2pts, downto 2pts),
+        SK:Escape #Codes(upto 2pts, downto 2pts),
+        SK:Pickpocket #Codes(upto 2pts, downto 2pts),
+        SK:Fast-Talk #Codes(upto 2pts, downto 2pts),
+        SK:Interrogation #Codes(upto 2pts, downto 2pts),
+        SK:Leadership #Codes(upto 2pts, downto 2pts),
+        SK:Counterfeiting #Codes(upto 2pts, downto 2pts),
+        SK:Observation #Codes(upto 2pts, downto 2pts),
+        SK:Search #Codes(upto 2pts, downto 2pts),
+        SK:Detect Lies #Codes(upto 2pts, downto 2pts),
+        SK:Area Knowledge (The Solar System) #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(_
+                Explosive Ordnance Disposal,
+                Fireworks,
+                Nuclear Ordnance Disposal,
+                Underwater Demolition,
+                Demolition_
+            ),
+            template(_
+                SK:Explosives (%listitem%) _
+                #Codes(upto 2pts, downto 2pts)_
+            )_
+        ),
+        #BuildList(_
+            list(Beams, Cannon, Machine Gun, Rockets),
+            template(SK:Gunner (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        )_
+    )_
+),
+select6(_
+    text(Choose two background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Forced Entry #Codes(upto 1, downto 1),
+        SK:First Aid ([race]) #Codes(upto 1, downto 1),
+        SK:Freight Handling #Codes(upto 1, downto 1),
+        SK:Gambling #Codes(upto 1, downto 1),
+        SK:Holdout #Codes(upto 1, downto 1),
+        SK:Traps #Codes(upto 1, downto 1),
+        SK:Scrounging #Codes(upto 1, downto 1),
+        SK:Urban Survival #Codes(upto 1, downto 1)_
+    )_
+)
+
+Trader,
+displaycost(65), page(TSP45), sets(ST:IQ = 12),
+adds(SK:Merchant #Codes(upto 8pts, downto 8pts)),
+select1(_
+    text(_
+        Select 20 points from the following advantages. Don't spend more than _
+        10 points on Contacts._
+    ),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Business Acumen #Codes(upto 1, downto 1),
+        AD:Charisma #Codes(upto 3, downto 1),
+        AD:Contact,
+        AD:Empathy,
+        AD:Indomitable,
+        AD:Intuition,
+        AD:Language Talent,
+        AD:Merchant Rank #Codes(upto 3, downto 1),
+        AD:Rapier Wit,
+        AD:Sensitive,
+        AD:Serendipity,
+        AD:Smooth Operator #Codes(upto 1, downto 1),
+        AD:Social Chameleon,
+        AD:Status #Codes(upto 3, downto 1),
+        AD:Wealth #Codes(upto 2, downto 1),
+        AD:Voice_
+    )_
+),
+select2(_
+    text(Choose -25 points from the following disadvantages.),
+    pointswanted(-25),
+    itemswanted(atleast 1),
+    list(_
+        DI:Alcoholism,
+        DI:Callous,
+        DI:Chummy,
+        DI:Combat Paralysis,
+        DI:Compulsive Spending,
+        DI:Cowardice,
+        DI:Gluttony,
+        DI:Greed,
+        DI:Hidebound,
+        DI:Jealousy,
+        DI:Lecherousness,
+        DI:Miserliness,
+        DI:Selfish,
+        DI:Unfit #Codes(upto 1, downto 1)_
+    )_
+),
+select3(_
+    text(_
+        Merchant-14 has already been added to this character. Select an _
+        additional 16 points of primary skills from the following. If you _
+        choose Current Affairs, choose two specialties, one of which must be _
+        Current Affairs (Business)._
+    ),
+    pointswanted(16),
+    itemswanted(atleast 2, upto3),
+    list(_
+        SK:Administration #Codes(upto 8pts, downto 8pts),
+        SK:Connoisseur #Codes(upto 8pts, downto 8pts),
+        SK:Fast-Talk #Codes(upto 8pts, downto 8pts),
+        SK:Public Speaking #Codes(upto 8pts, downto 8pts),
+        SK:Smuggling #Codes(upto 8pts, downto 8pts),
+        SK:Accounting #Codes(upto 8pts, downto 8pts),
+        SK:Diplomacy #Codes(upto 8pts, downto 8pts),
+        SK:Finance #Codes(upto 8pts, downto 8pts),
+        SK:Body Language #Codes(upto 8pts, downto 8pts),
+        SK:Observation #Codes(upto 8pts, downto 8pts),
+        SK:Detect Lies #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(Debate, Oratory, Rhetoric, Punning, Storytelling),
+            template(_
+                SK:Public Speaking (%listitem%) _
+                #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(Dance, Music, Visual Arts, Wine),
+            template(_
+                SK:Connoisseur (%listitem%) #Codes(upto 8pts, downto 8pts)_
+            )_
+        ),
+        #BuildList(_
+            list(#List(Current Affairs Specialties)),
+            template(_
+                SK:Current Affairs (%listitem%)_
+                #Codes(upto 4pts, downto 4pts)_
+            )_
+        ),
+        #NewItem(_
+            SK:Law (Inner System Contract), IQ/H,
+            default(IQ - 6), page(B204), cat(_General, Business)_
+        )_
+    )_
+),
+select4(_
+    text(Choose two of the following secondary skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Guns (Pistol) #Codes(upto 2pts, downto 2pts),
+        SK:Piloting (High-Performance Spacecraft) _
+            #Codes(upto 2pts, downto 2pts),
+        SK:Piloting (Low-Performance Spacecraft) _
+            #Codes(upto 2pts, downto 2pts),
+        SK:Spacer #Codes(upto 2pts, downto 2pts),
+        SK:Gambling #Codes(upto 2pts, downto 2pts),
+        SK:Leadership #Codes(upto 2pts, downto 2pts),
+        SK:Mechanic ([Type]) #Codes(upto 2pts, downto 2pts),
+        SK:Mechanic (%type%) #Codes(upto 2pts, downto 2pts),
+        SK:Navigation (Space) #Codes(upto 2pts, downto 2pts),
+        SK:Mathematics (Applied) #Codes(upto 2pts, downto 2pts),
+        SK:Sex Appeal #Codes(upto 2pts, downto 2pts)_
+    )_
+),
+select5(_
+    text(Choose two of the following background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Knife #Codes(upto 1pts, downto 1pts),
+        SK:Free Fall #Codes(upto 1pts, downto 1pts),
+        SK:Gesture #Codes(upto 1pts, downto 1pts),
+        SK:Panhandling #Codes(upto 1pts, downto 1pts),
+        SK:Hazardous Materials #Codes(upto 1pts, downto 1pts),
+        SK:Holdout #Codes(upto 1pts, downto 1pts),
+        SK:Urban Survival #Codes(upto 1pts, downto 1pts),
+        #BuildList(_
+            list(Biological, Chemical, Radioactive),
+            template(_
+                SK:Hazardous Materials (%listitem%) _
+                #Codes(upto 1pts, downto 1pts)_
+            )_
+        )_
+    )_
+)
+
+Callistan Warrior,
+displaycost(67), page(TSP45),
+sets(_
+    ST:ST = 12,
+    ST:DX = 11,
+    ST:HT = 11,
+    ST:Hit Points = 13,
+    ST:Basic Move = 6,
+),
+adds(DI:Low TL = 5),
+select1(_
+    text(Select 20 points from the following advantages.),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Catfall,
+        AD:Danger Sense,
+        AD:Fearlessness #Codes(upto 3, downto 1),
+        AD:Fit #Codes(upto 1, downto 1),
+        AD:Very Fit,
+        AD:Hard to Kill #Codes(upto 3, downto 1),
+        AD:Hard to Subdue #Codes(upto 3, downto 1),
+        AD:High Pain Threshold,
+        AD:Rapid Healing #Codes(upto 1, downto 1),
+        AD:Very Rapid Healing,
+        AD:Recovery_
+    )_
+),
+select2(_
+    text(Select -15 points from the following disadvantages.),
+    pointswanted(-15),
+    itemswanted(atleast 1),
+    list(_
+        DI:Bad Temper,
+        DI:Berserk,
+        DI:Bloodlust,
+        DI:Bully,
+        DI:Code of Honor (Soldier's),
+        DI:Clueless,
+        DI:Missing Digit #Codes(upto 1, downto 1),
+        DI:No Sense of Humor,
+        DI:On the Edge,
+        DI:One Eye,
+        DI:Overconfidence,
+        #NewItem(_
+            DI:Intolerance (Non-"Warriors"), -10,
+            page(B140), cat(Mundane, Mental, Mundane Mental),
+            levelnames("Total Intolerance")_
+        ),
+        #NewItem(_
+            DI:Enemy (Loyal agents of the Overlord), -30,
+            mods(Enemy, Frequency of Appearance), page(B135),
+            cat(Mundane, Social, Mundane Social),
+            levelnames("Large group (21-1,000 people)"),
+            displaycost(-15),
+            initmods(_
+                Frequency: roll of 6 or less (Quite rarely),
+                *1/2,
+                shortname(6 or less),
+                group(Frequency of Appearance),
+                page(B36)_
+            )_
+        )_
+    )_
+),
+select3(_
+    text(Choose Shortsword or Broadsword as your primary melee weapon.),
+    pointswanted(8),
+    itemswanted(1),
+    list(_
+        SK:Shortsword #Codes(upto 8pts, downto 8pts),
+        SK:Broadsword #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select4(_
+    text(Choose two more primary skills.),
+    pointswanted(16),
+    itemswanted(2),
+    list(_
+        SK:Brawling #Codes(upto 8pts, downto 8pts),
+        SK:Knife #Codes(upto 8pts, downto 8pts),
+        SK:Shield (Shield) #Codes(upto 8pts, downto 8pts),
+        SK:Shield (Buckler) #Codes(upto 8pts, downto 8pts),
+        SK:Shield (Force) #Codes(upto 8pts, downto 8pts),
+        SK:Axe/Mace #Codes(upto 8pts, downto 8pts),
+        SK:Bow #Codes(upto 8pts, downto 8pts),
+        SK:Spear #Codes(upto 8pts, downto 8pts),
+        SK:Two-Handed Axe/Mace #Codes(upto 8pts, downto 8pts),
+        SK:Tactics #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select5(_
+    text(Choose two of the following secondary skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Knife #Codes(upto 2pts, downto 2pts),
+        SK:Shield (Shield) #Codes(upto 2pts, downto 2pts),
+        SK:Shield (Buckler) #Codes(upto 2pts, downto 2pts),
+        SK:Shield (Force) #Codes(upto 2pts, downto 2pts),
+        SK:Survival #Codes(upto 2pts, downto 2pts),
+        SK:Tracking #Codes(upto 2pts, downto 2pts),
+        #NewItem(_
+            SK:Area Knowledge (Jupiter and moons), IQ/E,
+            page(B176), cat(_General, Everyman, Knowledge),
+            default(IQ - 4, "SK:Geography ([Area])" - 3)_
+        ) #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(_
+                Force Sword,
+                Knife,
+                Sword,
+                Two-Handed Sword,
+                Arrow,
+                Ammo,
+                Long Arm,
+                Pistol_
+            ),
+            template(SK:Fast-Draw (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        )_
+    )_
+),
+select6(_
+    text(Select two of the following background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Climbing #Codes(upto 1pts, downto 1pts),
+        SK:Throwing #Codes(upto 1pts, downto 1pts),
+        SK:Swimming #Codes(upto 1pts, downto 1pts),
+        SK:Intimidation #Codes(upto 1pts, downto 1pts),
+        SK:Fishing #Codes(upto 1pts, downto 1pts),
+        #BuildList(_
+            list(#List(Armoury Specialties)),
+            template(SK:Armoury (%listitem%) #Codes(upto 1pts, downto 1pts))_
+        )_
+    )_
+)
+
+Salishal Warrior,
+displaycost(79), page(TSP45),
+description(_
+    Because the Salishal racial template is incorrectly priced in the _
+    published template (see Salishal racial template) as 14 points _
+    instead of 12 points, the Salishal Warrior lens in the published text_
+    is also overpriced by two points (it should be +12)._
+),
+sets(_
+    ST:ST = 12,
+    ST:DX = 11,
+    ST:HT = 11,
+    ST:Hit Points = 13,
+    ST:Basic Move = 6,
+),
+adds(DI:Low TL = 5, TE:Salishal),
+select1(_
+    text(Select 20 points from the following advantages.),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Catfall,
+        AD:Danger Sense,
+        AD:Fearlessness #Codes(upto 3, downto 1),
+        AD:Fit #Codes(upto 1, downto 1),
+        AD:Very Fit,
+        AD:Hard to Kill #Codes(upto 3, downto 1),
+        AD:Hard to Subdue #Codes(upto 3, downto 1),
+        AD:High Pain Threshold,
+        AD:Rapid Healing #Codes(upto 1, downto 1),
+        AD:Very Rapid Healing,
+        AD:Recovery_
+    )_
+),
+select2(_
+    text(Select -15 points from the following disadvantages.),
+    pointswanted(-15),
+    itemswanted(atleast 1),
+    list(_
+        DI:Bad Temper,
+        DI:Berserk,
+        DI:Bloodlust,
+        DI:Bully,
+        DI:Code of Honor (Soldier's),
+        DI:Clueless,
+        DI:Missing Digit #Codes(upto 1, downto 1),
+        DI:No Sense of Humor,
+        DI:On the Edge,
+        DI:One Eye,
+        DI:Overconfidence,
+        #NewItem(_
+            DI:Intolerance (Non-"Warriors"), -10,
+            page(B140), cat(Mundane, Mental, Mundane Mental),
+            levelnames("Total Intolerance")_
+        )_
+    )_
+),
+select3(_
+    text(Choose Shortsword or Broadsword as your primary melee weapon.),
+    pointswanted(8),
+    itemswanted(1),
+    list(_
+        SK:Shortsword #Codes(upto 8pts, downto 8pts),
+        SK:Broadsword #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select4(_
+    text(Choose two more primary skills.),
+    pointswanted(16),
+    itemswanted(2),
+    list(_
+        SK:Brawling #Codes(upto 8pts, downto 8pts),
+        SK:Knife #Codes(upto 8pts, downto 8pts),
+        SK:Shield (Shield) #Codes(upto 8pts, downto 8pts),
+        SK:Shield (Buckler) #Codes(upto 8pts, downto 8pts),
+        SK:Shield (Force) #Codes(upto 8pts, downto 8pts),
+        SK:Axe/Mace #Codes(upto 8pts, downto 8pts),
+        SK:Bow #Codes(upto 8pts, downto 8pts),
+        SK:Spear #Codes(upto 8pts, downto 8pts),
+        SK:Two-Handed Axe/Mace #Codes(upto 8pts, downto 8pts),
+        SK:Tactics #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select5(_
+    text(Choose two of the following secondary skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Knife #Codes(upto 2pts, downto 2pts),
+        SK:Shield (Shield) #Codes(upto 2pts, downto 2pts),
+        SK:Shield (Buckler) #Codes(upto 2pts, downto 2pts),
+        SK:Shield (Force) #Codes(upto 2pts, downto 2pts),
+        SK:Survival #Codes(upto 2pts, downto 2pts),
+        SK:Tracking #Codes(upto 2pts, downto 2pts),
+        #NewItem(_
+            SK:Area Knowledge (Venus), IQ/E,
+            page(B176), cat(_General, Everyman, Knowledge),
+            default(IQ - 4, "SK:Geography ([Area])" - 3)_
+        ) #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(_
+                Force Sword,
+                Knife,
+                Sword,
+                Two-Handed Sword,
+                Arrow,
+                Ammo,
+                Long Arm,
+                Pistol_
+            ),
+            template(SK:Fast-Draw (%listitem%) #Codes(upto 2pts, downto 2pts))_
+        )_
+    )_
+),
+select6(_
+    text(Select two of the following background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Climbing #Codes(upto 1pts, downto 1pts),
+        SK:Throwing #Codes(upto 1pts, downto 1pts),
+        SK:Swimming #Codes(upto 1pts, downto 1pts),
+        SK:Intimidation #Codes(upto 1pts, downto 1pts),
+        SK:Fishing #Codes(upto 1pts, downto 1pts),
+        #BuildList(_
+            list(#List(Armoury Specialties)),
+            template(SK:Armoury (%listitem%) #Codes(upto 1pts, downto 1pts))_
+        )_
+    )_
+)
+
+Belter,
+displaycost(79), page(TSP46), 
+description(_
+    The published Belter template has the following errors. (1) With IQ 11, _
+    the cost of Will 12 is 5, not 10. (2) With IQ 11, the cost of _
+    Perception 12 is 5, not 10. The total cost of the Belter template is _
+    therefore 79, not 89._
+),
+sets(ST:IQ = 11, ST:HT = 11, ST:Will = 12, ST:Perception = 12),
+adds(_
+    SK:Prospecting = 4pts,
+    SK:Piloting (Low-Performance Spacecraft) = 4pts_
+),
+select1(_
+    text(Choose 20 points from the following advantages.),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Absolute Direction #Codes(upto 2, downto 2),
+        AD:Common Sense,
+        AD:Danger Sense,
+        AD:Fearlessness #Codes(upto 3, downto 1),
+        AD:Fit #Codes(upto 1, downto 1),
+        AD:G-Experience #Codes(upto 5, downto 1),
+        AD:High Manual Dexterity #Codes(upto 1, downto 1),
+        AD:Indomitable,
+        AD:Intuition,
+        AD:Single-Minded,
+        AD:Artificer #Codes(upto 1, downto 1),
+        AD:Unfazeable,
+        AD:Wealth #Codes(upto 2, downto 1),
+        #NewItem(_
+            AD:Claim to Hospitality (Other Belters), 2,
+            page(B41), cat(Mundane, Social, Mundane Social),
+            conditional(=+3 to ST:Reaction when "other Belters")_
+        )_
+    )_
+),
+select2(_
+    text(Choose -25 points from the following disadvantages.),
+    pointswanted(-25),
+    itemswanted(atleast 1),
+    list(_
+        DI:Bad Temper,
+        DI:Callous,
+        DI:Clueless,
+        DI:Curious,
+        DI:Easy to Read,
+        DI:Greed,
+        DI:Jealousy,
+        DI:Loner,
+        DI:Miserliness,
+        DI:Lame (Crippled Legs),
+        DI:Lame (Missing Legs),
+        DI:Oblivious,
+        DI:Paranoia,
+        DI:Selfish,
+        DI:Stubbornness_
+    )_
+),
+select3(_
+    text(Choose one weapon skill.),
+    pointswanted(8),
+    itemswanted(1),
+    list(_
+        SK:Beam Weapons (Pistol) #Codes(upto 8pts, downto 8pts),
+        SK:Knife #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select4(_
+    text(_
+        Prospecting and Piloting (Low-Performance Spacecraft) have already _
+        been added to this character. Choose two more primary skills._
+    ),
+    pointswanted(16),
+    itemswanted(2),
+    list(_
+        SK:Brawling #Codes(upto 8pts, downto 8pts),
+        SK:Free Fall #Codes(upto 8pts, downto 8pts),
+        SK:Vacc Suit #Codes(upto 8pts, downto 8pts),
+        SK:Merchant #Codes(upto 8pts, downto 8pts),
+        SK:Navigation (Space) #Codes(upto 8pts, downto 8pts),
+        SK:Smuggling #Codes(upto 8pts, downto 8pts),
+        SK:Engineer (%type%) #Codes(upto 8pts, downto 8pts),
+        SK:Engineer ([type]) #Codes(upto 8pts, downto 8pts),
+        #BuildList(_
+            list(#List(TSP Electronics)),
+            template(_
+                SK:Electronics Operation (%listitem%) _
+                    #Codes(upto 8pts, downto 8pts)_
+            )_
+        )_
+    )_
+),
+select5(_
+    text(Select two of the following secondary skills.),
+    pointswanted(8),
+    itemswanted(2),
+    list(_
+        SK:Boxing #Codes(upto 4pts, downto 4pts),
+        SK:Area Knowledge (The Solar System) #Codes(upto 4pts, downto 4pts),
+        SK:Gambling #Codes(upto 4pts, downto 4pts),
+        SK:Spacer #Codes(upto 4pts, downto 4pts),
+        SK:Fast-Talk #Codes(upto 4pts, downto 4pts),
+        SK:Mechanic (%type%) #Codes(upto 4pts, downto 4pts),
+        SK:Mechanic ([type]) #Codes(upto 4pts, downto 4pts),
+        SK:Astronomy #Codes(upto 4pts, downto 4pts),
+        #BuildList(_
+            list(#List(World Types)),
+            template(SK:Geology (%listitem%) #Codes(upto 4pts, downto 4pts))_
+        )_
+    )_
+),
+select6(_
+    text(Select two of the following background skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:First Aid ([Race]) #Codes(upto 2pts, downto 2pts),
+        SK:Cooking #Codes(upto 2pts, downto 2pts),
+        SK:Hazardous Materials #Codes(upto 2pts, downto 2pts),
+        SK:Machinist #Codes(upto 2pts, downto 2pts),
+        SK:Carousing #Codes(upto 2pts, downto 2pts),
+        SK:Scrounging #Codes(upto 2pts, downto 2pts),
+    )_
+)
+
+Explorer,
+displaycost(105), page(TSP47),
+sets(ST:DX = 11, ST:IQ = 12, ST:HT = 12, ST:Will = 13, ST:Perception=13),
+select1(_
+    text(_
+        Choose 20 points from the following advantages. If Allies are _
+        taken, they should only total between 2 and 5 points._
+    ),
+    pointswanted(20),
+    itemswanted(atleast 1),
+    list(_
+        AD:Absolute Direction #Codes(upto 1, downto 1),
+        AD:Ally,
+        AD:Animal Friend #Codes(upto 1, downto 1),
+        AD:Charisma #Codes(upto 2, downto 1),
+        AD:Cultural Adaptability #Codes(upto 1, downto 1),
+        AD:Daredevil,
+        AD:Fearlessness #Codes(upto 3, downto 1),
+        AD:Fit,
+        AD:Very Fit,
+        AD:Perfect Balance,
+        AD:Rapid Healing #Codes(upto 1, downto 1),
+        AD:Reduced Consumption #Codes(upto 1, downto 1),
+        AD:Social Chameleon,
+        AD:Outdoorsman #Codes(upto 1, downto 1),
+        #NewItem(_
+            AD:Resistant (Disease), 10,
+            levelnames(Occasional), page(B80), mods(Resistant),
+            cat(Mundane, Physical, Mundane Physical),
+            initmods(_
+                Degree: Immunity,
+                *1,
+                shortname(Immunity),
+                group(Resistant)_
+            )_
+        )_
+    )_
+),
+select2(_
+    text(_
+        Choose -35 points from the following disadvantages. If Dependents are _
+        taken, they should total no more than -5 points._
+    ),
+    pointswanted(-35),
+    itemswanted(atleast 1),
+    list(_
+        DI:Absent-Mindedness,
+        DI:Curious,
+        DI:Dependent,
+        DI:Greed,
+        DI:Impulsiveness,
+        DI:Obsession #Codes(upto 1, downto 1),
+        DI:Overconfidence,
+        DI:Stubbornness,
+        DI:Xenophilia,
+        #NewItem(_
+            DI:Intolerance (All "savages"), -5,
+            page(B140), cat(Mundane, Mental, Mundane Mental),
+            levelnames(One group),
+            description(_
+                In the Earth League, this likely results in Odious Personal _
+                Habit (Bigot) [-5] as well, if the intolerance is shown _
+                publicly._
+            )_
+        ),
+        #NewItem(_
+            DI:Delusion, -5/-10/-15,
+            upto(3), levelnames(Minor, Major, Severe), page(B130),
+            cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction),
+            x(_
+                #InputToTag(_
+                    Describe your delusion:,
+                    nameext,
+                    Delusion_
+                )_
+            ),
+            description(_
+                The explorer could be questing for anything that he is _
+                unlikely to find, from the Fountain of Youth to "rubies the _
+                size of a man's head."_
+            )_
+        ),
+        #NewItem(_
+            DI:Code of Honor (Naturalist's), -5,
+            page(B127), cat(Mundane, Mental, Mundane Mental),
+            description(_
+                Treat the wilderness with respect; do not exploit either _
+                natives or animals; respect the traditions of the species you _
+                encounter; kill animals only in self-defense or for food, _
+                never for sport._
+            )_
+        )_
+    )_
+),
+select3(_
+    text(Choose Area Knowledge for any two worlds.),
+    pointswanted(8),
+    itemswanted(2),
+    list(_
+        #BuildList(_
+            list(#List(Worlds)),
+            template(_
+                #NewItem(_
+                    SK:Area Knowledge (%listitem%), IQ/E,
+                    default(IQ - 4, "SK:Geography ([Area])" - 3), page(B176),
+                    cat(_General, Everyman, Knowledge) _
+                    #Codes(upto 4pts, downto 4pts)_
+                )_
+            )_
+        )_
+        x()_
+    )_
+),
+select4(_
+    text(Select two primary skills.),
+    pointswanted(16),
+    itemswanted(2),
+    list(_
+        SK:Hiking #Codes(upto 8pts, downto 8pts),
+        SK:Linguistics #Codes(upto 8pts, downto 8pts),
+        SK:Naturalist #Codes(upto 8pts, downto 8pts),
+        SK:Stealth #Codes(upto 8pts, downto 8pts),
+        SK:Survival #Codes(upto 8pts, downto 8pts),
+        SK:Tracking #Codes(upto 8pts, downto 8pts)_
+    )_
+),
+select5(_
+    text(Select two secondary skills.),
+    pointswanted(4),
+    itemswanted(2),
+    list(_
+        SK:Jumping #Codes(upto 2pts, downto 2pts),
+        SK:Knife #Codes(upto 2pts, downto 2pts),
+        SK:Observation #Codes(upto 2pts, downto 2pts),
+        SK:Riding (%beast%) #Codes(upto 2pts, downto 2pts),
+        SK:Search #Codes(upto 2pts, downto 2pts),
+        SK:Traps #Codes(upto 2pts, downto 2pts),
+        SK:Weather Sense #Codes(upto 2pts, downto 2pts),
+        #BuildList(_
+            list(Large Powerboat, Motorboat, Sailboat, Unpowered),
+            template(_
+                SK:Boating (%listitem%) #Codes(upto 2pts, downto 2pts)_
+            )_
+        ),
+        #BuildList(_
+            list(Pistol, Projector, Rifle),
+            template(_
+                SK:Beam Weapons (%listitem%) _
+                #Codes(upto 2pts, downto 2pts)_
+            )_
+        )_
+    )_
+),
+select6(_
+    text(Choose two background skills.),
+    pointswanted(2),
+    itemswanted(2),
+    list(_
+        SK:Cooking #Codes(upto 1pts, downto 1pts),
+        SK:Gesture #Codes(upto 1pts, downto 1pts),
+        SK:Packing #Codes(upto 1pts, downto 1pts),
+        SK:Poisons #Codes(upto 1pts, downto 1pts),
+        SK:Riding (%beast%) #Codes(upto 1pts, downto 1pts),
+        SK:Running #Codes(upto 1pts, downto 1pts),
+        SK:Vacc Suit #Codes(upto 1pts, downto 1pts),
+        SK:Veterinary #Codes(upto 1pts, downto 1pts)_
+    )_
+)
+
+<Tales of the Solar Patrol, Racial Templates,
+Racial Templates - Tales of the Solar Patrol>
+
+Salishal,
+displaycost(12), page(TSP11), race(Salishal), owns(yes), locks(yes),
+hides(yes), description(Venusian lizardmen), cost(14),
+gives(_
+    +2 to ST:ST,
+    -1 to ST:IQ,
+    +1 to ST:HT,
+    +2 to ST:Hit Points_
+),
+adds(_
+    AD:Damage Resistance = 3 with _
+        "Flexible, -20%, group(Damage Resistance), page(B47)",
+    AD:Claws (Sharp Claws),
+    AD:Teeth (Sharp Teeth),
+    DI:Callous,
+    DI:Cold-Blooded = 1_
+),
+creates(_
+    {DI:Enemy (Krik), -10,
+    mods(Enemy, Frequency of Appearance),
+    page(B135),
+    cat(Mundane, Social, Mundane Social),
+    levelnames("Medium-sized group (6-20 people)"),
+    initmods(_
+        Frequency: roll of 9 or less (Fairly often),
+        *1,
+        shortname(9 or less),
+        group(Frequency of Appearance)_
+    )}_
+)
+
+Krik Warrior,
+displaycost(19), cost(18), page(TSP12), race(Krik), owns(yes), locks(yes),
+hides(yes), description(Warrior caste of the bug-men of Venus.),
+gives(_
+    +3 to ST:ST,
+    -2 to ST:IQ,
+    +2 to ST:HT,
+    +4 to ST:Hit Points_
+),
+adds(_
+    AD:Damage Resistance = 4,
+    AD:Extra Arms = 2,
+    AD:Fearlessness = 4,
+    AD:Hard to Kill = 4,
+    AD:Racial Memory = 1,
+    AD:Claws (Sharp Claws),
+    DI:Bloodlust,
+    DI:Hidebound,
+    DI:No Sense of Humor,
+    DI:Slave Mentality_
+),
+creates(_
+    {DI:Enemy (Salishal), -10,
+    mods(Enemy, Frequency of Appearance),
+    page(B135),
+    cat(Mundane, Social, Mundane Social),
+    levelnames("Medium-sized group (6-20 people)"),
+    initmods(_
+        Frequency: roll of 9 or less (Fairly often),
+        *1,
+        shortname(9 or less),
+        group(Frequency of Appearance)_
+    )}_
+)
+
+Krik Leader,
+displaycost(62), cost(42), owns(yes), hides(yes), locks(yes), race(Krik),
+description(Leader caste of the bug-men of Venus.),
+gives(_
+    +1 to ST:ST,
+    +1 to ST:DX,
+    +1 to ST:HT,
+    +1 to ST:Hit Points_
+),
+adds(_
+    AD:Damage Resistance = 1,
+    AD:Extra Arms = 2,
+    AD:Racial Memory = 1,
+    AD:Claws (Sharp Claws),
+    DI:Hidebound,
+    DI:No Sense of Humor_
+),
+creates(_
+    {DI:Enemy (Salishal), -10,
+    mods(Enemy, Frequency of Appearance),
+    page(B135),
+    cat(Mundane, Social, Mundane Social),
+    levelnames("Medium-sized group (6-20 people)"),
+    initmods(_
+        Frequency: roll of 9 or less (Fairly often),
+        *1,
+        shortname(9 or less),
+        group(Frequency of Appearance)_
+    )}_
+)
+
+Mind Master,
+displaycost(115), cost(40), owns(yes), hides(yes), locks(yes),
+race(Mind Master), description(Mind Master of Mars.),
+gives(-3 to ST:ST, +2 to ST:IQ, -1 to ST:HT, +4 to ST:Will),
+adds(_
+    AD:Extra Arms = 4 _
+        with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+        and "No Physical Attack, -50%, group(Extra Arms), page(B53)",
+    AD:Mind Control _
+        with "Telepathic, -10%, group(_Psionic Power Modifier), page(B257)" _
+        and "Long Range, +50%",
+    AD:Mind Probe _
+        with "Telepathic, -10%, group(_Psionic Power Modifier), page(B257)",
+    AD:Mind Reading _
+        with "Telepathic, -10%, group(_Psionic Power Modifier), page(B257)",
+    DI:Bad Smell,
+    DI:Bully,
+    DI:Callous,
+    DI:Cowardice,
+    DI:Invertebrate,
+    DI:Megalomania,
+    DI:Sadism_
+)
+
+Hajuur,
+displaycost(30), cost(42), race(Hajuur), owns(yes), locks(yes), hides(yes),
+description(Cat-men of Mars), page(TSP18),
+gives(+1 to ST:HT, +2 to ST:DX, +1 to ST:Hit Points),
+adds(_
+    AD:Catfall,
+    AD:Nictitating Membrane = 2,
+    AD:Night Vision = 5,
+    AD:Claws (Sharp Claws),
+    AD:Teeth (Sharp Teeth),
+    DI:Callous,
+    DI:Incurious,
+    DI:Social Stigma (Subjugated),
+    DI:Stubbornness_
+)
+
+Rock-Man,
+displaycost(28), cost(-15), race(Rock-Man), owns(yes), locks(yes), hides(yes),
+page(TSP23), description(Rock-Man of Io.),
+gives(_
+    +3 to ST:ST,
+    -1 to ST:DX,
+    +2 to ST:HT,
+    -2 to ST:IQ,
+    -1 to ST:Basic Move_
+),
+adds(_
+    AD:Damage Resistance = 4,
+    AD:Extended Lifespan = 2,
+    AD:Lifting ST = 10,
+    AD:Reduced Consumption = 2,
+    DI:Callous,
+    DI:Ham-Fisted,
+    DI:Hidebound_
+)
+
+Furred Folk,
+displaycost(23), cost(45), page(TSP24), race(Furred Folk), locks(yes),
+owns(yes), hides(yes), description(Furred Folk of Ganymede),
+gives(-1 to ST:ST, +2 to ST:DX, +1 to ST:HT, +1 to ST:Basic Move),
+adds(_
+    AD:High Manual Dexterity = 2,
+    DI:Cowardice,
+    DI:Extra Sleep = 1,
+    DI:Impulsiveness,
+    DI:Short Lifespan = 1_
+)
+
+[EQUIPMENT]
+
+<Tales of the Solar Patrol, _Armor, _Armor - Ultra-Tech,
+Tales of the Solar Patrol - Armor>
+
+Space Suit,
+location(full suit), dr(5), basecost(2000), baseweight(15), lc(4),
+techlvl(6+3), notes([1]), page(TSP28)
+
+Helmet,
+location(head), dr(4), basecost(500), baseweight(5), lc(4), techlvl(6+3),
+page(TSP28)
+
+Boarding Suit,
+location(full suit), dr(10), basecost(12000), baseweight(20), techlvl(6+3),
+notes([1]), page(TSP28)
+
+Commando Suit,
+location(full suit), dr(15), basecost(20000), baseweight(25), lc(3),
+techlvl(6+3), notes([1]), page(TSP28)
+
+<Tales of the Solar Patrol, _Firearms, _Firearms - Ultra-Tech,
+    Tales of the Solar Patrol - Firearms>
+
+"Laser Pistol, Mark I",
+techlvl(6+1), malf(17), lc(3), baseweight(3.75), basecost(2500), damage(3d),
+damtype(burn), acc(4), rangehalfdam(250), rangemax(500), rof(3), shots(100(4)),
+minst(6), bulk(-3), rcl(1), notes([1]), page(TSP29), mods(Equipment, Beams),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Pistol),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Pistol) - 4_
+)
+
+"Laser Pistol, Mark II",
+techlvl(6+2),malf(17), lc(3), baseweight(3.5), basecost(5000), damage(3d+3),
+armordivisor(2), damtype(burn), acc(5), rangehalfdam(300), rangemax(600),
+rof(3), shots(150(4)), minst(5), bulk(-2), rcl(1), mods(Equipment, Beams),
+page(TSP29),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Pistol),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Pistol) - 4_
+)
+
+"Laser Pistol, Mark I (Ammunition)",
+baseweight(0.5), basecost(10), techlvl(6+1), lc(3), mods(Equipment)
+
+"Laser Pistol, Mark II (Ammunition)",
+baseweight(0.5), basecost(10), techlvl(6+2), lc(3), mods(Equipment)
+
+Atomic Pistol,
+techlvl(6+3), malf(17), lc(2), baseweight(4), basecost(6000), damage(4d+4),
+armordivisor(3), damtype(burn), acc(4), rangehalfdam(400), rangemax(800),
+rof(3), shots(100(3)), minst(5), bulk(-3), rcl(1), notes([2,3]), page(TSP29),
+mods(Equipment, Beams),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Pistol),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Pistol) - 4_
+)
+
+"Atomic Pistol, Heavy",
+techlvl(6+3), malf(17), lc(2), baseweight(5.5), basecost(7500), damage(5d+5),
+armordivisor(3), damtype(burn), acc(4), rangehalfdam(350), rangemax(700),
+rof(3), shots(75(3)), minst(6), bulk(-2), rcl(2), page(TSP29),
+mods(Equipment, Beams),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Pistol),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Pistol) - 4_
+)
+
+Gooper,
+techlvl(6+2), malf(17), lc(4), baseweight(4), basecost(1500), acc(3),
+rangemax(100), rof(1), shots(10(5)), minst(4), bulk(-3), rcl(2), page(TSP29),
+mods(Equipment, Beams),
+skillsused(_
+    SK:Gun!,
+    SK:Beam Weapons (Pistol),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Pistol) - 4_
+)
+
+Gooper (Ammunition),
+techlvl(6+2), baseweight(1), basecost(20), lc(4), mods(Equipment)
+
+"Laser Rifle, Mark I",
+techlvl(6+1), malf(17), lc(3), baseweight(11), basecost(3500), damage(4d),
+damtype(burn), acc(4), rangehalfdam(400), rangemax(800), rof(3),
+shots(75(4)), minst(7), bulk(-4), rcl(1), page(TSP29),
+mods(Equipment, Beams), notes([1]),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Rifle),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Rifle) - 4_
+)
+
+"Laser Rifle, Mark II",
+techlvl(6+2), malf(17), lc(2), baseweight(9.0), basecost(7000), damage(6d),
+armordivisor(2), damtype(burn), acc(5), rangehalfdam(600), rangemax(1200),
+rof(3), shots(100(4)), minst(6), bulk(-4), rcl(1), page(TSP29), notes([1]),
+mods(Equipment, Beams),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Rifle),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Rifle) - 4_
+)
+
+"Laser Rifle, Mark I (Ammunition)",
+baseweight(0.5), basecost(10), techlvl(6+1), lc(3),
+mods(Equipment)
+
+"Laser Rifle, Mark II (Ammunition)",
+baseweight(0.5), basecost(10), techlvl(6+2), lc(3),
+mods(Equipment)
+
+Atomic Rifle,
+techlvl(6+3), malf(17), lc(2), baseweight(8.75), basecost(10000), damage(7d),
+armordivisor(3), damtype(burn), acc(5), rangehalfdam(800), rangemax(1600),
+rof(3), shots(100(3)), minst(6), bulk(-4), rcl(2), page(TSP29),
+mods(Equipment, Beams), notes([3]),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Rifle),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Rifle) - 4_
+)
+
+Atomic Assault Rifle,
+techlvl(6+3), malf(17), lc(1), baseweight(9.5), basecost(20000), damage(8d),
+armordivisor(5), damtype(burn), acc(4), rangehalfdam(700), rangemax(1400),
+rof(10), shots(300(6)), minst(8), bulk(-4), rcl(2), page(TSP29), notes([3,4]),
+mods(Equipment, Beams),
+skillused(_
+    SK:Gun!,
+    SK:Beam Weapons (Rifle),
+    ST:DX - 4,
+    SK:Beam Weapons - 4,
+    SK:Guns (Rifle) - 4_
+)
+
+<Tales of the Solar Patrol, _Vehicles, Tales of the Solar Patrol - Vehicles>
+
+Audie Murphy-Class Patrol Ship,
+basecost(90000000), techlvl(6+3), page(TSP33), mods(Equipment),
+baseweight(20000000),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:250; Hnd/SR:+4/3; HT:13; Move:0.1c(2G); _
+    LWt:10,000; Load:200; SM:+8; Occ:10+2ASV; DR:100; _
+    Locations:3tWi2Rr; Nega-Barrier:DR500; Two forward fixed-mount _
+    atomic guns (10d×5[4] burn), one spinal turret atomic gun _
+    (10d×5[4] burn)._
+),
+newmode(_
+    Atomic Guns,
+    damage(10dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4, SK:Gunner-4)_
+)
+
+Lifeboat,
+basecost(5000000), techlvl(6+3), page(TSP33), mods(Equipment),
+baseweight(200000),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:250; Hnd/SR:+1/4; HT:13; Move:0.05c(1G); _
+    LWt:100; Load:5; SM:+3; Occ:1+10ASV; DR:50; _
+    Locations:—._
+)
+
+Patton-Class Patrol Cruiser,
+basecost(200000000), baseweight(60000000), techlvl(6+3), page(TSP33),
+mods(Equipment),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:400; Hnd/SR:+2/2; HT:14; Move:0.1c(2G); _
+    LWt:30,000; Load:500; SM:+10; Occ:50+50ASV; DR:125; _
+    Locations:5tWi2Rr; Nega-Barrier:DR800; Two wing-mounted atomic _
+    gun turrets(15d×5[4] burn), hyper-focused forward-firing fixed-mount_
+    atomic gun (15d×5[4] burn), two spine-mounted atomic gun turrets _
+    (15d×5[4] burn)._
+),
+newmode(_
+    Wing-Mounted Atomic Guns,
+    damage(15dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4, SK:Gunner-4)_
+),
+newmode(_
+    Forward-Firing Atomic Gun,
+    damage(15dx5),
+    armordivisor(6),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4, SK:Gunner-4)_
+),
+newmode(_
+    Spinal Turrent Atomic Guns,
+    damage(10dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4, SK:Gunner-4)_
+)
+
+Corsair,
+basecost(80000000), baseweight(16000000), techlvl(6+3), page(TSP33),
+mods(Equipment),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:225; Hnd/SR:+5/4; HT:12; Move:0.1c(2G); _
+    LWt:8,000; Load:300; SM:+8; Occ:8+20ASV; _
+    DR:95; Locations:2tWiRr; Two forward-firing fixed-mount _
+    lasers (8d×2[2] burn). This represents a typical corsair._
+),
+newmode(_
+    Forward-Firing Lasers,
+    damage(8dx2),
+    armordivisor(2),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4, SK:Gunner-4)_
+)
+
+Jovian Sky-Scourer,
+basecost(80000000), baseweight(16000000), techlvl(6+3), page(TSP33),
+mods(Equipment),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:200; Hnd/SR:+5/5; HT:12; Move:0.1c(2G); _
+    LWt:8,000; Load:100; SM:+7; Occ:10ASV; DR:90; _
+    Locations:WiRr; Nose cone fixed-mount atomic gun (10d×5[4] burn)._
+),
+newmode(_
+    Nose cone Atomic Gun,
+    damage(10dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4, SK:Gunner-4)_
+)
+
+Jovian Pacifier,
+basecost(60000000), baseweight(15000000), techlvl(6+3), page(TSP33),
+mods(Equipment),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:150; Hnd/SR:+5/4; HT:12; Move:0.1c(2G); _
+    LWt:7,500; Load:75; SM:+6; Occ:6+5ASV; DR:75; _
+    Locations:4t2Rr; Four atomic gun turrets (7d×5[4] burn)._
+),
+newmode(_
+    Atomic Gun Turrets,
+    damage(7dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4; SK:Gunner-4)_
+)
+
+Jovian Conqueror,
+basecost(400000000), baseweight(80000000), techlvl(6+3), page(TSP33),
+mods(Equipment),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:500; Hnd/SR:+1/3; HT:13; Move:0.15c(2G); _
+    LWt:40,000; Load:750; SM:+11; Occ:100+250ASV; _
+    DR:150; Locations:11tWi2Rr; Nose cone fixed-mount atomic _
+    gun (12d×5[4] burn), four wing-mounted atomic gun _
+    turrets (10d×5[4] burn), three spine-mounted atomic gun _
+    turrets (10d×5[4] burn), six atomic gun turrets (10d×5[4] burn) _
+    mounted in a belt around the center of the ship._
+),
+newmode(_
+    Nose cone Atomic Gun,
+    damage(12dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4; SK:Gunner-4)_
+),
+newmode(_
+    Wing-Mounted Atomic Gun Turret,
+    damage(10dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4; SK:Gunner-4)_
+),
+newmode(_
+    Spine-Mounted Atomic Gun Turret,
+    damage(10dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4; SK:Gunner-4)_
+),
+newmode(_
+    Center-Mounted Atomic Gun Turret,
+    damage(6dx5),
+    armordivisor(4),
+    damtype(burn),
+    skillused(SK:Gun!, SK:Gunner (Beams), ST:DX-4; SK:Gunner-4)_
+)
+
+Martian War Sphere,
+basecost(50000000), baseweight(300000), techlvl(6+3), page(TSP33),
+mods(Equipment),
+description(_
+    TL:6+3; Skill:Piloting/TL (High-Performance Spacecraft); _
+    ST/HP:125; Hnd/SR:+6/6; HT:14; Move0.1c(2G); _
+    LWt: 150; Load:8; SM:+4; Occ:4ASV; DR:100; _
+    Locations:―; Force Field:DR600._
+)
+
+[LISTS]
+
+<TSP Electronics>
+
+Atomic Guns, Communications, Electronic Warfare, Security, Sensors, Sonar,
+Surveillance
+
+<World Types>
+
+Earthlike, Gas Giants, Hostile Terrestrial, Ice Dwarfs, Ice Worlds,
+Rock Worlds
+
+<Land Terrain Types>
+
+Arctic, Desert, Island/Beach, Jungle, Mountain, Plains, Swampland, Woodlands
+
+<Fast-Draw Types>
+
+Force Sword, Knife, Long Arm, Pistol, Sword, Two-Handed Sword, Arrow, Ammo
+
+<Solar Patrolman Secondary Skills>
+
+SK:Astronomy #Codes(upto 4pts, downto 4pts),
+SK:Boxing #Codes(upto 4pts, downto 4pts),
+SK:Chemistry #Codes(upto 4pts, downto 4pts),
+SK:Climbing #Codes(upto 4pts, downto 4pts),
+SK:Diplomacy #Codes(upto 4pts, downto 4pts),
+#BuildList(_
+    list(Hovercraft, Halftrack, Heavy Wheeled, Motorcycle, Tracked),
+    template(SK:Driving (%listitem%) #Codes(upto 4pts, downto 4pts))_
+),
+#BuildList(_
+    list(#List(TSP Electronics)),
+    template(_
+        SK:Electronics Operation (%listitem%) _
+        #Codes(upto 4pts, downto 4pts)_
+    )_ 
+),
+SK:Free Fall #Codes(upto 4pts, downto 4pts),
+#BuildList(_
+    list(#List(World Types)),
+    template(SK:Geology (%listitem%) #Codes(upto 4pts, downto 4pts))_
+),
+SK:Interrogation #Codes(upto 4pts, downto 4pts),
+#NewItem(_
+    SK:Law (Solar System Patrol), IQ/H, default(IQ - 6), page(B204),
+    cat(_General, Business, Police, Social Sciences/Humanities,
+	Tales of the Solar Patrol)_
+) #Codes(upto 4pts, downto 4pts),
+SK:Machinist #Codes(upto 4pts, downto 4pts),
+#BuildList(_
+    list(Applied, Cryptology, Pure, Statistics, Surveying),
+    template(_
+        SK:Mathematics (%listitem%) _
+        #Codes(upto 4pts, downto 4pts)_
+    )_
+),
+#BuildList(_
+    list(#List(Land Terrain Types)),
+    template(SK:Survival (%listitem%) #Codes(upto 4pts, downto 4pts))_
+),
+SK:Tactics #Codes(upto 4pts, downto 4pts),
+SK:Vacc Suit #Codes(upto 4pts, downto 4pts)_
+
+<Solar Patrolman Background Skills>
+
+SK:Area Knowledge (The Solar System) #Codes(upto 2pts, downto 2pts),
+SK:Cryptography #Codes(upto 2pts, downto 2pts),
+SK:Infomat Operation #Codes(upto 2pts, downto 2pts),
+SK:Performance #Codes(upto 2pts, downto 2pts),
+SK:Physician #Codes(upto 2pts, downto 2pts),
+#BuildList(_
+    List(Large Powerboat, Motorboat, Sailboat, Unpowered),
+    template(SK:Boating (%listitem%) #Codes(upto 2pts, downto 2pts))_
+),
+#BuildList(_
+    list(#List(Fast-Draw Types)),
+    template(SK:Fast-Draw(%listitem%) #Codes(upto 2pts, downto 2pts))_
+)
+
+<Engineer Specialties>
+
+Artillery, Civil, Combat, Electrical, Electronics, Materials, Mining,
+[Type], %type%
+
+<Paleontology Specialties>
+
+Micropaleontology, Paleoanthropology, Paleobotany, Paleozoology
+
+<Armoury Specialties>
+
+Body Armor, Force Shields, Vehicular Armor, Melee Weapons, Small Arms,
+Heavy Weapons, Missile Weapons
+
+<Current Affairs Specialties>
+
+High Culture, Popular Culture, Business, Headline News, People, Politics,
+[Regional], Science & Technology, Sports, Travel
+
+<Worlds>
+
+Mercury, Venus, Earth, Luna, Mars, Asteroid Belt, Io, Europa, Ganymede,
+Callisto

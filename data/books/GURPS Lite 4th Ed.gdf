@@ -1,0 +1,1908 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+		This data file contains information taken from the GURPS Lite Fourth Edition. GURPS Lite is _
+		Copyright © 1998, 1999, 2000, 2001, 2003, 2004 by Steve Jackson Games Incorporated.
+Taboo="GURPS Basic Set 4th Ed.--Characters.gdf", "GURPS Basic Set 3rd Ed. Revised.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Lite 4th Ed.gdf
+//  Created: August 24, 2004
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Lite Fourth Edition. GURPS Lite is
+//  Copyright © 1998, 1999, 2000, 2001, 2003, 2004 by Steve Jackson Games Incorporated.
+// 
+//  Information in this file includes:
+// 	Attributes
+// 	Advantages, Disadvantagess, Quirks, Including Bonuses and Penalties.
+// 	Skills, Including Bonuses, Classes, Needs and Prereqs.
+// 	Equipment
+// 	Templates
+// 
+*******************************************************************************************************************
+// 
+//  David L. Watkins	- Major work
+//  Armin D. Sykes  	- Changes, Updates, Packages/Templates
+//  Craig Roth		- Equipment
+//  Eric B. Smith		- GURPS Data File Coordinator, Equipment, Updates, Corrections, Skill Categories
+//  Martin Etherington	- Conversion of data file to GURPS Lite
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[SETTINGS]
+********************************************************************************************************\[START]
+ModMaxNegPercentLimit = -80
+NeedsDefaultSkillTag = points
+NeedsDefaultSkillValue = 1
+NeedsDefaultSpellTag = points
+NeedsDefaultSpellValue = 1
+RuleOf = 20
+
+********************************************************************************************************\[STOP]
+[SKILLTYPES]
+*******************************************************************************************************\[START]
+N/A, cost(0/1), base(0), defaultstat(0), relname()
+
+DX/E, cost(1/2/4/8), base(-1), defaultstat(ST:DX), relname(DX)
+DX/A, cost(1/2/4/8), base(-2), defaultstat(ST:DX), relname(DX)
+DX/H, cost(1/2/4/8), base(-3), defaultstat(ST:DX), relname(DX)
+DX/VH, cost(1/2/4/8), base(-4), defaultstat(ST:DX), relname(DX)
+DX/WC, cost(3/6/12/24), base(-4), defaultstat(ST:DX), relname(DX)
+
+IQ/E, cost(1/2/4/8), base(-1), defaultstat(ST:IQ), relname(IQ)
+IQ/A, cost(1/2/4/8), base(-2), defaultstat(ST:IQ), relname(IQ)
+IQ/H, cost(1/2/4/8), base(-3), defaultstat(ST:IQ), relname(IQ)
+IQ/VH, cost(1/2/4/8), base(-4), defaultstat(ST:IQ), relname(IQ)
+IQ/WC, cost(3/6/12/24), base(-4), defaultstat(ST:IQ), relname(IQ)
+
+HT/E, cost(1/2/4/8), base(-1), defaultstat(ST:HT), relname(HT)
+HT/A, cost(1/2/4/8), base(-2), defaultstat(ST:HT), relname(HT)
+HT/H, cost(1/2/4/8), base(-3), defaultstat(ST:HT), relname(HT)
+HT/VH, cost(1/2/4/8), base(-4), defaultstat(ST:HT), relname(HT)
+HT/WC, cost(3/6/12/24), base(-4), defaultstat(ST:HT), relname(HT)
+
+Will/E, cost(1/2/4/8), base(-1), defaultstat(ST:Will), relname(Will)
+Will/A, cost(1/2/4/8), base(-2), defaultstat(ST:Will), relname(Will)
+Will/H, cost(1/2/4/8), base(-3), defaultstat(ST:Will), relname(Will)
+Will/VH, cost(1/2/4/8), base(-4), defaultstat(ST:Will), relname(Will)
+Will/WC, cost(3/6/12/24), base(-4), defaultstat(ST:Will), relname(Will)
+
+Per/E, cost(1/2/4/8), base(-1), defaultstat(ST:Perception), relname(Per)
+Per/A, cost(1/2/4/8), base(-2), defaultstat(ST:Perception), relname(Per)
+Per/H, cost(1/2/4/8), base(-3), defaultstat(ST:Perception), relname(Per)
+Per/VH, cost(1/2/4/8), base(-4), defaultstat(ST:Perception), relname(Per)
+Per/WC, cost(3/6/12/24), base(-4), defaultstat(ST:Perception), relname(Per)
+
+Tech/A, cost(1/2/3), base(0), defaultstat(%default), relname(def), subzero(yes)
+Tech/H, cost(2/3/4), base(0), defaultstat(%default), relname(def), subzero(yes)
+
+********************************************************************************************************\[STOP]
+[BASICDAMAGE]
+********************************************************************************************************\[START]
+st(5), thr(1d-4), sw(1d-3)
+
+st(6), thr(1d-4), sw(1d-3)
+st(7), thr(1d-3), sw(1d-2)
+st(8), thr(1d-3), sw(1d-2)
+st(9), thr(1d-2), sw(1d-1)
+st(10), thr(1d-2), sw(1d)
+
+st(11), thr(1d-1), sw(1d+1)
+st(12), thr(1d-1), sw(1d+2)
+st(13), thr(1d), sw(2d-1)
+st(14), thr(1d), sw(2d)
+st(15), thr(1d+1), sw(2d+1)
+
+st(16), thr(1d+1), sw(2d+2)
+st(17), thr(1d+2), sw(3d-1)
+st(18), thr(1d+2), sw(3d)
+st(19), thr(2d-1), sw(3d+1)
+st(20), thr(2d-1), sw(3d+2)
+
+st(21), thr(2d), sw(4d-1)
+st(22), thr(2d), sw(4d)
+st(23), thr(2d+1), sw(4d+1)
+st(24), thr(2d+1), sw(4d+2)
+st(25), thr(2d+2), sw(5d-1)
+
+st(26), thr(2d+2), sw(5d)
+st(27), thr(3d-1), sw(5d+1)
+st(28), thr(3d-1), sw(5d+1)
+st(29), thr(3d), sw(5d+2)
+st(30), thr(3d), sw(5d+2)
+
+st(31), thr(3d+1), sw(6d-1)
+st(32), thr(3d+1), sw(6d-1)
+st(33), thr(3d+2), sw(6d)
+st(34), thr(3d+2), sw(6d)
+st(35), thr(4d-1), sw(6d+1)
+
+st(36), thr(4d-1), sw(6d+1)
+st(37), thr(4d), sw(6d+2)
+st(38), thr(4d), sw(6d+2)
+st(39), thr(4d+1), sw(7d-1)
+
+st(40), thr(4d+1), sw(7d-1)
+st(45), thr(5d), sw(7d+1)
+st(50), thr(5d+2), sw(8d-1)
+st(55), thr(6d), sw(8d+1)
+st(60), thr(7d-1), sw(9d)
+st(65), thr(7d+1), sw(9d+2)
+st(70), thr(8d), sw(10d)
+st(75), thr(8d+2), sw(10d+2)
+st(80), thr(9d), sw(11d)
+st(85), thr(9d+2), sw(11d+2)
+st(90), thr(10d), sw(12d)
+st(95), thr(10d+2), sw(12d+2)
+
+st(100), thr(11d), sw(13d)
+
+//  The LAST item in the list is always the item that is to be used
+//  for anything that didn't fall under the preceding items.
+
+st(0), thr((@int(ST:Striking ST/10)+1)d), sw((@int(Striking ST:ST/10)+3)d)
+
+//  you must use the extra set of parens to separate the math part
+//  from the 'd' for the dice.
+
+********************************************************************************************************\[STOP]
+[CONVERTDICE]
+*******************************************************************************************************\[START]
+
+//  Convert damage bonus into extra dice, as per the Optional Rule: Modifying Dice + Adds on p. B269.
+// 
+//  Starting this section will clear any existing
+//  convert dice items
+// 
+//  break()	'if the bonus is this Value or more ...
+//  adddice()   '... add this Value to the damage dice ...
+//  subtract()  '... then subtract this amount from the bonus
+// 
+//  you need to start with the biggest break you want to deal with,_
+//  and work down to the smallest, because GCA doesn't sort these either
+//  
+
+break(7), adddice(2), subtract(7)
+break(4), adddice(1), subtract(4)
+
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+//  mainwin() positions:
+//   1 ST
+//   2 DX
+//   3 IQ
+//   4 HT
+//   5 Hit Points
+//   6 Fatigue Points
+//   7 Will
+//   8 Perception
+//   9 Basic Speed
+//  10 Basic Move
+//  11 Reserved for movement attributes activated by taking advantages or disadvantages
+// 	(e.g. Flight, Tunneling, No Legs (Aquatic))
+//  12 Size Modifier
+//  13 --------------------
+//  14 Tech Level
+//  15 Money
+//  16 Status
+
+//  Basic Attributes
+ST, symbol(ST), basevalue(10), step(1), maxscore(1000000), minscore(0 - me::syslevels),_
+	up(10), down(-10), mainwin(1), mods(No Fine Manipulators, Size),_
+	disadat(-1), display(no),_
+	initmods( Size, -10%, group(Size ST),_
+			formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)),_
+			forceformula(yes) _
+		| No Fine Manipulators, -40%, group(No Fine Manipulators Stat),_
+			formula(-@if(ST:No Fine Manipulators >0 & owner::score > 10 then 40 else 0)),_
+			forceformula(yes) _
+		)
+
+DX, symbol(DX), basevalue(10), step(1), maxscore(1000000), minscore(0 - me::syslevels),_
+	up(20), down(-20), mainwin(2), mods(No Fine Manipulators),_
+	disadat(-1), display(no),_
+	parryat(@int(me::score/2)+3), blockat(@int(me::score/2)+1),_
+	initmods( No Fine Manipulators, -0%, group(No Fine Manipulators Stat),_
+			formula(-@if(ST:No Fine Manipulators >0 & owner::score > 10 then 40 else 0)),_
+			forceformula(yes) _
+		)
+
+IQ, symbol(IQ), basevalue(10), step(1), maxscore(1000000), minscore(0 - me::syslevels), up(20), down(-20), mainwin(3), disadat(-1), display(no)
+HT, symbol(HT), basevalue(10), step(1), maxscore(1000000), minscore(0 - me::syslevels), up(10), down(-10), mainwin(4), disadat(-1), display(no)
+
+//  Secondary Characteristics
+Basic Lift, basevalue(ST:Lifting ST * ST:Lifting ST / @if(ST:Metric = 1 THEN 11 ELSE 5)), maxscore(1000000), minscore(0), symbol(BL), round(@if(ST:Lifting ST::score <= 7 then 0 else 1))
+
+Hit Points, basevalue(ST:ST), step(1), maxscore(1000000), minscore(0 - me::syslevels),_
+	up(2), down(-2), symbol(HP), mods(Size), mainwin(5),_
+	display(no), disadat(-1),_
+	initmods( Size, -10%, group(Size),_
+			formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)),_
+			forceformula(yes) _
+		)
+
+Fatigue Points, basevalue(ST:HT), step(1), maxscore(1000000), minscore(0 - me::syslevels), up(3), down(-3), symbol(FP), display(No), mainwin(6), disadat(-1)
+Will, basevalue(ST:IQ), step(1), maxscore(1000000), minscore(0 - me::syslevels), up(5), down(-5), mainwin(7), disadat(-1)
+Perception, basevalue(ST:IQ), step(1), maxscore(1000000), minscore(0 - me::syslevels), up(5), down(-5), symbol(Per), mainwin(8), disadat(-1)
+Basic Speed, basevalue((ST:HT + ST:DX) / 4), step(0.25), maxscore(1000000), minscore(0 - me::syslevels), up(5), down(-5), display(No), mainwin(9), disadat(-1)
+Basic Move, basevalue(@if("DI:No Legs (Sessile)" THEN 0 ELSE ST:Basic Speed)), step(1), maxscore(1000000), minscore(0 - me::syslevels), up(5), down(-5), round(-1), display(No), mainwin(10), disadat(-1)
+Striking ST, basevalue(ST:ST), step(1), maxscore(1000000), minscore(ST:ST), up(5), down(0), round(-1), display(No)
+Lifting ST, basevalue(ST:ST), step(1), maxscore(1000000), minscore(ST:ST), up(3), down(0), round(-1), display(No)
+Size Modifier, symbol(SM), basevalue(0), maxscore(1000000), minscore(-100), round(-1), up(0), down(0), step(1), mainwin(12)
+
+Vision, basevalue(ST:Perception), maxscore(1000000), minscore(0)
+Hearing, basevalue(ST:Perception), maxscore(1000000), minscore(0)
+Taste/Smell, basevalue(ST:Perception), maxscore(1000000), minscore(0)
+Touch, basevalue(ST:Perception), maxscore(1000000), minscore(0)
+
+Dodge, basevalue(ST:Basic Speed + 3), maxscore(1000000), minscore(0), round(-1), display(No)
+Parry, basevalue(0), maxscore(1000000), minscore(0), display(No)
+Block, basevalue(0), maxscore(1000000), minscore(0), display(No)
+
+Arm SM, basevalue(ST:Size Modifier), maxscore(1000000), minscore(0), display(no),_
+	gives(_
+		=+@if(me::score < 1 THEN 0 ELSE @if(me::score = 1 THEN 0.5 ELSE @if(me::score = 2 THEN 1 ELSE (@indexedvalue((me::score- (6 * @int(me::score / 6))) + 1, 0.7,1,1.5,2,3,5) * (10 ^ @int(me::score / 6)))))) to ST:Arm Reach _
+		)
+
+Leg SM, basevalue(ST:Size Modifier), maxscore(1000000), minscore(0), display(no),_
+	gives(=+@if(me::score < 1 THEN 0 ELSE @if(me::score = 1 THEN 0.5 ELSE @if(me::score = 2 THEN 1 ELSE (@indexedvalue((me::score- (6 * @int(me::score / 6))) + 1, 0.7,1,1.5,2,3,5) * (10 ^ @int(me::score / 6)))))) to ST:Leg Reach)
+
+Arm Reach, basevalue(0), maxscore(1000000), minscore(0), display(No)
+Leg Reach, basevalue(0), maxscore(1000000), minscore(0), display(No)
+
+Fright Check, basevalue(ST:Will)
+DR, symbol(DR), round(-1), display(no)
+Damage Base, symbol(DamageBase), basevalue(ST:Striking ST), display(no)
+
+//  Encumbrance
+No Encumbrance, basevalue(ST:BL), maxscore(10000000), minscore(0), symbol(NEnc), round(0), display(No)
+Light Encumbrance, basevalue(2 * ST:BL), maxscore(10000000), minscore(0), symbol(LEnc), round(0), display(No)
+Medium Encumbrance, basevalue(3 * ST:BL), maxscore(10000000), minscore(0), symbol(MEnc), round(0), display(No)
+Heavy Encumbrance, basevalue(6 * ST:BL), maxscore(10000000), minscore(0), symbol(HEnc), round(0), display(No)
+X-Heavy Encumbrance, basevalue(10 * ST:BL), maxscore(10000000), minscore(0), symbol(XEnc), round(0), display(No)
+
+No Encumbrance Move, basevalue(@MAX(@if(ST:Ground Move = 0 THEN 0 ELSE 1), ST:Ground Move)), maxscore(10000000), minscore(0), symbol(NEncMove), round(-1), display(No)
+Light Encumbrance Move, basevalue(@MAX(@if(ST:Ground Move = 0 THEN 0 ELSE 1), 0.8 * ST:Ground Move)), maxscore(1000000), minscore(0), symbol(LEncMove), round(-1), display(No)
+Medium Encumbrance Move, basevalue(@MAX(@if(ST:Ground Move = 0 THEN 0 ELSE 1), 0.6 * ST:Ground Move)), maxscore(1000000), minscore(0), symbol(MEncMove), round(-1), display(No)
+Heavy Encumbrance Move, basevalue(@MAX(@if(ST:Ground Move = 0 THEN 0 ELSE 1), 0.4 * ST:Ground Move)), maxscore(1000000), minscore(0), symbol(HEncMove), round(-1), display(No)
+X-Heavy Encumbrance Move, basevalue(@MAX(@if(ST:Ground Move = 0 THEN 0 ELSE 1), 0.2 * ST:Ground Move)), maxscore(1000000), minscore(0), symbol(XEncMove), round(-1), display(No)
+
+//   Arm ST/Physical Feats
+*******************************************************************************************************************
+One Arm Lifting ST, basevalue(ST:Lifting ST), maxscore(1000000), minscore(0), round(-1)
+One Arm Striking ST, basevalue(ST:Striking ST), maxscore(1000000), minscore(0), round(-1)
+Two Arm Lifting ST, basevalue(ST:Lifting ST), maxscore(1000000), minscore(0), round(-1)
+Two Arm Striking ST, basevalue(ST:Striking ST), maxscore(1000000), minscore(0), round(-1)
+Three Arm Lifting ST, basevalue(@if(AD:Extra Arms > 0 THEN ST:Lifting ST ELSE 0)), maxscore(1000000), minscore(0), round(-1)
+Three Arm Striking ST, basevalue(@if(AD:Extra Arms > 0 THEN ST:Striking ST ELSE 0)), maxscore(1000000), minscore(0), round(-1)
+
+One-Handed Lift, basevalue(2 * @if(ST:One Arm Lifting ST::score <= 7 then ST:One Arm Lifting ST * ST:One Arm Lifting ST / @if(ST:Metric = 1 THEN 11 ELSE 5) else @int((ST:One Arm Lifting ST * ST:One Arm Lifting ST / @if(ST:Metric = 1 THEN 11 ELSE 5))+0.5))), maxscore(1000000), minscore(0), round(1), page(B353), units(lb | kg)
+Two-Handed Lift, basevalue(8 * @if(ST:Two Arm Lifting ST::score <= 7 then ST:Two Arm Lifting ST * ST:Two Arm Lifting ST / @if(ST:Metric = 1 THEN 11 ELSE 5) else @int((ST:Two Arm Lifting ST * ST:Two Arm Lifting ST / @if(ST:Metric = 1 THEN 11 ELSE 5))+0.5))), maxscore(1000000), minscore(0), round(1), page(B353), units(lb | kg)
+
+High Jump, basevalue((((6 * @max(ST:Basic Ground Move, SK:Jumping::level / 2)) - 10) * @if(ST:Metric = 1 THEN 2.5 ELSE 1)) * (2 ^ ST:Super Jump)), maxscore(1000000), minscore(0), page(B352), units(in | cm)
+Broad Jump, basevalue((((2 * @max(ST:Basic Ground Move, SK:Jumping::level / 2)) - 3) / @if(ST:Metric = 1 THEN 3 ELSE 1)) * (2 ^ ST:Super Jump)), maxscore(1000000), minscore(0), page(B352), units(ft | m)
+
+Shove/Knock Over, basevalue(12 * ST:Basic Lift), maxscore(1000000), minscore(0), page(B353), units(lb | kg)
+Carry on Back, basevalue(15 * ST:Basic Lift), maxscore(1000000), minscore(0), page(B353), units(lb | kg)
+Shift Slightly, basevalue(50 * ST:Basic Lift), maxscore(1000000), minscore(0), page(B353), units(lb | kg)
+
+//  Movement
+Ground Move, basevalue(ST:Basic Ground Move), maxscore(1000000), minscore(0), round(-1)
+Water Move, basevalue(ST:Basic Water Move), step(1), maxscore(1000000), minscore(0), up(5), down(-5), round(-1)
+Air Move, basevalue(ST:Basic Air Move), maxscore(1000000), minscore(0), hide(yes), display(no), up(2), down(-2), step(1), round(-1)
+Space Move, basevalue(@if(_
+					@itemhasmod(AD:Flight, Newtonian Space Flight) THEN 2 * Basic Speed ELSE _
+						@if(_
+							@itemhasmod(AD:Flight, Space Flight) THEN 2 * Basic Speed ELSE 0 _
+							)_
+				)_
+				), maxscore(1000000), minscore(0), hide(yes), display(no), up(2), down(-2), step(1), round(-1)
+Tunneling Move, basevalue(@itemhasmod(AD:Tunneling, Tunneling Move)), maxscore(1000000), minscore(0), hide(yes), display(no)
+
+//  Social Background
+--------------------, basevalue(0), mainwin(13), display(no)
+Tech Level, basevalue(0), step(1), maxscore(12), minscore(0), up(5), down(-5), symbol(TL), round(1), mainwin(14), mods(Tech Level)
+Money, basevalue((ST:Starting Wealth * @max(_
+								@if(@hasmod(5% of Starting Wealth) THEN 0.05),_
+								@if(@hasmod(10% of Starting Wealth) THEN 0.1),_
+								@if(@hasmod(15% of Starting Wealth) THEN 0.15),_
+								@if(@hasmod(20% of Starting Wealth) THEN 0.2),_
+								@if(@hasmod(30% of Starting Wealth) THEN 0.3),_
+								@if(@hasmod(40% of Starting Wealth) THEN 0.4),_
+								@if(@hasmod(50% of Starting Wealth) THEN 0.5),_
+								@if(@hasmod(60% of Starting Wealth) THEN 0.6),_
+								@if(@hasmod(70% of Starting Wealth) THEN 0.7),_
+								@if(@hasmod(80% of Starting Wealth) THEN 0.8),_
+								@if(@hasmod(90% of Starting Wealth) THEN 0.9),_
+								@if(@hasmod(100% of Starting Wealth) THEN 1) _
+								) _
+				) - char::equipmentcost + char::campaigntotalmoney),_
+	step(0), minscore(0), display(No), round(1), mainwin(15), initmods(20% of Starting Wealth, +0), mods(Money)
+
+Starting Wealth, basevalue(ST:Wealth Modifier * @indexedvalue(ST:Tech Level::basevalue + 1, 25, 50, 75, 100, 200, 500, 1000, 1500, 2000, 3000, 5000, 7500, 10000)), step(1), minscore(0), display(No), round(1)
+Remaining Funds, basevalue(ST:Starting Wealth - char::equipmentcost + char::campaigntotalmoney), step(0), minscore(0), display(No), round(1)
+Wealth Modifier, basevalue(10), step(1), minscore(0), display(No), round(-1)
+
+//  Telekinesis Stats
+TK ST, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no)
+TK Basic Lift, symbol(TK BL), basevalue(ST:TK ST * ST:TK ST / @if(ST:Metric = 1 THEN 11 ELSE 5)), maxscore(1000000), minscore(0), round(@if(ST:TK ST::score <= 7 then 0 else 1)), hide(yes), display(no), units(lb|kg)
+TK Max Lift, symbol(TK ML), basevalue(8 * "ST:TK Basic Lift"), maxscore(1000000), minscore(0), hide(yes), display(no), units(lb|kg)
+TK Shove/Knock Over, basevalue(12 * ST:TK Basic Lift), maxscore(1000000), minscore(0), hide(yes), display(no), page(B353), units(lb|kg)
+TK Shift Slightly, basevalue(50 * ST:TK Basic Lift), maxscore(1000000), minscore(0), hide(yes), display(no), page(B353), units(lb|kg)
+TK Move, basevalue(0), maxscore(1000000), minscore(0), hide(yes), display(no)
+
+TK No Encumbrance, basevalue(ST:TK Basic Lift), maxscore(10000000), minscore(0), symbol(TKNEnc), round(0), hide(yes), display(no)
+TK Light Encumbrance, basevalue(2 * ST:TK Basic Lift), maxscore(10000000), minscore(0), symbol(TKLEnc), round(0), hide(yes), display(no)
+TK Medium Encumbrance, basevalue(3 * ST:TK Basic Lift), maxscore(10000000), minscore(0), symbol(TKMEnc), round(0), hide(yes), display(no)
+TK Heavy Encumbrance, basevalue(6 * ST:TK Basic Lift), maxscore(10000000), minscore(0), symbol(TKHEnc), round(0), hide(yes), display(no)
+TK X-Heavy Encumbrance, basevalue(10 * ST:TK Basic Lift), maxscore(10000000), minscore(0), symbol(TKXEnc), round(0), hide(yes), display(no)
+
+TK No Encumbrance Move, basevalue(ST:TK Move), maxscore(10000000), minscore(0), symbol(TKNEncMove), round(-1), hide(yes), display(no)
+TK Light Encumbrance Move, basevalue(0.8 * ST:TK Move), maxscore(1000000), minscore(0), symbol(TKLEncMove), round(-1), hide(yes), display(no)
+TK Medium Encumbrance Move, basevalue(0.6 * ST:TK Move), maxscore(1000000), minscore(0), symbol(TKMEncMove), round(-1), hide(yes), display(no)
+TK Heavy Encumbrance Move, basevalue(0.4 * ST:TK Move), maxscore(1000000), minscore(0), symbol(TKHEncMove), round(-1), hide(yes), display(no)
+TK X-Heavy Encumbrance Move, basevalue(0.2 * ST:TK Move), maxscore(1000000), minscore(0), symbol(TKXEncMove), round(-1), hide(yes), display(no)
+
+//  Melee Weapon Table listings
+Punch, display(no), mode(Punch),_
+	gives(=-@textindexedvalue($modetag(charskillused), ("SK:Karate", ST:Encumbrance Penalty::score), ELSE 0) to me::skillscore$, =+(@textindexedvalue($modetag(charskillused), ("SK:Karate", 1), ELSE 0) * (@int(($modetag(charskillscore) + ST:Encumbrance Penalty::score)/2) - @int($modetag(charskillscore)/2) - ST:Encumbrance Penalty::score)) to me::parryscore$),_
+	damage(_
+		thr-1 + _
+			@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Feet Only) = 0 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Feet Only) = 0 then @basethdice(ST:Punch) else 0)) + _
+				@max(_
+					@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+					@if("SK:Boxing::level" = ST:DX+1 then @basethdice(ST:Punch) ELSE @if("SK:Boxing::level" > ST:DX+1 then 2 * @basethdice(ST:Punch) ELSE 0)),_
+					@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+				)_
+		), damtype(_
+					$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Feet Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1  & @itemhasmod(AD:Claws (Talons), Feet Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1  & @itemhasmod(AD:Claws (Long Talons), Feet Only) = 0 THEN "cut/imp" ELSE "cr")))_
+				), reach(C), parry(0), skillused(ST:DX, SK:Brawling, SK:Boxing, SK:Karate), mods(Punch/Kick),_
+	damagebasedon(ST:Punch),_
+	reachbasedon(ST:One Arm Reach),_
+	basevalue(ST:One Arm Striking ST)
+
+Kick, display(no), mode(Kick),_
+	gives(=-@textindexedvalue($modetag(charskillused), ("SK:Karate", ST:Encumbrance Penalty::score), ELSE 0) to me::skillscore$, =+(@textindexedvalue($modetag(charskillused), ("SK:Karate", 1), ELSE 0) * (@int(($modetag(charskillscore) + ST:Encumbrance Penalty::score)/2) - @int($modetag(charskillscore)/2) - ST:Encumbrance Penalty::score)) to me::parryscore$),_
+	damage(_
+				thr+ _
+				@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0))) + _
+				@if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) + _
+				@max(_
+					@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Punch) ELSE 0),_
+					@if("SK:Karate::level" = ST:DX then @basethdice(ST:Punch) ELSE @if("SK:Karate::level" > ST:DX then 2 * @basethdice(ST:Punch) ELSE 0))_
+				)_
+			), damtype(_
+				$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Hands Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 & @itemhasmod(AD:Claws (Talons), Hands Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 THEN "cut/imp" ELSE "cr")))_
+				), reach(C,1), parry(No), skillused(ST:DX-2, SK:Brawling-2, SK:Karate-2, SK:Kicking (Karate), SK:Kicking (Brawling)), mods(Punch/Kick),_
+	damagebasedon(ST:Kick), reachbasedon(ST:Leg Reach), basevalue(ST:Striking ST)
+
+Bite, display(no), mode(Bite), mods(Combat Table),_
+	damage(_
+		thr-1 + _
+		@if("SK:Brawling::level" > ST:DX+1 then @basethdice(ST:Bite) else 0) + _
+		-@if("DI:Weak Bite::level" = 1 then 2 * @basethdice(ST:Bite) else 0)_
+		),_
+	damtype($if("AD:Teeth (Sharp Teeth)::level" = 1 THEN "cut" ELSE $if("AD:Teeth (Sharp Beak)::level" = 1 THEN "pi+" ELSE $if("AD:Teeth (Fangs)::level" = 1 THEN "imp" ELSE $if("AD:Vampiric Bite::level" = 1 THEN "cut" ELSE "cr"))))), reach(C), parry(No), skillused(ST:DX, SK:Brawling),_
+	damagebasedon(ST:Bite), reachbasedon(ST:Neck Reach), basevalue(ST:Striking ST)
+
+//  Helper stats
+Metric, basevalue(0), up(0), down(0), step(1), maxscore(1), minscore(0), display(no), hide(yes)
+Status Max, basevalue(ST:Status), display(no), hide(yes)
+Super Jump, basevalue(0), hide(yes), display(no)
+Enhanced Ground Move, basevalue(0), hide(yes), display(no),_
+	gives(_
+		=@if( me::score = @int(me::score) then _
+			@power(2, me::score) _
+		else _
+			@power(2, @int(me::score)) * 1.5 _
+			) * ST:Ground Move::basescore - ST:Ground Move::basescore _
+		to ST:Ground Move _
+		)
+Enhanced Air Move, basevalue(0), hide(yes), display(no),_
+	gives(_
+		=@if( me::score = @int(me::score) then _
+			@power(2, me::score) _
+		else _
+			@power(2, @int(me::score)) * 1.5 _
+			) * ST:Air Move::basescore - ST:Air Move::basescore _
+		to ST:Air Move _
+		)
+Enhanced Space Move, basevalue(0), hide(yes), display(no),_
+	gives(_
+		=@if( me::score = @int(me::score) then _
+			@power(2, me::score) _
+		else _
+			@power(2, @int(me::score)) * 1.5 _
+			) * ST:Space Move::basescore - ST:Space Move::basescore _
+		to ST:Space Move _
+		)
+Enhanced Water Move, basevalue(0), hide(yes), display(no),_
+	gives(_
+		=@if( me::score = @int(me::score) then _
+			@power(2, me::score) _
+		else _
+			@power(2, @int(me::score)) * 1.5 _
+			) * ST:Water Move::basescore - ST:Water Move::basescore _
+		to ST:Water Move _
+		)
+
+Basic Ground Move, maxscore(1000000), minscore(0), hide(yes), display(no), round(-1),_
+	basevalue(@if("DI:No Legs (Aerial)" THEN 0 ELSE @if("DI:No Legs (Aquatic)" THEN 0 ELSE @if("DI:No Legs (Semi-Aquatic)" THEN ST:Basic Move/5 ELSE @if("DI:No Legs (Sessile)" THEN 0 ELSE ST:Basic Move)))))
+Basic Water Move, maxscore(1000000), minscore(0), hide(yes), display(no), round(-1),_
+	basevalue(ST:Basic Move / @if(AD:Amphibious THEN 1 ELSE @if("DI:No Legs (Aquatic)" THEN 1 ELSE @if("DI:No Legs (Semi-Aquatic)" THEN 1 ELSE 5))))
+Basic Air Move, maxscore(1000000), minscore(0), hide(yes), display(no), round(-1),_
+	basevalue(@if(AD:Brachiator THEN ST:Basic Move / 2 ELSE @if(AD:Walk on Air THEN ST:Ground Move ELSE @if(AD:Flight THEN @if(@itemhasmod(Flight, Space Flight Only) THEN 0 ELSE 2 * ST:Basic Speed) ELSE 0)))) 
+Basic Space Move, maxscore(1000000), minscore(0), hide(yes), display(no), round(-1),_
+	basevalue(@if(@itemhasmod(AD:Flight, Newtonian Space Flight) THEN 2 * Basic Speed ELSE @if(@itemhasmod(AD:Flight, Space Flight) THEN 2 * Basic Speed ELSE 0 )))
+
+No Fine Manipulators, basevalue(0), display(no), hide(yes)
+Native Languages, basevalue(0), display(no), hide(yes)
+Native Cultural Familiarities, basevalue(0), display(no), hide(yes)
+
+//  Magery Prerequisite Work-around Stats
+Magery, basevalue(0), display(no), minscore(0), maxscore(1000000), hide(yes)
+Magery Air, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Body Control, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Communication & Empathy, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Earth, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Enchantment, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Fire, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Gate, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Healing, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Knowledge, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Light & Darkness, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Meta-Spells, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Mind Control, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Movement, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Necromancy, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Protection & Warning, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+Magery Water, basevalue(ST:Magery), display(no), minscore(0), maxscore(100), hide(yes)
+
+//  Reaction
+Appealing, basevalue(0), display(no)
+Unappealing, basevalue(0), display(no)
+Reaction, basevalue(0), display(no)
+Status, basevalue(0), display(no), round(-1), mainwin(16)
+
+********************************************************************************************************\[STOP]
+[Languages]
+*******************************************************************************************************\[START]
+<Language>
+Language, 2/4, page(L7), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), taboo(Native Languages > 1),_
+	x(#InputToTagReplace("Specify the language here:", name, , "Language"))
+Language (Spoken), 1/2, page(L7), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Social Background), taboo(Native Languages > 1),_
+	x(#InputToTagReplace("Specify the language here:", name, , "Language (Spoken)"))
+Language (Written), 1/2, page(L7), upto(3 LimitingTotal), mods(Language), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written, Social Background), taboo(Native Languages > 1),_
+	ndl(@if(ST:Tech Level::basescore <=4 THEN 1 ELSE 0)),_
+	x(#InputToTagReplace("Specify the language here:", name, , "Language (Written)"))
+
+Language - Native, 2/4, displaycost(0/-2/+), init(3), page(L7), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Language Written, Social Background), taboo(Native Languages > 1),_
+	x(#InputToTagReplace("Specify the language here:", name, "English", "Language - Native")),_
+	initmods(Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), group(Language), page(L7))
+Language - Native (Spoken), 1/2, displaycost(0/-1/+), init(3), page(L7), upto(3 LimitingTotal), mods(Language), levelnames([None], Broken, Accented, Native), cat(Language, Language Spoken, Social Background), taboo(Native Languages > 1),_
+	x(#InputToTagReplace("Specify the language here:", name, "English", "Language - Native (Spoken)")),_
+	initmods(Native Speaker, -3, gives(=+0.5 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 2 else 3)), forceformula(yes), group(Language), page(L7))
+Language - Native (Written), 1/2, displaycost(-3/-2/+), init(0), page(L7), upto(3 LimitingTotal), mods(Language), levelnames([Illiterate], Semi-Literate, Literate, Native), cat(Language, Language Written, Social Background), taboo(Native Languages > 1),_
+	ndl(@if(ST:Tech Level::basescore <=4 THEN 1 ELSE 0)),_
+	x(#InputToTagReplace("Specify the language here:", name, "English", "Language - Native (Written)")),_
+	initmods(Native Writer, -3, gives(=+0.5 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 2 else 3)), forceformula(yes), group(Language), page(L7))
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Lite>
+_New Advantage, 0, noresync(yes), x(#InputToTagReplace("please enter the name of this Advantage:" , name, ,"New Advantage"), #edit)
+_New Parent Item, 0, isparent(yes),_
+	description(_
+			In GCA a "Parent" item can have other traits assigned to it as "Children." This is essentially an organizational structure, allowing you to file multiple traits together under the parent item if you wish. _
+			To make an item a "child" right click on it and select "Make Child of..." _
+			The child items will be hidden by default; you may show the child items by right clicking on the parent and selecting "Show Components." Once displayed the children will be shown in a "tree" format under the parent. _
+			Any item may be assigned as a parent by right clicking on it and selecting "Make Parent"; this entry is here for convenience, as it is automatically designated a Parent. _
+			),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, ,"New Parent Item"))
+
+Appearance, 4/12/12/16/16/20, mods(Attractive, Appearance), upto(6), page(L6),_
+	levelnames([Average], Attractive, Beautiful, Handsome, Very Beautiful, Very Handsome, Transcendent),_
+	cat(Lite), taboo(DI:Appearance),_
+	gives(_
+		=@if(_
+			(@hasmod(Androgynous) | @hasmod(Impressive) | @hasmod(Universal)) & %level >= 2 _
+			then _
+				@indexedvalue(%level, 0, 3, 3, 4, 4, 5) _
+			else _
+				@indexedvalue(%level, 1, 2, 2, 2, 2, 2) _
+			) to ST:Unappealing,_
+		=@if(_
+			(@hasmod(Androgynous) | @hasmod(Impressive) | @hasmod(Universal)) & %level >= 2 _
+			then _
+				@indexedvalue(%level, 0, 3, 3, 4, 4, 5) _
+			else _
+				@indexedvalue(%level, 1, 4, 4, 6, 6, 8) _
+			) to ST:Appealing,_
+		=@if(_
+			(@hasmod(Androgynous) | @hasmod(Impressive) | @hasmod(Universal)) & %level >= 2 _
+			then _
+				@indexedvalue(%level, 0, 3, 3, 4, 4, 5) _
+			else _
+				@indexedvalue(%level, 1, 4, 4, 6, 6, 8) _
+			) to SK:Sex Appeal _
+		)
+
+Charisma, 5/10, gives(+1 to ST:Reaction, +1 To GR:Charisma), conditional(+1 to GR:Influence Skills when "making Influence rolls"), page(L7)
+Voice, 10, gives(+2 To GR:Voice), page(L7), taboo(DI:Mute, DI:Disturbing Voice),_
+	conditional(+2 to ST:Reaction when "your voice can be heard")
+High TL, 5/10, gives(+1 to ST:Tech Level), page(L7)
+
+<Lite>
+Wealth, 10/20/30/50/75, upto(15), page(L8), mods(Wealth),_
+	levelnames([Average], Comfortable, Wealthy, Very Wealthy, Filthy Rich, Multimillionaire 1, Multimillionaire 2, Multimillionaire 3, Multimillionaire 4, Multimillionaire 5, Multimillionaire 6, Multimillionaire 7, Multimillionaire 8, Multimillionaire 9, Multimillionaire 10, Multimillionaire 11, Multimillionaire 12),_
+	taboo(DI:Wealth, AD:Wealth > me::level, AD:Wealth < me::level, AD:Wealth > @if(@itemhasmod(AD:Wealth, Heir) = 0 THEN 100 ELSE @itemhasmod(AD:Wealth, Heir)-1) ), cat(Mundane, Social, Wealth),_
+	gives(_
+			=@indexedvalue(%level, 10, 40, 190, @power(10, (me::level-1))-10) To ST:Wealth Modifier,_
+			=@if(AD:Status::level = 0 THEN @if(DI:Status::baselevel = 0 THEN @indexedvalue(%level, 0, 1, 1, 1, 2, 3) ELSE 0) ELSE 0) To ST:Status,_
+			=@if(AD:Status::level > 0 THEN @indexedvalue(%level, 0, 1, 1, 1, 2, 3) ELSE 0) To AD:Status,_
+			=@if(AD:Status::level = 0 THEN -@indexedvalue(%level, 0, 1, 1, 1, 2, 3) ELSE 0) To DI:Status_
+		)
+
+Reputation, 5/10, mods(Reputation, Reputation Advantage), page(L8), upto(4),_
+	initmods(_
+			People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) _
+			| Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation) _
+			),_
+	conditional(+1 to ST:Reaction, +1 to SK:Indimidation when "your reputation counts", -1 to SK:Intimidation when "your reputation works against you"),_
+	x(#InputToTag("Specify the reason for your reputation here:", nameext, , "Reputation"))
+
+Status, 5/10, page(L8), upto(8), gives(+1 to ST:Status), taboo(DI:Status)
+
+Acute Hearing, 2/4, page(L8)
+Acute Touch, 2/4, page(L8)
+Acute Taste and Smell, 2/4, page(L8)
+Acute Vision, 2/4, page(L8)
+Acute [sense], 2/4, page(L8),_
+	x(#InputReplace("Specify the specialized sense that is superior (Scanning Sense, Vibration Sense, etc.):", "[sense]", , "Acute Sense"))
+Ambidexterity, 5, page(L8), taboo(DI:One Arm, DI:One Hand)
+Animal Empathy, 5, page(L8), taboo(DI:Frightens Animals)
+Catfall, 10, page(L8)
+Combat Reflexes, 15, gives(+1 To GR:Combat Reflexes, +2 To Fright Check), page(L8), taboo(DI:Combat Paralysis, AD:Enhanced Time Sense)
+Danger Sense, 15, mods(Danger Sense), page(L9), taboo(AD:Precognition)
+Daredevil, 15, page(L9)
+Empathy, 15, gives(+3 To GR:Empathy), conditional(+3 to SK:Psychology when "you can converse with subject"), page(L9), taboo(DI:Low Empathy)
+Enhanced Block, 5/10, gives(+1 To Block), page(L9)
+Enhanced Dodge, 15/30, gives(+1 To Dodge), page(L9)
+Enhanced Parry (bare hands), 5/10, page(L9)
+Enhanced Parry (%Melee Weapon%), 5/10, page(L9),_
+	x(#ChoiceList(_
+			name(OneMeleeWeapon),_
+			title(Enhanced Parry),_
+			text(Choose a Melee Weapon skill from the list:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Axe/Mace",_
+				"Broadsword",_
+				"Flail",_
+				"Knife",_
+				"Polearm",_
+				"Rapier",_
+				"Shortsword",_
+				"Smallsword",_
+				"Spear",_
+				"Staff",_
+				"Two-Handed Sword"_
+			)_
+			)_
+	), noresync(yes)
+Enhanced Parry (all parries), 10/20, gives(+1 To Parry), page(L9)
+Fearlessness, 2/4, gives(+1 To ST:Fright Check), page(L9), taboo(DI:Fearfulness)
+Flexibility, 5, gives(+3 To GR:Flexibility), page(L9), taboo(AD:Double-Jointed)
+Double-Jointed, 15, gives(+5 To GR:Flexibility), page(L9), taboo(AD:Flexibility)
+Hard to Kill, 2/4, page(L9), taboo(DI:Easy to Kill)
+High Pain Threshold, 10, page(L9), taboo(DI:Low Pain Threshold, AD:Supernatural Durability)
+Jumper (Time), 100, mods(Jumper), page(L9)
+Jumper (World), 100, mods(Jumper), page(L9)
+Language Talent, 10, gives(+1 To Languages unless target::baselevel = 0), page(L9), cat(Mundane, Mental)
+Luck, 15/30/60, mods(Luck), levelnames( , Extraordinary, Ridiculous), page(L9), upto(3)
+Night Vision, 1/2, page(L9), upto(9), taboo(DI:Blindness, DI:Night Blindness, AD:Dark Vision)
+Perfect Balance, 15, gives(+1 To GR:Perfect Balance, +4 to SK:Immovable Stance), page(L10)
+
+Resistant, 5/10/15/30, mods(Resistant), levelnames(Rare, Occasional, Common, Very Common),_
+	page(L10), upto(4), cat(Lite),_
+	initmods( Degree: Immunity, *1, shortname(Immunity), group(Resistant) ),_
+	x(_
+		#InputToTagReplace("please specify the noxious item or substance you are Resistant or Immune to:" , nameext, , "Resistant"),_
+		#buildit _
+	)
+
+//  Talents
+Animal Friend, 5/10, gives(+1 To GR:Animal Friend), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Animal Handling, Falconry, Packing, Riding, Teamster, Veterinary)
+Artificer, 10/20, gives(+1 To GR:Artificer), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Armoury, Carpentry, Electrician, Electronics Repair, Engineer, Machinist, Masonry, Mechanic, Smith)
+Business Acumen, 10/20, gives(+1 To GR:Business Acumen), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Accounting, Administration, Economics, Finance, Gambling, Market Analysis, Merchant, Propaganda)
+Gifted Artist, 5/10, gives(+1 To GR:Gifted Artist), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Artist, Jeweler, Leatherworking, Photography, Sewing)
+Green Thumb, 5/10, gives(+1 To GR:Green Thumb), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Biology, Farming, Gardening, Herb Lore, Naturalist)
+Healer, 10/20, gives(+1 To GR:Healer), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Diagnosis, Esoteric Medicine, First Aid, Pharmacy, Physician, Physiology, Psychology, Surgery, Veterinary)
+Mathematical Ability, 10/20, gives(+1 To GR:Mathematical Ability), page(L10), upto(4), taboo(DI:Innumerate), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Accounting, Astronomy, Cryptography, Engineer, Finance, Market Analysis, Mathematics, Physics)
+Musical Ability, 5/10, gives(+1 To GR:Musical Ability), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Group Performance (Conducting), Musical Composition, Musical Influence, Musical Instrument, Singing)
+Outdoorsman, 10/20, gives(+1 To GR:Outdoorsman), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Camouflage, Fishing, Mimicry, Naturalist, Navigation, Survival, Tracking)
+Smooth Operator, 15/30, gives(+1 To GR:Smooth Operator), page(L10), upto(4), cat(Talents),_
+	conditional(+1 to ST:Reaction), description(Acting, Carousing, Detect Lies, Diplomacy, Fast-Talk, Intimidation, Leadership, Panhandling, Politics, Public Speaking, Savoir-Faire, Sex Appeal, Streetwise)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+_New Perk, 1, noresync(yes), x(#InputToTagReplace("please enter the name of this Perk:" , name, , "New Perk"), #edit)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Lite>
+_New Disadvantage, 0, noresync(yes), x(#InputToTagReplace("please enter the name of this Disadvantage:" , name, , "New Disadvantage"), #edit)
+_New Parent Item, 0, isparent(yes),_
+	description(_
+			In GCA a "Parent" item can have other traits assigned to it as "Children." This is essentially an organizational structure, allowing you to file multiple traits together under the parent item if you wish. _
+			To make an item a "child" right click on it and select "Make Child of..." _
+			The child items will be hidden by default; you may show the child items by right clicking on the parent and selecting "Show Components." Once displayed the children will be shown in a "tree" format under the parent. _
+			Any item may be assigned as a parent by right clicking on it and selecting "Make Parent"; this entry is here for convenience, as it is automatically designated a Parent. _
+			),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, , "New Parent Item"))
+
+Appearance, -4/-8/-16/-20/-24, mods(Appearance), upto(5),_
+	levelnames([Average], Unattractive, Ugly, Hideous, Monstrous, Horrific),_
+	page(L6), taboo(AD:Appearance),_
+	gives(_
+	=@indexedvalue(%level, -1, -2, -4, -5, -6) To GR:Appeal,_
+	=@indexedvalue(%level, -2, -4, -8, -10, -12) To SK:Sex Appeal _
+	)
+Odious Personal Habit, -5/-10, upto(3), page(L7),_
+	conditional(-1 to ST:Reaction when "people notice your problem"),_
+	x(#InputToTag("Specify the Odious Personal Habit:", nameext, , "Odious Personal Habit"))
+Low TL, -5/-10, gives(-Owner::Level to ST:Tech Level), page(L7)
+Wealth, -10/-15/-25, gives(=@indexedvalue(%level, -5, -8, -10) To ST:Wealth Modifier), upto(3), page(L8), levelnames([Average], Struggling, Poor, Dead Broke), taboo(AD:Wealth)
+Reputation, -5/-10, mods(Reputation, Reputation Disadvantage), page(L8), upto(4),_
+	initmods(_
+			People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation) _
+			| Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation) _
+			),_
+	conditional(-1 to ST:Reaction, +1 to SK:Indimidation when "your reputation counts", -1 to SK:Intimidation when "your reputation works against you"),_
+	x(#InputToTag("Specify the reason for your reputation here:", nameext, , "Reputation"))
+Status, -5/-10, page(L8), upto(2), gives(-1 to ST:Status), taboo(AD:Status)
+
+Bad Sight (correctable), -10, page(L10), taboo(DI:Blindness, DI:Bad Sight (uncorrectable))
+Bad Sight (uncorrectable), -25, page(L10), taboo(DI:Blindness, DI:Bad Sight (correctable))
+Bad Temper, -10, displaycost(-10*), mods(Self-Control), page(L10),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Bloodlust, -10, displaycost(-10*), mods(Self-Control), page(L10),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Code of Honor, -5/-10, page(L10), upto(3),_
+	x(#InputToTag("Specify the type of Code of Honor:", nameext, , "Code of Honor"))
+Code of Honor (Pirate's), -5, page(L10)
+Code of Honor (Gentleman's), -10, page(L10)
+Curious, -5, displaycost(-5*), mods(Self-Control), page(L11), taboo(DI:Incurious),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Delusion, -5/-10/-15, upto(3), levelnames(Minor, Major, Severe), page(L11),_
+	gives(-1 to ST:Reaction),_
+	x(#InputToTag("Specify your delusion here:", nameext, , "Delusion"))
+Gluttony, -5, displaycost(-5*), mods(Self-Control), page(L11), taboo(AD:Doesn't Eat or Drink),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Greed, -15, displaycost(-15*), mods(Self-Control), page(L11),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Hard of Hearing, -10, gives(-4 To ST:Hearing), page(L11), mods(Hard of Hearing/Deafness), taboo(DI:Deafness)
+Honesty, -10, displaycost(-10*), mods(Self-Control), page(L11),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) ),_
+	conditional(+1 to ST:Reaction when "honesty becomes known", +3 to ST:Reaction when "a question of honor or trust is involved")
+Impulsiveness, -10, displaycost(-10*), mods(Self-Control), page(L11),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Intolerance, -5/-10, upto(2), page(L11),_
+	levelnames(Intolerance of one group, Total Intolerance)
+Jealousy, -10, page(L11)
+Lecherousness, -15, displaycost(-15*), mods(Self-Control), page(L11),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Obsession, -5/-10, displaycost(-5/-10/+*), mods(Self-Control), levelnames(Short-Term Goal, Long-Term Goal), upto(2), page(L11),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Overconfidence, -5, displaycost(-5*), mods(Self-Control), page(L11),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) ),_
+	conditional(+2 to ST:Reaction when "young or naive individuals", -2 to ST:Reaction when "experienced NPCS")
+Pacifism (Reluctant Killer), -5, page(L12), taboo(DI:Pacifism (Cannot Harm Innocents), DI:Pacifism (Cannot Kill), DI:Pacifism (Self-Defense Only), DI:Pacifism (Total Nonviolence))
+Pacifism (Cannot Harm Innocents), -10, page(L12), taboo(DI:Pacifism (Reluctant Killer), DI:Pacifism (Cannot Kill), DI:Pacifism (Self-Defense Only), DI:Pacifism (Total Nonviolence))
+Phobia, -5/-10, displaycost(-5/-10/+*), upto(4), mods(Self-Control), page(L12),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+	x(#InputToTag("Specify what you're afraid of here:", nameext, , "Phobia"))
+Phobia (%example%), %examplecostlist%, displaycost(varies*), mods(Self-Control), page(L10),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) ),_
+	x(#ChoiceList(_
+			name(example),_
+			title(Phobia),_
+			text(Choose a phobia from the list of examples provided:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Autophobia: Being Alone"=-15,_
+				"Hemophobia: Blood"=-10,_
+				"Ailurophobia: Cats"=-5,_
+				"Demophobia: Crowds"=-15,_
+				"Scotophobia: Darkness"=-15,_
+				"Necrophobia: Death and the Dead"=-10,_
+				"Mysophobia: Dirt"=-10,_
+				"Cynophobia: Dogs"=-5,_
+				"Claustrophobia: Enclosed Spaces"=-15,_
+				"Pyrophobia: Fire"=-5,_
+				"Acrophobia: Heights"=-10,_
+				"Entomophobia: Insects"=-10,_
+				"Brontophobia: Loud Noises"=-10,_
+				"Technophobia: Machinery (TL4-)"=-5,_
+				"Technophobia: Machinery (TL5+)"=-15,_
+				"Manaphobia: Magic (common magic)"=-15,_
+				"Manaphobia: Magic (uncommon magic)"=-10,_
+				"Manaphobia: Magic (unknown magic)"=-5,_
+				"Teratophobia: Monsters"=-15,_
+				"Triskaidekaphobia: The Number 13"=-5,_
+				"Thalassophobia: Oceans"=-10,_
+				"Agoraphobia: Open Spaces"=-10,_
+				"Psionophobia: Psionic Powers (common psi powers)"=-15,_
+				"Psionophobia: Psionic Powers (uncommon psi powers)"=-10,_
+				"Psionophobia: Psionic Powers (unknown psi powers)"=-5,_
+				"Herpetophobia: Reptiles"=-10,_
+				"Coitophobia: Sex"=-10,_
+				"Aichmophobia: Sharp Things (TL5-)"=-15,_
+				"Aichmophobia: Sharp Things (TL6+)"=-10,_
+				"Arachnophobia: Spiders"=-5,_
+				"Xenophobia: Strange and Unknown Things"=-15,_
+				"Heliophobia: The Sun"=-15,_
+				"Hoplophobia: Weapons"=-20_
+			)_
+			)_
+	), noresync(yes)
+Sense of Duty, -2/-5/-10/-15/-20, levelnames(Individual, Small Group, Large Group, Entire Race, Every Living Being), page(L12), upto(5),_
+	conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")
+Truthfulness, -5, displaycost(-5*), mods(Self-Control), page(L12), taboo(DI:Compulsive Lying),_
+	gives(-5 to SK:Fast-Talk),_
+	conditional(-5 to SK:Acting when "your purpose is to deceive"),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10) )
+Unluckiness, -10, page(L12)
+Vow, -5/-10/-15, levelnames(Minor, Major, Great), page(L12), upto(3),_
+	x(#InputToTag("Specify the nature of your Vow:", nameext, , "Vow"))
+
+********************************************************************************************************\[STOP]
+[QUIRKS]
+*******************************************************************************************************\[START]
+<General>
+_New Quirk, -1, noresync(yes), x(#edit)
+
+_Unused Quirk 1, -1, page(L12)
+_Unused Quirk 2, -1, page(L12)
+_Unused Quirk 3, -1, page(L12)
+_Unused Quirk 4, -1, page(L12)
+_Unused Quirk 5, -1, page(L12)
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+<Lite>
+_New Parent Item, N/A, isparent(yes), upto(0 LimitingTotal),_
+	description(_
+			In GCA a "Parent" item can have other traits assigned to it as "Children." This is essentially an organizational structure, allowing you to file multiple traits together under the parent item if you wish. _
+			To make an item a "child" right click on it and select "Make Child of..." _
+			The child items will be hidden by default; you may show the child items by right clicking on the parent and selecting "Show Components." Once displayed the children will be shown in a "tree" format under the parent. _
+			Any item may be assigned as a parent by right clicking on it and selecting "Make Parent"; this entry is here for convenience, as it is automatically designated a Parent. _
+			),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, , "New Parent Item"))
+_New Skill, %typelist%, page(B175),_
+	x(#InputToTagReplace("please enter the name of this Skill:" , name, , "New Skill"),_
+	#ChoiceList(_
+			name(type),_
+			title(New Skill),_
+			text(Choose the type of skill from the list below:),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"DX/E",_
+				"DX/A",_
+				"DX/H",_
+				"DX/VH",_
+				"IQ/E",_
+				"IQ/A",_
+				"IQ/H",_
+				"IQ/VH",_
+				"HT/E",_
+				"HT/A",_
+				"HT/H",_
+				"HT/VH"_
+			)_
+		),_
+		#edit_
+	), noresync(yes)
+
+Acrobatics, DX/H, default(DX - 6), page(L13)
+Acting, IQ/A, default(IQ - 5), page(L13)
+Animal Handling, IQ/A, default(IQ - 5), page(L14)
+Area Knowledge ([Area]), IQ/E, default(IQ - 4, "SK:Geography ([Area])" - 3), page(L14),_
+	x(#InputReplace("Please specify the area covered:", "[Area]", "local", "Area Knowledge")), noresync(yes)
+Armoury, IQ/A, tl(0-12), default(IQ - 5), page(L14)
+Brawling, DX/E, page(L14), parryat(@int(%level/2)+3), mods(Punch/Kick), default(SK:Brawling Art - 3, SK:Brawling Sport - 3),_
+	itemnotes(_
+				{}|_
+				{}|_
+				{If you miss with a kick, roll vs. DX to avoid falling.}),_
+	newmode(Punch, damage(_
+				thr-1 + _
+					@if(me::level > ST:DX+1 then @basethdice(ST:Punch) else 0) + _
+					@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Feet Only) = 0 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Feet Only) = 0 then @basethdice(ST:Punch) else 0)) _
+					), damtype(_
+						$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Feet Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1  & @itemhasmod(AD:Claws (Talons), Feet Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1  & @itemhasmod(AD:Claws (Long Talons), Feet Only) = 0 THEN "cut/imp" ELSE "cr")))_
+					), reach(C), parry(0), skillused(SK:Brawling),_
+				damagebasedon(ST:Punch), reachbasedon(ST:One Arm Reach)_
+		),_
+	newmode(Bite, damage(_
+				thr-1 + _
+				@if(me::level > ST:DX+1 then @basethdice(ST:Bite) else 0) + _
+				-@if("DI:Weak Bite::level" = 1 then 2 * @basethdice(ST:Bite) else 0)_
+				), damtype($if("AD:Teeth (Sharp Teeth)::level" = 1 THEN "cut" ELSE $if("AD:Teeth (Sharp Beak)::level" = 1 THEN "pi+" ELSE $if("AD:Teeth (Fangs)::level" = 1 THEN "imp" ELSE $if("AD:Vampiric Bite::level" = 1 THEN "cut" ELSE "cr"))))), reach(C), parry(No), skillused(SK:Brawling),_
+				damagebasedon(ST:Bite), reachbasedon(ST:Neck Reach)_
+		),_
+	newmode(Kick, damage(_
+				thr+ _
+					@if(me::level > ST:DX+1 then @basethdice(ST:Kick) else 0) + _
+					@if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) + _
+					@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0)))_
+				), damtype(_
+					$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Hands Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 & @itemhasmod(AD:Claws (Talons), Hands Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 THEN "cut/imp" ELSE "cr")))_
+				), reach(C,1), parry(No), skillused(SK:Brawling-2, SK:Kicking (Brawling)),_
+				damagebasedon(ST:Kick), reachbasedon(ST:Leg Reach) _
+		),_
+	description(Notes: Calculated damage takes into account bonuses from Teeth, Weak Bite, Claws, and skill level. You may add the modifier "Has Gauntlets/Brass Knuckles" or "Has Boots" to apply the +1 damage to Punch or Kick, as appropriate.),_
+	gives(=$if(me::level >= ST:DX THEN nobase) to ST:Punch::reach$, =$if(me::level >= ST:DX THEN nobase) to ST:Kick::reach$, =$if(me::level >= ST:DX THEN nobase) to ST:Bite::reach$)
+Camouflage, IQ/E, default(IQ - 4, SK:Survival - 2), page(L14)
+Carousing, HT/E, default(HT - 4), page(L14)
+Climbing, DX/A, default(DX - 5), page(L14)
+Computer Operation, IQ/E, tl(0-12), default(IQ - 4), page(L14)
+Computer Programming, IQ/H, tl(0-12), page(L14)
+Crewman, IQ/E, tl(0-12), default(IQ - 4), page(L14)
+Criminology, IQ/A, tl(0-12), default(IQ - 5), page(L14)
+Diagnosis, IQ/H, tl(0-12), default(IQ - 6), page(L14)
+Disguise, IQ/A, tl(0-12), default(IQ - 5), page(L14)
+Electronics Operation, IQ/A, tl(0-12), default(IQ - 5), page(L14)
+Electronics Repair, IQ/A, tl(0-12), default(IQ - 5), page(L14)
+Engineer, IQ/H, tl(0-12), page(L14)
+Environmental Suit (Battlesuit), DX/A, tl(0-12), default(DX - 5), page(L14)
+Environmental Suit (Diving Suit), DX/A, tl(0-12), default(DX - 5), page(L14)
+Environmental Suit (NBC Suit), DX/A, tl(0-12), default(DX - 5), page(L14)
+Environmental Suit (Vacc Suit), DX/A, tl(0-12), default(DX - 5), page(L14)
+Escape, DX/H, default(DX - 6), page(L14)
+Explosives, IQ/A, tl(0-12), default(IQ - 5), page(L14)
+First Aid, IQ/E, tl(0-12), default(IQ - 4), page(L14)
+Forgery, IQ/H, tl(0-12), default(IQ - 6), page(L14)
+Gambling, IQ/A, default(IQ - 5), page(L14)
+Hiking, HT/A, default(HT - 5), page(L14)
+Holdout, IQ/A, default(IQ - 5, SK:Sleight of Hand - 3), page(L15)
+Humanities, IQ/H, default(IQ - 6), page(L15),_
+	x(#InputToTagReplace("Specify the exact field of study", nameext, , "Humanities"))
+Interrogation, IQ/A, default(IQ - 5), page(L15)
+Jumping, DX/E, page(L15)
+Karate, DX/H, default(SK:Karate Art - 3, SK:Karate Sport - 3), page(L15),_
+	itemnotes(_
+				{}|_
+				{If you miss with a kick, roll vs. DX to avoid falling.}),_
+	parryat(@int(%level/2)+3), mods(Punch/Kick),_
+	newmode(Punch, damage(_
+				thr-1 + _
+					@if(me::level = ST:DX then @basethdice(ST:Punch) else @if(me::level > ST:DX then 2 * @basethdice(ST:Punch) else 0)) + _
+					@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Feet Only) = 0 then @basethdice(ST:Punch) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Feet Only) = 0 then @basethdice(ST:Punch) else 0)) _
+					), damtype(_
+						$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Feet Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1  & @itemhasmod(AD:Claws (Talons), Feet Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1  & @itemhasmod(AD:Claws (Long Talons), Feet Only) = 0 THEN "cut/imp" ELSE "cr")))_
+					), reach(C), parry(0), skillused(SK:Karate),_
+				damagebasedon(ST:Punch), reachbasedon(ST:One Arm Reach) _
+		),_
+	newmode(Kick, damage(_
+				thr+ _
+					@if(me::level = ST:DX then @basethdice(ST:Kick) else @if(me::level > ST:DX then 2 * @basethdice(ST:Kick) else 0)) + _
+					@if("DI:Horizontal::level" = 1 then @if("AD:Claws (Blunt Claws)::level" = 1 then 0 else @if("AD:Claws (Sharp Claws)::level" = 1 then 0 else @if("AD:Claws (Talons)::level" = 1 then 0 else @if("AD:Claws (Long Talons)::level" = 1 then 0 else -@basethdice(ST:Kick))))) else 0) + _
+					@if("AD:Claws (Blunt Claws)::level" = 1 & @itemhasmod(AD:Claws (Blunt Claws), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 then @basethdice(ST:Kick) else @if("AD:Claws (Hooves)::level" = 1 then @basethdice(ST:Kick) else 0)))_
+				), damtype(_
+					$if("AD:Claws (Sharp Claws)::level" = 1 & @itemhasmod(AD:Claws (Sharp Claws), Hands Only) = 0 THEN "cut" ELSE $if("AD:Claws (Talons)::level" = 1 & @itemhasmod(AD:Claws (Talons), Hands Only) = 0 THEN "cut/imp" ELSE $if("AD:Claws (Long Talons)::level" = 1 & @itemhasmod(AD:Claws (Long Talons), Hands Only) = 0 THEN "cut/imp" ELSE "cr")))_
+				), reach(C,1), parry(No), skillused(SK:Karate-2, SK:Kicking (Karate)),_
+				damagebasedon(ST:Kick), reachbasedon(ST:Leg Reach) _
+			),_
+	description(Notes: Calculated damage takes into account bonuses from Claws and skill level. You may add the modifier "Has Gauntlets/Brass Knuckles" or "Has Boots" to apply the +1 damage to Punch or Kick, as appropriate.),_
+	gives(_
+			=$if(me::level >= ST:DX THEN nobase) to ST:Punch::reach$, =$if(me::level >= ST:DX THEN nobase) to ST:Kick::reach$,_
+			=-ST:Encumbrance Penalty::score to me::skillscore, =+( @int(($modetag(charskillscore) + ST:Encumbrance Penalty::score)/2) - @int($modetag(charskillscore)/2) - ST:Encumbrance Penalty::score ) to me::parryscore$_
+		)
+
+
+
+Law, IQ/H, default(IQ - 6), page(L15)
+Leadership, IQ/A, default(IQ - 5), page(L15)
+Lockpicking, IQ/A, tl(0-12), default(IQ - 5), page(L15)
+Mathematics, IQ/H, tl(0-12), default(IQ - 6), page(L15)
+Mechanic, IQ/A, tl(0-12), default(IQ - 5), page(L15)
+Merchant, IQ/A, default(IQ - 5), page(L15), conditional(=@if(me::level >= 20 then 2 else @if(me::basepoints > 0 then 1 else 0)) to ST:Reaction when "buying or selling")
+Natural Science, IQ/H, default(IQ - 6), page(L16),_
+	x(#InputToTagReplace("Specify the exact field of study", nameext, , "Natural Science"))
+Naturalist, IQ/H, default(IQ - 6), page(L16)
+Navigation, IQ/A, tl(0-12), default(IQ - 5), page(L16)
+Observation, IQ/A, default(Per - 5), page(L16)
+Occultism, IQ/A, default(IQ - 5), page(L16)
+Photography, IQ/A, tl(0-12), default(IQ - 5), page(L16)
+Physician, IQ/H, tl(0-12), default(IQ - 7), page(L16)
+Pickpocket, DX/H, default(DX - 6), page(L16)
+Public Speaking, IQ/A, default(IQ - 5), page(L16)
+Research, IQ/A, tl(0-12), default(IQ - 5), page(L16)
+Riding, DX/A, default(DX - 5, SK:Animal Handling - 3, SK:Riding - 10), page(L16),_
+	x(#InputToTag("You must specialize by riding beast:", nameext, "Equines", "Riding"))
+Scrounging, IQ/E, default(Per - 4), page(L16)
+Search, IQ/A, default(Per - 5), page(L16)
+Shadowing, IQ/A, default(IQ - 5, SK:Observation - 5), page(L16)
+Shield, DX/E, default(DX - 4, SK:Shield - 2), page(L16), blockat(@int(%level/2)+3)
+Social Science, IQ/H, default(IQ - 6), page(L16),_
+	x(#InputToTagReplace("Specify the exact field of study", nameext, , "Social Science"))
+Smuggling, IQ/A, default(IQ - 5), page(L16)
+Stealth, DX/A, default(DX - 5, IQ - 5), page(L17)
+Swimming, HT/E, default(HT - 4), page(L17)
+Tactics, IQ/H, default(IQ - 6), page(L17)
+Throwing, DX/A, default(DX - 3), page(L17)
+Tracking, IQ/A, default(Per - 5), page(L17)
+Traps, IQ/A, tl(0-12), default(IQ - 5), page(L17)
+Writing, IQ/A, default(IQ - 5), page(L17)
+
+<Influence>
+Diplomacy, IQ/H, default(IQ - 6), page(L15), cat(Lite, Influence), gives(=@if(me::level >= 20 then 2 else 0) to ST:Reaction)
+Fast-Talk, IQ/A, default(IQ - 5), page(L15), cat(Lite, Influence), gives(=@if(me::level >= 20 then 2 else 0) to ST:Reaction)
+Intimidation, IQ/A, default(Will - 5), page(L15), cat(Lite, Influence)
+Savoir-Faire, IQ/E, default(IQ - 4), page(L15), cat(Lite, Influence)
+Sex Appeal, HT/A, default(HT - 3), page(L15), cat(Lite, Influence)
+Streetwise, IQ/A, default(IQ - 5), page(L15), cat(Lite, Influence)
+
+<Melee Weapons>
+Axe/Mace, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Axe/Mace)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Broadsword, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Broadsword)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Flail, DX/H, default(DX - 6), page(L15), parryat("AD:Enhanced Parry (Flail)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Knife, DX/E, default(DX - 4), page(L15), parryat("AD:Enhanced Parry (Knife)::level" + @int(%level/2)+3-1), cat(Lite, Melee Weapons)
+Polearm, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Polearm)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Rapier, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Rapier)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Shortsword, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Shortsword)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Smallsword, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Smallsword)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Spear, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Spear)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Staff, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Staff)::level" + @int(%level/2)+3+2), cat(Lite, Melee Weapons)
+Tonfa, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Tonfa)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+Two-Handed Sword, DX/A, default(DX - 5), page(L15), parryat("AD:Enhanced Parry (Two-Handed Sword)::level" + @int(%level/2)+3), cat(Lite, Melee Weapons)
+
+<Missile Weapons>
+Gunner (Beams), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Gunner (Cannon), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Gunner (Machine Gun), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Guns (Light Anti-Armor Weapon), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Guns (Pistol), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Guns (Rifle), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Guns (Shotgun), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Guns (Submachine Gun), DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Flamethrower, DX/E, tl(0-12), default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+Blowpipe, DX/H, default(DX - 6), page(L16), cat(Lite, Missile Weapons)
+Bow, DX/A, default(DX - 5), page(L16), cat(Lite, Missile Weapons)
+Crossbow, DX/E, default(DX - 4), page(L16), cat(Lite, Missile Weapons)
+
+<Thrown Weapons>
+Thrown Weapon (Axe/Mace), DX/E, default(DX - 4), page(L17), cat(Lite, Thrown Weapons)
+Thrown Weapon (Knife), DX/E, default(DX - 4), page(L17), cat(Lite, Thrown Weapons)
+Thrown Weapon (Shuriken), DX/E, default(DX - 4), page(L17), cat(Lite, Thrown Weapons)
+Thrown Weapon (Spear), DX/E, default(DX - 4), page(L17), cat(Lite, Thrown Weapons)
+
+<Survival>
+Survival, IQ/A, default(Per - 5, SK:Naturalist - 3), page(L17), cat(Lite, Survival),_
+	x(#InputToTag("You must specialize by a particular terrain type:", nameext, , "Survival"))
+Survival (Radioactive Wasteland), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Arctic), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Desert), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Island/Beach), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Jungle), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Mountain), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Plains), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Swampland), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Woodlands), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Bank), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Deep Ocean Vent), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Fresh-Water Lake), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Open Ocean), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Reef), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (River/Stream), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Salt-Water Sea), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+Survival (Tropical Lagoon), IQ/A, default(Per - 5), page(L17), cat(Lite, Survival)
+
+<Vehicle>
+Bicycling, DX/E, default(DX - 4, "SK:Driving (Motorcycle)" - 4), page(L17), cat(Lite,Vehicle)
+Boating, DX/A, tl(0-12), default(DX - 5, IQ - 5), page(L17), cat(Lite, Vehicle)
+Driving, DX/A, tl(0-12), default(DX - 5, IQ - 5), page(L17), cat(Lite, Vehicle)
+Piloting, DX/A, tl(0-12), default(IQ - 6), page(L17), cat(Lite, Vehicle)
+Submarine, DX/A, tl(0-12), default(IQ - 6), page(L17), cat(Lite, Vehicle)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<Conducting>
+SK:Musical Instrument
+SK:Singing
+
+<Appeal>
+ST:Appealing
+ST:Unappealing
+
+<3D Spatial Sense>
+SK:Aerobatics
+SK:Free Fall
+SK:Navigation (Hyperspace)
+SK:Navigation (Space)
+
+<Absolute Direction>
+SK:Body Sense
+SK:Navigation (Air)
+SK:Navigation (Land)
+SK:Navigation (Sea)
+
+<Animal Friend>
+SK:Animal Handling
+SK:Falconry
+SK:Packing
+SK:Riding
+SK:Teamster
+SK:Veterinary
+
+<Artificer>
+SK:Armoury
+SK:Carpentry
+SK:Electrician
+SK:Electronics Repair
+SK:Engineer
+SK:Machinist
+SK:Masonry
+SK:Mechanic
+SK:Smith
+
+<Business Acumen>
+SK:Accounting
+SK:Administration
+SK:Economics
+SK:Finance
+SK:Gambling
+SK:Market Analysis
+SK:Merchant
+SK:Propaganda
+
+<Charisma>
+SK:Fortune-Telling
+SK:Leadership
+SK:Panhandling
+SK:Public Speaking
+
+<Combat Reflexes>
+ST:Dodge
+ST:Parry
+ST:Block
+SK:Fast-Draw
+
+<Empathy>
+SK:Detect Lies
+SK:Fortune-Telling
+
+<Flexibility>
+SK:Climbing
+SK:Escape
+SK:Erotic Art
+
+<Gifted Artist>
+SK:Artist
+SK:Jeweler
+SK:Leatherworking
+SK:Photography
+SK:Sewing
+
+<Green Thumb>
+SK:Biology
+SK:Farming
+SK:Gardening
+SK:Herb Lore
+SK:Naturalist
+
+<Healer>
+SK:Diagnosis
+SK:Esoteric Medicine
+SK:First Aid
+SK:Pharmacy
+SK:Physician
+SK:Physiology
+SK:Psychology
+SK:Surgery
+SK:Veterinary
+
+<High Manual Dexterity>
+SK:Artist
+SK:Jeweler
+SK:Knot-Tying
+SK:Leatherworking
+SK:Lockpicking
+SK:Pickpocket
+SK:Sewing
+SK:Sleight of Hand
+SK:Surgery
+
+<Hunchback>
+SK:Disguise
+SK:Shadowing
+
+<Influence Skills>
+SK:Diplomacy
+SK:Fast-Talk
+SK:Intimidation
+SK:Savoir-Faire
+SK:Sex Appeal
+SK:Streetwise
+
+<Killjoy>
+SK:Carousing
+SK:Connoisseur
+SK:Erotic Art
+SK:Gambling
+
+<Low Empathy>
+SK:Acting
+SK:Carousing
+SK:Criminology
+SK:Detect Lies
+SK:Diplomacy
+SK:Enthrallment
+SK:Fast-Talk
+SK:Interrogation
+SK:Leadership
+SK:Merchant
+SK:Politics
+SK:Psychology
+SK:Savoir-Faire
+SK:Sex Appeal
+SK:Sociology
+SK:Streetwise
+
+<Mathematical Ability>
+SK:Accounting
+SK:Astronomy
+SK:Cryptography
+SK:Engineer
+SK:Finance
+SK:Market Analysis
+SK:Mathematics
+SK:Physics
+
+<Musical Ability>
+SK:Group Performance (Conducting)
+SK:Musical Composition
+SK:Musical Influence
+SK:Musical Instrument
+SK:Singing
+
+<Oblivious>
+SK:Diplomacy
+SK:Fast-Talk
+SK:Intimidation
+SK:Savoir-Faire
+SK:Sex Appeal
+SK:Streetwise
+
+<Outdoorsman>
+SK:Camouflage
+SK:Fishing
+SK:Mimicry
+SK:Naturalist
+SK:Navigation
+SK:Survival
+SK:Tracking
+
+<Perfect Balance>
+SK:Acrobatics
+SK:Aerobatics
+SK:Aquabatics
+SK:Climbing
+SK:Piloting
+
+<Seek Spells>
+SP:Seek Earth
+SP:Seek Water 
+
+<Shyness>
+SK:Acting
+SK:Carousing
+SK:Diplomacy
+SK:Fast-Talk
+SK:Intimidation
+SK:Leadership
+SK:Merchant
+SK:Panhandling
+SK:Performance
+SK:Politics
+SK:Public Speaking
+SK:Savoir-Faire
+SK:Sex Appeal
+SK:Streetwise
+SK:Teaching
+
+<Smooth Operator>
+SK:Acting
+SK:Carousing
+SK:Detect Lies
+SK:Diplomacy
+SK:Fast-Talk
+SK:Intimidation
+SK:Leadership
+SK:Panhandling
+SK:Politics
+SK:Public Speaking
+SK:Savoir-Faire
+SK:Sex Appeal
+SK:Streetwise
+
+<Stuttering>
+SK:Diplomacy
+SK:Fast-Talk
+SK:Performance
+SK:Public Speaking
+SK:Sex Appeal
+SK:Singing
+
+<Voice>
+SK:Diplomacy
+SK:Fast-Talk
+SK:Mimicry
+SK:Performance
+SK:Politics
+SK:Public Speaking
+SK:Sex Appeal
+SK:Singing
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates>
+Heroic Knight (Basic Set), displaycost(95),_
+		description(You are a brave knight out of fantasy or fairy tales - strong, honerable, a wise leader, and a skilled warrior.),_
+		page(B448),_
+		sets(_
+			ST:ST=12,_
+			ST:DX=12,_
+			ST:IQ=11,_
+			ST:HT=12_
+			),_
+		adds(_
+			AD:Status=2,_
+			AD:Wealth,_
+			DI:Code of Honor (Chivalry) = 3,_
+			DI:Duty (Liege lord)=2,_
+			DI:Honesty _
+				with "You resist on a roll of  6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control)",_
+			DI:Vow (Never refuse a request for aid)=3,_
+			SK:Riding (Horse)=2pts,_
+			SK:Broadsword=8pts,_
+			SK:Shield (Shield)=4pts,_
+			SK:Leadership=2pts,_
+			SK:Tactics=4pts,_
+			SK:Armoury (Melee Weapons)=1pts _
+			),_
+		creates(_
+			"DI:Duty (Liege lord), -2/-5/-10/-15, mods(Duty), page(B134), upto(4), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")" = 2,_
+			"SK:Heraldry, IQ/A, default(IQ - 5, "SK:Savoir-Faire (High Society)" - 3), page(B199), cat(_General, Knowledge, Social)" = 1pts,_
+			"SK:Lance, DX/A, default(DX - 5, SK: Spear  - 3, SK:Lance Art - 3, SK:Lance Sport - 3), needs(SK:Riding), page(B204), cat(_General, Combat/Weapons - Melee Combat)" = 8pts _
+			)
+
+Warrior (Basic Set), displaycost(101),_
+		description(You are a fantasy warrior - a barbarian, knight, swashbuckler; or someone else who lives by  the sword.),_
+		page(B448),_
+		sets(_
+			ST:ST = 12,_
+			ST:DX = 12,_
+			ST:HT = 12_
+			),_
+		adds(_
+			SK:Armoury (Melee Weapons) = 1pts,_
+			SK:Shield (Shield) = 4pts _
+			),_
+	select1(#List(Languages)),_
+	select2(#List(CulturalFamiliarity)),_
+		select3(_
+			text("Select two weapon skills from the list below. Each will be taken at 8 pts. Typical selections for a Knight would be Broadsword and Lance."),_
+			pointswanted(16),_
+			itemswanted(2),_
+			list(_
+				SK:Axe/Mace #codes(upto 8pts, downto 8pts),_
+				SK:Broadsword #codes(upto 8pts, downto 8pts),_
+				#newitem(SK:Lance, DX/A, default(DX - 5, SK: Spear  - 3, SK:Lance Art - 3, SK:Lance Sport - 3), needs(SK:Riding), page(B204), cat(_General, Combat/Weapons - Melee Combat)) #codes(upto 8pts, downto 8pts),_
+				SK:Polearm #codes(upto 8pts, downto 8pts),_
+				SK:Rapier #codes(upto 8pts, downto 8pts),_
+				SK:Shortsword #codes(upto 8pts, downto 8pts),_
+				SK:Smallsword #codes(upto 8pts, downto 8pts),_
+				SK:Staff #codes(upto 8pts, downto 8pts),_
+				SK:Two-Handed Sword #codes(upto 8pts, downto 8pts)_
+				)_
+			)
+Warrior - Heroic (Basic Set), displaycost(-9),_
+		description(You are wise, honerable, and a leader of men.),_
+		page(B448),_
+		sets(_
+			ST:IQ = 11_
+			),_
+		needs(_
+			TE:Warrior (Basic Set)_
+			),_
+		adds(_
+			DI:Honesty _
+				with "You resist on a roll of  6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control)",_
+			DI:Vow (Never refuse a request for aid) = 3,_
+			SK:Leadership = 2pts,_
+			SK:Tactics = 4pts_
+			)
+Warrior - Knight (Basic Set), displaycost(+3),_
+		description(You are an invested knight, with all the attendant privileges and duties.),_
+		page(B448),_
+		needs(_
+			TE:Warrior (Basic Set)_
+			),_
+		adds(_
+			AD:Status = 2,_
+			AD:Wealth,_
+			DI:Code of Honor (Chivalry) = 3,_
+			SK:Riding (Horse) = 2pts _
+			),_
+		creates(_
+			"DI:Duty (Liege lord), -2/-5/-10/-15, mods(Duty), page(B134), upto(4), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)")" = 2,_
+			"SK:Heraldry, IQ/A, default(IQ - 5, "SK:Savoir-Faire (High Society)" - 3), page(B199), cat(_General, Knowledge, Social)" = 1pts _
+			)
+
+<Racial Templates>
+Elf (Basic Set), displaycost(70), cost(15),_
+	description(Elves are the quintessential fantasy race: very similar to humans (and cross-fertile with them, in many settings), but exceptionally beautiful, ageless, and naturally magical.),_
+	page(B316),_
+	noresync(yes),_
+	race(Elf),_
+	owns(yes),_
+	locks(yes),_
+	hides(yes),_
+	gives(_
+		+1 to ST:HT,_
+		+1 to ST:Perception_
+		),_
+	adds(_
+		AD:Appearance=1,_
+		AD:Language Talent,_
+		AD:Perfect Balance,_
+		AD:Voice _
+		),_
+	creates(_
+			"DI:Racial ST Penalty, -10/-20, cat(Exotic Physical, Exotic, Physical), gives(-1 to ST:ST), initmods(Size, -0%, group(Size ST), formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes))",_
+			"AD:Magery 0, 5, mods(Magery 0), page(B66), cat(Supernatural, Mental), taboo(@if(@itemhasmod(AD:Magic Resistance, Improved) THEN 0 ELSE 1) * AD:Magic Resistance::level), description(Magery 0 is included as a separate item from the normal Magery advantage, due to the fact that many kinds of enhancements and limitations are meant to only affect the levels above 0, not the base 5 points from Magery 0. The Magery advantage is set to have Magery 0 as a pre-req. WARNING: Always use the Magery modifiers with Magery and the Magery 0 modifiers with Magery 0. Using the Magery modifiers with any other item can cause your spells to be miscalculated.)",_
+			"AD:Unaging, 15, mods(Unaging), page(B95), cat(Exotic, Physical), taboo(AD:Extended Lifespan, DI:Short Lifespan, DI:Self-Destruct, DI:Terminally Ill, AD:Longevity)",_
+			"AD:Telescopic Vision, 5/10, mods(Telescopic Vision), page(B92), cat(Exotic, Physical), taboo(DI:Blindness)",_
+			"SK:Connoisseur, IQ/A, default(IQ - 5), page(B185), cat(_General, Arts/Entertainment, Knowledge, Social)" = 1pts _
+		)
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Language>
+Native Language, -6, gives(=+1 to ST:Native Languages), formula(-@if(AD:Language Talent > 0 then 4 else 6)), forceformula(yes), cat(Language), page(L7)
+Native Speaker, -3, formula(-@if(AD:Language Talent > 0 then 2 else 3)), forceformula(yes), cat(Language), page(L7)
+Native Writer, -3, formula(-@if(AD:Language Talent > 0 then 2 else 3)), forceformula(yes), cat(Language), page(L7)
+Default: Language, -2/-4, upto(2), cat(Language), page(L7),_
+	description(Some languages may "default" from another language. If this language gets a default apply this modifier to reduce the point cost of this language for its default.)
+Default: Language (Spoken), -1/-2, upto(2), cat(Language), page(L7),_
+	description(Some languages may "default" from another language. If this language gets a default apply this modifier to reduce the point cost of this language for its default.)
+Default: Language (Written), -1/-2, upto(2), cat(Language), page(L7),_
+	description(Some languages may "default" from another language. If this language gets a default apply this modifier to reduce the point cost of this language for its default.)
+
+<Money>
+10% of Starting Wealth, +0
+20% of Starting Wealth, +0
+30% of Starting Wealth, +0
+40% of Starting Wealth, +0
+50% of Starting Wealth, +0
+60% of Starting Wealth, +0
+70% of Starting Wealth, +0
+80% of Starting Wealth, +0
+90% of Starting Wealth, +0
+100% of Starting Wealth, +0
+Trading Character Points for Money, +1/+2, formula(0), forceformula(yes), gives(+(ST:Starting Wealth / 10) to ST:Money, +(ST:Starting Wealth / 10) to ST:Remaining Funds), page(B26)
+Money Earned in Play (note), +0/+0, formula(0), forceformula(yes), gives(+1 to ST:Money, +1 to ST:Remaining Funds)
+Money Spent in Play (note), +0/+0, formula(0), forceformula(yes), gives(-1 to ST:Money, -1 to ST:Remaining Funds)
+
+<Punch/Kick>
+Has Boots, +0, description(This modifier adds +1 damage to Kick damage.)
+Has Gauntlets/Brass Knuckles, +0, description(This modifier adds +1 damage to Punch damage.)
+
+<Reputation>
+People Affected: Almost everyone in your game world, *1, shortname(Almost everyone), group(Reputation), page(B27)
+People Affected: Almost everyone in your game world except one large class, *2/3, round(Down), shortname(Almost everyone, except large class), group(Reputation), page(B27)
+People Affected: Large class of people, *1/2, round(Down), shortname(Large class), group(Reputation), page(B27)
+People Affected: Small class of people, *1/3, round(Down), shortname(Small class), group(Reputation), page(B27)
+Frequency of Recognition: All the time, *1, shortname(All the time), group(Reputation), page(B28)
+Frequency of Recognition: Sometimes (roll of 10 or less), *1/2, round(Down), shortname(10 or less), group(Reputation), page(B28)
+Frequency of Recognition: Occasionally (roll of 7 or less), *1/3, round(Down), shortname(7 or less), group(Reputation), page(B28)
+
+<Resistant>
+Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)
+Degree: +8 to HT rolls to resist, *1/2, round(Down), tier(-1), shortname(+8), group(Resistant), page(B81)
+Degree: +3 to HT rolls to resist, *1/3, round(Down), tier(-1), shortname(+3), group(Resistant), page(B81)
+
+<Self-Control>
+You resist on a roll of  6 or less (quite rarely), *2, shortname(6 or less), group(Self-Control), page(L10)
+You resist on a roll of  9 or less (fairly often), *1.5, shortname(9 or less), group(Self-Control), page(L10)
+You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(L10)
+You resist on a roll of 15 or less (almost all the time), *0.5, shortname(15 or less), group(Self-Control), page(L10)
+
+<Shield>
+Gives Defense Bonus to Dodge/Block/Parry, +0, gives(=+owner::pd to ST:Dodge, =+owner::pd to ST:Block, =+owner::pd to ST:Parry)
+
+<Size>
+Size, -0%, formula(-@if(ST:Size Modifier::score > 0 THEN ST:Size Modifier::score * 10 else 0)), forceformula(yes), group(Size), page(B15)
+
+<Size ST>
+Size, -0%, formula(_
+			-@if(_
+				ST:Size Modifier::score > 0 _
+				then ST:Size Modifier * 10 _
+				else 0_
+				)_
+			), forceformula(yes), group(Size ST), page(15)
+
+********************************************************************************************************\[STOP]
+[EQUIPMENT]
+********************************************************************************************************\[START]
+<_New Equipment>
+_New Equipment, noresync(yes),_
+		techlvl([techlevel]),_
+		basecost([cost]),_
+		baseweight([weight]),_
+		lc([legalityclass]),_
+		mods(Equipment),_
+	x(_
+		#InputToTagReplace("Please enter the name of this piece of equipment:", name, , "New Equipment"),_
+		#InputReplace("Please enter the Tech Level of this piece of equipment:", "[techlevel]", , "New Equipment"),_
+		#InputReplace("Please enter the Cost of this piece of equipment. DO NOT include a dollar sign or comma:", "[cost]", , "New Equipment"),_
+		#InputReplace("Please enter the Weight of this piece of equipment:", "[weight]", , "New Equipment"),_
+		#InputReplace("Please enter the Legality Class of this piece of equipment:", "[legalityclass]", , "New Equipment"),_
+		#edit)
+
+_New Armor, noresync(yes),_
+		techlvl([techlevel]),_
+		basecost([cost]),_
+		baseweight([weight]),_
+		lc([legalityclass]),_
+		location([location]),_
+		dr([damageresistance]),_
+		notes([notes]),_
+		mods(Equipment),_
+	x(_
+		#InputToTagReplace("Please enter the name of this piece of armor:", name, , "New Armor"),_
+		#InputReplace("Please enter the Tech Level of this piece of armor:", "[techlevel]", , "New Armor"),_
+		#InputReplace("Please enter the Cost of this piece of armor. DO NOT include a dollar sign or comma:", "[cost]", , "New Armor"),_
+		#InputReplace("Please enter the Weight of this piece of armor:", "[weight]", , "New Armor"),_
+		#InputReplace("Please enter the Legality Class of this piece of armor:", "[legalityclass]", , "New Armor"),_
+		#InputReplace("Please enter the Locations covered by of this piece of armor (e.g. arms, eyes, face, feet, full suit, groin, hands, head, legs, limbs, neck, skull, or torso):", "[location]", , "New Armor"),_
+		#InputReplace("Please enter the Damage Resistance of this piece of armor:", "[damagerestance]", , "New Armor"),_
+		#edit)
+
+_New Firearm, noresync(yes),_
+		techlvl([techlevel]),_
+		basecost([cost]),_
+		baseweight([weight]),_
+		lc([legalityclass]),_
+		damage([damage]),_
+		damtype([damagetype]),_
+		armordivisor([armordivisor]),_
+		acc([accuracy]),_
+		rangehalfdam([halfdamagerange]),_
+		rangemax([maxrange]),_
+		rof([rateoffire]),_
+		shots([shots]),_
+		minst([minimumst]%usealiaslist%),_
+		bulk([bulk]),_
+		rcl([recoil]),_
+		skillused([skillused]),_
+		mods(Equipment),_
+	x(_
+		#InputToTagReplace("Please enter the name of this firearm:", name, , "New Firearm"),_
+		#InputReplace("Please enter the Tech Level of this firearm:", "[techlevel]", , "New Firearm"),_
+		#InputReplace("Please enter the Cost of this firearm. DO NOT include a dollar sign or comma:", "[cost]", , "New Firearm"),_
+		#InputReplace("Please enter the Weight of this firearm:", "[weight]", , "New Firearm"),_
+		#InputReplace("Please enter the Legality Class of this firearm:", "[legalityclass]", , "New Firearm"),_
+		#InputReplace("Please enter the damage of this firearm (e.g. 6dx5). DO NOT include armor divisors or damage type in this field:", "[damage]", , "New Firearm"),_
+		#InputReplace("Please enter the armor divisor. If there is no armor divisor enter a 1. DO NOT include parenthesis:", "[armordivisor]", , "New Firearm"),_
+		#InputReplace("Please enter the damage type of this firearm (e.g. pi+ or cut):", "[damagetype]", , "New Firearm"),_
+		#InputReplace("Please enter the accuracy of this firearm:", "[accuracy]", , "New Firearm"),_
+		#InputReplace("Please enter the half damage range of this firearm:", "[halfdamagerange]", , "New Firearm"),_
+		#InputReplace("Please enter the maximum range of this firearm:", "[maxrange]", , "New Firearm"),_
+		#InputReplace("Please enter the rate of fire of this firearm:", "[rateoffire]", , "New Firearm"),_
+		#InputReplace("Please enter the shots for this firearm:", "[shots]", , "New Firearm"),_
+		#InputReplace("Please enter the minimum strength of this firearm:", "[minimumst]", , "New Firearm"),_
+		#InputReplace("Please enter the bulk of this firearm:", "[bulk]", , "New Firearm"),_
+		#InputReplace("Please enter the recoil of this firearm:", "[recoil]", , "New Firearm"),_
+		#InputReplace("Please enter the skill used for this firearm:", "[skillused]", , "New Firearm"),_
+		#ChoiceList(_
+				name(Use),_
+				title(New Firearm),_
+				text(How is this weapon used?),_
+				picksallowed(1),_
+				method(bynumber),_
+				list(_
+					"One-Handed",_
+					"Two-Handed",_
+					"Two-Handed, becomes unready after attack" _
+					),_
+				aliaslist(_
+						"",_
+						"†",_
+						"‡"_
+					)_
+				),_
+		#edit)
+
+_New Melee Weapon, noresync(yes),_
+		techlvl([techlevel]),_
+		basecost([cost]),_
+		baseweight([weight]),_
+		lc([legalityclass]),_
+		damage([damage]),_
+		damtype([damagetype]),_
+		armordivisor([armordivisor]),_
+		reach([reach]),_
+		parry([parry]),_
+		minst([minimumst]%usealiaslist%),_
+		skillused([skillused]),_
+		mods(Equipment),_
+	x(_
+		#InputToTagReplace("Please enter the name of this hand weapon:", name, , "New Melee Weapon"),_
+		#InputReplace("Please enter the Tech Level of this hand weapon:", "[techlevel]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the Cost of this hand weapon. DO NOT include a dollar sign or comma:", "[cost]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the Weight of this hand weapon:", "[weight]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the Legality Class of this hand weapon:", "[legalityclass]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the damage of this hand weapon (e.g. 6dx5, sw+1, or thr-1). DO NOT include armor divisors or damage type:", "[damage]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the armor divisor. If there is no armor divisor enter a 1. DO NOT include parenthesis:", "[armordivisor]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the damage type of this hand weapon (e.g. pi+ or cut):", "[damagetype]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the reach for this hand weapon:", "[reach]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the parry for this hand weapon:", "[parry]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the minimum strength of this hand weapon:", "[minimumst]", , "New Melee Weapon"),_
+		#InputReplace("Please enter the skill used for this hand weapon:", "[skillused]", , "New Melee Weapon"),_
+		#ChoiceList(_
+				name(Use),_
+				title(New Melee Weapon),_
+				text(How is this weapon used?),_
+				picksallowed(1),_
+				method(bynumber),_
+				list(_
+					"One-Handed",_
+					"Two-Handed",_
+					"Two-Handed, becomes unready after attack" _
+					),_
+				aliaslist(_
+						"",_
+						"†",_
+						"‡"_
+					)_
+				),_
+		#edit)
+
+_New Muscle-Powered Ranged Weapon, noresync(yes),_
+		techlvl([techlevel]),_
+		basecost([cost]),_
+		baseweight([weight]),_
+		lc([legalityclass]),_
+		damage([damage]),_
+		armordivisor([armordivisor]),_
+		damtype([damagetype]),_
+		acc([accuracy]),_
+		calcrange(yes),_
+		rangehalfdam([halfdamagerange]),_
+		rangemax([maxrange]),_
+		rof([rateoffire]),_
+		shots([shots]),_
+		minst([minimumst]%usealiaslist%),_
+		bulk([bulk]),_
+		skillused([skillused]),_
+		mods(Equipment),_
+	x(_
+		#InputToTagReplace("Please enter the name of this muscle-powered ranged weapon:", name, , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the Tech Level of this muscle-powered ranged weapon:", "[techlevel]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the Cost of this muscle-powered ranged weapon. DO NOT include a dollar sign or comma:", "[cost]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the Weight of this muscle-powered ranged weapon:", "[weight]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the Legality Class of this muscle-powered ranged weapon:", "[legalityclass]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the damage of this muscle-powered ranged weapon (e.g. 6dx5 or thr+1). DO NOT include armor divisors or damage type in this field :", "[damage]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the armor divisor. If there is no armor divisor enter a 1. DO NOT include parenthesis:", "[armordivisor]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the damage type of this muscle-powered ranged weapon (e.g. pi+ or cut):", "[damagetype]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the accuracy of this muscle-powered ranged weapon:", "[accuracy]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the half damage range of this muscle-powered ranged weapon (e.g. ST*10 or 25):", "[halfdamagerange]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the maximum range of this muscle-powered ranged weapon (e.g. ST*10 or 25):", "[maxrange]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the rate of fire of this muscle-powered ranged weapon:", "[rateoffire]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the shots for this muscle-powered ranged weapon:", "[shots]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the minimum strength of this muscle-powered ranged weapon:", "[minimumst]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the bulk of this muscle-powered ranged weapon:", "[bulk]", , "New Muscle-Powered Ranged Weapon"),_
+		#InputReplace("Please enter the skill used for this muscle-powered ranged weapon:", "[skillused]", , "New Muscle-Powered Ranged Weapon"),_
+		#ChoiceList(_
+				name(Use),_
+				title(New Muscle-Powered Ranged Weapon),_
+				text(How is this weapon used?),_
+				picksallowed(1),_
+				method(bynumber),_
+				list(_
+					"One-Handed",_
+					"Two-Handed",_
+					"Two-Handed, becomes unready after attack" _
+					),_
+				aliaslist(_
+						"",_
+						"†",_
+						"‡"_
+					)_
+				),_
+		#edit)
+
+_New Parent Item, basecost(0), baseweight(0), isparent(yes),_
+	description(_
+			In GCA a "Parent" item can have other traits assigned to it as "Children." This is essentially an organizational structure, allowing you to file multiple traits together under the parent item if you wish. _
+			To make an item a "child" right click on it and select "Make Child of..." _
+			The child items will be hidden by default; you may show the child items by right clicking on the parent and selecting "Show Components." Once displayed the children will be shown in a "tree" format under the parent. _
+			Any item may be assigned as a parent by right clicking on it and selecting "Make Parent"; this entry is here for convenience, as it is automatically designated a Parent. _
+			),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, , "New Parent Item"))
+
+<Lite - Armor>
+Cloth Armor Suit, techlvl(1), basecost(150), baseweight(12), lc(--), location(full suit), dr(1*), description(TL:1 LC:-- DR:1* Locations: full suit Notes:This is a full suit of armor from GURPS Lite. It includes an article of light, common clothing to wear underneath - or padding, if this is usual for the armor. The statistics already reflect this; you do not have to buy clothing or padding seperately, or account for its DR and weight.), mods(Equipment), page(L18)
+Leather Armor Suit, techlvl(1), basecost(340), baseweight(19.5), lc(--), location(full suit), dr(2*), description(TL:1 LC:-- DR:2* Locations: full suit Notes:This is a full suit of armor from GURPS Lite. It includes an article of light, common clothing to wear underneath - or padding, if this is usual for the armor. The statistics already reflect this; you do not have to buy clothing or padding seperately, or account for its DR and weight.), mods(Equipment), page(L18)
+Light Scale Suit, techlvl(2), basecost(610), baseweight(49), lc(--), location(full suit), dr(3*), description(TL:2 LC:-- DR:3* Locations: full suit Notes:This is a full suit of armor from GURPS Lite. It includes an article of light, common clothing to wear underneath - or padding, if this is usual for the armor. The statistics already reflect this; you do not have to buy clothing or padding seperately, or account for its DR and weight.), mods(Equipment), page(L18)
+Mail Suit, techlvl(2), basecost(645), baseweight(58), lc(--), location(full suit), dr(4/2*), description(TL:2 LC:-- DR:4* Locations: full suit Notes:This is a full suit of armor from GURPS Lite. It includes an article of light, common clothing to wear underneath - or padding, if this is usual for the armor. The statistics already reflect this; you do not have to buy clothing or padding seperately, or account for its DR and weight.), mods(Equipment), page(L18)
+Steel Laminate Suit, techlvl(3), basecost(1360), baseweight(64), lc(--), location(full suit), dr(5*), description(TL:3 LC:-- DR:5* Locations: full suit Notes:This is a full suit of armor from GURPS Lite. It includes an article of light, common clothing to wear underneath - or padding, if this is usual for the armor. The statistics already reflect this; you do not have to buy clothing or padding seperately, or account for its DR and weight.), mods(Equipment), page(L18)
+Plate Suit, techlvl(3), basecost(4040), baseweight(89.5), lc(--), location(full suit), dr(6*), description(TL:3 LC:-- DR:6* Locations: full suit Notes:This is a full suit of armor from GURPS Lite. It includes an article of light, common clothing to wear underneath - or padding, if this is usual for the armor. The statistics already reflect this; you do not have to buy clothing or padding seperately, or account for its DR and weight.), mods(Equipment), page(L18)
+Flak Jacket, location(torso), dr(7), basecost(500), baseweight(20), lc(3), techlvl(6), description(TL:6 LC:3 DR:7), mods(Equipment), page(L18)
+Ballistic Vest, location(torso), dr(8/2*), basecost(400), baseweight(2), lc(3), techlvl(8), notes([1,2,3]), description(TL:8 LC:3 DR:8/2* Notes: [1,2,3] Split DR: use the first, higher DR against piercing or cutting attacks; use the second, lower DR against all other damage types. Concealable as or under clothing. DR increases with TL. After the TL of introduction, consult the table on p. B285.), mods(Equipment), page(L18)
+Tactical Vest, location(torso, groin), dr(12/5*), basecost(900), baseweight(9), lc(2), techlvl(8), notes([1,3]), description(TL:8 LC:2 DR:12/5* Notes: [1,3] Split DR: use the first, higher DR against piercing or cutting attacks; use the second, lower DR against all other damage types. DR increases with TL. After the TL of introduction, consult the table on p. B285.), mods(Equipment), page(L18)
+
+<Lite - Shields>
+Small Shield, basecost(40), baseweight(8), dr(6/30), pd(1), lc(4), techlvl(0), skillused(SK:Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(L19), mods(Equipment, Shield), description(TL:0 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:6 HP:30 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Shield, basecost(60), baseweight(15), dr(7/40), pd(2), lc(4), techlvl(1), skillused(SK:Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(L19), mods(Equipment, Shield), description(TL:1 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Large Shield, basecost(90), baseweight(25), dr(9/60), pd(3), lc(4), techlvl(1), skillused(SK:Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(L19), mods(Equipment, Shield), description(TL:1 LC:4 DB:3 Dam:thr cr Reach:1 Parry:No ST:-- DR:9 HP:60 Skill:Shield (Shield) Notes: [2,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 5 lbs. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,4])
+
+<Lite - Firearms>
+"Derringer, .41", techlvl(5), malf(16), lc(3), baseweight(0.5), basecost(100), damage(1d), damtype(pi+), acc(1), rangehalfdam(80), rangemax(650), rof(1), shots(2(3i)), minst(9), bulk(-1), rcl(2), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:5 LC:3 Damage:1d pi+ Acc:1 Range:80/650 RoF:1 Shots:2(3i) ST:9 Bulk:-1 Rcl:2 Skill:Guns (Pistol)), page(L21), mods(Equipment, Guns)
+"Auto Pistol, 9mm (TL 6)", techlvl(6), malf(17), lc(3), baseweight(2.4), basecost(350), damage(2d+2), damtype(pi), acc(2), rangehalfdam(150), rangemax(1850), rof(3), shots(8+1(3)), minst(9), bulk(-2), rcl(2), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:6 LC:3 Damage:2d+2 pi Acc:2 Range:150/1850 RoF:3 Shots:8+1(3) ST:9 Bulk:-2 Rcl:2 Skill:Guns (Pistol)), page(L21), mods(Equipment, Guns)
+"Revolver, .357M", techlvl(7), malf(17), lc(3), baseweight(3), basecost(500), damage(3d-1), damtype(pi), acc(2), rangehalfdam(185), rangemax(2000), rof(3), shots(6(3i)), minst(10), bulk(-2), rcl(3), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:7 LC:3 Damage:3d-1 pi Acc:2 Range:185/2000 RoF:3 Shots:6(3i) ST:10 Bulk:-2 Rcl:3 Skill:Guns (Pistol)), page(L21), mods(Equipment, Guns)
+"Auto Pistol, .44M", techlvl(8), malf(17), lc(3), baseweight(4.5), basecost(750), damage(3d), damtype(pi+), acc(2), rangehalfdam(230), rangemax(2500), rof(3), shots(9+1(3)), minst(12), bulk(-3), rcl(4), skillused(SK:Gun!, SK:Guns (Pistol), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:8 LC:3 Damage:3d pi+ Acc:2 Range:230/2500 RoF:3 Shots:9+1(3) ST:12 Bulk:-3 Rcl:4 Skill:Guns (Pistol)), page(L21), mods(Equipment, Guns)
+
+"Lever-Action Carbine, .30", techlvl(5), malf(16), lc(3), baseweight(7), basecost(300), damage(5d), damtype(pi), acc(4), rangehalfdam(450), rangemax(3000), rof(1), shots(6+1(3i)), minst(10†), bulk(-4), rcl(2), skillused(SK:Gun!, SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:5 LC:3 Damage:5d pi Acc:4 Range:450/3000 RoF:1 Shots:6+1(3i) ST:10† Bulk:-4 Rcl:2 Skill:Guns (Rifle)), page(L22), mods(Equipment, Guns)
+"Self-Loading Rifle, 7.62mm", techlvl(6), malf(17), lc(3), baseweight(10), basecost(600), damage(7d), damtype(pi), acc(5), rangehalfdam(1000), rangemax(4200), rof(3), shots(8(3)), minst(10†), bulk(-5), rcl(3), skillused(SK:Gun!, SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:6 LC:3 Damage:7d pi Acc:5 Range:1000/4200 RoF:3 Shots:8(3) ST:10† Bulk:-5 Rcl:3 Skill:Guns (Rifle)), page(L22), mods(Equipment, Guns)
+"Sniper Rifle, .338", techlvl(8), malf(17), lc(3), baseweight(17.5), basecost(5600), damage(9d+1), damtype(pi), acc(6+3), rangehalfdam(1500), rangemax(5500), rof(1), shots(4+1(3)), minst(11B†), bulk(-6), rcl(4), skillused(SK:Gun!, SK:Guns (Rifle), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:8 LC:3 Damage:9d+1 pi Acc:6+3 Range:1500/5500 RoF:1 Shots:4+1(3) ST:11B† Bulk:-6 Rcl:4 Skill:Guns (Rifle)), page(L22), mods(Equipment, Guns)
+"Pump Shotgun, 12G", techlvl(6), malf(17), lc(4), baseweight(8), basecost(240), damage(1d+1), damtype(pi-), acc(3), rangehalfdam(50), rangemax(125), rof(2x9), shots(5(3i)), minst(10†), bulk(-5), rcl(1), skillused(SK:Gun!, SK:Guns (Shotgun), ST:DX-4, SK:Guns (Grenade Launcher)-4, SK:Guns (Gyroc)-4, SK:Guns (Light Anti-Armor Weapon)-4, SK:Guns (Light Machine Gun)- 2, SK:Guns (Musket)-2, SK:Guns (Pistol)-2, SK:Guns (Rifle)-2, SK:Guns (Shotgun)-2, SK:Guns (Submachine Gun)-2),_
+	description(TL:6 LC:4 Damage:1d+1 pi- Acc:3 Range:50/125 RoF:2x9 Shots:5(3i) ST:10† Bulk:-5 Rcl:1 Skill:Guns (Shotgun)), page(L22), mods(Equipment, Guns)
+
+"Derringer, .41 (Ammunition)", baseweight(0.1), basecost(2), techlvl(5), lc(3), mods(Equipment, Ammunition)
+"Auto Pistol, 9mm (TL 6¸ Ammunition)", baseweight(0.4), basecost(8), techlvl(6), lc(3), mods(Equipment, Ammunition)
+"Revolver, .357M (Ammunition)", baseweight(0.21), basecost(4.2), techlvl(7), lc(3), mods(Equipment, Ammunition)
+"Auto Pistol, .44M (Ammunition)", baseweight(0.6), basecost(12), techlvl(8), lc(3), mods(Equipment, Ammunition)
+"Lever-Action Carbine, .30 (Ammunition)", baseweight(0.3), basecost(6), techlvl(5), lc(3), mods(Equipment, Ammunition)
+"Self-Loading Rifle, 7.62mm (Ammunition)", baseweight(0.5), basecost(10), techlvl(6), lc(3), mods(Equipment, Ammunition)
+"Sniper Rifle, .388 (Ammunition)", baseweight(0.8), basecost(16), techlvl(8), lc(3), mods(Equipment, Ammunition)
+"Pump Shotgun, 12G (Ammunition)", baseweight(0.7), basecost(14), techlvl(6), lc(4), mods(Equipment, Ammunition)
+
+<Lite - Melee Weapons>
+Axe, techlvl(0), lc(4), basecost(50), baseweight(4), page(L20), mods(Equipment, Melee Quality, Cutting Class Quality), damage(sw+2), damtype(cut), reach(1), parry(0U), minst(11), skillused(Axe/Mace),_
+	description(TL:0 LC:4, Dam:sw+2 cut Reach:1 Parry:0U ST:11 Skill:Axe/Mace)
+Throwing Axe, techlvl(0), break(0), lc(4), basecost(60), baseweight(4), page(L21), cat(Muscle-Powered Ranged Weapons), mods(Equipment, Melee Quality, Cutting Class Quality), calcrange(yes),_
+	newmode(Thrown, dmg(sw), damage(sw+2), damtype(cut), acc(2), rangehalfdam(ST*1), rangemax(ST*1.5), rof(1), shots(T(1)), minst(11), bulk(-3), skillused(SK:Thrown Weapon (Axe/Mace), ST:DX-4)),_
+	newmode(Swing, dmg(sw), damage(sw+2), damtype(cut), reach(1), parry(0U), minst(11), notes([1]), skillused(SK:Axe/Mace, ST:DX-5, SK:Flail-4, SK:Two-Handed Axe/Mace-3)),_
+	description(TL:0 LC:4 \par [Mode: thrown Dam:sw+2 cut Acc:2 Range:ST*1/ST*1.5 RoF:1 Shots:T(1) ST:11 Bulk:-3] \par [Mode:swing Dam:sw+2 cut Reach:1 Parry:0U ST:11 Skill:Axe/Mace Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)])
+Mace, techlvl(2), lc(4), basecost(50), baseweight(5), page(L20), cat(Muscle-Powered Ranged Weapons), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), calcrange(yes),_
+	newmode(Thrown, damage(sw+3), damtype(cut), acc(1), rangehalfdam(ST*0.5), rangemax(ST*1), rof(1), shots(T(1)), minst(12), bulk(-4), skillused(Thrown Weapon (Axe/Mace))),_
+	newmode(Swing, damage(sw+3), damtype(cr), reach(1), parry(0U), minst(12), notes([1]), skillused(Axe/Mace)),_
+	description(TL:2 LC:4 \par [Mode: thrown Dam:sw+3 cut Acc:1 Range:ST*0.5/ST*1 RoF:1 Shots:T(1) ST:12 Bulk:-4] \par [Mode:swing Dam:sw+3 cr Reach:1 Parry:0U ST:12 Skill:Axe/Mace Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)])
+Brass Knuckles, techlvl(1), break(0), lc(4), basecost(10), baseweight(0.25), page(L20), mods(Equipment, Melee Quality, Crushing/Imp Class Quality),_
+	dmg(thr), damage(thr + _
+					@max(_
+						@if("SK:Brawling::level" > ST:DX+1 then owner::basethdice else 0),_
+						@if("SK:Boxing::level" = ST:DX+1 then owner::basethdice else @if("SK:Boxing::level" > ST:DX+1 then 2 * owner::basethdice else 0)),_
+						@if("SK:Karate::level" = ST:DX then owner::basethdice else @if("SK:Karate::level" > ST:DX then 2 * owner::basethdice else 0)) _
+						)_
+				), damtype(cr), reach(C), parry(0), minst(--), notes([3]), skillused(SK:Boxing, SK:Brawling, SK:Karate, ST:DX),_
+	description(TL:1 LC:4, Dam:thr cr Reach:C Parry:0 ST:-- Skill:Boxing, Brawling, Karate, DX Notes: [3] Brawling increases all unarmed damage; claws and Karate improve damage with punches and kicks (claws don't affect damage with brass knuckles or boots); Boxing improves punching damage. Calculated damage takes into account these skill bonuses.)
+Broadsword, techlvl(2), lc(4), basecost(500), baseweight(3), page(L20), mods(Equipment, Melee Quality, Sword Class Quality),_
+	newmode(Swing, damage(sw+1), damtype(cut), reach(1), parry(0), minst(10), skillused(Broadsword)),_
+	newmode(Thrust, damage(thr+1), damtype(cr), reach(1), parry(0), minst(10), skillused(Broadsword)),_
+	description(TL:2 LC:4 \par [Mode:swing Dam:sw+1 cut Reach:1 Parry:0 ST:10 Skill:Broadsword] \par [Mode:thrust Dam:thr+1 cr Reach:1 Parry:0 ST:10 Skill:Broadsword])
+Thrusting Broadsword, techlvl(2), lc(4), basecost(600), baseweight(3), page(L20), mods(Equipment, Melee Quality, Sword Class Quality),_
+	newmode(Swing, damage(sw+1), damtype(cut), reach(1), parry(0), minst(10), skillused(Broadsword)),_
+	newmode(Thrust, damage(thr+2), damtype(imp), reach(1), parry(0), minst(10), skillused(Broadsword)),_
+	description(TL:2 LC:4 \par [Mode:swing Dam:sw+1 cut Reach:1 Parry:0 ST:10 Skill:Broadsword] \par [Mode:thrust Dam:thr+2 imp Reach:1 Parry:0 ST:10 Skill:Broadsword])
+Large Knife, techlvl(0), lc(4), basecost(40), baseweight(1), page(L20), cat(Muscle-Powered Ranged Weapons), mods(Equipment, Melee Quality, Sword Class Quality), calcrange(yes),_
+	newmode(Thrown, damage(thr), damtype(imp), acc(0), rangehalfdam(ST*0.8), rangemax(ST*1.5), rof(1), shots(T(1)), minst(6), bulk(-2), skillused(Thrown Weapon (Knife))),_
+	newmode(Swing, damage(sw-2), damtype(cut), reach(C,1), parry(-1), minst(6), skillused(Knife)),_
+	newmode(Thrust, damage(thr), damtype(imp), reach(C), parry(-1), minst(6), notes([1]), skillused(Knife)),_
+	description(TL:0 LC:4 \par [Mode: thrown Dam:thr imp Acc:0 Range:ST*0.8/ST*1.5 RoF:1 Shots:T(1) ST:6 Bulk:-2] \par [Mode:swing Dam:sw-2 cut Reach:C,1 Parry:-1 ST:6 Skill:Knife] \par [Mode:thrust Dam:thr imp Reach:C Parry:-1 ST:6 Skill:Knife Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)])
+Poleaxe, techlvl(3), lc(4), basecost(120), baseweight(10), page(L20), mods(Equipment, Melee Quality, Cutting Class Quality),_
+	newmode(Swing/cut, damage(sw+4), damtype(cut), reach(2,3*), parry(0U), minst(12‡), skillused(Polearm)), newmode(Swing/cr, damage(sw+4), damtype(cr), reach(2,3*), parry(0U), minst(12‡), skillused(Polearm)),_
+	description(TL:3 LC:4 \par [Mode:swing/cut Dam:sw+4 cut Reach:2,3* Parry:0U ST:12‡ Skill:Polearm Notes: Requires two hands; becomes unready after attack.] \par [Mode:swing/cr Dam:sw+4 cr Reach:2,3* Parry:0U ST:12‡ Skill:Polearm Notes: Requires two hands; becomes unready after attack.])
+Rapier, techlvl(4), lc(4), basecost(500), baseweight(2.75), page(L20), mods(Equipment, Melee Quality, Sword Class Quality), damage(thr+1), damtype(imp), reach(1,2), parry(0F), minst(9), skillused(Rapier),_
+	description(TL:4 LC:4, Dam:thr+1 imp Reach:1,2 Parry:0F ST:9 Skill:Rapier)
+Shortsword, techlvl(2), lc(4), basecost(400), baseweight(2), page(L20), mods(Equipment, Melee Quality, Sword Class Quality),_
+	newmode(Swing, damage(sw), damtype(cut), reach(1), parry(0), minst(8), skillused(Shortsword)), newmode(Thrust, damage(thr), damtype(imp), reach(1), parry(0), minst(8), skillused(Shortsword)),_
+	description(TL:2 LC:4 \par [Mode:swing Dam:sw cut Reach:1 Parry:0 ST:8 Skill:Shortsword] \par [Mode:thrust Dam:thr imp Reach:1 Parry:0 ST:8 Skill:Shortsword])
+Spear, techlvl(0), lc(4), basecost(40), baseweight(4), page(L21), cat(Muscle-Powered Ranged Weapons), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), calcrange(yes),_
+	newmode(Thrown, damage(thr+3), damtype(imp), acc(2), rangehalfdam(ST*1), rangemax(ST*1.5), rof(1), minst(9), bulk(-3), shots(T(1)), skillused(Thrown Weapon (Spear))),_
+	newmode(1H Thrust, damage(thr+2), damtype(imp), reach(1*), parry(0), minst(9), notes([1]), skillused(Spear)),_
+	newmode(2H Thrust, damage(thr+3), damtype(imp), reach(1,2*), parry(0), minst(9†), skillused(Spear)),_
+	description(TL:0 LC:4 \par [Mode: thrown Dam:thr+3 imp Acc:2 Range:ST*1/ST*1.5 RoF:1 Shots:T(1) ST:9 Bulk:-3] \par [Mode:one-handed thrust Dam:thr+2 imp Reach:1* Parry:0 ST:9 Skill:Spear Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)] \par [Mode:two-handed thrust Dam:thr+3 imp Reach:1,2* Parry:0 ST:9† Skill:Spear Notes: Requires two hands.])
+Quarterstaff, techlvl(0), lc(4), basecost(10), baseweight(4), page(L21), mods(Equipment, Melee Quality, Crushing/Imp Class Quality),_
+	newmode(Staff swing, damage(sw+2), damtype(cr), reach(1,2), parry(+2), minst(7†), skillused(Staff)),_
+	newmode(Staff thrust, damage(thr+2), damtype(cr), reach(1,2), parry(+2), minst(7†), skillused(Staff)),_
+	newmode(Sword swing, damage(sw+2), damtype(cr), reach(1,2), parry(0), minst(9†), skillused(Two-Handed Sword)),_
+	newmode(Sword thrust, damage(thr+1), damtype(cr), reach(2), parry(0), minst(9†), skillused(Two-Handed Sword)),_
+	description(TL:0 LC:4 \par [Mode:staff swing Dam:sw+2 cr Reach:1,2 Parry:+2 ST:7† Skill:Staff Notes: Requires two hands.] \par [Mode:staff thrust Dam:thr+2 cr Reach:1,2 Parry:+2 ST:7† Skill:Staff Notes: Requires two hands.] \par [Mode:sword swing Dam:sw+2 cr Reach:1,2 Parry:0 ST:9† Skill:Two-Handed Sword Notes: Requires two hands.] \par [Mode:sword thrust Dam:thr+1 cr Reach:2 Parry:0 ST:9† Skill:Two-Handed Sword Notes: Requires two hands.])
+Thrusting Greatsword, techlvl(3), lc(4), basecost(900), baseweight(7), page(L21), mods(Equipment, Melee Quality, Sword Class Quality),_
+	newmode(Swing, damage(sw+3), damtype(cut), reach(1,2), parry(0), minst(12†), skillused(Two-Handed Sword)),_
+	newmode(Thrust, damage(thr+3), damtype(imp), reach(2), parry(0), minst(12†), skillused(Two-Handed Sword)),_
+	description(TL:3 LC:4 \par [Mode:swing Dam:sw+3 cut Reach:1,2 Parry:0 ST:12† Skill:Two-Handed Sword Notes: Requires two hands.] \par [Mode:thrust Dam:thr+3 imp Reach:2 Parry:0 ST:12† Skill:Two-Handed Sword Notes: Requires two hands.])
+
+<Lite - Muscle-Powered Ranged Weapons>
+Longbow, basecost(200), baseweight(3), damage(thr+2), damtype(imp), lc(4), techlvl(0), acc(3), calcrange(yes), rangehalfdam(ST*15), rangemax(ST*20), rof(1), shots(1(2)), minst(11†), bulk(-8), skillused(Bow), page(L21), notes([3]),_
+	description(TL:0 LC:4, Dam:thr+2 imp Acc:3 Range:ST*15/ST*20 RoF:1 Shots:1(2) ST:11† Bulk:-8 Skill:Bow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Short Bow, basecost(50), baseweight(2), damage(thr), damtype(imp), lc(4), techlvl(0), acc(1), calcrange(yes), rangehalfdam(ST*10), rangemax(ST*15), rof(1), shots(1(2)), minst(7†), bulk(-6), skillused(Bow), page(L21), notes([3]),_
+	description(TL:0 LC:4, Dam:thr imp Acc:1 Range:ST*10/ST*15 RoF:1 Shots:1(2) ST:7† Bulk:-6 Skill:Bow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST  7), weaponst(7), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST  8), weaponst(8), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST  9), weaponst(9), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 10), weaponst(10), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 11), weaponst(11), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 12), weaponst(12), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 13), weaponst(13), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 14), weaponst(14), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 15), weaponst(15), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 16), weaponst(16), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 17), weaponst(17), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 18), weaponst(18), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 19), weaponst(19), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Crossbow (ST 20), weaponst(20), basecost(150), baseweight(6), damage(@thr(me::weaponst)+4), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(me::weaponst*20), rangemax(me::weaponst*25), rof(1), shots(1(4)), minst(7†), bulk(-6), skillused(Crossbow), page(L21), notes([3]),_
+	description(TL:2 LC:4, Dam:thr+4 imp Acc:4 Range:ST*20/ST*25 RoF:1 Shots:1(4) ST:7† Bulk:-6 Skill:Crossbow Notes: [3] An arrow or bolt for a bow or crossbow is $2. A dart for a blowpipe, or a lead pellet for a prodd or sling, is $0.1. Sling stones are free.), mods(Equipment, Bow Quality)
+Goat's Foot, basecost(50), baseweight(2), damage(), damtype(), lc(4), techlvl(3), acc(), rangehalfdam(), rangemax(), rof(), shots((20)), minst(7†), bulk(), skillused(Crossbow), page(L21), notes([5]),_
+	description(TL:3 LC:4, Dam: Acc: Range: RoF: Shots:(20) ST:7† Bulk: Skill:Crossbow Notes: [5] Cocking lever to reload a high-ST crossbow or prodd. You can reload a weapon up to 4 ST over your own with 20 one-second Ready maneuvers.), mods(Equipment)
+Arrow, lc(4), techlvl(0), baseweight(0.1), basecost(2), page(L21), mods(Equipment, Crushing/Imp Class Quality, Arrow)
+Crossbow Bolt, lc(4), techlvl(2), baseweight(0.06), basecost(2), page(L21), mods(Equipment, Crushing/Imp Class Quality, Arrow)
+
+********************************************************************************************************\[STOP]
+[SPELLS]
+*******************************************************************************************************\[START]
+<%NewSpellList%>
+_New Spell, type(%typelist%), cat(%newspelllist%), shortcat(%newspellaliaslist%), class([class]), time([time]), duration([duration]), castingcost([castingcost]),_
+	x(#InputToTagReplace("Please enter the name of this spell:", name, , "New Spell"),_
+	#InputReplace("Please enter the Class of this spell; i.e. Regular, Area, Missile, Blocking, Information, Enchantment, or Special. If Resisted use R- followed by the attribute or skill that resists the spell; e.g. R-Will:", "[class]", , "New Spell"),_
+	#InputReplace("Please enter the Casting Time of this spell:", "[time]", "1 sec.", "New Spell"),_
+	#InputReplace("Please enter the Duration of this spell:", "[duration]", , "New Spell"),_
+	#InputReplace("Please enter the Casting Cost of this spell:", "[castingcost]", , "New Spell"),_
+	#ChoiceList(_
+			name(type),_
+			title(New Spell),_
+			text("Choose the type of spell from the list below:"),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"IQ/H",_
+				"IQ/VH" _
+			)_
+			),_
+	#ChoiceList(_
+			name(newspell),_
+			title(New Spell),_
+			text(Choose the College (or Colleges) of the new spell from the list below:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				"Air",_
+				"Animal",_
+				"Body Control",_
+				"Communication & Empathy",_
+				"Earth",_
+				"Enchantment",_
+				"Fire",_
+				"Food",_
+				"Gate",_
+				"Healing",_
+				"Illusion & Creation",_
+				"Knowledge",_
+				"Light & Darkness",_
+				"Making & Breaking",_
+				"Meta-Spells",_
+				"Mind Control",_
+				"Movement",_
+				"Necromancy",_
+				"Plant",_
+				"Protection & Warning",_
+				"Sound",_
+				"Technological",_
+				"Water",_
+				"Weather" _
+				),_
+			aliaslist(_
+				"Ai",_
+				"An",_
+				"BC",_
+				"CE",_
+				"Ea",_
+				"En",_
+				"Fi",_
+				"Fo",_
+				"Ga",_
+				"He",_
+				"IC",_
+				"Kn",_
+				"LD",_
+				"MB",_
+				"MS",_
+				"MC",_
+				"Mo",_
+				"Ne",_
+				"Pl",_
+				"PW",_
+				"So",_
+				"Te",_
+				"Wa",_
+				"We" _
+				)_
+			),_
+		#edit _
+	), noresync(yes)
+_New Parent Item, type(N/A), isparent(yes), upto(0 LimitingTotal), basepoints(0), points(0), initmods(Parent, -1),_
+	description(_
+			In GCA a "Parent" item can have other traits assigned to it as "Children." This is essentially an organizational structure, allowing you to file multiple traits together under the parent item if you wish. _
+			To make an item a "child" right click on it and select "Make Child of..." _
+			The child items will be hidden by default; you may show the child items by right clicking on the parent and selecting "Show Components." Once displayed the children will be shown in a "tree" format under the parent. _
+			Any item may be assigned as a parent by right clicking on it and selecting "Make Parent"; this entry is here for convenience, as it is automatically designated a Parent. _
+			),_
+	x(#InputToTagReplace("Please specify a name for this item:", name, , "New Parent Item"))
+

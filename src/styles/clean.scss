@@ -1,0 +1,24 @@
+button:hover,
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+a:hover {
+  text-shadow: none;
+}
+
+img {
+  border: none;
+}
+
+.header {
+  color: black;
+  font-size: medium;
+  border-bottom: none;
+  background-color: transparent;
+}
+
+.hidden {
+  display: initial;
+}

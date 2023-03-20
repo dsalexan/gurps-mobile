@@ -1,0 +1,58 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. #Delete commands for all spells sorted by their Prereq Count. _
+		NOTE: This data file is *NOT* meant to be used as-is, but rather it is a tool to help users more quickly create _
+		lists of removed traits for their own campaigns. When using this file go through it and remove any reference to traits _
+		you wish to *ALLOW*, leave the #Delete commands for those traits you wish to remove. _
+		IMPORTANT: After editing this data file it is important that you save it under another file name with the .gdf _
+		extention. If you do not save it under a different name it will likely be overwritten when installing future _
+		Data Updates.
+Taboo="Variant - Delete Spells by Prereq Count.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Delete Spells by Prereq Count.gdf
+* Created: November 22, 2005
+* Requires GCA v4 or later!
+*
+* Information in this file includes:
+*  #Delete commands for every advantage, perk, disadvantage, quirk, skill, spell, and template contained in all the
+*  	primary data files
+*
+*	NOTE: This data file is *NOT* meant to be used as-is, but rather it is a tool to help users more quickly create
+* lists of removed traits for their own campaigns. When using this file go through it and remove any reference to traits
+* you wish to *ALLOW*, leave the #Delete commands for those traits you wish to remove.
+*	IMPORTANT: After editing this data file it is important that you save it under another file name with the .gdf
+* extention. If you do not save it under a different name it will likely be overwritten when installing future
+* Data Updates.
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+* The following command will remove all spells with a prereqcount 
+* equal to or greater than the listed number.
+
+[SPELLS]
+#DeleteByTag Spells, Numeric IgnoreEmpty, prereqcount >= 0

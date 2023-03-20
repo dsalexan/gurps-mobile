@@ -1,0 +1,137 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=03/01/2016. This file contains all of the equipment from High-Tech Pulp Guns 1 converted to Metric weights. _
+		All weights have been rounded off; those under 1 Kilo are rounded to two decimal places; those under 10 Kilos _
+		are rounded to one decimal place; those over 10 Kilos are rounded to the nearest whole number. _
+		Range (1/2D & Max) remains in yards, but the approximate conversion of 1 yard = 1 meter should suffice.
+Requires="GURPS High-Tech Pulp Guns Volume 1.gdf", "Variant Basic Set 4e - Metric Equipment.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant High-Tech 4e - Metric Equipment.gdf
+* Created: August 18, 2007
+* Requires GCA v4 or later!
+*
+* Information in this file includes:
+* Conversion of all equipment to use Metric weights and measures
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[EQUIPMENT]
+************************************************************************************************************************
+#ReplaceTags in "EQ:Mossberg Brownie, .22 LR" with "units(kg), baseweight(0.32)"
+#ReplaceTags in "EQ:Remington Model 95, .41 Short" with "units(kg), baseweight(0.25)"
+#ReplaceTags in "EQ:Chamelot-Delvigne Mle 1874, 11x17mmR" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:Colt .32 Pocket Positive, .32 S&W Long" with "units(kg), baseweight(0.5)"
+#ReplaceTags in "EQ:Colt .38 Banker's Special, .38 S&W" with "units(kg), baseweight(0.64)"
+#ReplaceTags in "EQ:Colt .38 Detective Special, .38 Special" with "units(kg), baseweight(0.68)"
+#ReplaceTags in "EQ:Colt .38 Official Police, .38 Special" with "units(kg), baseweight(1)"
+#ReplaceTags in "EQ:Colt .38 Police Positive Special, .38 Special" with "units(kg), baseweight(0.73)"
+#ReplaceTags in "EQ:Colt .45 New Service, .45 Long Colt" with "units(kg), baseweight(1.3)"
+#ReplaceTags in "EQ:Colt .45 SAA, .45 Long Colt" with "units(kg), baseweight(1.4)"
+#ReplaceTags in "EQ:Cottrell Flashlight Revolver, .22 LR" with "units(kg), baseweight(0.68)"
+#ReplaceTags in "EQ:Enfield Number 2 Mk I, .38 S&W" with "units(kg), baseweight(0.82)"
+#ReplaceTags in "EQ:Galand Velo-Dog, 5.5x28mmR" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:H&R .22 Young America, .22 Long" with "units(kg), baseweight(0.27)"
+#ReplaceTags in "EQ:HDH Mitrailleuse, 5.5x28mmR" with "units(kg), baseweight(0.95)"
+#ReplaceTags in "EQ:Iver Johnson .32 Hammerless, .32 S&W Long" with "units(kg), baseweight(0.59)"
+#ReplaceTags in "EQ:Iver Johnson Protector, .22 LR" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:MAS Mle 1892, 8x27mmR" with "units(kg), baseweight(0.91)"
+#ReplaceTags in "EQ:Nagant R-1895, 7.62x39mmR" with "units(kg), baseweight(0.91)"
+#ReplaceTags in "EQ:Pickert Arminius Modell 10, .32 ACP" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Rast & Gasser M.98, 8x27mmR" with "units(kg), baseweight(1)"
+#ReplaceTags in "EQ:S&W .22 LadySmith, .22 Long" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:S&W .32 Hand-Ejector, .32 S&W Long" with "units(kg), baseweight(0.59)"
+#ReplaceTags in "EQ:S&W .357 Magnum, .357 Magnum" with "units(kg), baseweight(1.4)"
+#ReplaceTags in "EQ:S&W .38 M&P, .38 Special" with "units(kg), baseweight(0.91)"
+#ReplaceTags in "EQ:S&W .38 Safety Hammerless, .38 S&W" with "units(kg), baseweight(0.59)"
+#ReplaceTags in "EQ:S&W .44 Hand Ejector, .44 Special" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:Webley Mk III Police & Civilian, .38 S&W" with "units(kg), baseweight(0.68)"
+#ReplaceTags in "EQ:Webley Mk VI, .455 Webley" with "units(kg), baseweight(1.2)"
+#ReplaceTags in "EQ:Webley-Fosbery Mk I, .455 Webley" with "units(kg), baseweight(1.4)"
+#ReplaceTags in "EQ:Astra Mod 400, 9x23mm" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:Beretta Mod 15, 9x19mm" with "units(kg), baseweight(0.91)"
+#ReplaceTags in "EQ:Colt .32 Pocket, .32 ACP" with "units(kg), baseweight(0.73)"
+#ReplaceTags in "EQ:Colt Government, .45 ACP" with "units(kg), baseweight(1.3)"
+#ReplaceTags in "EQ:Colt Woodsman, .22 LR" with "units(kg), baseweight(0.82)"
+#ReplaceTags in "EQ:CZ Pi vz. 27, .32 ACP" with "units(kg), baseweight(0.73)"
+#ReplaceTags in "EQ:FN-Browning HP, 9x19mm" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:FN-Browning Mle 1900, .32 ACP" with "units(kg), baseweight(0.68)"
+#ReplaceTags in "EQ:FN-Browning Mle 1903, 9x20mmSR" with "units(kg), baseweight(1)"
+#ReplaceTags in "EQ:FN-Browning Mle 1906, .25 ACP" with "units(kg), baseweight(0.36)"
+#ReplaceTags in "EQ:FN-Browning Mle 1910, .32 ACP" with "units(kg), baseweight(0.68)"
+#ReplaceTags in "EQ:Lignose Modell 3A, .25 ACP" with "units(kg), baseweight(0.45)"
+#ReplaceTags in "EQ:Llama Plus Ultra, .32 ACP" with "units(kg), baseweight(1.2)"
+#ReplaceTags in "EQ:Luger P08, 9x19mm" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:Mauser C14, .32 ACP" with "units(kg), baseweight(0.73)"
+#ReplaceTags in "EQ:Mauser C96, 7.63x25mm" with "units(kg), baseweight(1.2)"
+#ReplaceTags in "EQ:Menz Liliput, 4.25x10mm" with "units(kg), baseweight(0.23)"
+#ReplaceTags in "EQ:Nambu 14 Shiki, 8x21mm" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:Nambu 94 Shiki, 8x21mm" with "units(kg), baseweight(0.82)"
+#ReplaceTags in "EQ:Ortgies Selbstladepistole, .380 ACP" with "units(kg), baseweight(0.77)"
+#ReplaceTags in "EQ:Pfannl Kolibri, 2.7x9mm" with "units(kg), baseweight(0.23)"
+#ReplaceTags in "EQ:Remington Model 51, .380 ACP" with "units(kg), baseweight(0.77)"
+#ReplaceTags in "EQ:Rheinmetall-Dreyse M07, .32 ACP" with "units(kg), baseweight(0.68)"
+#ReplaceTags in "EQ:Sauer Selbstladepistole, .32 ACP" with "units(kg), baseweight(0.59)"
+#ReplaceTags in "EQ:Savage Model 1907, .32 ACP" with "units(kg), baseweight(0.73)"
+#ReplaceTags in "EQ:Steyr M.12, 9x23mm Steyr" with "units(kg), baseweight(1)"
+#ReplaceTags in "EQ:Walther HP, 9x19mm" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:Walther Mod 4, .32 ACP" with "units(kg), baseweight(0.77)"
+#ReplaceTags in "EQ:Walther Modell 8, .25 ACP" with "units(kg), baseweight(0.41)"
+#ReplaceTags in "EQ:Walther PPK, .32 ACP" with "units(kg), baseweight(0.77)"
+#ReplaceTags in "EQ:Webley & Scott .455 SL Mk I, .455 Webley Auto" with "units(kg), baseweight(1.3)"
+#ReplaceTags in "EQ:Webley & Scott M&P, 9x20mmSR Browning" with "units(kg), baseweight(1)"
+#ReplaceTags in "EQ:Webley & Scott M.P., .32 ACP" with "units(kg), baseweight(0.73)"
+#ReplaceTags in "EQ:Colt Model 1878, 12G 2.625''" with "units(kg), baseweight(3.7)"
+#ReplaceTags in "EQ:FN-Browning Auto-5, 12G 2.75''" with "units(kg), baseweight(4)"
+#ReplaceTags in "EQ:Greener F35 Far-Killer, 10G 2.875''" with "units(kg), baseweight(4.1)"
+#ReplaceTags in "EQ:Greener Police Gun, 14.5G 2.56''" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:H&H Paradox Gun, 12G 2.5''" with "units(kg), baseweight(3.4)"
+#ReplaceTags in "EQ:H&R Handy-Gun, .410G 2.5''" with "units(kg), baseweight(1.1)"
+#ReplaceTags in "EQ:H&R Model 8 Standard, 12G 2.625''" with "units(kg), baseweight(3)"
+#ReplaceTags in "EQ:Ithaca Auto & Burglar, 20G 2.5''" with "units(kg), baseweight(2.3)"
+#ReplaceTags in "EQ:Ithaca NID Field, 12G 2.75''" with "units(kg), baseweight(3.5)"
+#ReplaceTags in "EQ:LeFever Nitro Special, 12G 2.75''" with "units(kg), baseweight(3)"
+#ReplaceTags in "EQ:Manville M12, 12G 2.75''" with "units(kg), baseweight(8.1)"
+#ReplaceTags in "EQ:Marble Model 1908 Game Getter, .44-40" with "units(kg), baseweight(1.4)"
+#ReplaceTags in "EQ:Marlin Lever Action, .410G 2.5''" with "units(kg), baseweight(2.8)"
+#ReplaceTags in "EQ:Merkel Modell 145, 16G 2.75''" with "units(kg), baseweight(3.4)"
+#ReplaceTags in "EQ:Remington Model 17, 20G 2.75''" with "units(kg), baseweight(2.5)"
+#ReplaceTags in "EQ:Remington Model 32, 12G 2.75''" with "units(kg), baseweight(3.4)"
+#ReplaceTags in "EQ:Winchester Model 12, 12G 2.75''" with "units(kg), baseweight(3.9)"
+#ReplaceTags in "EQ:Winchester Model 1887, 10G 2.875''" with "units(kg), baseweight(3.6)"
+#ReplaceTags in "EQ:Winchester Model 21, 12G 2.75''" with "units(kg), baseweight(3.4)"
+#ReplaceTags in "EQ:Winchester Model 97, 12G 2.75''" with "units(kg), baseweight(3.9)"
+#ReplaceTags in "EQ:Auto-Ordnance Model 1921, .45 ACP" with "units(kg), baseweight(7.1)"
+#ReplaceTags in "EQ:Beretta Mod 1918, 9x19mm" with "units(kg), baseweight(3.7)"
+#ReplaceTags in "EQ:Bergmann MP18 I, 9x19mm" with "units(kg), baseweight(5.2)"
+#ReplaceTags in "EQ:Bergmann MP34 I, 9x19mm" with "units(kg), baseweight(5)"
+#ReplaceTags in "EQ:ERMA EMP, 9x19mm" with "units(kg), baseweight(4.8)"
+#ReplaceTags in "EQ:SIG MKMO, 9x25mm" with "units(kg), baseweight(5.2)"
+#ReplaceTags in "EQ:Steyr S1-100, 9x23mm" with "units(kg), baseweight(5)"
+#ReplaceTags in "EQ:Tikkakoski KP 31, 9x19mm" with "units(kg), baseweight(7.1)"
+#ReplaceTags in "EQ:ZiD PPD-34, 7.62x25mm" with "units(kg), baseweight(4.2)"

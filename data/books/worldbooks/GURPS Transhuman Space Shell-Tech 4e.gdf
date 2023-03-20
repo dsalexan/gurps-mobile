@@ -1,0 +1,4071 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+			This data file contains information taken from the Transhuman Space: Shell-Tech sourcebook. _
+			Transhuman Space: Shell-Tech is Copyright © 2007 by Steve Jackson Games Incorporated. All rights reserved.
+Worldbook=Transhuman Space
+Requires="GURPS Transhuman Space Changing Times 4e.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Transhuman Space Shell-Tech.GDF
+//  Created:  January 27, 2008
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the Transhuman Space: Shell-Tech sourcebook.
+//  Transhuman Space: Shell-Tech is Copyright © 2007 by Steve Jackson Games Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 	Attributes
+// 	Advantages, Perks, Disadvantages, Quirks, Including Bonuses and Penalties.
+// 	Templates
+// 
+*******************************************************************************************************************
+// 
+//  Most work by Staffan Björk (bjork), with Phil Masters and Armin D. Sykes
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Exotic Physical>
+Extra Wheels (3 wheels), 5, page(TS:ST5), cat(Exotic, Physical)
+Extra Wheels (4 wheels), 5, page(TS:ST5), cat(Exotic, Physical)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Scaly Hide, 1
+Physically attractive in a stylized abstract way, 1, conditional(+1 to ST:Reaction when "from people with a taste for stylish design who haven't seen the model much before")
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Exotic Physical>
+Short Legs, -2
+Short Legs (4 Legs), -2, page(TS:ST5), cat(Exotic, Physical, Extra Arms/Legs), needs(AD:Extra Legs (4 Legs) ), description(Shorthand for applying the Short limitation from Extra Arms to Extra Legs (4 legs))
+No Bite, 0, replacetags(in "ST:Bite" with "hide(yes)")
+
+<Exotic Mental>
+Reprogrammable (Exposed Controls), -10, page(TS:ST7), cat(Exotic, Mental), mods(Exposed Controls)
+
+********************************************************************************************************\[STOP]
+[QUIRKS]
+*******************************************************************************************************\[START]
+<Shell-Tech>
+Poor Depth Perception, -1
+Has a Neck Hit Location but no special vulnerabilities there, -1, cat(Physical)
+Resembles a human until inspected closely, -1, description(Prevents fully effective long-term disguise but can still lead to a hostile reaction from people who find that they've been deceived even accidentally), cat(Physical), noresync(yes), page(TS:CT54)
+Requires some maintenance if fired and the recovered for reuse, -1
+Especially limited high and low frequency hearing, -1
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Exposed Controls>
+Very Easy Activation, +100%, page(TS:ST7)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Shell-Tech>
+Mini-Snakebot (Shell-Tech), displaycost(-13), cost(-65),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Originally created as toys, appearing when cybernetic engineers managed to emulate a snake's method of locomotion in a cheap, reliable mechanical body; see Shell-Tech p.14),_
+	race(Mini-Snakebot),_
+	page(TS:ST14),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-7 to ST:ST,_
+		+1 to ST:HT,_
+		-2 to ST:Size Modifier,_
+		-1 to ST:Basic Move _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance=1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Infravision,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Vacuum Support,_
+		PE:Accessory (Drug Injector),_
+		PE:Accessory (Tiny Computer),_
+		DI:Invertebrate,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		TE:Machine,_
+		TE:Cybershell Body,_
+		TE:Vermiform _
+	)
+
+Mini-Snakebot - Maintenance Snake(Shell-Tech), displaycost(43), cost(-55),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Used for inspection and repair tasks in confined spaces, especially when the work needs more strength than a microbot swarm can provide; see Shell-Tech p.15),_
+	race(Mini-Snakebot - Maintenance),_
+	page(TS:ST15),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-7 to ST:ST,_
+		+2 to ST:HT,_
+		-2 to ST:Size Modifier,_
+		-1 to ST:Basic Move _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance=1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:High Manual Dexterity = 4,_
+		AD:Infravision,_
+		AD:Microscopic Vision = 3,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support=2,_
+		AD:Reduced Consumption (Recharge once a week)=3,_
+		AD:Sealed,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		AD:Vacuum Support,_
+		PE:Accessory (Micromanipulation tools),_
+		PE:Accessory (Built-In Torch),_
+		PE:Accessory (Tiny Computer),_
+		DI:Invertebrate,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		TE:Machine,_
+		TE:Cybershell Body,_
+		TE:Vermiform _
+	)
+
+Cyberdog (Shell-Tech), displaycost(95), cost(40),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A robot dog, usually employed as a domestic helper; see Shell-Tech p.12),_
+	race(Cyberdog),_
+	page(TS:ST12),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:DX,_
+		+2 to ST:HT,_
+		-2 to ST:Hit Points,_
+		-1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Acute Hearing=2,_
+		AD:Acute Taste and Smell=2,_
+		AD:Claws (Sharp Claws),_
+		AD:Discriminatory Smell,_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Flexible, -20%, group(Damage Resistance), page(B47)",_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Night Vision=7,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=4,_
+		PE:Accessory (Fur),_
+		PE:Accessory (Small Computer),_
+		TE:Quadruped,_
+		DI:Restricted Diet (liquid fuel) = 2,_
+		DI:Short Legs (4 Legs),_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Afrit (Shell-Tech), displaycost(521), cost(113),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(The Caliphate's best heavy combat shell, intimidatingly nonhumanoid in form; see Shell-Tech p.17),_
+	race(Afrit),_
+	page(TS:ST17),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+7 to ST:ST,_
+		+1 to ST:DX,_
+		+3 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Acute Hearing=3,_
+		AD:Chameleon=4 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Damage Resistance=75 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Filter Lungs,_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Payload=2,_
+		AD:Payload=4 _
+			with "Exposed, -50%, group(Payload), page(B74)",_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance=2,_
+		AD:Resistant (Electrical Pulses and Surges) = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Silence=1,_
+		AD:Telecommunication (Cable Jack),_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Microframe Computer),_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (gasoline) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Ghola (Shell-Tech), displaycost(243), cost(90),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(An armored humanoid combat shell used by the Caliphate military; see Shell-Tech p.17),_
+	race(Ghola),_
+	page(TS:ST17),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:ST,_
+		+2 to ST:DX,_
+		+5 to ST:Hit Points,_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Damage Resistance=20,_
+		AD:Doesn't Breathe,_
+		AD:High Pain Threshold,_
+		AD:Perfect Balance,_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Telecommunication (Cable Jack),_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Crocshell (Shell-Tech), displaycost(87), cost(63),_
+cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+description(A crocodile converted for use as a bioshell; see Shell-Tech, p.28.),_
+usernotes(I had to cheat a little on this, as the Crocshell splits out Ground and Water Move rates. Getting the printed values right involved giving it extra Extra Water Move and then lying about the cost() value.),_
+race(Crocshell),_
+page(TS:ST28),_
+noresync(yes),_
+owns(yes),_
+locks(no),_
+hides(yes),_
+gives(_
++6 to ST:ST,_
++2 to ST:DX,_
++3 to ST:HT,_
++4 to ST:Hit Points,_
++3 to ST:Perception,_
+-2 to ST:Basic Move,_
++3 to ST:Size Modifier _
+),_
+adds(_
+	{AD:Extra Water Move}=4,_
+	AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+	{AD:Acute Hearing}=2,_
+	{AD:Amphibious},_
+	{AD:Breath-Holding}=1,_
+	{AD:Claws (Sharp Claws)},_
+	{AD:Damage Resistance} = 2 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+	{AD:Damage Resistance} = 2 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)" _
+				and "Not on Underside, -10%",_
+	{AD:High Pain Threshold},_
+	{AD:Resistant} = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+	{AD:Nictitating Membrane}=1,_
+	{AD:Night Vision}=3,_
+	{AD:Peripheral Vision},_
+	{AD:Reduced Consumption}=1 _
+				with "Cast-Iron Stomach, -50%",_
+	{AD:Resistant} = 2 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Disease",_
+	{AD:Striker (Crushing; [Description])} _
+				with "Cannot Parry, -40%" _
+			and "Clumsy -1, -20%" respond "Tail",_
+	{AD:Striking ST}=3 _
+			with "Bite Only, -60%, gives(=-owner::level to ST:Striking ST, =+owner::level to ST:Bite)",_
+	{AD:Teeth (Sharp Teeth)},_
+	{AD:Telecommunication (Cable Jack)} _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+	{AD:Telecommunication (Radio)} _
+			with "Video, +40%, page(), group(Telecommunication)",_
+	{AD:Vibration Sense},_
+	{PE:Accessory (Computer)},_
+	{PE:Scaly Hide},_
+	{DI:Appearance}=4,_
+	{DI:Bad Smell},_
+	{DI:Cold-Blooded}=1 _
+			with "Mitigator: Weekly Food Supplements, -60%, group(_General), page(TS:ST), mitigator(yes)",_
+	{DI:Colorblindness},_
+	{DI:Electrical} _
+				with "Skull Hit Locations Only, -70%",_
+	{DI:Frightens Animals},_
+	{DI:Short Legs},_
+	{DI:Social Stigma (Monster)},_
+	{QU:Poor Depth Perception},_
+	TE:Quadruped_
+	)
+
+MCS-64 (Shell-Tech), displaycost(211), cost(66),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A humanoid heavy combat shell with integral weapons; see Shell-Tech p.19),_
+	race(MCS-64),_
+	page(TS:ST19),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+4 to ST:ST,_
+		+3 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance=25,_
+		AD:Filter Lungs,_
+		AD:High Pain Threshold,_
+		AD:Payload=4,_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+MCS-52 (Shell-Tech), displaycost(86), cost(20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A humanoid heavy combat shell with integral weapons; see Shell-Tech p.19),_
+	race(MCS-52),_
+	page(TS:ST19),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance=10,_
+		AD:Filter Lungs,_
+		AD:High Pain Threshold,_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+MCS-52H (Shell-Tech), displaycost(102), cost(20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(MSC-52 variant that appears human unless inspected closely; see Shell-Tech p.19),_
+	race(MCS-52),_
+	page(TS:ST19),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Appearance = 1 _
+			with "Off-the-Shelf Looks, -50%, conditional(*1/2 to GR:Appeal when "dealing with people from your own culture, you get only half the Appearance reaction bonus"), group(Attractive), page(B21)",_
+		AD:Damage Resistance=10,_
+		AD:Filter Lungs,_
+		AD:High Pain Threshold,_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:No Bite,_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		QU:Resembles a human until inspected closely, -1, cat(Physical), noresync(yes),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+
+Hacha 2c (Shell-Tech), displaycost(189), cost(40),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(TSA update of the MCS-52; see Shell-Tech p.19),_
+	race(MCS-52),_
+	page(TS:ST19),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Breath-Holding=3,_
+		AD:Claws (Sharp Claws),_
+		AD:Damage Resistance=15,_
+		AD:Filter Lungs,_
+		AD:High Pain Threshold,_
+		AD:Nictitating Membrane=1,_
+		AD:Night Vision=5,_
+		AD:Peripheral Vision,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Pressure Support=1,_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Temperature Tolerance=5,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+Mini Scout-RATS (Shell-Tech), displaycost(194), cost(8),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Miniature RATS cybershell primarily developed for scouting; see Shell-Tech p.20),_
+	race(Mini Scout-RATS),_
+	page(TS:ST20),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-5 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		-1 to ST:Hit Points,_
+		+3 to ST:Perception,_
+		+0.25 to ST:Basic Speed,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction,_
+		AD:Catfall,_
+		AD:Chameleon (Infrared) = 2 _
+			with "Extended, +20%/+40%, group(Chameleon), page(B41)",_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Legs (4 Legs),_
+		AD:High Pain Threshold,_
+		AD:Hyperspectral Vision,_
+		AD:Injury Tolerance _
+			with "No Head, +7, group(Injury Tolerance), page(B61)",_
+		AD:Nictitating Membrane=1,_
+		AD:Payload = 2,_
+		AD:Perfect Balance,_
+		AD:Pressure Support=1,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Recharge/refuel twice a day) = 1,_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Silence = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance=7,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Tiny Computer),_
+		DI:Weapon Mount (1 Arm),_
+		DI:Horizontal,_
+		DI:Maintenance = 1 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:One Arm,_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Mini Scout-RATS 134-c (Shell-Tech), displaycost(194), cost(3),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Mini Scout-RATS variant adapted for arctic operations; see Shell-Tech p.21),_
+	race(Mini Scout-RATS 134-c),_
+	page(TS:ST21),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-5 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		-1 to ST:Hit Points,_
+		+3 to ST:Perception,_
+		+0.25 to ST:Basic Speed,_
+		-1 to ST:Basic Move,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction,_
+		AD:Catfall,_
+		AD:Chameleon (Infrared) = 2 _
+			with "Extended, +20%/+40%, group(Chameleon), page(B41)",_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Legs (4 Legs),_
+		AD:High Pain Threshold,_
+		AD:Hyperspectral Vision,_
+		AD:Injury Tolerance _
+			with "No Head, +7, group(Injury Tolerance), page(B61)",_
+		AD:Nictitating Membrane=1,_
+		AD:Payload = 2,_
+		AD:Perfect Balance,_
+		AD:Pressure Support=1,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Recharge/refuel twice a day) = 1,_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Silence = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance=7,_
+		AD:Terrain Adaptation = 1 _
+			respond "snow",_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Tiny Computer),_
+		DI:Weapon Mount (1 Arm),_
+		DI:Horizontal,_
+		DI:Maintenance = 1 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:One Arm,_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Mini Scout-RATS 134-f (Shell-Tech), displaycost(194), cost(3),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Mini Scout-RATS variant adapted for desert operations; see Shell-Tech p.21),_
+	race(Mini Scout-RATS 134-f),_
+	page(TS:ST21),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-5 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		-1 to ST:Hit Points,_
+		+3 to ST:Perception,_
+		+0.25 to ST:Basic Speed,_
+		-1 to ST:Basic Move,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction,_
+		AD:Catfall,_
+		AD:Chameleon (Infrared) = 2 _
+			with "Extended, +20%/+40%, group(Chameleon), page(B41)",_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Legs (4 Legs),_
+		AD:High Pain Threshold,_
+		AD:Hyperspectral Vision,_
+		AD:Injury Tolerance _
+			with "No Head, +7, group(Injury Tolerance), page(B61)",_
+		AD:Nictitating Membrane=1,_
+		AD:Payload = 2,_
+		AD:Perfect Balance,_
+		AD:Pressure Support=1,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Recharge/refuel twice a day) = 1,_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Silence = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance=7,_
+		AD:Terrain Adaptation = 1 _
+			respond "desert",_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Tiny Computer),_
+		DI:Weapon Mount (1 Arm),_
+		DI:Horizontal,_
+		DI:Maintenance = 1 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:One Arm,_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Mini-UCAV AV-71 (Shell-Tech), displaycost(241), cost(2),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A football-sized helicopter gunship with two counterrotating rotors and four legs for ground movement; see Shell-Tech p.21),_
+	race(Mini-UCAV),_
+	page(TS:ST21),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-5 to ST:ST,_
+		+2 to ST:DX,_
+		+1 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Acute Vision = 1,_
+		AD:Chameleon (Infrared) = 3 _
+			with "Extended, +20%/+40%, group(Chameleon), page(B41)",_
+		AD:Damage Resistance=25 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Air) = 2,_
+		AD:Extra Legs (4 legs),_
+		AD:Flight,_
+		AD:Infravision,_
+		AD:Payload = 10,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance  = 1,_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Vacuum Support,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Tiny Computer),_
+		DI:,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Mini-UCAV AV-71T (Shell-Tech), displaycost(221), cost(2),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Titan version of the standard Mini-UCAV; see Shell-Tech p.21),_
+	race(Mini-UCAV AV-71T),_
+	page(TS:ST21),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-5 to ST:ST,_
+		+2 to ST:DX,_
+		+1 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Acute Vision = 1,_
+		AD:Chameleon (Infrared) = 3 _
+			with "Extended, +20%/+40%, group(Chameleon), page(B41)",_
+		AD:Damage Resistance=25 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Enhanced Move (Air) = 2,_
+		AD:Extra Legs (4 legs),_
+		AD:Flight _
+			with "Requires Low Gravity 0.2G, -40%, group(Flight), page(P45)",_
+		AD:Infravision,_
+		AD:Payload = 10,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance  = 1,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Vacuum Support,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Tiny Computer),_
+		DI:Weapon Mount (2 Arms),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (radioisotopes) = 3,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Cybertool (Shell-Tech), displaycost(129), cost(-32),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A type of device used by professional and hobbyist craftsmen and mechanics who aren't too proud to employ not only the best tools, but also a little AI support in using them; see Shell-Tech p.4),_
+	usernotes(Note: Short Arms (2 Arms) [-10] and Extra-Flexible (2 Arms) [10] was written as Extra-Flexible Short Arms [0] in the template.),_
+	race(Cybertool),_
+	page(TS:ST4),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-5 to ST:ST,_
+		+2 to ST:HT,_
+		-1 to ST:Hit Points,_
+		-5 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Claws (Sharp Claws),_
+		AD:Compartmentalized Mind _
+			with "Controls, *1/2, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance=7 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra-Flexible (2 Arms),_
+		AD:High Manual Dexterity = 4,_
+		AD:Microscopic Vision = 3,_
+		AD:Night Vision = 7,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Sealed,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)" _
+			and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)",_
+		AD:Temperature Tolerance = 4,_
+		AD:Vacuum Support,_
+		PE:Accessory (Built-in tool system w. penlight),_
+		PE:Accessory (Micromanipulation Tools),_
+		PE:Accessory (Tiny Computer),_
+		QU:Cannot Float,_
+		DI:No Legs (Portable),_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Short Arms (2 Arms),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Reporter's Vest (Shell-Tech), displaycost(66), cost(-60),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(An adjustable nanoweave torso harness/vest, with rigid modules at waist level holding batteries, computer, slots for extra data storage, a radio comms unit, and a coolant system to keep both the wearer and the electronics comfortable; see Shell-Tech p.6),_
+	race(Reporter's Vest),_
+	page(TS:ST6),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+5 to ST:Hit Points,_
+		+2 to ST:Perception,_
+		-1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Compartmentalized Mind _
+			with "Dedicated Controls, *1/5, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance=10 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Infravision,_
+		AD:Night Vision = 8,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Protected [Sense] respond "Hearing",_
+		AD:Reduced Consumption (Recharge/refuel once a week) = 3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication) _
+			with "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Video, +40%, group(Telecommunication), page(B91)" _
+			and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 5,_
+		AD:Ultrahearing,_
+		AD:Vacuum Support,_
+		PE:Accessory (Provides wearer with own DR as torso armor),_
+		PE:Accessory (Small Computer),_
+		DI:No Legs (Portable),_
+		DI:No Manipulators,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Police Vest (Shell-Tech), displaycost(142), cost(-10),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A similar model to the Reporter's Vest marketed to police forces; see Shell-Tech p.6),_
+	race(Police Vest),_
+	page(TS:ST6),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-4 to ST:ST,_
+		+2 to ST:HT,_
+		+2 to ST:Perception,_
+		-1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Compartmentalized Mind _
+			with "Dedicated Controls, *1/5, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance=13 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Tracking = 2 _
+			with "Multiple Lock-Ons, +20%, group(Enhanced Tracking), page(P49)",_
+		AD:Infravision,_
+		AD:Night Vision = 8,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Protected [Sense] respond "Hearing",_
+		AD:Reduced Consumption (Recharge/refuel once a week) = 3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication) _
+			with "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 5,_
+		AD:Ultrahearing,_
+		AD:Vacuum Support,_
+		PE:Accessory (Provides wearer with own DR as torso armor),_
+		PE:Accessory (Small Computer),_
+		DI:No Legs (Portable),_
+		DI:One Arm,_
+		DI:Weapon Mount (1 Arm),_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+High Arcadian Centaur (Shell-Tech), displaycost(110), cost(38),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A robot centaur, built for the High Arcadia theme park; see Shell-Tech p.13),_
+	race(High Arcadian Centaur),_
+	page(TS:ST13),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Appearance = 1,_
+		AD:Claws (Hooves),_
+		AD:Damage Resistance=5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Extra Legs (4 legs),_
+		AD:Lifting ST = 4 _
+			with "Not in Arms, -20%" _
+			and "Size, -10%",_
+		AD:Striking ST = 4 _
+			with "Legs only, -40%" _
+			and "Size, -10%",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Compact microframe computer),_
+		PE:Sanitized Metabolism,_
+		DI:Restricted Diet (specially selected high-energy ''fuel foods'') = 3,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Fairly close emulation of organic life - partial light fur, may even be able to fake sweating and bleeding, etc._
+	)
+Medusa (Shell-Tech), displaycost(18), cost(-70),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A fashionable wearable cybershell that makes the wearer look like the legendary medusa; see Shell-Tech p.14),_
+	race(Medusa),_
+	page(TS:ST14),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-9 to ST:ST,_
+		+2 to ST:HT,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision _
+			with "Easy to Hit, -20%, group(360° Vision), page(B34)",_
+		AD:Compartmentalized Mind _
+			with "Dedicated Controls, *1/5, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance = 1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Extra Arms = 6 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "No Physical Attack, -50%, group(Extra Arms), page(B53)" _
+			and "Short, -50%, group(Extra Arms), page(B53)",_
+		AD:High Manual Dexterity = 3,_
+		AD:Injury Tolerance _
+			with "No Brain, +5, group(Injury Tolerance), page(B61)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication) _
+			with "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(3)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)" _
+			and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(2)",_
+		PE:Accessory (Tiny Computer),_
+		DI:Deafness,_
+		DI:Maintenance = 1 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Mechanic",_
+		DI:No Physical Attack (2 Arms),_
+		DI:No Legs (Portable),_
+		DI:Short Arms (2 Arms),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Gorgon II NAI-4 (Shell-Tech), displaycost(53), cost(0),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Standard NAI load for Labyrinth Designs ''Gorgon II'' Medusa cybershell; see Shell-Tech p.14),_
+	race(NAI-4),_
+	page(TS:ST14),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	adds(_
+		AD:Fashion Sense,_
+		DI:Duty = 4 _
+			respond "Wearer",_
+		TE:Nonsapient AI - NAI-4 (Changing Times) _
+	),_
+	creates(_
+		{AD:Modular Abilities (Computer Brain), 0, displaycost(6+4/point), mods(Computer Brain, Modular Ability), page(B71), cat(Exotic Mental, Exotic Physical, Exotic, Mental, Physical)} _
+			with {Limited Integration, -20%, group(Modular Ability), page(TS:CT)} _
+			and {Skills and Languages Only, -10%, group(Modular Ability), page(TS:CT)} _
+			and {Slot 1, 6+4/point,formula(6+(me::level*4)),forceformula(yes),group(Computer Brain),page(B71),mods(Modular Abilities),level(2)} _
+			and {Slot 2, 6+4/point,formula(6+(me::level*4)),forceformula(yes),group(Computer Brain),page(B71),mods(Modular Abilities),level(2)} _
+			and {Slot 3, 6+4/point,formula(6+(me::level*4)),forceformula(yes),group(Computer Brain),page(B71),mods(Modular Abilities),level(2)} _
+			} _
+		),_
+	features(_
+		Comes with two skill set programs: Acting (specialized in snake-hair behavior) at IQ+1 and Professional Skill (Hairstylist) at DX_
+	)
+Safari Shell (Gazelle) (Shell-Tech), displaycost(61), cost(14),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A cybershell that can pass as an ordinary African gazelle; see Shell-Tech p.15),_
+	race(Safari Shell (Gazelle)),_
+	page(TS:ST15),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-3 to ST:ST,_
+		+2 to ST:DX,_
+		+2 to ST:HT,_
+		-1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Acute Hearing = 1,_
+		AD:Acute Vision = 1,_
+		AD:Enhanced Move (Ground) = 3,_
+		AD:Filter Lungs,_
+		AD:Night Vision = 8,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 6 _
+			with "No Targeting, -60%, group(Telescopic Vision), page(B92)",_
+		AD:Temperature Tolerance = 1,_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		TE:Machine,_
+		TE:Quadruped,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Close visual emulation of real animal; Individuals of the same model closely resemble each other_
+	)
+Safari Shell (Vulture) (Shell-Tech), displaycost(62), cost(4),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A tourism/research cybershell in the shape of vulture; see Shell-Tech p.15),_
+	race(Safari Shell (Vulture)),_
+	page(TS:ST15),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-4 to ST:ST,_
+		+2 to ST:DX,_
+		+2 to ST:HT,_
+		-1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Acute Hearing = 1,_
+		AD:Acute Vision = 1,_
+		AD:Enhanced Move (Air) = 3,_
+		AD:Filter Lungs,_
+		AD:Flight _
+			with "Cannot Hover, -15%, group(Flight), page(B56)" _
+			and "Winged, -25%, group(Flight), page(B56)",_
+		AD:Night Vision = 8,_
+		AD:Reduced Consumption (Refuel every 10 hours)=1,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 6 _
+			with "No Targeting, -60%, group(Telescopic Vision), page(B92)",_
+		AD:Temperature Tolerance = 1,_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Close visual emulation of real animal; Individuals of the same model closely resemble each other_
+	)
+Treeshell (Shell-Tech), displaycost(-105), cost(-58),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A small tree with a specially adapted compact microframe computer embedded within its trunk; see Shell-Tech p.16),_
+	race(Treeshell),_
+	page(TS:ST16),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+12 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Damage Resistance=10 _
+			with "Semi-Ablative, -20%, group(Damage Resistance), page(B47)" _
+			and "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Infravision,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Ultrahearing,_
+		PE:Accessory (Microframe Computer),_
+		DI:Fragile (Combusible),_
+		DI:Increased Consumption (1 hour endurance if detached from power) = 3,_
+		DI:No Legs (Sessile),_
+		DI:No Manipulators,_
+		DI:Numb,_
+		DI:Restricted Diet (electrical power supply) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Looks like a tree_
+	)
+Treeshell CSM-4 (Shell-Tech), displaycost(89), cost(56),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Completely artificial variant of the Treeshell; see Shell-Tech p.16),_
+	race(Treeshell),_
+	page(TS:ST16),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+4 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Damage Resistance=15 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Infravision,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Ultrahearing,_
+		PE:Accessory (Microframe Computer),_
+		DI:Increased Consumption (1 hour endurance if detached from power) = 3,_
+		DI:No Legs (Sessile),_
+		DI:Numb,_
+		DI:Restricted Diet (electrical power supply) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Looks like a tree_
+	)
+Amphibious RATS (Shell-Tech), displaycost(507), cost(60),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(An amphibious combat shell, switching between a shark-like shape in water and a quadrupedal configuration on land; see Shell-Tech p.17),_
+	race(Amphibious RATS),_
+	page(TS:ST17),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:3D Spatial Sense,_
+		AD:Acute Hearing = 3,_
+		AD:Amphibious,_
+		AD:Chameleon=2,_
+		AD:Damage Resistance=60 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Laminate, +10%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Water) = 2 _
+			with "Temporary disadvantage: No Manipulators, -50%",_
+		AD:Extra Attack,_
+		AD:Extra Legs (4 legs),_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Ladar _
+			with "Increased Range, +10%/+20%, group(_Attack Enhancements), page(B106),_
+			levelnames(x2, x5, x10, x20, x50, x100, x200, x500, "x1,000", "x2,000", "x5,000", "x10,000", "x20,000", "x50,000", "x100,000", "x200,000", "x500,000", "x1,000,000", "x2,000,000", "x5,000,000", "x10,000,000", "x20,000,000", "x50,000,000", "x100,000,000", "x200,000,000", "x500,000,000", "x1,000,000,000"),_
+			gives(_
+				=*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangehalfdam,_
+				=*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangemax _
+			),level(5)",_
+		AD:Nictitating Membrane = 5,_
+		AD:Payload = 5,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Protected [Sense] respond "Hearing",_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Silence = 2,_
+		AD:Sonar,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 10,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Compact Microframe Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Short Arms (2 Arms),_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Jump RATS (Shell-Tech), displaycost(651), cost(78),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A rugged air/space assault shell, capable of making very rough landings on the way to a target.; see Shell-Tech p.18),_
+	race(Jump RATS),_
+	page(TS:ST18),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+2 to ST:DX,_
+		+2 to ST:HT,_
+		+4 to ST:Hit Points _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction,_
+		AD:Acute Vision = 2,_
+		AD:Catfall,_
+		AD:Chameleon=4 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Claws (Sharp Claws),_
+		AD:Damage Resistance=70 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Damage Resistance=15 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Limited: Crushing Attacks Only, -40%" _
+			and "Temportary Disadvantage: Blind and No Manipulators, -100%",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Extra Legs (4 legs),_
+		AD:Flexibility,_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Burning Attack _
+			with "Aura, +80%, group(_Attack Enhancements), page(B102)" _
+			and "No Signature, +20%, group(_Attack Enhancements), page(B106)" _
+			and "Surge, +20%, gives(=" sur" to owner::damtype$)" _
+			and "Melee Attack: Reach C, -30%, group(_Attack Limitations), page(B112),_
+				gives(_
+					=nobase to owner::rangehalfdam$,_
+					=nobase to owner::rangemax$,_
+					=nobase to owner::reach$,_
+					="C" to owner::reach$ _
+				)",_
+		AD:Nictitating Membrane = 5,_
+		AD:Payload = 25,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 3,_
+		AD:Reduced Consumption (Recharge/refuel once a week) = 3,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Silence = 1,_
+		AD:Short Spines,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 10,_
+		AD:Tunneling = 1 _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)" _
+		and "Loose soil only, -50%",_
+		AD:Vacuum Support,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Microframe Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Short Arms (2 Arms),_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"AD:Immunity to Acceleration (Reduced to Resistant +3 except with Temporary Disdvantage: Blind and No Manipulators; -40%), 2, cat(Exotic, Physical, Exotic Physical)",_
+		"AD:Extra Legs (increased to 6 legs),10" _
+			with "Temportary Disadvantage: Horizontal and No Fine Manipulators, -40%" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Jungle RATS (Shell-Tech), displaycost(732), cost(46),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A jungle and riverine warfare machine, capable of underwater operation or swinging through the trees with its four versatile limbs; see Shell-Tech p.18),_
+	race(Jungle RATS),_
+	page(TS:ST18),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Acute Hearing = 3,_
+		AD:Ambidexterity,_
+		AD:Amphibious,_
+		AD:Brachiator,_
+		AD:Chameleon=4 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Clinging,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Discriminatory Smell,_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Tracking = 3,_
+		AD:Extra Arms = 2 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(4)",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Long Arms (2 Arms) = 4,_
+		AD:Extra Legs (4 legs) _
+			with "Temporary Disadvantage: No Fine Manipulators, -30%" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(2)",_
+		AD:Extra Attack,_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Burning Attack = 2 _
+			with "Accurate, +30%, gives(+6 to owner::acc)" _
+			and "Armor Divisor, +50%, gives(=2 to owner::armordivisor)" _
+			and "Increased Range (x10), +30%, gives(_
+						=*10 to owner::rangemax)" _
+			and "Increased Range (1/2D Range only), +10%, gives(_
+				=*50 to owner::rangehalfdam)" _
+			and "Rapid Fire, +50%, gives(=3 to owner::rof$)",_
+		AD:Ladar _
+			with "Extended Arc: 240°, +75%, group(Scanning Sense), page(B82)" _
+			and "Increased Range (x50), +50%" _
+			and "Targeting, +20%, group(Scanning Sense), page(B82)",_
+		AD:Nictitating Membrane = 2,_
+		AD:Perfect Balance,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Recharge/refuel once a day) = 2,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 7,_
+		PE:Accessory (Auxiliary cameras built into fingers),_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (hydrogen-oxygen fuel supply) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+J-56 Ying Transatmospheric UCAV (Shell-Tech), displaycost(855), cost(74),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A UCAV design used by Chinese space forces around Mars; see Shell-Tech p.18),_
+	usernotes(Note: The Disadvantage Air Move -8 does not change any calculations or shown values, merely works as a reminder),_
+	race(J-56 Ying Transatmospheric UCAV),_
+	page(TS:ST18),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+6 to ST:ST,_
+		+3 to ST:HT,_
+		+12 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Chameleon=5 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared and Radar,+20%",_
+		AD:Damage Resistance=120 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Wheels (3 wheels),_
+		AD:Enhanced Move (Air) = 10 _
+			with "Temporary Disadvantage: Increased Consumption 2, -20%",_
+		AD:Enhanced Move (Space) = 15 _
+			with "Newtonian, -50%, group(Enhanced Move), page(B52)",_
+		AD:Flight _
+			with "Newtonian Space Flight, +25%, group(Flight), page(B56)" _
+			and "Small Wings, -10%, group(Flight), page(B56)" _
+			and "Temporary Disadvantage: Noisy 5, -10%",_
+		AD:High Pain Threshold,_
+		AD:Hyperspectral Vision,_
+		AD:Injury Tolerance _
+			with "No Brain, +5, group(Injury Tolerance), page(B61)",_
+		AD:Payload = 58,_
+		AD:Radiation Tolerance = 3,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 12,_
+		AD:Temperature Tolerance = 20,_
+		AD:Vacuum Support,_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Microframe Computer),_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Multiple technical skills",_
+		DI:No Legs (Wheeled),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (jet and rocket fuels) = 3,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"DI:Air Move-8 (Space acceleration only, -80%), -3" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Medevac Shell (Shell-Tech), displaycost(338), cost(38),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(cybershells designed to evacuate injured biosapients from the battlefield, they're capable of more than just that; see Shell-Tech p.20),_
+	race(Medevac Shell),_
+	page(TS:ST20),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		+5 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Ambidexterity,_
+		AD:Breath-Holding = 3,_
+		AD:Claws (Sharp Claws),_
+		AD:Damage Resistance=14 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Enhanced Move (Ground) = 4,_
+		AD:Extra Arms = 2 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(1)",_
+		AD:Extra Legs (4 legs),_
+		AD:Filter Lungs,_
+		AD:High Manual Dexterity = 3 _
+			with "Front arms only, -20%",_
+		AD:High Pain Threshold,_
+		AD:Lifting ST = 4 _
+			with "Size, -10%",_
+		AD:Microscopic Vision = 2,_
+		AD:Nictitating Membrane = 2,_
+		AD:Night Vision = 8,_
+		AD:Payload = 50,_
+		ad:Pressure Support = 1,_
+		AD:Reduced Consumption (Recharge/refuel twice a day) = 1,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Air supply/life support for ''passenger''),_
+		PE:Accessory (Drug dispenser/injector),_
+		PE:Accessory (IFF transponder),_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Ultrasound Scanner),_
+		PE:Sanitized Metabolism,_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (hydrogen-oxygen fuel supply) = 2,_
+		DI:Weak Arms (2 Arms) = 1 _
+			with "Front arm pair,+0%",_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		External Stretcher Rack;Individuals of the same model closely resemble each other_
+	)
+Wingbot (Shell-Tech), displaycost(240), cost(58),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A multipurpose flying cybershell, mostly used for security work; see Shell-Tech p.22),_
+	race(Wingbot),_
+	page(TS:ST22),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-4 to ST:ST,_
+		+4 to ST:DX,_
+		+2 to ST:HT,_
+		-1 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Acute Vision = 3,_
+		AD:Affliction = 3 _
+			with "Armor Divisor, +50%, page(B102), gives(=2 to owner::armordivisor)" _
+			and "Melee Attack: Reach C, -30%, group(_Attack Limitations), page(B112),_
+				gives(_
+					=nobase to owner::rangehalfdam$,_
+					=nobase to owner::rangemax$,_
+					=nobase to owner::reach$,_
+					="C" to owner::reach$ _
+				)" _
+			respond "stunning",_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Enhanced Move (Air) = 4 _
+			with "Temporary Disadvantage: replace REduced Consumption 2 with Increased Consumption 2, -24%",_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Filter Lungs,_
+		AD:Flight _
+			with "Cannot Hover, -15%, group(Flight), page(B56)" _
+			and "Small Wings, -10%, group(Flight), page(B56)" _
+			and "Temporary Disadvantage: replace Reduced Consumption 2 with Increased Consumption 2, -24%",_
+		AD:Night Vision = 9,_
+		AD:Payload = 5,_
+		AD:Peripheral Vision,_
+		AD:Reduced Consumption =2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 4,_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Drug Injector),_
+		PE:Accessory (Small Computer),_
+		DI:Horizontal,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Mute,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (one liquid fuels) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Seeker Missile (Shell-Tech), displaycost(123), cost(-40),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A man-portable ''brilliant'' missile, capable of hunting down targets without human intervention; see Shell-Tech p.21),_
+	usernotes(Note: The description does not note the Video modifier on Telecommunication (Cable Jack) but the cost indicates this as well as many other cybershells having this configuration (the Ro-Ped, the Afrit, and the Ghola don't).),_
+	race(Seeker Missile),_
+	page(TS:ST21),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-9 to ST:ST,_
+		+2 to ST:DX,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:3D Spatial Sense,_
+		AD:Damage Resistance=15 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Air) = 14,_
+		AD:Flight _
+			with "Cannot Hover, -15%, group(Flight), page(B56)",_
+		AD:Infravision,_
+		AD:Lifting ST = 5,_
+		AD:Payload = 9,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 8,_
+		PE:Accessory (Tiny Computer),_
+		DI:Deafness,_
+		DI:Increased Consumption (Refuel after 1 minute)= 9,_
+		DI:No Legs (Aerial),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (rocket fuels) = 3,_
+		DI:Social Stigma (Monster),_
+		DI:No Bite,_
+		QU:Requires some maintenance if fired and the recovered for reuse,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Can self-destruct using warhead in payload; Individuals of the same model closely resemble each other_
+	)
+Smart Torpedo (Shell-Tech), displaycost(255), cost(17),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(An underwater combat cybershell with a payload/weapons bay capable of holding six 30mm minitorps; see Shell-Tech p.21),_
+	race(Smart Torpedo),_
+	page(TS:ST21),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+45 to ST:Hit Points,_
+		+5 to ST:Basic Move,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Damage Resistance=5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Discriminatory Hearing _
+			with "Only Underwater, -30%",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Water) = 2 _
+			with "Temporary Disadvantage: Increased Consumption 3, -30%",_
+		AD:Enhanced Move (Water) = 6 _
+			with "Handling Penalty, -5%/-10%, upto(5), group(Enhanced Move), page(B52), level(5)" _
+			and "Maximum Duration (22 seconds), -75%, page(P111), -75%",_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Lifting ST = 3 _
+			with "Size, -20%",_
+		AD:Nictitating Membrane = 2,_
+		AD:Night Vision = 8,_
+		AD:Payload = 5,_
+		AD:Penetrating Vision = 1 _
+			with "Blockable by dense reflective materials, -20%" _
+			and "Only in Air, -30%",_
+		AD:Pressure Support = 2 _
+			with "Can't take more than 32 atmospheres except when supercavitating, -10%",_
+		AD:Resistant = 1 _
+			with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sonar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Reduced Range x100, +60%" _
+			and "Video, +40%, page(TS:CT41), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Sonar Comm) _
+			with "Decreased Range: 1/2, -10%",_
+		AD:Temperature Tolerance = 10,_
+		PE:Accessory (IFF Transponder),_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Small Spotlights),_
+		PE:Accessory (Trailing Wire Antenna),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aquatic),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (high-energy power cells) = 2,_
+		DI:Social Stigma (Monster),_
+		DI:Numb,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"AD:Extra Basic Move +65 (Only for determining acceleration to supercavitating speeds, -80%), 65" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Boatbot (Shell-Tech), displaycost(241), cost(28),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A floating cybershell designed to perform light maritime maintenance or inshore search and rescue duties; see Shell-Tech p.6),_
+	race(Boatbot),_
+	page(TS:ST6),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+4 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Breath-Holding = 3,_
+		AD:Discriminatory Hearing _
+			with "Only underwater, -30%",_
+		AD:Damage Resistance=6 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Enhanced Move (Water) = 2 _
+			with "Temporary Disadvantage: No Manipulators, -50%",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Filter Lungs,_
+		AD:Lifting ST = 5 _
+			with "Size, -10%",_
+		AD:Nictitating Membrane,_
+		AD:Payload = 6,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 1,_
+		AD:Reduced Consumption = 2,_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Reduced Range: 1/5, -20%",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance = 5,_
+		PE:Accessory (Small or Microframe Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aquatic) _
+				with "Can't Dive, -5",_
+		DI:Restricted Diet (multiple fuels) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other; Towing connector on stern_
+	)
+Boatbot - DPV (Shell-Tech), displaycost(255), cost(28),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A floating cybershell designed to perform light maritime maintenance or inshore search and rescue duties; see Shell-Tech p.7),_
+	race(Boatbot - DPV),_
+	page(TS:ST7),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+4 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Discriminatory Hearing _
+			with "Only underwater, -30%",_
+		AD:Damage Resistance=6 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe _
+			with "Oxygen Storage, -10%/-20%, levelnames(x300, x200, x100, x50, x25), upto(5), group(Doesn't Breathe), page(B49),level(1)",_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Filter Lungs,_
+		AD:Lifting ST = 5 _
+			with "Size, -10%",_
+		AD:Nictitating Membrane,_
+		AD:Payload = 6,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 2,_
+		AD:Reduced Consumption = 2,_
+		AD:Sonar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Reduced Range: 1/2, -10%",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance = 5,_
+		PE:Accessory (Small or Microframe Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aquatic),_
+		DI:Restricted Diet (multiple fuels) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other; Set of grab handles on stern_
+	)
+Cyberdolphin (Shell-Tech), displaycost(147), cost(50),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A marine utility shell in the shape of a dolphin; see Shell-Tech p.13),_
+	usernotes(The Cyberdolphin does not have the Sealed advantage, but the RAW does not explicitly state that the Electrical disadvantage include any vulnerability to being immerse in, or splashed, with water. Quoting Phil Masters, "the Cyberdolphin's body shell might well flood while immersed, but its circuits are protected; however, the lack of Sealed would mean that it's terribly vulnerable to corrosives and pollutants." Adding Sealed or a perk Waterproof is an option for those feeling that the Electrical disadvantage should be interpreted as having live wires exposed in some form.),_
+	race(Cyberdolphin),_
+	page(TS:ST13),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+5 to ST:ST,_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:3D Spatial Sense,_
+		AD:Arm DX = 2 _
+			with "Two arms, *4/3, group(Arm DX), page(B40)",_
+		AD:Damage Resistance=5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Water) = 3 _
+			with "Temporary Disadvantage: No Manipulators, -50%, group(_General), page(B115)",_
+		AD:Payload = 1,_
+		AD:Pressure Support = 1,_
+		AD:Sonar _
+			with "Targeting, +20%, group(Scanning Sense), page(B82)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance = 7,_
+		AD:Ultrasonic Speech,_
+		PE:Accessory (Small or Microframe Computer),_
+		DI:Bad Sight (Nearsighted),_
+		DI:Disturbing Voice,_
+		DI:Increased Consumption (requires refuelling; 4 hour endurance) = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:No Legs (Aquatic),_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:Weak Arms (2 Arms),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+''C-Brown'' Gardener Shell (Shell-Tech), displaycost(51), cost(0),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Gardener cybershells widely used by parks departments and wealthy homeowners; see Shell-Tech p.7),_
+	race(''C-Brown'' Gardener Shell),_
+	page(TS:ST7),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+2 to ST:HT,_
+		-2 to ST:Basic Move _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Claws (Sharp Claws),_
+		AD:Damage Resistance=4 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Discriminatory Smell,_
+		AD:Extra Legs (3 Legs),_
+		AD:Filter Lungs,_
+		AD:Microscopic Vision = 1,_
+		AD:Payload = 6 _
+			with "Exposed, -50%, group(Payload), page(B74)",_
+		AD:Reduced Consumption = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)" _
+			and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(2)",_
+		AD:Temperature Tolerance = 4,_
+		PE:Accessory (''Gardening Tool Hands''),_
+		PE:Accessory (Small Computer),_
+		DI:Reprogrammable (Exposed Controls) _
+			with "Very Easy Activation, +100%, page(TS:ST7)",_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:No Bite,_
+		QU:Cannot Float,_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Ro-Ped (Shell-Tech), displaycost(180), cost(11),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(a cybershell technological descendant of the light motorized two- and threewheeled urban transports that became popular across much of the globe in the second half of the 20th century; see Shell-Tech p.8),_
+	usernotes(The various variants of the Ro-Ped seems more to be options that variants, especially since it seems safe to assume they are can be combined.),_
+	race(Ro-Ped),_
+	page(TS:ST8),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-3 to ST:ST,_
+		+18 to ST:Hit Points,_
+		+1 to ST:Basic Move _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Compartmentalized Mind _
+			with "Controls, *1/2, group(Compartmentalized Mind), page(B43)",_
+		AD:Damage Resistance=4 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Enhanced Move (Ground) = 2 _
+			with "Handling Bonus, +5%/+10%, upto(5), group(Enhanced Move), page(B52),level(1)",_
+		AD:Enhanced Move (Ground) = 4 _
+			with "Handling Bonus, +5%/+10%, upto(5), group(Enhanced Move), page(B52),level(1)" _
+			and "Road-Bound, -50%, group(Enhanced Move), page(B52)",_
+		AD:Extra Wheels (3 Wheels),_
+		AD:Filter Lungs,_
+		AD:Infravision,_
+		AD:Lifting ST = 13,_
+		AD:Night Vision = 5,_
+		AD:Payload = 7,_
+		AD:Peripheral Vision,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Reduced Consumption = 3,_
+		AD:Telecommunication (Cable Jack),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 2,_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Headlights),_
+		PE:Accessory (Small Computer),_
+		DI:No Legs (Wheeled),_
+		DI:No Sense of Smell/Taste,_
+		DI:Numb,_
+		DI:Restricted Diet (liquid fuels) = 1,_
+		DI:No Bite,_
+		QU:Cannot Float,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Double external cycle seat; Individuals of the same model closely resemble each other_
+	)
+Shakoosh (Shell-Tech), displaycost(161), cost(40),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A nonhumanoid shell with four legs and four arms, much used by SAIs in the Caliphate; see Shell-Tech p.9),_
+	race(Shakoosh),_
+	page(TS:ST9),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+1 to ST:DX,_
+		+1 to ST:HT _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction,_
+		AD:Doesn't Breathe,_
+		AD:Damage Resistance=5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Extra Arms = 2,_
+		AD:Extra Legs (4 legs),_
+		AD:Infravision,_
+		AD:Stretching = 1 _
+			with "Only to elevate body, -50%",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Temperature Tolerance = 4,_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic",_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	)
+Swarmdozer (Shell-Tech), displaycost(51), cost(-42),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A miniature ''civil engineering'' shell, usually used in closely collaborating groups; see Shell-Tech p.10),_
+	race(Swarmdozer),_
+	page(TS:ST10),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-6 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Hit Points,_
+		-4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Wheels (4 Wheels),_
+		AD:Lifting ST = 1,_
+		AD:Payload = 10 _
+			with "Exposed, -50%, group(Payload), page(B74)",_
+		AD:Pressure Support = 2,_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption = 4,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Infrared Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance = 15,_
+		AD:Tunneling = 1 _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)" _
+			and "Takes 64 times as long or requires 64 coordinated swarmdozers to dig a single hex of tunnel per turn, -60%",_
+		AD:Vacuum Support,_
+		PE:Accessory (Tiny Computer),_
+		DI:Bad Grip = 2,_
+		DI:Horizontal,_
+		DI:Maintenance = 1 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Mechanic",_
+		DI:No Legs (Tracked),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Hand,_
+		DI:Restricted Diet (radioisotopes) = 3,_
+		DI:Short Arms (1 Arm),_
+		DI:No Bite,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Beobachter Data Collection Unit (Shell-Tech), displaycost(91), cost(-15),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A cybershell designed for use as a general-purpose ''robot cameraman''; see Shell-Tech p.11),_
+	race(Beobachter Data Collection Unit),_
+	page(TS:ST11),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-4 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Basic Move _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Extra Legs (3 Legs),_
+		AD:Filter Lungs,_
+		AD:Flexibility,_
+		AD:Infravision,_
+		AD:Parabolic Hearing = 2,_
+		AD:Perfect Balance,_
+		AD:Reduced Consumption = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 5,_
+		AD:Temperature Tolerance = 4,_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanics skills",_
+		DI:No Bite,_
+		DI:Restricted Diet (any one liquid fuel) = 2,_
+		DI:Short Arms (2 Arms),_
+		QU:Has a Neck Hit Location but no special vulnerabilities there,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Idmon Explorer Aquabot (Shell-Tech), displaycost(120), cost(-26),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A teardrop-shaped self-mobile underwater camera; see Shell-Tech p.11),_
+	race(Idmon Explorer Aquabot),_
+	page(TS:ST11),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-4 to ST:ST,_
+		+1 to ST:HT,_
+		+2 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Damage Resistance=10 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Water) = 3,_
+		AD:Microscopic Vision = 3,_
+		AD:Pressure Support = 3,_
+		AD:Radiation Tolerance = 3,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance = 25,_
+		AD:Vacuum Support,_
+		PE:Accessory (Built-in Spotlights),_
+		PE:Accessory (Tiny Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:Restricted Diet (power cells) = 1,_
+		TE:Ichthyoid,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Stormchaser (Shell-Tech), displaycost(374), cost(54),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A rugged flying shell which can fly through the heart of a tornado and bring back experience recordings; see Shell-Tech p.11),_
+	race(Stormchaser),_
+	page(TS:ST11),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+6 to ST:ST,_
+		+3 to ST:HT,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Damage Resistance=50 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Enhanced Move (Air) = 5 _
+			with "Temporary Disadvantage: Increased Consumption 2, -20%",_
+		AD:Extra Wheels (4 Wheels),_
+		AD:Filter Lungs,_
+		AD:Flight _
+			with "Winged, -25%, group(Flight), page(B56)",_
+		AD:High Pain Threshold,_
+		AD:Hyperspectral Vision,_
+		AD:Nictitating Membrane = 5,_
+		AD:Protected [Sense] respond "Hearing",_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Multi-Mode, +50%, group(Scanning Sense), page(B82)" _
+			and "Increased Range: x20, +40%",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)" _
+			and "Increased Range: x5, +20%",_
+		AD:Temperature Tolerance = 10,_
+		PE:Accessory (Microframe Computer),_
+		DI:Horizontal,_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Legs (Wheeled),_
+		DI:No Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (high-quality fuel) = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Monitor Monitor, displaycost(99), cost(110),_
+cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+description(A Komodo Dragon converted for use as a bioshell; see Shell-Tech, p.28-9.),_
+race(Monitor Monitor),_
+page(TS:ST28),_
+noresync(yes),_
+owns(yes),_
+locks(yes),_
+hides(yes),_
+gives(_
++4 to ST:ST,_
++2 to ST:DX,_
++5 to ST:HT,_
++3 to ST:Hit Points,_
++1 to ST:Perception,_
++0.25 to ST:Basic Speed,_
++1 to ST:Size Modifier _
+),_
+adds(_
+	AD:Absolute Direction _
+			with "Requires Signal, -20%, group(Absolute Direction), page(B35)",_
+	{AD:Acute Taste and Smell}=2,_
+	{AD:Claws (Sharp Claws)},_
+	{AD:Damage Resistance} = 2 _
+			with "Can't Wear Armor, -40%, group(Damage Resistance), page(B47)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+	{AD:Discriminatory Smell},_
+	AD:Toxic Attack = 1 _
+		with "Cyclic; 7 Cycles; Resistable (1 day interval), +60%, mods(Cyclic)" _
+		and "Follow-Up (Sharp Teeth), +0%, group(_Attack Enhancements)" _
+		and "Onset (1 hour), -20%,  group(_Attack Limitations)" _
+		and "Resistible (HT-1), -25%, group(_Attack Limitations)" _
+		respond 1,_
+	AD:Resistant = 4 _
+		with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+		and "Skull Hit Locations Only, -70%" _
+		respond "Metabolic Hazards",_
+	{AD:Peripheral Vision},_
+	{AD:Reduced Consumption}=1 _
+		with "Cast-Iron Stomach, -50%",_
+	AD:Resistant = 1 _
+		with "Degree: +3 to HT rolls to resist, *1/3, round(Down), shortname(+3), group(Resistant), page(B81)" _
+		respond  "Other Komodo's Toxic Attacks",_
+	{AD:Striker (Crushing; [Description])} _
+		with "Cannot Parry, -40%" _
+		and "Clumsy -1, -20%" respond "Tail",_
+	{AD:Striking ST}=1 _
+		with "Bite Only, -60%, gives(=-owner::level to ST:Striking ST, =+owner::level to ST:Bite)",_
+	{AD:Teeth (Sharp Teeth)},_
+	{AD:Telecommunication (Cable Jack)} _
+		with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+	{AD:Telecommunication (Radio)} _
+		with "Video, +40%, page(), group(Telecommunication)",_
+	{PE:Accessory (Computer)},_
+	{PE:Scaly Hide},_
+	{DI:Appearance}=2,_
+	{DI:Cold-Blooded}=2 _
+		with "Mitigator: Weekly Food Supplements, -60%, group(_General), page(TS:ST), mitigator(yes)",_
+	{DI:Electrical} _
+		with "Skull Hit Locations Only, -70%",_
+	{DI:Frightens Animals},_
+	{DI:Hard of Hearing},_
+	{DI:Night Blindness},_
+	{DI:Short Legs (4 Legs)},_
+	{DI:Social Stigma (Monster)},_
+	{QU:Especially limited high and low frequency hearing},_
+	{QU:Poor Depth Perception},_
+	TE:Quadruped_
+	)
+
+Endymion Cybershell (Shell-Tech), displaycost(203), cost(37),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A humanoid shell used on the moon for many purposes,_
+including teletourism; see Shell-Tech p.23),_
+	race(Endymion Cybershell),_
+	page(TS:ST23),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+2 to ST:HT,_
+		+4 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Chameleon = 1,_
+		AD:Damage Resistance=3,_
+		AD:High Manual Dexterity = 4,_
+		AD:Hyperspectral Vision,_
+		AD:Microscopic Vision = 3,_
+		AD:Sealed,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 6,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Micromanipulation Tools),_
+		PE:Physically attractive in a stylized abstract way,_
+		DI:No Bite,_
+		DI:Restricted Diet (power cells) = 1,_
+		DI:Skinny,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Aerorover (Shell-Tech), displaycost(128), cost(-25),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Cybershell used in the exploration of Titan; see Shell-Tech p.23),_
+	race(Aerorover),_
+	page(TS:ST23),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-1 to ST:ST,_
+		-2 to ST:DX,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points,_
+		+3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Amphibious,_
+		AD:Damage Resistance=3 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Damage Resistance=1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Crushing Damage Only, -40%",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Ground) = 2,_
+		AD:Extra Wheels (3 wheels),_
+		AD:Flight _
+			with "Lighter Than Air, -10%, group(Flight), page(B56)",_
+		AD:Reduced Consumption = 3,_
+		AD:Reduced Consumption = 1 _
+			with "Only with minimal systems activity - stationary or floating on the wind, -50%",_
+		AD:Sealed,_
+		AD:Stretching = 6 _
+			with "Arm Only, -30%",_
+		AD:Super Jump = 1 _
+			with "Bounching Only, -50%, page(TS:ST5,S??)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telescopic Vision = 4,_
+		AD:Temperature Tolerance = 8,_
+		AD:Terrain Adaptation respond "Methane Mud",_
+		AD:Vacuum Support,_
+		PE:Accessory (Small Computer),_
+		DI:Bad Grip = 2,_
+		DI:No Bite,_
+		DI:No Legs (Wheeled),_
+		DI:No Sense of Smell/Taste,_
+		DI:One Arm,_
+		DI:Restricted Diet (hydrogen-oxygen fuel supply) = 2,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Baikal Cryobot (Shell-Tech), displaycost(371), cost(59),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A typical early-model ice-tunneling/free-swimming explorer shell; see Shell-Tech p.23),_
+	race(Baikal Cryobot),_
+	page(TS:ST23),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:ST,_
+		+3 to ST:HT,_
+		+6 to ST:Hit Points,_
+		+1 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Damage Resistance=30 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Microscopic Vision = 3,_
+		AD:Permeation (Ice) = 2 _
+			with "Tunnel, +40%, group(Permeation), page(B75)" _
+			and "Very slow move only 1 yard/40 seconds, -80%",_
+		AD:Pressure Support = 3,_
+		AD:Radiation Tolerance = 9,_
+		AD:Sonar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Targeting, +20%, group(Scanning Sense), page(B82)" _
+			and "Accessibility - Must extend vulnerable sensor mast in direction to be scanned, -10%, group(_General), page(B110)",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Temperature Tolerance = 25,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		DI:Blindness,_
+		DI:No Bite,_
+		DI:No Legs (Aquatic),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Gas Giant Aerobot (Shell-Tech), displaycost(255), cost(20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A computerized package supported by balloons that are used for operations in gas-giant atmospheres; see Shell-Tech p.24),_
+	race(Gas Giant Aerobot),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+5 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Discriminatory Taste,_
+		AD:Damage Resistance= 5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Flight _
+			with "Lighter Than Air, -10%, group(Flight), page(B56)",_
+		AD:Payload = 2,_
+		AD:Pressure Support = 2,_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Increased Range: x20, +40%",_
+		AD:Sealed,_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x1000, +90%" _
+			and "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 20,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Scientific Instrument Package),_
+		DI:No Bite,_
+		DI:No Legs (Aerial),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Gas Giant Aerobot - Zeus-3 (Shell-Tech), displaycost(206), cost(20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Variant computerized package for operations in gas-giant atmospheres; see Shell-Tech p.24),_
+	race(Gas Giant Aerobot - Zeus-3),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Discriminatory Taste,_
+		AD:Damage Resistance= 5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Flight _
+			with "Lighter Than Air, -10%, group(Flight), page(B56)",_
+		AD:Payload = 3,_
+		AD:Pressure Support = 2,_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Increased Range: x20, +40%",_
+		AD:Sealed,_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x1000, +90%" _
+			and "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 20,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Scientific Instrument Package),_
+		DI:No Bite,_
+		DI:No Legs (Aerial),_
+		DI:No Manipulators,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Gas Giant Aerobot - Tuxing Type-94 (Shell-Tech), displaycost(285), cost(20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Variant computerized package for operations in gas-giant atmospheres; see Shell-Tech p.24),_
+	race(Gas Giant Aerobot - Tuxing Type-94),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT,_
+		+5 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Chameleon (Radar) = 2,_
+		AD:Discriminatory Taste,_
+		AD:Damage Resistance= 5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Flight _
+			with "Lighter Than Air, -10%, group(Flight), page(B56)",_
+		AD:Payload = 2,_
+		AD:Pressure Support = 2,_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Increased Range: x20, +40%",_
+		AD:Sealed,_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x1000, +90%" _
+			and "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telescopic Vision = 4,_
+		AD:Temperature Tolerance = 20,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Scientific Instrument Package),_
+		DI:No Bite,_
+		DI:No Legs (Aerial),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Gas Giant Aerobot - TWX Type-97 (Shell-Tech), displaycost(251), cost(16),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Variant computerized package for operations in gas-giant atmospheres; see Shell-Tech p.24),_
+	race(Gas Giant Aerobot - TWX Type-97),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT,_
+		-2 to ST:Hit Points,_
+		+5 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Discriminatory Taste,_
+		AD:Damage Resistance= 5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Flight _
+			with "Lighter Than Air, -10%, group(Flight), page(B56)",_
+		AD:Payload = 2,_
+		AD:Pressure Support = 2,_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Increased Range: x20, +40%",_
+		AD:Sealed,_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x1000, +90%" _
+			and "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 20,_
+		AD:Vacuum Support,_
+		PE:Accessory (Microframe Computer),_
+		PE:Accessory (Scientific Instrument Package),_
+		DI:No Bite,_
+		DI:No Legs (Aerial),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Herzberg Cybershell (Shell-Tech), displaycost(153), cost(45),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A serpentine zero-G worker shell used on Die Sonnenspinnerin Sieben station; see Shell-Tech p.24),_
+	race(Herzberg Cybershell),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-1 to ST:ST,_
+		+2 to ST:DX,_
+		+1 to ST:HT,_
+		+1 to ST:Perception _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Damage Resistance=10 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Double-Jointed,_
+		AD:Infravision,_
+		AD:Long Arms (1 Arm) = 2 _
+			with "Temporary Disadvantage: No Legs (Sessile), -50%",_
+		AD:Pressure Support=1,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Small Computer),_
+		DI:Invertebrate,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:One Arm,_
+		DI:No Bite,_
+		DI:No Legs (Slithers),_
+		DI:Restricted Diet (power cells) = 1,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Standardized physical design_
+	),_
+	usernotes(_
+		Has a Vermiform shape but not the Vermiform template since it has a manipulator giving it One Arm_
+	)
+Microgravity RATS (Shell-Tech), displaycost(811), cost(46),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A space-operations combat shell, based on the Jungle RATS; see Shell-Tech p.24),_
+	race(Microgravity RATS),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Ambidexterity,_
+		AD:Brachiator,_
+		AD:Chameleon=4 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Clinging,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Space) = 14 _
+			with "Newtonian, -50%, group(Enhanced Move), page(B52)",_
+		AD:Enhanced Tracking = 3,_
+		AD:Extra Arms = 2 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(4)",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Long Arms (2 Arms) = 4,_
+		AD:Extra Legs (4 legs) _
+			with "Temporary Disadvantage: No Fine Manipulators, -30%" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(2)",_
+		AD:Extra Attack,_
+		AD:Flight _
+			with "Newtonian Space Flight, +25%, group(Flight), page(B56)" _
+			and "Requires Low Gravity, -5%/-10%, levelnames(0.9G, 0.8G, 0.7G, 0.6G, 0.5G, 0.4G, 0.3G, 0.2G, 0.1G, 0G), upto(10), group(Flight), page(P45),level(5)",_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Burning Attack = 2 _
+			with "Accurate, +30%, gives(+6 to owner::acc)" _
+			and "Armor Divisor, +50%, gives(=2 to owner::armordivisor)" _
+			and "Increased Range (x10), +30%, gives(_
+						=*10 to owner::rangemax)" _
+			and "Increased Range (1/2D Range only), +10%, gives(_
+				=*50 to owner::rangehalfdam)" _
+			and "Rapid Fire, +50%, gives(=nobase to owner::rof$,=3 to owner::rof$)" _
+			respond 4,_
+		AD:Ladar _
+			with "Extended Arc: 240°, +75%, group(Scanning Sense), page(B82)" _
+			and "Targeting, +20%, group(Scanning Sense), page(B82)",_
+		AD:Nictitating Membrane = 2,_
+		AD:Perfect Balance,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Refuel once a month) = 4,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 10,_
+		AD:Vacuum Support,_
+		PE:Accessory (Auxiliary cameras built into fingers),_
+		PE:Accessory (IFF Transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:Restricted Diet (radioisotopes) = 3,_
+		DI:Social Stigma (Monster),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"DI:Air Move-6 (Space acceleration only, -80%), -2" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Titan RATS (Shell-Tech), displaycost(713), cost(46),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Microgravity RATS variant for use on Titan; see Shell-Tech p.24),_
+	usernotes(Listed as a variant to the Microgravity RATS but put this as its own entry since the area of use is different.),_
+	race(Titan RATS),_
+	page(TS:ST24),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:DX,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points,_
+		-2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Ambidexterity,_
+		AD:Amphibious,_
+		AD:Brachiator,_
+		AD:Chameleon=4 _
+			with "Extended, +20%, group(Chameleon), page(B41)" _
+			and "Infrared",_
+		AD:Clinging,_
+		AD:Damage Resistance=40 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Electromagnetic, +20%, group(Damage Resistance), page(TS:CT129)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Tracking = 3,_
+		AD:Extra Arms = 2 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(4)",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Long Arms (2 Arms) = 4,_
+		AD:Extra Legs (4 legs) _
+			with "Temporary Disadvantage: No Fine Manipulators, -30%" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53),level(2)",_
+		AD:Extra Attack,_
+		AD:High Pain Threshold,_
+		AD:Infravision,_
+		AD:Burning Attack = 2 _
+			with "Accurate, +30%, gives(+6 to owner::acc)" _
+			and "Armor Divisor, +50%, gives(=2 to owner::armordivisor)" _
+			and "Increased Range (x10), +30%, gives(_
+						=*10 to owner::rangemax)" _
+			and "Increased Range (1/2D Range only), +10%, gives(_
+				=*50 to owner::rangehalfdam)" _
+			and "Rapid Fire, +50%, gives(=nobase to owner::rof$,=3 to owner::rof$)" _
+			respond 4,_
+		AD:Ladar _
+			with "Extended Arc: 240°, +75%, group(Scanning Sense), page(B82)" _
+			and "Targeting, +20%, group(Scanning Sense), page(B82)",_
+		AD:Nictitating Membrane = 2,_
+		AD:Perfect Balance,_
+		AD:Pressure Support = 2,_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Refuel once a month) = 4,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Electrical Pulses and Surges",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Secure, +20%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 10,_
+		AD:Vacuum Support,_
+		PE:Accessory (Auxiliary cameras built into fingers),_
+		PE:Accessory (IFF Transponder),_
+		PE:Accessory (Small Computer),_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Weekly, *1/2, shortname(Weekly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:Restricted Diet (radioisotopes) = 3,_
+		DI:Social Stigma (Monster),_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Mining Worm (Shell-Tech), displaycost(282), cost(49),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A centipede-like asteroid mining machine which eats its way through rock; see Shell-Tech p.25),_
+	race(Mining Worm),_
+	page(TS:ST25),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+4 to ST:ST,_
+		+2 to ST:HT,_
+		+8 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Damage Resistance=10 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Detect = 2 respond "Magnetic Fields",_
+		AD:Discriminatory Taste _
+			with "Only for Minerals, -50%",_
+		AD:Doesn't Breathe,_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground) = 1,_
+		AD:Lifting ST = 6 _
+			with "Size, -20%",_
+		AD:Payload = 25,_
+		AD:Payload = 150 _
+			with "Exposed, -50%, group(Payload), page(B74)" _
+			and "Loose matter only; stored in ''stomach sac'',-20%",_
+		AD:Pressure Support=1,_
+		AD:Radiation Tolerance = 2,_
+		AD:Reduced Consumption (Refuel once a month) = 4,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Increased Range: x10, +30%",_
+		AD:Temperature Tolerance = 10,_
+		AD:Tunneling _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Internal Ore Separation System),_
+		PE:Accessory (Small Computer),_
+		DI:Horizontal,_
+		DI:Invertebrate,_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Fine Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (radioisotopes) = 3,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"AD:Extra Legs (14 Legs), 15, mods(Extra Legs), page(B55), cat(Exotic, Physical, Extra Arms/Legs), taboo(AD:Long Legs, AD:Extra Legs (3 Legs), AD:Extra Legs (4 Legs), AD:Extra Legs (5 Legs), AD:Extra Legs (6 Legs), DI:Quadriplegic, DI:Cannot Kick)" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Mining Worm - Armored (Shell-Tech), displaycost(318), cost(45),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Armored variant of the Mining Worm; see Shell-Tech p.25),_
+	race(Armored Mining Worm),_
+	page(TS:ST25),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+4 to ST:ST,_
+		+2 to ST:HT,_
+		+8 to ST:Hit Points,_
+		+3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Damage Resistance=20 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Detect = 2 respond "Magnetic Fields",_
+		AD:Discriminatory Taste _
+			with "Only for Minerals, -50%",_
+		AD:Doesn't Breathe,_
+		AD:Double-Jointed,_
+		AD:Enhanced Move (Ground) = 1,_
+		AD:Lifting ST = 6 _
+			with "Size, -20%",_
+		AD:Payload = 25,_
+		AD:Payload = 150 _
+			with "Exposed, -50%, group(Payload), page(B74)" _
+			and "Loose matter only; stored in ''stomach sac'',-20%",_
+		AD:Pressure Support=1,_
+		AD:Radiation Tolerance = 4,_
+		AD:Reduced Consumption (Refuel once a month) = 4,_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:B91), group(Telecommunication)" _
+			and "Increased Range: x10, +30%",_
+		AD:Temperature Tolerance = 10,_
+		AD:Tunneling _
+			with "Tunneling Move, +5/+10, group(Tunneling), page(B94)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Internal Ore Separation System),_
+		PE:Accessory (Small Computer),_
+		DI:Horizontal,_
+		DI:Invertebrate,_
+		DI:Maintenance = 3 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Fine Manipulators,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (radioisotopes) = 3,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"AD:Extra Legs (14 Legs), 15, mods(Extra Legs), page(B55), cat(Exotic, Physical, Extra Arms/Legs), taboo(AD:Long Legs, AD:Extra Legs (3 Legs), AD:Extra Legs (4 Legs), AD:Extra Legs (5 Legs), AD:Extra Legs (6 Legs), DI:Quadriplegic, DI:Cannot Kick)" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Service Nanosat (Shell-Tech), displaycost(89), cost(-62),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A small shell used to maintain and refuel satellites in place; see Shell-Tech p.25),_
+	race(Service Nanosat),_
+	page(TS:ST25),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-6 to ST:ST,_
+		+1 to ST:HT,_
+		-1 to ST:Hit Points,_
+		-3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Damage Resistance= 8 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Extra Arms = 2 _
+			with "No Physical Attack, -50%, group(Extra Arms), page(B53)" _
+			and "Short, -50%, group(Extra Arms), page(B53)",_
+		AD:High Manual Dexterity = 4,_
+		AD:Microscopic Vision = 3,_
+		AD:Payload = 10 _
+			with "Liquids Only, -20%",_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Increased Range: x2, +10%",_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x10, +30%" _
+			and "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Micromanipulation Tools),_
+		PE:Accessory (Small Computer),_
+		DI:Deafness,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Sense of Smell/Taste,_
+		DI:Short Arms (2 Arms),_
+		DI:Vulnerability = 3 _
+			with "Wounding Multiplier x2, *1, shortname(x2), group(Vulnerability), page(B161)" _
+			respond "Crushing Damage",_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"PE:Low-power thrusters, 1, usernotes(Can provide 0.01 G when in freefall using fuel from Payload - not enough for combat movement but sufficient for station-keeping and ordinary mission tasks)" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Service Nanosat - Dust-Buster (Shell-Tech), displaycost(105), cost(-62),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A free-floating module employed by some large stations to perform external inspections and light maintenance; see Shell-Tech p.25),_
+	race(Service Nanosat - Dust-Buster),_
+	page(TS:ST25),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-6 to ST:ST,_
+		+1 to ST:HT,_
+		-1 to ST:Hit Points,_
+		-3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Burning Attack = 1 _
+			with "Armor Divisor, +50%/+100%, levelnames(2, 3, 5, 10), upto(4), group(_Attack Enhancements), page(B102), gives(=@indexedvalue(me::level, 2, 3, 5, 10) to owner::armordivisor), level(1)" _
+			and "Accurate, +5%/+10%, group(_Attack Enhancements), page(B102), gives(+1 to owner::acc), level(6)" _
+			and "Increased Range, +10%/+20%, group(_Attack Enhancements), page(B106), levelnames(x2, x5, x10), gives(=*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangehalfdam,=*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangemax),level(3)" _
+			and "Increased Range (1/2D Range only), Increased Range (1/2D Range only), +5%/+10%, group(_Attack Enhancements), page(B106),_
+	levelnames(x2, x5, x10, x20, x50),gives(=*(@indexedvalue(1 + me::level - (3 * @int(me::level/3)),1,2,5) * (10^@int(me::level/3))) to owner::rangehalfdam), level(5)" _
+			respond 4,_
+		AD:Damage Resistance= 8 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Payload = 10 _
+			with "Liquids Only, -20%",_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Targeting, +20%, group(Scanning Sense), page(B82)" _
+			and "Increased Range: x10, +30%",_
+		AD:Radiation Tolerance = 2,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Increased Range: x2, +10%",_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x10, +30%" _
+			and "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Small Computer),_
+		DI:Deafness,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Sense of Smell/Taste,_
+		DI:Short Arms (2 Arms),_
+		DI:Vulnerability = 3 _
+			with "Wounding Multiplier x2, *1, shortname(x2), group(Vulnerability), page(B161)" _
+			respond "Crushing Damage",_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"PE:Low-power thrusters, 1, usernotes(Can provide 0.01 G when in freefall using fuel from Payload - not enough for combat movement but sufficient for station-keeping and ordinary mission tasks)" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Service Nanosat - Sabotage (Shell-Tech), displaycost(110), cost(-62),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(Service Nanosat variant; see Shell-Tech p.26),_
+	race(Service Nanosat - Sabotage),_
+	page(TS:ST26),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-6 to ST:ST,_
+		+1 to ST:HT,_
+		-1 to ST:Hit Points,_
+		-3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Chameleon = 3 _
+			with "Extended, +20%/+40%, group(Chameleon), page(B41)" _
+			and "Infravision|Radar|normal vision,+20%",_
+		AD:Damage Resistance= 8 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Extra Arms = 2 _
+			with "No Physical Attack, -50%, group(Extra Arms), page(B53)" _
+			and "Short, -50%, group(Extra Arms), page(B53)",_
+		AD:High Manual Dexterity = 4,_
+		AD:Microscopic Vision = 3,_
+		AD:Payload = 10 _
+			with "Liquids Only, -20%",_
+		AD:Protected [Sense] respond "Vision",_
+		AD:Radiation Tolerance = 2,_
+		AD:Sensitive Touch,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication) _
+			with "Increased Range: x2, +10%",_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x10, +30%" _
+			and "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Micromanipulation Tools),_
+		PE:Accessory (Small Computer),_
+		DI:Deafness,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Sense of Smell/Taste,_
+		DI:Short Arms (2 Arms),_
+		DI:Vulnerability = 3 _
+			with "Wounding Multiplier x2, *1, shortname(x2), group(Vulnerability), page(B161)" _
+			respond "Crushing Damage",_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"PE:Low-power thrusters, 1, usernotes(Can provide 0.01 G when in freefall using fuel from Payload - not enough for combat movement but sufficient for station-keeping and ordinary mission tasks)" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Tumbleweed (Shell-Tech), displaycost(-38), cost(-68),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A 10' diameter inflated plastic ball with a small computerized core, used to survey various moons in the outer solar system; see Shell-Tech p.26),_
+	race(Tumbleweed),_
+	page(TS:ST26),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-10 to ST:ST,_
+		+2 to ST:HT,_
+		+10 to ST:Hit Points,_
+		+4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:Absolute Direction,_
+		AD:Damage Resistance= 5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Damage Resistance=2 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Limited: Crushing Attacks Only, -40%",_
+		AD:Doesn't Breathe,_
+		AD:Doesn't Eat or Drink,_
+		AD:Infravision,_
+		AD:Pressure Support = 1,_
+		AD:Radiation Tolerance =3,_
+		AD:Resistant = 1 _
+			with "Degree: +8 to HT rolls to resist, *1/2, tier(-1), round(Down), shortname(+8), group(Resistant), page(B81)" _
+			respond "Acceleration",_
+		AD:Super Jump = 2 _
+			with "Bounching Only, -50%, page(TS:ST5,S??)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Increased Range: x20, +40%" _
+			and "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Tiny Computer),_
+		DI:Invertebrate,_
+		DI:No Bite,_
+		DI:No Legs (Portable),_
+		DI:No Manipulators,_
+		DI:Vulnerability (Impaling Damage) = 3 _
+			with "Wounding Multiplier x2, *1, shortname(x2), group(Vulnerability), page(B161)",_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+
+Venus-Capable Cybershell (Shell-Tech), displaycost(256), cost(32),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(A cheap ugly utilitarian shell used for general work and teletourism on Venus; see Shell-Tech p.26),_
+	race(Venus-Capable Cybershell),_
+	page(TS:ST26),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+1 to ST:ST,_
+		+2 to ST:HT,_
+		+1 to ST:Hit Points _
+	),_
+	adds(_
+		AD:Damage Resistance= 20 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Extra Legs (4 Legs),_
+		AD:Pressure Support = 2,_
+		AD:Sealed _
+			with "Acid-Resistant, +40%, page(TS:ST5)",_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 80,_
+		PE:Accessory (Compact Mainframe Computer),_
+		DI:No Bite,_
+		DI:Restricted Diet (power cells) = 1,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Zero-G Stevedore (Shell-Tech), displaycost(363), cost(54),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells),_
+	description(This is a typical medium-weight ''space worker'' shell usually assigned to cargo transfer and simple maintenance tasks in the vicinity of a space station; see Shell-Tech p.26),_
+	usernotes(Errata gives the point value of this template to 363 as here. The space acceleration disadvantages is a dummy trait since it doesn't change any stat.),_
+	race(Zero-G Stevedore),_
+	page(TS:ST26),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+3 to ST:ST,_
+		+2 to ST:HT,_
+		+2 to ST:Hit Points _
+	),_
+	adds(_
+		AD:360° Vision,_
+		AD:3D Spatial Sense,_
+		AD:Clinging _
+			with "Specific; Only materials on which magnetic clamps can work, -40%",_
+		AD:Damage Resistance= 18 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)",_
+		AD:Doesn't Breathe,_
+		AD:Enhanced Move (Space) = 10 _
+			with "Newtonian, -50%, group(Enhanced Move), page(B52)",_
+		AD:Extra Arms = 2 _
+			with "Foot Manipulators, -30%, group(Extra Arms), page(B53)",_
+		AD:Extra Legs (4 Legs) _
+			with "Temporary Disadvantage: Horizontal and No Fine Manipulators, -40%",_
+		AD:Flight _
+			with "Newtonian Space Flight, +25%, group(Flight), page(B56)" _
+			and "Space Flight Only, -75%, group(Flight), page(B56)",_
+		AD:Lifting ST = 4,_
+		AD:Nictitating Membrane = 2,_
+		AD:Night Vision = 3,_
+		AD:Pressure Support = 1,_
+		AD:Radiation Tolerance = 2,_
+		AD:Radar _
+			with "Extended Arc: 360°, +125%, group(Scanning Sense), page(B82)" _
+			and "Reduced Range: 1/2, -10%",_
+		AD:Sealed,_
+		AD:Telecommunication (Cable Jack) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Telecommunication (Laser Communication),_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		AD:Vacuum Support,_
+		PE:Accessory (Small Computer),_
+		PE:Accessory (Small Spotlights),_
+		DI:Hard of Hearing,_
+		"DI:Increased Consumption (Requires periodic recharging, 4 hours endurance)" = 1,_
+		DI:Maintenance = 2 _
+			with "Maintenance Interval: Monthly, *1/5, shortname(Monthly), group(Maintenance), page(B143)" _
+			respond "Electronics Repair and Mechanic skills",_
+		DI:No Bite,_
+		DI:No Sense of Smell/Taste,_
+		DI:Restricted Diet (power cells) = 1,_
+		QU:Cannot Float,_
+		TE:Machine,_
+		TE:Cybershell Body _
+	),_
+	creates(_
+		"DI:Air Move (actually Space acceleration) -1, -2" _
+	),_
+	features(_
+		Individuals of the same model closely resemble each other_
+	)
+Calamarine (Shell-Tech), displaycost(332), cost(101),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(A bioshell based on a Humboldt squid; see Shell-Tech p.27),_
+	race(Calamarine),_
+	page(TS:ST27),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:ST,_
+		+3 to ST:DX,_
+		+2 to ST:HT,_
+		+3 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Chameleon = 2,_
+		AD:Constriction Attack,_
+		AD:Damage Resistance= 2 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Gills: only underwater, *0, group(Doesn't Breathe), page(B49)",_
+		AD:Enhanced Move (Water) = 1,_
+		AD:Enhanced Move (Water) = 4 _
+			with "Limited Endurance: 2 seconds, -20%" _
+			and "Takes Recharge, -10%/-20%, levelnames(5 seconds, 15 seconds, 1 hour), upto(3), group(_General), page(B115), level(1)",_
+		AD:Extra-Flexible (2 Arms),_
+		AD:Extra Arms = 6 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)",_
+		AD:Extra Arms = 2 _
+			with "Extra-Flexible, +50%, group(Extra Arms), page(B53)" _
+			and "Long, +100%/+200%, group(Extra Arms), page(B53), level(1)",_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Night Vision = 8,_
+		AD:Obscure = 8 _
+			with "Persistent, +40%, group(_Attack Enhancements), page(B107)" _
+			and "Limited Use, -10%/-10%/-10%/-10%/-10%/-10%/-20%/-20%/-30%/-40%,levelnames(10/day,9/day,8/day,7/day,6/day,5/day,4/day,3/day,2/day,1/day), upto(10),group(_General), page(B112),gives(=nobase to owner::shots$,=$solver(owner::charrof * (11 - me::level)) to owner::shots$), level(7)" _
+			and "Only in Water, -20%" _
+			respond "Vision",_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 1,_
+		AD:Teeth (Sharp Beak),_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		PE:Accessory (Microframe Computer),_
+		DI:Bad Grip = 2,_
+		DI:Cold-Blooded (Threshold 50°),_
+		DI:Electrical _
+			with "Partial: Skull hit locations only, -70%",_
+		DI:Increased Life Support respond "Massive - Requires enough water to support its body",_
+		DI:Invertebrate,_
+		DI:No Depth Perception,_
+		DI:No Legs (Aquatic),_
+		TE:Bioroid Body_
+	)
+Cetapod (Shell-Tech), displaycost(224), cost(190),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(A cloned humpback whale used as a bioshell mostly by humans and infomorphs who wish to experience life as a cetacean; see Shell-Tech p.28),_
+	race(Cetapod),_
+	page(TS:ST28),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+75 to ST:ST,_
+		+4 to ST:HT,_
+		+6 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance= 10 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Oxygen Storage, -10%/-20%, levelnames(x300, x200, x100, x50, x25), upto(5), group(Doesn't Breathe), page(B49), level(3)",_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Enhanced Tracking,_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Nictitating Membrane = 1,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 2,_
+		AD:Subsonic Speech,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance = 1,_
+		PE:Accessory (Microframe Computer),_
+		DI:Bad Sight (Nearsighted) _
+			with "non-correctable, +0%",_
+		DI:Electrical _
+				with "Partial: Skull hit locations only, -70%",_
+		DI:Increased Life Support respond "Massive - Requires a water tank or special support for its body",_
+		DI:No Sense of Smell/Taste _
+			with "Can taste, -50%",_
+		QU:Poor Color Vision,_
+		QU:Relatively short-lived,_
+		TE:Ichthyoid,_
+		TE:Bioroid Body _
+	)
+Spionfisch (Shell-Tech), displaycost(9), cost(20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(A fish bioshell mostly used for surveillance; see Shell-Tech p.30),_
+	race(Spionfisch),_
+	page(TS:ST30),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+2 to ST:HT _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance= 1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Gills: only underwater, *0, group(Doesn't Breathe), page(B49)",_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 1,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		PE:Accessory (Small Compact Computer),_
+		DI:Appearance = 1,_
+		DI:Cold-Blooded (Threshold  50°),_
+		DI:Electrical _
+				with "Partial: Skull hit locations only, -70%",_
+		DI:Increased Life Support respond "Massive - Requires enough water to support its body",_
+		DI:No Depth Perception,_
+		TE:Ichthyoid,_
+		TE:Bioroid Body _
+	)
+
+Spionfisch - Bonito (Shell-Tech), displaycost(-21), cost(-20),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(Spionfisch variant; see Shell-Tech p.30),_
+	race(Spionfisch - Bonito ),_
+	page(TS:ST30),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-4 to ST:ST,_
+		+2 to ST:HT,_
+		-3 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance= 1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Gills: only underwater, *0, group(Doesn't Breathe), page(B49)",_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 1,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		PE:Accessory (Tiny Compact Computer),_
+		DI:Appearance = 1,_
+		DI:Cold-Blooded (Threshold  50°),_
+		DI:Electrical _
+				with "Partial: Skull hit locations only, -70%",_
+		DI:No Depth Perception,_
+		TE:Ichthyoid,_
+		TE:Bioroid Body _
+	)
+
+Spionfisch - Tuna (Shell-Tech), displaycost(35), cost(36),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(Spionfisch variant; see Shell-Tech p.30),_
+	race(Spionfisch - Tuna),_
+	page(TS:ST30),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+3 to ST:ST,_
+		+2 to ST:HT,_
+		+2 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance= 1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Gills: only underwater, *0, group(Doesn't Breathe), page(B49)",_
+		AD:Enhanced Move (Water) = 3,_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 1,_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)",_
+		PE:Accessory (Microframe Computer),_
+		DI:Appearance = 1,_
+		DI:Cold-Blooded (Threshold  50°),_
+		DI:Electrical _
+				with "Partial: Skull hit locations only, -70%",_
+		DI:Increased Life Support respond "Massive - Requires enough water to support its body",_
+		DI:No Depth Perception,_
+		TE:Ichthyoid,_
+		TE:Bioroid Body _
+	)
+Taniwha (Shell-Tech), displaycost(164), cost(120),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(A killer whale bioshell - generally converted from an adult orca - used for military or paramilitary ops; see Shell-Tech p.30),_
+	race(Taniwha),_
+	page(TS:ST30),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+35 to ST:ST,_
+		+5 to ST:HT,_
+		+4 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance= 5 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Doesn't Breathe _
+			with "Oxygen Storage, -10%/-20%, levelnames(x300, x200, x100, x50, x25), upto(5), group(Doesn't Breathe), page(B49),level(4)",_
+		AD:Enhanced Move (Water) = 3,_
+		AD:Enhanced Tracking = 1,_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Nictitating Membrane = 1,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 2,_
+		AD:Sonar _
+			with "Reduced Range: 1/10, -30%" _
+			and "Underwater Only, -10%",_
+		AD:Teeth (Sharp Teeth),_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Temperature Tolerance=1,_
+		AD:Ultrasonic Speech,_
+		PE:Accessory (Microframe Computer),_
+		DI:Bad Sight (Nearsighted) _
+			with "non-correctable, +0%",_
+		DI:Electrical _
+				with "Partial: Skull hit locations only, -70%",_
+		DI:Increased Life Support respond "Massive - Requires a water tank or special support for its body",_
+		DI:No Sense of Smell/Taste _
+			with "Can taste, -50%",_
+		DI:Short Lifespan = 1,_
+		QU:Poor Color Vision,_
+		TE:Ichthyoid _
+	)
+Warshark (Shell-Tech), displaycost(141), cost(87),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(A military shark bioshell; see Shell-Tech p.30),_
+	race(Warshark),_
+	page(TS:ST30),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		+6 to ST:ST,_
+		+3 to ST:DX,_
+		+2 to ST:HT,_
+		+4 to ST:Hit Points,_
+		+2 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Absolute Direction _
+			with "Requires Signal, -20%,group(Absolute Direction),page(B35),level(1),valuenum(-20)",_
+		AD:Damage Resistance= 1 _
+			with "Can't Wear Armor, -40%,group(Damage Resistance),page(B47),level(1),valuenum(-40)" _
+			and "Tough Skin, -40%, group(Damage Resistance), page(B47)",_
+		AD:Detect = 3 respond "Electrical and Magnetic Fields",_
+		AD:Discriminatory Smell,_
+		AD:Doesn't Breathe _
+			with "Gills: only underwater, *0, group(Doesn't Breathe), page(B49)",_
+		AD:Enhanced Move (Water) = 2,_
+		AD:Enhanced Tracking = 1,_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Skull Hit Locations Only, -70%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Neck, +5, group(Injury Tolerance), page(B61)",_
+		AD:Night Vision = 7,_
+		AD:Peripheral Vision,_
+		AD:Pressure Support = 2,_
+		AD:Striker (Crushing; [Description]) _
+			with "Cannot Parry, -40%, group(Striker), page(B88),gives(=nobase to owner::parry$, ="No" to owner::parry$)" respond "Snout",_
+		AD:Subsonic Hearing,_
+		AD:Teeth (Sharp Teeth),_
+		AD:Telecommunication (Cable Jack) _
+			with "Sensie, +80%, page(TS:CT), group(Telecommunication)",_
+		AD:Telecommunication (Radio) _
+			with "Video, +40%, page(TS:CT41), group(Telecommunication)" _
+			and "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(1)",_
+		AD:Telecommunication (Sonar Comm) _
+			with "Reduced Range, -10%/-20%, levelnames(x1/2, x1/5, x1/10), upto(3), group(_General), page(B115), gives(=*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangehalfdam, =*@indexedvalue(me::level,0.5,0.2,0.1) to owner::rangemax), level(1)",_
+		AD:Ultrasonic Speech,_
+		AD:Vibration sense with "Water, +0%",_
+		PE:Accessory (Small or Microframe Computer),_
+		DI:Appearance = 2,_
+		DI:Cold-Blooded (Threshold 50°),_
+		DI:Electrical _
+				with "Partial: Skull hit locations only, -70%",_
+		DI:Increased Life Support respond "Massive - Requires enought water to supports its body",_
+		DI:Social Stigma (Monster),_
+		DI:Short Lifespan = 2,_
+		TE:Bioroid body,_
+		TE:Ichthyoid _
+	),_
+	features(_
+			Somewhat abrasive skin_
+	)
+
+Sentient Snack (Shell-Tech), displaycost(-186), cost(-140),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(Humanoid synthetic snack food with enough cheap, disposable computer power to display a basic personality; see Shell-Tech p.29),_
+	race(Sentient Snack),_
+	page(TS:ST29),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-7 to ST:ST,_
+		-3 to ST:DX,_
+		-2 to ST:Basic Move,_
+		-6 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Doesn't Breathe _
+			with "Oxygen Absorption, -25%, group(Doesn't Breathe), page(B49)",_
+		AD:Doesn't Eat or Drink,_
+		AD:Flexibility,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+			respond "Disease",_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Brain-related effects only, -50%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)" _
+			and "Not immune to blood-borne toxins, -50%",_
+		AD:Injury Tolerance _
+			with "No Brain, +5, group(Injury Tolerance), page(B61)" _
+			and "No Neck, +5, group(Injury Tolerance), page(B61) " _
+			and "No Vitals, +5, group(Injury Tolerance), page(B61)",_
+		AD:Metabolism Control = 6 _
+			with "Hibernation triggered by cold, -60%, group(Metabolism Control), page(B68)",_
+		AD:Reduced Consumption = 3 _
+			with "Air Only, +100%, page(TS:CT), group(Reduced Consumption)",_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Tiny Biodegradable Computer),_
+		PE:Sanitized Metabolism,_
+		DI:Electrical _
+			with "Partial: Vital hit locations only, -30%",_
+		DI:Invertebrate,_
+		DI:Short Arms (2 Arms),_
+		DI:Short Lifespan = 4,_
+		DI:Terminally Ill = 3 _
+			with "50 hours left; Mitigator: Hibernating, -60%, mitigator(yes)",_
+		DI:Unhealing = 2,_
+		TE:Bioroid body _
+	),_
+	features(_
+			Early Maturation increased to level 5; Edible and available in a range of designs and flavors _
+	)
+
+Animal Snack (Shell-Tech), displaycost(-221), cost(-140),_
+	cat(Racial Templates, Racial Templates - Shell-Tech, Racial Templates - Cybershells, Racial Templates - Bioshells),_
+	description(Animal-shaped synthetic snack food with enough cheap, disposable computer power to display a basic personality; see Shell-Tech p.29),_
+	race(Sentient Snack),_
+	page(TS:ST29),_
+	noresync(yes),_
+	owns(yes),_
+	hides(yes),_
+	locks(yes),_
+	gives(_
+		-7 to ST:ST,_
+		-3 to ST:DX,_
+		-2 to ST:Basic Move,_
+		-6 to ST:Size Modifier _
+	),_
+	adds(_
+		AD:Doesn't Breathe _
+			with "Oxygen Absorption, -25%, group(Doesn't Breathe), page(B49)",_
+		AD:Doesn't Eat or Drink,_
+		AD:Flexibility,_
+		AD:High Pain Threshold,_
+		AD:Resistant = 2 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+			respond "Disease",_
+		AD:Resistant = 4 _
+			with "Degree: Immunity, *1, shortname(Immunity), group(Resistant), page(B81)" _
+				and "Brain-related effects only, -50%" _
+				respond "Metabolic Hazards",_
+		AD:Injury Tolerance _
+			with "No Blood, +5, group(Injury Tolerance), page(B61)" _
+			and "Not immune to blood-borne toxins, -50%",_
+		AD:Injury Tolerance _
+			with "No Brain, +5, group(Injury Tolerance), page(B61)" _
+			and "No Neck, +5, group(Injury Tolerance), page(B61) " _
+			and "No Vitals, +5, group(Injury Tolerance), page(B61)",_
+		AD:Metabolism Control = 6 _
+			with "Hibernation triggered by cold, -60%, group(Metabolism Control), page(B68)",_
+		AD:Reduced Consumption = 3 _
+			with "Air Only, +100%, page(TS:CT), group(Reduced Consumption)",_
+		AD:Temperature Tolerance = 3,_
+		PE:Accessory (Tiny Biodegradable Computer),_
+		PE:Sanitized Metabolism,_
+		DI:Electrical _
+			with "Partial: Vital hit locations only, -30%",_
+		DI:Invertebrate,_
+		DI:Short Arms (2 Arms),_
+		DI:Short Lifespan = 4,_
+		DI:Terminally Ill = 3 _
+			with "50 hours left; Mitigator: Hibernating, -60%, mitigator(yes)",_
+		DI:Unhealing = 2,_
+		TE:Bioroid body,_
+		TE:Quadruped _
+	),_
+	features(_
+			Early Maturation increased to level 5; Edible and available in a range of designs and flavors _
+	)
+
+#MergeTags in "TE:Volkspider" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Securibot" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Tech-Spider" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Bush Robot (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Buzzbot (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Buzzbot - Newshawk (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Buzzbot - Wotatech Combat Buzzbot (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Cyberdoll (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Humaniform (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Microframe (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Mainframe (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Macroframe (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Virtual Interface Implant (Changing Times)" with "cat(Racial Templates - Cybershells)"
+#MergeTags in "TE:Wearable Virtual Interface (Changing Times)" with "cat(Racial Templates - Cybershells)"

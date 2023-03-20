@@ -1,0 +1,14 @@
+
+{{#if (isString this)}}
+  <div class="tag">{{this}}</div>
+{{else}}
+  <div class="tag {{join classes}} {{join types}}">
+  {{#each children}}
+    {{!-- {{#if @index}}<div class="divider"><div></div></div>{{/if}} --}}
+    <div class="label {{join classes}}">
+      {{#if icon}}{{gurpsIcon icon}}{{/if}}
+      {{#unless (isNilOrEmpty label)}}<span>{{{label}}}</span>{{/unless}}
+    </div>
+  {{/each}}
+  </div>
+{{/if}}

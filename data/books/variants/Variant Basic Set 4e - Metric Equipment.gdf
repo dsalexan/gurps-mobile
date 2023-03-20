@@ -1,0 +1,958 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=2021 June 5. This file contains all of the equipment from the Basic Set and Fantasy converted to Metric weights,
+		as well as converting certain attributes to Metric (e.g. Basic Lift). _
+		All weights have been rounded off; those under 1 Kilo are rounded to two decimal places; those under 10 Kilos _
+		are rounded to one decimal place; those over 10 Kilos are rounded to the nearest whole number. _
+		Range (1/2D & Max) remains in yards, but the approximate conversion of 1 yard = 1 meter should suffice.
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+LoadAfter="GURPS Powers 4e.gdf", "GURPS Fantasy 4e.gdf"
+
+[AUTHOR]
+******************************************************************************************************************[START]
+*
+* GURPS® Character Assistant
+* Filename: Variant Basic Set 4e - Metric Equipment.gdf
+* Created: July 21, 2004
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Basic Set: Characters sourcebook. GURPS Basic Set:
+* Characters is Copyright © 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1998, 1999, 2002, 2004 by Steve
+* Jackson Games Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*	Equipment with Metric weights
+*		All weights have been rounded off; those under 1 Kilo are rounded to two decimal places; those under 10 Kilos
+*			are rounded to one decimal place; those over 10 Kilos are rounded to the nearest whole number.
+*		Range (1/2D & Max) remains in yards, but the approximate conversion of 1 yard = 1 meter should suffice.
+*
+******************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Equipment
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+*
+******************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+******************************************************************************************************************
+
+******************************************************************************************************************[STOP]
+[ATTRIBUTES]
+******************************************************************************************************************[START]
+* Helper stats
+Metric, basevalue(1), up(0), down(0), step(1), maxscore(1), minscore(0), display(no), hide(yes)
+
+**************************************************************************
+[MODIFIERS]
+**************************************************************************
+<_Attack Enhancements>
+Area Effect, +50%/+100%, group(_Attack Enhancements), page(B102), upto(25), shortname(Area Effect),
+	levelnames("2 m",#list(LevelName Area Effect)),
+	gives(=+@if(owner::radius = 0 THEN (2^me::level)) to owner::radius, =*@if(owner::radius > 0 THEN (2^me::level)) to owner::radius)
+
+<_General>
+Area Effect, +50%/+100%, group(_General), page(B102), upto(25), shortname(Area Effect),
+	levelnames("1 m","2 m",#list(LevelName Area Effect)),
+	gives(=+@if(owner::radius = 0 THEN (2^me::level)) to owner::radius, =*@if(owner::radius > 0 THEN (2^me::level)) to owner::radius)
+
+<Mana Damper/Enhancer>
+Area Effect, +50%/+100%, group(Mana Damper/Enhancer), page(B67), upto(25),
+	levelnames("1 m","2 m",#list(LevelName Area Effect)),
+	gives(_
+		=+(0.5 * (2^me::level)) to owner::radius _
+		)
+
+<Psi Static>
+Area Effect, +50%/+100%, group(Psi Static), page(B78), upto(25),
+	levelnames("1 m","2 m",#list(LevelName Area Effect)),
+	gives(_
+		=+(0.5 * (2^me::level)) to owner::radius _
+		)
+
+<Static>
+Area Effect, +50%/+100%, group(Static), page(P98),
+	levelnames("1 m","2 m",#list(LevelName Area Effect)),
+	gives(_
+		=+(0.5 * (2^me::level)) to owner::radius _
+		)
+
+<Illusion>
+Area Effect, +50%/+100%, group(Illusion), page(B102, P95), upto(24),
+	levelnames(#list(LevelName Area Effect)),
+	gives(_
+		=*(2^me::level) to owner::radius _
+		)
+
+<Shield>
+Shield: Spike, +20, gives(+2.3 to owner::baseweight, +1 to owner::damage), tier(1), page(B287), group(Shield), shortname(Spike)
+
+
+**************************************************************************
+[LISTS]
+**************************************************************************
+<LevelName Area Effect>
+"4 m","8 m","16 m","32 m","64 m","128 m","256 m","0.5 km","1 km","2 km","4 km","8 km","16 km","32 km","64 km","130 km","260 km","510 km","1,000 km","2,000 km","4,100 km","8,200 km","16,000 km","33,000 km","66,000 km","130,000 km","260,000 km","520,000 km","1,000,000 km","2,100,000 km","4,200,000 km","8,400,000 km","17,000,000 km","34,000,000 km","67,000,000 km","130,000,000 km","270,000,000 km","540,000,000 km","1,100,000,000 km","2,100,000,000 km","4,300,000,000 km","8,600,000,000 km","17,000,000,000 km","34,000,000,000 km","69,000,000,000 km","140,000,000,000 km","270,000,000,000 km","550,000,000,000 km","1,100,000,000,000 km"
+
+
+**************************************************************************
+[EQUIPMENT]
+**************************************************************************
+#Delete "EQ:Water (per quart)"
+#Delete "EQ:Water (per gallon)"
+#Delete "EQ:Gasoline (per gallon)"
+#Delete "EQ:Kerosene (per gallon)"
+#Delete "EQ:Cable, Steel, 1.5'' (per 10 yards)"
+#Delete "EQ:Cord, 3/16'' (per 10 yards)"
+#Delete "EQ:Rope, 3/8'' (per 10 yards)"
+#Delete "EQ:Rope, 3/4'' (per 10 yards)"
+#Delete "EQ:Pole, 6'"
+#Delete "EQ:Pole, 10'"
+#Delete "EQ:Crowbar, 3'"
+#Delete "EQ:Whip (1-yard)"
+#Delete "EQ:Whip (2-yard)"
+#Delete "EQ:Whip (3-yard)"
+#Delete "EQ:Whip (4-yard)"
+#Delete "EQ:Whip (5-yard)"
+#Delete "EQ:Whip (6-yard)"
+#Delete "EQ:Whip (7-yard)"
+
+*<_New Equipment>
+_New Equipment,
+		techlvl([techlevel]),
+		basecost([cost]),
+		units(kg), baseweight([weight]),
+		lc([legalityclass]),
+		mods(Equipment),
+		x(_
+		#InputToTagReplace("Please enter the name of this piece of equipment:", name),
+		#InputReplace("Please enter the Tech Level of this piece of equipment:", "[techlevel]"),
+		#InputReplace("Please enter the Cost of this piece of equipment. DO NOT include a dollar sign or comma:", "[cost]"),
+		#InputReplace("Please enter the Weight of this piece of equipment:", "[weight]"),
+		#InputReplace("Please enter the Legality Class of this piece of equipment:", "[legalityclass]"),
+		#edit)
+
+_New Armor,
+		techlvl([techlevel]),
+		basecost([cost]),
+		units(kg), baseweight([weight]),
+		lc([legalityclass]),
+		location([location]),
+		dr([damageresistance]),
+		notes([notes]),
+		mods(Equipment),
+		x(_
+		#InputToTagReplace("Please enter the name of this piece of armor:", name),
+		#InputReplace("Please enter the Tech Level of this piece of armor:", "[techlevel]"),
+		#InputReplace("Please enter the Cost of this piece of armor. DO NOT include a dollar sign or comma:", "[cost]"),
+		#InputReplace("Please enter the Weight of this piece of armor:", "[weight]"),
+		#InputReplace("Please enter the Legality Class of this piece of armor:", "[legalityclass]"),
+		#InputReplace("Please enter the Locations covered by of this piece of armor (e.g. groin, head, torso):", "[location]"),
+		#InputReplace("Please enter the Damage Resistance of this piece of armor:", "[damagerestance]"),
+		#edit)
+
+_New Firearm,
+		techlvl([techlevel]),
+		basecost([cost]),
+		units(kg), baseweight([weight]),
+		lc([legalityclass]),
+		damage([damage]),
+		damtype([damagetype]),
+		acc([accuracy]),
+		rangehalfdam([halfdamagerange]),
+		rangemax([maxrange]),
+		rof([rateoffire]),
+		shots([shots]),
+		minst([minimumst]),
+		bulk([bulk]),
+		rcl([recoil]),
+		skillused([skillused]),
+		mods(Equipment),
+		x(_
+		#InputToTagReplace("Please enter the name of this firearm:", name),
+		#InputReplace("Please enter the Tech Level of this firearm:", "[techlevel]"),
+		#InputReplace("Please enter the Cost of this firearm. DO NOT include a dollar sign or comma:", "[cost]"),
+		#InputReplace("Please enter the Weight of this firearm:", "[weight]"),
+		#InputReplace("Please enter the Legality Class of this firearm:", "[legalityclass]"),
+		#InputReplace("Please enter the damage of this firearm (e.g. 6dx5). DO NOT include armor divisors in this field (use the damage type field instead):", "[damage]"),
+		#InputReplace("Please enter the damage type of this firearm (e.g. pi+ or (10)cut):", "[damagetype]"),
+		#InputReplace("Please enter the accuracy of this firearm:", "[accuracy]"),
+		#InputReplace("Please enter the half damage range of this firearm:", "[halfdamagerange]"),
+		#InputReplace("Please enter the maximum range of this firearm:", "[maxrange]"),
+		#InputReplace("Please enter the rate of fire of this firearm:", "[rateoffire]"),
+		#InputReplace("Please enter the shots for this firearm:", "[shots]"),
+		#InputReplace("Please enter the minimum strength of this firearm:", "[minimumst]"),
+		#InputReplace("Please enter the bulk of this firearm:", "[bulk]"),
+		#InputReplace("Please enter the recoil of this firearm:", "[recoil]"),
+		#InputReplace("Please enter the skill used for this firearm:", "[skillused]"),
+		#edit)
+
+_New Melee Weapon,
+		techlvl([techlevel]),
+		basecost([cost]),
+		units(kg), baseweight([weight]),
+		lc([legalityclass]),
+		damage([damage]),
+		damtype([damagetype]),
+		reach([reach]),
+		parry([parry]),
+		minst([minimumstrength]),
+		skillused([skillused]),
+		mods(Equipment),
+		x(_
+		#InputToTagReplace("Please enter the name of this hand weapon:", name),
+		#InputReplace("Please enter the Tech Level of this hand weapon:", "[techlevel]"),
+		#InputReplace("Please enter the Cost of this hand weapon. DO NOT include a dollar sign or comma:", "[cost]"),
+		#InputReplace("Please enter the Weight of this hand weapon:", "[weight]"),
+		#InputReplace("Please enter the Legality Class of this hand weapon:", "[legalityclass]"),
+		#InputReplace("Please enter the damage of this hand weapon (e.g. 6dx5, sw+1, or thr-1). DO NOT include armor divisors in this field (use the damage type field instead):", "[damage]"),
+		#InputReplace("Please enter the damage type of this hand weapon (e.g. pi+ or (10)cut):", "[damagetype]"),
+		#InputReplace("Please enter the reach for this hand weapon:", "[reach]"),
+		#InputReplace("Please enter the parry for this hand weapon:", "[parry]"),
+		#InputReplace("Please enter the minimum strength of this hand weapon:", "[minimumst]"),
+		#InputReplace("Please enter the skill used for this hand weapon:", "[skillused]"),
+		#edit)
+
+_New Muscle-Powered Ranged Weapon,
+		techlvl([techlevel]),
+		basecost([cost]),
+		units(kg), baseweight([weight]),
+		lc([legalityclass]),
+		damage([damage]),
+		damtype([damagetype]),
+		acc([accuracy]),
+		calcrange(yes),
+		rangehalfdam([halfdamagerange]),
+		rangemax([maxrange]),
+		rof([rateoffire]),
+		shots([shots]),
+		minst([minimumst]),
+		bulk([bulk]),
+		skillused([skillused]),
+		mods(Equipment),
+		x(_
+		#InputToTagReplace("Please enter the name of this muscle-powered ranged weapon:", name),
+		#InputReplace("Please enter the Tech Level of this muscle-powered ranged weapon:", "[techlevel]"),
+		#InputReplace("Please enter the Cost of this muscle-powered ranged weapon. DO NOT include a dollar sign or comma:", "[cost]"),
+		#InputReplace("Please enter the Weight of this muscle-powered ranged weapon:", "[weight]"),
+		#InputReplace("Please enter the Legality Class of this muscle-powered ranged weapon:", "[legalityclass]"),
+		#InputReplace("Please enter the damage of this muscle-powered ranged weapon (e.g. 6dx5 or thr+1). DO NOT include armor divisors in this field (use the damage type field instead):", "[damage]"),
+		#InputReplace("Please enter the damage type of this muscle-powered ranged weapon (e.g. pi+ or (10)cut):", "[damagetype]"),
+		#InputReplace("Please enter the accuracy of this muscle-powered ranged weapon:", "[accuracy]"),
+		#InputReplace("Please enter the half damage range of this muscle-powered ranged weapon (e.g. ST*10 or 25):", "[halfdamagerange]"),
+		#InputReplace("Please enter the maximum range of this muscle-powered ranged weapon (e.g. ST*10 or 25):", "[maxrange]"),
+		#InputReplace("Please enter the rate of fire of this muscle-powered ranged weapon:", "[rateoffire]"),
+		#InputReplace("Please enter the shots for this muscle-powered ranged weapon:", "[shots]"),
+		#InputReplace("Please enter the minimum strength of this muscle-powered ranged weapon:", "[minimumst]"),
+		#InputReplace("Please enter the bulk of this muscle-powered ranged weapon:", "[bulk]"),
+		#InputReplace("Please enter the skill used for this muscle-powered ranged weapon:", "[skillused]"),
+		#edit)
+
+*<Clothing>
+Complete Wardrobe, basecost([cost]), units(kg), baseweight(9.1), mods(Equipment), x(#InputReplace("Please enter the cost of this item here. Average cost is 100% of the characters cost of living. DO NOT use a dollar sign or comma:", [cost])), page(B266), description(Includes one to four sets of ordinary clothes, plus nightclothes, one set each of formal wear and winter clothes, and usually at elast one outfit (lab coat, uniform, gym clothes, etc.) appropriate to your job or hobbies. 100% of cost of living; 9+ kg)
+Ordinary Clothes, basecost([cost]), units(kg), baseweight(0.91), mods(Equipment), x(#InputReplace("Please enter the cost of this item here. Average cost is 20% of the characters cost of living. DO NOT use a dollar sign or comma:", [cost])), page(B266), description(One complete outfit, ranging in quality from castoff rags to designer fashions, depending on Status. At minimum: undergarments, plus a tunic, blouse, or shirt with hose, skirt, or trousers - or a long tunic, robe or dress - and suitable footwear. 20% of cost of living; 0.91 kg)
+Winter Clothes, basecost([cost]), units(kg), baseweight(1.8), mods(Equipment), x(#InputReplace("Please enter the cost of this item here. Average cost is 30% of the characters cost of living. DO NOT use a dollar sign or comma:", [cost])), page(B266), description(As Ordinary Clothes, but heavier. Includes a hat or hood, boots, and (at TL6 or less) furs. 30% of cost of living; 1.8 kg)
+Formal Wear, basecost([cost]), units(kg), baseweight(0.91), mods(Equipment), x(#InputReplace("Please enter the cost of this item here. Average cost is 30% of the characters cost of living. DO NOT use a dollar sign or comma:", [cost])), page(B266), description(Your "best outfit," which will usually include at least some accessories (hat, gloves, etc.) or jewelery. 40% of cost of living; 1.8 kg)
+Cosmetics, basecost([cost]), units(kg), baseweight(0.91), mods(Equipment), x(#InputReplace("Please enter the cost of this item here. Average cost is 10% of the characters cost of living. DO NOT use a dollar sign or comma:", [cost])), page(B266), description(Natural or synthetic beauty aids. For one month's supply: 10% of cost of living; 1.8 kg)
+
+*<Animals>
+
+*<Miscellaneous Equipment - Camping & Survival Gear>
+"Backpack, Frame", techlvl(1), basecost(100), units(kg), baseweight(4.5), description(TL:1 Notes: Holds 45 kg of gear.), page(B288), mods(Equipment), isparent(yes), weightcapacity(45)
+"Backpack, Small", techlvl(1), basecost(60), units(kg), baseweight(1.4), description(TL:1 Notes: Holds 18 kg of gear.), page(B288), mods(Equipment), isparent(yes),  weightcapacity(18)
+#ReplaceTags in "EQ:Blanket" with units(kg), baseweight(1.8)
+"Bottle, Ceramic", techlvl(1), basecost(3), units(kg), baseweight(0.45), description(TL:1 Notes: Holds 1 liter of liquid.), page(B288), mods(Equipment)
+
+"Cable, Steel, 1.5''/3.8cm (per 10 meters)", techlvl(5), basecost(100), units(kg), baseweight(7.7), description(TL:5 Notes: Supports 1,680 kg), page(B288), mods(Equipment)
+"Camp Stove, Small", techlvl(6), basecost(50), units(kg), baseweight(0.91), description(TL:6 Notes: Uses 1 liter of kerosene per 4hrs.), page(B288), mods(Equipment)
+#ReplaceTags in "EQ:Tallow Candle" with units(kg), baseweight(0.45)
+Canteen, techlvl(5), basecost(10), units(kg), baseweight(0.45), description(TL:5 Notes: Holds 1 liter of liquid.), page(B288), mods(Equipment)
+
+#ReplaceTags in "EQ:Climbing Gear" with units(kg), baseweight(1.8)
+
+"Cord, 3/16''/0.5cm (per 10 meters)", techlvl(0), basecost(1), units(kg), baseweight(0.23), description(TL:0 Notes: Supports 41 kg), page(B288), mods(Equipment)
+
+#ReplaceTags in "EQ:Flashlight, Heavy" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Flashlight, Mini" with units(kg), baseweight(0.11)
+Gasoline (per liter), techlvl(6), basecost(0.4), units(kg), baseweight(0.7), description(TL:6), page(B288), mods(Equipment)
+#ReplaceTags in "EQ:GPS Receiver" with units(kg), baseweight(1.4)
+Grapnel, techlvl(5), basecost(20), units(kg), baseweight(0.91), description(TL:5 Notes: Throw to STx2 meters. Supports 136 kg), page(B288), mods(Equipment)
+#ReplaceTags in "EQ:Group Basics" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Iron Spike, Piton" with units(kg), baseweight(0.23)
+Kerosene (per liter), techlvl(6), basecost(0.4), units(kg), baseweight(0.7), description(TL:6), page(B288), mods(Equipment)
+#ReplaceTags in "EQ:Lantern" with units(kg), baseweight(0.91)
+Life Jacket, techlvl(6), basecost(100), units(kg), baseweight(2.7), description(TL:6 Notes: Floats up to 160 kg), page(B288), mods(Equipment)
+
+#ReplaceTags in "EQ:Oil (per pint)" with units(kg), baseweight(0.45)
+Parachute, techlvl(6), basecost(1000), units(kg), baseweight(14), description(TL:6 Notes: Use with Parachuting skill. The wearer will fall at least 80 meters before it opens, and then descent at 5 meters/second.), page(B288), mods(Equipment)
+#ReplaceTags in "EQ:Personal Basics" with units(kg), baseweight(0.45)
+"Pole, 6'/2m", techlvl(0), basecost(5), units(kg), baseweight(1.4), description(TL:0 Notes: For pitching tents, fishing, or prodding items.), page(B288), mods(Equipment)
+"Pole, 10'/3m", techlvl(1), basecost(8), units(kg), baseweight(2.3), description(TL:1 Notes: For things you wouldn't touch with a 6' pole.), page(B288), mods(Equipment)
+Pouch, techlvl(0), basecost(10), units(kg), baseweight(0), description(TL:0 Notes: Holds 1.4 kg), page(B288), mods(Equipment), isparent(yes), weightcapacity(1.4)
+Purse, techlvl(0), basecost(10), units(kg), baseweight(0), description(TL:0 Notes: Holds 1.4 kg), page(B288), mods(Equipment), isparent(yes),  weightcapacity(1.4)
+"Rope, 3/8''/0.95cm (per 10 meters)", techlvl(1), basecost(5), units(kg), baseweight(0.68), description(TL:1 Notes: Supports 136 kg), page(B288), mods(Equipment)
+"Rope, 3/4''/1.9cm (per 10 meters)", techlvl(1), basecost(25), units(kg), baseweight(2.3), description(TL:1 Notes: Supports 500 kg), page(B288), mods(Equipment)
+#ReplaceTags in "EQ:Scuba Gear" with units(kg), baseweight(15)
+#ReplaceTags in "EQ:Sleeping Bag" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Sleeping Bag, Insulated" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Sleeping Fur" with units(kg), baseweight(3.6)
+"Suitcase, Hard", techlvl(5), basecost(250), units(kg), baseweight(3.6), description(TL:5 Notes: Holds 45 kg DR 4 with key lock.), page(B288), mods(Equipment), isparent(yes), weightcapacity(45)
+#ReplaceTags in "EQ:Tent, 1-Man" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Tent, 2-Man" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Tent, 4-Man" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Tent, 20-Man" with units(kg), baseweight(45)
+#ReplaceTags in "EQ:Thermos Bottle" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Torch" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Traveler's Rations" with units(kg), baseweight(0.23)
+
+Wineskin, techlvl(0), basecost(10), units(kg), baseweight(0.11), description(TL:0 Notes: Holds 4 liters of liquid.), page(B288), mods(Equipment)
+Water (per liter), techlvl(0), basecost(0), units(kg), baseweight(1), description(TL:0), page(B288), mods(Equipment)
+
+*<Miscellaneous Equipment - Communications & Information Gear>
+
+#ReplaceTags in "EQ:Cell Phone" with units(kg), baseweight(0.11)
+#ReplaceTags in "EQ:Computer, Laptop" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Computer, Wearable" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Drum" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Mini-Recorder" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Mini-Recorder, Digital" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Radio, Backpack" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Radio, Hand" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Radio, Headset" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Radio, Headset, Secure/Encrypted" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Satellite Phone" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Scribe's Kit" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Transistor Radio" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:TV Set, Mini" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Typewriter, Manual" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Wax Tablet" with units(kg), baseweight(0.91)
+
+*<Animals - Equestrian Gear>
+#ReplaceTags in "EQ:Bit & Bridle" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Horseshoes" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Saddle & Tack" with units(kg), baseweight(6.8)
+Saddlebags, techlvl(1), basecost(100), units(kg), baseweight(1.4), description(TL:1 Notes: Holds 18 kg), page(B289), mods(Equipment), isparent(yes), weightcapacity(18)
+
+#ReplaceTags in "EQ:Stirrups" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:War Saddle" with units(kg), baseweight(16)
+
+*<Miscellaneous Equipment - Law-Enforcement Thief & Spy Gear>
+
+Bug Stomper, techlvl(7), basecost(1200), units(kg), baseweight(0.91), description(TL:7 Notes: Jams bugs in a 10-meter radius. 8hrs.), page(B289), mods(Equipment)
+#ReplaceTags in "EQ:Disguise Kit" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Electronic Lockpicks" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Handcuffs" with units(kg), baseweight(0.23)
+
+#ReplaceTags in "EQ:Laser Microphone" with units(kg), baseweight(0.91)
+
+#ReplaceTags in "EQ:Shotgun Mike" with units(kg), baseweight(0.91)
+
+*<Miscellaneous Equipment - Medical Gear>
+
+#ReplaceTags in "EQ:Antitoxin Kit" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Bandages" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Crash Kit" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:First Aid Kit" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Surgical Instruments" with units(kg), baseweight(6.8)
+
+*<Miscellaneous Equipment - Optics & Sensors>
+#ReplaceTags in "EQ:Binoculars" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Camcorder" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Camera, 35mm" with units(kg), baseweight(1.4)
+
+#ReplaceTags in "EQ:Metal Detector Wand" with units(kg), baseweight(3.6)
+
+#ReplaceTags in "EQ:Night Vision Goggles" with units(kg), baseweight(0.91)
+
+#ReplaceTags in "EQ:Telescope" with units(kg), baseweight(2.7)
+
+*<Miscellaneous Equipment - Tools>
+#ReplaceTags in "EQ:Balance & Weights" with units(kg), baseweight(1.4)
+"Crowbar, 3'/1m", techlvl(2), basecost(20), units(kg), baseweight(1.4), description(TL:2 Notes: Treat as small mace in combat, at -1 to skill.), page(B289), mods(Equipment)
+#ReplaceTags in "EQ:Cutting Torch" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Cutting Torch Gas Bottle" with units(kg), baseweight(6.8)
+
+#ReplaceTags in "EQ:Pickaxe" with units(kg), baseweight(3.6)
+#ReplaceTags in "EQ:Plow, Iron" with units(kg), baseweight(55)
+#ReplaceTags in "EQ:Plow, Wooden" with units(kg), baseweight(27)
+#ReplaceTags in "EQ:Portable Carpentry Tool Kit" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Portable Armoury Tool Kit" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Portable Explosives Tool Kit" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Portable Machinist Tool Kit" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Portable Mechanic Tool Kit" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Portable Electrician Tool Kit" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Portable Electronics Repair Kit" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Saw" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Shovel" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Spinning Wheel" with units(kg), baseweight(18)
+#ReplaceTags in "EQ:Suitcase Lab" with units(kg), baseweight(4.5)
+Wheelbarrow, techlvl(2), basecost(60), units(kg), baseweight(8.2), description(TL:2 Notes: Holds 160 kg Divide effective weight of load by 5.), page(B289), mods(Equipment), isparent(yes), weightcapacity(160)
+#ReplaceTags in "EQ:Whetstone" with units(kg), baseweight(0.45)
+
+*<Miscellaneous Equipment - Weapon & Combat Accessories>
+#ReplaceTags in "EQ:Ear Muffs" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Hip Quiver" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Holster, Belt" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Holster, Shoulder" with units(kg), baseweight(0.45)
+
+//#ReplaceTags in "EQ:Scope, 4x" with units(kg), baseweight(0.68)
+//#ReplaceTags in "EQ:Scope, 4x, Thermal Imaging" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Shoulder Quiver" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Silencer, Pistol or SMG" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Web Gear" with units(kg), baseweight(0.91)
+
+*<Animals - Horse Armor (Barding)>
+#ReplaceTags in "EQ:Horse Leather & Cloth Face Mask" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Horse Mail Face Mask" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Horse Scale Face Mask" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Horse Plate Face Mask" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Horse Leather & Cloth Head/Neck" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Horse Mail Head/Neck" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Horse Scale Head/Neck" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Horse Plate Head/Neck" with units(kg), baseweight(8.2)
+#ReplaceTags in "EQ:Horse Leather & Cloth Partial Barding" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Horse Mail Partial Barding" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Horse Scale Partial Barding" with units(kg), baseweight(27)
+#ReplaceTags in "EQ:Horse Leather & Cloth Full Barding" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Horse Mail Full Barding" with units(kg), baseweight(27)
+#ReplaceTags in "EQ:Horse Plate Full Barding" with units(kg), baseweight(41)
+#ReplaceTags in "EQ:Horse Plate Leggings" with units(kg), baseweight(9.1)
+
+*<Armor - Low Tech Armor Suits>
+#ReplaceTags in "EQ:Cloth Armor Suit" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Leather Armor Suit" with units(kg), baseweight(8.9)
+#ReplaceTags in "EQ:Light Scale Suit" with units(kg), baseweight(22)
+#ReplaceTags in "EQ:Mail Suit" with units(kg), baseweight(26)
+#ReplaceTags in "EQ:Steel Laminate Suit" with units(kg), baseweight(29)
+#ReplaceTags in "EQ:Plate Suit" with units(kg), baseweight(41)
+
+*<Armor - Low Tech Body Armor>
+
+#ReplaceTags in "EQ:Fur Tunic" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Bronze Breastplate" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Bronze Corselet" with units(kg), baseweight(18)
+#ReplaceTags in "EQ:Cloth Armor" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Leather Armor" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Leather Jacket" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Light Scale Armor" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Lorica Segmentata" with units(kg), baseweight(12)
+#ReplaceTags in "EQ:Mail Hauberk" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Mail Shirt" with units(kg), baseweight(7.3)
+#ReplaceTags in "EQ:Scale Armor" with units(kg), baseweight(16)
+#ReplaceTags in "EQ:Double Mail Hauberk" with units(kg), baseweight(20)
+#ReplaceTags in "EQ:Heavy Steel Corselet" with units(kg), baseweight(20)
+#ReplaceTags in "EQ:Steel Breastplate" with units(kg), baseweight(8.2)
+#ReplaceTags in "EQ:Steel Corselet" with units(kg), baseweight(16)
+#ReplaceTags in "EQ:Steel Laminate Plate" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Buff Leather Coat" with units(kg), baseweight(7.3)
+
+*<Armor - Low Tech Limb Armor>
+#ReplaceTags in "EQ:Bronze Armbands" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Bronze Greaves" with units(kg), baseweight(7.7)
+#ReplaceTags in "EQ:Cloth Sleeves" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Heavy Leather Leggings" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Heavy Leather Sleeves" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Leather Leggings" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Leather Pants" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Studded Leather Skirt" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Mail Leggings" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Mail Sleeves" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Scale Leggings" with units(kg), baseweight(9.5)
+#ReplaceTags in "EQ:Scale Sleeves" with units(kg), baseweight(6.4)
+#ReplaceTags in "EQ:Heavy Plate Arms" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Heavy Plate Legs" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Plate Arms" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Plate Legs" with units(kg), baseweight(9.1)
+
+*<Armor - Low Tech Headgear>
+#ReplaceTags in "EQ:Bronze Helmet" with units(kg), baseweight(3.4)
+#ReplaceTags in "EQ:Bronze Pot-Helmet" with units(kg), baseweight(2.3)
+
+#ReplaceTags in "EQ:Leather Helm" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Legionary Helmet" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Mail Coif" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Barrel Helm" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Face Mask" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Greathelm" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Pot-Helm" with units(kg), baseweight(2.3)
+
+*<Armor - Low Tech Gloves & Footwear>
+
+#ReplaceTags in "EQ:Gauntlets" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Heavy Gauntlets" with units(kg), baseweight(1.1)
+#ReplaceTags in "EQ:Sandals" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Shoes" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Boots" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Sollerets" with units(kg), baseweight(3.2)
+
+*<Armor - High- & Ultra- Tech Body Armor>
+#ReplaceTags in "EQ:Flak Jacket" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Frag Vest" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Frag Vest Plate Inserts" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Ballistic Vest (TL 8)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Ballistic Vest (TL 9)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Ballistic Vest (TL10)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Ballistic Vest (TL11)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Ballistic Vest (TL12)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Tactical Vest (TL 8)" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Tactical Vest (TL 9)" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Tactical Vest (TL10)" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Tactical Vest (TL11)" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Tactical Vest (TL12)" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Tactical Vest Trauma Plates" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Ballistic Suit (TL 9)" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Ballistic Suit (TL10)" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Ballistic Suit (TL11)" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Ballistic Suit (TL12)" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Tactical Suit (TL 9)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Tactical Suit (TL10)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Tactical Suit (TL11)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Tactical Suit (TL12)" with units(kg), baseweight(6.8)
+
+*<Armor - High- & Ultra- Tech Gloves & Footwear>
+#ReplaceTags in "EQ:Reinforced Boots" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Assault Boots (TL 9)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Assault Boots (TL10)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Assault Boots (TL11)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Assault Boots (TL12)" with units(kg), baseweight(1.4)
+
+*<Armor - High- & Ultra- Tech Headgear>
+#ReplaceTags in "EQ:Gas Mask" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Steel Pot" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Frag Helmet" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Frag Helmet Visor" with units(kg), baseweight(0.68)
+#ReplaceTags in "EQ:Ballistic Helmet (TL 8)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet Visor (TL 8)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet (TL 9)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet Visor (TL 9)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet (TL10)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet Visor (TL10)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet (TL11)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet Visor (TL11)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet (TL12)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Ballistic Helmet Visor (TL12)" with units(kg), baseweight(1.4)
+
+*<Armor - High- & Ultra- Tech Environment Suits>
+#ReplaceTags in "EQ:NBC Suit" with units(kg), baseweight(1.6)
+#ReplaceTags in "EQ:Space Suit" with units(kg), baseweight(102)
+#ReplaceTags in "EQ:Space Suit Helmet" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Battlesuit (TL 9)" with units(kg), baseweight(68)
+#ReplaceTags in "EQ:Battlesuit Helmet (TL 9)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Battlesuit (TL10)" with units(kg), baseweight(68)
+#ReplaceTags in "EQ:Battlesuit Helmet (TL10)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Battlesuit (TL11)" with units(kg), baseweight(68)
+#ReplaceTags in "EQ:Battlesuit Helmet (TL11)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Battlesuit (TL12)" with units(kg), baseweight(68)
+#ReplaceTags in "EQ:Battlesuit Helmet (TL12)" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Combat Hardsuit (TL 9)" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Combat Hardsuit Helmet (TL 9)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Combat Hardsuit (TL10)" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Combat Hardsuit Helmet (TL10)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Combat Hardsuit (TL11)" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Combat Hardsuit Helmet (TL11)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Combat Hardsuit (TL12)" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:Combat Hardsuit Helmet (TL12)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Space Armor (TL 9)" with units(kg), baseweight(20)
+#ReplaceTags in "EQ:Space Armor Helmet (TL 9)" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Space Armor (TL10)" with units(kg), baseweight(20)
+#ReplaceTags in "EQ:Space Armor Helmet (TL10)" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Space Armor (TL11)" with units(kg), baseweight(20)
+#ReplaceTags in "EQ:Space Armor Helmet (TL11)" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Space Armor (TL12)" with units(kg), baseweight(20)
+#ReplaceTags in "EQ:Space Armor Helmet (TL12)" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Vacc Suit (TL 9)" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Vacc Suit Helmet (TL 9)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Vacc Suit (TL10)" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Vacc Suit Helmet (TL10)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Vacc Suit (TL11)" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Vacc Suit Helmet (TL11)" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Vacc Suit (TL12)" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Vacc Suit Helmet (TL12)" with units(kg), baseweight(2.3)
+
+*<Firearms - Pistols & SMGs>
+#ReplaceTags in "EQ:Flintlock Pistol, .51" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Wheel-Lock Pistol, .60" with units(kg), baseweight(1.5)
+#ReplaceTags in "EQ:Derringer, .41" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Revolver, .36" with units(kg), baseweight(1.1)
+#ReplaceTags in "EQ:Auto Pistol, .45" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Auto Pistol, 9mm (TL 6)" with units(kg), baseweight(1.1)
+#ReplaceTags in "EQ:Revolver, .38" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Snub Revolver, .38" with units(kg), baseweight(0.68)
+#ReplaceTags in "EQ:Auto Pistol, 9mm (TL 7)" with units(kg), baseweight(1.2)
+#ReplaceTags in "EQ:Holdout Pistol, .380" with units(kg), baseweight(0.59)
+#ReplaceTags in "EQ:Revolver, .357M" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Revolver, .44M" with units(kg), baseweight(1.5)
+#ReplaceTags in "EQ:Auto Pistol, .44M" with units(kg), baseweight(2)
+#ReplaceTags in "EQ:Auto Pistol, .40" with units(kg), baseweight(0.95)
+#ReplaceTags in "EQ:Auto Pistol, 9mm (TL 9)" with units(kg), baseweight(0.91)
+"Gyroc Pistol, 15mm", techlvl(9), lc(3), units(kg), baseweight(0.45), basecost(200), damage(6d), damtype(pi++), acc(1), rangehalfdam(), rangemax(1900), rof(3), shots(4(3i)), minst(9), bulk(-2), rcl(1), notes([1,2]), skillused(Gun!, Guns (Gyroc), DX-4, Guns-4), description(TL:9 LC:3 Damage:6d pi++ Acc:1 Range:/1900 RoF:3 Shots:4(3i) ST:9 Bulk:-2 Rcl:1 Skill:Guns (Gyroc) Notes: [1,2] Includes "startgun" electronics (see p. B278). Rockets take time to accelerate. Divide damage by 3 at 1-2 meters and by 2 at 3-10 meters.), page(B278), mods(Equipment, Guns)
+#ReplaceTags in "EQ:SMG, .45" with units(kg), baseweight(7.1)
+#ReplaceTags in "EQ:SMG, 9mm (TL 6)" with units(kg), baseweight(4.8)
+#ReplaceTags in "EQ:Machine Pistol, 9mm" with units(kg), baseweight(2.5)
+#ReplaceTags in "EQ:SMG, 9mm (TL 7)" with units(kg), baseweight(3.4)
+#ReplaceTags in "EQ:PDW, 4.6mm" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Gauss PDW, 4mm" with units(kg), baseweight(2.1)
+#ReplaceTags in "EQ:SMG, .45, Civilian" with units(kg), baseweight(7.1)
+#ReplaceTags in "EQ:SMG, 9mm, Civilian (TL 6)" with units(kg), baseweight(4.8)
+#ReplaceTags in "EQ:Machine Pistol, 9mm, Civilian" with units(kg), baseweight(2.5)
+#ReplaceTags in "EQ:SMG, 9mm, Civilian (TL 7)" with units(kg), baseweight(3.4)
+
+#ReplaceTags in "EQ:Flintlock Pistol, .51 (Ammunition)" with units(kg), baseweight(0)
+#ReplaceTags in "EQ:Wheel-Lock Pistol, .60 (Ammunition)" with units(kg), baseweight(0)
+#ReplaceTags in "EQ:Derringer, .41 (Ammunition)" with units(kg), baseweight(0.05)
+#ReplaceTags in "EQ:Revolver, .36 (Ammunition)" with units(kg), baseweight(0.11)
+#ReplaceTags in "EQ:Auto Pistol, .45 (Ammunition)" with units(kg), baseweight(0.27)
+#ReplaceTags in "EQ:Auto Pistol, 9mm (TL 6, Ammunition)" with units(kg), baseweight(0.18)
+#ReplaceTags in "EQ:Revolver, .38 (Ammunition)" with units(kg), baseweight(0.09)
+#ReplaceTags in "EQ:Snub Revolver, .38 (Ammunition)" with units(kg), baseweight(0.09)
+#ReplaceTags in "EQ:Auto Pistol, 9mm (TL 7, Ammunition)" with units(kg), baseweight(0.27)
+#ReplaceTags in "EQ:Holdout Pistol, .380 (Ammunition)" with units(kg), baseweight(0.09)
+#ReplaceTags in "EQ:Revolver, .357M (Ammunition)" with units(kg), baseweight(0.1)
+#ReplaceTags in "EQ:Revolver, .44M (Ammunition)" with units(kg), baseweight(0.14)
+#ReplaceTags in "EQ:Auto Pistol, .44M (Ammunition)" with units(kg), baseweight(0.27)
+#ReplaceTags in "EQ:Auto Pistol, .40 (Ammunition)" with units(kg), baseweight(0.32)
+#ReplaceTags in "EQ:Auto Pistol, 9mm (TL 9, Ammunition)" with units(kg), baseweight(0.32)
+#ReplaceTags in "EQ:Gyroc Pistol, 15mm (Ammunition)" with units(kg), baseweight(0.18)
+#ReplaceTags in "EQ:SMG, .45 (Ammunition)" with units(kg), baseweight(2.2)
+#ReplaceTags in "EQ:SMG, 9mm (TL 6, Ammunition)" with units(kg), baseweight(0.68)
+#ReplaceTags in "EQ:Machine Pistol, 9mm (Ammunition)" with units(kg), baseweight(0.5)
+#ReplaceTags in "EQ:SMG, 9mm (TL 7, Ammunition)" with units(kg), baseweight(0.55)
+#ReplaceTags in "EQ:PDW, 4.6mm (Ammunition)" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Gauss PDW, 4mm (Ammunition)" with units(kg), baseweight(0.45)
+
+*<Firearms - Rifles & Shotguns>
+#ReplaceTags in "EQ:Handgonne, .90" with units(kg), baseweight(6.8)
+#ReplaceTags in "EQ:Matchlock Musket, .80" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Flintlock Musket, .75" with units(kg), baseweight(5.9)
+#ReplaceTags in "EQ:Rifle-Musket, .577" with units(kg), baseweight(3.9)
+#ReplaceTags in "EQ:Cartridge Rifle, .45" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Lever-Action Carbine, .30" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Bolt-Action Rifle, 7.62mm" with units(kg), baseweight(4)
+#ReplaceTags in "EQ:Self-Loading Rifle, 7.62mm" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Assault Rifle, 5.56mm" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Assault Rifle, 7.62mmS" with units(kg), baseweight(4.8)
+#ReplaceTags in "EQ:Battle Rifle, 7.62mm" with units(kg), baseweight(5)
+#ReplaceTags in "EQ:Assault Carbine, 5.56mm" with units(kg), baseweight(3.3)
+#ReplaceTags in "EQ:Assault Rifle, 5.56mm, Civilian" with units(kg), baseweight(4.1)
+#ReplaceTags in "EQ:Assault Rifle, 7.62mmS, Civilian" with units(kg), baseweight(4.8)
+#ReplaceTags in "EQ:Battle Rifle, 7.62mm, Civilian" with units(kg), baseweight(5)
+#ReplaceTags in "EQ:Assault Carbine, 5.56mm, Civilian" with units(kg), baseweight(3.3)
+#ReplaceTags in "EQ:Dart Rifle, 11mm" with units(kg), baseweight(3)
+#ReplaceTags in "EQ:Sniper Rifle, .338" with units(kg), baseweight(8)
+#ReplaceTags in "EQ:ICW, 6.88mm" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Gauss Rifle, 4mm" with units(kg), baseweight(3.9)
+#ReplaceTags in "EQ:Blunderbuss, 8G" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Double Shotgun, 10G" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Pump Shotgun, 12G" with units(kg), baseweight(3.6)
+#ReplaceTags in "EQ:Auto Shotgun, 12G" with units(kg), baseweight(3.8)
+
+#ReplaceTags in "EQ:Handgonne, .90 (Ammunition)" with units(kg), baseweight(0.05)
+#ReplaceTags in "EQ:Matchlock Musket, .80 (Ammunition)" with units(kg), baseweight(0.02)
+#ReplaceTags in "EQ:Flintlock Musket, .75 (Ammunition)" with units(kg), baseweight(0.02)
+#ReplaceTags in "EQ:Rifle-Musket, .577 (Ammunition)" with units(kg), baseweight(0.02)
+#ReplaceTags in "EQ:Cartridge Rifle, .45 (Ammunition)" with units(kg), baseweight(0.05)
+#ReplaceTags in "EQ:Lever-Action Carbine, .30 (Ammunition)" with units(kg), baseweight(0.14)
+#ReplaceTags in "EQ:Bolt-Action Rifle, 7.62mm (Ammunition)" with units(kg), baseweight(0.14)
+#ReplaceTags in "EQ:Self-Loading Rifle, 7.62mm (Ammunition)" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Assault Rifle, 5.56mm (Ammunition)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Assault Rifle, 7.62mmS (Ammunition)" with units(kg), baseweight(0.82)
+#ReplaceTags in "EQ:Battle Rifle, 7.62mm (Ammunition)" with units(kg), baseweight(0.77)
+#ReplaceTags in "EQ:Assault Carbine, 5.56mm (Ammunition)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Dart Rifle, 11mm (Ammunition)" with units(kg), baseweight(0.01)
+#ReplaceTags in "EQ:Sniper Rifle, .388 (Ammunition)" with units(kg), baseweight(0.36)
+#ReplaceTags in "EQ:ICW, 6.88mm Rifle (Ammunition)" with units(kg), baseweight(0.68)
+#ReplaceTags in "EQ:ICW, 25mm Grenade (Ammunition)" with units(kg), baseweight(0.73)
+#ReplaceTags in "EQ:Gauss Rifle, 4mm (Ammunition)" with units(kg), baseweight(0.64)
+#ReplaceTags in "EQ:Blunderbuss, 8G (Ammunition)" with units(kg), baseweight(0.06)
+#ReplaceTags in "EQ:Double Shotgun, 10G (Ammunition)" with units(kg), baseweight(0.05)
+#ReplaceTags in "EQ:Pump Shotgun, 12G (Ammunition)" with units(kg), baseweight(0.32)
+#ReplaceTags in "EQ:Auto Shotgun, 12G (Ammunition)" with units(kg), baseweight(0.39)
+
+*<Heavy Weapons>
+"ATGM, 115mm", techlvl(7), lc(1), units(kg), baseweight(17), basecost(20000), damage(6dx10), damtype((10) cr ex), acc(3), rangehalfdam(200), rangemax(2000), rof(1), shots(1(20)), minst(11B†), bulk(-10), rcl(1), notes([1,2,3]), skillused(Artillery (Guided Missile), IQ-5), description(TL:7 LC:1 Damage:6dx10(10) cr ex Acc:3 Range:200/2000 RoF:1 Shots:1(20) ST:11B† Bulk:-10 Rcl:1 Skill:Artillery (Guided Missile) Notes: [1,2,3] Has a minimum range of 30 meters. Hazardous back-blast: 1d burn damage to anyone behind firer and within 30 meters. Guided attack (see p. B412). Gunner uses Artillery (Guided Missile) to attack. "1/2D" range is speed in meters per second. Weight is for empty launcher/one missile.), page(B281), mods(Equipment, Guns)
+"SAM, 70mm", techlvl(8), lc(1), units(kg), baseweight(8.2), basecost(38000), damage(6dx3), damtype(cr ex [6d]), acc(7), rangehalfdam(1000), rangemax(8800), rof(1), shots(1(20)), minst(10†), bulk(-8), rcl(1), notes([1,2,4]), skillused(Artillery (Guided Missile), IQ-5), description(TL:8 LC:1 Damage:6dx3 cr ex [6d] Acc:7 Range:1000/8800 RoF:1 Shots:1(20) ST:10† Bulk:-8 Rcl:1 Skill:Artillery (Guided Missile) Notes: [1,2,4] Has a minimum range of 20 meters. Hazardous back-blast: 1d burn damage to anyone behind firer and within 15 meters. Homing (Hyperspectral Vision) attack (see p. B413), at the missile's skill of 10. Firer rolls against Artillery (Guided) to aim. On a success, the missile gets an Acc bonus. "1/2D" range is speed (meters/second). Weights is for empty launcher/one missile.), page(B281), mods(Equipment, Guns)
+#ReplaceTags in "EQ:Scorpion" with units(kg), baseweight(50)
+#ReplaceTags in "EQ:HMG, .50" with units(kg), baseweight(53)
+#ReplaceTags in "EQ:Under-Barrel Grenade Launcher, 40mm" with units(kg), baseweight(1.6)
+#ReplaceTags in "EQ:Bazooka, 60mm" with units(kg), baseweight(7.6)
+#ReplaceTags in "EQ:RPG, 85mm" with units(kg), baseweight(9.5)
+#ReplaceTags in "EQ:LAW, 84mm" with units(kg), baseweight(6.7)
+#ReplaceTags in "EQ:Auto Rifle, 7.62mm" with units(kg), baseweight(10)
+#ReplaceTags in "EQ:LMG, 7.62mm" with units(kg), baseweight(14)
+#ReplaceTags in "EQ:SAW, 5.56mm" with units(kg), baseweight(11)
+#ReplaceTags in "EQ:Flamethrower" with units(kg), baseweight(32)
+
+#ReplaceTags in "EQ:ATGM, 115mm (Ammunition)" with units(kg), baseweight(12)
+#ReplaceTags in "EQ:SAM, 70mm (Ammunition)" with units(kg), baseweight(10)
+#ReplaceTags in "EQ:Scorpion (Ammunition)" with units(kg), baseweight(0.41)
+#ReplaceTags in "EQ:HMG, .50 (Ammunition)" with units(kg), baseweight(15)
+#ReplaceTags in "EQ:Under-Barrel Grenade Launcher, 40mm (Ammunition)" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Bazooka, 60mm (Ammunition)" with units(kg), baseweight(1.5)
+#ReplaceTags in "EQ:RPG, 85mm (Ammunition)" with units(kg), baseweight(2.6)
+#ReplaceTags in "EQ:Auto Rifle, 7.62mm (Ammunition)" with units(kg), baseweight(0.73)
+#ReplaceTags in "EQ:LMG, 7.62mm (Ammunition)" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:SAW, 5.56mm (Ammunition)" with units(kg), baseweight(3.2)
+
+*<Firearms - Ultra-Tech Firearms>
+Electrolaser Pistol, techlvl(9), lc(4), units(kg), baseweight(1), basecost(1800), newmode(Beam, damage(1d-3), damtype(burn), acc(4), rangehalfdam(40), rangemax(80), rof(3), shots(180(3)), minst(4), bulk(-2), rcl(1), notes([1,2,3]), skillused(Gun!, Beam Weapons (Pistol), DX-4, Beam Weapons-4, Guns (Pistol)-4)), newmode(Linked, damage(HT-4), damtype((2) aff), acc(4), rangehalfdam(40), rangemax(80), rof(3), shots(180(3)), minst(4), bulk(-2), rcl(1), skillused(Gun!, Beam Weapons (Pistol), DX-4, Beam Weapons-4, Guns (Pistol)-4)), description(TL:9 LC:4 Damage:1d-3 burn/HT-4(2) aff Acc:4 Range:40/80 RoF:3 Shots:180(3) ST:4 Bulk:-2 Rcl:1 Skill:Beam Weapons (Pistol) Notes: [1,2,3] Includes "smartgun" electronics (see p. B278). Weapon requires atmosphere to function. No effect in trace atmosphere or vacuum! Burn damage has the Surge damage modifier (p. B105). As well, whether or not all damage penetrates, the target must make a HT roll at -4, plus half the DR on the location struck (due to the armor divisor). On a failure, the electrical shock stuns him. He may roll against HT every turn at the same penalty (but without the DR bonus) to recover. Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 meters, a laser firing through 2,000 meters of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+
+Laser Pistol, techlvl(10), lc(3), units(kg), baseweight(1.5), basecost(2800), damage(3d), damtype((2) burn), acc(6), rangehalfdam(250), rangemax(750), rof(10), shots(400(3)), minst(6), bulk(-2), rcl(1), notes([3]), skillused(Gun!, Beam Weapons (Pistol), DX-4, Beam Weapons-4, Guns (Pistol)-4), description(TL:10 LC:3 Damage:3d(2) burn Acc:6 Range:250/750 RoF:10 Shots:400(3) ST:6 Bulk:-2 Rcl:1 Skill:Beam Weapons (Pistol) Notes: [3] Includes "smartgun" electronics (see p. B278). Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 meters, a laser firing through 2,000 meters of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+#ReplaceTags in "EQ:Blaster Pistol" with units(kg), baseweight(0.73)
+#ReplaceTags in "EQ:Omni-Blaster Pistol" with units(kg), baseweight(0.73)
+Electrolaser Carbine, techlvl(9), lc(3), units(kg), baseweight(1.7), basecost(3900), newmode(Beam, damage(1d-3), damtype(burn), acc(8+1), rangehalfdam(160), rangemax(470), rof(3), shots(360(3)), minst(4), bulk(-4), rcl(1), notes([1,2,3]), skillused(Gun!, Beam Weapons (Rifle), DX-4, Beam Weapons-4, Guns (Rifle)-4)), newmode(Linked, damage(HT-4), damtype((2) aff), acc(8+1), rangehalfdam(160), rangemax(470), rof(3), shots(360(3)), minst(4), bulk(-4), rcl(1), skillused(Gun!, Beam Weapons (Rifle), DX-4, Beam Weapons-4, Guns (Rifle)-4)), description(TL:9 LC:3 Damage:1d-3 burn/HT-4(2) aff Acc:8+1 Range:160/470 RoF:3 Shots:360(3) ST:4 Bulk:-4 Rcl:1 Skill:Beam Weapons (Rifle) Notes: [1,2,3] Includes "smartgun" electronics (see p. B278). Weapon requires atmosphere to function. No effect in trace atmosphere or vacuum! Burn damage has the Surge damage modifier (p. B105). As well, whether or not all damage penetrates, the target must make a HT roll at -4, plus half the DR on the location struck (due to the armor divisor). On a failure, the electrical shock stuns him. He may roll against HT every turn at the same penalty (but without the DR bonus) to recover. Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 meters, a laser firing through 2,000 meters of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+
+Laser Sniper Rifle, techlvl(9), lc(1), units(kg), baseweight(9.1), basecost(20000), damage(5d), damtype((2) burn), acc(12+2), rangehalfdam(1100), rangemax(3300), rof(3), shots(75(3)), minst(10†), bulk(-8), rcl(1), notes([3]), skillused(Gun!, Beam Weapons (Rifle), DX-4, Beam Weapons-4, Guns (Rifle)-4), description(TL:9 LC:1 Damage:5d(2) burn Acc:12+2 Range:1100/3300 RoF:3 Shots:75(3) ST:10† Bulk:-8 Rcl:1 Skill:Beam Weapons (Rifle) Notes: [3] Includes "smartgun" electronics (see p. B278). Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 meters, a laser firing through 2,000 meters of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+Laser Rifle, techlvl(10), lc(2), units(kg), baseweight(4.5), basecost(10000), damage(5d), damtype((2) burn), acc(12+2), rangehalfdam(700), rangemax(2100), rof(10), shots(150(3)), minst(7†), bulk(-4), rcl(1), notes([3]), skillused(Gun!, Beam Weapons (Rifle), DX-4, Beam Weapons-4, Guns (Rifle)-4), description(TL:10 LC:2 Damage:5d(2) burn Acc:12+2 Range:700/2100 RoF:10 Shots:150(3) ST:7† Bulk:-4 Rcl:1 Skill:Beam Weapons (Rifle) Notes: [3] Includes "smartgun" electronics (see p. B278). Smoke, fog, rain, cloud, etc. give the target additional DR equal to the visibility penalty. For instance, if rain gives a penalty of -1 per 100 meters, a laser firing through 2,000 meters of rain must penetrate an extra DR 20.), page(B280), mods(Equipment, Guns)
+#ReplaceTags in "EQ:Blaster Rifle" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Omni-Blaster Rifle" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Heavy Blaster" with units(kg), baseweight(9.1)
+
+#ReplaceTags in "EQ:Electrolaser Pistol (Ammunition)" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Laser Pistol (Ammunition)" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Blaster Pistol (Ammunition)" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Electrolaser Carbine (Ammunition)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Laser Sniper Rifle (Ammunition)" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Laser Rifle (Ammunition)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Blaster Rifle (Ammunition)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Heavy Blaster (Ammunition)" with units(kg), baseweight(1.8)
+
+*<Shields>
+Light Shield, basecost(25), units(kg), baseweight(0.91), dr(5/20), db(1), lc(4), techlvl(0), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:0 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:5 HP:20 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Small Shield, basecost(40), units(kg), baseweight(3.6), dr(6/30), db(1), lc(4), techlvl(0), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:0 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:6 HP:30 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Shield, basecost(60), units(kg), baseweight(6.8), dr(7/40), db(2), lc(4), techlvl(1), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:1 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Large Shield, basecost(90), units(kg), baseweight(11), dr(9/60), db(3), lc(4), techlvl(1), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:1 LC:4 DB:3 Dam:thr cr Reach:1 Parry:No ST:-- DR:9 HP:60 Skill:Shield (Shield) Notes: [2,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,4])
+Light Buckler, basecost(25), units(kg), baseweight(0.91), dr(5/20), db(1), lc(4), techlvl(0), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:0 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:5 HP:20 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Small Buckler, basecost(40), units(kg), baseweight(3.6), dr(6/30), db(1), lc(4), techlvl(0), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:0 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:6 HP:30 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Buckler, basecost(60), units(kg), baseweight(6.8), dr(7/40), db(2), lc(4), techlvl(1), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:1 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Light Iron Shield, basecost(125), units(kg), baseweight(1.8), dr(8/40), db(1), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:8 HP:40 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Small Iron Shield, basecost(200), units(kg), baseweight(7.3), dr(9/60), db(1), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:9 HP:60 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Iron Shield, basecost(300), units(kg), baseweight(14), dr(10/80), db(2), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:10 HP:80 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Large Iron Shield, basecost(450), units(kg), baseweight(23), dr(12/120), db(3), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:3 Dam:thr cr Reach:1 Parry:No ST:-- DR:12 HP:120 Skill:Shield (Shield) Notes: [2,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,4])
+Light Iron Buckler, basecost(125), units(kg), baseweight(1.8), dr(8/40), db(1), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:8 HP:40 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Small Iron Buckler, basecost(200), units(kg), baseweight(7.3), dr(9/60), db(1), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:9 HP:60 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Iron Buckler, basecost(300), units(kg), baseweight(14), dr(10/80), db(2), lc(4), techlvl(3), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:3 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:10 HP:80 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Light Plastic Shield, basecost(25), units(kg), baseweight(0.45), dr(5/20), db(1), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:5 HP:20 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Small Plastic Shield, basecost(40), units(kg), baseweight(1.8), dr(6/30), db(1), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:6 HP:30 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Plastic Shield, basecost(60), units(kg), baseweight(3.4), dr(7/40), db(2), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Shield) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Large Plastic Shield, basecost(90), units(kg), baseweight(5.7), dr(9/60), db(3), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Shield)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:3 Dam:thr cr Reach:1 Parry:No ST:-- DR:9 HP:60 Skill:Shield (Shield) Notes: [2,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,4])
+Light Plastic Buckler, basecost(25), units(kg), baseweight(0.45), dr(5/20), db(1), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:5 HP:20 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Small Plastic Buckler, basecost(40), units(kg), baseweight(1.8), dr(6/30), db(1), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:1 Dam:thr cr Reach:1 Parry:No ST:-- DR:6 HP:30 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+Medium Plastic Buckler, basecost(60), units(kg), baseweight(3.4), dr(7/40), db(2), lc(4), techlvl(7), skillused(DX-4, Shield-2, Shield (Buckler)), damage(thr), damtype(cr), reach(1), parry(No), minst(--), page(B273, B287), mods(Equipment, Shield), description(TL:7 LC:4 DB:2 Dam:thr cr Reach:1 Parry:No ST:-- DR:7 HP:40 Skill:Shield (Buckler) Notes: [2,3,4] Can be used offensively with a shield bash (see the Melee Weapon Table p. B273) or shield rush (see Slam, p. B371). At TL2+, you can give your small, medium, or large shield a spike to increase damage: add $20 and 2.3 kg Also available as a buckler. You can ready a buckler in one turn and drop it as a free action, just like a weapon - but it always occupies one hand, and it does not allow a shield rush. Use Shield (Buckler) instead of regular shield skill. No effect on statistics. At TL3+, iron shields are available but uncommon: x5 cost, x2 weight, +3 DR, and x2 HP. At TL7+ plastic riot shields (made of Lexan, etc.) have x1/2 weight but otherwise identical statistics. Shield composition never affects DB.), notes([2,3,4])
+#ReplaceTags in "EQ:Force Shield" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Force Buckler" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Light Cloak" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Heavy Cloak" with units(kg), baseweight(2.3)
+
+*<Melee Weapons>
+#ReplaceTags in "EQ:Axe" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Pick" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Brass Knuckles" with units(kg), baseweight(0.11)
+#ReplaceTags in "EQ:Blackjack" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Sap" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Stun Gun" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Light Club" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Broadsword" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Thrusting Broadsword" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Cavalry Saber" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Morningstar" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Nunchaku" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Force Sword" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Garrote" with units(kg), baseweight(0.02)
+#ReplaceTags in "EQ:Kusari" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Lance" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Glaive" with units(kg), baseweight(3.6)
+#ReplaceTags in "EQ:Halberd" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Poleaxe" with units(kg), baseweight(4.5)
+#ReplaceTags in "EQ:Rapier" with units(kg), baseweight(1.3)
+#ReplaceTags in "EQ:Saber" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Baton" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Shortsword" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Cutlass" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Cattle Prod" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Short Staff" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Smallsword" with units(kg), baseweight(0.68)
+#ReplaceTags in "EQ:Long Spear" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Maul" with units(kg), baseweight(5.5)
+#ReplaceTags in "EQ:Great Axe" with units(kg), baseweight(3.6)
+#ReplaceTags in "EQ:Scythe" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Warhammer" with units(kg), baseweight(3.2)
+Chainsaw, techlvl(6), break(0), lc(4), basecost(150), units(kg), baseweight(5.9), page(B274), mods(Equipment), damage(sw+1d), damtype(cut), reach(1), parry(No), minst(10‡), notes([11]), skillused(Two-Handed Axe/Mace, DX-5, Axe/Mace-3, Polearm-4, Two-Handed Flail-4), description(TL:6 LC:4, Dam:sw+1d cut Reach:1 Parry:No ST:10‡ Skill:Two-Handed Axe/Mace Notes: [11] Noisy! Runs for two hours on 2 liters of gasoline. Requires two hands; becomes unready after attack.)
+#ReplaceTags in "EQ:Flail" with units(kg), baseweight(3.6)
+#ReplaceTags in "EQ:Quarterstaff" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Naginata" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Bastard Sword" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Greatsword" with units(kg), baseweight(3.2)
+#ReplaceTags in "EQ:Katana" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Thrusting Bastard Sword" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Thrusting Greatsword" with units(kg), baseweight(3.2)
+Whip (1-meter), techlvl(1), break(0), lc(4), basecost(20), units(kg), baseweight(0.91), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1), parry(-2U), minst(6), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1 Parry:-2U ST:6 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+Whip (2-meter), techlvl(1), break(0), lc(4), basecost(40), units(kg), baseweight(1.8), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1-2*), parry(-2U), minst(7), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1-2* Parry:-2U ST:7 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+Whip (3-meter), techlvl(1), break(0), lc(4), basecost(60), units(kg), baseweight(2.7), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1-3*), parry(-2U), minst(8), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1-3* Parry:-2U ST:8 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+Whip (4-meter), techlvl(1), break(0), lc(4), basecost(80), units(kg), baseweight(3.6), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1-4*), parry(-2U), minst(9), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1-4* Parry:-2U ST:9 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+Whip (5-meter), techlvl(1), break(0), lc(4), basecost(100), units(kg), baseweight(4.5), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1-5*), parry(-2U), minst(10), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1-5* Parry:-2U ST:10 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+Whip (6-meter), techlvl(1), break(0), lc(4), basecost(120), units(kg), baseweight(5.5), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1-6*), parry(-2U), minst(11), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1-6* Parry:-2U ST:11 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+Whip (7-meter), techlvl(1), break(0), lc(4), basecost(140), units(kg), baseweight(6.4), page(B274), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), damage(sw-2), damtype((0.5) cr), reach(1-7*), parry(-2U), minst(12), notes([12]), skillused(Whip, DX-5, Kusari-3, Monowore Whip-3), description(TL:1 LC:4, Dam:sw-2(0.5) cr Reach:1-7* Parry:-2U ST:12 Skill:Whip Notes: [12] Specify maximum reach (up to 7 meters) when bought. Cost and weight are per meter. ST is 5, +1 per meter. Many special rules apply; be sure to see Whips (p. B406).)
+#ReplaceTags in "EQ:Monowire Whip" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Hatchet" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Throwing Axe" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Mace" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Small Mace" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Spear" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Javelin" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Large Knife" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Small Knife" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Wooden Stake" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Dagger" with units(kg), baseweight(0.11)
+
+*<Muscle-Powered Ranged Weapons>
+#ReplaceTags in "EQ:Blowpipe" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Bolas" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Longbow (ST%choice%)" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Regular Bow (ST%choice%)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Short Bow (ST%choice%)" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Composite Bow (ST%choice%)" with units(kg), baseweight(1.8)
+
+#ReplaceTags in "EQ:Crossbow (ST%choice%)" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Pistol Crossbow (ST%choice%)" with units(kg), baseweight(1.8)
+#ReplaceTags in "EQ:Prodd (ST%choice%)" with units(kg), baseweight(2.7)
+
+*#ReplaceTags in "EQ:Crossbow" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Pistol Crossbow" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Prodd" with units(kg), baseweight(2.7)
+
+*#ReplaceTags in "EQ:Crossbow (ST  7)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST  8)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST  9)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 10)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 11)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 12)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 13)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 14)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 15)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 16)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 17)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 18)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 19)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Crossbow (ST 20)" with units(kg), baseweight(2.7)
+
+*#ReplaceTags in "EQ:Pistol Crossbow (ST  7)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST  8)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST  9)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 10)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 11)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 12)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 13)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 14)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 15)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 16)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 17)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 18)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 19)" with units(kg), baseweight(1.8)
+*#ReplaceTags in "EQ:Pistol Crossbow (ST 20)" with units(kg), baseweight(1.8)
+
+*#ReplaceTags in "EQ:Prodd (ST  7)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST  8)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST  9)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 10)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 11)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 12)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 13)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 14)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 15)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 16)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 17)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 18)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 19)" with units(kg), baseweight(2.7)
+*#ReplaceTags in "EQ:Prodd (ST 20)" with units(kg), baseweight(2.7)
+
+#ReplaceTags in "EQ:Goat's Foot" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Lariat" with units(kg), baseweight(1.4)
+#ReplaceTags in "EQ:Large Net" with units(kg), baseweight(9.1)
+#ReplaceTags in "EQ:Melee Net" with units(kg), baseweight(2.3)
+#ReplaceTags in "EQ:Sling" with units(kg), baseweight(0.23)
+#ReplaceTags in "EQ:Staff Sling" with units(kg), baseweight(0.91)
+#ReplaceTags in "EQ:Atlatl" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Atlatl Dart" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Harpoon" with units(kg), baseweight(2.7)
+#ReplaceTags in "EQ:Shuriken" with units(kg), baseweight(0.05)
+
+#ReplaceTags in "EQ:Arrow" with units(kg), baseweight(0.05)
+#ReplaceTags in "EQ:Crossbow Bolt" with units(kg), baseweight(0.03)
+#ReplaceTags in "EQ:Blowpipe Dart" with units(kg), baseweight(0.02)
+#ReplaceTags in "EQ:Prodd Lead Pellet" with units(kg), baseweight(0.03)
+#ReplaceTags in "EQ:Sling Lead Pellet" with units(kg), baseweight(0.02)
+
+*<Hand Grenades & Incendiaries>
+#ReplaceTags in "EQ:Black Powder Grenade" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Concussion Grenade (TL 6)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Fragmentation Grenade (TL 6)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Molotov Cocktail" with units(kg), baseweight(0.45)
+Chemical Grenade, skillused(Throwing, DX-3, Dropping-4), rangemax(@int(@indexedvalue(ST:Lifting ST,0.12,0.4,0.7,1,1.5,2,2,2.5,2.5,3.5) * ST:Striking ST)), techlvl(7), malf(17), lc(3), units(kg), baseweight(0.45), basecost(10), damage(spec.), damtype((2yd.)), fuse(2), notes([2,4]),
+	description(TL:7 LC:3 Dam:spec. Fuse:2 Notes: [2,4] Fills a 2-meter radius with smoke, teargas, etc.; see Poison Examples (p. B439). The cloud lasts about 80 seconds under normal conditions. Exotic chemicals may cost more or have a lower LC. Takes one Ready maneuver to draw the grenade and a second Ready maneuver to pull the pin. Detonates 2-4 seconds later, depending on grenade type.), mods(Equipment)
+#ReplaceTags in "EQ:Concussion Grenade (TL 7)" with units(kg), baseweight(0.45)
+#ReplaceTags in "EQ:Fragmentation Grenade (TL 7)" with units(kg), baseweight(0.45)
+Stun Grenade, skillused(Throwing, DX-3, Dropping-4), rangemax(@int(@indexedvalue(ST:Lifting ST,0.12,0.4,0.7,1,1.5,2,2,2.5,2.5,3.5) * ST:Striking ST)), techlvl(8), malf(17), lc(2), units(kg), baseweight(0.45), basecost(40), damage(HT-5), damtype(aff (10 yd.)), fuse(2), notes([2,5]),
+	description(TL:8 LC:2 Dam:HT-5 Fuse:2 Notes: [2,5] A vision and Hearing-Based affliction that affects a 10-meter radius. The Protected Hearing and Protected vision advantages each give +5 to the HT roll. If you fail to resist, you are stunned; roll against HT-5 to recover each turn. Also creates smoke in the area of affect. Takes one Ready maneuver to draw the grenade and a second Ready maneuver to pull the pin. Detonates 2-4 seconds later, depending on grenade type.), mods(Equipment)
+
+*<Vehicles - Ground>
+
+*<Vehicles - Watercraft>
+
+*<Vehicles - Aircraft>
+
+*<Vehicles - Spacecraft>
+
+*<Melee Weapons>
+* Melee Weapons from GURPS Fantasy
+Gaff, techlvl(1), break(0), lc(4), basecost(100), units(kg), baseweight(3.2), page(F141), mods(Equipment, Melee Quality, Cutting Class Quality), damage(thr-1), damtype(cut), reach(2,3*), parry(0U), minst(10†), notes([1]), skillused(Polearm), description(TL:1 LC:4, Dam:thr-1 cut Reach:2,3* Parry:0U ST:10† Skill: Polearm Notes:[1] Primarily used by seamen; a large hook that can catch hold of an enemy vessel, a large fish, or a human foe and pull it closer - or climb up it if it's too heavy to move. A Quick Contest of ST determines which of two animate opponents is pulled toward the other. The hook also inflicts 1 point/second of cutting damage while pulling the target resisted by DR; when this equals the target's HP or crippling damage for a limb, it has cut through the target, freeing it to flee or fall.)
+Fire Lance, techlvl(3), break(0), lc(4), basecost(50), units(kg), baseweight(2.3), page(F141), mods(Equipment, Melee Quality, Cutting Class Quality), damage(1d-1), damtype(burn), reach(3-5), parry(-1U), minst(9†), notes([2,3]), skillused(Polearm), description(TL:3 LC:4, Dam:1d-1 burn Reach:3-5 Parry:-1U ST:9† Skill: Polearm Notes:[2,3] A rocket tied to the end of a pole, with the exhaust used as a weapon; divide damage by 4 for each additional 2 meters of range. Some lances have pieces of iron embed in the powder, these are not effective missiles but add 2 pi damage at the normal reach.)
+Trident, techlvl(2), break(0), lc(4), basecost(40), units(kg), baseweight(2.3), page(F141), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), newmode(1H, damage(thr+3), damtype((0.5) imp), reach(1), parry(0U), minst(10), notes(), skillused(Spear)), newmode(2H, damage(thr+4), damtype((0.5) imp), reach(1,2*), parry(0), minst(10†), notes(), skillused(Spear)), description(TL:2 LC:4, [Mode:one-handed Dam:thr+3 (0.5) imp Reach:1 Parry:0U ST:10 Skill: Spear], [Mode:two-handed Dam:thr+4 (0.5) imp Reach:1,2* Parry:0 ST:10† Skill: Spear])
+
+*<Muscle-Powered Ranged Weapons>
+* Muscle-Powered Ranged Weapons from GURPS Fantasy
+Repeating Crossbow, basecost(500), units(kg), baseweight(4.8), damage(thr+2), damtype(imp), lc(4), techlvl(2), acc(4), calcrange(yes), rangehalfdam(ST*15), rangemax(ST*20), rof(1), shots(10(20)), minst(9), bulk(-5), skillused(Crossbow, DX-4), page(F141), notes([1]), description(TL:2 LC:4, Dam:thr+2 imp Acc:4 Range:ST*15/ST*20 RoF:1 Shots:10(20) ST:9 Bulk:-5 Skill: Crossbow Notes: [1] The repeating crossbow has a magazine of bolts; it requires cocking between shots (2 seconds) but does not need reloading until the magazine is empty.), mods(Equipment, Bow Quality)
+Woomera, basecost(40), units(kg), baseweight(0.91), damage(), damtype(), lc(4), techlvl(0), acc(), rangehalfdam(), rangemax(), rof(), shots(), minst(), bulk(), skillused(Spear Thrower, DX-5, Thrown Weapon (Spear)-4), page(F141), notes([2]), description(TL:0 LC:4, Dam:  Acc: Range: RoF: Shots: ST: Bulk: Skill: Spear Thrower Notes: [2] The Woomera is a true Spear thrower, larger than the atlatl, which is a dart or javelin thrower. It requires two hands to ready, but only one hand to attack.), mods(Equipment, Bow Quality)
+Spear, techlvl(0), lc(4), basecost(40), units(kg), baseweight(1.8), page(B273, B276), cat(Muscle-Powered Ranged Weapons), mods(Equipment, Melee Quality, Crushing/Imp Class Quality), calcrange(yes), newmode(Woomera, damage(sw+3), damtype(imp), acc(2), rangehalfdam(ST*1.5), rangemax(ST*2), rof(1), shots(1(1)), minst(7), bulk(-6), skillused(Spear Thrower, DX-5, Thrown Weapon (Spear)-4)), newmode(Thrown, damage(thr+3), damtype(imp), acc(2), rangehalfdam(ST*1), rangemax(ST*1.5), rof(1), shots(T(1)), minst(9), bulk(-3), skillused(Thrown Weapon (Spear), DX-4, Spear Thrower-4, Thrown Weapon (Harpoon)-2)), newmode(1H Thrust, damage(thr+2), damtype(imp), reach(1*), parry(0), minst(9), notes([1]), skillused(Spear)), newmode(2H Thrust, damage(thr+3), damtype(imp), reach(1,2*), parry(0), minst(9†), skillused(Spear)), description(TL:0 LC:4, [Mode: thrown Dam:thr+3 imp Acc:2 Range:ST*1/ST*1.5 RoF:1 Shots:T(1) ST:9 Bulk:-3], [Mode:one-handed thrust Dam:thr+2 imp Reach:1* Parry:0 ST:9 Skill:Spear Notes: [1] Can be thrown. See Muscle Powered Ranged Weapon Table (p. 275)], [Mode:two-handed thrust Dam:thr+3 imp Reach:1,2* Parry:0 ST:9† Skill:Spear Notes: Requires two hands.], [Mode Woomera Dam:sw+3 imp Acc:2 Range:ST*1.5/ST*2 RoF:1 Shots:1(1) ST:7 Bulk:-6 Skill: Spear Thrower])
+Discus, basecost(50), units(kg), baseweight(0.91), damage(thr+2), damtype(cr), lc(4), techlvl(2), acc(2), calcrange(yes), rangehalfdam(ST*4), rangemax(ST*6), rof(1), shots(1), minst(), bulk(-3), skillused(Thrown Weapon (Disc)), page(F141), description(TL:2 LC:4, Dam:thr+2 cr Acc:2 Range:ST*4/ST*6 RoF:1 Shots:1 ST: Bulk:-3 Skill: Thrown Weapon (Disc)), mods(Equipment, Crushing/Imp Class Quality)
+Chakram, basecost(50), units(kg), baseweight(0.91), damage(thr+1), damtype(cut), lc(4), techlvl(2), acc(1), calcrange(yes), rangehalfdam(ST*1.5), rangemax(ST*2.6), rof(1), shots(1), minst(), bulk(-2), skillused(Thrown Weapon (Disc)), page(F141), description(TL:2 LC:4, Dam:thr+1 cut Acc:1 Range:ST*1.5/ST*2.6 RoF:1 Shots:1 ST: Bulk:-2 Skill: Thrown Weapon (Disc)), mods(Equipment, Cutting Class Quality)
+
+*<Vehicles - Ground>
+* Vehicles - Ground from GURPS Fantasy
+Palanquin, basecost(160), techlvl(1), description(TL:1 Skill:Lifting ST/HP:28† Hnd/SR:0/1 HT:12c Move:2/2 Lwt:0.145t Load:0.1t SM:+1 Occ:0+1 DR:1 Range:F Locations: 4A Notes:[1] Draft animals are men), page(F141), mods(Equipment)
+Oxcart, basecost(250), techlvl(1), description(TL:1 Skill:Teamster ST/HP:33† Hnd/SR:-3/3 HT:12c Move:2/2* Lwt:0.6t Load:0.3t SM:+1 Occ:0 DR:1 Range:F Locations: 2A, O, 2W Notes:[1] Draft animals are oxen), page(F141), mods(Equipment)
+Carroballista, basecost(7000), techlvl(2), description(TL:2 Skill:Teamster ST/HP:30† Hnd/SR:-3/2 HT:10c Move:1/4* Lwt:0.256 Load:0.05t SM:+1 Occ:0 DR:4 Range:F Locations: 2A, 3W Notes:[1] Draft animals are mules), page(F141), mods(Equipment)
+
+*<Vehicles - Watercraft>
+* Vehicles - Watercraft from GURPS Fantasy
+Fishing boat (10'), basecost(1200), techlvl(3), description(TL:3 Skill:Boating/TL (Sailboat) ST/HP:100† Hnd/SR:0/2 HT:12c Move:0.2/4 Lwt:3.2t Load:2.2t SM:+2 Occ:2 DR:2 Range:-- Locations: M, ODraft:2'), page(F142), mods(Equipment)
+Elven sailboat, basecost(8100), techlvl(3+1), description(TL:3+1 Skill:Boating/TL (Sailboat) ST/HP:125† Hnd/SR:+2/1 HT:12c Move:1.5/8 Lwt:1.9t Load:1.2t SM:+2 Occ:3 DR:4 Range:-- Locations: M, ODraft:1.25'), page(F142), mods(Equipment)
+Elven riverboat, basecost(6300), techlvl(1+1), description(TL:1+1 Skill:Boating/TL (Unpowered) ST/HP:70† Hnd/SR:+2/1 HT:13c Move:0.05/3 Lwt:0.425t Load:0.3t SM:+2 Occ:2 DR:1 Range:F Locations: ODraft:1' Notes:[1] Propelled by paddling, with two paddlers.), page(F142), mods(Equipment)
+Rowboat, basecost(1500), techlvl(3), description(TL:3 Skill:Boating/TL (Unpowered) ST/HP:90† Hnd/SR:0/3 HT:12c Move:0.1/3 Lwt:1.65t Load:0.95t SM:+2 Occ:6+1 DR:2 Range:F Locations: ODraft:1' Notes:[2] Using oars, with six rowers, three per side.), page(F142), mods(Equipment)
+Eioseres (50'), basecost(5900), techlvl(1), description(TL:1 Skill:Shiphandling/TL (Ship) ST/HP:130† Hnd/SR:-3/2 HT:11c Move:0.05/4 Lwt:5t Load:2.8t SM:+6 Occ:22 DR:3 Range:F Locations: M, ODraft:3' Notes:[3]Using oars, with 20 rowers. Under sail, Range -, Move 0.2/7 in fair wind.), page(F142), mods(Equipment)
+Liburnian (60'), basecost(13400), techlvl(2), description(TL:2 Skill:Shiphandling/TL (Ship) ST/HP:180† Hnd/SR:-4/3 HT:11c Move:0.1/4 Lwt:13t Load:7t SM:+6 Occ:60 DR:5 Range:F Locations: M, ODraft:2' Notes:[4] Using oars, with 48 rowers in two rows. Under sail, Range -, Move 0.5/6 in fair wind.), page(F142), mods(Equipment)
+Trireme (120'), basecost(56700), techlvl(2), description(TL:2 Skill:Shiphandling/TL (Ship) ST/HP:290† Hnd/SR:-3/3 HT:12c Move:0.1/5 Lwt:27t Load:21t SM:+8 Occ:186+14 DR:10/5 Range:F Locations: M, O, SuDraft:3' Notes:[5] Using oars, with 170 rowers in three rows. Under sail, Range -, Move 0.3/6 in fair wind. Has a bronze ram (+1/die collision damage).), page(F142), mods(Equipment)
+Crusader ship (118'), basecost(106000), techlvl(3), description(TL:3 Skill:Shiphandling/TL (Ship) ST/HP:450 Hnd/SR:-4/4 HT:11c Move:0.1/5 Lwt:600t Load:510t SM:+8 Occ:72+50 DR:5 Range:-- Locations: M, O, SuDraft:7' Notes:[6] Using a single square-rigged sail. With all oars manned (15 oars on each side, two men per oar) Range F, Move 0.04/1.), page(F142), mods(Equipment)
+Dhow (90'), basecost(27000), techlvl(3), description(TL:3 Skill:Shiphandling/TL (Ship) ST/HP:235† Hnd/SR:-3/2 HT:11c Move:0.2/7 Lwt:128t Load:94t SM:+8 Occ:12 DR:2 Range:-- Locations: M, ODraft:5' Notes:[7] Using a single, very large lateen sail.), page(F142), mods(Equipment)
+Drakkar (150'), basecost(67000), techlvl(3), description(TL:3 Skill:Shiphandling/TL (Ship) ST/HP:330† Hnd/SR:-3/3 HT:12c Move:0.2/5 Lwt:60t Load:24t SM:+8 Occ:70+70 DR:10 Range:-- Locations: M, ODraft:4' Notes:[8] Using a single square-rigged sail. With all oars manned (30 men on each side) Range F, Move 0.25/3.), page(F142), mods(Equipment)
+Elven sailing ship (90'), basecost(108000), techlvl(3+1), description(TL:3+1 Skill:Shiphandling/TL (Ship) ST/HP:340† Hnd/SR:-2/4 HT:13c Move:0.5/9 Lwt:42t Load:27t SM:+7 Occ:14 DR:10 Range:-- Locations: 2M, O, SuDraft:4' Notes:[9] Using sails, in an advanced Bermuda and jib rig. Armed with scorpion (see p. B268) mounted on a platform at the bow.), page(F142), mods(Equipment)
+Pirate ship (75'), basecost(110000), techlvl(4), description(TL:4 Skill:Shiphandling/TL (Ship) ST/HP:370† Hnd/SR:-3/4 HT:12c Move:0.03/3 Lwt:64t Load:14t SM:+7 Occ:43 DR:10/5 Range:-- Locations: M, O, SuDraft:4' Notes:[10] Using sails, in a gaffsail and jib rig. Carries six 9-pound cannon per side (see Vehicular Weapons, p. F144).), page(F142), mods(Equipment)
+Spanish galleon (150'), basecost(630000), techlvl(4), description(TL:4 Skill:Shiphandling/TL (Ship) ST/HP:680† Hnd/SR:-3/5 HT:12c Move:0.2/7 Lwt:930t Load:620t SM:+8 Occ:80+120 DR:15 Range:-- Locations: 3M, 2SuDraft:9' Notes:[11]Using sails, in a full-rigged configuration. Armed with two 24-lb. Guns, two 18-lb. Guns, five 10-lb. Guns, and five 7-lb. Guns on each side; typically carries 12 rounds of ammunition per gun (a total of 24 broadsides).), page(F142), mods(Equipment)
+
+*<Vehicles - Aircraft>
+* Vehicles - Aircraft from GURPS Fantasy
+Glider, basecost(850), techlvl(2), description(TL:2 Skill:Piloting/TL (Glider) ST/HP:20† Hnd/SR:0/2 HT:10c Move:5/20 Lwt:0.16t Load:0.1t SM:+4 Occ:1 DR:1 Range:-- Locations: WiStall:5 Notes:[1,2] Must descent 1/8 meter/turn (Enhanced Move 3) to maintain speed. For calculation of turning radius, Basic Move is 10. Can use thermal updrafts to ascend.), page(F143), mods(Equipment)
+Ornithopter, basecost(33500), techlvl(4+1), description(TL:4+1 Skill:Piloting/TL (Light Airplane) ST/HP:40 Hnd/SR:0/2 HT:9c Move:1/17 Lwt:0.65t Load:0.1t SM:+4 Occ:1 DR:1 Range:17 Locations: 3W, WiStall:5 Notes:[3] Powered by a clockwork engine made of high-strength spring steel. Also has a ground move on unpowered small wheels, with thrust from flapping its wings: Move 1/5, Hnd 0/1.), page(F143), mods(Equipment)
+Hot Air Balloon, basecost(75), techlvl(1), description(TL:1 Skill:Piloting/TL (Lighter-than-Air) ST/HP:27† Hnd/SR:-/3 HT:11 Move:0/0 Lwt:0.35t Load:0.2t SM:+9 Occ:1+1 DR:0/1 Range:12 Locations: GoStall:0 Notes:[4] A hot air balloon loses lift as it cools; this low-tech version carries no burner or fuel, but must land and reinflate after each day's flight.), page(F143), mods(Equipment)
+Winged Harness, basecost(2500), techlvl(1+1), description(TL:1+1 Skill:Piloting/TL (Low-G Wings) ST/HP:12† Hnd/SR:-1/1 HT:10c Move:1/5 Lwt:0.115t Load:0.1t SM:+4 Occ:1 DR:1 Range:F Locations: O, WiStall:5 Notes:[5] Despite the name of the skill, the winged harness is designed for use in 1 G.), page(F143), mods(Equipment)

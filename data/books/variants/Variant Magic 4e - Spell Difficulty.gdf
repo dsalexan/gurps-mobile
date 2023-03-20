@@ -1,0 +1,226 @@
+Encoding=UTF-8
+Version=3
+* The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=12/29/2016. This file converts all Magical Spells to be IQ/Hard.
+Requires="GURPS Magic 4e.gdf"
+LoadAfter="GURPS Fantasy 4e.gdf"
+
+[AUTHOR]
+************************************************************************************************************************
+*
+* GURPS(R) Character Assistant
+* Filename: Variant Magic 4e - Alt Attribute Will.gdf
+* Created: August 7, 2005
+* Requires GCA v4 or later!
+*
+* This data file contains information taken from the GURPS Magic sourcebook.
+* GURPS Magic is Copyright © 1989, 1990, 1994, 1998, 2000, 2004 by Steve
+* Jackson Games Incorporated. All rights reserved.
+*
+* Information in this file includes:
+*   Spells based on the Will Attribute
+*
+************************************************************************************************************************
+*
+* Eric B. Smith	- GURPS Data File Coordinator, Major Work
+*
+* If you find any errors or omissions in this file please contact the Data File Coordinator at:
+* ericbsmith42@gmail.com
+*
+* Or drop a message in the GCA4 forum at:
+* http://forums.sjgames.com
+* 
+************************************************************************************************************************
+*
+* GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+* Games. All rights reserved.
+*
+* The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+* copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+* rights reserved by Steve Jackson Games Incorporated.
+*
+************************************************************************************************************************
+
+************************************************************************************************************************
+[SPELLS]
+************************************************************************************************************************
+#ReplaceTags in "SP:Accelerate Time" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Age" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Alertness" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Alter Terrain" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Animate Machine" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Animate Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Animation" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Astral Vision" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Awaken Computer" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit ([Spirit])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit (Banshees)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit (Manitous)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Bind Spirit (Specters)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Blank Spell Arrow" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Blink Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Flames" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Ice" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Lightning" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Metal" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Plastic" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Shadow" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Body of Stone" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Breathe Fire" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Breathe Radiation" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Breathe Steam" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Burning Death" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Catch Spell" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Charge Powerstone" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Cloud-Vaulting" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Communication" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Conduct Power" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Contract Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Corpulence" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Create Gate" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Create Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Cure Radiation" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Decapitation" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Disintegrate" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Divert Teleport" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Doppelgänger" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Drain Magery" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Drain Mana" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Draw Power" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Dullness" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Duplicate" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Ecstasy" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Effigy" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enchant" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enlarge" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enlarge Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enlarge Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Enslave" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Ensorcel" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Essential Acid" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Essential Food" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Ethereal Body" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Evisceration" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Exchange Bodies" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Explode" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Extend Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Extinguish Radiation" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Flesh to Ice" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Flight" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Flying Carpet" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Gauntness" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Geyser" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Gift of Letters" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Gift of Tongues" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Golem" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Geas" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Hallucination" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Haste" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Healing" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Shapeshift" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Great Wish" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Halt Aging" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Hang Spell" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Hawk Flight" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Hybrid Control" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Icy Breath" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Inspired Creation" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Instant Neutralize Poison" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Instant Regeneration" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Instant Restoration" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lesser Geas" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lesser Wish" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lich" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Lightning Stare" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Maintain Spell" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Major Healing" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Malefice" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Manastone" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Mass Zombie" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Mindlessness" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Mind-Search" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Move Terrain" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Petrifaction" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting ([Variation])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Chameleon Eyes)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Crocodile Jaws)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Elephant Trunk)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Feathered Arms)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Fish Tail)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Mountain Goat Hooves)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Saber Teeth)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Scorpion Tail)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Serpent's Fangs)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Skunk Tail)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Spider Arms)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Tiger Paws)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Toad Tongue)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Partial Shapeshifting (Turtle Shell)" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Beast Possession" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Forgetfulness" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Machine Possession" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Madness" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Possession" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Permanent Shapeshifting ([Animal])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Phantom" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Phase Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Planar Visit ([Plane])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Plane Shift ([Plane])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Plane Shift Other ([Plane])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Plant Form Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Possession" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rapid Journey" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rebuild" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Reflect Gaze" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Regeneration" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Repel Hybrids" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Restoration" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Restore Mana" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Resurrection" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rive" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Rotting Death" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Sanctuary" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Schematic" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shapeshift Others ([Animal])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shapeshifting ([Animal])" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shatter" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shrink" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shrink Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Shrink Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Simulacrum" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Slow Time" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Soul Jar" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Soul Stone" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Spectrum Vision" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Spellguard" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Spit Acid" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Beauty" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Grace" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Might" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Power" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Skill" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Spell" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Vigor" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Wisdom" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Steal Youth" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Summon Shade" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Suspend Magery" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Suspend Mana" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Suspend Time" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Telecast" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Telepathy" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Teleport" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Teleport Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Throw Spell" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Time Out" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Timeport" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Timeport Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Timeslip Other" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Transform Object" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Vigil" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Weapon Self" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Weapon Spirit" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Wish" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Wraith" WITH "type(IQ/H)"
+#ReplaceTags in "SP:Youth" WITH "type(IQ/H)"

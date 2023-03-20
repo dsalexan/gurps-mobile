@@ -1,0 +1,4282 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+			This data file contains information taken from the GURPS Action 1: Heroes sourcebook. _
+			GURPS Action 1: Heroes is Copyright © 2008 by Steve Jackson Games _
+			Incorporated. All rights reserved. _
+			THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.  MIX WITH OTHER DATA FILES WITH CAUTION.
+Worldbook=Action
+Requires="GURPS Basic Set 4th Ed.--Characters.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 11-28-2008
+//  Modified: May 20, 2021
+//  Requires GCA v4 or later!
+// 
+//  File Version: Beta 1.0
+// 
+//  This data file contains information taken from the GURPS Action: Heroes sourcebook.
+//  GURPS Action: Heroes is Copyright © 2008 by Steve Jackson Games Incorporated. All rights
+//  reserved.
+// 
+//  Information in this file includes:
+// 	Many character templates, the inclusion of which is ongoing.
+//  
+//  This file requires the Basic Set to be loaded first. 
+// 
+//  Known Errors: 
+// 
+*******************************************************************************************************************
+// 
+//  Rob Kamm - Original data file author
+//  Eric B. Smith		- Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+<Mundane Mental>
+Enhanced Dodge (Dive for Cover), 5/10, upto(3), conditional(+1 To Dodge), page(A1:18), cat(Mundane, Mental)
+Enhanced Dodge (All Vehicles), 10/20, upto(3), conditional(+1 To Dodge), page(A1:18), cat(Mundane, Mental)
+Enhanced Dodge (%VehicleSkillList%), 5/10, upto(3), conditional(+1 to Dodge), page(A1:18), cat(Mundane, Mental),_
+	x(_
+		(#ChoiceList(_
+			name(VehicleSkill),_
+			method(bynumber),_
+			list(_
+				"Boating (Large Powerboat)",_
+				"Boating (Motorboat)",_
+				"Boating (Sailboat)",_
+				"Boating (Unpowered)",_
+				"Driving (Automobile)",_
+				"Driving (Construction Equipment)",_
+				"Driving (Halftrack)",_
+				"Driving (Heavy Wheeled)",_
+				"Driving (Hovercraft)",_
+				"Driving (Locomotive)",_
+				"Driving (Motorcycle)",_
+				"Driving (Tracked)",_
+				"Piloting (Glider)",_
+				"Piloting (Heavy Airplane)",_
+				"Piloting (Helicopter)",_
+				"Piloting (High-Performance Airplane)",_
+				"Piloting (Light Airplane)",_
+				"Piloting (Lighter-Than-Air)",_
+				"Piloting (Low-Performance Spacecraft)",_
+				"Piloting (Ultralight)",_
+				"Piloting (Vertol)",_
+				"Submarine (Free-Flooding Sub)",_
+				"Submarine (Large Sub)",_
+				"Submarine (Mini-Sub)"_
+			)_
+		)_
+	)_
+),_
+noresync(yes)
+//  For the Action Series the following skills have been eliminated from the list for Enhanced Dodge (Vehicle)
+// 				"Driving (Mecha)",_
+// 				"Piloting (Aerospace)",_
+// 				"Piloting (Autogyro)",_
+// 				"Piloting (Contragravity)",_
+// 				"Piloting (Flight Pack)",_
+// 				"Piloting (High-Performance Spacecraft)",_
+// 				"Piloting (Lightsail)",_
+// 				"Piloting (Low-G Wings)"
+
+#MergeTags in "AD:Gadgeteer" with "mods(Gadgeteer)"
+
+// Talents
+Born to Be Wired, 5/10, gives(+1 To GR:Born to Be Wired), page(A1:19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Hackers and people buying stock in your dot-com; Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers), and Expert Skill (Computer Security)), notes(Cinematic, not a realistic Talent)
+
+Circuit Sense, 5/10, gives(+1 to GR:Circuit Sense), page(A1:19), upto (4), cat(Mundane, Mental, Talents), mods(Talents),_
+	conditional(+1 to ST:Reaction), description(Anyone you use your skills for; Electrician, Electronics Operation, Electronics Repair, Engineer (Eletrical), and Engineer (Eletronics)), notes(Cinematic, not a realistic Talent)
+
+Craftiness, 5/10, gives(+1 To GR:Craftiness), page(A1:19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	description(Acting, Camouflage, Disguise, Holdout, Shadowing, and Stealth), notes(Cinematic, not a realistic Talent)
+
+Driver's Reflexes, 5/10, gives(+1 To GR:Driver's Reflexes), page(A1:19), upto(4), cat(Mundane, Mental, Talents), mods(Talents),_
+	description(Passengers and people betting on you at the Grand Prix; Boating, Driving, Piloting, and Submarine), notes(Cinematic, not a realistic Talent)
+
+<Mundane Physical>
+Resistant to Disease, 3/5, upto(2), levelnames("+3","+8"), page(B80), cat(Mundane, Physical)
+Resistant to Poison, 3/5, upto(2), levelnames("+3","+8"), page(B80), cat(Mundane, Physical)
+
+<Mental Social>
+Intelligence Rank, 5/10, mods(Rank), page(B29), upto(8), cat(Mundane, Social, Influence)
+Military Rank, 5/10, mods(Rank), page(B29), upto(8), cat(Mundane, Social, Influence)
+Police Rank, 5/10, mods(Rank), page(B29), upto(8), cat(Mundane, Social, Influence)
+Security Rank, 5/10, mods(Rank), page(B29), upto(8), cat(Mundane, Social, Influence)
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<_General>
+Shtick (Can strike a flame anywhere), 1, page(B100)
+
+<Gun Perks>
+//  Reproduced from GURPS Power Ups 2: Perks. If PU2 is also loaded load it after this GDF to get the latest version of these Perks.
+
+Akimbo, 1, page(HT249), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"Akimbo"))
+
+Off-Hand Weapon Training (%Gunlist%), 1, page(PU2:16-17), cat(Gun Perks),_
+x(_
+	#ChoiceList(_
+		name(Gun),_
+		title(Off-Hand Weapon Training: Choose a Gun Skill),_
+		text(Choose a Firearm skill from the list:),_
+		picksallowed(atleast 1),_
+		method(bynumber),_
+		list(_
+			#list(RangedWeaponSkills),_
+			"Crossbow",_
+			"Guns (Grenade Launcher)",_
+			"Guns (Gyroc)",_
+			"Guns (Light Anti-Armor Weapon)",_
+			"Guns (Light Machine Gun)",_
+			"Guns (Pistol)",_
+			"Guns (Rifle)",_
+			"Guns (Shotgun)",_
+			"Guns (Submachine Gun)",_
+			"Liquid Projector (Flamethrower)",_
+			"Liquid Projector (Sprayer)"_
+		)_
+	)_
+)
+
+One-Armed Bandit, 1, page(HT249), cat(Gun Perks), needs(AD:Trained by a Master | AD:Gunslinger),_
+	x(#InputToTagReplace("please specialize:" , nameext, ,"One-Armed Bandit"))
+
+Pistol-Fist (Guns (Pistol)), 1, page(PU2:6), cat(Gun Perks), description(Manually add close combat attack w. parry at skill/2 +3),_
+	parryat(@int("SK:Guns (Pistol)"/2)+3), needs(SK:Guns (Pistol))
+
+Weapon Bond (%GunList%), 1, page(F132, HT250, MA53, PU2:9, DF1:14),_
+	conditional(%GunAliasList%),_
+	x(#message(_
+			"Note: You will need to add the '_Perk: Weapon Bond' modifier to the specific weapon which recieves _
+			a bonus from Weapon Bond in order for the skill level to be increased on the Weapon Table." _
+			),_
+		#ChoiceList(_
+			name(Gun),_
+			title(Weapon Bond: Choose a Gun Skill),_
+			text(Choose a Firearm skill from the list:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				#list(RangedWeaponSkills),_
+				"Crossbow",_
+				"Guns (Grenade Launcher)",_
+				"Guns (Gyroc)",_
+				"Guns (Light Anti-Armor Weapon)",_
+				"Guns (Light Machine Gun)",_
+				"Guns (Pistol)",_
+				"Guns (Rifle)",_
+				"Guns (Shotgun)",_
+				"Guns (Submachine Gun)",_
+				"Liquid Projector (Flamethrower)",_
+				"Liquid Projector (Sprayer)"_
+			),_
+			aliaslist(_
+				#buildlist(list(#list(RangedWeaponSkills)), template(+1 to SK:%listitem%)),_
+				+1 to "SK:Crossbow",_
+				+1 to "SK:Guns (Grenade Launcher)",_
+				+1 to "SK:Guns (Gyroc)",_
+				+1 to "SK:Guns (Light Anti-Armor Weapon)",_
+				+1 to "SK:Guns (Light Machine Gun)",_
+				+1 to "SK:Guns (Pistol)",_
+				+1 to "SK:Guns (Rifle)",_
+				+1 to "SK:Guns (Shotgun)",_
+				+1 to "SK:Guns (Submachine Gun)",_
+				+1 to "SK:Liquid Projector (Flamethrower)",_
+				+1 to "SK:Liquid Projector (Sprayer)"_
+			)_
+		)_
+	), noresync(yes)
+
+Weapon Bond (%Weapon%), 1, page(F132, HT250, MA53, PU2:9, DF1:14),_
+	conditional(+1 to "SK:%WeaponList%"),_
+	x(#message(_
+			"Note: You will need to add the '_Perk: Weapon Bond' modifier to the specific weapon which recieves _
+			a bonus from Weapon Bond in order for the skill level to be increased on the Weapon Table." _
+			),_
+		#ChoiceList(_
+			name(Weapon),_
+			title(Weapon Bond: Choose a Weapon Skill),_
+			text(Choose a Weapon skill from the list. If the weapon has more than one mode, using more than one skill, select them all:),_
+			picksallowed(atleast 1),_
+			method(bynumber),_
+			list(_
+				#grouplist(GR:ShieldSkill, flags(NoPrefix)),_
+				#grouplist(GR:Melee Weapon Skill, flags(NoPrefix)),_
+				#grouplist(GR:Ranged Weapon Skill, flags(NoPrefix))_
+			)_
+		)_
+	), noresync(yes)
+
+********************************************************************************************************\[STOP]
+[DISADVANTAGES]
+*******************************************************************************************************\[START]
+<Mental Mundane>
+Code of Honor (Hippocratic Oath), -5, page(B127), cat(Mundane, Mental)
+Code of Honor (Stays bought), -5, page(B127), cat(Mundane, Mental)
+
+#Clone "DI:Compulsive Behavior" as "DI:Compulsive Vehicular Behavior"
+#ReplaceTags in "DI:Compulsive Vehicular Behavior" with {x( #InputToTag("Specify the type of compulsive behavior:", nameext, "Modification, speeding, etc", "Compulsive Behavior") )}
+
+Compulsive Speeding, -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+Compulsive Vehicle Modification, -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental),_
+	conditional(+1 to ST:Reaction when "from car fanatics", -1 to ST:Reaction when "neighbors who like to sleep (upto -4)"),_
+	initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )
+
+Secret (Professional Killer), -20, page(B152), cat(Mundane, Social),_
+	levelnames("Imprisonment or Exile")
+
+Sense of Duty (Team), -5, page(B153), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")
+Sense of Duty (Nation), -10, page(B153), cat(Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")
+
+<Social Mundane>
+Duty (15 or less (almost always); Extremely Hazardous), -20, levelnames([Agency]), page(B134), cat(Mundane, Social), taboo(DI:Duty (12 or less (quite often); Extremely Hazardous), DI:Duty (9 or less (fairly often); Extremely Hazardous) ),_
+	x(#InputReplace("Your Duty is to an Agency, Mob, or Service. Which one?", [Agency], , "Duty")_
+	)
+Duty (12 or less (quite often); Extremely Hazardous), -15, levelnames([Agency]), page(B134), cat(Mundane, Social), taboo(DI:Duty (15 or less (almost always); Extremely Hazardous), DI:Duty (9 or less (fairly often); Extremely Hazardous) ),_
+	x(#InputReplace("Your Duty is to an Agency, Mob, or Service. Which one?", [Agency], , "Duty")_
+	)
+Duty (9 or less (fairly often); Extremely Hazardous), -10, levelnames([Agency]), page(B134), cat(Mundane, Social), taboo(DI:Duty (15 or less (almost always); Extremely Hazardous), DI:Duty (12 or less (quite often); Extremely Hazardous) ),_
+	x(#InputReplace("Your Duty is to an Agency, Mob, or Service. Which one?", [Agency], , "Duty")_
+	)
+
+Social Stigma (Criminal Record), -5, page(B155), cat(Mundane, Social), conditional(-1 to ST:Reaction)
+Social Stigma (License Revoked), -5, page(B155), cat(Mundane, Social), conditional(-1 to ST:Reaction)
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+//   LISTS ^^^^ Need to convert to List, need a #DeleteFromList() command and an #AddToList command
+*******************************************************************************************************\[START]
+<AllDisadvantages>
+DI:Code of Honor (Hippocratic Oath)
+DI:Code of Honor (Stays bought)
+DI:Compulsive Vehicular Behavior
+DI:Compulsive Speeding
+DI:Compulsive Vehicle Modification
+DI:Secret (Professional Killer)
+DI:Sense of Duty (Team)
+DI:Sense of Duty (Nation)
+DI:Social Stigma (Criminal Record)
+DI:Social Stigma (License Revoked)
+
+
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+#Clone "SK:Riding" as "SK:Riding (Equines)"
+#ReplaceTags in "SK:Riding (Equines)" with "x()"
+#Clone "SK:Fast-Draw" as "SK:Fast-Draw (Gizmo)"
+#ReplaceTags in "SK:Fast-Draw (Gizmo)" with "x()"
+#Clone "SK:Fast-Draw" as "SK:Fast-Draw (Medical Gear)"
+#ReplaceTags in "SK:Fast-Draw (Medical Gear)" with "x()"
+#Clone "SK:Naturalist" as "SK:Naturalist (Earth)"
+#ReplaceTags in "SK:Naturalist (Earth)" with "x()"
+#Clone "SK:Philosophy" as "SK:Philosophy (Buddhism)"
+#ReplaceTags in "SK:Philosophy (Buddhism)" with "x()"
+#Clone "SK:Philosophy" as "SK:Philosophy (Dragon Temple)"
+#ReplaceTags in "SK:Philosophy (Dragon Temple)" with "x()"
+#Clone "SK:Philosophy" as "SK:Philosophy (Taoism)"
+#ReplaceTags in "SK:Philosophy (Taoism)" with "x()"
+#Clone "SK:Theology" as "SK:Theology (Hinduism)"
+#ReplaceTags in "SK:Theology (Hinduism)" with "x()"
+
+
+#ReplaceTags in "SK:Engineer (Artillery)" with "needs()"
+#ReplaceTags in "SK:Engineer (Civil)" with "needs()"
+#ReplaceTags in "SK:Engineer (Combat)" with "needs()"
+#ReplaceTags in "SK:Engineer (Electrical)" with "needs()"
+#ReplaceTags in "SK:Engineer (Electronics)" with "needs()"
+#ReplaceTags in "SK:Engineer (Materials)" with "needs()"
+#ReplaceTags in "SK:Engineer (Microtechnology)" with "needs()"
+#ReplaceTags in "SK:Engineer (Mining)" with "needs()"
+#ReplaceTags in "SK:Engineer (Nanotechnology)" with "needs()"
+#ReplaceTags in "SK:Engineer (Parachronic)" with "needs()"
+#ReplaceTags in "SK:Engineer (Psychotronics)" with "needs()"
+#ReplaceTags in "SK:Engineer (Temporal)" with "needs()"
+
+#MergeTags in SK:Brawling with "list(CriminalSkills)"
+#MergeTags in SK:Forced Entry with "list(CriminalSkills)"
+#MergeTags in SK:Guns (Pistol) with "list(CriminalSkills)"
+#MergeTags in SK:Filch with "list(CriminalSkills)"
+#MergeTags in SK:Stealth with "list(CriminalSkills)"
+#MergeTags in SK:Streetwise with "list(CriminalSkills)"
+#MergeTags in SK:Savoir-Faire (Mafia) with "list(CriminalSkills)"
+#MergeTags in SK:Gambling with "list(CriminalSkills)"
+#MergeTags in SK:Holdout with "list(CriminalSkills)"
+#MergeTags in SK:Carousing with "list(CriminalSkills)"
+#MergeTags in SK:Intimidation with "list(CriminalSkills)"
+#MergeTags in SK:Urban Survival with "list(CriminalSkills)"
+
+#MergeTags in SK:Filch with "list(IntelligenceSkills)"
+#MergeTags in SK:Stealth with "list(IntelligenceSkills)"
+#MergeTags in SK:Area Knowledge ([Area]) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs ([Regional]) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (Business) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (High Culture) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (People) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (Politics) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (Popular Culture) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs ([Regional]) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (Science & Technology) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (Sports) with "list(IntelligenceSkills)"
+#MergeTags in SK:Current Affairs (Travel) with "list(IntelligenceSkills)"
+#MergeTags in SK:Holdout with "list(IntelligenceSkills)"
+#MergeTags in SK:Interrogation with "list(IntelligenceSkills)"
+#MergeTags in SK:Photography with "list(IntelligenceSkills)"
+#MergeTags in SK:Propaganda with "list(IntelligenceSkills)"
+#MergeTags in SK:Research with "list(IntelligenceSkills)"
+#MergeTags in SK:Shadowing with "list(IntelligenceSkills)"
+#MergeTags in SK:Smuggling with "list(IntelligenceSkills)"
+#MergeTags in SK:Brainwashing with "list(IntelligenceSkills)"
+#MergeTags in SK:Cryptography with "list(IntelligenceSkills)"
+#MergeTags in SK:Forgery with "list(IntelligenceSkills)"
+#MergeTags in SK:Intelligence Analysis with "list(IntelligenceSkills)"
+#MergeTags in SK:Psychology with "list(IntelligenceSkills)"
+#MergeTags in SK:Observation with "list(IntelligenceSkills)"
+#MergeTags in SK:Search with "list(IntelligenceSkills)"
+
+#MergeTags in SK:Law with "list(LawEnforcementSkills)"
+#MergeTags in SK:Forced Entry with "list(LawEnforcementSkills)"
+#MergeTags in SK:Guns (Pistol) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Guns (Rifle) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Guns (Shotgun) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Guns (Submachine Gun) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Liquid Projector (Sprayer) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Riding (Equines) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Shortsword with "list(LawEnforcementSkills)"
+#MergeTags in SK:Tonfa with "list(LawEnforcementSkills)"
+#MergeTags in SK:First Aid with "list(LawEnforcementSkills)"
+#MergeTags in SK:Savoir-Faire (Police) with "list(LawEnforcementSkills)"
+#MergeTags in SK:Administration with "list(LawEnforcementSkills)"
+#MergeTags in SK:Animal Handling with "list(LawEnforcementSkills)"
+#MergeTags in SK:Observation with "list(LawEnforcementSkills)"
+#MergeTags in SK:Search with "list(LawEnforcementSkills)"
+
+#MergeTags in SK:Soldier with "list(MilitarySkills)"
+#MergeTags in SK:Gunner (Cannon) with "list(MilitarySkills)"
+#MergeTags in SK:Gunner (Machine Gun) with "list(MilitarySkills)"
+#MergeTags in SK:Gunner (Rockets) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Grenade Launcher) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Gyroc) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Light Anti-Armor Weapon) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Light Machine Gun) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Pistol) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Rifle) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Shotgun) with "list(MilitarySkills)"
+#MergeTags in SK:Guns (Submachine Gun) with "list(MilitarySkills)"
+#MergeTags in SK:Knife with "list(MilitarySkills)"
+#MergeTags in SK:Parachuting with "list(MilitarySkills)"
+#MergeTags in SK:NBC Suit with "list(MilitarySkills)"
+#MergeTags in SK:Spear with "list(MilitarySkills)"
+#MergeTags in SK:Throwing with "list(MilitarySkills)"
+#MergeTags in SK:Camouflage with "list(MilitarySkills)"
+#MergeTags in SK:First Aid with "list(MilitarySkills)"
+#MergeTags in SK:Gesture with "list(MilitarySkills)"
+#MergeTags in SK:Savoir-Faire (Military) with "list(MilitarySkills)"
+#MergeTags in SK:Seamanship with "list(MilitarySkills)"
+#MergeTags in SK:Submariner with "list(MilitarySkills)"
+#MergeTags in SK:Artillery (Bombs) with "list(MilitarySkills)"
+#MergeTags in SK:Artillery (Cannon) with "list(MilitarySkills)"
+#MergeTags in SK:Artillery (Guided Missile) with "list(MilitarySkills)"
+#MergeTags in SK:Artillery (Torpedoes) with "list(MilitarySkills)"
+#MergeTags in SK:Forward Observer with "list(MilitarySkills)"
+#MergeTags in SK:Leadership with "list(MilitarySkills)"
+#MergeTags in SK:Scuba with "list(MilitarySkills)"
+#MergeTags in SK:Strategy (Land) with "list(MilitarySkills)"
+#MergeTags in SK:Strategy (Naval) with "list(MilitarySkills)"
+#MergeTags in SK:Tactics with "list(MilitarySkills)"
+#MergeTags in SK:Swimming with "list(MilitarySkills)"
+#MergeTags in SK:Hiking with "list(MilitarySkills)"
+#MergeTags in SK:Skiing with "list(MilitarySkills)"
+#MergeTags in SK:Survival with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Arctic) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Desert) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Island/Beach) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Jungle) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Mountain) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Plains) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Swampland) with "list(MilitarySkills)"
+#MergeTags in SK:Survival (Woodlands) with "list(MilitarySkills)"
+
+#MergeTags in SK:Fast-Draw (Pistol) with "list(SecuritySkills)"
+#MergeTags in SK:Guns (Pistol) with "list(SecuritySkills)"
+#MergeTags in SK:Guns (Submachine Gun) with "list(SecuritySkills)"
+#MergeTags in SK:First Aid with "list(SecuritySkills)"
+#MergeTags in SK:Savoir-Faire (High Society) with "list(SecuritySkills)"
+#MergeTags in SK:Savoir-Faire (Servant) with "list(SecuritySkills)"
+#MergeTags in SK:Administration with "list(SecuritySkills)"
+#MergeTags in SK:Criminology with "list(SecuritySkills)"
+#MergeTags in SK:Hazardous Materials with "list(SecuritySkills)"
+#MergeTags in SK:Hazardous Materials (Biological) with "list(SecuritySkills)"
+#MergeTags in SK:Hazardous Materials (Chemical) with "list(SecuritySkills)"
+#MergeTags in SK:Hazardous Materials (Radioactive) with "list(SecuritySkills)"
+#MergeTags in SK:Holdout with "list(SecuritySkills)"
+#MergeTags in SK:Interrogation with "list(SecuritySkills)"
+#MergeTags in SK:Brainwashing with "list(SecuritySkills)"
+#MergeTags in SK:Cryptography with "list(SecuritySkills)"
+#MergeTags in SK:Intelligence Analysis with "list(SecuritySkills)"
+#MergeTags in SK:Psychology with "list(SecuritySkills)"
+#MergeTags in SK:Tactics with "list(SecuritySkills)"
+#MergeTags in SK:Tactics with "list(SecuritySkills)"
+#MergeTags in SK:Tactics with "list(SecuritySkills)"
+#MergeTags in SK:Body Language with "list(SecuritySkills)"
+#MergeTags in SK:Observation with "list(SecuritySkills)"
+#MergeTags in SK:Search with "list(SecuritySkills)"
+
+#MergeTags in SK:Writing with "list(JournalistSkills)"
+#MergeTags in SK:Public Speaking with "list(JournalistSkills)"
+#MergeTags in SK:Filch with "list(JournalistSkills)"
+#MergeTags in SK:Stealth with "list(JournalistSkills)"
+#MergeTags in SK:Area Knowledge ([Area]) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs ([Regional]) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (Business) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (High Culture) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (People) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (Politics) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (Popular Culture) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs ([Regional]) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (Science & Technology) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (Sports) with "list(JournalistSkills)"
+#MergeTags in SK:Current Affairs (Travel) with "list(JournalistSkills)"
+#MergeTags in SK:Holdout with "list(JournalistSkills)"
+#MergeTags in SK:Interrogation with "list(JournalistSkills)"
+#MergeTags in SK:Photography with "list(JournalistSkills)"
+#MergeTags in SK:Propaganda with "list(JournalistSkills)"
+#MergeTags in SK:Research with "list(JournalistSkills)"
+#MergeTags in SK:Shadowing with "list(JournalistSkills)"
+#MergeTags in SK:Smuggling with "list(JournalistSkills)"
+#MergeTags in SK:Intelligence Analysis with "list(JournalistSkills)"
+#MergeTags in SK:Psychology with "list(JournalistSkills)"
+#MergeTags in SK:Observation with "list(JournalistSkills)"
+#MergeTags in SK:Search with "list(JournalistSkills)"
+
+#MergeTags in SK:Acrobatics with "list(AthleteSkills)"
+#MergeTags in SK:Bicycling with "list(AthleteSkills)"
+#MergeTags in SK:Body Sense with "list(AthleteSkills)"
+#MergeTags in SK:Breath Control with "list(AthleteSkills)"
+#MergeTags in SK:Climbing with "list(AthleteSkills)"
+#MergeTags in SK:Free Fall with "list(AthleteSkills)"
+#MergeTags in SK:Hiking with "list(AthleteSkills)"
+#MergeTags in SK:Jumping with "list(AthleteSkills)"
+#MergeTags in SK:Lifting with "list(AthleteSkills)"
+#MergeTags in SK:Parachuting with "list(AthleteSkills)"
+#MergeTags in SK:Running with "list(AthleteSkills)"
+#MergeTags in SK:Scuba with "list(AthleteSkills)"
+#MergeTags in SK:Skating with "list(AthleteSkills)"
+#MergeTags in SK:Skiing with "list(AthleteSkills)"
+#MergeTags in SK:Sports with "list(AthleteSkills)"
+#MergeTags in SK:Swimming with "list(AthleteSkills)"
+#MergeTags in SK:Throwing with "list(AthleteSkills)"
+
+#MergeTags in SK:Research with "list(AcademicSkills)"
+#MergeTags in SK:Teaching with "list(AcademicSkills)"
+#MergeTags in SK:Writing with "list(AcademicSkills)"
+#MergeTags in SK:Accounting with "list(AcademicSkills)"
+#MergeTags in SK:Administration with "list(AcademicSkills)"
+#MergeTags in SK:Alchemy with "list(AcademicSkills)"
+#MergeTags in SK:Anthropology with "list(AcademicSkills)"
+#MergeTags in SK:Archaeology with "list(AcademicSkills)"
+#MergeTags in SK:Architecture with "list(AcademicSkills)"
+#MergeTags in SK:Astronomy with "list(AcademicSkills)"
+#MergeTags in SK:Astronomy (Observational) with "list(AcademicSkills)"
+#MergeTags in SK:Bioengineering (Cloning) with "list(AcademicSkills)"
+#MergeTags in SK:Bioengineering (Genetic Engineering) with "list(AcademicSkills)"
+#MergeTags in SK:Bioengineering (Tissue Engineering) with "list(AcademicSkills)"
+#MergeTags in SK:Biology (Earthlike) with "list(AcademicSkills)"
+#MergeTags in SK:Biology (Gas Giants) with "list(AcademicSkills)"
+#MergeTags in SK:Biology (Hostile Terrestrial) with "list(AcademicSkills)"
+#MergeTags in SK:Biology (Ice Dwarfs) with "list(AcademicSkills)"
+#MergeTags in SK:Biology (Ice Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Biology (Rock Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Cartography with "list(AcademicSkills)"
+#MergeTags in SK:Chemistry with "list(AcademicSkills)"
+#MergeTags in SK:Computer Operation with "list(AcademicSkills)"
+#MergeTags in SK:Computer Programming with "list(AcademicSkills)"
+#MergeTags in SK:Criminology with "list(AcademicSkills)"
+#MergeTags in SK:Diagnosis with "list(AcademicSkills)"
+#MergeTags in SK:Diplomacy with "list(AcademicSkills)"
+#MergeTags in SK:Economics with "list(AcademicSkills)"
+#MergeTags in SK:Electronics Operation (Medical) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (%type%) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer ([Type]) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Artillery) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Civil) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Combat) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Electrical) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Electronics) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Materials) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Microtechnology) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Mining) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Nanotechnology) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Parachronic) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Psychotronics) with "list(AcademicSkills)"
+#MergeTags in SK:Engineer (Temporal) with "list(AcademicSkills)"
+#MergeTags in SK:Esoteric Medicine with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Egyptology) with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Epidemiology) with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Hydrology) with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Natural Philosophy) with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Political Science) with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Thanatology) with "list(AcademicSkills)"
+#MergeTags in SK:Expert Skill (Xenology) with "list(AcademicSkills)"
+#MergeTags in SK:Fast-Draw (Gizmo) with "list(AcademicSkills)"
+#MergeTags in SK:Fast-Draw (Medical Gear) with "list(AcademicSkills)"
+#MergeTags in SK:Finance with "list(AcademicSkills)"
+#MergeTags in SK:First Aid with "list(AcademicSkills)"
+#MergeTags in SK:Geography ([Regional]) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Earthlike) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Gas Giants) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Hostile Terrestrial) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Ice Dwarfs) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Ice Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Political) with "list(AcademicSkills)"
+#MergeTags in SK:Geography (Rock Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Geology (Earthlike) with "list(AcademicSkills)"
+#MergeTags in SK:Geology (Gas Giants) with "list(AcademicSkills)"
+#MergeTags in SK:Geology (Hostile Terrestrial) with "list(AcademicSkills)"
+#MergeTags in SK:Geology (Ice Dwarfs) with "list(AcademicSkills)"
+#MergeTags in SK:Geology (Ice Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Geology (Rock Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:History with "list(AcademicSkills)"
+#MergeTags in SK:Hypnotism with "list(AcademicSkills)"
+#MergeTags in SK:Law with "list(AcademicSkills)"
+#MergeTags in SK:Linguistics with "list(AcademicSkills)"
+#MergeTags in SK:Literature with "list(AcademicSkills)"
+#MergeTags in SK:Market Analysis with "list(AcademicSkills)"
+#MergeTags in SK:Mathematics (Applied) with "list(AcademicSkills)"
+#MergeTags in SK:Mathematics (Computer Science) with "list(AcademicSkills)"
+#MergeTags in SK:Mathematics (Cryptology) with "list(AcademicSkills)"
+#MergeTags in SK:Mathematics (Pure) with "list(AcademicSkills)"
+#MergeTags in SK:Mathematics (Statistics) with "list(AcademicSkills)"
+#MergeTags in SK:Mathematics (Surveying) with "list(AcademicSkills)"
+#MergeTags in SK:Merchant with "list(AcademicSkills)"
+#MergeTags in SK:Metallurgy with "list(AcademicSkills)"
+#MergeTags in SK:Meteorology (Earthlike) with "list(AcademicSkills)"
+#MergeTags in SK:Meteorology (Gas Giants) with "list(AcademicSkills)"
+#MergeTags in SK:Meteorology (Hostile Terrestrial) with "list(AcademicSkills)"
+#MergeTags in SK:Meteorology (Ice Dwarfs) with "list(AcademicSkills)"
+#MergeTags in SK:Meteorology (Ice Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Meteorology (Rock Worlds) with "list(AcademicSkills)"
+#MergeTags in SK:Naturalist with "list(AcademicSkills)"
+#MergeTags in SK:Naturalist (Earth) with "list(AcademicSkills)"
+#MergeTags in SK:Paleontology (Micropaleontology) with "list(AcademicSkills)"
+#MergeTags in SK:Paleontology (Paleoanthropology) with "list(AcademicSkills)"
+#MergeTags in SK:Paleontology (Paleobotany) with "list(AcademicSkills)"
+#MergeTags in SK:Paleontology (Paleozoology) with "list(AcademicSkills)"
+#MergeTags in SK:Pharmacy (Herbal) with "list(AcademicSkills)"
+#MergeTags in SK:Pharmacy (Synthetic) with "list(AcademicSkills)"
+#MergeTags in SK:Philosophy with "list(AcademicSkills)"
+#MergeTags in SK:Philosophy (Buddhism) with "list(AcademicSkills)"
+#MergeTags in SK:Philosophy (Dragon Temple) with "list(AcademicSkills)"
+#MergeTags in SK:Philosophy (Taoism) with "list(AcademicSkills)"
+#MergeTags in SK:Physician with "list(AcademicSkills)"
+#MergeTags in SK:Physics with "list(AcademicSkills)"
+#MergeTags in SK:Physiology with "list(AcademicSkills)"
+#MergeTags in SK:Poisons with "list(AcademicSkills)"
+#MergeTags in SK:Politics with "list(AcademicSkills)"
+#MergeTags in SK:Propaganda with "list(AcademicSkills)"
+#MergeTags in SK:Psychology with "list(AcademicSkills)"
+#MergeTags in SK:Public Speaking with "list(AcademicSkills)"
+#MergeTags in SK:Public Speaking (Debate) with "list(AcademicSkills)"
+#MergeTags in SK:Public Speaking (Oratory) with "list(AcademicSkills)"
+#MergeTags in SK:Public Speaking (Punning) with "list(AcademicSkills)"
+#MergeTags in SK:Public Speaking (Rhetoric) with "list(AcademicSkills)"
+#MergeTags in SK:Public Speaking (Storytelling) with "list(AcademicSkills)"
+#MergeTags in SK:Savoir-Faire (High Society) with "list(AcademicSkills)"
+#MergeTags in SK:Sociology with "list(AcademicSkills)"
+#MergeTags in SK:Speed-Reading with "list(AcademicSkills)"
+#MergeTags in SK:Surgery with "list(AcademicSkills)"
+#MergeTags in SK:Theology with "list(AcademicSkills)"
+#MergeTags in SK:Theology (Hinduism) with "list(AcademicSkills)"
+#MergeTags in SK:Typing with "list(AcademicSkills)"
+#MergeTags in SK:Veterinary with "list(AcademicSkills)"
+#MergeTags in SK:Weird Science with "list(AcademicSkills)"
+
+<Animal>
+Animal Handling (Pigs), IQ/A, default(IQ - 5), page(175), cat(_General, Animal)
+#Clone "SK:Naturalist" as "SK:Naturalist (Earth)"
+#ReplaceTags in "SK:Naturalist (Earth)" with "x()"
+
+<_General>
+Fast-Draw (Medical Gear), DX/E, page(B194), cat(Medical)
+Fast-Draw (Gizmo), DX/E, page(B194), cat(Design/Invention)
+Connoisseur (Cars), IQ/A, default(IQ - 5), page(B185), cat(_General, Arts/Entertainment, Knowledge, Social)
+
+<Repair/Maintenance>
+Mechanic (Motorboat), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Motorboat)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Automobile), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Automobile)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Heavy Wheeled), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Heavy Wheeled)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Motorcycle), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Motorcycle)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Glider), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Glider)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Helicopter), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Helicopter)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Light Airplane), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Light Airplane)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Ultralight), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Ultralight)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+Mechanic (Free-Flooding Sub), IQ/A, tl(0-12), default(IQ - 5, "SK:Engineer (Free-Flooding Sub)" - 4, SK:Machinist - 5, SK:Mechanic - 4), page(B207), cat(_General, Repair/Maintenance)
+
+<Wildcard!>
+Assassin!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Fast-Draw (Knife and Pistol), Garrote, Knife and Stealth. Does not stand in for ranged weapon skills except for shots made out of combat. Make an IQ-based for Acting, Camouflage, Disguise, Holdout, Poisons, Shadowing or Smuggling, or a Per-based roll for Tracking.),_
+	usernotes(Replaces Fast-Draw (Knife and Pistol), Garrote, Knife and Stealth. Does not stand in for ranged weapon skills except for shots made out of combat. Make an IQ-based for Acting, Camouflage, Disguise, Holdout, Poisons, Shadowing or Smuggling, or a Per-based roll for Tracking.)
+Cleaner!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Camouflage, Freight Handling, Holdout, Housekeeping, and Smuggling. Animal Handling, Chemistry, Electronics Operation, Explosives, Forgery and Hazardous Materials to doctor evidence, dispose of it, or create fake records legitamizing it. Make a Per-based roll for Search or Tracking, or DX-based for Stealth),_
+	usernotes(Replaces Camouflage, Freight Handling, Holdout, Housekeeping, and Smuggling. Animal Handling, Chemistry, Electronics Operation, Explosives, Forgery and Hazardous Materials to doctor evidence, dispose of it, or create fake records legitamizing it. Make a Per-based roll for Search or Tracking, or DX-based for Stealth)
+Demolition Man!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Engineer (Combat), Explosives (Any), and Traps; Architecture and Mechanic when planting bombs in buildings or vehicles respectively; Armoury (Any), Artillery (Any), and Expert Skill (Military Science) when dealing with explosives; and Smuggling to hide bombs. Make a Per-based roll for Search to find a hidden bomb. Make a DX-based roll to attack with Guns (Grenade Launcher or LAW), or to chuck hand grenades with Throwing.),_
+	usernotes(Replaces Engineer (Combat), Explosives (Any), and Traps; Architecture and Mechanic when planting bombs in buildings or vehicles respectively; Armoury (Any), Artillery (Any), and Expert Skill (Military Science) when dealing with explosives; and Smuggling to hide bombs. Make a Per-based roll for Search to find a hidden bomb. Make a DX-based roll to attack with Guns (Grenade Launcher or LAW), or to chuck hand grenades with Throwing.)
+Face Man!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Acting, Diplomacy, Fast-Talk, Gambling, Leadership, Merchant, Propaganda, Public Speaking, and Savoir-Faire - and Administration and Psychology for the purpose of social manipulation. Make a DX-based roll for Dancing, a HT-based roll for Carousing or Sex Appeal, a Willbased roll for Intimidation, or a Per-based roll for Body Language or Detect Lies.),_
+	usernotes(Replaces Acting, Diplomacy, Fast-Talk, Gambling, Leadership, Merchant, Propaganda, Public Speaking, and Savoir-Faire - and Administration and Psychology for the purpose of social manipulation. Make a DX-based roll for Dancing, a HT-based roll for Carousing or Sex Appeal, a Willbased roll for Intimidation, or a Per-based roll for Body Language or Detect Lies.)
+Hacker!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers), and Expert Skill (Computer Security). Can also stand in for Accounting, Cartography, Forgery, Research, or Speed-Reading when creating, seeking, reading, or altering digital files via computer - but not when working with printed or written records!),_
+	usernotes(Replaces Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers), and Expert Skill (Computer Security). Can also stand in for Accounting, Cartography, Forgery, Research, or Speed-Reading when creating, seeking, reading, or altering digital files via computer)
+Infiltrator!, DX/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Acrobatics, Climbing, Escape, Filch, Forced Entry, Jumping, and Stealth - and Knot-Tying and Throwing for climbing lines and grapnels. Make an IQbased roll for Camouflage, Electronics Operation (Security), or Lockpicking, or to exploit Architecture or Cartography to plan a robbery. Make Per-based rolls to use Traps to detect security devices and IQ-based rolls to disarm them - but never to set traps.),_
+	usernotes(Replaces Acrobatics, Climbing, Escape, Filch, Forced Entry, Jumping, and Stealth - and Knot-Tying and Throwing for climbing lines and grapnels. Make an IQbased roll for Camouflage, Electronics Operation (Security), or Lockpicking, or to exploit Architecture or Cartography to plan a robbery. Make Per-based rolls to use Traps to detect security devices and IQ-based rolls to disarm them - but never to set traps.)
+Investigator!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Criminology, Electronics Operation (Surveillance), Forensics, Intelligence Analysis, Interrogation, Photography, Research, and Shadowing; Accounting and Speed-Reading when the objective is to spot irregularities in records; and Computer Operation when accessing DMV records, fingerprint libraries, Interpol databases, etc. Make a Per-based roll for Body Language, Detect Lies, Lip Reading, Observation, Search, or Tracking.),_
+	usernotes(Replaces Criminology, Electronics Operation (Surveillance), Forensics, Intelligence Analysis, Interrogation, Photography, Research, and Shadowing; Accounting and Speed-Reading when the objective is to spot irregularities in records; and Computer Operation when accessing DMV records, fingerprint libraries, Interpol databases, etc. Make a Per-based roll for Body Language, Detect Lies, Lip Reading, Observation, Search, or Tracking.)
+Medic!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Diagnosis, Expert Skill (Epidemiology), Hazardous Materials (Biological), Pharmacy, Physician, Poisons, Psychology, Surgery - and also Chemistry when dealing with drugs, Forensics when conducting an autopsy, and Naturalist to know what toxin or venom is afflicting someone.),_
+	usernotes(Replaces Diagnosis, Expert Skill (Epidemiology), Hazardous Materials (Biological), Pharmacy, Physician, Poisons, Psychology, Surgery - and also Chemistry when dealing with drugs, Forensics when conducting an autopsy, and Naturalist to know what toxin or venom is afflicting someone.)
+Shooter!, DX/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces all Crossbow, Gunner, Guns, and Liquid Projector skills, plus associated Fast-Draw specialties. Also covers any use of Acrobatics, Jumping, or Stealth to move around in a gunfight, counts as Brawling when slugging someone with a pistol, works as Forced Entry when shooting locks and doors, and stands in for Throwing when hurling a hand grenade or an empty handgun at enemies (or a loaded weapon to an ally!). Make an IQ-based roll for Armoury to get a gun working again),_
+	usernotes(Replaces all Crossbow, Gunner, Guns, and Liquid Projector skills, plus associated Fast-Draw specialties. Also covers any use of Acrobatics, Jumping, or Stealth to move around in a gunfight, counts as Brawling when slugging someone with a pistol, works as Forced Entry when shooting locks and doors, and stands in for Throwing when hurling a hand grenade or an empty handgun at enemies (or a loaded weapon to an ally!). Make an IQ-based roll for Armoury to get a gun working again)
+Wheel Man!, DX/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Boating, Driving, Piloting, and Submarine specialties for vehicles small enough for one person to operate; any Gunner skill needed to fire built-in weapons on such rides; and Parachuting to bail out. Make an IQ-based roll for Artillery (any) or Electronics Operation (any) for vehicular systems, Freight Handling to pack a vehicle, Mechanic to make repairs, Navigation to plot a course, or Shadowing to follow someone in a vehicle.),_
+	usernotes(Replaces Boating, Driving, Piloting, and Submarine specialties for vehicles small enough for one person to operate; any Gunner skill needed to fire built-in weapons on such rides; and Parachuting to bail out. Make an IQ-based roll for Artillery (any) or Electronics Operation (any) for vehicular systems, Freight Handling to pack a vehicle, Mechanic to make repairs, Navigation to plot a course, or Shadowing to follow someone in a vehicle.)
+Wire Rat!, IQ/WC, cat(_General, Wildcard!), page(A1:23),_
+	description(Replaces Electrician and all Electronics Operation and Electronics Repair specialties, and any use of Camouflage, Holdout, Smuggling, or Traps to hide an electronic device such as an alarm, beacon, or bug. Make a Perbased roll for Search or Traps when the objective is to find such a gizmo, and for any use of Scrounging to locate parts.),_
+	usernotes(Replaces Electrician and all Electronics Operation and Electronics Repair specialties, and any use of Camouflage, Holdout, Smuggling, or Traps to hide an electronic device such as an alarm, beacon, or bug. Make a Perbased roll for Search or Traps when the objective is to find such a gizmo, and for any use of Scrounging to locate parts.)
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<ActionBackgroundLensName>
+"_No Lens/Create a Custom Lens"=20,_
+"Criminal Background"=20,_
+"Intelligence Background"=20,_
+"Law Enforcement Background"=20,_
+"Military Background"=20,_
+"Security Background"=20,_
+"Rich Adventurer Background"=20,_
+"Martial Artist Background"=20,_
+"Journalist Background"=20,_
+"Athlete Background"=20,_
+"Survivalist Background"=20,_
+"Academic Background - Cinematic"=20,_
+"Academic Background"=20
+
+<ActionBackgroundLensTemplate>
+{TE:_New Background Lens (Action)},_
+{TE:Criminal Background (Action)},_
+{TE:Intelligence Background (Action)},_
+{TE:Law Enforcement Background (Action)},_
+{TE:Military Background (Action)},_
+{TE:Security Background (Action)},_
+{TE:Rich Adventurer Background (Action)},_
+{TE:Martial Artist Background (Action)},_
+{TE:Journalist Background (Action)},_
+{TE:Athlete Background (Action)},_
+{TE:Survivalist Background (Action)},_
+{TE:Academic Background - Cinematic (Action)},_
+{TE:Academic Background (Action)}
+
+<ActionBackgroundLensAdvantages>
+{},_
+{#list(CriminalAdvantages)},_
+{#list(IntelligenceAdvantages)},_
+{#list(LawEnforcementAdvantages)},_
+{#list(MilitaryAdvantages)},_
+{#list(SecurityAdvantages)},_
+{#list(RichAdventurerAdvantages)},_
+{#list(MartialArtistAdvantages)},_
+{#list(JournalistAdvantages)},_
+{#list(AthleteAdvantages)},_
+{#list(SurvivalistAdvantages)},_
+{#list(AcademicAdvantages)},_
+{#list(AcademicAdvantages)}
+
+
+<ActionBackgroundLensDisdvantages>
+{},_
+{#list(CriminalDisadvantages)},_
+{#list(IntelligenceDisadvantages)},_
+{#list(LawEnforcementDisadvantages)},_
+{#list(MilitaryDisadvantages)},_
+{#list(SecurityDisadvantages)},_
+{#list(RichAdventurerDisadvantages)},_
+{#list(MartialArtistDisadvantages)},_
+{#list(JournalistDisadvantages)},_
+{#list(AthleteDisadvantages)},_
+{#list(SurvivalistDisadvantages)},_
+{#list(AcademicDisadvantages)},_
+{#list(AcademicDisadvantages)}
+
+<RangedWeaponSkills>
+
+<CriminalAdvantages>
+{#newitem(AD:Contact (Fence, Fixer, or Smuggler), 1/2/3, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18), upto(3), cat(Mundane, Social), mods(Contact, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance)))},_
+{#newitem(AD:Contact Group, 5/10/15, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18), x(#InputToTag("Please describe the nature of the Contact Group:", nameext, "Gang or Mob.", "Contact Group")), upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44), initmods(Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) | Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance)))}
+
+<CriminalSkills>
+SK:Brawling,_
+SK:Forced Entry,_
+SK:Guns (Pistol),_
+SK:Filch,_
+SK:Stealth,_
+SK:Streetwise,_
+SK:Savoir-Faire (Mafia),_
+SK:Gambling,_
+SK:Holdout,_
+SK:Carousing,_
+SK:Intimidation,_
+SK:Urban Survival
+
+<IntelligenceAdvantages>
+{#newitem(AD:Intelligence Rank, 5/10, mods(Rank), page(B29), upto(4), cat(Mundane, Social, Influence))}
+
+<IntelligenceSkills>
+SK:Filch,_
+SK:Stealth,_
+SK:Area Knowledge,_
+SK:Current Affairs ([Regional]),_
+SK:Current Affairs (Business),_
+SK:Current Affairs (High Culture),_
+SK:Current Affairs (People),_
+SK:Current Affairs (Politics),_
+SK:Current Affairs (Popular Culture),_
+SK:Current Affairs (Regional),_
+SK:Current Affairs (Science & Technology),_
+SK:Current Affairs (Sports),_
+SK:Current Affairs (Travel),_
+SK:Holdout,_
+SK:Interrogation,_
+SK:Photography,_
+SK:Propaganda,_
+SK:Research,_
+SK:Shadowing,_
+SK:Smuggling,_
+SK:Brainwashing,_
+SK:Cryptography,_
+SK:Forgery,_
+SK:Intelligence Analysis,_
+SK:Psychology (Human),_
+SK:Observation,_
+SK:Search
+
+<LawEnforcementAdvantages>
+AD:Legal Enforcement Powers #codes(upto 2, downto 1),_
+{#newitem(AD:Police Rank, 5/10, mods(Rank), page(B29), upto(4), cat(Mundane, Social, Influence))}
+
+<LawEnforcementSkills>
+SK:Law (Police),_
+SK:Forced Entry,_
+SK:Guns (Pistol),_
+SK:Guns (Rifle),_
+SK:Guns (Shotgun),_
+SK:Guns (Submachine Gun),_
+SK:Liquid Projector (Sprayer),_
+SK:Riding (Horse),_
+SK:Shortsword,_
+SK:Tonfa,_
+SK:First Aid (Human),_
+SK:Savoir-Faire (Police),_
+SK:Administration,_
+SK:Animal Handling (Dog),_
+SK:Observation,_
+SK:Search
+
+<MilitaryAdvantages>
+{#newitem(AD:Military Rank, 5/10, mods(Rank), page(B29), upto(4), cat(Mundane, Social, Influence))}
+
+<MilitarySkills>
+SK:Soldier,_
+SK:Gunner,_
+SK:Gunner (Cannon),_
+SK:Gunner (Machine Gun),_
+SK:Gunner (Rockets),_
+SK:Guns,_
+SK:Guns (Grenade Launcher),_
+SK:Guns (Gyroc),_
+SK:Guns (Light Anti-Armor Weapon),_
+SK:Guns (Light Machine Gun),_
+SK:Guns (Pistol),_
+SK:Guns (Rifle),_
+SK:Guns (Shotgun),_
+SK:Guns (Submachine Gun),_
+SK:Knife,_
+SK:Parachuting,_
+SK:NBC Suit,_
+SK:Spear,_
+SK:Throwing,_
+SK:Camouflage,_
+SK:First Aid (Human),_
+SK:Gesture,_
+SK:Savoir-Faire (Military),_
+SK:Seamanship,_
+SK:Submariner,_
+SK:Artillery ,_
+SK:Artillery (Bombs),_
+SK:Artillery (Cannon),_
+SK:Artillery (Guided Missile),_
+SK:Artillery (Torpedoes),_
+SK:Forward Observer,_
+SK:Leadership,_
+SK:Scuba,_
+SK:Strategy,_
+SK:Strategy (Land),_
+SK:Strategy (Naval),_
+SK:Tactics,_
+SK:Tactics (Land),_
+SK:Tactics (Naval),_
+SK:Swimming,_
+SK:Hiking,_
+SK:Skiing,_
+SK:Survival,_
+SK:Survival (Arctic),_
+SK:Survival (Desert),_
+SK:Survival (Island/Beach),_
+SK:Survival (Jungle),_
+SK:Survival (Mountain),_
+SK:Survival (Plains),_
+SK:Survival (Swampland),_
+SK:Survival (Woodlands)
+
+<SecurityAdvantages>
+AD:Legal Enforcement Powers #codes(upto 3, downto 2),_
+{#newitem(AD:Security Rank, 5/10, mods(Rank), page(B29), upto(4), cat(Mundane, Social, Influence))}
+
+<SecuritySkills>
+SK:Fast-Draw (Pistol),_
+SK:Guns (Pistol),_
+SK:Guns (Submachine Gun),_
+SK:First Aid (Human),_
+SK:Savoir-Faire (High Society),_
+SK:Savoir-Faire (Servant),_
+SK:Administration,_
+SK:Criminology,_
+SK:Hazardous Materials,_
+SK:Hazardous Materials (Biological),_
+SK:Hazardous Materials (Chemical),_
+SK:Hazardous Materials (Radioactive),_
+SK:Holdout,_
+SK:Interrogation,_
+SK:Brainwashing,_
+SK:Cryptography,_
+SK:Intelligence Analysis,_
+SK:Psychology,_
+SK:Tactics,_
+SK:Tactics (Land),_
+SK:Tactics (Naval),_
+SK:Body Language (Human),_
+SK:Observation,_
+SK:Search
+
+<RichAdventurerAdvantages>
+#newitem(AD:_Increase Wealth, 0, displaycost(varies), existing(AD:Wealth)),_
+#newitem(AD:_Increase Status, 0, displaycost(+5/+10/+), existing(AD:Status)),_
+AD:Wealth,_
+AD:Status,_
+AD:Trading Character Points for Money,_
+AD:Independent Income,_
+AD:Signature Gear
+
+<MartialArtistAdvantages>
+#list(Style Optional Advantages %MAStyleList%),_
+#List(Style Perks %MAStyleList%)
+
+<MartialArtistDisadvantages>
+#list(Style Optional Disadvantages %MAStyleList%),_
+
+<JournalistSkills>
+SK:Writing,_
+SK:Public Speaking,_
+SK:Filch,_
+SK:Stealth,_
+SK:Area Knowledge,_
+SK:Current Affairs ([Regional]),_
+SK:Current Affairs (Business),_
+SK:Current Affairs (High Culture),_
+SK:Current Affairs (People),_
+SK:Current Affairs (Politics),_
+SK:Current Affairs (Popular Culture),_
+SK:Current Affairs (Regional),_
+SK:Current Affairs (Science & Technology),_
+SK:Current Affairs (Sports),_
+SK:Current Affairs (Travel),_
+SK:Holdout,_
+SK:Interrogation,_
+SK:Photography,_
+SK:Propaganda,_
+SK:Research,_
+SK:Shadowing,_
+SK:Smuggling,_
+SK:Intelligence Analysis,_
+SK:Psychology (Human),_
+SK:Observation,_
+SK:Search
+
+<AthleteSkills>
+SK:Acrobatics,_
+SK:Bicycling,_
+SK:Body Sense,_
+SK:Breath Control,_
+SK:Climbing,_
+SK:Free Fall,_
+SK:Hiking,_
+SK:Jumping,_
+SK:Lifting,_
+SK:Parachuting,_
+SK:Running,_
+SK:Scuba,_
+SK:Skating,_
+SK:Skiing,_
+SK:Sports,_
+SK:Swimming,_
+SK:Throwing
+
+<AthleteAdvantages>
+AD:Extra HT,_
+AD:Extra ST,_
+AD:Extra Move,_
+AD:Extra Basic Speed,_
+AD:Fit,_
+AD:Very Fit,_
+AD:Ambidexterity,_
+AD:Double-Jointed,_
+AD:Flexibility,_
+AD:Rapid Healing,_
+AD:Very Rapid Healing
+
+<SurvivalistAdvantages>
+#newitem(AD:_Upgrade Fit to Very Fit, 0, displaycost(+10), existing(AD:Fit)) #codes(upto 2, downto 2),_
+AD:Fit,
+AD:Very Fit
+
+<SurvivalistSkills>
+SK:Survival,_
+SK:Survival (Arctic),_
+SK:Survival (Desert),_
+SK:Survival (Island/Beach),_
+SK:Survival (Jungle),_
+SK:Survival (Mountain),_
+SK:Survival (Plains),_
+SK:Survival (Radioactive Wasteland),_
+SK:Survival (Swampland),_
+SK:Survival (Woodlands),_
+SK:Crossbow,_
+SK:Bow,_
+SK:Guns (Musket),_
+SK:Guns (Pistol),_
+SK:Guns (Rifle),_
+SK:Guns (Shotgun),_
+SK:Guns (Submachine Gun),_
+SK:Fast-Draw (Arrow),_
+SK:Fast-Draw (Pistol),_
+SK:Fast-Draw (Ammo),_
+SK:Camouflage,_
+SK:Cartography,_
+SK:Climbing,_
+SK:Fishing,_
+SK:Hiking,_
+SK:Mimicry (Animal Sounds),_
+SK:Mimicry (Bird Calls),_
+SK:Naturalist (Earth),_
+SK:Navigation (Land),_
+SK:Prospecting,_
+SK:Scuba,_
+SK:Skating,_
+SK:Skiing,_
+SK:Swimming,_
+SK:Tracking,_
+SK:Weather Sense
+
+<AcademicAdvantages>
+LA:Language,_
+LA:Language (Written),_
+LA:Language(Spoken),_
+AD:Language Talent
+
+<AcademicSkills>
+LA:Language,_
+LA:Language (Written),_
+LA:Language (Spoken),_
+SK:Accounting,_
+SK:Administration,_
+SK:Alchemy,_
+SK:Anthropology,_
+SK:Archaeology,_
+SK:Architecture,_
+SK:Astronomy,_
+SK:Astronomy (Observational),_
+SK:Bioengineering (Cloning),_
+SK:Bioengineering (Genetic Engineering),_
+SK:Bioengineering (Tissue Engineering),_
+SK:Biology (Earthlike),_
+SK:Biology (Gas Giants),_
+SK:Biology (Hostile Terrestrial),_
+SK:Biology (Ice Dwarfs),_
+SK:Biology (Ice Worlds),_
+SK:Biology (Rock Worlds),_
+SK:Cartography,_
+SK:Chemistry,_
+SK:Computer Operation,_
+SK:Computer Programming,_
+SK:Criminology,_
+SK:Diagnosis,_
+SK:Diplomacy,_
+SK:Economics,_
+SK:Electronics Operation (Medical),_
+SK:Engineer (%type%),_
+SK:Engineer ([Type]),_
+SK:Engineer (Artillery),_
+SK:Engineer (Civil),_
+SK:Engineer (Combat),_
+SK:Engineer (Electrical),_
+SK:Engineer (Electronics),_
+SK:Engineer (Materials),_
+SK:Engineer (Microtechnology),_
+SK:Engineer (Mining),_
+SK:Engineer (Nanotechnology),_
+SK:Engineer (Parachronic),_
+SK:Engineer (Psychotronics),_
+SK:Engineer (Temporal),_
+SK:Esoteric Medicine,_
+SK:Expert Skill,_
+SK:Expert Skill (Egyptology),_
+SK:Expert Skill (Epidemiology),_
+SK:Expert Skill (Hydrology),_
+SK:Expert Skill (Natural Philosophy),_
+SK:Expert Skill (Political Science),_
+SK:Expert Skill (Thanatology),_
+SK:Expert Skill (Xenology),_
+SK:Fast-Draw (Gizmo),_
+SK:Fast-Draw (Medical Gear),_
+SK:Finance,_
+SK:First Aid,_
+SK:Geography ([Regional]),_
+SK:Geography (Earthlike),_
+SK:Geography (Gas Giants),_
+SK:Geography (Hostile Terrestrial),_
+SK:Geography (Ice Dwarfs),_
+SK:Geography (Ice Worlds),_
+SK:Geography (Political),_
+SK:Geography (Rock Worlds),_
+SK:Geology (Earthlike),_
+SK:Geology (Gas Giants),_
+SK:Geology (Hostile Terrestrial),_
+SK:Geology (Ice Dwarfs),_
+SK:Geology (Ice Worlds),_
+SK:Geology (Rock Worlds),_
+SK:History,_
+SK:Hypnotism,_
+SK:Law,_
+SK:Linguistics,_
+SK:Literature,_
+SK:Market Analysis,_
+SK:Mathematics (Applied),_
+SK:Mathematics (Computer Science),_
+SK:Mathematics (Cryptology),_
+SK:Mathematics (Pure),_
+SK:Mathematics (Statistics),_
+SK:Mathematics (Surveying),_
+SK:Merchant,_
+SK:Metallurgy,_
+SK:Meteorology (Earthlike),_
+SK:Meteorology (Gas Giants),_
+SK:Meteorology (Hostile Terrestrial),_
+SK:Meteorology (Ice Dwarfs),_
+SK:Meteorology (Ice Worlds),_
+SK:Meteorology (Rock Worlds),_
+SK:Naturalist,_
+SK:Naturalist (Earth),_
+SK:Paleontology (Micropaleontology),_
+SK:Paleontology (Paleoanthropology),_
+SK:Paleontology (Paleobotany),_
+SK:Paleontology (Paleozoology),_
+SK:Pharmacy (Herbal),_
+SK:Pharmacy (Synthetic),_
+SK:Philosophy,_
+SK:Philosophy (Buddhism),_
+SK:Philosophy (Dragon Temple),_
+SK:Philosophy (Taoism),_
+SK:Physician,_
+SK:Physics,_
+SK:Physiology,_
+SK:Poisons,_
+SK:Politics,_
+SK:Propaganda,_
+SK:Psychology,_
+SK:Public Speaking,_
+SK:Public Speaking (Debate),_
+SK:Public Speaking (Oratory),_
+SK:Public Speaking (Punning),_
+SK:Public Speaking (Rhetoric),_
+SK:Public Speaking (Storytelling),_
+SK:Savoir-Faire (High Society),_
+SK:Sociology,_
+SK:Speed-Reading,_
+SK:Surgery,_
+SK:Theology,_
+SK:Theology (Hinduism),_
+SK:Typing,_
+SK:Veterinary,_
+SK:Weird Science
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Action, Character Templates - Action - Background Lenses>
+//  These lenses have been changed from Action 1 to include the option
+//  of keeping a single point to be put into any of the skills.
+//  This allows a character to take a 3- or 5- point advantage (Contact
+//  or Rank) and still be able to complete the character generation 
+//  process.
+
+
+_New Background Lens (Action), displaycost(20*), cost(0),_
+	x(_
+		#InputToTagReplace("Please enter the name of the Lens:" , name, "New Background Lens","New Background Lens"),_
+	),_
+	select1(_
+		text("Please select up to 20 points in Background Skills. You may select Background Advantages later if desired."),_
+		pointswanted(atleast 0, upto 20),_
+		itemswanted(upto 10000),_
+		list(_
+			#grouplist(GR:AllSkills)_
+		)_
+	),_
+	select2(_
+		text("Please select up to 20 points in Background MENTAL Advantages. You may select Physical and Social advantages later."),_
+		pointswanted(atleast 0, upto 20),_
+		itemswanted(upto 10000),_
+		list(_
+			#grouplist(GR:AllAdvantagesMental)_
+		)_
+	),_
+	select3(_
+		text("Please select up to 20 points in Background PHYSICAL Advantages."),_
+		pointswanted(atleast 0, upto 20),_
+		itemswanted(upto 10000),_
+		list(_
+			#grouplist(GR:AllAdvantagesPhysical)_
+		)_
+	),_
+	select4(_
+		text("Please select up to 20 points in Background SOCIAL Advantages."),_
+		pointswanted(atleast 0, upto 20),_
+		itemswanted(upto 10000),_
+		list(_
+			#grouplist(GR:AllAdvantagesSocial)_
+		)_
+	)
+
+Criminal Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(Active or retired, your background is on the wrong side of the law.),_
+	page(A1:4),_
+	noresync(yes),_
+	adds(_
+		SK:Streetwise =2pts_
+	),_
+	select1(_
+		text("Select another 18 points in the following skills."),_
+		itemswanted(atleast 1),_
+		pointswanted(atleast 17, upto 18),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "CriminalSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(CriminalSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(CriminalAdvantages)_
+		)_
+	)
+
+Intelligence Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're an active or retired spy.),_
+	page(A1:4),_
+	noresync(yes),_
+	select1(_
+		text("Choose 20 points from the following list"),_
+		itemswanted(atleast 1),_
+		pointswanted(atleast 19, upto 20),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "IntelligenceSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(IntelligenceSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(IntelligenceAdvantages)_
+		)_
+	)
+
+Law Enforcement Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're a cop, retired cop, or PI.),_
+	page(A1:5),_
+	noresync(yes),_
+	adds(_
+		SK:Law (Police) =4pts_
+	),_
+	select1(_
+		text("Select 16 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(atleast 15, upto 16),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "LawEnforcementSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(LawEnforcementSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(LawEnforcementAdvantages)_
+		)_
+	)
+
+Military Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're a guerrilla, militiaman, reservist, regular soldier, special operator, or mercenary.),_
+	page(A1:5),_
+	noresync(yes),_
+	adds(_
+		SK:Soldier = 2pts_
+	),_
+	select1(_
+		text("Select 18 points from the following:"),_
+		itemswanted(atleast 1),_
+		pointswanted(atleast 17, upto 18),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "MilitarySkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(MilitarySkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(MilitaryAdvantages)_
+		)_
+	)
+
+Security Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're a boydguard, secret policeman, or counterspy.),_
+	page(A1:5),_
+	noresync(yes),_
+	select1(_
+		text("Select 20 points from the following list:"),_
+		itemswanted(atleast 1),_
+		pointswanted(atleast 19, upto 20),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "SecuritySkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(SecuritySkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(SecurityAdvantages)_
+		)_
+	)
+
+Rich Adventurer Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're Rich and looking for adventure.),_
+	page(A1:5),_
+	noresync(yes),_
+	select1(_
+		text("Choose 20 points from the following list"),_
+		itemswanted(atleast 1),_
+		pointswanted(20),_
+		multitype(yes),_
+		list(_
+			#list(RichAdventurerAdvantages)_
+		)_
+	)	
+
+Martial Artist Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're a trained Martial Artist.),_
+	page(A1:5),_
+	noresync(yes),_
+	needs(_
+			PE:Style Familiarity (%MAStyleList%)_
+	),_
+	x(_
+		#Message("You *MUST* have the Martial Arts data file loaded into GCA for this template to work properly!"),_
+		#ChoiceList(_
+					name(MAStyle),_
+					title(Martial Arts: Styles),_
+					text(Select your Martial Arts Style:),_
+					picksallowed(1),_
+					method(bynumber),_
+					list(_
+						#list(Martial Arts Styles)_
+						),_
+					aliaslist(_
+						#list(Style Primary Skill Selection Message)_
+					)_
+			)_
+	),_
+	select1(_
+			text(_
+					Primary Style Skills: Select 19 points from the following. _
+					You *MUST* add each of the following skills from the %MAStyleList% Style:~P_
+					#buildlist(list(#list(Style Primary Skills %MAStyleList%)), template(%ListItem% )) _
+					%MAStyleAliasList% #list(Style Primary Skill Selection %MAStyleList%)_
+				),_
+			tagwith(MartialArtist(yes, StyleSkills)),_
+			pointswanted(atleast 1, upto 19),_
+			itemswanted(atleast 1),_
+			multitype(yes),_
+			list(_
+				#List(Style Increase Primary Skills %MAStyleList%),_
+				#List(Style Realistic Techniques %MAStyleList%),_
+				#buildlist(list(#list(Style Primary Skills %MAStyleList%)), template(SK:%ListItem%)),_
+				#buildlist(list(#list(Style Primary Skill Selection %MAStyleList%)), template(SK:%ListItem%)),_
+				#list(Style Primary Traits %MAStyleList%),_
+				#List(Style Perks %MAStyleList%)_
+			)_
+	)
+	
+Journalist Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're a trained Journalist looking for your next scoop.),_
+	page(A1:4),_
+	noresync(yes),_
+	select1(_
+		text("Choose 20 points from the following list"),_
+		itemswanted(atleast 1),_
+		pointswanted(atleast 19, upto 20),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "JournalistSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(JournalistSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(JournalistAdvantages)_
+		)_
+	)
+
+Athlete Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're a trained sportsman, perhaps a college star or former professional.),_
+	page(A1:5),_
+	noresync(yes),_
+	select1(_
+		text("Choose 20 points from the following list"),_
+		itemswanted(atleast 1),_
+		pointswanted(20),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "AthleteSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(AthleteSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(AthleteAdvantages)_
+		)_
+	)	
+	
+Survivalist Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You've spent your life outdoors and are able to live off the land.),_
+	page(A1:5),_
+	noresync(yes),_
+	select1(_
+		text("Choose 20 points from the following list"),_
+		itemswanted(atleast 1),_
+		pointswanted(20),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "SurvivalistSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#buildlist(list(#list(SurvivalistSkills)), template(%listitem% #codes(upto 8pts, downto 2pts))),_
+			#list(SurvivalistAdvantages)_
+		)_
+	)	
+
+Academic Background - Cinematic (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're the epitome of the brainy professor.),_
+	page(A1:5),_
+	noresync(yes),_
+	sets(_
+			ST:IQ = ST:IQ + 1_
+		)
+
+Academic Background (Action), displaycost(20*), cost(0),_
+	cat(Character Templates - Action - Background Lenses),_
+	description(You're Grad Student or Professor),_
+	page(A1:5),_
+	noresync(yes),_
+	adds(_
+			SK:Research=1pts,_
+			SK:Teaching=1pts,_
+			SK:Writing=1pts_
+		),
+	select1(_
+		text("Select another 17 points in the following skills."),_
+		itemswanted(atleast 1),_
+		pointswanted(17),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where list includes "AcademicSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+			#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 8pts, downto 1pts))),_
+			#buildlist(list(#list(AcademicSkills)), template(%listitem% #codes(upto 8pts, downto 1pts))),_
+			#list(AcademicAdvantages)_
+		)_
+	)
+	
+	
+********************************************************************************************************\[STOP]
+<Character Templates, Character Templates - Action, Character Templates - Action - Primary Templates>
+*******************************************************************************************************\[START]
+Assassin (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(Hit man, license to kill, or a sniper with a uniform and serial number -- you kill people for a living.),_
+	page(A1:7),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:ST}=11,_
+		{ST:DX}=16,_
+		{ST:IQ}=12,_
+		{ST:HT}=11,_
+		{ST:Basic Speed} =7_
+	),_
+	adds(_
+		AD:Craftiness =4,_
+		AD:Luck =1,_
+		DI:Callous,_
+		SK:Camouflage =1pts,_
+		SK:Guns (Rifle) =4pts,_
+		SK:Holdout =2pts,_
+		SK:Shadowing =2pts,_
+		SK:Stealth =2pts,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 25 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(25),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 2, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 2, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Extra Basic Speed #codes(upto 1, downto 1),_
+			AD:Absolute Timing,_
+			AD:Combat Reflexes,_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Gunslinger,_
+			AD:Night Vision #codes(upto 9, downto 1),_
+			AD:Peripheral Vision,_
+			AD:Serendipity,_
+			AD:Signature Gear #codes(upto 25, downto 1),_
+			AD:Wild Talent,_
+			AD:Zeroed,_
+			PE:Honest Face,_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -25 points from the following list of Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			%LensAlt2List%,_
+			#list(GMDisadvantages),_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Code of Honor (Stays bought),_
+			DI:Greed,_
+			DI:Secret (Professional Killer),_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("Who do you want to assassinate?", nameext, , "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select4(_
+		text("Select another -20 points from the following list:"),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Bloodlust,_
+			DI:Code of Honor (Stays bought),_
+			DI:Greed,_
+			DI:Insomniac #codes(upto 2, downto 1),_
+			DI:Loner,_
+			DI:Nightmares,_
+			DI:No Sense of Humor,_
+			DI:Odious Personal Habit #codes(upto 3, downto 1),_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Post-Combat Shakes,_
+			DI:Selfish,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Trademark,_
+			#newitem(_
+				DI:Secret (Professional Killer), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")_
+			),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("Who do you want to assassinate?", nameext, , "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select5(_
+		text("Select five weapons skills from the following:"),_
+		itemswanted(5),_
+		pointswanted(5),_
+		list(_
+			#buildlist(list(#list(RangedWeaponSkills)), template(SK:%listitem% #codes(upto 1pts))),_
+			SK:Guns (Pistol) #codes(upto 1pts),_
+			SK:Guns (Shotgun) #codes(upto 1pts),_
+			SK:Guns (Submachine Gun) #codes(upto 1pts),_
+			SK:Crossbow #codes(upto 1pts),_
+			SK:Fast-Draw (Knife) #codes(upto 1pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 1pts),_
+			SK:Garrote #codes(upto 1pts),_
+			SK:Knife #codes(upto 1pts),_
+			SK:Liquid Projector (Squirt Gun) #codes(upto 1pts)_
+		)_
+	),_
+	select6(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		tagwith(Assassin(UnarmedSkills)),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		tagwith(Assassin(UnarmedSkills)),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select five secondary skills, you may choose to raise a skill by one level at the expense of one selection:"),_
+		itemswanted(upto 5),_
+		pointswanted(10),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where Assassin includes "UnarmedSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(downto %points+2pts) )),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Armoury (Small Arms) #codes(upto 4pts, downto 2pts),_
+			SK:Electronic Operation (Security) #codes(upto 4pts, downto 2pts),_
+			SK:Smuggling #codes(upto 4pts, downto 2pts),_
+			SK:Acting #codes(upto 4pts, downto 2pts),_
+			SK:Disguise #codes(upto 4pts, downto 2pts),_
+			SK:Poisons #codes(upto 4pts, downto 2pts),_
+			SK:Observation #codes(upto 4pts, downto 2pts),_
+			SK:Tracking #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select four of these secondary skills, you may choose to raise them by one level at the expense of one selection:"),_
+		itemswanted(upto 4),_
+		pointswanted(4),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			SK:Forced Entry #codes(upto 2pts),_
+			SK:Jumping #codes(upto 2pts),_
+			SK:Climbing #codes(upto 1pts),_
+			SK:Driving (Automobile) #codes(upto 2pts),_
+			SK:Driving (Motorcycle) #codes(upto 2pts),_
+			SK:Acrobatics #codes(upto 2pts)_
+		)_
+	),_
+	select10(#list(QuirkSelection))
+
+Cleaner (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(You make evidence disappear. Or at least render it useless for subsequent investigators.),_
+	page(A1:7),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:ST}=11,_
+		{ST:DX}=14,_
+		{ST:IQ}=14,_
+		{ST:HT}=11,_
+		{ST:Basic Speed}=6_
+	),_
+	adds(_
+		AD:Luck,_
+		AD:Unfazeable,_
+		DI:Callous,_
+		SK:Stealth =2pts,_
+		SK:Guns (Pistol) =2pts,_
+		SK:Camouflage =2pts,_
+		SK:Housekeeping =2pts,_
+		SK:Holdout =4pts,_
+		SK:Smuggling =4pts,_
+		SK:Search =4pts,_
+		SK:Tracking =4pts,_
+		SK:Computer Operation=1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Will #codes(upto 6, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Acute Hearing #codes(upto 5, downto 1),_
+			AD:Acute Vision #codes(upto 5, downto 1),_
+			AD:Acute Taste and Smell #codes(upto 5, downto 1),_
+			AD:Acute Touch #codes(upto 5, downto 1),_
+			AD:Craftiness #codes(upto 4, downto 1),_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Smooth Operator #codes(upto 2, downto 1),_
+			AD:Wild Talent,_
+			AD:Zeroed,_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			PE:Honest Face,_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2),_
+			#newitem(_
+				AD:Contact Group, 5/10/15, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18),_
+					x(#InputToTag("Please describe the nature of the Contact Group:", nameext, "Junkyard, port authority, snakeheads, etc.", "Contact Group")),_
+					upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					)_
+			)_
+		)_
+	),_
+	select3(_
+		text("Select -20 points from the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Code of Honor (Stays bought),_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			#newitem(_
+				DI:Secret (Accessory to many crimes), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")_
+			),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select4(_
+		text("Select another -20 points from the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Code of Honor (Stays bought),_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			DI:Insomniac #codes(upto 2, downto 1),_
+			DI:Loner,_
+			DI:Nightmares,_
+			DI:No Sense of Humor,_
+			DI:Odious Personal Habit #codes(upto 3, downto 1),_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Pyromania,_
+			DI:Selfish,_
+			DI:Stubbornness,_
+			#newitem(_
+				DI:Compulsive Behavior (Cleaning), -5, displaycost(-5*), mods(Self-Control), page(B128), cat(Mundane, Mental),_
+				initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Accessory to many crimes), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")_
+			),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select5(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 2pts, downto 2pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select nine of the following skills at 1 point each. Or take one less selection for each skill taken with 2 points."),_
+		itemswanted(atleast 5),_
+		pointswanted(9),_
+		list(_
+			#buildlist(list(#list(RangedWeaponSkills)), template(SK:%listitem% #codes(upto 2pts))),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			SK:Fast-Draw (Knife) #codes(upto 2pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 2pts),_
+			SK:Guns (Rifle) #codes(upto 2pts),_
+			SK:Guns (Submachine Gun) #codes(upto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts),_
+			SK:Guns (Gyroc) #codes(upto 2pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto 2pts),_
+			SK:Guns (Grenade Launcher) #codes(upto 2pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 2pts),_
+			SK:Knife #codes(upto 2pts),_
+			SK:Acting #codes(upto 2pts),_
+			SK:Animal Handling (Dogs) #codes(upto 2pts),_
+			SK:Animal Handling (Pigs) #codes(upto 2pts),_
+			SK:Disguise (Human) #codes(upto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 2pts),_
+			SK:Explosives (Demolition) #codes(upto 2pts),_
+			SK:Explosives (Fireworks) #codes(upto 2pts),_
+			SK:Fast-Talk #codes(upto 2pts),_
+			SK:Freight Handling #codes(upto 2pts),_
+			SK:Hazardous Materials (Biological) #codes(upto 2pts),_
+			SK:Hazardous Materials (Chemical) #codes(upto 2pts),_
+			SK:Chemistry #codes(upto 2pts),_
+			SK:Forensics #codes(upto 2pts),_
+			SK:Forgery #codes(upto 2pts)_
+		)_
+	),_
+	select9(#list(QuirkSelection))
+
+Demolition Man (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(Ordnance disposal techniques and Mad Bombers alike use this template.),_
+	page(A1:8),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			),_
+		#choicelist(_
+			name(ExplosivesSpecialty),_
+			title(Explosives Specialty),_
+			text("Select either of the following options for your primary Explosives skills selection."),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(_
+				"Demolitions",_
+				"Ordnance Disposal"_
+			),_
+			aliaslist(_
+				{SK:Explosives (Demolition) =24pts, SK:Explosives (Underwater Demolition) ==0pts, SK:Explosives (Explosive Ordnance Disposal) ==0pts, SK:Explosives (Fireworks) ==0pts, SK:Explosives (Nuclear Ordnance Disposal) ==0pts, SK:Engineer (Combat)==0pts},_
+				{SK:Explosives (Explosive Ordnance Disposal) =24 pts, SK:Explosives (Nuclear Ordnance Disposal) ==0pts, SK:Explosives (Demolition) ==0pts, SK:Explosives (Fireworks) ==0pts, SK:Explosives (Underwater Demolition) ==0pts}_
+			)_
+		)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:ST}=11,_
+		{ST:DX}=13,_
+		{ST:IQ}=14,_
+		{ST:HT}=12,_
+		{ST:Basic Speed}=6.00_
+	),_
+	adds(_
+		AD:Enhanced Dodge (Dive for Cover) =3,_
+		AD:Luck,_
+		%ExplosivesSpecialtyaliaslist%,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 4),_
+			AD:Extra Move #codes(upto 3, downto 1),_
+			AD:Absolute Timing,_
+			AD:Artificer #codes(upto 3, downto 1),_
+			AD:Combat Reflexes,_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Hard to Kill #codes(upto 5, downto 1),_
+			AD:High Manual Dexterity #codes(upto 4, downto 1),_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Unfazeable,_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			PE:Shtick (Can strike a flame anywhere),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			#newitem(_
+				DI:Secret (Bomb-making nutcase), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")_
+			),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select4(_
+		text("Select another -10 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-10),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Curious,_
+			DI:Flashbacks #codes(upto 2, downto 1),_
+			DI:Hard of Hearing,_
+			DI:Honesty,_
+			DI:Missing Digit #codes(upto 2, downto 1),_
+			DI:Post-Combat Shakes,_
+			DI:Pyromania,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Wounded,_
+			#newitem(_
+				DI:Trademark (Bomb Design/Deployment), -5/-10, levelnames(Simple, Complex), page(B159), cat(Mundane, Mental)_
+			),_
+			#newitem(_
+				DI:Phobia (Loud Noises), -10, displaycost(-10*), mods(Self-Control), page(B148), cat(Mundane, Mental),_
+				initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)_
+			)_
+		),_
+			#newitem(_
+				DI:Delusion (Explosives are safe around me!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)_
+			),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		)_
+		)_
+	),_
+	select5(_
+		text("Select another -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Callous,_
+			DI:Curious,_
+			DI:Flashbacks #codes(upto 2, downto 1),_
+			DI:Greed,_
+			DI:Hard of Hearing,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Missing Digit #codes(upto 2, downto 1),_
+			DI:Odious Personal Habit #codes(upto 3, downto 1),_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Post-Combat Shakes,_
+			DI:Pyromania,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Stubbornness,_
+			DI:Trickster,_
+			DI:Wounded,_
+			#newitem(_
+				DI:Trademark (Bomb Design/Deployment), -5/-10, levelnames(Simple, Complex), page(B159), cat(Mundane, Mental)_
+			),_
+			#newitem(_
+				DI:Phobia (Loud Noises), -10, displaycost(-10*), mods(Self-Control), page(B148), cat(Mundane, Mental),_
+				initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121)_
+			)_
+		),_
+			#newitem(_
+				DI:Delusion (Explosives are safe around me!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)_
+			),_
+			#newitem(_
+				DI:Secret (Bomb-making nutcase), -20, page(B152), cat(Mundane, Social), levelnames("Imprisonment or Exile")_
+			),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select6(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select two firearms skills."),_
+		itemswanted(2),_
+		pointswanted(4),_
+		list(_
+			#buildlist(list(#list(RangedWeaponSkills)), template(SK:%listitem% #codes(upto 2pts, downto 2pts))),_
+			SK:Guns (Grenade Launcher) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select four secondary skills from this list:"),_
+		itemswanted(atleast 3),_
+		pointswanted(8),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Architecture #codes(upto 4pts, downto 2pts),_
+			SK:Armoury (Heavy Weapons) #codes(upto 4pts, downto 2pts),_
+			SK:Artillery (Bombs) #codes(upto 4pts, downto 2pts),_
+			SK:Artillery (Cannon) #codes(upto 4pts, downto 2pts),_
+			SK:Artillery (Guided Missile) #codes(upto 4pts, downto 2pts),_
+			SK:Artillery (Torpedoes) #codes(upto 4pts, downto 2pts),_
+			SK:Lockpicking #codes(upto 4pts, downto 2pts),_
+			SK:Machinist #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Automobile) #codes(upto 4pts, downto 2pts),_
+			SK:Scuba #codes(upto 4pts, downto 2pts),_
+			SK:Traps #codes(upto 4pts, downto 2pts),_
+			SK:Expert Skill (Military Science) #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select10(_
+		text("Select from these secondary skills. You may take four at 2-points each, or three with one of them at 4-points. You may spend one of these selections to improve a combat skill by 2pts."),_
+		itemswanted(atleast 3),_
+		pointswanted(8),_
+		multitype(yes),_
+		list(_
+			#BuildCharItemList(Skills where name includes "Beam Weapons", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+2pts) )),_
+			#BuildCharItemList(Skills where name includes "Artillery", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+2pts) )),_
+			#BuildCharItemList(Skills where name includes "Guns", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(upto %points+4pts, downto %points+2pts) )),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#newitem(SK:_Increase Boxing, 2, taboo(AD:Improve Unarmed Skill), existing(SK:Boxing)) #codes(upto %points+4pts, downto %points+2pts),_
+			#newitem(SK:_Increase Brawling, 2, taboo(AD:Improve Unarmed Skill), existing(SK:Brawling)) #codes(upto %points+4pts, downto %points+2pts),_
+			#newitem(SK:_Increase Karate, 2, taboo(AD:Improve Unarmed Skill), existing(SK:Karate)) #codes(upto %points+4pts, downto %points+2pts),_
+			#newitem(SK:_Increase Judo, 2, taboo(AD:Improve Unarmed Skill), existing(SK:Judo)) #codes(upto %points+4pts, downto %points+2pts),_
+			#newitem(SK:_Increase Wrestling, 2, taboo(AD:Improve Unarmed Skill), existing(SK:Wrestling)) #codes(upto %points+4pts, downto %points+2pts),_
+			SK:Stealth #codes(upto 4pts, downto 2pts),_
+			SK:Throwing #codes(upto 4pts, downto 2pts),_
+			SK:Smuggling #codes(upto 4pts, downto 2pts),_
+			SK:Swimming #codes(upto 4pts, downto 2pts),_
+			SK:Running #codes(upto 4pts, downto 2pts),_
+			SK:Scrounging #codes(upto 4pts, downto 2pts),_
+			SK:Search #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select11(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 1pts)_
+		)_
+	),_
+	select12(#list(QuirkSelection))
+
+Face Man (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(You business card doesn't saw social engineer, but it could.),_
+	page(A1:9),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=13,_
+		{ST:IQ}=15,_
+		{ST:HT}=11_
+	),_
+	adds(_
+		AD:Appearance=1,_
+		AD:Luck,_
+		AD:Smooth Operator =2,_
+		PE:Honest Face,_
+		SK:Acting =1pts,_
+		SK:Fast-Talk =1pts,_
+		SK:Leadership =1pts,_
+		SK:Public Speaking =1pts,_
+		SK:Merchant =1pts,_
+		SK:Diplomacy =1pts,_
+		SK:Carousing =1pts,_
+		SK:Sex Appeal =1 respond "Human",_
+		SK:Intimidation =1pts,_
+		SK:Detect Lies =1pts,_
+		SK:Guns (Pistol) =2pts,_
+		SK:Holdout =1pts,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Business Acumen #codes(upto 3, downto 1),_
+			AD:Charisma #codes(upto 6, downto 1),_
+			AD:Cultural Adaptability,_
+			AD:Daredevil,_
+			AD:Fashion Sense,_
+			AD:Language Talent,_
+			LA:Language #codes(upto 6, downto 2),_
+			AD:Rapier Wit,_
+			AD:Sensitive,_
+			AD:Empathy,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Voice,_
+			AD:Wild Talent,_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			PE:Alcohol Tolerance,_
+			PE:No Hangover,_
+			#newitem(_
+				AD:Additional Appearance, 8/12, upto(2), existing(AD:Appearance)_
+			),_
+			#newitem(_
+				AD:Additional Smooth Operator, 15/30, upto(2), existing(AD:Smooth Operator)_
+			),_
+			#newitem(_
+				AD:Contact Group, 5/10/15, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18),_
+					x(#InputToTag("Please describe the nature of the Contact Group:", nameext, "Corporation, local black market, quartermaster, etc.", "Contact Group")),_
+					upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					)_
+			),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Trickster,_
+			#newitem(_
+				DI:Secret (Past Scams), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select another -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Chummy,_
+			DI:Compulsive Carousing,_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Lying,_
+			DI:Greed,_
+			DI:Gregarious,_
+			DI:Lecherousness,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Trickster,_
+			#newitem(_
+				DI:Secret (Past Scams), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select5(_
+		text("Select another -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Chummy,_
+			DI:Compulsive Carousing,_
+			DI:Compulsive Gambling,_
+			DI:Compulsive Lying,_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Gregarious,_
+			DI:Impulsiveness,_
+			DI:Jealousy,_
+			DI:Kleptomania,_
+			DI:Lecherousness,_
+			DI:Overconfidence,_
+			DI:Selfish,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Trademark #codes(upto 3, downto 1),_
+			DI:Trickster,_
+			#newitem(_
+				DI:Secret (Past Scams), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select6(_
+		text("Select one Savoir-Faire specialty."),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Savoir-Faire (High Society) #codes(upto 1pts),_
+			SK:Savoir-Faire (Mafia) #codes(upto 1pts),_
+			SK:Savoir-Faire (Military) #codes(upto 1pts),_
+			SK:Savoir-Faire (Police) #codes(upto 1pts)_
+		)_
+	),_
+	select7(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select ten secondary skills, or trade one selection for an additional level in any skill in this template."),_
+		itemswanted(atleast 9),_
+		pointswanted(10),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where page isnot "xxxx", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(downto %points+2pts) )),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			SK:Fast-Draw (Pistol) #codes(upto 2pts),_
+			SK:Dancing #codes(upto 2pts),_
+			SK:Filch #codes(upto 2pts),_
+			SK:Stealth #codes(upto 2pts),_
+			SK:Pickpocket #codes(upto 2pts),_
+			SK:Sleight of Hand #codes(upto 2pts),_
+			SK:Savoir-Faire #codes(upto 2pts),_
+			SK:Savoir-Faire (High Society) #codes(upto 2pts),_
+			SK:Savoir-Faire (Mafia) #codes(upto 2pts),_
+			SK:Savoir-Faire (Military) #codes(upto 2pts),_
+			SK:Savoir-Faire (Police) #codes(upto 2pts),_
+			SK:Savoir-Faire (Servant) #codes(upto 2pts),_
+			SK:Savoir-Faire (Dojo) #codes(upto 2pts),_
+			SK:Administration #codes(upto 2pts),_
+			SK:Connoisseur #codes(upto 2pts),_
+			SK:Connoisseur (Dance) #codes(upto 2pts),_
+			SK:Connoisseur (Literature) #codes(upto 2pts),_
+			SK:Connoisseur (Music) #codes(upto 2pts),_
+			SK:Connoisseur (Wine) #codes(upto 2pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 2pts),_
+			SK:Disguise (Human) #codes(upto 2pts),_
+			SK:Electronics Operation (Media) #codes(upto 2pts),_
+			SK:Gambling #codes(upto 2pts),_
+			SK:Interrogation #codes(upto 2pts),_
+			SK:Propaganda #codes(upto 2pts),_
+			SK:Smuggling #codes(upto 2pts),_
+			SK:Counterfeiting #codes(upto 2pts),_
+			SK:Forgery #codes(upto 2pts),_
+			SK:Psychology (Human) #codes(upto 2pts),_
+			SK:Body Language  #codes(upto 2pts)_
+		)_
+	),_
+	select10(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts),_
+			SK:Driving (Motorcycle) #codes(upto 1pts)_
+		)_
+	),_
+	select11(#list(QuirkSelection))
+
+Hacker (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(),_
+	page(A1:7),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=12,_
+		{ST:IQ}=15,_
+		{ST:HT}=11,_
+		{ST:Perception}=13,_
+		{ST:Basic Speed}=6_
+	),_
+	adds(_
+		AD:Gadgeteer =2 with _
+			"H4xx0r, *0.5, group(Gadgeteer Limitations), page(A1:18)",_
+		AD:Born to Be Wired =4,_
+		AD:Luck =1,_
+		SK:Computer Operation =1pts,_
+		SK:Electronics Repair (Computers) =1pts,_
+		SK:Computer Programming =1pts,_
+		SK:Cryptography=1pts,_
+		SK:Expert Skill (Computer Security) =1pts,_
+		SK:Computer Hacking =4pts,_
+		SK:Guns (Pistol) =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Absolute Timing,_
+			AD:Artificer #codes(upto 3, downto 1),_
+			AD:Business Acumen #codes(upto 3, downto 1),_
+			AD:Daredevil,_
+			AD:Eidetic Memory,_
+			AD:Photographic Memory,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Intuition,_
+			AD:Mathematical Ability #codes(upto 3, downto 1),_
+			AD:Pitiable,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Wild Talent,_
+			AD:Zeroed,_
+			#newitem(_
+				AD:Contact Group, 5/10/15, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18),_
+					x(#InputToTag("Please describe the nature of the Contact Group:", nameext, "Online associates.", "Contact Group")),_
+					upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					)_
+			),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Social Stigma (Minor),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Hack a specific target", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Hacks), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select -10 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-10),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Curious,_
+			DI:Clueless,_
+			DI:Gullibility,_
+			DI:Honesty,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Shyness #codes(upto 2, downto 1),_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Social Stigma (Minor),_
+			#newitem(_
+				DI:Trademark, -5/-10, levelnames(Simple, Complex), page(B159), upto(2), cat(Mundane, Mental),_
+				x(#InputToTag("Specify your Trademark:", nameext, "Particular hack/calling card", "Trademark"))_
+			),_
+			#newitem(_
+				DI:Minor Delusion (The real world works just like the internet!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)_
+			),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Hack a specific target", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Hacks), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select5(_
+		text("Select -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		multitype(yes),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Bad Temper,_
+			DI:Cowardice,_
+			DI:Curious,_
+			DI:Clueless,_
+			DI:Easy to Read,_
+			DI:Gullibility,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Jealousy,_
+			DI:Klutz #codes(upto 2, downto 1),_
+			DI:Laziness,_
+			DI:Loner,_
+			DI:Oblivious,_
+			DI:Overconfidence,_
+			DI:Post-Combat Shakes,_
+			DI:Shyness #codes(upto 2, downto 1),_
+			DI:Slow Riser,_
+			DI:Squeamish,_
+			DI:Stubbornness,_
+			DI:Trickster,_
+			DI:Unfit,_
+			DI:Very Unfit,_
+			DI:Overweight,_
+			DI:Fat,_
+			DI:Skinny,_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Social Stigma (Minor),_
+			#newitem(_
+				DI:Trademark, -5/-10, levelnames(Simple, Complex), page(B159), upto(2), cat(Mundane, Mental),_
+				x(#InputToTag("Specify your Trademark:", nameext, "Particular hack/calling card", "Trademark"))_
+			),_
+			#newitem(_
+				DI:Minor Delusion (The real world works just like the internet!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)_
+			),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Hack a specific target", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Hacks), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select6(_
+		text("Select six secondary skills:"),_
+		itemswanted(6),_
+		pointswanted(24),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			SK:Stealth #codes(upto 4pts, downto 4pts),_
+			SK:Cartography #codes(upto 4pts, downto 4pts),_
+			SK:Electronics Operation (Communications) #codes(upto 4pts, downto 4pts),_
+			SK:Electronics Operation (Media) #codes(upto 4pts, downto 4pts),_
+			SK:Electronics Operation (Security) #codes(upto 4pts, downto 4pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 4pts, downto 4pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 4pts, downto 4pts),_
+			SK:Research #codes(upto 4pts, downto 4pts),_
+			SK:Speed-Reading #codes(upto 4pts, downto 4pts),_
+			SK:Teaching #codes(upto 4pts, downto 4pts),_
+			SK:Writing #codes(upto 4pts, downto 4pts),_
+			SK:Accounting #codes(upto 4pts, downto 4pts),_
+			SK:Forgery #codes(upto 4pts, downto 4pts),_
+			SK:Intelligence Analysis #codes(upto 4pts, downto 4pts),_
+			SK:Scrounging #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select7(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Bicycling #codes(upto 1pts),_
+			SK:Driving (Automobile) #codes(upto 1pts),_
+			SK:Driving (Motorcycle) #codes(upto 1pts)_
+		)_
+	),_
+	select8(#list(QuirkSelection))
+
+Infiltrator (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(You are an expert at getting in and out of locations without destroying anything in the process.),_
+	page(A1:11),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=15,_
+		{ST:IQ}=13,_
+		{ST:HT}=11,_
+		{ST:Basic Speed}=7.00_
+	),_
+	adds(_
+		AD:Flexibility,_
+		AD:Luck,_
+		AD:Perfect Balance,_
+		DI:Loner,_
+		SK:Forced Entry =1pts,_
+		SK:Jumping =1pts,_
+		SK:Stealth =2pts,_
+		SK:Climbing =1pts,_
+		SK:Escape =1pts,_
+		SK:Acrobatics =2pts,_
+		SK:Electronics Operation (Security) =4pts,_
+		SK:Lockpicking =4pts,_
+		SK:Traps =4pts,_
+		SK:Guns (Pistol) =1pts,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 25 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(25),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 2, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 2, downto 1),_
+			AD:Extra Perception #codes(upto 5, downto 1),_
+			AD:Extra Basic Move #codes(upto 3, downto 1),_
+			AD:Absolute Direction,_
+			AD:3D Spatial Sense,_
+			AD:Absolute Timing,_
+			AD:Acute Hearing #codes(upto 5, downto 1),_
+			AD:Acute Vision #codes(upto 5, downto 1),_
+			AD:Acute Taste and Smell #codes(upto 5, downto 1),_
+			AD:Acute Touch #codes(upto 5, downto 1),_
+			AD:Breath-Holding #codes(upto 5, downto 1),_
+			AD:Catfall,_
+			AD:Combat Reflexes,_
+			AD:Craftiness #codes(upto 4, downto 1),_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge,_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:High Manual Dexterity #codes(upto 4, downto 1),_
+			AD:Night Vision #codes(upto 9, downto 1),_
+			AD:Peripheral Vision,_
+			AD:Serendipity #codes(upto 1, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			AD:Zeroed,_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2),_
+			#newitem(_
+				AD:Improve to Double-Jointed, 10, needs(AD:Double-Jointed), taboo(AD:Flexibility)_
+			)_
+		)_
+	),_
+	select3(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Kleptomania,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Trickster,_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Steal a particular item", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Crimes), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select -25 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Cowardice,_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Impulsiveness,_
+			DI:Jealousy,_
+			DI:Kleptomania,_
+			DI:Overconfidence,_
+			DI:Selfish,_
+			DI:Sense of Duty (Team),_
+			DI:Shyness #codes(upto 2, downto 1),_
+			DI:Skinny,_
+			DI:Stubbornness,_
+			DI:Social Stigma (Criminal Record),_
+			DI:Trademark #codes(upto 3, downto 1),_
+			DI:Trickster,_
+			#newitem(_
+				DI:Worsen Loner (9), -2, taboo(DI:Worsen Loner)_
+			),_
+			#newitem(_
+				DI:Worsen Loner (6), -5, taboo(DI:Worsen Loner)_
+			),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Steal a particular item", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Crimes), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select5(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select four of these skills. You may sacrifice one selection and put those points into one of the other three selections, an unarmed combat skill, Acrobatics, or Stealth."),_
+		itemswanted(atleast 3),_
+		pointswanted(8),_
+		multitype(yes),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#newitem(SK:_Increase Acrobatics Skill, 2, existing(SK:Acrobatics)) #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:_Increase Stealth Skill, 2, existing(SK:Stealth)) #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:_Increase Boxing Skill, 2, existing(SK:Boxing)) #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:_Increase Brawling Skill, 2, existing(SK:Brawling)) #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:_Increase Karate Skill, 2, existing(SK:Karate)) #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:_Increase Judo Skill, 2, existing(SK:Judo)) #codes(upto 4pts, downto 4pts),_
+			#newitem(SK:_Increase WrestlingSkill, 2, existing(SK:Wrestling)) #codes(upto 4pts, downto 4pts),_
+			SK:Parachuting #codes(upto 4pts, downto 2pts),_
+			SK:Driving (Automobile) #codes(upto 4pts, downto 2pts),_
+			SK:Driving (Motorcycle) #codes(upto 4pts, downto 2pts),_
+			SK:Piloting (Glider) #codes(upto 4pts, downto 2pts),_
+			SK:Submarine (Free-Flooding Sub) #codes(upto 4pts, downto 2pts),_
+			SK:Scuba #codes(upto 4pts, downto 2pts),_
+			SK:Swimming #codes(upto 4pts, downto 2pts),_
+			SK:Running #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select six of the following secondary skills. You may sacrifice one selection to improve any of these skills, Climbing, Forced Entry, or Jumping by one level."),_
+		itemswanted(atleast 5),_
+		pointswanted(6),_
+		multitype(yes),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#newitem(SK:_Increase Climbing Skill, 2, existing(SK:Climbing)) #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:_Increase Forced Entry Skill, 2, existing(SK:Forced Entry)) #codes(upto 2pts, downto 2pts),_
+			#newitem(SK:_Increase Jumping Skill, 2, existing(SK:Jumping)) #codes(upto 2pts, downto 2pts),_
+			SK:Knot-Tying #codes(upto 2pts),_
+			SK:Filch #codes(upto 2pts),_
+			SK:Throwing #codes(upto 2pts),_
+			SK:Camouflage #codes(upto 2pts),_
+			SK:Gesture #codes(upto 2pts),_
+			SK:Animal Handling (Dogs) #codes(upto 2pts),_
+			SK:Architecture #codes(upto 2pts),_
+			SK:Cartography #codes(upto 2pts),_
+			SK:Connoisseur #codes(upto 2pts),_
+			SK:Connoisseur (Dance) #codes(upto 2pts),_
+			SK:Connoisseur (Literature) #codes(upto 2pts),_
+			SK:Connoisseur (Music) #codes(upto 2pts),_
+			SK:Connoisseur (Wine) #codes(upto 2pts),_
+			SK:Connoisseur (Visual Arts) #codes(upto 2pts),_
+			SK:Electronics Repair (Security) #codes(upto 2pts),_
+			SK:Holdout #codes(upto 2pts),_
+			SK:Observation #codes(upto 2pts),_
+			SK:Search #codes(upto 2pts),_
+			#newitem(_
+				AD:Increase Climbing Skill, 1, taboo(AD:Improve Climbing Skill), existing(SK:Climbing)_
+			),_
+			#newitem(_
+				AD:Increase Forced Entry Skill, 1, taboo(AD:Improve Forced Entry Skill), existing(SK:Forced Entry)_
+			),_
+			#newitem(_
+				AD:Increase Jumping Skill, 1, taboo(AD:Improve Jumping Skill), existing(SK:Jumping)_
+			)_
+		)_
+	),_
+	select9(#list(QuirkSelection))
+
+Investigator (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(You get the facts, just the facts.),_
+	page(A1:12),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=13,_
+		{ST:IQ}=15,_
+		{ST:HT}=11,_
+		{ST:Perception}=17_
+	),_
+	adds(_
+		AD:Intuition,_
+		AD:Luck,_
+		SK:Intelligence Analysis =8pts,_
+		SK:Guns (Pistol) =2pts,_
+		SK:Holdout =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 3, downto 1),_
+			AD:Acute Hearing #codes(upto 5, downto 1),_
+			AD:Acute Vision #codes(upto 5, downto 1),_
+			AD:Acute Taste and Smell #codes(upto 5, downto 1),_
+			AD:Acute Touch #codes(upto 5, downto 1),_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			LA:Language #codes(upto 3, downto 1),_
+			AD:Sensitive,_
+			AD:Empathy,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Smooth Operator #codes(upto 2, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			PE:Honest Face,_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			#newitem(_
+				AD:Contact Group, 5/10/15, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18),_
+					x(#InputToTag("Please describe the nature of the Contact Group:", nameext, "Investigative agency or police department.", "Contact Group")), upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					)_
+			),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -25 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Solve a particular case", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Crimes or cover-ups), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select another -25 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-25),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Alcoholism,_
+			DI:Bad Temper,_
+			DI:Chummy,_
+			DI:Gregarious,_
+			DI:Curious,_
+			DI:Greed,_
+			DI:Guilt Complex,_
+			DI:Honesty,_
+			DI:Insomniac #codes(upto 2, downto 1),_
+			DI:Nightmares,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			DI:Workaholic,_
+			DI:Overweight,_
+			DI:Fat,_
+			DI:Very Fat,_
+			#newitem(_
+				DI:Obsession, -5, displaycost(-5*), page(B1140), cat(Mundane, Social), mods(Self-Control), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) ),_
+				x(#InputToTag("What is your obsession?", nameext, "Solve a particular case", "Obsession")_
+			)_
+		),_
+			#newitem(_
+				DI:Secret (Past Crimes or cover-ups), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select5(_
+		text("Select 6 of the following primary skills."),_
+		itemswanted(6),_
+		pointswanted(12),_
+		list(_
+			SK:Criminology #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 2pts, downto 2pts),_
+			SK:Interrogation #codes(upto 2pts, downto 2pts),_
+			SK:Photography #codes(upto 2pts, downto 2pts),_
+			SK:Research #codes(upto 2pts, downto 2pts),_
+			SK:Shadowing #codes(upto 2pts, downto 2pts),_
+			SK:Speed-Reading #codes(upto 2pts, downto 2pts),_
+			SK:Body Language (Human) #codes(upto 2pts, downto 2pts),_
+			SK:Lip Reading #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select6(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select three of the following secondary skills; the list includes the possibility of an additional primary skill selection, you may not use this to increase an already selected primary skill."),_
+		itemswanted(3),_
+		pointswanted(6),_
+		multitype(yes),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Administration #codes(upto 2pts, downto 2pts),_
+			SK:Cryptography #codes(upto 2pts, downto 2pts),_
+			SK:Expert Skill (Military Science) #codes(upto 2pts, downto 2pts),_
+			SK:Forensics #codes(upto 2pts, downto 2pts),_
+			SK:Psychology (Human) #codes(upto 2pts, downto 2pts),_
+			SK:Criminology #codes(upto 2pts, downto 2pts),_
+			SK:Electronics Operation (Surveillance) #codes(upto 2pts, downto 2pts),_
+			SK:Interrogation #codes(upto 2pts, downto 2pts),_
+			SK:Photography #codes(upto 2pts, downto 2pts),_
+			SK:Research #codes(upto 2pts, downto 2pts),_
+			SK:Shadowing #codes(upto 2pts, downto 2pts),_
+			SK:Speed-Reading #codes(upto 2pts, downto 2pts),_
+			SK:Body Language (Human) #codes(upto 2pts, downto 2pts),_
+			SK:Lip Reading #codes(upto 2pts, downto 2pts),_
+			SK:Observation #codes(upto 2pts, downto 2pts),_
+			SK:Search #codes(upto 2pts, downto 2pts),_
+			SK:Tracking #codes(upto 2pts, downto 2pts),_
+			SK:Detect Lies #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select three of the following secondary skills. You may sacrifice one selection to improve a combat skill by one level."),_
+		itemswanted(atleast 2),_
+		pointswanted(6),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where cat includes "Combat/Weapon", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(downto %points+2pts) )),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Forced Entry #codes(upto 2pts, downto 2pts),_
+			SK:Stealth #codes(upto 2pts, downto 2pts),_
+			SK:Area Knowledge #codes(upto 2pts, downto 2pts),_
+			SK:Computer Operation #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs ([Regional]) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Business) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (High Culture) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (People) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Politics) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Popular Culture) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Regional) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Science & Technology) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Sports) #codes(upto 2pts, downto 2pts),_
+			SK:Current Affairs (Travel) #codes(upto 2pts, downto 2pts),_
+			SK:Writing #codes(upto 2pts, downto 2pts),_
+			SK:Diplomacy #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select10(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 1pts)_
+		)_
+	),_
+	select11(#list(QuirkSelection))
+
+Medic (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(You might be a military field medic, an urban EMT, a first-rate physician, or a third-rate vet who works on bipeds for cash.),_
+	page(A1:13),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=12,_
+		{ST:IQ}=15,_
+		{ST:HT}=12_
+	),_
+	adds(_
+		AD:Healer =4,_
+		AD:Higher Purpose respond "Medic!",_
+		AD:Luck,_
+		SK:Diagnosis (Human) =1pts,_
+		SK:First Aid (Human) == 0pts,_
+		SK:Pharmacy (Synthetic) =1pts,_
+		SK:Psychology (Human) =1pts,_
+		SK:Physician (Human) =8pts,_
+		SK:Surgery (Human) =1pts,_
+		SK:Guns (Pistol) =1pts,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 3, downto 1),_
+			AD:Combat Reflexes,_
+			AD:Daredevil,_
+			AD:Fearlessness #codes(upto 7, downto 1),_
+			AD:Unfazeable,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:High Manual Dexterity #codes(upto 4, downto 1),_
+			AD:Resistant to Disease,_
+			AD:Resistant to Poison #codes(upto 1, downto 1),_
+			AD:Sensitive,_
+			AD:Empathy,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			#newitem(_
+				AD:Contact Group, 5/10/15, levelnames(Effective Skill 12, Effective Skill 15, Effective Skill 18),_
+					x(#InputToTag("Please describe the nature of the Contact Group:", nameext, "Clinic, hospital, etc.", "Contact Group")),_
+					upto(3), cat(Mundane, Social), mods(Contact Group, Frequency of Appearance, Reliability, Favor), page(B44),_
+					initmods(_
+						Reliability: Somewhat Reliable, *1, shortname(Somewhat Reliable), group(Reliability) _
+						| Frequency: roll of  9 or less (Fairly often), *1, shortname(9 or less), group(Frequency of Appearance) _
+					)_
+			),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (License Revoked),_
+			#newitem(_
+				DI:Secret (Used or sold drugs, negligence, etc.), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select4(_
+		text("Select another -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Charitable,_
+			DI:Chummy,_
+			DI:Gregarious,_
+			DI:Code of Honor (Hippocratic Oath),_
+			#newitem(DI:Delusion (I'm God when I'm your doctor!), -5,levelnames(Minor), page(B130), cat(Mundane, Mental, Mundane Mental),gives(-1 to ST:Reaction)),_
+			DI:Greed,_
+			DI:Guilt Complex,_
+			DI:Honesty,_
+			DI:Selfish,_
+			DI:Selfless,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (License Revoked),_
+			#newitem(DI:Vow (Refuse no request for medical aid), -10,levelnames(Major), page(B160), cat(Mundane, Mental)),_
+			#newitem(_
+				DI:Secret (Used or sold drugs, negligence, etc.), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select5(_
+		text("Select another -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Alcoholism,_
+			DI:Charitable,_
+			DI:Chummy,_
+			DI:Curious,_
+			DI:Gregarious,_
+			DI:Code of Honor (Hippocratic Oath),_
+			#newitem(DI:Delusion (I'm God when I'm your doctor!), -5,levelnames(Minor), page(B130), cat(Mundane, Mental, Mundane Mental),gives(-1 to ST:Reaction)),_
+			DI:Greed,_
+			DI:Guilt Complex,_
+			DI:Honesty,_
+			DI:Insomniac #codes(upto 2, downto 1),_
+			DI:Nightmares,_
+			DI:Overconfidence,_
+			DI:Post-Combat Shakes,_
+			DI:Selfish,_
+			DI:Selfless,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (License Revoked),_
+			DI:Stubbornness,_
+			DI:Truthfulness,_
+			#newitem(DI:Vow (Refuse no request for medical aid), -10,levelnames(Major), page(B160), cat(Mundane, Mental)),_
+			DI:Workaholic,_
+			#newitem(_
+				DI:Secret (Used or sold drugs, negligence, etc.), -5/-10, upto(2), page(B152), cat(Mundane, Social), levelnames("Serious Embarassment", "Utter Rejection")_
+			)_
+		)_
+	),_
+	select6(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select four secondary skills. You may sacrifice one selection to raise one other selection by 1 level or to improve your grappling skill."),_
+		itemswanted(atleast 3),_
+		pointswanted(8),_
+		multitype(yes),_
+		list(_
+			#BuildSelectList(Skills where name is "Wrestling", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) #codes(downto %points+2pts) )),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Fast-Draw (Medical Gear) #codes(upto 4pts, downto 2pts),_
+			SK:Knife #codes(upto 4pts, downto 2pts),_
+			SK:NBC Suit #codes(upto 4pts, downto 2pts),_
+			SK:Hazardous Materials (Biological) #codes(upto 4pts, downto 2pts),_
+			SK:Research #codes(upto 4pts, downto 2pts),_
+			SK:Teaching #codes(upto 4pts, downto 2pts),_
+			SK:Writing #codes(upto 4pts, downto 2pts),_
+			SK:Chemistry #codes(upto 4pts, downto 2pts),_
+			SK:Expert Skill (Epidemiology) #codes(upto 4pts, downto 2pts),_
+			SK:Forensics #codes(upto 4pts, downto 2pts),_
+			SK:Naturalist (Earth) #codes(upto 4pts, downto 2pts),_
+			SK:Poisons #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select three additional secondary skills. You may sacrifice one selection to raise one other selection by 1 level."),_
+		itemswanted(atleast 2),_
+		pointswanted(6),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 4pts, downto 2pts))),_
+			SK:Driving (Automobile) #codes(upto 4pts, downto 2pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 4pts, downto 2pts),_
+			SK:Piloting (Helicopter) #codes(upto 4pts, downto 2pts),_
+			SK:Stealth #codes(upto 4pts, downto 2pts),_
+			SK:Administration #codes(upto 4pts, downto 2pts),_
+			SK:Interrogation #codes(upto 4pts, downto 2pts),_
+			SK:Diplomacy #codes(upto 4pts, downto 2pts),_
+			SK:Scrounging #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select9(#list(QuirkSelection))
+
+Shooter (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(When asked what you do for a living, you've learned not to answer 'Gunfighter.'),_
+	page(A1:14),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:ST}=11,_
+		{ST:DX}=16,_
+		{ST:IQ}=11,_
+		{ST:HT}=12,_
+		{ST:Perception}=12_
+	),_
+	adds(_
+		AD:Gunslinger,_
+		AD:Luck,_
+		SK:Fast-Draw (Ammo) =1pts,_
+		SK:Forced Entry =1pts,_
+		SK:Jumping =1pts,_
+		SK:Acrobatics =4pts,_
+		SK:Stealth =1pts,_
+		SK:Holdout =4pts,_
+		SK:Running =2pts,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 4),_
+			AD:Extra Basic Move #codes(upto 3, downto 1),_
+			AD:Acute Vision #codes(upto 5, downto 1),_
+			AD:Ambidexterity,_
+			AD:Combat Reflexes,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge #codes(upto 2, downto 1),_
+			AD:Fearlessness #codes(upto 5, downto 1),_
+			AD:Fit,_
+			AD:Very Fit,_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Hard to Kill #codes(upto 5, downto 1),_
+			AD:Hard to Subdue #codes(upto 5, downto 1),_
+			AD:High Pain Threshold,_
+			AD:Peripheral Vision,_
+			AD:Rapid Healing,_
+			AD:Very Rapid Healing,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Code of Honor (Soldier's),_
+			DI:Code of Honor (Stays bought),_
+			DI:Greed,_
+			DI:Sense of Duty (Team),_
+			DI:Sense of Duty (Nation),_
+			DI:Social Stigma (Criminal Record),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select4(_
+		text("Select another -10 points from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-10),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Bad Temper,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Code of Honor (Soldier's),_
+			DI:Code of Honor (Stays bought),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Sense of Duty (Nation),_
+			DI:Social Stigma (Criminal Record),_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		)_
+		)_
+	),_
+	select5(_
+		text("Select a further -20 points from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Bad Temper,_
+			DI:Berserk,_
+			DI:Bloodlust,_
+			DI:Bully,_
+			DI:Callous,_
+			DI:Code of Honor (Soldier's),_
+			DI:Code of Honor (Stays bought),_
+			DI:Flashbacks #codes(upto 2, downto 1),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Odious Personal Habit #codes(upto 3, downto 1),_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Sense of Duty (Team),_
+			DI:Sense of Duty (Nation),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Stubbornness,_
+			DI:Wounded,_
+			#newitem(_
+				DI:Intolerance, -5, page(B146), cat(Mundane, Social),_
+				x(#InputToTag("Rival Nation or other large group:", nameext, , "Intolerance")_
+			)_
+		),_
+			#newitem(_
+				DI:Fanaticism, -15, page(B136), cat(Mundane, Social),_
+				x(#InputToTag("Employer, Nation, or Service:", nameext, , "Fanaticism")_
+			)_
+		)_
+		)_
+	),_
+	select6(_
+		text("Select a primary firearm skill."),_
+		itemswanted(1),_
+		pointswanted(4),_
+		list(_
+			#buildlist(list(#list(RangedWeaponSkills)), template(SK:%listitem% #codes(upto 4pts, downto 4pts))),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 4pts, downto 4pts))),_
+			SK:Guns (Pistol) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Shotgun) #codes(upto 4pts, downto 4pts),_
+			SK:Guns (Submachine Gun) #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select7(_
+		text("Select seven of the following primary skills:"),_
+		itemswanted(7),_
+		pointswanted(7),_
+		list(_
+			#buildlist(list(#list(RangedWeaponSkills)), template(SK:%listitem% #codes(upto 1pts))),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			SK:Guns #codes(upto 1pts),_
+			SK:Guns (Grenade Launcher) #codes(upto 1pts),_
+			SK:Guns (Light Anti-Armor Weapon) #codes(upto 1pts),_
+			SK:Guns (Light Machine Gun) #codes(upto 1pts),_
+			SK:Guns (Pistol) #codes(upto 1pts),_
+			SK:Guns (Rifle) #codes(upto 1pts),_
+			SK:Guns (Shotgun) #codes(upto 1pts),_
+			SK:Guns (Submachine Gun) #codes(upto 1pts),_
+			SK:Crossbow #codes(upto 1pts),_
+			SK:Fast-Draw (Long Arm) #codes(upto 1pts),_
+			SK:Fast-Draw (Pistol) #codes(upto 1pts),_
+			SK:Gunner (Cannon) #codes(upto 1pts),_
+			SK:Gunner (Machine Gun) #codes(upto 1pts),_
+			SK:Liquid Projector (Flamethrower) #codes(upto 1pts),_
+			SK:Liquid Projector (Sprayer) #codes(upto 1pts),_
+			SK:Throwing #codes(upto 1pts)_
+		)_
+	),_
+	select8(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select10(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts),_
+			SK:Driving (Motorcycle) #codes(upto 1pts)_
+		)_
+	),_
+	select11(_
+		text("Select an Armoury specialty:"),_
+		itemswanted(1),_
+		pointswanted(4),_
+		list(_
+			SK:Armoury (Heavy Weapons) #codes(upto 4pts, downto 4pts),_
+			SK:Armoury (Small Arms) #codes(upto 4pts, downto 4pts)_
+		)_
+	),_
+	select12(#list(QuirkSelection))
+
+Wheel Man (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(Transporter or chauffer for those in need of real talent behind the wheel, whatever you are you're very good at it.),_
+	page(A1:14),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=14,_
+		{ST:IQ}=13,_
+		{ST:HT}=12,_
+		{ST:Perception}=14,_
+		{ST:Basic Speed}=7,_
+		{ST:Basic Move}=6_
+	),_
+	adds(_
+		AD:Absolute Direction,_
+		AD:Driver's Reflexes =4,_
+		AD:Higher Purpose respond "Deliver the Package",_
+		AD:Luck,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Extra Perception #codes(upto 6, downto 1),_
+			AD:Extra Basic Speed #codes(upto 4, downto 4),_
+			AD:Acute Vision #codes(upto 5, downto 1),_
+			AD:Artificer #codes(upto 3, downto 1),_
+			AD:Combat Reflexes,_
+			AD:Danger Sense,_
+			AD:Daredevil,_
+			AD:Enhanced Dodge (%VehicleSkillList%) #codes(upto 3, downto 1),_
+			AD:Enhanced Dodge (All Vehicles) #codes(upto 3, downto 1),_
+			AD:Fearlessness #codes(upto 5, downto 1),_
+			AD:Gizmo #codes(upto 3, downto 1),_
+			AD:Hard to Kill #codes(upto 5, downto 1),_
+			AD:Night Vision #codes(upto 9, downto 1),_
+			AD:Peripheral Vision,_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			PE:Akimbo,_
+			PE:Off-Hand Weapon Training (%GunList%),_
+			PE:One-Armed Bandit,_
+			PE:Pistol-Fist (Guns (Pistol)),_
+			PE:Weapon Bond (%GunList%),_
+			PE:Alcohol Tolerance,_
+			#newitem( AD:Raise Absolute Direction to 3D Spatial Sense, 5, page(B51), cat(Mundane, Mental), taboo(AD:Raise Absolute Direction to 3D Spatial Sense) ),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record)_
+		)_
+	),_
+	select4(_
+		text("Select -10 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-10),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Compulsive Vehicle Modification,_
+			DI:Compulsive Speeding,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			#newitem(DI:Odious Personal Habit (Nobody touches my ride), -10,page(B22), cat(Mundane, Social, Mundane Social, General/Influence/Other Physical Features), conditional(-2 to ST:Reaction when "people notice your problem")),_
+		    #newitem(DI:Phobia (Leaving Vehicle), -10, displaycost(-10*), mods(Self-Control),page(B148), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less),group(Self-Control), page(B121) )),_
+			#newitem(_
+				DI:Delusion (I'm immortal in my car!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)_
+			)_
+		)_
+	),_
+	select5(_
+		text("Select -15 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-15),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Bad Temper,_
+			DI:Compulsive Vehicle Modification,_
+			DI:Compulsive Speeding,_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			DI:Jealousy,_
+			DI:On the Edge,_
+			DI:Overconfidence,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Stubbornness,_
+			#newitem(DI:Odious Personal Habit (Nobody touches my ride), -10,page(B22), cat(Mundane, Social, Mundane Social, General/Influence/Other Physical Features), conditional(-2 to ST:Reaction when "people notice your problem")),_
+		    #newitem(DI:Phobia (Leaving Vehicle), -10, displaycost(-10*), mods(Self-Control),page(B148), cat(Mundane, Mental, Mundane Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less),group(Self-Control), page(B121) )),_
+			#newitem(_
+				DI:Delusion (I'm immortal in my car!), -5, page(B130), cat(Mundane, Mental), gives(-1 to ST:Reaction)_
+			)_
+		)_
+	),_
+	select6(_
+		text("Select your three best vehicles."),_
+		itemswanted(3),_
+		pointswanted(6),_
+		list(_
+			SK:Boating (Motorboat) #codes(upto 2pts, downto 2pts),_
+			SK:Driving (Automobile) #codes(upto 2pts, downto 2pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 2pts, downto 2pts),_
+			SK:Driving (Motorcycle) #codes(upto 2pts, downto 2pts),_
+			SK:Piloting (Glider) #codes(upto 2pts, downto 2pts),_
+			SK:Piloting (Helicopter) #codes(upto 2pts, downto 2pts),_
+			SK:Piloting (Light Airplane) #codes(upto 2pts, downto 2pts),_
+			SK:Piloting (Ultralight) #codes(upto 2pts, downto 2pts),_
+			SK:Submarine (Free-Flooding Sub) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select four of the following primary skills. You may sacrifice one selection to improve one of these skills by one level."),_
+		itemswanted(atleast 3),_
+		pointswanted(8),_
+		list(_
+			SK:Artillery (Bombs) #codes(upto 4pts, downto 2pts),_
+			SK:Artillery (Guided Missle) #codes(upto 4pts, downto 2pts),_
+			SK:Artillery (Torpedoes) #codes(upto 4pts, downto 2pts),_
+			SK:Electronics Operation (Communications) #codes(upto 4pts, downto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 4pts, downto 2pts),_
+			SK:Freight Handling #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Motorboat) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Automobile) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Heavy Wheeled) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Motorcycle) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Glider) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Helicopter) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Light Airplane) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Ultralight) #codes(upto 4pts, downto 2pts),_
+			SK:Mechanic (Free-Flooding Sub) #codes(upto 4pts, downto 2pts),_
+			SK:Navigation (Air) #codes(upto 4pts, downto 2pts),_
+			SK:Navigation (Land) #codes(upto 4pts, downto 2pts),_
+			SK:Navigation (Sea) #codes(upto 4pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select10(_
+		text("Select three of the following secondary skills."),_
+		itemswanted(3),_
+		pointswanted(6),_
+		list(_
+			#buildlist(list(#list(RangedWeaponSkills)), template(SK:%listitem% #codes(upto 2pts, downto 2pts))),_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+			SK:Gunner (Cannon) #codes(upto 2pts, downto 2pts),_
+			SK:Gunner (Machine Gun) #codes(upto 2pts, downto 2pts),_
+			SK:Gunner (Rockets) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Pistol) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Rifle) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Shotgun) #codes(upto 2pts, downto 2pts),_
+			SK:Guns (Submachine Gun) #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select11(_
+		text("Select five of the following skills. Note that this list includes an opportunity to get primary skills but at a lower level; you cannot take a primary skill twice. You may sacrifice one selection to raise one of these skills by one level."),_
+		itemswanted(atleast 4),_
+		pointswanted(5),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 1pts))),_
+			SK:Boating (Motorboat) #codes(upto 2pts),_
+			SK:Driving (Automobile) #codes(upto 2pts),_
+			SK:Driving (Heavy Wheeled) #codes(upto 2pts),_
+			SK:Driving (Motorcycle) #codes(upto 2pts),_
+			SK:Piloting (Glider) #codes(upto 2pts),_
+			SK:Piloting (Helicopter) #codes(upto 2pts),_
+			SK:Piloting (Light Airplane) #codes(upto 2pts),_
+			SK:Piloting (Ultralight) #codes(upto 2pts),_
+			SK:Submarine (Free-Flooding Sub) #codes(upto 2pts),_
+			SK:Artillery (Bombs) #codes(upto 2pts),_
+			SK:Artillery (Guided Missle) #codes(upto 2pts),_
+			SK:Artillery (Torpedoes) #codes(upto 2pts),_
+			SK:Electronics Operation (Communications) #codes(upto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 2pts),_
+			SK:Freight Handling #codes(upto 2pts),_
+			SK:Mechanic #codes(upto 2pts),_
+			SK:Mechanic (Motorboat) #codes(upto 2pts),_
+			SK:Mechanic (Automobile) #codes(upto 2pts),_
+			SK:Mechanic (Heavy Wheeled) #codes(upto 2pts),_
+			SK:Mechanic (Motorcycle) #codes(upto 2pts),_
+			SK:Mechanic (Glider) #codes(upto 2pts),_
+			SK:Mechanic (Helicopter) #codes(upto 2pts),_
+			SK:Mechanic (Light Airplane) #codes(upto 2pts),_
+			SK:Mechanic (Ultralight) #codes(upto 2pts),_
+			SK:Mechanic (Free-Flooding Sub) #codes(upto 2pts),_
+			SK:Navigation (Air) #codes(upto 2pts),_
+			SK:Navigation (Land) #codes(upto 2pts),_
+			SK:Navigation (Sea) #codes(upto 2pts),_
+			SK:Parachuting #codes(upto 2pts),_
+			SK:Stealth #codes(upto 2pts),_
+			SK:Area Knowledge #codes(upto 2pts),_
+			SK:Cartography #codes(upto 2pts),_
+			SK:Connoisseur (Cars) #codes(upto 2pts),_
+			SK:Machinist #codes(upto 2pts),_
+			SK:Shadowing #codes(upto 2pts),_
+			SK:Smuggling #codes(upto 2pts),_
+			SK:Scrounging #codes(upto 2pts)_
+		)_
+	),_
+	select12(#list(QuirkSelection))
+
+Wire Rat (Action), displaycost(250), cost(0),_
+	cat(Character Templates - Action),_
+	description(You're the crew's ears and eyes; cameras, mikes, tracking beacons, and wire taps are your stock and trade.),_
+	page(A1:16),_
+	noresync(yes),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	sets(_
+		{ST:DX}=12,_
+		{ST:IQ}=15,_
+		{ST:HT}=11,_
+		{ST:Perception}=16,_
+		{ST:Basic Speed}=6_
+	),_
+	adds(_
+		AD:Circuit Sense =4,_
+		AD:Gizmo =1,_
+		AD:Luck,_
+		AD:Gadgeteer =2 with _
+			"Solder and Duct Tape, *0.5, group(Gadgeteer Limitations), page(A1:18)",_
+		SK:Electrician =1pts,_
+		SK:Electronics Operation (Communications) =1pts,_
+		SK:Electronics Operation (Security) =1pts,_
+		SK:Electronics Operation (Surveillance) =1pts,_
+		SK:Electronics Repair (Communications) =1pts,_
+		SK:Electronics Repair (Security) =1pts,_
+		SK:Electronics Repair (Surveillance) =1pts,_
+		SK:Guns (Pistol) =1pts,_
+		SK:Computer Operation =1pts_
+	),_
+	select1(#List(Languages)),_
+	select2(_
+		text("Select 30 points from these Advantages."),_
+		itemswanted(atleast 1),_
+		pointswanted(30),_
+		multitype(yes),_
+		list(_
+			%LensAlt1List%,_
+			#list(GMAdvantages),_
+			AD:Extra ST #codes(upto 3, downto 1),_
+			AD:Extra DX #codes(upto 1, downto 1),_
+			AD:Extra IQ #codes(upto 1, downto 1),_
+			AD:Extra HT #codes(upto 3, downto 1),_
+			AD:Acute Hearing #codes(upto 5, downto 1),_
+			AD:Artificer #codes(upto 3, downto 1),_
+			AD:Daredevil,_
+			AD:High Manual Dexterity #codes(upto 4, downto 1),_
+			AD:Mathematical Ability #codes(upto 3, downto 1),_
+			AD:Serendipity #codes(upto 2, downto 1),_
+			AD:Signature Gear #codes(upto 10, downto 1),_
+			AD:Wild Talent #codes(upto 1, downto 1),_
+			#newitem(_
+				AD:Additional Gizmos, 5/10, upto(6), taboo(AD:Additional Gizmos), existing(AD:Gizmos)_
+			),_
+			#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+		)_
+	),_
+	select3(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Secret #codes(upto 2, downto 1)_
+		)_
+	),_
+	select4(_
+		text("Select -10 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-10),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Curious,_
+			DI:Clueless,_
+			#newitem(DI:Delusion (They are listening!), -5, levelnames(Minor),page(B130), cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction)),_
+			DI:Honesty,_
+			#newitem(DI:Odious Personal Habit (Nosy), -5, page(B22), cat(Mundane, Social, Mundane Social, General/Influence/Other Physical Features),conditional(-1 to ST:Reaction when "people notice your problem")),_
+			DI:Oblivious,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Secret #codes(upto 2, downto 1),_
+			#newitem(DI:Trademark (Device or wiring scheme), -5/-10,levelnames(Simple, Complex), page(B159), upto(2), cat(Mundane, Mental)),_
+			DI:Workaholic_
+		)_
+	),_
+	select5(_
+		text("Select -20 point from among the following Disadvantages:"),_
+		itemswanted(atleast 1),_
+		pointswanted(-20),_
+		list(_
+			#list(GMDisadvantages),_
+			%LensAlt2List%,_
+			DI:Duty (15 or less (almost always); Extremely Hazardous),_
+			DI:Duty (12 or less (quite often); Extremely Hazardous),_
+			DI:Duty (9 or less (fairly often); Extremely Hazardous),_
+			DI:Bad Temper,_
+			DI:Cowardice,_
+			DI:Curious,_
+			DI:Clueless,_
+			#newitem(DI:Delusion (They are listening!), -5, levelnames(Minor),page(B130), cat(Mundane, Mental, Mundane Mental), gives(-1 to ST:Reaction)),_
+			DI:Greed,_
+			DI:Honesty,_
+			DI:Impulsiveness,_
+			#newitem(DI:Odious Personal Habit (Nosy), -5, page(B22), cat(Mundane, Social, Mundane Social, General/Influence/Other Physical Features),conditional(-1 to ST:Reaction when "people notice your problem")),_
+			DI:Oblivious,_
+			DI:Overconfidence,_
+			DI:Paranoia,_
+			DI:Post-Combat Shakes,_
+			DI:Sense of Duty (Team),_
+			DI:Social Stigma (Criminal Record),_
+			DI:Secret #codes(upto 2, downto 1),_
+			DI:Shyness #codes(upto 2, downto 1),_
+			DI:Skinny,_
+			DI:Stubbornness,_
+			#newitem(DI:Trademark (Device or wiring scheme), -5/-10,levelnames(Simple, Complex), page(B159), upto(2), cat(Mundane, Mental)),_
+			DI:Trickster,_
+			DI:Workaholic_
+		)_
+	),_
+	select6(_
+		text("Select four primary skills, or sacrifice one selection to improve one primary skill by one level."),_
+		itemswanted(atleast 3),_
+		pointswanted(4),_
+		multitype(yes),_
+		list(_
+			#newitem(AD:_Boost Electrician Skill, 1, existing(AD:Boost Electrician Skill) ),_
+			#newitem(AD:_Boost Electronics Operation (Communications) Skill, 1, existing(AD:Boost Electronics Operation (Communications) Skill) ),_
+			#newitem(AD:_Boost Electronics Operation (Security) Skill, 1, existing(AD:Boost Electronics Operation (Security) Skill) ),_
+			#newitem(AD:_Boost Electronics Operation (Surveillance) Skill, 1, existing(AD:Boost Electronics Operation (Surveillance) Skill) ),_
+			#newitem(AD:_Boost Electronics Repair (Communications) Skill, 1, existing(AD:Boost Electronics Repair (Communications) Skill) ),_
+			#newitem(AD:_Boost Electronics Repair (Security) Skill, 1, existing(AD:Boost Electronics Repair (Security) Skill) ),_
+			#newitem(AD:_Boost Electronics Repair (Surveillance) Skill, 1, existing(AD:Boost Electronics Repair (Surveillance) Skill) ),_
+			SK:Electronics Operation (Media) #codes(upto 2pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 2pts),_
+			SK:Electronics Repair (Computers) #codes(upto 2pts),_
+			SK:Electronics Repair (Media) #codes(upto 2pts),_
+			SK:Electronics Repair (Sensors) #codes(upto 2pts)_
+		)_
+	),_
+	select7(_
+		text("Select one unarmed striking skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Boxing #codes(upto 2pts, downto 2pts),_
+			SK:Brawling #codes(upto 2pts, downto 2pts),_
+			SK:Karate #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select8(_
+		text("Select one unarmed grappling skill:"),_
+		itemswanted(1),_
+		pointswanted(2),_
+		list(_
+			SK:Judo #codes(upto 2pts, downto 2pts),_
+			SK:Wrestling #codes(upto 2pts, downto 2pts)_
+		)_
+	),_
+	select9(_
+		text("Select seven of the following secondary skills. You may sacrifice one selection to raise another one by 1 point, or to get another primary skill selection."),_
+		itemswanted(atleast 6),_
+		pointswanted(7),_
+		list(_
+			#buildlist(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#buildlist(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			#buildlist(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 1pts, downto 1pts))),_
+			SK:Electronics Operation (Media) #codes(upto 1pts),_
+			SK:Electronics Operation (Sensors) #codes(upto 1pts),_
+			SK:Electronics Repair (Computers) #codes(upto 1pts),_
+			SK:Electronics Repair (Media) #codes(upto 1pts),_
+			SK:Electronics Repair (Sensors) #codes(upto 1pts),_
+			SK:Fast-Draw (Gizmo) #codes(upto 2pts),_
+			SK:Forced Entry #codes(upto 2pts),_
+			SK:Stealth #codes(upto 2pts),_
+			SK:Camouflage #codes(upto 2pts),_
+			SK:Holdout #codes(upto 2pts),_
+			SK:Photography #codes(upto 2pts),_
+			SK:Smuggling #codes(upto 2pts),_
+			SK:Traps #codes(upto 2pts),_
+			SK:Scrounging #codes(upto 2pts),_
+			SK:Body Language (Human) #codes(upto 2pts),_
+			SK:Lip Reading #codes(upto 2pts),_
+			SK:Obervation #codes(upto 2pts),_
+			SK:Search #codes(upto 2pts)_
+		)_
+	),_
+	select10(_
+		text("Select your preferred vehicle:"),_
+		itemswanted(1),_
+		pointswanted(1),_
+		list(_
+			SK:Driving (Automobile) #codes(upto 1pts),_
+			SK:Driving (Motorcycle) #codes(upto 1pts)_
+		)_
+	),_
+	select11(#list(QuirkSelection))
+
+********************************************************************************************************\[STOP]
+[GROUPS]
+*******************************************************************************************************\[START]
+<AllAdvantages>
+AD:Born to Be Wired
+AD:Circuit Sense
+AD:Craftiness
+AD:Driver's Reflexes
+AD:Strong Chi
+
+<AllAdvantagesMental>
+AD:Born to Be Wired
+AD:Circuit Sense
+AD:Craftiness
+AD:Driver's Reflexes
+AD:Strong Chi
+
+<AllPerks>
+PE:Rapid Retraction (Bites)
+PE:Rapid Retraction (Kicks)
+PE:Rapid Retraction (Punches)
+
+<Born to Be Wired>
+SK:Computer Hacking
+SK:Computer Operation
+SK:Computer Programming
+SK:Cryptography
+SK:Electronics Repair (Computers)
+SK:Expert Skill (Computer Security)
+
+<Circuit Sense>
+SK:Electrician
+SK:Electronics Operation
+SK:Electronics Repair
+SK:Engineer (Eletrical)
+SK:Engineer (Eletronics)
+
+<Craftiness>
+SK:Acting
+SK:Camouflage
+SK:Disguise
+SK:Holdout
+SK:Shadowing
+SK:Stealth
+
+<Driver's Reflexes>
+SK:Boating
+SK:Driving
+SK:Piloting
+SK:Submarine
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Gadgeteer>
+H4xx0r, *0.5, group(Gadgeteer Limitations), page(A1:18)
+Solder and Duct Tape, *0.5, group(Gadgeteer Limitations), page(A1:18)
+
+//  Equipment Modifiers
+
+<Bow Quality>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Bow Quality), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Guns>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Guns), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Beams>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Beams), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Shield>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Shield), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+<Melee Quality>
+_Perk: Weapon Bond, +0, gives(+1 to owner::skillscore), group(Melee Quality), page(F132, HT250, MA53, PU2:9, DF1:14), shortname(Weapon Bond)
+
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:_New Background Lens (Action)" with {replacetags(in "TE:_New Background Lens (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Assassin (Action)" with {replacetags(in "TE:Assassin (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Cleaner (Action)" with {replacetags(in "TE:Cleaner (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Demolition Man (Action)" with {replacetags(in "TE:Demolition Man (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Face Man (Action)" with {replacetags(in "TE:Face Man (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Hacker (Action)" with {replacetags(in "TE:Hacker (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Infiltrator (Action)" with {replacetags(in "TE:Infiltrator (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Investigator (Action)" with {replacetags(in "TE:Investigator (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Medic (Action)" with {replacetags(in "TE:Medic (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Shooter (Action)" with {replacetags(in "TE:Shooter (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Wheel Man (Action)" with {replacetags(in "TE:Wheel Man (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Wire Rat (Action)" with {replacetags(in "TE:Wire Rat (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+
+#MergeTags in "TE:Criminal Background (Action)" with {replacetags(in "TE:Criminal Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Intelligence Background (Action)" with {replacetags(in "TE:Intelligence Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Law Enforcement Background (Action)" with {replacetags(in "TE:Law Enforcement Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Military Background (Action)" with {replacetags(in "TE:Military Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Security Background (Action)" with {replacetags(in "TE:Security Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Rich Adventurer Background (Action)" with {replacetags(in "TE:Rich Adventurer Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Martial Artist Background (Action)" with {replacetags(in "TE:Martial Artist Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Journalist Background (Action)" with {replacetags(in "TE:Journalist Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Athlete Background (Action)" with {replacetags(in "TE:Athlete Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Survivalist Background (Action)" with {replacetags(in "TE:Survivalist Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Academic Background (Action)" with {replacetags(in "TE:Academic Background (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Academic Background - Cinematic (Action)" with {replacetags(in "TE:Academic Background - Cinematic (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}

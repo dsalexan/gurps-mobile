@@ -1,0 +1,71 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=4.0.408
+Description=05/05/2021. _
+		This data file contains information taken from the GURPS Spaceships 2: Traders, Liners, and Transports sourcebook. _
+			GURPS Spaceships 2: Traders, Liners, and Transports is Copyright © 2008 by Steve Jackson Games _
+			Incorporated. All rights reserved.
+Requires=GURPS Basic Set 4th Ed.--Characters.gdf
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant
+//  Filename: GURPS Spaceships 2 Traders, Liners, and Transports 4e.gdf
+//  Created: June 08, 2008
+//  Requires GCA v4 or later!
+// 
+//  This data file contains information taken from the GURPS Spaceships 2: Traders, Liners, and Transports sourcebook.
+//  GURPS Spaceships 2: Traders, Liners, and Transports is Copyright © 2008 by Steve Jackson Games
+//  Incorporated. All rights reserved.
+// 
+//  Information in this file includes:
+// 
+// 
+*******************************************************************************************************************
+// 
+//  Eric B. Smith	- GURPS Data File Coordinator, Major Work
+// 
+//  If you find any errors or ommissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+//  
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+********************************************************************************************************\[STOP]
+[ATTRIBUTES]
+*******************************************************************************************************\[START]
+Signature Assets, basevalue(0), display(No), hide(yes), step(0), minscore(0), round(1)
+
+********************************************************************************************************\[STOP]
+[ADVANTAGES]
+*******************************************************************************************************\[START]
+#ReplaceTags in "AD:Wealth" with "upto(15)"
+#MergeTags in "AD:Wealth" with "taboo(AD:Wealth < @if(@itemhasmod(AD:Wealth, Partial Multimillionaire) THEN 4 ELSE 0))"
+
+********************************************************************************************************\[STOP]
+[MODIFIERS]
+*******************************************************************************************************\[START]
+<Wealth>
+Partial Multimillionaire, +5/+10, upto(4), levelnames(0.2,0.4,0.6,0.8), group(Wealth),_
+	formula(@if(owner::level > 3 THEN 5 * me::level ELSE 0)), forceformula(yes),_
+	gives(=+(@if(owner::level > 3 THEN 1 ELSE 0) * @indexedvalue(me::level, 1, 3, 5, 7) * (10^(owner::level-1))) to "ST:Wealth Modifier"), page(SS2:26)
+
+Signature Assets, +1%/+2%, upto(20), levelnames(5%,10%,15%,20%,25%,30%,35%,40%,45%,50%,55%,60%,65%,70%,75%,80%,85%,90%,95%,100%), page(SS2:27),_
+	gives(+(0.05 * ST:Wealth Modifier * @indexedvalue(ST:Tech Level::basevalue + 1, 25, 50, 75, 100, 200, 500, 1000, 1500, 2000, 3000, 5000, 7500, 10000)) to ST:Signature Assets),_
+	x(#InputToTag("Please describe the nature of the Signature Asset:", nameext, , "Signature Assets")),_
+	replacetags(in "ST:Signature Assets" with "mainwin(15), hide(), noresync(yes)"),_
+	taboo(ST:Signature Assets < 0)
+
+Conditional Ownership, -1%/-2%, upto(20), levelnames(5%,10%,15%,20%,25%,30%,35%,40%,45%,50%,55%,60%,65%,70%,75%,80%,85%,90%,95%,100%), page(SS2:27)
+

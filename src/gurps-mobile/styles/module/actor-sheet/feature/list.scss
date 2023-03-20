@@ -1,0 +1,303 @@
+.feature-list {
+  --highlight-color: 68, 68, 68;
+  --lighter-highlight-color: 119, 119, 119;
+  --very-lighter-highlight-color: 180, 180, 180;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  //
+  margin-bottom: var(--s1);
+
+  // #region CHILDREN
+
+  & > .label {
+    --font-size: calc(var(--spacing) * 1.4);
+
+    flex-grow: 1;
+    padding: var(--s1);
+    border-radius: 7px;
+    //
+    color: #777;
+    background-color: rgb(0 0 0 / 3%);
+    //
+    display: flex;
+    justify-content: space-between;
+
+    &.hidden {
+      display: none;
+    }
+
+    & > .text {
+      font-family: Roboto;
+      font-style: italic;
+      font-weight: 600;
+      font-size: var(--font-size);
+      line-height: calc(var(--font-size) * 0.9);
+      text-align: center;
+      //
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    & > .chevron {
+      font-size: var(--s2);
+      line-height: calc(var(--s2) * 0.9);
+      font-weight: 600;
+      color: #555;
+
+      &.spacer {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  & > .header {
+    --font-size: calc(var(--spacing) * 1.4);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin-top: var(--s1);
+
+    & > .spacer {
+      flex-grow: 1;
+    }
+
+    & > .button {
+      padding: var(--s1);
+      border-radius: 7px;
+      margin-left: var(--s1);
+      //
+      color: #777;
+      background-color: rgb(0 0 0 / 3%);
+      //
+      display: flex;
+      justify-content: center;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
+      & > .label {
+        font-family: Roboto;
+        font-style: italic;
+        //
+        font-size: var(--font-size);
+        line-height: calc(var(--font-size) * 0.8);
+        text-align: center;
+        font-weight: 500;
+        //
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: calc(var(--s1) * 0.5);
+        padding: 0;
+
+        & > span {
+          font-weight: 800;
+          margin-right: calc(0.4 * var(--font-size));
+        }
+      }
+
+      & > .icon-wrapper {
+        & > .icon {
+          &.up {
+            display: none;
+          }
+        }
+      }
+
+      &.disabled {
+        background-color: rgb(0 0 0 / 1%);
+        color: rgb(119, 119, 119, 75%);
+
+        & > .icon-wrapper {
+          display: none;
+        }
+      }
+
+      &.inactive {
+        background-color: rgb(251 251 251 / 50%);
+        color: rgb(119, 119, 119, 75%);
+      }
+
+      &.active {
+        background-color: #d4d4d4;
+        color: rgb(119, 119, 119, 100%);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  & > .children {
+    --list-content-margin: var(--s1);
+
+    margin-top: calc(var(--s0-5) * 1);
+    //
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+
+    & > div.collapsed-list {
+      margin: 0 calc(var(--s0-5) * -1);
+      //
+      display: none;
+      flex: 1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+
+      & > .feature {
+        padding: var(--s0-5);
+      }
+    }
+
+    // space collapsed list and expanded features only if there is some expanded feature
+    & > *:nth-child(2) {
+      margin-top: calc(var(--list-content-margin) * 0.5);
+    }
+
+    // SPACING
+    //  first child only is .collapsed list
+    & > *:not(.collapsed-list) {
+      margin-bottom: calc(var(--list-content-margin) * 1);
+
+      &.feature-wrapper {
+        &.horizontal {
+          & > .children {
+            & > * {
+              margin-left: calc(var(--list-content-margin) * 0.5);
+              margin-right: calc(var(--list-content-margin) * 0.5);
+
+              &:first-of-type {
+                margin-left: 0;
+              }
+
+              &:last-of-type {
+                margin-right: 0;
+              }
+
+              &.half {
+                flex: 1 0 calc(50% - 2 * var(--list-content-margin));
+              }
+
+              //   &:not(:first-of-type, :last-of-type) {
+              //     margin-left: calc(var(--list-content-margin) * 0.5);
+              //     margin-right: calc(var(--list-content-margin) * 0.5);
+              //   }
+
+              //   &:first-of-type {
+              //     margin-right: calc(var(--list-content-margin) * 0.5);
+              //   }
+              //   &:last-of-type {
+              //     margin-left: calc(var(--list-content-margin) * 0.5);
+              //   }
+            }
+          }
+        }
+      }
+
+      /** 
+      could be:
+        .feature
+        .feature-wrapper > .children > .feature
+        .feature-wrapper > .children > .feature-wrapper > .children > .feature
+        .feature-wrapper > .children > .feature-wrapper > .children > .feature-wrapper > .children > .feature
+        ...
+      */
+      & .feature {
+        &.full {
+          flex: 1 0 calc(100% - 2 * 0px);
+        }
+
+        &.half {
+          flex: 1 0 calc(50% - 2 * 0px);
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  // #endregion
+
+  // #region VARIANTS
+
+  &.expanded {
+    margin-bottom: var(--s1-5);
+
+    & > .label > .chevron {
+      &.down {
+        display: none;
+      }
+      &.up {
+        display: flex;
+      }
+    }
+  }
+
+  &:not(.expanded) {
+    & > .label {
+      background-color: rgb(0 0 0 / 8%);
+
+      & > .chevron {
+        &.up {
+          display: none;
+        }
+        &.down {
+          display: flex;
+        }
+      }
+    }
+
+    & > .children,
+    & > .header {
+      display: none;
+    }
+  }
+
+  // DISPLAY HIDDEN
+  &:not(.display-hidden) {
+    & > .header {
+      & > .button.display-hidden {
+        & > .icon-wrapper {
+          & > .icon.down {
+            // opacity: 0;
+          }
+        }
+      }
+    }
+  }
+  &.display-hidden {
+    & > .header {
+      & > .button.display-hidden {
+        & > .icon-wrapper {
+          & > .icon {
+            &.up {
+              display: inline;
+            }
+
+            &.down {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    & > .children {
+      & > div.collapsed-list {
+        display: flex;
+      }
+    }
+  }
+
+  // #endregion
+}

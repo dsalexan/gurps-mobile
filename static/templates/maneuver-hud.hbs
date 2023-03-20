@@ -1,0 +1,14 @@
+<div class='collapsible-wrapper'>
+  <input id='collapsible-hud' class='toggle offscreen-only' type='checkbox' />
+  <label for='collapsible-hud' class='label-toggle'><i class='icon mdi mdi-strategy'></i></label>
+  <div class='collapsible-content maneuver-content'>
+    <div class='status-maneuvers'>
+      {{#each maneuvers}}
+        <div class="effect-control {{#if (includes ../effects this.icon)}}active{{/if}}" data-status-id='{{@key}}'>
+          <img class='icon' src='{{this.icon}}' title='{{i18n this.label}}'/>
+          <div class="label">{{localize this.label}}</div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

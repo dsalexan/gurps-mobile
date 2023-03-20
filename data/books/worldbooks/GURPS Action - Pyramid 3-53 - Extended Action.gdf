@@ -1,0 +1,556 @@
+Encoding=UTF-8
+Version=3
+//  The version information above MUST be the first line of the data file
+Program=5.0.168
+Description=2022 July 27. _
+			This data file contains information taken from the GURPS Action 1: Heroes sourcebook. _
+			GURPS Action 1: Heroes is Copyright © 2008 by Steve Jackson Games _
+			Incorporated. All rights reserved. _
+			THIS FILE REMOVES OR MODIFIES MANY ITEMS FROM THE BASIC SET AS PER THE INSTRUCTIONS IN THE SOURCE BOOK.  MIX WITH OTHER DATA FILES WITH CAUTION.
+Worldbook=Action
+Requires="GURPS Action  1 - Heroes.gdf"
+
+[AUTHOR]
+*******************************************************************************************************\[START]
+// 
+//  GURPS® Character Assistant Data File
+//  Created: 11-28-2008
+//  Modified: 28 May, 2008
+//  Requires GCA v4 or later!
+// 
+//  File Version: Beta 1.0
+// 
+//  This data file contains information taken from the GURPS Dungeon Fantasy: Allies sourcebook.
+//  GURPS Dungeon Fantasy 5: Allies is Copyright © 2008 by Steve Jackson Games Incorporated. All rights
+//  reserved.
+// 
+//  Information in this file includes:
+// 	Many character templates, the inclusion of which is ongoing.
+//  
+//  This file requires the Basic Set to be loaded first. 
+// 
+//  Known Errors: 
+// 
+*******************************************************************************************************************
+// 
+//  Rob Kamm - Original data file author
+//  Eric B. Smith		- Data File Coordinator
+// 
+//  If you find any errors or omissions in this file please contact the Data File Coordinator at:
+//  ericbsmith42@gmail.com
+// 
+//  Or drop a message in the GCA4 forum at:
+//  http://forums.sjgames.com
+// 
+*******************************************************************************************************************
+// 
+//  GURPS is a registered trademark of Steve Jackson Games Incorporated, used with GCA by permission of Steve Jackson
+//  Games. All rights reserved.
+// 
+//  The GURPS game is Copyright © 1986-1989, 1991-1994 by Steve Jackson Games Incorporated. This product includes
+//  copyrighted material from the GURPS game, which is used by permission of Steve Jackson Games Incorporated. All
+//  rights reserved by Steve Jackson Games Incorporated.
+// 
+*******************************************************************************************************************
+********************************************************************************************************\[STOP]
+[SKILLS]
+*******************************************************************************************************\[START]
+#MergeTags in SK:Naturalist with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Navigation (Land) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Jumping with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Knot-Tying with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Knife with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Leatherworking with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Bow with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Climbing with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Riding (Equines) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Spear with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Staff with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Stealth with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Throwing with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Area Knowledge ([Area]) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:First Aid with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Camouflage with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Animal Handling with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Armoury (Melee Weapons) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Armoury (Missile Weapons) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Falconry with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Farming with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Packing with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Traps with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Swimming with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Hiking with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Running with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Skiing with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Fishing with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Tracking with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Arctic) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Desert) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Island/Beach) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Jungle) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Mountain) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Plains) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Swampland) with "list(BackwoodsmanSkills)"
+#MergeTags in SK:Survival (Woodlands) with "list(BackwoodsmanSkills)"
+
+#MergeTags in SK:Bicycling with "list(KidSkills)"
+#MergeTags in SK:Knot-Tying with "list(KidSkills)"
+#MergeTags in SK:Boating (Sailboat) with "list(KidSkills)"
+#MergeTags in SK:Boating (Unpowered) with "list(KidSkills)"
+#MergeTags in SK:Filch with "list(KidSkills)"
+#MergeTags in SK:Blowpipe with "list(KidSkills)"
+#MergeTags in SK:Computer Operation with "list(KidSkills)"
+#MergeTags in SK:Current Affairs (Popular Culture) with "list(KidSkills)"
+#MergeTags in SK:Current Affairs (Sports) with "list(KidSkills)"
+#MergeTags in SK:Fast-Talk with "list(KidSkills)"
+
+
+********************************************************************************************************\[STOP]
+[PERKS]
+*******************************************************************************************************\[START]
+<Mental Perks>
+Good with (Animal), 1, page(PU2:13), x(#InputToTagReplace("Specify the Animal you're good with:", nameext, , "Good with (Animal)")), cat(Mental Perks)
+Call of the Wild, 1, page(PU2:12), needs(AD:Animal Empathy), cat(Mental Perks)
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+<Character Templates, Character Templates - Action, Character Templates - Action - Background Lenses>
+Backwoodsman Background (Action), displaycost(20*),_
+	description(_
+					You're a hero from a less urban background than most _
+					Action stars. You live off in the wilds somewhere (or at least _
+					you did until recently), and you have the skills and knowledge _
+					to survive there. In "period" games, you may simply be one of _
+					those tough pioneer types, perhaps even someone who's seen _
+					as a bit of a barbarian by city folks, or a military scout who _
+					focuses on the scouting part and doesn't bother much with _
+					military etiquette. In a modern-day game, you might be a _
+					deep-dyed survivalist who's been training himself for years to _
+					thrive without the support of civilization, or simply an exceptionally _
+					competent hunter or wilderness guide - there are still _
+					places where such people are needed, after all. In some games, _
+					you might even be some kind of "jungle lord" type, maybe _
+					even raised by great apes. In a wartime setting, you may be a _
+					resistance fighter, guerrilla, or other insurgent, taking hit-andrun _
+					actions from the woods or mountains. _
+		),_
+	page(P3/53:11),_
+	adds(_
+				SK:Naturalist = 4pts,_
+				SK:Navigation (Land) = 4pts _
+			),_
+	select1(comment(Backwoodsman),_
+		text(Primary Skills: Select 1 of the following:),_
+		tagwith(Backwoodsman(yes)),_
+		pointswanted(4),_
+		itemswanted(1),_
+		list(_
+					#List(Survival Land)_
+			)_
+		),_
+	select2(comment(Backwoodsman),_
+		text(secondary Skills: Select 5 of the following:),_
+		tagwith(Backwoodsman(yes)),_
+		pointswanted(10),_
+		itemswanted(5),_
+		list(_
+				#BuildCharItemList(Skills where list includes "BackwoodsmanSkills", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+				#buildlist(list(#list(RangedWeaponSkills)), template(%listitem% #codes(upto 2pts, downto 2pts))),_
+				#buildlist(list(#list(BackwoodsmanSkills)), template(%listitem% #codes(upto 2pts, downto 2pts))),_
+			)_
+		)
+
+Kid Background (Action), displaycost(20*),_
+	description(_
+					You're a hero for a slightly goofier sort of action movie - _
+					or perhaps a really dark and gritty one, such as a post-catastrophe _
+					story in which everyone has to develop exceptional _
+					skills or die. You're very young, and hence not as physically _
+					impressive as most heroes. You make up for that with youthful _
+					courage and quickness, unexpected cleverness, a double _
+					dose of luck, and possibly disarming cuteness. In a historical _
+					game, you may come from a frontier region or marginal subculture _
+					where even the youngsters can and often have to pick up a _
+					bunch of skills. _
+		),_
+	page(P3/53:12),_
+	sets(_
+			ST:ST = ST:ST - 3,_
+			ST:DX = ST:DX + 1 _
+			),_
+	adds(_
+				SK:Area Knowledge ([Area]) = 2pts,_
+				SK:Throwing = 2pts,_
+				DI:Social Stigma (Minor) _
+			),_
+	select1(comment(Kid),_
+		text(Advantages: Select 15 points from the following:),_
+		tagwith(Kid(yes)),_
+		pointswanted(15),_
+		itemswanted(1),_
+		list(_
+				AD:Daredevil,_
+				AD:Enhanced Dodge,_
+				AD:Intuition,_
+				AD:Serendipity,_
+				#newitem( AD:Extraordinary Luck, 15, displaycost(+15), page(B51), cat(Mundane, Mental), existing(AD:Luck) ) #codes(upto 2, downto 2)_
+			)_
+		),_
+	select2(comment(Kid),_
+		text(Disadvantages: Select -5 points from the following:),_
+		tagwith(Kid(yes)),_
+		pointswanted(-5),_
+		itemswanted(atleast 1),_
+		list(_
+				#newitem(DI:Gullibility, -10, displaycost(-5*), gives(-3 To SK:Merchant), mods(Self-Control), page(B137), cat(Mundane, Mental), initmods( You resist on a roll of 15 or less (quite often), *0.5, shortname(15 or less), group(Self-Control), page(B121) ), taboo(SK:Detect Lies)),_
+				#newitem(DI:Impulsiveness, -10, displaycost(-5*), mods(Self-Control), page(B139), cat(Mundane, Mental), initmods( You resist on a roll of 15 or less (quite often), *0.5, shortname(15 or less), group(Self-Control), page(B121) )),_
+				DI:Oblivious,_
+				#newitem(DI:Odious Personal Habit (Talks too much), -5, page(B22), cat(Mundane, Social, General/Influence/Other Physical Features), conditional(-1 to ST:Reaction when "people notice your problem")),_
+				#newitem(DI:Sense of Duty (Close Family), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+				DI:Skinny,_
+				DI:Reduced SM _
+			)_
+		),_
+	select3(comment(Kid),_
+		text(Primary Skills: Select 2-3 of the following:),_
+		tagwith(Kid(yes)),_
+		pointswanted(6),_
+		itemswanted(atleast 1),_
+		list(_
+					#BuildCharItemList(Skills where list includes "Kid", template(#newitem(SK:_Increase %ListItem%, existing(SK:%ListItem%)) )),_
+					#buildlist(list(#list(KidSkills)), template(%listitem% #codes(upto 4pts, downto 2pts))),_
+					#newitem(SK:Increase Throwing, DX/A, existing(SK:Throwing)) _
+			)_
+		)
+Masked Avenger Background (Action), displaycost(20*), cost(0), page(P3/53:12),_
+	x(_
+		#Message("Spend 20 points on template advantages, improving combat skills, or a Martial Arts Style.")_
+	)
+
+
+<Character Templates, Character Templates - Action, Character Templates - Action - Primary Templates>
+Horseman (Action), displaycost(250),_
+	description(_
+					In worlds where warriors, wanderers, and the rich travel on _
+					horseback, some people specialize in fighting that way - and _
+					you're one of the best. You are really good with horses - riding _
+					them, of course, but also getting them to do what you want, _
+					and looking after them. Just as importantly, you can handle _
+					weapons appropriate to that situation. You can fight on foot, _
+					of course, and you know how to operate in rough country. _
+		),_
+	page(P3/53:13),_
+	sets(_
+			ST:ST = 11,_
+			ST:DX = 15,_
+			ST:IQ = 12,_
+			ST:HT = 12,_
+			ST:Hit Points = 11,_
+			ST:Will = 12,_
+			ST:Perception = 15,_
+			ST:Fatigue Points = 12,_
+			ST:Basic Speed = 7,_
+			ST:Basic Move = 6 _
+			),_
+	noresync(yes),_
+	usernotes(Background Lens: %lensAlt1List%),_
+	needs(_
+		(_
+			%LensAliasList% | _
+			1 TECAT:Character Templates - Action - Background Lenses_
+		)_
+	),_
+	x(_
+		#choiceList(_
+			name(Lens),_
+			title(Background Lens),_
+			text(Choose your Background Lens),_
+			picksallowed(1),_
+			method(bynumber),_
+			list(#list(ActionBackgroundLensName)),_
+			aliaslist(#list(ActionBackgroundLensTemplate)),_
+			alt1list(#list(ActionBackgroundLensAdvantages)),_
+			alt2list(#list(ActionBackgroundLensDisdvantages))_
+			)_
+	),_
+	adds(_
+				AD:Animal Friend = 2,_
+				AD:Luck,_
+				SK:Acrobatics = 2pts,_
+				SK:Animal Handling (Equines) = 2pts,_
+				SK:Riding (Equines) = 2pts,_
+				SK:First Aid (Human) = 2pts,_
+				SK:Naturalist (Earth) = 2pts,_
+				SK:Teamster (Equines) = 2pts _
+			),_
+	creates(_
+			"AD:Good with Horses, 1/5, displaycost(1), upto(2), levelnames(,Animal Empathy), taboo(AD:Animal Empathy)"_
+		),_
+	select1(#List(Languages)),_
+	select2(comment(Horseman),_
+		text(Advantages: Select 30 points from the following:),_
+		tagwith(Horseman(yes)),_
+		pointswanted(30),_
+		itemswanted(atleast 1),_
+		list(_
+				%LensAlt1List%,_
+				#List(GMAdvantages),_
+				#newitem(AD:_Increase Animal Friend, 0, displaycost(+5/+10/+), existing(AD:Animal Friend)),_
+				#newitem(AD:Extraordinary Luck, 15, displaycost(+15), existing(AD:Luck)) #codes(upto 2, downto 2),_
+				#newitem(AD:Weapon Master (Horseman Weapons), 30, levelnames(A small class of weapons), page(B99), upto(6), cat(Cinematic, Mundane, Physical)),_
+				#newitem(AD:Higher Purpose (Get the Message Through or Keep the General Informed), 5, page(B59), cat(Supernatural, Mental)),_
+				#newitem(AD:_Remove Good with Horses for Animal Empathy, 0, displaycost(+4), existing(AD:Good with Horses)) #codes(upto 2, downto 2),_
+				AD:Extra ST #codes(upto 3, downto 1),_
+				AD:Extra DX #codes(upto 1, downto 1),_
+				AD:Extra IQ #codes(upto 1, downto 1),_
+				AD:Extra HT #codes(upto 3, downto 1),_
+				AD:Extra Hit Points #codes(upto 3, downto 1),_
+				AD:Extra Will #codes(upto 3, downto 1),_
+				AD:Extra Perception #codes(upto 3, downto 1),_
+				AD:Extra Fatigue Points #codes(upto 4, downto 1),_
+				AD:Extra Basic Speed #codes(upto 4, downto 4),_
+				AD:Absolute Direction,_
+				AD:Acute Hearing,_
+				AD:Acute Taste and Smell,_
+				AD:Acute Vision,_
+				AD:Acute Touch,_
+				PE:Alcohol Tolerance,_
+				AD:Combat Reflexes,_
+				AD:Danger Sense,_
+				AD:Daredevil,_
+				AD:Fearlessness,_
+				AD:Fit,_
+				AD:Very Fit,_
+				AD:Gunslinger,_
+				AD:Hard to Kill,_
+				AD:Hard to Subdue,_
+				AD:High Pain Threshold,_
+				AD:Night Vision #codes(upto 6, downto 1),_
+				AD:Outdoorsman #codes(upto 4, downto 1),_
+				AD:Peripheral Vision,_
+				AD:Rapid Healing,_
+				AD:Very Rapid Healing,_
+				AD:Serendipity #codes(upto 2, downto 1),_
+				AD:Signature Gear _
+			)_
+		),_
+	select3(comment(Horseman),_
+		text(Disadvantages: Select -20 points from the following:),_
+		tagwith(Horseman(yes)),_
+		pointswanted(-20),_
+		itemswanted(atleast 1),_
+		list(_
+				%LensAlt2List%,_
+				DI:Code of Honor,_
+				DI:Code of Honor (Chivalry),_
+				DI:Code of Honor (Gentleman's),_
+				DI:Code of Honor (Pirate's),_
+				DI:Code of Honor (Professional),_
+				DI:Code of Honor (Soldier's),_
+				#newitem(DI:Sense of Duty (Team), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+				#newitem(DI:Sense of Duty (Nation), -10, levelnames(Large Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+				#newitem(DI:Phobia (Claustrophobia: Enclosed Spaces), -15, mods(Self-Control), page(B148), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+				#newitem(DI:Duty, -2/-5/-10/-15, displaycost(-7/-10/-20/-25), mods(Duty), page(B134), cat(Mundane, Social), upto(4), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), x(#InputToTag("Please describe the nature of your Duty:", nameext, "Agency, gang, service, or similar", "Duty")), initmods(Extremely Hazardous, -5, group(Duty), page(B134))),_
+				#newitem(DI:Secret (Roving Spy), -10/-20/-30, upto(3), page(B152), cat(Mundane, Social), levelnames("Utter Rejection", "Imprisonment or Exile", "Possible Death")),_
+				DI:Fanaticism,_
+				DI:Greed,_
+				DI:Intolerance,_
+				DI:Loner _
+			)_
+		),_
+	select4(comment(Horseman),_
+		text(Disadvantages: Select -25 points from the following:),_
+		tagwith(Horseman(yes)),_
+		pointswanted(-25),_
+		itemswanted(atleast 1),_
+		list(_
+				%LensAlt2List%,_
+				#List(GMDisadvantages),_
+				DI:Code of Honor,_
+				DI:Code of Honor (Chivalry),_
+				DI:Code of Honor (Gentleman's),_
+				DI:Code of Honor (Pirate's),_
+				DI:Code of Honor (Professional),_
+				DI:Code of Honor (Soldier's),_
+				#newitem(DI:Sense of Duty (Team), -5, levelnames(Small Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+				#newitem(DI:Sense of Duty (Nation), -10, levelnames(Large Group), page(B153), cat(Mundane Mental, Mundane, Mental), conditional(=+2 to ST:Reaction when "in dangerous situations if Sense of Duty is known")),_
+				#newitem(DI:Phobia (Claustrophobia: Enclosed Spaces), -15, mods(Self-Control), page(B148), cat(Mundane Mental, Mundane, Mental), initmods( You resist on a roll of 12 or less (quite often), *1, shortname(12 or less), group(Self-Control), page(B121) )),_
+				#newitem(DI:Duty, -2/-5/-10/-15, displaycost(-7/-10/-20/-25), mods(Duty), page(B134), cat(Mundane, Social), upto(4), levelnames("6 or less (quite rarely)", "9 or less (fairly often)", "12 or less (quite often)", "15 or less (almost always)"), x(#InputToTag("Please describe the nature of your Duty:", nameext, "Agency, gang, service, or similar", "Duty")), initmods(Extremely Hazardous, -5, group(Duty), page(B134))),_
+				#newitem(DI:Secret (Roving Spy), -10/-20/-30, upto(3), page(B152), cat(Mundane, Social), levelnames("Utter Rejection", "Imprisonment or Exile", "Possible Death")),_
+				DI:Fanaticism,_
+				DI:Greed,_
+				DI:Intolerance,_
+				DI:Loner,_
+				DI:Bad Temper,_
+				DI:Bloodlust,_
+				QU:Bowlegged,_
+				DI:Callous,_
+				DI:Compulsive Carousing,_
+				DI:Easy to Read,_
+				DI:Impulsiveness,_
+				DI:Insomniac,_
+				DI:Jealousy,_
+				DI:Nightmares,_
+				DI:No Sense of Humor,_
+				DI:Oblivious,_
+				DI:Odious Personal Habit,_
+				DI:Overconfidence,_
+				DI:Paranoia,_
+				DI:Post-Combat Shakes,_
+				DI:Selfish,_
+				DI:Shyness #codes(upto 1, downto 1),_
+				DI:Stubbornness,_
+				DI:Truthfulness _
+			)_
+		),_
+	select5(comment(Horseman),_
+		text(Primary Skills: Select 12 points in the following:),_
+		tagwith(Horseman(yes)),_
+		pointswanted(12),_
+		itemswanted(atleast 1),_
+		list(_
+				#List(Melee Combat Skills),_
+				#List(Ranged Combat Skills) _
+			)_
+		),_
+	select6(comment(Horseman),_
+		text(Secondary Skills: Select 5 of the following:),_
+		tagwith(Horseman(yes)),_
+		pointswanted(10),_
+		itemswanted(5),_
+		list(_
+				#BuildList(list(#list(GMPrimarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+				#BuildList(list(#list(GMSecondarySkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+				#BuildList(list(#list(GMBackgroundSkills)), template(%ListItem% #codes(upto 2pts, downto 2pts))),_
+				#newitem(SK:_Increase Acrobatics, DX/A, existing(SK:Acrobatics)) #codes(upto %points+2pts, downto %points+2pts),_
+				SK:Brawling #codes(upto 2pts, downto 2pts),_
+				SK:Jumping #codes(upto 2pts, downto 2pts),_
+				SK:Lance #codes(upto 2pts, downto 2pts),_
+				SK:Lasso #codes(upto 2pts, downto 2pts),_
+				SK:Stealth #codes(upto 2pts, downto 2pts),_
+				SK:Whip #codes(upto 2pts, downto 2pts),_
+				SK:Armoury #codes(upto 2pts, downto 2pts),_
+				SK:Cartography #codes(upto 2pts, downto 2pts),_
+				SK:Forward #codes(upto 2pts, downto 2pts),_
+				SK:Observer #codes(upto 2pts, downto 2pts),_
+				SK:Navigation (Land) #codes(upto 2pts, downto 2pts),_
+				SK:Packing #codes(upto 2pts, downto 2pts),_
+				SK:Tactics #codes(upto 2pts, downto 2pts),_
+				SK:Veterinary #codes(upto 2pts, downto 2pts),_
+				SK:Intimidation #codes(upto 2pts, downto 2pts),_
+				SK:Observation #codes(upto 2pts, downto 2pts),_
+				SK:Tracking #codes(upto 2pts, downto 2pts),_
+				SK:Animal Handling #codes(upto 2pts, downto 2pts),_
+				SK:Riding #codes(upto 2pts, downto 2pts) _
+			)_
+		)
+
+********************************************************************************************************\[STOP]
+[LISTS]
+*******************************************************************************************************\[START]
+<ActionBackgroundLensName>
+{Backwoodsman Background}=20,_
+{Kid Background}=20,_
+{Masked Avenger Background}=20
+
+<ActionBackgroundLensTemplate>
+{TE:Backwoodsman Background (Action)},_
+{TE:Kid Background (Action)},_
+{TE:Masked Avenger Background (Action)}
+
+<ActionBackgroundLensAdvantages>
+{_
+	AD:Animal Empathy,_
+	AD:Outdoorsman,_
+	PE:Good with (Animal),_
+	PE:Call of the Wild_
+},_
+{_
+	AD:Ally_
+},_
+{_
+	AD:Alternate Identity,_
+	AD:Higher Purpose,_
+	AD:Zeroed,_
+	AD:Wealth,_
+	AD:Signature Gear_
+}
+
+<ActionBackgroundLensDisdvantages>
+{},_
+{},_
+{_
+	DI:Secret Identity,_
+	DI:Charitable,_
+	DI:Fanaticism,_
+	DI:Intolerance,_
+	DI:Obsession,_
+	DI:Pacifism (Cannot Harm Innocents),_
+	DI:Selfless,_
+	DI:Sense of Duty (Law-Abiding Citizens),_
+	DI:Trademark,_
+	DI:Trickster,_
+	DI:Vow (Never let the world know about your adventuring)_
+}
+
+<BackwoodsmanSkills>
+SK:Naturalist,_
+SK:Navigation (Land),_
+SK:Jumping,_
+SK:Knot-Tying,_
+SK:Knife,_
+SK:Leatherworking,_
+SK:Bow,_
+SK:Climbing,_
+SK:Riding (Equines),_
+SK:Spear,_
+SK:Staff,_
+SK:Stealth,_
+SK:Throwing,_
+SK:Area Knowledge ([Area]),_
+SK:First Aid,_
+SK:Camouflage,_
+SK:Animal Handling,_
+SK:Armoury (Melee Weapons),_
+SK:Armoury (Missile Weapons),_
+SK:Falconry,_
+SK:Farming,_
+SK:Packing,_
+SK:Traps,_
+SK:Swimming,_
+SK:Hiking,_
+SK:Running,_
+SK:Skiing,_
+SK:Fishing,_
+SK:Tracking,_
+SK:Survival,_
+SK:Survival (Arctic),_
+SK:Survival (Desert),_
+SK:Survival (Island/Beach),_
+SK:Survival (Jungle),_
+SK:Survival (Mountain),_
+SK:Survival (Plains),_
+SK:Survival (Swampland),_
+SK:Survival (Woodlands)
+
+<KidSkills>
+SK:Bicycling,_
+SK:Knot-Tying,_
+SK:Boating (Sailboat),_
+SK:Boating (Unpowered),_
+SK:Filch,_
+SK:Blowpipe,_
+SK:Computer Operation,_
+SK:Current Affairs (Popular Culture),_
+SK:Current Affairs (Sports),_
+SK:Fast-Talk
+
+********************************************************************************************************\[STOP]
+[TEMPLATES]
+*******************************************************************************************************\[START]
+#MergeTags in "TE:Backwoodsman Background (Action)" with {replacetags(in "TE:Backwoodsman (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Kid Background (Action)" with {replacetags(in "TE:Kid (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Masked Avenger Background (Action)" with {replacetags(in "TE:Masked Avenger (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
+#MergeTags in "TE:Horseman (Action)" with {replacetags(in "TE:Horseman (Action)" with "x(), y(), select1(), select2(), select3(), select4(), select5(), select6(), select7(), select8(), select9(), select10(), select11(), select12(), select13(), select14(), select15(), select16(), select17(), select18(), select19(), select20()")}
