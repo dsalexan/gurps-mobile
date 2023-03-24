@@ -34,6 +34,9 @@ export interface Data extends ActorSheet.Data<Options> {
   oocTab: string
 
   tabs: {
+    attacks: any[]
+    defenses: any[]
+    //
     attributes: any[]
     advantages: any[]
     skills: any[]
@@ -423,6 +426,9 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
     // Preparing tabs
     sheetData.tabs = {
+      attacks: [],
+      defenses: [],
+      //
       attributes: [],
       advantages: [],
       skills: [],
@@ -440,8 +446,9 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const tGroupingFeatures = logger.time(`Grouping Features`) // COMMENT
 
     const allFeatures = Object.values(cache.features ?? {})
-    const groupedFeatures = FeatureGroups.map(({ section, key, specs, map, filter, sort, order, groups }) => {
-      const mappedFeatures = flatten(map === undefined ? allFeatures : allFeatures.map(f => map(f as any)))
+    const groupedFeatures = FeatureGroups.map(({ section, key, specs, transform, map, filter, sort, order, groups }) => {
+      const transformedFeatures = transform === undefined ? allFeatures : transform(allFeatures)
+      const mappedFeatures = flatten(map === undefined ? transformedFeatures : transformedFeatures.map(f => map(f as any)))
       // TODO: Dont skip feature containers, instead render them as FeatureLists
       const features = filter === undefined ? mappedFeatures : mappedFeatures.filter(f => filter(f as any) && f.children.length === 0)
 
@@ -467,6 +474,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
+    sheetData.tabs.defenses.push(...this.buildDefenses())
     sheetData.tabs.attributes.push(...this.buildAttributes())
 
     for (const type of groupedFeatures) {
@@ -559,6 +567,40 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     // build list
     return [contextManager.list({ id: listId, label: `Speed and Move`, children })]
   }
+
+  buildDefenses() {
+    const logger = LOGGER.get(`actor-sheet`)
+    const cache = this.actor.cache
+    const contextManager = this.actor.cache.contextManager
+
+    if (!contextManager) return []
+    if (!cache.features) return []
+
+    const listId = `combat-defenses-active`
+    const children = [] as any[]
+
+    const activeDefenses = [`block`] // [`block`, `dodge`, `parry`]
+    for (const activeDefense of activeDefenses) {
+      const id = `activedefense-${activeDefense}`
+
+      const defense = cache.features[id]
+      if (!defense) continue
+
+      const defenses = cache.links?.defenses ?? {}
+      const links = defenses[activeDefense] ?? []
+
+      children.push(
+        contextManager.feature(defense, {
+          classes: [`full`],
+          list: listId,
+          features: links.map(uuid => cache.features?.[uuid]),
+        }),
+      )
+    }
+
+    // build list
+    return [contextManager.list({ id: listId, label: undefined, children })]
+  }
   // #endregion
 
   openDesktopSheet() {
@@ -568,40 +610,38 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
 const FeatureGroups = [
   // combat
-  {
-    section: `combat`,
-    key: `attacks`,
-    specs: { showParentAsTag: true },
-    map: (f: GenericFeature) => f.weapons ?? [],
-    sort: (f: WeaponFeature) => {
-      let rolls = f.defaults
-      if (isNil(rolls)) rolls = [parseRollDefinition({ type: `dx` })]
-
-      return orderRolls(rolls, f, f._actor)[0].level
-    },
-    order: `desc`,
-    groups: false,
-  },
-  // ooc
   // {
-  //   section: 'occ',
+  //   section: `combat`,
+  //   key: `attacks`,
+  //   map: (f: GenericFeature) => f.weapons ?? [],
+  //   sort: (f: WeaponFeature) => {
+  //     let rolls = f.rolls
+  //     if (isNil(rolls)) rolls = [parseRollDefinition({ type: `dx` })]
+  //     return orderRolls(rolls, f, f._actor)[0].level
+  //   },
+  //   order: `desc`,
+  //   groups: false,
+  // },
+  // // ooc
+  // {
+  //   section: `occ`,
   //   key: `advantages`,
   //   filter: (f: GenericFeature) => f.type.compare(`generic_advantage`, false),
   // },
   // {
-  //   section: 'occ',
+  //   section: `occ`,
   //   key: `skills`,
   //   filter: (f: SkillFeature) => f.type.compare(`skill`, true) && !f.proxy,
   //   sort: (f: SkillFeature) => (f.untrained ? -1 : parseInt(f._key.tree[0].toString())),
   //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
   // },
-  {
-    section: `occ`,
-    key: `spells`,
-    filter: (f: GenericFeature) => f.type.compare(`spell`, true),
-  },
   // {
-  //   section: 'occ',
+  //   section: `occ`,
+  //   key: `spells`,
+  //   filter: (f: GenericFeature) => f.type.compare(`spell`, true),
+  // },
+  // {
+  //   section: `occ`,
   //   key: `equipment`,
   //   filter: (f: GenericFeature) => f.type.compare(`equipment`, true),
   // },

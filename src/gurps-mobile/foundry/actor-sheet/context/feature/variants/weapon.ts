@@ -40,7 +40,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     _variants[0].label = feature.usage ?? undefined
 
     // if there is no defaults attached to weapon, just returns its default main variant
-    if (isNil(feature.defaults) || feature.defaults.length === 0) {
+    if (isNil(feature.rolls) || feature.rolls.length === 0) {
       _variants[0].value = undefined
       return _variants
     }
@@ -53,7 +53,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     // split trained/untrained skills
     const untrained = [] as IRollDefinition[],
       trained = [] as { roll: IRollDefinition; level: ILevelDefinition }[]
-    for (const roll of feature.defaults) {
+
+    const rolls = feature.rolls ?? []
+    for (const roll of rolls) {
       const targets = Object.values(roll.targets ?? [])
 
       const allSkillsAreTrained = targets.every(target => {
@@ -134,7 +136,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     variant.classes.push(`value-interactible`)
     const tags = new TagBuilder(variant.tags)
 
-    if (specs.showParentAsTag && feature.parent) {
+    if (specs.showParent && feature.parent) {
       let suffix = ``
       if (!isNilOrEmpty(feature.usage)) {
         suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">(${feature.usage})</span>`
@@ -156,7 +158,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    let defaultRolls = feature.defaults
+    let defaultRolls = feature.rolls
     if (isNil(defaultRolls)) {
       defaultRolls = [parseRollDefinition({ type: `dx` })]
 
@@ -175,7 +177,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    if (!isNil(defaultRolls)) {
+    if (!isNil(defaultRolls) && defaultRolls.length > 0) {
       const rolls = orderRolls(defaultRolls, feature, feature._actor)
       const roll = rolls[0]
 

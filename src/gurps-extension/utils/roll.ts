@@ -16,7 +16,7 @@ import { GURPS4th } from "../types/gurps4th"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IRollDefinition extends GCA.Expression {
-  //
+  tags: string[]
 }
 
 // export interface Expression {
@@ -130,13 +130,17 @@ export function stringifyRelativeSkillLevel({ expression, definitions }: Partial
  */
 export function parseRollDefinition(object: GCA.Expression | GCS.EntryDefault): IRollDefinition {
   // GCA.Expression
-  if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) return object as IRollDefinition
+  if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) {
+    object.tags = [] as string[]
+    return object as IRollDefinition
+  }
 
   // GCS.EntryDefault
   const _default = object as GCS.EntryDefault
   let roll = {
     _raw: JSON.stringify(_default),
     math: true,
+    tags: [] as string[],
   } as IRollDefinition
 
   if ([`dx`, `st`, `iq`, `ht`].includes(_default.type)) {

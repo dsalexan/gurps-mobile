@@ -17,7 +17,6 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
   difficulty: string
   sl: string
   rsl: RelativeSkillLevel
-  default: IRollDefinition[]
   untrained: boolean
   defaultFrom: object[]
   proxy?: boolean

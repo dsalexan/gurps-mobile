@@ -1,5 +1,5 @@
 /* eslint-disable jsdoc/require-jsdoc */
-import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil } from "lodash"
+import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty } from "lodash"
 import CompilationTemplate, { CompilationContext } from "./template"
 import LOGGER from "../../../logger"
 
@@ -161,7 +161,7 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
       // pass
     }
     // if value in data is fallback OR empty AND value is something
-    else if (data[key] === undefined || lastMigration.mode === `fallback`) {
+    else if (data[key] === undefined || lastMigration.mode === `fallback` || isEmpty(data[key])) {
       data[key] = value
       meta()
     }

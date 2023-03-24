@@ -8,6 +8,7 @@ import { isNilOrEmpty, isNumeric } from "../../../../../december/utils/lodash"
 import { GCA } from "../../../gca/types"
 import { ManualSourceProperty } from "../../base"
 import { ISkillFeature } from "./skill"
+import { parseComponentDefinition } from "../../../../../gurps-extension/utils/component"
 
 export interface GenericFeatureManualSource {
   id?: ManualSourceProperty<string>
@@ -74,6 +75,8 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
     // @ts-ignore
     const conditional = flattenDeep([get(GCS, `conditional`, [])])
 
+    const components = get(GCS, `features`, []).map(f => parseComponentDefinition(f as any))
+
     return {
       type,
       container,
@@ -91,6 +94,7 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
       tags,
       conditional,
       rolls: [],
+      components,
     }
   }
 

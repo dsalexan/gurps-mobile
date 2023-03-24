@@ -14,10 +14,8 @@ import FeatureFactory from "./factory"
 import { MigratableObject, MigrationDataObject, buildMigratableObject, completeMigrationValueDefinitions } from "./compilation/migration"
 import { GCA as _GCA } from "../gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../foundry/actor-sheet/context/context"
-
-export interface SkillRoll {}
-export interface AttributeRoll {}
-export interface Roll {}
+import { IRollDefinition } from "../../../gurps-extension/utils/roll"
+import { IComponentDefinition } from "../../../gurps-extension/utils/component"
 
 // export interface SkillDefault {
 //   _raw: string
@@ -33,6 +31,7 @@ export interface IFeature {
   parent?: BaseFeature | null
   children: BaseFeature[]
   group?: string
+  links: string[]
 
   type: Type
   id: string
@@ -51,6 +50,7 @@ export interface IFeature {
   reference: string[]
   tags: string[]
   conditional: string[]
+  components: IComponentDefinition[]
 }
 
 export type ManualSourceProperty<TValue> = (sources: Record<string, object>, context: Record<string, any>) => TValue
@@ -128,6 +128,8 @@ export default class BaseFeature implements IFeature {
   reference: string[]
   tags: string[]
   conditional: string[]
+  rolls?: IRollDefinition[]
+  components: IComponentDefinition[]
 
   get specializedName() {
     return Utils.specializedName(this.name, this.specialization)
@@ -184,9 +186,10 @@ export default class BaseFeature implements IFeature {
 
       return [key, value]
     })
+
     const entries = tuples.filter(([key, value]) => {
       if (isArray(value)) return value.length >= 1
-      return !isNilOrEmpty(value)
+      return !isNil(value) && !isEmpty(value)
     })
 
     return Object.fromEntries(entries)
@@ -366,6 +369,9 @@ export default class BaseFeature implements IFeature {
     actor.setFeature(this.id, this)
     if (GURPS._cache.actors[actor.id].paths === undefined) GURPS._cache.actors[actor.id].paths = {}
     if (this.path) GURPS._cache.actors[actor.id].paths[this.path] = this.id
+
+    // link
+    if (this.links) actor.cacheLink(this.id, ...this.links)
 
     return this
   }

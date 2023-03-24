@@ -33,14 +33,6 @@ export default class AdvantageFeature extends GenericFeature implements IAdvanta
   integrate(actor: GurpsMobileActor) {
     super.integrate(actor)
 
-    if (this.links) {
-      for (const link of this.links) {
-        if (!has(actor.cache, `links.${link}`)) actor.setCache(`links.${link}`, [])
-        const cacheLink = get(actor.cache, `links.${link}`)
-        if (isArray(cacheLink) && !cacheLink.includes(this.id)) cacheLink.push(this.id)
-      }
-    }
-
     return this
   }
 }

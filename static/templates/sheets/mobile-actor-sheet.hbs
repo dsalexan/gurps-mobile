@@ -149,32 +149,9 @@
         {{/each}}
       </div>
       <div class="panel {{equals 'defense' combatTab 'selected'}}" data-value="defense">
-        <div class="feature interactible">
-          <div class="value">10<i>*</i></div>
-          <div class="label">Air Move</div>
-          <div class="extras">
-            <div>Flight</div>
-            <div>X-Heavy Encumbrance</div>
-          </div>
-          <div class="background-icon">
-            <svg  fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
-            </svg>
-          </div>
-        </div>
-        <div class="feature interactible">
-          <div class="value">10<i>*</i></div>
-          <div class="label">Air Move</div>
-          <div class="extras">
-            <div>Flight</div>
-            <div>X-Heavy Encumbrance</div>
-          </div>
-          <div class="background-icon">
-            <svg  fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
-            </svg>
-          </div>
-        </div>
+        {{#each tabs.defenses}}
+          {{> gurps/feature_list this}}
+        {{/each}}
       </div>      
       <div class="panel {{equals 'advantage' combatTab 'selected'}}" data-value="advantage">
         <div class="feature interactible">

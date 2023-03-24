@@ -8,6 +8,7 @@ import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext } from "./generic"
 import { IFeature } from "../../base"
+import { IRollDefinition } from "../../../../../gurps-extension/utils/roll"
 
 export interface FeatureRoll {
   self_control?: boolean
@@ -17,9 +18,6 @@ export interface FeatureRoll {
 
 export interface IAdvantageFeature extends IFeature {
   cost: string
-  links?: string[]
-  //
-  rolls?: FeatureRoll[]
 }
 
 export default class AdvantageFeatureCompilationTemplate extends CompilationTemplate {
@@ -39,19 +37,18 @@ export default class AdvantageFeatureCompilationTemplate extends CompilationTemp
 
     if (notes) {
       const _notes = [] as string[]
-      const rolls = [] as FeatureRoll[]
+      const rolls = [] as IRollDefinition[]
 
       for (const note of notes) {
         if (!note.includes(`CR`)) _notes.push(note)
         else {
           const [notes2, cr] = AdvantageFeatureCompilationTemplate.selfControlRolls(note)
 
+          debugger
           _notes.push(notes2)
-          rolls.push({
-            self_control: true,
-            value: cr.value,
-            label: cr.label,
-          })
+          // rolls.push({
+          //   tags: [`self_confol`]
+          // })
         }
       }
 
@@ -82,6 +79,7 @@ export default class AdvantageFeatureCompilationTemplate extends CompilationTemp
     const cr = _notes.match(pattern)
     const notes = _notes.replace(pattern, ``)
 
+    debugger
     return [
       notes,
       {

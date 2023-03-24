@@ -1,4 +1,4 @@
-import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range } from "lodash"
+import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst } from "lodash"
 
 import { MODULE_ID } from "config"
 import LOGGER from "logger"
@@ -15,6 +15,8 @@ import AdvantageFeatureContextTemplate from "../actor-sheet/context/feature/vari
 import SkillFeatureContextTemplate from "../actor-sheet/context/feature/variants/skill"
 import SpellFeatureContextTemplate from "../actor-sheet/context/feature/variants/spell"
 import EquipmentFeatureContextTemplate from "../actor-sheet/context/feature/variants/equipment"
+import { FEATURE } from "../../core/feature/type"
+import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/variants/defense"
 
 export type ActorCache = {
   links?: Record<string, string[]>
@@ -70,6 +72,14 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       LOGGER.warn(`Cannot decide cached skill for`, name, `in`, ids, `@`, result, this)
       // eslint-disable-next-line no-debugger
       debugger
+    }
+  }
+
+  cacheLink(feature: string, ...links: string[]) {
+    for (const link of links) {
+      if (!has(this.cache, `links.${link}`)) this.setCache(`links.${link}`, [])
+      const cacheLink = get(this.cache, `links.${link}`)
+      if (isArray(cacheLink) && !cacheLink.includes(feature)) cacheLink.push(feature)
     }
   }
   // #endregion
@@ -171,13 +181,28 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     let all = this._datachanges === undefined && Object.keys(cached ?? {}).length === 0
     const do_basicspeed = all || this._datachanges?.has(`system.basicspeed`)
     const do_moves = all || this._datachanges?.has(/system\.move\.\d+$/i)
+    //
     const do_ads = all || this._datachanges?.has(/system\.ads$/i)
     const do_skills = all || this._datachanges?.has(/system\.skills$/i)
     const do_spells = all || this._datachanges?.has(/system\.spells$/i)
     const do_carried_equipment = all || this._datachanges?.has(/system\.equipment\.carried$/i)
     const do_other_equipment = all || this._datachanges?.has(/system\.equipment\.other$/i)
+    //
+    const do_defenses = true //all || this._datachanges.has(//i)
 
-    const partials = { do_basicspeed, do_moves, do_ads, do_skills, do_spells, do_carried_equipment, do_other_equipment }
+    const partials = {
+      do_basicspeed,
+      do_moves,
+      //
+      do_ads,
+      do_skills,
+      do_spells,
+      do_carried_equipment,
+      do_other_equipment,
+      //
+
+      do_defenses,
+    }
     const partial = Object.values(partials).some(p => !!p)
     all = Object.values(partials).every(p => !!p)
 
@@ -191,8 +216,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         `background-color: rgb(${all ? `255, 224, 60, 0.45` : partial ? `60,179,113, 0.3` : `0, 0, 0, 0.085`}); font-weight: bold; padding: 3px 0;`,
       ])
     logger.info(`    `, `last datachanges:`, this._datachanges?.data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-    const dos = { all, do_basicspeed, do_moves, do_ads, do_skills, do_spells, do_carried_equipment, do_other_equipment }
-    logger.info(`    `, `dos:`, dos, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+    logger.info(`    `, `dos:`, { all, ...partials }, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `actor:`, this, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `cached:`, cached, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `gcs:`, gcs, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
@@ -216,6 +240,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     if (gcs && (all || partial)) {
       this.prepareAttributes(cached.featureFactory, partials)
       this.prepareFeatures(cached.featureFactory, partials)
+      this.prepareDefenses(cached.featureFactory, partials)
     }
 
     // VERBOSE LOGGIN
@@ -241,7 +266,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const { do_basicspeed, do_moves } = dos
 
-    const timer = logger.time(`prepareFeatures`) // COMMENT
+    const timer = logger.time(`prepareAttributes`) // COMMENT
 
     // #region Moves
 
@@ -354,5 +379,40 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const n = Object.values(this.cache.features ?? {}).length
     timer(`Prepare ${n} feature${n === 1 ? `` : `s`}`, [`font-weight: bold;`]) // COMMENT
   }
-  // #endregion
+
+  prepareDefenses(factory: FeatureFactory, dos: Record<string, boolean>) {
+    const logger = LOGGER.get(`actor`)
+
+    const actorData = this.system // where "gurps" stores parsed GCS data (as recommended by v9 of foundry)
+    const rawGCS = actorData._import // where my modded version of "gurps" store raw GCS data
+
+    const { do_defenses } = dos
+
+    const timer = logger.time(`prepareDefenses`) // COMMENT
+
+    if (do_defenses) {
+      const activeDefenses = [`block`, `dodge`, `parry`]
+
+      for (let i = 0; i < activeDefenses.length; i++) {
+        const activeDefense = activeDefenses[i]
+
+        const feature = factory
+          .build(`generic`, activeDefense, `system.`, null, {
+            context: { templates: DefenseFeatureContextTemplate },
+            key: () => [1, i],
+            manual: {
+              id: () => `activedefense-${activeDefense}`,
+              name: () => upperFirst(activeDefense),
+              type: () => FEATURE.GENERIC,
+            },
+          })
+          // .addSource(`gcs`, move)
+          .compile()
+          .integrate(this)
+      }
+    }
+
+    timer(`Prepare defenses`, [`font-weight: bold;`]) // COMMENT
+    // #endregion
+  }
 }

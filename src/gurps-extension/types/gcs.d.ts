@@ -20,6 +20,7 @@ export namespace GCS {
     notes?: string | string[]
     vtt_notes?: string
     tags?: string[]
+    features?: Feature[]
     //
     reference: string[]
     // weapons
@@ -31,6 +32,12 @@ export namespace GCS {
     name?: string
     specialization?: string
     modifier?: string
+  }
+
+  interface Feature {
+    type: string
+    attribute?: string
+    ammount?: number
   }
 
   // interface SkillDefault {

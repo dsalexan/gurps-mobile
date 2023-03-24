@@ -22,7 +22,6 @@ export interface ISkillFeature extends IFeature {
   difficulty: string
   sl: string
   rsl: IRelativeLevelDefinition
-  default: IRollDefinition[]
   untrained: boolean
   defaultFrom: object[]
   proxy?: boolean
@@ -102,7 +101,7 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
       MDO.difficulty = GCA.type.split(`/`)[1]
     }
 
-    if (!isNil(GCA?.default)) MDO.default = GCA.default.map(_default => parseRollDefinition(_default))
+    if (!isNil(GCA?.default)) MDO.rolls = GCA.default.map(_default => parseRollDefinition(_default))
 
     return MDO
   }

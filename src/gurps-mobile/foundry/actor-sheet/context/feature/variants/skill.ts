@@ -40,11 +40,11 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     let rsl = feature.rsl,
       sl = feature.sl
     if (isNil(rsl) || isNil(sl)) {
-      if (feature.default) {
-        const defaults = feature.default
+      if (feature.rolls) {
+        const rolls = feature.rolls
           .map(roll => parseLevelDefinition(roll, feature as SkillFeature, (feature as SkillFeature)._actor))
           .filter(level => !isNil(level)) as ILevelDefinition[]
-        const levels = orderBy(defaults, `level`, `desc`)
+        const levels = orderBy(rolls, `level`, `desc`)
 
         // if (feature.specializedName === `Armoury (Body Armor)`) debugger
 
@@ -84,7 +84,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     if (feature.untrained || specs.showDefaults) {
       tags.at(1).add(
         ...flatten(
-          (feature.default ?? []).map((roll: IRollDefinition) => {
+          (feature.rolls ?? []).map((roll: IRollDefinition) => {
             const levelDefinition = parseLevelDefinition(roll, feature as SkillFeature, (feature as SkillFeature)._actor)
 
             if (!isNil(levelDefinition)) {
