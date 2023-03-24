@@ -9,13 +9,14 @@ import { isNilOrEmpty, push } from "../../../../../../december/utils/lodash"
 import { IWeaponFeature } from "../../../../../core/feature/compilation/templates/weapon"
 import WeaponFeature from "../../../../../core/feature/variants/weapon"
 import { parseValue } from "../../../../../core/feature/utils"
-import { ILevelDefinition, IRollDefinition, orderRolls, parseLevelDefinition, parseRollDefinition } from "../../../../../../gurps-extension/utils/roll"
+import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: IWeaponFeature
   //
+  showParent?: boolean
   showDefaults?: boolean
   difficulty?: boolean
 }
@@ -40,7 +41,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     _variants[0].label = feature.usage ?? undefined
 
     // if there is no defaults attached to weapon, just returns its default main variant
-    if (isNil(feature.rolls) || feature.rolls.length === 0) {
+    if (isNil(feature.levels) || feature.levels.length === 0) {
       _variants[0].value = undefined
       return _variants
     }
@@ -51,12 +52,12 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const variants = [] as IFeatureDataVariant[]
 
     // split trained/untrained skills
-    const untrained = [] as IRollDefinition[],
-      trained = [] as { roll: IRollDefinition; level: ILevelDefinition }[]
+    const untrained = [] as ILevelDefinition[],
+      trained = [] as { definition: ILevelDefinition; level: ILevel }[]
 
-    const rolls = feature.rolls ?? []
-    for (const roll of rolls) {
-      const targets = Object.values(roll.targets ?? [])
+    const levels = feature.levels ?? []
+    for (const levelDefinition of levels) {
+      const targets = Object.values(levelDefinition.targets ?? [])
 
       const allSkillsAreTrained = targets.every(target => {
         if (target.type !== `skill`) return true
@@ -66,10 +67,10 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       if (allSkillsAreTrained || targets.length === 0) {
         trained.push({
-          roll,
-          level: parseLevelDefinition(roll, feature as any, actor) ?? { level: -Infinity },
+          definition: levelDefinition,
+          level: levelDefinition.parse(feature as any, actor) ?? { level: -Infinity },
         })
-      } else untrained.push(roll)
+      } else untrained.push(levelDefinition)
     }
 
     // if there is some untrained skills, show it
@@ -90,8 +91,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     // order skills by level, and for each skill, yield a variant
-    const rollsByLevel = orderBy(trained, ({ level }) => level.level, `desc`)
-    for (const roll of rollsByLevel) {
+    const levelssByLevel = orderBy(trained, ({ level }) => level.level, `desc`)
+    for (const levels of levelssByLevel) {
       const variant = deepClone(main)
 
       const tags = new TagBuilder(variant.tags)
@@ -101,7 +102,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       if (isNil(variant.label)) {
         const prefix = ``
         // const prefix = `<div class="wrapper-icon"><i class="icon">${Handlebars.helpers[`gurpsIcon`](`skill`)}</i></div>`
-        variant.label = `${prefix}${roll.level.relative?.toString()}`
+        variant.label = `${prefix}${levels.level.relative?.toString()}`
       }
       // if (feature.usage) {
       //   tags.type(`type`).update(tag => {
@@ -116,8 +117,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       // VALUE
       variant.value = {
-        value: roll.level.level,
-        label: roll.level.relative?.toString({ skillAcronym: true }),
+        value: levels.level.level,
+        label: levels.level.relative?.toString({ skillAcronym: true }),
       }
 
       variants.push({ ...variant, tags: tags.tags })
@@ -158,9 +159,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    let defaultRolls = feature.rolls
-    if (isNil(defaultRolls)) {
-      defaultRolls = [parseRollDefinition({ type: `dx` })]
+    let defaultLevels = feature.levels
+    if (isNil(defaultLevels)) {
+      defaultLevels = [parseLevelDefinition({ type: `dx` })]
 
       tags.type(`parent`, `type`).push({
         type: `feature`,
@@ -177,13 +178,13 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    if (!isNil(defaultRolls) && defaultRolls.length > 0) {
-      const rolls = orderRolls(defaultRolls, feature, feature._actor)
-      const roll = rolls[0]
+    if (!isNil(defaultLevels) && defaultLevels.length > 0) {
+      const levels = orderLevels(defaultLevels, feature, feature._actor)
+      const level = levels[0]
 
       variant.value = {
-        value: roll.level,
-        label: roll.relative?.toString({ skillAcronym: true }),
+        value: level.level,
+        label: level.relative?.toString({ skillAcronym: true }),
       }
     }
 

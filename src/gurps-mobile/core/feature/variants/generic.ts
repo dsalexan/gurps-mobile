@@ -4,14 +4,60 @@ import { IWeaponizableFeature } from "../compilation/templates/weaponizable"
 
 import GenericFeatureCompilationTemplate from "../compilation/templates/generic"
 import WeaponizableFeatureCompilationTemplate from "../compilation/templates/weaponizable"
-import { get, has, isArray } from "lodash"
+import { cloneDeep, get, has, isArray, isNil, orderBy, sum } from "lodash"
 import FeatureWeaponsDataContextTemplate from "../../../foundry/actor-sheet/context/feature/weapons"
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { IWeaponFeature } from "../compilation/templates/weapon"
+import WeaponFeature from "./weapon"
+import { Utils } from ".."
+import { ILevel, ILevelDefinition, calculateLevel, orderLevels } from "../../../../gurps-extension/utils/level"
+import { FeatureState } from "../utils"
+import { parseBonus } from "../../../../gurps-extension/utils/bonus"
 
-export default class GenericFeature extends BaseFeature implements IWeaponizableFeature {
-  declare value?: string | number
-  weapons: BaseFeature[]
+export interface IGenericFeature extends IFeature {
+  container: boolean
+
+  label: string
+  tl?: {
+    level: number
+    required?: boolean
+    range?: string
+  }
+
+  categories: string[]
+  notes: string[]
+  meta: string
+  tags: string[]
+  conditional: string[]
+  levels?: ILevelDefinition[]
+
+  reference: string[]
+
+  level(): ILevel | null
+}
+
+export default class GenericFeature extends BaseFeature implements IGenericFeature, IWeaponizableFeature {
+  // structural
+  container: boolean
+
+  // data
+  label: string
+  tl?: {
+    level: number
+    required?: boolean
+    range?: string
+  }
+
+  value?: string | number
+  categories: string[]
+  notes: string[]
+  meta: string
+  reference: string[]
+  tags: string[]
+  conditional: string[]
+  levels?: ILevelDefinition[]
+
+  weapons: WeaponFeature[]
 
   /**
    * Instantiate new Generic Feature
@@ -33,8 +79,8 @@ export default class GenericFeature extends BaseFeature implements IWeaponizable
     if (this.components) {
       for (const component of this.components) {
         component.feature = this
-        if (!has(actor.cache, `modifiers.${component.type}`)) actor.setCache(`modifiers.${component.type}`, [])
-        const modifierArray = get(actor.cache, `modifiers.${component.type}`) as any as any[]
+        if (!has(actor.cache, `components.${component.type}`)) actor.setCache(`components.${component.type}`, [])
+        const modifierArray = get(actor.cache, `components.${component.type}`) as any as any[]
         if (isArray(modifierArray)) modifierArray.push(component)
       }
     }
@@ -50,12 +96,27 @@ export default class GenericFeature extends BaseFeature implements IWeaponizable
     actor.cacheLink(this.id, ...this.links)
 
     // TECH_LEVEL
-    if (this.tlRequired && isNilOrEmpty(this.tl)) {
+    if (this.tl?.required && isNilOrEmpty(this.tl.level)) {
       // ERROR: Untrained take TL from default, and all shit from GCS should come with tech_level already
       debugger
     }
 
     return this
+  }
+
+  /**
+   * Returns best level for feature
+   */
+  level() {
+    if (this.levels) {
+      const levels = orderLevels(this.levels, this, this._actor)
+
+      // if (feature.specializedName === `Armoury (Body Armor)`) debugger
+
+      if (levels.length > 0) return levels[0]
+    }
+
+    return null
   }
 
   /**
@@ -96,17 +157,44 @@ export default class GenericFeature extends BaseFeature implements IWeaponizable
   /**
    * Calculate active defense level for a feature
    */
-  static activeDefenseLevel(activeDefense: `block` | `dodge` | `parry` | `all`, feature: GenericFeature) {
+  static activeDefenseLevel(activeDefense: `block` | `dodge` | `parry` | `all`, feature: GenericFeature): { bonus: number; skill: ILevel } | null {
     if (feature.type.compare(`spell`)) return null
 
     const actor = feature._actor
 
-    if (activeDefense === `block`) {
-      debugger
+    const attributeBonus = actor.cache.components?.attribute_bonus ?? []
+    const actorComponents = attributeBonus.filter(component => component.attribute === activeDefense)
+    const actorActiveComponents = actorComponents.filter(component => component.feature.state & FeatureState.PASSIVE || component.feature.state & FeatureState.ACTIVE)
+
+    const actorBonus = sum(actorActiveComponents.map(component => component.amount))
+
+    if (activeDefense === `block` || activeDefense === `parry`) {
+      const defensableWeapons = feature.weapons.filter(weapon => weapon[activeDefense] !== false)
+      if (defensableWeapons.length === 0) return null // no weapon with defense, return null
+
+      const weapon = defensableWeapons[0]
+
+      const skill = cloneDeep(weapon.level())
+      if (skill === null) return null
+
+      const bonus = parseBonus(weapon[activeDefense] as string)
+
+      // ERROR: Unimplemented for bonuses with special directives (U for unready after parry, for example)
+      if (Object.keys(bonus).length > 1) debugger
+
+      if (skill?.relative) {
+        skill.relative.expression = `(${skill.relative.expression})/2 + 3`
+        skill.level = Math.floor(calculateLevel(skill.relative))
+      }
+
+      return {
+        bonus: actorBonus + bonus.value,
+        skill: skill as ILevel,
+      }
     } else if (activeDefense === `dodge`) {
       debugger
-    } else if (activeDefense === `parry`) {
-      debugger
     }
+
+    return null
   }
 }

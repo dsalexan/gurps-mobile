@@ -1,4 +1,4 @@
-import { flatten, flattenDeep, get, isArray, isNil } from "lodash"
+import { flatten, flattenDeep, get, isArray, isNil, set } from "lodash"
 import { Type } from "../../type"
 import { MigrationValue, MigrationDataObject, FastMigrationDataObject, isOrigin, OVERWRITE, WRITE, PUSH, MigratableObject } from "../migration"
 import CompilationTemplate, { CompilationContext, GURPSSources } from "../template"
@@ -54,8 +54,12 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
       }
     }
 
-    let tl = get(GCS, `tech_level`)
-    if (tl) tl = parseInt(tl)
+    let tl: { level: number } = get(GCS, `tech_level`) as any
+    if (tl) {
+      tl = { level: parseInt(tl as any) }
+      // CONTEXT
+      context.tl = tl.level
+    }
 
     const label = get(GCS, `label`)
     // @ts-ignore
@@ -74,15 +78,14 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
 
     // @ts-ignore
     const conditional = flattenDeep([get(GCS, `conditional`, [])])
-
     const components = get(GCS, `features`, []).map(f => parseComponentDefinition(f as any))
 
     return {
       type,
-      container,
       id,
-      //
       name,
+      //
+      container,
       specialization,
       tl,
       //
@@ -93,7 +96,8 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
       reference: PUSH(`reference`, reference),
       tags,
       conditional,
-      rolls: [],
+      levels: [],
+      //
       components,
     }
   }
@@ -170,10 +174,9 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
   static post(data: MigratableObject & ISkillFeature, context: CompilationContext, sources: Record<string, object>): FastMigrationDataObject<any> | null {
     const MDO = {} as FastMigrationDataObject<any>
 
-    if (data.tlRequired && isNilOrEmpty(data.tl)) {
+    if (data.tl?.required && isNilOrEmpty(data.tl)) {
       if (isNil(context.tl)) debugger
-
-      data.tl = context.tl
+      set(data, `tl.level`, context.tl)
     }
 
     return MDO

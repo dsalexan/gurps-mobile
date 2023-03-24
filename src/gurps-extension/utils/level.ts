@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy } from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
-import type { GCS } from "../../gurps-extension/types/gcs"
+import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { evaluate } from "mathjs"
@@ -11,12 +11,15 @@ import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
 import { specializedName } from "../../gurps-mobile/core/feature/utils"
 import { GURPS4th } from "../types/gurps4th"
+import GenericFeature, { IGenericFeature } from "../../gurps-mobile/core/feature/variants/generic"
 
 // #region types
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IRollDefinition extends GCA.Expression {
+export interface ILevelDefinition extends GCA.Expression {
   tags: string[]
+
+  parse(feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor): ILevel | null
 }
 
 // export interface Expression {
@@ -40,11 +43,11 @@ export interface IRollDefinition extends GCA.Expression {
 //   transform?: string | string[]
 // }
 
-export interface ILevelDefinition {
+export interface ILevel {
   level: number
-  relative?: IRelativeLevelDefinition
+  relative?: IRelativeLevel
 }
-export interface IRelativeLevelDefinition {
+export interface IRelativeLevel {
   expression: string
   definitions: Record<IVariableDefinition[`variable`], IVariableDefinition>
   toString(options?: object): string
@@ -70,7 +73,7 @@ export interface IVariableDefinition {
 /**
  *  Parses a relative level definition into a html string
  */
-export function stringifyRelativeSkillLevel({ expression, definitions }: Partial<IRelativeLevelDefinition> = {}, { skillAcronym = false } = {}): string {
+export function stringifyRelativeSkillLevel({ expression, definitions }: Partial<IRelativeLevel> = {}, { skillAcronym = false } = {}): string {
   // ERROR: Unimplemented
   if (expression === undefined) {
     debugger
@@ -126,13 +129,14 @@ export function stringifyRelativeSkillLevel({ expression, definitions }: Partial
 // #region parsing
 
 /**
- * Parse a object (usually a GCA.Expression or a GCS.EntryDefault) into a Roll definition
+ * Parse a object (usually a GCA.Expression or a GCS.EntryDefault) into a Level definition
  */
-export function parseRollDefinition(object: GCA.Expression | GCS.EntryDefault): IRollDefinition {
+export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault): ILevelDefinition {
   // GCA.Expression
   if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) {
     object.tags = [] as string[]
-    return object as IRollDefinition
+    object.parse = (feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) => parseLevel(object as any, feature, actor)
+    return object as ILevelDefinition
   }
 
   // GCS.EntryDefault
@@ -141,7 +145,7 @@ export function parseRollDefinition(object: GCA.Expression | GCS.EntryDefault): 
     _raw: JSON.stringify(_default),
     math: true,
     tags: [] as string[],
-  } as IRollDefinition
+  } as ILevelDefinition
 
   if ([`dx`, `st`, `iq`, `ht`].includes(_default.type)) {
     const attribute = _default.type.toUpperCase()
@@ -193,14 +197,15 @@ export function parseRollDefinition(object: GCA.Expression | GCS.EntryDefault): 
     debugger
   }
 
+  roll.parse = (feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) => parseLevel(roll as any, feature, actor)
   return roll
 }
 
 /**
- * Parses a roll definition into level definition (level and relative level)
+ * Parses a level definition into level object (level and relative level)
  */
-export function parseLevelDefinition(expression: IRollDefinition, feature: BaseFeature, actor: GurpsMobileActor): ILevelDefinition | null {
-  const definitions = Object.entries(expression.targets ?? {}).map(([variable, target]) => parseExpressionTarget(variable, target, feature, actor))
+export function parseLevel(expression: ILevelDefinition, feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor): ILevel | null {
+  const definitions = Object.entries(expression.targets ?? {}).map(([variable, target]) => parseExpressionTarget(variable, target, feature as GenericFeature, actor))
 
   const scope = Object.fromEntries(definitions.map(definition => [definition.variable, definition.value]))
   let level: number
@@ -227,7 +232,7 @@ export function parseLevelDefinition(expression: IRollDefinition, feature: BaseF
 /**
  * Parses a expression target (from a roll definition) into a variable definition (with numeric values and shit)
  */
-export function parseExpressionTarget(variable: string, target: GCA.ExpressionTarget, feature: BaseFeature, actor: GurpsMobileActor): IVariableDefinition {
+export function parseExpressionTarget(variable: string, target: GCA.ExpressionTarget, feature: GenericFeature, actor: GurpsMobileActor): IVariableDefinition {
   const me = feature
   const transforms = isNil(target.transform) ? [] : isArray(target.transform) ? target.transform : [target.transform]
 
@@ -398,10 +403,19 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
   }
 }
 
+export function calculateLevel(relative: IRelativeLevel) {
+  const scope = Object.fromEntries(Object.values(relative.definitions).map(definition => [definition.variable, definition.value]))
+
+  const viable = Object.values(scope).every(value => !isNil(value))
+  if (viable) return evaluate(relative.expression.replaceAll(/∂/g, ``), scope)
+
+  return null
+}
+
 // #endregion
 
-export function orderRolls(rolls: IRollDefinition[], feature: BaseFeature, actor: GurpsMobileActor) {
-  let levels = rolls.map(roll => parseLevelDefinition(roll, feature, actor)) as ILevelDefinition[]
+export function orderLevels(levelDefinitions: ILevelDefinition[], feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) {
+  let levels = levelDefinitions.map(level => level.parse(feature, actor)) as ILevel[]
 
   levels = orderBy(
     levels.filter(l => !isNil(l)),

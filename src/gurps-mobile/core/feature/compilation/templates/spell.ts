@@ -9,7 +9,7 @@ import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext } from "./generic"
 import { IFeature } from "../../base"
 
-export interface ISpellFeature extends IFeature {
+export interface ISpellFeature extends IGenericFeature {
   spellClass: string
   //
   cost: string

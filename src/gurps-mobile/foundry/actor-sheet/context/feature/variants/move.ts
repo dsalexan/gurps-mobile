@@ -36,11 +36,20 @@ export default class MoveFeatureContextTemplate extends BaseContextTemplate {
     let value: IFeatureValue = { value: feature.value }
 
     // LINKS
-    const links = feature.links ?? []
+    const links = (feature.links ?? []).filter(link => !link.match(/^defenses\./))
 
     // COMPOUNDING TAGS
     const tags = new TagBuilder(variant.tags ?? [])
-    tags.add(...links)
+    tags.add(
+      ...links.map(label => ({
+        type: `link`,
+        children: [
+          {
+            label,
+          },
+        ],
+      })),
+    )
 
     if (tags.tags.length > 0) value.asterisk = true
 

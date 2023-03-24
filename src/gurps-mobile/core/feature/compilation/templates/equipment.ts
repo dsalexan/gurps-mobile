@@ -13,7 +13,7 @@ export interface EquipmentManualSource {
   carried?: boolean
 }
 
-export interface IEquipmentFeature extends IFeature {
+export interface IEquipmentFeature extends IGenericFeature {
   description: string
   carried: boolean
   quantity: number

@@ -37,7 +37,7 @@ export namespace GCS {
   interface Feature {
     type: string
     attribute?: string
-    ammount?: number
+    amount?: number
   }
 
   // interface SkillDefault {

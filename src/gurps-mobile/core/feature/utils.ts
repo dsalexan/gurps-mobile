@@ -15,6 +15,22 @@ export interface ModifierValue {
   value: number
 }
 
+export const FeatureState = {
+  INACTIVE: 0, //   000
+  PASSIVE: 1, //    001
+  ACTIVE: 2, //     010
+  ACTIVATING: 4, // 100
+} as const
+
+export type FeatureState = (typeof FeatureState)[keyof typeof FeatureState]
+
+export function stateToString(state: FeatureState) {
+  if (state === FeatureState.INACTIVE) return `Inactive`
+  else if (state === FeatureState.PASSIVE) return `Passive`
+  else if (state === FeatureState.ACTIVE) return `Active`
+  else if (state === FeatureState.ACTIVATING) return `Activating`
+}
+
 /**
  * Return type from GCS data
  *

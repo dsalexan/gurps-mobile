@@ -8,7 +8,7 @@ import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext } from "./generic"
 import { IFeature } from "../../base"
-import { IRollDefinition } from "../../../../../gurps-extension/utils/roll"
+import { ILevelDefinition } from "../../../../../gurps-extension/utils/level"
 
 export interface FeatureRoll {
   self_control?: boolean
@@ -16,7 +16,7 @@ export interface FeatureRoll {
   label: string
 }
 
-export interface IAdvantageFeature extends IFeature {
+export interface IAdvantageFeature extends IGenericFeature {
   cost: string
 }
 
@@ -37,7 +37,7 @@ export default class AdvantageFeatureCompilationTemplate extends CompilationTemp
 
     if (notes) {
       const _notes = [] as string[]
-      const rolls = [] as IRollDefinition[]
+      const rolls = [] as ILevelDefinition[]
 
       for (const note of notes) {
         if (!note.includes(`CR`)) _notes.push(note)

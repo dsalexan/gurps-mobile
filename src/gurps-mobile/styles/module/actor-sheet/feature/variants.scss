@@ -186,6 +186,9 @@
         &:first-of-type {
           display: flex;
         }
+        &:not(:first-of-type) {
+          display: none;
+        }
 
         & > .children {
           min-width: auto;

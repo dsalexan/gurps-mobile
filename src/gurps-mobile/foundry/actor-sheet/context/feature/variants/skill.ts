@@ -8,7 +8,7 @@ import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
 import { ISkillFeature } from "../../../../../core/feature/compilation/templates/skill"
 import SkillFeature from "../../../../../core/feature/variants/skill"
-import { ILevelDefinition, IRollDefinition, parseLevelDefinition } from "../../../../../../gurps-extension/utils/roll"
+import { ILevelDefinition, ILevel } from "../../../../../../gurps-extension/utils/level"
 
 export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: ISkillFeature
@@ -40,18 +40,11 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     let rsl = feature.rsl,
       sl = feature.sl
     if (isNil(rsl) || isNil(sl)) {
-      if (feature.rolls) {
-        const rolls = feature.rolls
-          .map(roll => parseLevelDefinition(roll, feature as SkillFeature, (feature as SkillFeature)._actor))
-          .filter(level => !isNil(level)) as ILevelDefinition[]
-        const levels = orderBy(rolls, `level`, `desc`)
+      const level = feature.level()
 
-        // if (feature.specializedName === `Armoury (Body Armor)`) debugger
-
-        if (levels.length > 0) {
-          sl = levels[0].level.toString()
-          rsl = levels[0].relative as any
-        }
+      if (level) {
+        sl = level.level.toString()
+        rsl = level.relative as any
       }
     }
 
@@ -82,44 +75,41 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // DEFAULTS
     if (feature.untrained || specs.showDefaults) {
-      tags.at(1).add(
-        ...flatten(
-          (feature.rolls ?? []).map((roll: IRollDefinition) => {
-            const levelDefinition = parseLevelDefinition(roll, feature as SkillFeature, (feature as SkillFeature)._actor)
+      const levelTags = (feature.levels ?? []).map((roll: ILevelDefinition) => {
+        const levelDefinition = roll.parse(feature as SkillFeature, (feature as SkillFeature)._actor)
 
-            if (!isNil(levelDefinition)) {
-              const { level, relative } = levelDefinition
+        if (!isNil(levelDefinition)) {
+          const { level, relative } = levelDefinition
 
-              const types = uniq(Object.values(relative?.definitions ?? []).map(definition => definition.type)) as string[]
+          const types = uniq(Object.values(relative?.definitions ?? []).map(definition => definition.type)) as string[]
 
-              const sl = level.toString()
-              const rsl = relative?.toString()
+          const sl = level.toString()
+          const rsl = relative?.toString()
 
-              // ERROR: Not implemented
-              if (types.filter(t => ![`me`].includes(t)).length > 1) debugger
+          // ERROR: Not implemented
+          if (types.filter(t => ![`me`].includes(t)).length > 1) debugger
 
-              const tag = {
-                type: `default`,
-                classes: [`box`],
-                children: [{ classes: [`interactible`], label: rsl }] as FastDisplayable[],
-              }
+          const tag = {
+            type: `default`,
+            classes: [`box`],
+            children: [{ classes: [`interactible`], label: rsl }] as FastDisplayable[],
+          }
 
-              if (types[0] === `skill`) {
-                tag.children.splice(0, 0, {
-                  classes: [`interactible`],
-                  icon: types[0] === `skill` ? `skill` : undefined,
-                })
-              }
+          if (types[0] === `skill`) {
+            tag.children.splice(0, 0, {
+              classes: [`interactible`],
+              icon: types[0] === `skill` ? `skill` : undefined,
+            })
+          }
 
-              tag.children.push({ label: sl })
+          tag.children.push({ label: sl })
 
-              return [tag]
-            }
+          return [tag]
+        }
 
-            return []
-          }),
-        ),
-      )
+        return []
+      })
+      tags.at(1).add(...flatten(levelTags))
     }
 
     variant.tags = tags.tags

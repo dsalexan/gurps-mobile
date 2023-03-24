@@ -14,8 +14,9 @@ import FeatureFactory from "./factory"
 import { MigratableObject, MigrationDataObject, buildMigratableObject, completeMigrationValueDefinitions } from "./compilation/migration"
 import { GCA as _GCA } from "../gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../foundry/actor-sheet/context/context"
-import { IRollDefinition } from "../../../gurps-extension/utils/roll"
+import { ILevelDefinition } from "../../../gurps-extension/utils/level"
 import { IComponentDefinition } from "../../../gurps-extension/utils/component"
+import { FeatureState } from "./utils"
 
 // export interface SkillDefault {
 //   _raw: string
@@ -26,31 +27,27 @@ import { IComponentDefinition } from "../../../gurps-extension/utils/component"
 // }
 
 export interface IFeature {
-  key: string | number
-  path: string | null
+  // relative
+  _actor: GurpsMobileActor
   parent?: BaseFeature | null
   children: BaseFeature[]
-  group?: string
-  links: string[]
 
+  // base
+  key: string | number
+  path: string | null
   type: Type
   id: string
   name: string
-  label: string
   specialization?: string
   specializationRequired?: boolean
-  tl?: number
-  tlRange?: string
-  tlRequired?: boolean
-  container: boolean
 
-  categories: string[]
-  notes: string[]
-  meta: string
-  reference: string[]
-  tags: string[]
-  conditional: string[]
-  components: IComponentDefinition[]
+  // live shit
+  state: FeatureState
+
+  // relationships
+  group?: string // string to group features by
+  links: string[] // strings to establish relationships between features
+  components: IComponentDefinition[] // basically modifiers to other features or aspects of the actor
 }
 
 export type ManualSourceProperty<TValue> = (sources: Record<string, object>, context: Record<string, any>) => TValue
@@ -103,33 +100,26 @@ export default class BaseFeature implements IFeature {
   }
   _actor: GurpsMobileActor
 
-  key: string | number
-  path: string | null
+  // relative
   parent?: BaseFeature | null
   children: BaseFeature[]
-  group?: string
-  links: string[]
 
+  // base
+  key: string | number
+  path: string | null
   type: Type
   id: string
   name: string
-  label: string
   specialization?: string
   specializationRequired?: boolean
-  tl?: number
-  tlRequired?: boolean
-  tlRange?: string
-  container: boolean
 
-  value?: any
-  categories: string[]
-  notes: string[]
-  meta: string
-  reference: string[]
-  tags: string[]
-  conditional: string[]
-  rolls?: IRollDefinition[]
-  components: IComponentDefinition[]
+  // live shit
+  state: FeatureState
+
+  // relationships
+  group?: string // string to group features by
+  links: string[] // strings to establish relationships between features
+  components: IComponentDefinition[] // basically modifiers to other features or aspects of the actor
 
   get specializedName() {
     return Utils.specializedName(this.name, this.specialization)
@@ -159,11 +149,13 @@ export default class BaseFeature implements IFeature {
       if (Object.keys(baseStrategy).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
     }
 
+    // relative
+    this.parent = parent
+    this.children = []
+
     // BASE DATA
     this.key = key
     this.path = !isNil(prefix) && !isNil(key) ? `${prefix}${key}` : null
-    this.parent = parent
-    this.children = []
 
     const key_tree = Utils.keyTree(
       this,
@@ -171,6 +163,10 @@ export default class BaseFeature implements IFeature {
     )
     this._key = { tree: key_tree, value: Utils.keyTreeValue(key_tree) }
 
+    // live shit
+    this.state = FeatureState.PASSIVE
+
+    // relationships
     if (this.parent) this.group = Utils.name(this.parent)
   }
 

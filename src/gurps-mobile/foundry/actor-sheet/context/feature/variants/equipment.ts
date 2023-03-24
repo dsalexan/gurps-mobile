@@ -38,7 +38,7 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
     if (!isNil(feature.quantity)) {
       tags.type(`type`).update(tag => {
         tag.children.push({
-          classes: [`interactible`],
+          classes: [`interactible`, `quantity`],
           label: `x<b>${feature.quantity}</b>`,
         })
 
@@ -49,7 +49,7 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
     // WEIGHT
     if (!isNil(feature.weight?.extended)) {
       tags.type(`type`).push({
-        type: `quantity`,
+        type: `weight`,
         classes: [`box`, `collapsed`],
         children: [
           { icon: `mdi-weight` },
@@ -80,7 +80,7 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
     // COST
     if (!isNil(feature.cost?.extended)) {
       tags.type(`type`).push({
-        type: `quantity`,
+        type: `cost`,
         classes: [`box`],
         children: [
           {

@@ -7,6 +7,7 @@ import { FastMigrationDataObject, MigratableObject, MigrationDataObject, Migrati
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CompilationContext {
   humanId: string
+  tl?: number
 }
 
 export type GURPSSources = Record<string, object> & {

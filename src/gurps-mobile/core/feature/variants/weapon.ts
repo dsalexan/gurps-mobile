@@ -4,7 +4,7 @@ import { GurpsMobileActor } from "../../../foundry/actor"
 
 import WeaponFeatureCompilationTemplate from "../compilation/templates/weapon"
 import { IWeaponFeature } from "../compilation/templates/weapon"
-import { IRollDefinition } from "../../../../gurps-extension/utils/roll"
+import { ILevelDefinition } from "../../../../gurps-extension/utils/level"
 import { StringIterator } from "lodash"
 
 export default class WeaponFeature extends GenericFeature implements IWeaponFeature {

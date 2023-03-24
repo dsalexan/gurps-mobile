@@ -9,9 +9,10 @@ import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext } from "./generic"
 import { IFeature } from "../../base"
 import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
-import { IRollDefinition, parseRollDefinition } from "../../../../../gurps-extension/utils/roll"
+import { parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { IGenericFeature } from "../../variants/generic"
 
-export interface IWeaponFeature extends IFeature {
+export interface IWeaponFeature extends IGenericFeature {
   block: string | false
   damage: string
   parry: string | false
@@ -28,7 +29,7 @@ export default class WeaponFeatureCompilationTemplate extends CompilationTemplat
 
     let parry = get(GCS, `parry`) as any as string | false
     if (parry === `No` || parry === `-`) parry = false
-    else if (isEmpty(parry)) parry = ``
+    else if (isEmpty(parry)) parry = false
 
     let reach = get(GCS, `reach`, ``).split(`,`)
     if (reach.length === 0) reach = undefined as any
@@ -47,7 +48,7 @@ export default class WeaponFeatureCompilationTemplate extends CompilationTemplat
     } as FastMigrationDataObject<any>
 
     const defaults = get(GCS, `defaults`)
-    if (defaults) MDO.rolls = defaults.map(_default => parseRollDefinition(_default))
+    if (defaults) MDO.levels = defaults.map(_default => parseLevelDefinition(_default))
 
     return MDO
   }

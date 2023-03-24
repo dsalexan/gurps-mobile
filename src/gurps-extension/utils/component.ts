@@ -5,7 +5,7 @@ export interface IComponentDefinition {
   feature: BaseFeature
   type: string
   attribute?: string
-  ammount?: number
+  amount?: number
 }
 
 export function parseComponentDefinition(raw: GCS.Feature) {

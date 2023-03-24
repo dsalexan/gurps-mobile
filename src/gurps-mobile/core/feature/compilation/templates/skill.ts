@@ -7,9 +7,9 @@ import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext, GenericFeatureManualSource } from "./generic"
 import { GurpsMobileActor } from "../../../../foundry/actor"
-import { IFeature, ManualSourceProperty } from "../../base"
 import LOGGER from "../../../../logger"
-import { IRollDefinition, IRelativeLevelDefinition, parseRollDefinition } from "../../../../../gurps-extension/utils/roll"
+import { ILevelDefinition, IRelativeLevel, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { IGenericFeature } from "../../variants/generic"
 
 export interface SkillManualSource extends GenericFeatureManualSource {
   trained?: boolean
@@ -17,11 +17,11 @@ export interface SkillManualSource extends GenericFeatureManualSource {
   defaultDefinition?: { actor: GurpsMobileActor; _index: number; _skill: string; _from: string | string[]; _text: string; expression: GCA.Expression }[]
 }
 
-export interface ISkillFeature extends IFeature {
+export interface ISkillFeature extends IGenericFeature {
   attribute: string
   difficulty: string
   sl: string
-  rsl: IRelativeLevelDefinition
+  rsl: IRelativeLevel
   untrained: boolean
   defaultFrom: object[]
   proxy?: boolean
@@ -65,7 +65,7 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
       const _rsl = /([\w?]+)([+-][\d?]+)?/i
       const relativeLevel = rawRSL.match(_rsl)
 
-      const rsl = { expression: `??`, definitions: {} } as IRelativeLevelDefinition
+      const rsl = { expression: `??`, definitions: {} } as IRelativeLevel
 
       // create custom relative definition by hand
       rsl.expression = `GCS`
@@ -101,7 +101,7 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
       MDO.difficulty = GCA.type.split(`/`)[1]
     }
 
-    if (!isNil(GCA?.default)) MDO.rolls = GCA.default.map(_default => parseRollDefinition(_default))
+    if (!isNil(GCA?.default)) MDO.levels = GCA.default.map(_default => parseLevelDefinition(_default))
 
     return MDO
   }

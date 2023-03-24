@@ -1,4 +1,4 @@
-import { flatten, flattenDeep, get, isArray, isNil, isNumber, isString, orderBy, set } from "lodash"
+import { flatten, flattenDeep, get, intersection, isArray, isNil, isNumber, isString, orderBy, set } from "lodash"
 import { FeatureBaseContextSpecs } from "../base"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../../context"
 import { IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "../interfaces"
@@ -6,12 +6,13 @@ import TagBuilder from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import GenericFeature from "../../../../../core/feature/variants/generic"
 import ContextManager from "../../manager"
-import { orderRolls, parseRollDefinition } from "../../../../../../gurps-extension/utils/roll"
+import { orderLevels, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 
 export interface DefenseFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: GenericFeature
   //
+  features?: GenericFeature[]
 }
 
 export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
@@ -27,45 +28,38 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
 
   static features(specs: DefenseFeatureContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
     const feature = getSpec(specs, `feature`)
-    const features = (specs.features ?? []) as BaseFeature[]
+    const features = (specs.features ?? []) as GenericFeature[]
 
     if (features.length === 0) return null
 
     const activeDefense = feature.id.replace(`activedefense-`, ``)
 
-    let related = [] as any[]
-    if (activeDefense === `block` || activeDefense === `parry`) {
-      related = features.map(feature => {
-        const weapons = feature.weapons ?? []
-        return weapons.filter(weapon => weapon[activeDefense] !== false)
-      })
-    } else if (activeDefense === `dodge`) related = []
+    const featuresWithDefense = features
+      .map(feature => ({ feature, level: GenericFeature.activeDefenseLevel(activeDefense as any, feature) }))
+      .filter(({ level }) => level !== null)
 
-    related = orderBy(
-      flatten(related),
-      weapon => {
-        let defaultRolls = weapon.rolls
-        if (isNil(defaultRolls)) defaultRolls = [parseRollDefinition({ type: `dx` })]
-
-        if (defaultRolls.length > 0) {
-          const rolls = orderRolls(defaultRolls, weapon, weapon._actor)
-          const roll = rolls[0]
-
-          return roll.level
-        }
-
-        // ERROR: All related should have rolls to determine active defense level
-        debugger
-      },
-      `desc`,
-    )
+    const related = orderBy(featuresWithDefense, def => def.level.skill.level + def.level.bonus, `desc`)
 
     const data = [] as IFeatureDataContext[]
-    for (const weapon of related) {
-      const context = manager.feature(weapon, { showParent: true } as any)
+    for (const { feature, level } of related) {
+      const context = manager.feature(feature, { showParent: true } as any)
 
       const main = context.children.main[0]
       main.actions = false
+      main.variants[0].buttons = undefined
+      main.variants[0].classes.push(`value-interactible`)
+      main.variants[0].notes = undefined
+      main.variants[0].value = {
+        value: level.skill.level + level.bonus,
+      }
+
+      main.variants[0].tags = main.variants[0].tags
+        .map(tag => {
+          tag.children = tag.children.filter(child => !child.classes?.includes(`state`) && !child.classes?.includes(`quantity`))
+          return tag
+        })
+        .filter(tag => tag.children.length > 0)
+        .filter(tag => intersection(tag.type, [`feature`, `weight`, `cost`]).length === 0)
 
       data.push(main)
     }
@@ -95,6 +89,13 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
     // tags.add(...links)
 
     // if (tags.tags.length > 0) value.asterisk = true
+
+    variant.tags = variant.tags
+      .map(tag => {
+        tag.children = tag.children.filter(child => !child.classes?.includes(`state`))
+        return tag
+      })
+      .filter(tag => tag.children.length > 0)
 
     // variant = {
     //   ...(variant ?? {}),

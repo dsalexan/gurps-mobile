@@ -16,7 +16,6 @@ import ContextManager from "./context/manager"
 import { Datachanges } from "../../../december/utils"
 import HTMLFeature from "./html/feature"
 import WeaponFeature from "../../core/feature/variants/weapon"
-import { orderRolls, parseRollDefinition } from "../../../gurps-extension/utils/roll"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -579,7 +578,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const listId = `combat-defenses-active`
     const children = [] as any[]
 
-    const activeDefenses = [`block`] // [`block`, `dodge`, `parry`]
+    const activeDefenses = [`block`, `parry`] // [`block`, `dodge`, `parry`]
     for (const activeDefense of activeDefenses) {
       const id = `activedefense-${activeDefense}`
 
@@ -615,9 +614,9 @@ const FeatureGroups = [
   //   key: `attacks`,
   //   map: (f: GenericFeature) => f.weapons ?? [],
   //   sort: (f: WeaponFeature) => {
-  //     let rolls = f.rolls
-  //     if (isNil(rolls)) rolls = [parseRollDefinition({ type: `dx` })]
-  //     return orderRolls(rolls, f, f._actor)[0].level
+  //     let levels = f.levels
+  //     if (isNil(levels)) levels = [parseLevelDefinition({ type: `dx` })]
+  //     return orderLevels(levels, f, f._actor)[0].level
   //   },
   //   order: `desc`,
   //   groups: false,

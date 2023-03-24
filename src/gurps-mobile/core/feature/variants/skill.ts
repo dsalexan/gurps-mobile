@@ -10,7 +10,7 @@ import { FEATURE } from "../type"
 import type { GCA } from "../../gca/types"
 import { ISkillFeature } from "../compilation/templates/skill"
 import { SkillManualSource } from "../compilation/templates/skill"
-import { IRollDefinition } from "../../../../gurps-extension/utils/roll"
+import { ILevelDefinition } from "../../../../gurps-extension/utils/level"
 
 export default class SkillFeature extends GenericFeature implements ISkillFeature {
   attribute: string
@@ -66,6 +66,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
         _skill: string
         _from: string | string[]
         _text: string
+        tl?: number
         expression: GCA.Expression
       }[]
     >
@@ -98,7 +99,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
           _skill: specializedName(GCA.entries[otherIndex]),
           _from: skillFeature.specializedName,
           _text: text,
-          tl: skillFeature.tl,
+          tl: skillFeature.tl?.level,
           expression,
         })
       }
