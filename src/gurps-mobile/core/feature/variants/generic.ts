@@ -153,48 +153,4 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
 
     return links
   }
-
-  /**
-   * Calculate active defense level for a feature
-   */
-  static activeDefenseLevel(activeDefense: `block` | `dodge` | `parry` | `all`, feature: GenericFeature): { bonus: number; skill: ILevel } | null {
-    if (feature.type.compare(`spell`)) return null
-
-    const actor = feature._actor
-
-    const attributeBonus = actor.cache.components?.attribute_bonus ?? []
-    const actorComponents = attributeBonus.filter(component => component.attribute === activeDefense)
-    const actorActiveComponents = actorComponents.filter(component => component.feature.state & FeatureState.PASSIVE || component.feature.state & FeatureState.ACTIVE)
-
-    const actorBonus = sum(actorActiveComponents.map(component => component.amount))
-
-    if (activeDefense === `block` || activeDefense === `parry`) {
-      const defensableWeapons = feature.weapons.filter(weapon => weapon[activeDefense] !== false)
-      if (defensableWeapons.length === 0) return null // no weapon with defense, return null
-
-      const weapon = defensableWeapons[0]
-
-      const skill = cloneDeep(weapon.level())
-      if (skill === null) return null
-
-      const bonus = parseBonus(weapon[activeDefense] as string)
-
-      // ERROR: Unimplemented for bonuses with special directives (U for unready after parry, for example)
-      if (Object.keys(bonus).length > 1) debugger
-
-      if (skill?.relative) {
-        skill.relative.expression = `(${skill.relative.expression})/2 + 3`
-        skill.level = Math.floor(calculateLevel(skill.relative))
-      }
-
-      return {
-        bonus: actorBonus + bonus.value,
-        skill: skill as ILevel,
-      }
-    } else if (activeDefense === `dodge`) {
-      debugger
-    }
-
-    return null
-  }
 }

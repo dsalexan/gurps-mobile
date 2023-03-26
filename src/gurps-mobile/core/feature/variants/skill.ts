@@ -1,6 +1,6 @@
-import { camelCase, flatten, flattenDeep, get, has, isArray, isEmpty, isNil, max, maxBy, omit, orderBy, pick, set, sortBy, transform, uniq, uniqBy } from "lodash"
+import { camelCase, flatten, flattenDeep, get, has, isArray, isEmpty, isNil, max, maxBy, omit, orderBy, pick, set, sortBy, transform, uniq, uniqBy, upperFirst } from "lodash"
 
-import { RelativeSkillLevel, specializedName } from "../utils"
+import { specializedName } from "../utils"
 
 import { GurpsMobileActor } from "../../../foundry/actor"
 import BaseFeature, { FeatureTemplate } from "../base"
@@ -10,16 +10,17 @@ import { FEATURE } from "../type"
 import type { GCA } from "../../gca/types"
 import { ISkillFeature } from "../compilation/templates/skill"
 import { SkillManualSource } from "../compilation/templates/skill"
-import { ILevelDefinition } from "../../../../gurps-extension/utils/level"
+import { ILevelDefinition, IRelativeLevel } from "../../../../gurps-extension/utils/level"
 
 export default class SkillFeature extends GenericFeature implements ISkillFeature {
   attribute: string
   difficulty: string
   sl: string
-  rsl: RelativeSkillLevel
+  rsl: IRelativeLevel
   untrained: boolean
   defaultFrom: object[]
   proxy?: boolean
+  activeDefense?: string[]
 
   /**
    * Instantiate new Skill Feature
@@ -88,6 +89,61 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
 
       for (let i = 0; i < defaultOf.length; i++) {
         const { skill: otherIndex, source: expression, text } = defaultOf[i]
+
+        // skill is already trained
+        if (trainedSkillsGCAIndex.includes(otherIndex)) continue
+
+        if (untrainedSkills[otherIndex] === undefined) untrainedSkills[otherIndex] = []
+
+        untrainedSkills[otherIndex].push({
+          _index: i,
+          _skill: specializedName(GCA.entries[otherIndex]),
+          _from: skillFeature.specializedName,
+          _text: text,
+          tl: skillFeature.tl?.level,
+          expression,
+        })
+      }
+    }
+    const untrainedSkillsGCAIndex = Object.keys(untrainedSkills).map(s => parseInt(s))
+
+    // extract a list of all untrained skills with viable ATTRIBUTE defaults (that arent already in untrainedSkills)
+    const attributes = [`ST`, `DX`, `IQ`, `HT`, `Will`, `Per`, `Dodge`]
+    for (const attribute of attributes) {
+      let defaults = GCA.index.bySection.SKILLS.byDefaultAttribute[attribute] ?? GCA.index.bySection.SKILLS.byDefaultAttribute[upperFirst(attribute)]
+      defaults = defaults.filter(d => GCA.index.bySection.SKILLS.byName[`Shield`].includes(d.skill))
+
+      // check the ones that are ONLY defaulted to attributes
+      const onlyAttributes = defaults.filter(_default => {
+        const skill = GCA.entries[_default.skill]
+        const targetsList = skill.default.map(skillDefault => Object.values(skillDefault.targets ?? {}))
+
+        for (const targets of targetsList) {
+          if (targets.length === 0) continue
+          const attributeOnlyTargets = targets.filter(target => target.type === `attribute`)
+          if (attributeOnlyTargets.length === targets.length) return true
+        }
+
+        return false
+      })
+
+      // if onlyAttributes.length === 0, there is NO skills that default to this attribute only
+
+      const onlyUntrained = onlyAttributes.filter(_default => !trainedSkillsGCAIndex.includes(_default.skill))
+      const onlyNewUntrained = onlyUntrained.filter(_default => !untrainedSkillsGCAIndex.includes(_default.skill))
+      const skillsAndTechniques = onlyNewUntrained.map(_default => [_default, GCA.entries[_default.skill]] as const)
+      const skills = skillsAndTechniques.filter(([_default, trait]) => !trait.type?.match(/^(Tech|Combo)/i))
+
+      if (onlyUntrained.length !== skills.length) debugger
+      if (onlyNewUntrained.length !== onlyUntrained.length) debugger
+      if (onlyNewUntrained.length !== skillsAndTechniques.length) debugger
+
+      if (skills.length === 0) continue
+
+      for (let i = 0; i < skills.length; i++) {
+        const [_default, skillFeature] = skills[i]
+        debugger
+        const { skill: otherIndex, source: expression, text } = _default
 
         // skill is already trained
         if (trainedSkillsGCAIndex.includes(otherIndex)) continue

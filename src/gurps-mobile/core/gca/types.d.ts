@@ -24,6 +24,9 @@ export namespace GCA {
     section: Section
     //
     ointment?: `X`
+    //
+    blockat?: string
+    parryat?: string
   }
 
   export interface TargetProperty {
@@ -76,6 +79,7 @@ export namespace GCA {
           byName: T
           byNameExt: T
           byDefault: Record<string, SkillDefaultSource[]>
+          byDefaultAttribute: Record<string, SkillDefaultSource[]>
         }
       >
   }

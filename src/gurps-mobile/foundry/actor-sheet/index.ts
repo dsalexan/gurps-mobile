@@ -578,21 +578,17 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const listId = `combat-defenses-active`
     const children = [] as any[]
 
-    const activeDefenses = [`block`, `parry`] // [`block`, `dodge`, `parry`]
+    const activeDefenses = [`block`, `dodge`, `parry`]
     for (const activeDefense of activeDefenses) {
       const id = `activedefense-${activeDefense}`
 
       const defense = cache.features[id]
       if (!defense) continue
 
-      const defenses = cache.links?.defenses ?? {}
-      const links = defenses[activeDefense] ?? []
-
       children.push(
         contextManager.feature(defense, {
           classes: [`full`],
           list: listId,
-          features: links.map(uuid => cache.features?.[uuid]),
         }),
       )
     }

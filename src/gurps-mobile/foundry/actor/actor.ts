@@ -17,6 +17,8 @@ import SpellFeatureContextTemplate from "../actor-sheet/context/feature/variants
 import EquipmentFeatureContextTemplate from "../actor-sheet/context/feature/variants/equipment"
 import { FEATURE } from "../../core/feature/type"
 import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/variants/defense"
+import { IComponentDefinition } from "../../../gurps-extension/utils/component"
+import { FeatureState } from "../../core/feature/utils"
 
 export type ActorCache = {
   links?: Record<string, string[]>
@@ -26,6 +28,7 @@ export type ActorCache = {
   _trainedSkill?: Record<string, Record<string, SkillFeature>>
   _untrainedSkill?: Record<string, Record<string, SkillFeature>>
   features?: Record<string, BaseFeature>
+  components?: Record<string, IComponentDefinition[]>
   //
   contextManager?: ContextManager
   featureFactory?: FeatureFactory
@@ -81,6 +84,14 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       const cacheLink = get(this.cache, `links.${link}`)
       if (isArray(cacheLink) && !cacheLink.includes(feature)) cacheLink.push(feature)
     }
+  }
+
+  getComponents(type: string, filter?: (component: IComponentDefinition) => boolean, states: FeatureState[] | null = [FeatureState.PASSIVE, FeatureState.ACTIVE]) {
+    const typeComponents = this.cache.components?.[type] ?? ([] as IComponentDefinition[])
+    const components = filter ? typeComponents.filter(component => filter(component)) : typeComponents
+    const activeComponents = states === null ? components : components.filter(component => states.some(state => component.feature.state & state))
+
+    return activeComponents
   }
   // #endregion
 

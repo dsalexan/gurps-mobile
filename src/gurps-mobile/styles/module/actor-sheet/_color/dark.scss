@@ -147,6 +147,10 @@
                     border-color: rgb(var(--highlight-color), 0.5);
                     color: rgb(var(--light-main-color), 0.95);
                     background-color: rgb(var(--lighter-highlight-color), 0.50);
+                    
+                    &.discreet {
+                      border-color: transparent;
+                    }
                   }
                 }
               }

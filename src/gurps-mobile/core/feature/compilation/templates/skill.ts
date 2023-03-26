@@ -1,15 +1,16 @@
-import { flatten, flattenDeep, get, isArray, isNil, orderBy, uniq } from "lodash"
+import { flatten, flattenDeep, get, isArray, isEmpty, isNil, orderBy, uniq } from "lodash"
 import { Type } from "../../type"
 import { MigrationValue, MigrationDataObject, FastMigrationDataObject, isOrigin, OVERWRITE, WRITE, PUSH } from "../migration"
 import CompilationTemplate, { CompilationContext, GURPSSources } from "../template"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
-import { isNilOrEmpty } from "../../../../../december/utils/lodash"
+import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext, GenericFeatureManualSource } from "./generic"
 import { GurpsMobileActor } from "../../../../foundry/actor"
 import LOGGER from "../../../../logger"
 import { ILevelDefinition, IRelativeLevel, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { IGenericFeature } from "../../variants/generic"
+import { parseExpression } from "../../../../../december/utils/math"
 
 export interface SkillManualSource extends GenericFeatureManualSource {
   trained?: boolean
@@ -25,6 +26,7 @@ export interface ISkillFeature extends IGenericFeature {
   untrained: boolean
   defaultFrom: object[]
   proxy?: boolean
+  activeDefense?: string[]
 }
 
 export default class SkillFeatureCompilationTemplate extends CompilationTemplate {
@@ -102,6 +104,16 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
     }
 
     if (!isNil(GCA?.default)) MDO.levels = GCA.default.map(_default => parseLevelDefinition(_default))
+
+    const activeDefense = {} as Record<`block` | `parry` | `dodge`, unknown>
+
+    const blockat = get(GCA, `blockat`)
+    if (blockat && !isEmpty(blockat)) push(activeDefense, `block`, blockat)
+
+    const parryat = get(GCA, `parryat`)
+    if (parryat && !isEmpty(parryat)) push(activeDefense, `parry`, parryat)
+
+    if (Object.keys(activeDefense).length > 0) MDO.activeDefense = activeDefense
 
     return MDO
   }

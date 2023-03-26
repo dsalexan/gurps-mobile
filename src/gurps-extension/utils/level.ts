@@ -6,7 +6,7 @@ import type { GCA } from "../../gurps-mobile/core/gca/types"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { evaluate } from "mathjs"
 import { isNilOrEmpty, isNumeric } from "../../december/utils/lodash"
-import mathInstance, { ignorableSymbols, preprocess } from "../../december/utils/math"
+import mathInstance, { ignorableSymbols, parseExpression, preprocess } from "../../december/utils/math"
 import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
 import { specializedName } from "../../gurps-mobile/core/feature/utils"
@@ -275,58 +275,10 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
         // ERROR: Unimplemented transform
         debugger
       } else {
-        const expression = preprocess(value)
-        const math = mathInstance()
-        const parser = math.parser()
-
-        try {
-          const node = math.parse(expression)
-          const symbols = node.filter((node: any) => node.isSymbolNode).map((node: any) => node.name)
-
-          // scope = fillScope(parser, symbols)
-          for (const symbol of symbols) {
-            if (ignorableSymbols.some(s => s.toUpperCase() === symbol.toUpperCase())) continue
-            if (math[symbol] !== undefined) continue
-
-            const ui = symbol.indexOf(`_`)
-            const prefix = symbol.substring(0, ui).toLowerCase()
-            const name = symbol.substring(ui + 1)
-
-            if (prefix === `me`) {
-              const _value = me[name]
-
-              // ERROR: Unimplemented
-              if (isNil(_value)) debugger
-
-              // scope[symbol] = _value
-              parser.set(symbol, _value)
-            } else {
-              // ERROR: Unimplemented
-              debugger
-            }
-          }
-
-          value = parser.evaluate(expression)
+        value = parseExpression(value, me)
+        if (value !== null) {
           content = value
-        } catch (error) {
-          Logger.get(`roll`).warn(`Could not parse expression`, variable, `→`, expression, [
-            `font-style: italic; color: rgba(92, 60, 0, 0.65);`,
-            `font-style: regular; color: rgba(92, 60, 0); font-weight: bold;`,
-            `font-weight: regular; color: rgba(92, 60, 0, 0.75);`,
-            `font-weight: bold; color: black;`,
-          ])
-
-          const _debug = expression.split(``)
-          console.log(expression)
-          console.log(` `)
-          console.log(_debug.map((char, index) => `${char}`.padEnd(2, ` `)).join(` `))
-          console.log(_debug.map((char, index) => `${index + 1}`.padEnd(2, ` `)).join(` `))
-          console.log(` `)
-          console.log(error)
-
-          debugger
-
-          value = null
+        } else {
           content = `!!`
           flags.push(`error`)
         }

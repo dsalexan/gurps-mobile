@@ -7,7 +7,7 @@ import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate from "./base"
-import { stateToString } from "../../../../core/feature/utils"
+import { FeatureState, stateToString } from "../../../../core/feature/utils"
 
 export interface FeatureMainVariantContextSpecs extends ContextSpecs {
   feature: BaseFeature
@@ -69,13 +69,17 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
             label: feature.type.name,
             icon: feature.type.icon ?? undefined,
           },
-          {
-            classes: `state`,
-            label: stateToString(feature.state),
-          },
+          ...(feature.state !== FeatureState.PASSIVE
+            ? [
+                {
+                  classes: `state`,
+                  label: stateToString(feature.state),
+                },
+              ]
+            : []),
         ],
       })
-    } else {
+    } else if (feature.state !== FeatureState.PASSIVE) {
       tags.at(0).add({
         type: `type`,
         classes: [`box`, `collapsed`],
