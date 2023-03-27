@@ -1,10 +1,10 @@
-import { flatten, flattenDeep, get, isArray, isNil, set } from "lodash"
+import { flatten, flattenDeep, get, isArray, isEmpty, isNil, set } from "lodash"
 import { Type } from "../../type"
 import { MigrationValue, MigrationDataObject, FastMigrationDataObject, isOrigin, OVERWRITE, WRITE, PUSH, MigratableObject } from "../migration"
 import CompilationTemplate, { CompilationContext, GURPSSources } from "../template"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { typeFromGCA, typeFromGCS } from "../../utils"
-import { isNilOrEmpty, isNumeric } from "../../../../../december/utils/lodash"
+import { isNilOrEmpty, isNumeric, push } from "../../../../../december/utils/lodash"
 import { GCA } from "../../../gca/types"
 import { ManualSourceProperty } from "../../base"
 import { ISkillFeature } from "./skill"
@@ -50,7 +50,7 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
       const hasSpecialization = name.match(_hasSpecialization)
       if (hasSpecialization) {
         name = name.replace(hasSpecialization[0], ``)
-        specialization = hasSpecialization[1]
+        specialization = hasSpecialization[1].replaceAll(/[\[\]]/g, ``)
       }
     }
 
@@ -112,19 +112,30 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
     if (context.humanId === undefined) context.humanId = name
 
     const label = get(GCA, `label`)
-    const specialization = get(GCA, `nameext`)
+    let specialization = get(GCA, `nameext`)
+    if (specialization) specialization = specialization.replaceAll(/[\[\]]/g, ``)
     const specializationRequired = get(GCA, `specializationRequired`)
 
     const tl = get(GCA, `tl`)
     const _tl = {} as Record<string, any>
     if (tl) {
-      _tl.tlRequired = true
-      _tl.tlRange = tl
+      _tl.required = true
+      _tl.rande = tl
     }
 
     const reference = PUSH(`reference`, flattenDeep([get(GCA, `page`, [])]))
     const categories = flattenDeep([get(GCA, `cat`, [])])
     const notes = PUSH(`notes`, flattenDeep([get(GCA, `itemnotes`, [])]))
+
+    const activeDefense = {} as Record<`block` | `parry` | `dodge`, string[]>
+
+    const blockat = get(GCA, `blockat`)
+    if (blockat && !isEmpty(blockat)) push(activeDefense, `block`, blockat)
+
+    const parryat = get(GCA, `parryat`)
+    if (parryat && !isEmpty(parryat)) push(activeDefense, `parry`, parryat)
+
+    // if (Object.keys(activeDefense).length) debugger
 
     return {
       type,
@@ -138,6 +149,8 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
       reference,
       categories,
       notes,
+      //
+      ...(Object.keys(activeDefense).length ? { activeDefense } : {}),
     }
   }
 

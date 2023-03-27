@@ -123,6 +123,7 @@ module.exports.buildIndexes = function (books) {
   for (const book of Object.values(books)) {
     const byName = {}
     const byNameExt = {}
+    const byFullname = {}
     const byTypeAndName = {}
 
     for (const entry of book.entries) {
@@ -132,8 +133,11 @@ module.exports.buildIndexes = function (books) {
       byName[entry.data.name].push(entry._index)
 
       if (entry.data.name !== entry.extendedName) {
-        if (byNameExt[entry.extendedName] === undefined) byNameExt[entry.extendedName] = []
-        byNameExt[entry.extendedName].push(entry._index)
+        if (byNameExt[entry.data.nameext] === undefined) byNameExt[entry.data.nameext] = []
+        byNameExt[entry.data.nameext].push(entry._index)
+
+        if (byFullname[entry.extendedName] === undefined) byFullname[entry.extendedName] = []
+        byFullname[entry.extendedName].push(entry._index)
       }
 
       const type = entry.section.toLowerCase()
@@ -144,16 +148,17 @@ module.exports.buildIndexes = function (books) {
 
     book.index.byName = byName
     book.index.byNameExt = byNameExt
+    book.index.byFullname = byFullname
     book.index.byTypeAndName = byTypeAndName
   }
 
   // MERGE ALL INDEXES ACROSS ALL BOOKS
-  const INDEXES = [`bySection`, `byName`, `byNameExt`, `byTypeAndName`]
+  const INDEXES = [`bySection`, `byName`, `byNameExt`, `byFullname`, `byTypeAndName`]
   const master = {}
   for (const key of INDEXES) {
     master[key] = {}
     for (const book of Object.values(books)) {
-      if (key === `byName` || key === `byNameExt`) {
+      if (key === `byName` || key === `byNameExt` || key === `byFullname`) {
         for (const name in book.index[key]) {
           if (master[key][name] === undefined) master[key][name] = []
           master[key][name].push(...book.index[key][name].map(i => [book.name, i]))
@@ -174,6 +179,7 @@ module.exports.buildIndexes = function (books) {
   master.fuse = {
     byName: new Fuse(Object.keys(master.byName), { includeScore: true }),
     byNameExt: new Fuse(Object.keys(master.byNameExt), { includeScore: true }),
+    byFullname: new Fuse(Object.keys(master.byFullname), { includeScore: true }),
   }
 
   return master
@@ -208,6 +214,7 @@ module.exports.load = function (SOURCE) {
   master.fuse = {
     byName: new Fuse(Object.keys(master.byName), { includeScore: true }),
     byNameExt: new Fuse(Object.keys(master.byNameExt), { includeScore: true }),
+    byFullname: new Fuse(Object.keys(master.byFullname), { includeScore: true }),
   }
 
   return { books, master }

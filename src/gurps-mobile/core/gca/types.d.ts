@@ -57,7 +57,7 @@ export namespace GCA {
 
   interface SkillDefaultSource {
     skill: number
-    source: Expression
+    source: number
     text: string
   }
 
@@ -66,18 +66,21 @@ export namespace GCA {
     {
       byName: T
       byNameExt: T
+      byFullname: T
     }
   >
 
   type CompletePreCompiledIndex<T> = {
     byName: T
     byNameExt: T
+    byFullname: T
     bySection: PreCompiledSectionIndex<T> &
       Record<
         `SKILLS`,
         {
           byName: T
           byNameExt: T
+          byFullname: T
           byDefault: Record<string, SkillDefaultSource[]>
           byDefaultAttribute: Record<string, SkillDefaultSource[]>
         }
@@ -87,6 +90,7 @@ export namespace GCA {
   type BarebonesPreCompiledIndex<T> = {
     byName: T
     byNameExt: T
+    byFullname: T
     bySection: PreCompiledSectionIndex<T>
   }
 }

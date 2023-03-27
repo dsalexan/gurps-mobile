@@ -148,6 +148,7 @@ module.exports.prebuild = function (entries, index) {
 module.exports.index = function (entries) {
   const byName = {}
   const byNameExt = {}
+  const byFullname = {}
   const bySection = {}
 
   for (let i = 0; i < entries.length; i++) {
@@ -157,19 +158,25 @@ module.exports.index = function (entries) {
     // SECTION
     let sections = flattenDeep([entry.section])
     for (const section of sections) {
-      if (bySection[section] === undefined) bySection[section] = { byName: {}, byNameExt: {} }
+      if (bySection[section] === undefined) bySection[section] = { byName: {}, byNameExt: {}, byFullname: {} }
 
-      // NAME, NAMEEXT
+      // NAME, NAMEEXT, NAME + NAMEEXT
       push(bySection[section].byName, entry.data.name, i)
-      if (entry.data.nameext !== ``) push(bySection[section].byNameExt, extendedName, i)
+      if (entry.data.nameext !== ``) {
+        push(bySection[section].byNameExt, entry.data.nameext, i)
+        push(bySection[section].byFullname, extendedName, i)
+      }
     }
 
-    // NAME, NAMEEXT
+    // NAME, NAMEEXT NAME + NAMEEXT
     push(byName, entry.data.name, i)
-    if (entry.data.nameext !== ``) push(byNameExt, extendedName, i)
+    if (entry.data.nameext !== ``) {
+      push(byNameExt, entry.data.nameext, i)
+      push(byFullname, entry.data.nameext !== `` ? extendedName : entry.data.name, i)
+    }
   }
 
-  return { byName, byNameExt, bySection, N: entries.length }
+  return { byName, byNameExt, byFullname, bySection, N: entries.length }
 }
 
 module.exports.reindex = function (entries, index) {

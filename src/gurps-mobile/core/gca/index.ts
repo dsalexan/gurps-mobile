@@ -9,7 +9,7 @@ import LOGGER from "../../logger"
 import * as Feature from "../feature"
 
 type SearchResult = {
-  source: `byName` | `byNameExt`
+  source: `byName` | `byNameExt` | `byFullname`
   sourceWeight: number
   type: GCA.Section
   typeWeight: number
@@ -53,6 +53,7 @@ export default class GCAManager {
     this.fuse = {
       byName: new Fuse(Object.keys(this.index.byName), { includeScore: true }),
       byNameExt: new Fuse(Object.keys(this.index.byNameExt), { includeScore: true }),
+      byFullname: new Fuse(Object.keys(this.index.byFullname), { includeScore: true }),
       bySection: Object.fromEntries(
         (Object.keys(this.index.bySection) as GCA.Section[]).map(key => {
           const section = this.index.bySection[key]
@@ -61,10 +62,11 @@ export default class GCAManager {
             {
               byName: new Fuse(Object.keys(section.byName), { includeScore: true }),
               byNameExt: new Fuse(Object.keys(section.byNameExt), { includeScore: true }),
+              byFullname: new Fuse(Object.keys(section.byFullname), { includeScore: true }),
             },
           ]
         }),
-      ) as Record<GCA.Section, { byName: Fuse<string>; byNameExt: Fuse<string> }>,
+      ) as Record<GCA.Section, { byName: Fuse<string>; byNameExt: Fuse<string>; byFullname: Fuse<string> }>,
     }
 
     this.types = Object.keys(this.index.bySection) as GCA.Section[]
@@ -148,11 +150,11 @@ export default class GCAManager {
   search(name: string, specializedName: string | undefined, types: GCA.Section[], weight = 0): SearchResult[][] {
     return types.map(type => {
       const byName = this.fuse.bySection[type].byName.search(name)
-      const byNameExt = specializedName ? this.fuse.bySection[type].byNameExt.search(specializedName) : []
+      const byFullname = specializedName ? this.fuse.bySection[type].byFullname.search(specializedName) : []
 
       const typeMatches = [
         ...byName.map(r => ({ ...r, source: `byName`, sourceWeight: 0, type, typeWeight: weight })),
-        ...byNameExt.map(r => ({ ...r, source: `byNameExt`, sourceWeight: 1, type, typeWeight: weight })),
+        ...byFullname.map(r => ({ ...r, source: `byFullname`, sourceWeight: 1, type, typeWeight: weight })),
       ]
 
       return typeMatches as SearchResult[]

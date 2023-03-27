@@ -251,6 +251,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     logger.info(`    `, `datachanges:`, datachanges.data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `context:`, context, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `conditionals:`, conditionals, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+    logger.info(`    `, `conditionals:`)
 
     if (some) {
       // MANEUVERS
@@ -473,8 +474,8 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
-    sheetData.tabs.defenses.push(...this.buildDefenses())
-    sheetData.tabs.attributes.push(...this.buildAttributes())
+    // sheetData.tabs.defenses.push(...this.buildDefenses())
+    // sheetData.tabs.attributes.push(...this.buildAttributes())
 
     for (const type of groupedFeatures) {
       sheetData.tabs[type.key] = flattenDeep(
@@ -609,27 +610,23 @@ const FeatureGroups = [
   //   section: `combat`,
   //   key: `attacks`,
   //   map: (f: GenericFeature) => f.weapons ?? [],
-  //   sort: (f: WeaponFeature) => {
-  //     let levels = f.levels
-  //     if (isNil(levels)) levels = [parseLevelDefinition({ type: `dx` })]
-  //     return orderLevels(levels, f, f._actor)[0].level
-  //   },
+  //   sort: (f: WeaponFeature) => f.level()?.level ?? Infinity,
   //   order: `desc`,
   //   groups: false,
   // },
-  // // ooc
+  // ooc
   // {
   //   section: `occ`,
   //   key: `advantages`,
   //   filter: (f: GenericFeature) => f.type.compare(`generic_advantage`, false),
   // },
-  // {
-  //   section: `occ`,
-  //   key: `skills`,
-  //   filter: (f: SkillFeature) => f.type.compare(`skill`, true) && !f.proxy,
-  //   sort: (f: SkillFeature) => (f.untrained ? -1 : parseInt(f._key.tree[0].toString())),
-  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  // },
+  {
+    section: `occ`,
+    key: `skills`,
+    filter: (f: SkillFeature) => f.type.compare(`skill`, true) && !f.proxy && !f.untrained,
+    sort: (f: SkillFeature) => (f.untrained ? -1 : parseInt(f._key.tree[0].toString())),
+    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  },
   // {
   //   section: `occ`,
   //   key: `spells`,

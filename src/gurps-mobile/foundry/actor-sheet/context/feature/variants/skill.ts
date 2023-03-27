@@ -109,6 +109,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
         return []
       })
+
       tags.at(1).add(...flatten(levelTags))
     }
 

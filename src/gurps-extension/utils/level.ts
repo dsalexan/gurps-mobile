@@ -172,7 +172,7 @@ export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault):
     // ERROR: Unimplemented
     if (isNil(_default.name)) debugger
     const fullName = specializedName(_default.name as string, _default.specialization)
-    const skillIndexes = isNil(_default.specialization) ? GCA.index.bySection.SKILLS.byName[_default.name as string] : GCA.index.bySection.SKILLS.byNameExt[fullName]
+    const skillIndexes = isNil(_default.specialization) ? GCA.index.bySection.SKILLS.byName[_default.name as string] : GCA.index.bySection.SKILLS.byFullname[fullName]
 
     if (skillIndexes === undefined) debugger
     // ERROR: Unimplemented non-numeric modifier
@@ -329,10 +329,15 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
     if (dynamic) debugger
 
     const attribute = target.fullName as GURPS4th.Attributes
-    value = (actor.system.attributes[attribute] ?? actor.system[attribute]).value
+    value = (actor.system.attributes[attribute.toUpperCase()] ?? actor.system[attribute]).value
 
     // The Rule of 20, B 173
     value = Math.min(20, value)
+  } else if (target.type === `unknown`) {
+    LOGGER.warn(`Unimplemented "${target.type}" target`, target)
+
+    content = `??`
+    flags.push(`unknown`)
   } else {
     debugger
 

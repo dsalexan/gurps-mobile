@@ -304,6 +304,7 @@ module.exports.index = function (output) {
   const byRow = {}
   const byName = {}
   const byNameExt = {}
+  const byFullname = {}
   const bySection = {}
 
   for (const entry of entries) {
@@ -315,14 +316,20 @@ module.exports.index = function (output) {
 
     // NAME, NAMEEXT
     push(byName, entry.name, entry)
-    if (entry.nameext !== ``) push(byNameExt, extendedName, entry)
+    if (entry.nameext !== ``) {
+      push(byNameExt, entry.nameext, entry)
+      push(byFullname, extendedName, entry)
+    }
 
     // SECTION
-    if (bySection[entry.section] === undefined) bySection[entry.section] = { byName: {}, byNameExt: {} }
+    if (bySection[entry.section] === undefined) bySection[entry.section] = { byName: {}, byNameExt: {}, byFullname: {} }
 
     // SECTION > NAME, NAMEEXT
     push(bySection[entry.section].byName, entry.name, entry)
-    if (entry.nameext !== ``) push(bySection[entry.section].byNameExt, extendedName, entry)
+    if (entry.nameext !== ``) {
+      push(bySection[entry.section].byNameExt, entry.nameext, entry)
+      push(bySection[entry.section].byFullname, extendedName, entry)
+    }
   }
 
   // let U_3 = entries.map(entry => parseInt(entry.U_3))
@@ -337,5 +344,5 @@ module.exports.index = function (output) {
   // console.log(U_4)
   // debugger
 
-  return { byRow, byName, byNameExt, bySection, N: entries.length }
+  return { byRow, byName, byNameExt, byFullname, bySection, N: entries.length }
 }

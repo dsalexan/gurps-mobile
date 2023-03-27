@@ -11,6 +11,8 @@ import Mobile from "./mobile"
 import GurpsExtension from "./gurps-extension"
 import GurpsMobile from "./gurps-mobile"
 
+window.onanimationiteration = console.log
+
 // Inject Styles
 document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/@mdi/font@6.9.96/css/materialdesignicons.min.css">`)[0])
 document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="https://rsms.me/inter/inter.css">`)[0])

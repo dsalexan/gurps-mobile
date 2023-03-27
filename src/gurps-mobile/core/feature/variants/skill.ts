@@ -20,7 +20,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
   untrained: boolean
   defaultFrom: object[]
   proxy?: boolean
-  activeDefense?: string[]
+  form: false | `art` | `sport`
 
   /**
    * Instantiate new Skill Feature
@@ -67,8 +67,9 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
         _skill: string
         _from: string | string[]
         _text: string
+        _source: number
+        from: number | string
         tl?: number
-        expression: GCA.Expression
       }[]
     >
     for (const skillFeature of trainedSkills) {
@@ -88,20 +89,20 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       // defaultOf.map(({skill, source}) => GCA.entries[skill].default[source])
 
       for (let i = 0; i < defaultOf.length; i++) {
-        const { skill: otherIndex, source: expression, text } = defaultOf[i]
+        const { skill: untrainedIndex, source, text } = defaultOf[i]
 
         // skill is already trained
-        if (trainedSkillsGCAIndex.includes(otherIndex)) continue
+        if (trainedSkillsGCAIndex.includes(untrainedIndex)) continue
+        if (untrainedSkills[untrainedIndex] === undefined) untrainedSkills[untrainedIndex] = []
 
-        if (untrainedSkills[otherIndex] === undefined) untrainedSkills[otherIndex] = []
-
-        untrainedSkills[otherIndex].push({
+        untrainedSkills[untrainedIndex].push({
           _index: i,
-          _skill: specializedName(GCA.entries[otherIndex]),
+          _skill: specializedName(GCA.entries[untrainedIndex]),
           _from: skillFeature.specializedName,
           _text: text,
+          _source: source,
+          from: gcaIndex,
           tl: skillFeature.tl?.level,
-          expression,
         })
       }
     }
@@ -111,7 +112,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
     const attributes = [`ST`, `DX`, `IQ`, `HT`, `Will`, `Per`, `Dodge`]
     for (const attribute of attributes) {
       let defaults = GCA.index.bySection.SKILLS.byDefaultAttribute[attribute] ?? GCA.index.bySection.SKILLS.byDefaultAttribute[upperFirst(attribute)]
-      defaults = defaults.filter(d => GCA.index.bySection.SKILLS.byName[`Shield`].includes(d.skill))
+      // defaults = defaults.filter(d => GCA.index.bySection.SKILLS.byName[`Shield`].includes(d.skill))
 
       // check the ones that are ONLY defaulted to attributes
       const onlyAttributes = defaults.filter(_default => {
@@ -134,67 +135,26 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       const skillsAndTechniques = onlyNewUntrained.map(_default => [_default, GCA.entries[_default.skill]] as const)
       const skills = skillsAndTechniques.filter(([_default, trait]) => !trait.type?.match(/^(Tech|Combo)/i))
 
-      if (onlyUntrained.length !== skills.length) debugger
-      if (onlyNewUntrained.length !== onlyUntrained.length) debugger
-      if (onlyNewUntrained.length !== skillsAndTechniques.length) debugger
-
       if (skills.length === 0) continue
 
       for (let i = 0; i < skills.length; i++) {
-        const [_default, skillFeature] = skills[i]
-        debugger
-        const { skill: otherIndex, source: expression, text } = _default
+        const [_default, untrainedSkillEntry] = skills[i]
+        const { skill: untrainedIndex, source, text } = _default
 
         // skill is already trained
-        if (trainedSkillsGCAIndex.includes(otherIndex)) continue
+        if (trainedSkillsGCAIndex.includes(untrainedIndex)) continue
+        if (untrainedSkills[untrainedIndex] === undefined) untrainedSkills[untrainedIndex] = []
 
-        if (untrainedSkills[otherIndex] === undefined) untrainedSkills[otherIndex] = []
-
-        untrainedSkills[otherIndex].push({
+        untrainedSkills[untrainedIndex].push({
           _index: i,
-          _skill: specializedName(GCA.entries[otherIndex]),
-          _from: skillFeature.specializedName,
+          _skill: specializedName(untrainedSkillEntry),
+          _from: attribute,
           _text: text,
-          tl: skillFeature.tl?.level,
-          expression,
+          _source: source,
+          from: attribute,
+          tl: parseInt(actor.system.traits.techlevel),
         })
       }
-    }
-
-    // for each skill, inject attribute defaults
-    for (const skillIndex of Object.keys(untrainedSkills)) {
-      const skill = GCA.entries[skillIndex]
-
-      const attributeExpressions = skill.default
-        .map((_, index) => index)
-        .filter(expressionIndex => {
-          const expression = skill.default[expressionIndex]
-          const _targetTypes = Object.values(expression.targets ?? {}).map(target => target.type)
-          const targetTypes = uniq(_targetTypes).filter(t => ![`me`].includes(t))
-
-          if (targetTypes.length === 1) {
-            if (targetTypes[0] === `attribute`) return true
-          } else debugger
-
-          return false
-        })
-
-      untrainedSkills[skillIndex].push(
-        ...attributeExpressions.map((expression, i) => {
-          const attributes = Object.values(skill.default[expression].targets ?? {}).map(target => target.fullName)
-
-          // ERROR: Unimplemented
-          if (attributes.length > 1) debugger
-
-          return {
-            _index: untrainedSkills[skillIndex].length + i,
-            _skill: specializedName(skill),
-            _from: attributes,
-            _text: skill.default[expression]._raw,
-            expression: skill.default[expression],
-          }
-        }),
-      )
     }
 
     // instantiate these defaulted skills
@@ -202,13 +162,13 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
     //    NOTHING from outside the definition can be used in the computation of final skill level
 
     const features = [] as SkillFeature[]
-    for (const [skillIndex, defaultDefinition] of Object.entries(untrainedSkills)) {
+    for (const [skillIndex, sources] of Object.entries(untrainedSkills)) {
       const skill = GCA.entries[skillIndex]
 
       // TODO: Special treatment for elixirs (ointments)
       if (skill.ointment === `X`) continue
 
-      const tls = uniq(defaultDefinition.map(definition => definition.tl).filter(tl => !isNil(tl)))
+      const tls = uniq(sources.map(source => source.tl).filter(tl => !isNil(tl)))
 
       // ERROR: Unimplemented
       if (tls.length > 1) debugger
@@ -220,7 +180,6 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
           id: () => `gca-${skillIndex}`,
           // ignoreSpecialization: !!ignoreSpecialization,
           trained: false,
-          defaultDefinition: defaultDefinition.map(definition => ({ ...definition, actor })),
         },
       }
 
@@ -245,7 +204,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       flatten(Object.values(actor.cache._trainedSkill ?? {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
     )
     const untrainedSkills = Object.fromEntries(
-      flatten(Object.values(actor.cache._untrainedSkill || {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
+      flatten(Object.values(actor.cache._untrainedSkill ?? {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
     )
 
     const skills = {} as Record<string, { base?: GCA.IndexedSkill; trained?: SkillFeature[]; untrained?: SkillFeature[] }>
@@ -265,20 +224,24 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       skills[name].trained.push(feature)
     }
 
-    // for (const [index, feature] of Object.entries(untrainedSkills)) {
-    //   const name = feature.name
-    //   if (skills[name] === undefined) skills[name] = {}
-    //   if (skills[name].untrained === undefined) skills[name].untrained = []
-    //   skills[name].untrained.push(feature)
-    // }
+    for (const [index, feature] of Object.entries(untrainedSkills)) {
+      const name = feature.name
+      if (skills[name] === undefined) skills[name] = {}
+      if (skills[name].untrained === undefined) skills[name].untrained = []
+
+      // @ts-ignore
+      skills[name].untrained.push(feature)
+    }
 
     // create missing entries
     const features = {} as Record<string, SkillFeature>
     for (const [name, { base, trained, untrained }] of Object.entries(skills)) {
       const trainedOrUntrained = trained || untrained
       if (trainedOrUntrained && trainedOrUntrained.length > 0) {
-        // ERROR: Unimplemented
-        if (trainedOrUntrained.length > 1) debugger
+        // // ERROR: Unimplemented
+        // if (trainedOrUntrained.length > 1) debugger
+
+        // TODO: How to deal with multiple specializations?
 
         features[name] = trainedOrUntrained[0]
         continue
@@ -294,8 +257,8 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
           ...get(template, `manual`, {}),
           id: () => `proxy-gca-${base.skill}`,
           ignoreSpecialization: () => base.ignoreSpecialization,
-          trained: () => !!trained,
-          proxy: true,
+          untrained: () => !trained,
+          proxy: () => true,
         },
       }
 

@@ -1,4 +1,4 @@
-import { isNil } from "lodash"
+import { isFunction, isNil } from "lodash"
 import { MathJsStatic, OperatorNode, create as _create, all } from "mathjs"
 import Logger from "./logger"
 
@@ -32,6 +32,10 @@ function _if(args: OperatorNode[], math: MathJsStatic, scope: Map<string, any>) 
 // mark the function as "rawArgs", so it will be called with unevaluated arguments
 _if.rawArgs = true
 
+function _int(x: number) {
+  return Math.floor(x)
+}
+
 // #endregion
 
 export function create() {
@@ -39,6 +43,7 @@ export function create() {
 
   math.import({
     AT_if: _if,
+    AT_int: _int,
   })
 
   return math
@@ -95,6 +100,23 @@ export function parseExpression(stringExpression: string, me?: object) {
 
         // scope[symbol] = _value
         parser.set(symbol, _value)
+      } else if (prefix === `p`) {
+        if (me === undefined) throw new Error(`"me" was not informed, but expression tries to access its property "${name}".\n\n(${expression})`)
+        const property = me[name]
+
+        // ERROR: Unimplemented
+        if (property === undefined) debugger
+
+        let _value = isFunction(property) ? property.call(me) : property
+
+        // ERROR: Unimplemented
+        if (isNil(_value)) debugger
+
+        // CUSTOM IMPLEMENTATIONS
+        //  TODO: Remove from here
+        if (name === `level`) _value = _value.level
+
+        parser.set(symbol, _value)
       } else {
         // ERROR: Unimplemented
         debugger
@@ -112,6 +134,7 @@ export function parseExpression(stringExpression: string, me?: object) {
 
     const _debug = expression.split(``)
     console.log(expression)
+    console.log(`scope`, parser.scope)
     console.log(` `)
     console.log(_debug.map((char, index) => `${char}`.padEnd(2, ` `)).join(` `))
     console.log(_debug.map((char, index) => `${index + 1}`.padEnd(2, ` `)).join(` `))

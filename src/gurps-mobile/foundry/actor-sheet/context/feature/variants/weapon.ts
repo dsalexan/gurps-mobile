@@ -19,6 +19,7 @@ export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
   showParent?: boolean
   showDefaults?: boolean
   difficulty?: boolean
+  ignoreUsage?: boolean
 }
 
 export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
@@ -139,15 +140,16 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
     if (specs.showParent && feature.parent) {
       let suffix = ``
-      if (!isNilOrEmpty(feature.usage)) {
+      if (!isNilOrEmpty(feature.usage) && !specs.ignoreUsage) {
         suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">(${feature.usage})</span>`
       }
       variant.label = `${feature.parent.name}${suffix}`
 
-      tags.at(0).add({
-        type: `parent`,
-        classes: [`box`, `collapsed`],
-        children: [
+      tags.type(`type`).update(tag => {
+        tag.children[0].label = undefined
+        tag.children.splice(
+          0,
+          0,
           {
             icon: feature.parent.type.icon ?? undefined,
           },
@@ -155,7 +157,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
             classes: [`interactible`],
             label: feature.parent.type.name,
           },
-        ],
+        )
+
+        return tag
       })
     }
 

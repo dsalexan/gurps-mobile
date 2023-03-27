@@ -370,6 +370,14 @@
           display: none;
         }
       }
+
+      &.hide-value-expanded {
+        & > .wrapper > .content {
+          & > .value {
+            display: none;
+          }
+        }
+      }
     }
   }
 

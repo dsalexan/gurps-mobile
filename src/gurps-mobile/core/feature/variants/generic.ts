@@ -4,7 +4,7 @@ import { IWeaponizableFeature } from "../compilation/templates/weaponizable"
 
 import GenericFeatureCompilationTemplate from "../compilation/templates/generic"
 import WeaponizableFeatureCompilationTemplate from "../compilation/templates/weaponizable"
-import { cloneDeep, get, has, isArray, isNil, orderBy, sum } from "lodash"
+import { cloneDeep, get, has, isArray, isNil, orderBy, sum, uniq } from "lodash"
 import FeatureWeaponsDataContextTemplate from "../../../foundry/actor-sheet/context/feature/weapons"
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { IWeaponFeature } from "../compilation/templates/weapon"
@@ -30,6 +30,7 @@ export interface IGenericFeature extends IFeature {
   tags: string[]
   conditional: string[]
   levels?: ILevelDefinition[]
+  activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
 
   reference: string[]
 
@@ -58,6 +59,7 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
   levels?: ILevelDefinition[]
 
   weapons: WeaponFeature[]
+  activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
 
   /**
    * Instantiate new Generic Feature
@@ -92,6 +94,7 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
 
     //    defenses
     this.links.push(...GenericFeature.linkForDefenses(this))
+    this.links = uniq(this.links)
 
     actor.cacheLink(this.id, ...this.links)
 
@@ -142,15 +145,21 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
       const canBlock = feature.weapons.filter((weapon: IWeaponFeature) => weapon.block !== false)
       if (canBlock.length > 0) links.push(`defenses.block`)
     }
+    if (feature.activeDefense?.block?.length) links.push(`defenses.block`)
 
     // DODGE
+    if (feature.activeDefense?.dodge?.length) {
+      debugger
+      links.push(`defenses.dodge`)
+    }
 
     // PARRY
     if (feature.weapons?.length > 0) {
       const canParry = feature.weapons.filter((weapon: IWeaponFeature) => weapon.parry !== false)
       if (canParry.length > 0) links.push(`defenses.parry`)
     }
+    if (feature.activeDefense?.parry?.length) links.push(`defenses.parry`)
 
-    return links
+    return uniq(links)
   }
 }

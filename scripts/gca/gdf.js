@@ -298,7 +298,7 @@ class GDF {
                 let fullMatch = true
 
                 // first try with FULLNAME, should work for non-specialized or specializations that already exists
-                value = index.byNameExt[fullName] ?? index.byName[fullName]
+                value = index.byFullname[fullName] ?? index.byName[fullName]
                 if (value === undefined) {
                   fullMatch = false
                   if (name !== fullName && isString(name)) value = index.byName[name]
@@ -316,6 +316,15 @@ class GDF {
                     if (dynamicSpecialization.length > 0 && nonSpecialized.length > 0) debugger
                     else if (dynamicSpecialization.length > 0) value = dynamicSpecialization.map(entry => entry._index)
                     else if (nonSpecialized.length > 0) value = nonSpecialized.map(entry => entry._index)
+                  } else if (isString(name) && nameext === undefined) {
+                    value = index.byNameExt[name]
+
+                    if (value !== undefined) {
+                      if (value.length !== 1) {
+                        // ERRROR: Unimplemented
+                        debugger
+                      }
+                    }
                   }
                 }
 
@@ -1101,12 +1110,12 @@ class GDF {
     }
 
     const nameByName = master.byName[this.data.name]
-    const nameextByName = d && master.byName[this.extendedName]
-    const nameByNameExt = master.byNameExt[this.data.name]
-    const nameextByNameExt = d && master.byNameExt[this.extendedName]
+    const fullnameByName = d && master.byName[this.extendedName]
+    const nameByFullname = master.byFullname[this.data.name]
+    const fullnameByFullname = d && master.byFullname[this.extendedName]
 
-    const name = isEqual(nameByName, nameByNameExt) && nameByName
-    const nameext = isEqual(nameextByName, nameextByNameExt) && nameByName
+    const name = isEqual(nameByName, nameByFullname) && nameByName
+    const nameext = isEqual(fullnameByName, fullnameByFullname) && nameByName
 
     if (!d && !!name) return SEND_INDEX(name)
     else if (!!name && isEqual(name, nameext)) return SEND_INDEX(name)
@@ -1115,8 +1124,8 @@ class GDF {
     const result = []
     result.push(...master.fuse.byName.search(this.data.name).map(r => ({ ...r, _index: `byName`, _query: `name` })))
     if (d) result.push(...master.fuse.byName.search(this.extendedName).map(r => ({ ...r, _index: `byName`, _query: `nameext` })))
-    result.push(...master.fuse.byNameExt.search(this.data.name).map(r => ({ ...r, _index: `byNameExt`, _query: `name` })))
-    if (d) result.push(...master.fuse.byNameExt.search(this.extendedName).map(r => ({ ...r, _index: `byNameExt`, _query: `nameext` })))
+    result.push(...master.fuse.byFullname.search(this.data.name).map(r => ({ ...r, _index: `byFullname`, _query: `name` })))
+    if (d) result.push(...master.fuse.byFullname.search(this.extendedName).map(r => ({ ...r, _index: `byFullname`, _query: `nameext` })))
 
     orderBy(result, [`score`], [`asc`])
     const entries = result.map(es => {
