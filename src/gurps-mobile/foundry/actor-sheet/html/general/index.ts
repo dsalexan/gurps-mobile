@@ -78,9 +78,9 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
 
     const { name } = entry.value
 
-    const trained = skillTrainingTags.includes(`trained`) && !actor.cache.query.skill[name].untrained && !actor.cache.query.skill[name].proxy
-    const untrained = skillTrainingTags.includes(`untrained`) && actor.cache.query.skill[name].untrained && !actor.cache.query.skill[name].proxy
-    const unknown = skillTrainingTags.includes(`unknown`) && actor.cache.query.skill[name].proxy
+    const trained = skillTrainingTags.includes(`trained`) && actor.cache.query.skill[name].training === `trained`
+    const untrained = skillTrainingTags.includes(`untrained`) && actor.cache.query.skill[name].training === `untrained`
+    const unknown = skillTrainingTags.includes(`unknown`) && actor.cache.query.skill[name].training === `unknown`
 
     return trained || untrained || unknown
   })

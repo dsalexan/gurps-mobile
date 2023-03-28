@@ -37,25 +37,18 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     const tags = new TagBuilder(variant.tags)
 
     // #region VALUE
-    let rsl = feature.rsl,
-      sl = feature.sl
-    if (isNil(rsl) || isNil(sl)) {
-      const level = feature.level()
-
-      if (level) {
-        sl = level.level.toString()
-        rsl = level.relative as any
-      }
+    variant.value = { value: `-` }
+    const level = feature.level()
+    if (level) {
+      variant.value.value = level.level.toString()
+      if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
     }
-
-    variant.value = { value: sl ?? `-` }
-    if (!isNil(rsl)) variant.value.label = rsl.toString({ skillAcronym: true })
     // #endregion
 
     // TAGS
-    if (feature.untrained) {
+    if (feature.training === `untrained` || feature.training === `unknown`) {
       tags.type(`type`).update(tag => {
-        tag.children[0].label = `Untrained Skill`
+        tag.children[0].label = `${feature.training === `untrained` ? `Untrained` : `Unknown`} Skill`
         tag.children[0].icon = `untrained_skill`
 
         return tag
@@ -74,7 +67,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     }
 
     // DEFAULTS
-    if (feature.untrained || specs.showDefaults) {
+    if (feature.training === `untrained` || specs.showDefaults) {
       const levelTags = (feature.levels ?? []).map((roll: ILevelDefinition) => {
         const levelDefinition = roll.parse(feature as SkillFeature, (feature as SkillFeature)._actor)
 

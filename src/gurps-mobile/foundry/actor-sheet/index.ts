@@ -623,8 +623,12 @@ const FeatureGroups = [
   {
     section: `occ`,
     key: `skills`,
-    filter: (f: SkillFeature) => f.type.compare(`skill`, true) && !f.proxy && !f.untrained,
-    sort: (f: SkillFeature) => (f.untrained ? -1 : parseInt(f._key.tree[0].toString())),
+    filter: (f: SkillFeature) => f.type.compare(`skill`, true) && f.training === `trained`,
+    sort: (f: SkillFeature) => {
+      if (f.training === `unknown`) return -Infinity
+      if (f.training === `untrained`) return -1
+      return parseInt(f._key.tree[0].toString())
+    },
     // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
   },
   // {

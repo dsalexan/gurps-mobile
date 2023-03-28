@@ -1,4 +1,5 @@
-import { camelCase, flatten, flattenDeep, get, has, isArray, isEmpty, isNil, max, maxBy, omit, orderBy, pick, set, sortBy, transform, uniq, uniqBy, upperFirst } from "lodash"
+/* eslint-disable no-debugger */
+import { camelCase, flatten, flattenDeep, get, has, isArray, isEmpty, isNil, max, maxBy, omit, orderBy, pick, set, sortBy, sum, transform, uniq, uniqBy, upperFirst } from "lodash"
 
 import { specializedName } from "../utils"
 
@@ -10,17 +11,19 @@ import { FEATURE } from "../type"
 import type { GCA } from "../../gca/types"
 import { ISkillFeature } from "../compilation/templates/skill"
 import { SkillManualSource } from "../compilation/templates/skill"
-import { ILevelDefinition, IRelativeLevel } from "../../../../gurps-extension/utils/level"
+import { compareComponent } from "../../../../gurps-extension/utils/component"
+import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
+import { ILevel } from "../../../../gurps-extension/utils/level"
 
 export default class SkillFeature extends GenericFeature implements ISkillFeature {
   attribute: string
   difficulty: string
-  sl: string
-  rsl: IRelativeLevel
-  untrained: boolean
+  points: number
+  training: `trained` | `untrained` | `unknown`
   defaultFrom: object[]
   proxy?: boolean
   form: false | `art` | `sport`
+
 
   /**
    * Instantiate new Skill Feature
@@ -30,22 +33,89 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
     this.addCompilation(SkillFeatureCompilationTemplate)
   }
 
+  /**
+   * Returns best level for skill
+   */
+  level(attribute: GURPS4th.AttributesAndCharacteristics) {
+    const actor = this._actor
+    // ERROR: Unimplemented, cannot calculate skill level without actor
+    if (!actor) debugger
+
+    const actorComponents = actor.getComponents(`skill_bonus`, component => compareComponent(component, this))
+    const actorBonus = sum(actorComponents.map(component => component.amount ?? 0))
+
+    const baseAttribute = attribute ?? this.attribute
+
+    if (this.training === `trained`) {
+      // ERROR: Unimplemented
+      if (this.levels === undefined) debugger
+
+      // ERROR: Unimplemented wildcard
+      if (this.name[this.name.length - 1] === `!`) debugger
+
+      const skillCache = actor.cache._skill?.trained
+      const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
+      const trainedSkillsGCA = trainedSkills.map(skill => skill.__compilation.sources.gca?._index).filter(index => !isNil(index)) as number[]
+
+      for (const _default of this.levels) {
+        const targets = Object.values(_default.targets ?? {})
+        const compatibleTargets = targets.map(target => {
+          if (target.type !== `skill`) return true
+
+          // check if all skills are trained
+          const skills = target.value as number[]
+          if (!skills || skills?.length === 0) return false
+
+          debugger
+          return skills.every(skill => trainedSkillsGCA.includes(skill))
+        })
+
+        // all targets are compatible, it is possible to use this default to calculate
+        if (targets.length === compatibleTargets.length) {
+          let baseLevel
+          if (targets.every(target => target.type === 'attribute' && target.value === ))
+
+          let { level, relative } = _default.parse(this, actor) ?? {}
+
+          // ERROR: Unimplemented
+          if (level === undefined) debugger
+          if (this.points < 0) debugger
+          if (this.points === 0) debugger
+
+          const difficultyDecrease = { E: 0, A: 1, H: 2, VH: 3 }[this.difficulty] ?? 0
+
+          // Skill Cost Table, B 170
+          //    negative points is possible?
+          let boughtIncrease_curve = { 4: 2, 3: 1, 2: 1, 1: 0 }[this.points] ?? (this.points > 4 ? 2 : 0) // 4 -> +2, 2 -> +1, 1 -> +0
+          let boughtIncrease_linear = Math.floor((this.points - 4) / 4) // 8 -> +3, 12 -> +4, 16 -> +5, 20 -> +6, ..., +4 -> +1
+          const boughtIncrease = boughtIncrease_curve + boughtIncrease_linear
+
+          const modifier = boughtIncrease - difficultyDecrease
+          const baseLevel = (level as number) + modifier
+
+          const totalLevel = baseLevel + actorBonus
+          if (actorBonus !== 0) debugger
+
+          debugger
+        }
+      }
+    }
+
+    return super.level()
+  }
+
   // INTEGRATING
   integrate(actor: GurpsMobileActor) {
     super.integrate(actor)
 
     // index by name and specializedName for quick reference
     if (!this.container) {
-      actor.setCache(`_${this.type.value}.${this.specializedName}.${this.id}`, this)
-      actor.setCache(`_${this.type.value}.${this.name}.${this.id}`, this)
-
-      if (this.type.compare(FEATURE.SKILL)) {
-        if (this.untrained) actor.setCache(`_untrainedSkill.${this.specializedName}.${this.id}`, this)
-        else {
-          actor.setCache(`_trainedSkill.${this.specializedName}.${this.id}`, this)
-          if (this.__compilation.sources.gca) actor.setCache(`gca.skill.${this.__compilation.sources.gca._index}`, this)
-        }
+      if (this.training !== `unknown`) {
+        actor.setCache(`_${this.type.value}.${this.training}.${this.specializedName}.${this.id}`, this)
+        actor.setCache(`_${this.type.value}.${this.training}.${this.name}.${this.id}`, this)
       }
+
+      if (this.__compilation.sources.gca) actor.setCache(`gca.skill.${this.__compilation.sources.gca._index}`, this)
     }
 
     return this
@@ -55,8 +125,8 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
   static untrained(actor: GurpsMobileActor, template: FeatureTemplate<SkillManualSource>) {
     if (!template.factory) throw new Error(`Missing factory on untrained call`)
 
-    const trainedSkillIndex = actor.cache._trainedSkill ?? {}
-    const trainedSkills = flatten(Object.values(trainedSkillIndex).map(features => Object.values(features)))
+    const trainedSkillIndex = actor.cache._skill?.trained ?? {}
+    const trainedSkills = flatten(Object.values(trainedSkillIndex).map(skillsById => Object.values(skillsById)))
     const trainedSkillsGCAIndex = trainedSkills.map(feature => feature.__compilation.sources.gca?._index)
 
     // extract a list of all untrained skills with viable SKILL defaults
@@ -179,7 +249,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
           ...get(template, `manual`, {}),
           id: () => `gca-${skillIndex}`,
           // ignoreSpecialization: !!ignoreSpecialization,
-          trained: false,
+          training: `untrained`,
         },
       }
 
@@ -201,10 +271,10 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
 
     // pre-process indexes for trained/untrained skills
     const trainedSkills = Object.fromEntries(
-      flatten(Object.values(actor.cache._trainedSkill ?? {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
+      flatten(Object.values(actor.cache._skill?.trained ?? {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
     )
     const untrainedSkills = Object.fromEntries(
-      flatten(Object.values(actor.cache._untrainedSkill ?? {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
+      flatten(Object.values(actor.cache._skill?.untrained ?? {}).map(features => Object.values(features).map(feature => [feature.__compilation.sources.gca._index, feature]))),
     )
 
     const skills = {} as Record<string, { base?: GCA.IndexedSkill; trained?: SkillFeature[]; untrained?: SkillFeature[] }>
@@ -257,8 +327,8 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
           ...get(template, `manual`, {}),
           id: () => `proxy-gca-${base.skill}`,
           ignoreSpecialization: () => base.ignoreSpecialization,
-          untrained: () => !trained,
           proxy: () => true,
+          training: `unknown`,
         },
       }
 

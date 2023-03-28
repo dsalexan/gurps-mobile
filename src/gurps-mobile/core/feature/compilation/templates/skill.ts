@@ -1,6 +1,6 @@
 import { flatten, flattenDeep, get, has, isArray, isEmpty, isNil, orderBy, uniq } from "lodash"
 import { Type } from "../../type"
-import { MigrationValue, MigrationDataObject, FastMigrationDataObject, isOrigin, OVERWRITE, WRITE, PUSH, MigratableObject } from "../migration"
+import { MigrationValue, MigrationDataObject, FastMigrationDataObject, isOrigin, OVERWRITE, WRITE, PUSH, MigratableObject, FALLBACK } from "../migration"
 import CompilationTemplate, { CompilationContext, GURPSSources } from "../template"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
@@ -8,21 +8,21 @@ import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext, GenericFeatureManualSource } from "./generic"
 import { GurpsMobileActor } from "../../../../foundry/actor"
 import LOGGER from "../../../../logger"
-import { ILevelDefinition, IRelativeLevel, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { ILevel, ILevelDefinition, IRelativeLevel, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { IGenericFeature } from "../../variants/generic"
 import { parseExpression } from "../../../../../december/utils/math"
+import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
 
 export interface SkillManualSource extends GenericFeatureManualSource {
-  trained?: boolean
+  training?: `trained` | `untrained` | `unknown`
   ignoreSpecialization?: boolean
 }
 
 export interface ISkillFeature extends IGenericFeature {
   attribute: string
   difficulty: string
-  sl: string
-  rsl: IRelativeLevel
-  untrained: boolean
+  points: number
+  training: `trained` | `untrained` | `unknown`
   defaultFrom: object[]
   proxy?: boolean
   form: false | `art` | `sport`
@@ -30,14 +30,12 @@ export interface ISkillFeature extends IGenericFeature {
 
 export default class SkillFeatureCompilationTemplate extends CompilationTemplate {
   static manual(sources: GURPSSources & { manual?: SkillManualSource }, context: GenericFeatureCompilationContext): FastMigrationDataObject<any> | null {
-    const group = sources.manual?.trained === false ? OVERWRITE(`group`, `Untrained Skills`) : undefined
-    const untrained = sources.manual?.trained !== undefined ? OVERWRITE(`untrained`, sources.manual?.trained === false) : undefined
+    const training = sources.manual?.training !== undefined ? OVERWRITE(`training`, sources.manual?.training) : undefined
     const specialization = sources.manual?.ignoreSpecialization ? OVERWRITE(`specialization`, undefined) : undefined
 
     return {
-      group,
       //
-      untrained,
+      training,
       specialization,
     }
   }
@@ -53,35 +51,12 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
       MDO.difficulty = difficulty[2]
     }
 
-    MDO.sl = get(GCS, `calc.level`, undefined)
-
-    // const rawRSL = get(GCS, `calc.rsl`, undefined)
-    // if (!isNil(rawRSL)) {
-    //   const _rsl = /([\w?]+)([+-][\d?]+)?/i
-    //   const relativeLevel = rawRSL.match(_rsl)
-
-    //   const rsl = { expression: `??`, definitions: {} } as IRelativeLevel
-
-    //   // create custom relative definition by hand
-    //   rsl.expression = `GCS`
-    //   // TODO: Do a better job filling this information
-    //   rsl.definitions[`GCS`] = {
-    //     variable: `GCS`,
-    //     value: 0,
-    //     content: relativeLevel?.[1] ?? ``,
-    //     //
-    //     flags: [isNilOrEmpty(relativeLevel?.[1]) && `error`, `unknown`].filter(b => !!b) as string[],
-    //     prefix: ``,
-    //   }
-
-    //   if (relativeLevel) {
-    //     if (relativeLevel[2] !== `+0` && relativeLevel[2] !== `-0` && !isNilOrEmpty(relativeLevel[2])) {
-    //       rsl.expression = `${rsl.expression} ${relativeLevel[2]}`
-    //     }
-    //   }
-
-    //   MDO.rsl = rsl
-    // }
+    const points = get(GCS, `points`)
+    if (!isNil(points)) {
+      MDO.points = points
+      if (points > 0) MDO.training = `trained`
+      else MDO.training = `unknown`
+    }
 
     return MDO
   }
@@ -127,6 +102,13 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
       if (name.match(/\w art(?!\w)/i)) MDO.form = WRITE(`form`, `art`)
       else if (name.match(/\w sport(?!\w)/i)) MDO.form = WRITE(`form`, `sport`)
       else MDO.form = WRITE(`form`, false)
+    }
+
+    if (has(data, `training`)) {
+      const training = data.training
+
+      if (training === `untrained`) MDO.group = OVERWRITE(`group`, `Untrained Skills`)
+      else if (training === `unknown`) MDO.group = OVERWRITE(`group`, `Unknown Skills`)
     }
 
     return MDO

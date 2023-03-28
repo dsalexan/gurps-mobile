@@ -288,32 +288,23 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
     // SKILL
     //    get skill level from another skill
     id = null
-    let skills = target.value as number[]
+    let skillIndexes = target.value as number[]
 
-    if (dynamic) skills = [] // TODO: Deal with dynamic shit
+    if (dynamic) skillIndexes = [] // TODO: Deal with dynamic shit
 
     // ERROR: Unimplemented for undefined list of skills (target.value === undefined)
-    if (skills?.length === undefined) debugger
+    if (skillIndexes?.length === undefined) debugger
 
     // list all trained skills in skills
     //    remove duplicates by id
-    const trainedSkills = uniqBy(
-      flatten(
-        skills.map(skillIndex => {
-          const entry = GCA.entries[skillIndex]
-          const skillsByName = actor.cache._skill?.[specializedName(entry.name, entry.nameext)]
-
-          if (!skillsByName) return []
-          return Object.values(skillsByName).filter(skill => !skill.untrained)
-        }),
-      ),
-      `id`,
-    )
+    const skillEntries = skillIndexes.map(index => GCA.entries[index])
+    const listOfSkillMaps = skillEntries.map(entry => actor.cache._skill?.trained?.[specializedName(entry.name, entry.nameext)]).filter(skill => !isNil(skill))
+    const trainedSkills = flatten(listOfSkillMaps.map(skillMap => Object.values(skillMap ?? {}).filter(skill => skill.training === `trained`)))
 
     if (trainedSkills.length > 0) {
       // transform if needed
       const trainedSkill = trainedSkills[0]
-      value = trainedSkill.sl
+      value = trainedSkill.level()?.level
       for (const transform of transforms) {
         // if (transform === `level`) // do nothing, "level" for skill is already sl
 
@@ -322,6 +313,9 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
       }
 
       id = trainedSkill.id
+    } else {
+      // ERROR: Unimplemented
+      debugger
     }
   } else if (target.type === `attribute`) {
     // ERROR: Unimplemented

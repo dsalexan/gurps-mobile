@@ -8,7 +8,6 @@ import ContextManager from "../../manager"
 import { isNilOrEmpty, push } from "../../../../../../december/utils/lodash"
 import { IWeaponFeature } from "../../../../../core/feature/compilation/templates/weapon"
 import WeaponFeature from "../../../../../core/feature/variants/weapon"
-import { parseValue } from "../../../../../core/feature/utils"
 import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
@@ -63,7 +62,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       const allSkillsAreTrained = targets.every(target => {
         if (target.type !== `skill`) return true
 
-        return !isNil(actor.cache._trainedSkill[target.fullName])
+        return !isNil(actor.cache._skill?.trained?.[target.fullName])
       })
 
       if (allSkillsAreTrained || targets.length === 0) {

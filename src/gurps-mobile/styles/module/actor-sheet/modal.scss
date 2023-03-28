@@ -182,7 +182,8 @@
         }
 
         &.selected {
-          background-color: rgb(var(--semi-light-main-color), 0.5);
+          border: 0.5px solid rgb(var(--main-color), 0.5);      
+          background-color: rgb(var(--light-main-color), 0.5);
           color: rgb(var(--darker-main-color), 1);
           font-weight: 500;
         }

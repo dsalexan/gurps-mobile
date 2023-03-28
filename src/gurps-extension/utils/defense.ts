@@ -135,7 +135,7 @@ export function activeDefenseLevel(
   )
 
   const flatTuples = Object.values(byEquipmentAndDefenseBonusAndDefenseFormulaAndSkillLevel).map(similar => {
-    const arbitraryOrder = orderBy(similar, ([{ skill }]) => (({ false: 0, sport: 1, art: 2 }[skill.form as string] ?? 3) - (skill.untrained ? 0 : 0.5)))
+    const arbitraryOrder = orderBy(similar, ([{ skill }]) => (({ false: 0, sport: 1, art: 2 }[skill.form as string] ?? 3) - (skill.training === `trained` ? 0 : 0.5)))
 
     let _pool = [] as any[],
       usages = [] as any[]

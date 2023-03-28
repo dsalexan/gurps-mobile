@@ -24,9 +24,7 @@ export type ActorCache = {
   links?: Record<string, string[]>
   paths?: Record<string, string>
   _moves?: Record<string, GenericFeature>
-  _skill?: Record<string, SkillFeature[]>
-  _trainedSkill?: Record<string, Record<string, SkillFeature>>
-  _untrainedSkill?: Record<string, Record<string, SkillFeature>>
+  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, SkillFeature>>>
   features?: Record<string, BaseFeature>
   components?: Record<string, IComponentDefinition[]>
   //
@@ -61,21 +59,6 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     if (this.id === null) throw new Error(`Cannot set actor cache with a null id`)
     if (this.cache.features === undefined) this.cache.features = {}
     this.cache.features[path] = value
-  }
-
-  getCachedSkill(name: string) {
-    if (!this.cache._skill) return null
-
-    const result = this.cache._skill[name] ?? {}
-    const ids = Object.keys(result)
-
-    if (ids.length === 1) return result[ids[0]]
-    else if (ids.length === 0) return null
-    else {
-      LOGGER.warn(`Cannot decide cached skill for`, name, `in`, ids, `@`, result, this)
-      // eslint-disable-next-line no-debugger
-      debugger
-    }
   }
 
   cacheLink(feature: string, ...links: string[]) {

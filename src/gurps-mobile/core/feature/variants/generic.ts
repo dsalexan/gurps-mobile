@@ -13,6 +13,7 @@ import { Utils } from ".."
 import { ILevel, ILevelDefinition, calculateLevel, orderLevels } from "../../../../gurps-extension/utils/level"
 import { FeatureState } from "../utils"
 import { parseBonus } from "../../../../gurps-extension/utils/bonus"
+import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 
 export interface IGenericFeature extends IFeature {
   container: boolean
@@ -34,7 +35,7 @@ export interface IGenericFeature extends IFeature {
 
   reference: string[]
 
-  level(): ILevel | null
+  level(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
 }
 
 export default class GenericFeature extends BaseFeature implements IGenericFeature, IWeaponizableFeature {
@@ -110,7 +111,7 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
   /**
    * Returns best level for feature
    */
-  level() {
+  level(attribute?: GURPS4th.AttributesAndCharacteristics) {
     if (this.levels) {
       const levels = orderLevels(this.levels, this, this._actor)
 
