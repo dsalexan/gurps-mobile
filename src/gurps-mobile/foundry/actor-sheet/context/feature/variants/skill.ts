@@ -38,7 +38,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // #region VALUE
     variant.value = { value: `-` }
-    const level = feature.level()
+    const level = feature.calcLevel()
     if (level) {
       variant.value.value = level.level.toString()
       if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
@@ -68,7 +68,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // DEFAULTS
     if (feature.training === `untrained` || specs.showDefaults) {
-      const levelTags = (feature.levels ?? []).map((roll: ILevelDefinition) => {
+      const levelTags = (feature.defaults ?? []).map((roll: ILevelDefinition) => {
         const levelDefinition = roll.parse(feature as SkillFeature, (feature as SkillFeature)._actor)
 
         if (!isNil(levelDefinition)) {

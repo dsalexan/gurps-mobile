@@ -37,7 +37,7 @@ export function activeDefenseLevel(
     const skillsMap = Object.fromEntries(allSkills.map(skill => [skill.__compilation.sources.gca?._index, skill]))
 
     // aggregate specializations
-    const byNonSpecializedNameAndSkillLevel = groupBy(allSkills, skill => `${skill.name}+${skill.level()?.level}`)
+    const byNonSpecializedNameAndSkillLevel = groupBy(allSkills, skill => `${skill.name}+${skill.calcLevel()?.level}`)
     const skillsAndIgnoreSpecializationFlag = Object.values(byNonSpecializedNameAndSkillLevel).map(
       specializedSkills =>
         [
@@ -62,7 +62,7 @@ export function activeDefenseLevel(
     const byNameAndSkillLevel = Object.values(byNameAndDefenseLevelFormula).map(skillAndDefenseLevelFormula =>
       groupBy(
         skillAndDefenseLevelFormula.map(([skill]) => skill),
-        skill => skill.level()?.level ?? -Infinity,
+        skill => skill.calcLevel()?.level ?? -Infinity,
       ),
     )
 
@@ -102,7 +102,7 @@ export function activeDefenseLevel(
     // choose skill for equipment weapons
     weaponSkills = flatten(
       defenseWeapons.map(weapon => {
-        const levels = weapon.levels ?? []
+        const levels = weapon.defaults ?? []
         if (levels.length === 0) return []
 
         const allSkillTargetsAreInList = levels.filter(level => {

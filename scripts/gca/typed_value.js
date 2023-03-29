@@ -702,7 +702,7 @@ class TypedValue {
 
       // has a before OR cannot ignore identity
       if (_before.math) {
-        before = before.replaceAll(/∂/g, `∂`)
+        before = before.replaceAll(/∂/g, `∂∂`)
 
         for (const key of Object.keys(_before.variables ?? {})) {
           const newKey = name(Object.keys(mathObject).length - 1).toUpperCase()

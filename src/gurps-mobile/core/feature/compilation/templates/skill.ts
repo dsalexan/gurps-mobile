@@ -71,7 +71,7 @@ export default class SkillFeatureCompilationTemplate extends CompilationTemplate
       MDO.difficulty = GCA.type.split(`/`)[1]
     }
 
-    if (!isNil(GCA?.default)) MDO.levels = GCA.default.map(_default => parseLevelDefinition(_default))
+    if (!isNil(GCA?.default)) MDO.defaults = GCA.default.map(_default => parseLevelDefinition(_default))
 
     return MDO
   }

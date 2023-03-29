@@ -48,7 +48,7 @@ export default class WeaponFeatureCompilationTemplate extends CompilationTemplat
     } as FastMigrationDataObject<any>
 
     const defaults = get(GCS, `defaults`)
-    if (defaults) MDO.levels = defaults.map(_default => parseLevelDefinition(_default))
+    if (defaults) MDO.defaults = defaults.map(_default => parseLevelDefinition(_default))
 
     return MDO
   }

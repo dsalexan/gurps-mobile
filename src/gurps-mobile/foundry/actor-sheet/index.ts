@@ -610,7 +610,7 @@ const FeatureGroups = [
   //   section: `combat`,
   //   key: `attacks`,
   //   map: (f: GenericFeature) => f.weapons ?? [],
-  //   sort: (f: WeaponFeature) => f.level()?.level ?? Infinity,
+  //   sort: (f: WeaponFeature) => f.calcLevel()?.level ?? Infinity,
   //   order: `desc`,
   //   groups: false,
   // },

@@ -67,7 +67,7 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
             label: `${ignoreSpecialization ? skill.name : skill.specializedName}${skill.training === `untrained` ? `` : stringTrained}`,
           },
           {
-            label: skill.level().level.toString(),
+            label: skill.calcLevel().level.toString(),
           },
         ],
       })
@@ -194,7 +194,7 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
             label: `${ADL.ignoreSpecialization ? ADL.skill.name : ADL.skill.specializedName}${ADL.skill.training === `untrained` ? `` : stringTrained}`,
           },
           {
-            label: ADL.skill.level().level.toString(),
+            label: ADL.skill.calcLevel().level.toString(),
           },
         ],
       })

@@ -164,8 +164,10 @@ export default class GenericFeatureCompilationTemplate extends CompilationTempla
       else {
         const trees = Type.uniq(nonGeneric)
         if (trees.length === 1) MDO[key] = nonGeneric[0]
-        // ERROR: Unimplemented multiple trees conflict resolution
-        debugger
+        else {
+          // ERROR: Unimplemented multiple trees conflict resolution
+          debugger
+        }
       }
     } else if (key === `specialization`) {
       if (sources.gca.specializationRequired) {

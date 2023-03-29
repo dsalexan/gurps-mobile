@@ -46,8 +46,10 @@ export default class FeatureFactory {
    */
   parse<TFeature extends BaseFeature>(type: FeatureFactoryTypes, GCS: object, prefix = `system.`, parent: TFeature | null, template: FeatureTemplate<unknown> = {}) {
     const collection = new FeatureCollection()
+    if (!GCS) return collection
     const map = isArray(GCS) ? Object.fromEntries(GCS.map((c, i) => [i, c])) : GCS
 
+    if (!map) debugger
     for (const [key, gcs] of Object.entries(map)) {
       const feature = this.build(type, key, prefix, parent, template)
       feature.addSource(`gcs`, gcs)

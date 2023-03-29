@@ -4,7 +4,7 @@ import { IWeaponizableFeature } from "../compilation/templates/weaponizable"
 
 import GenericFeatureCompilationTemplate from "../compilation/templates/generic"
 import WeaponizableFeatureCompilationTemplate from "../compilation/templates/weaponizable"
-import { cloneDeep, get, has, isArray, isNil, orderBy, sum, uniq } from "lodash"
+import { cloneDeep, flatten, get, has, isArray, isNil, orderBy, sum, uniq } from "lodash"
 import FeatureWeaponsDataContextTemplate from "../../../foundry/actor-sheet/context/feature/weapons"
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { IWeaponFeature } from "../compilation/templates/weapon"
@@ -30,12 +30,13 @@ export interface IGenericFeature extends IFeature {
   meta: string
   tags: string[]
   conditional: string[]
-  levels?: ILevelDefinition[]
   activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
 
   reference: string[]
 
-  level(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
+  level?: number
+  defaults?: ILevelDefinition[]
+  calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
 }
 
 export default class GenericFeature extends BaseFeature implements IGenericFeature, IWeaponizableFeature {
@@ -57,10 +58,12 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
   reference: string[]
   tags: string[]
   conditional: string[]
-  levels?: ILevelDefinition[]
 
   weapons: WeaponFeature[]
   activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
+
+  level?: number
+  defaults?: ILevelDefinition[]
 
   /**
    * Instantiate new Generic Feature
@@ -111,16 +114,108 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
   /**
    * Returns best level for feature
    */
-  level(attribute?: GURPS4th.AttributesAndCharacteristics) {
-    if (this.levels) {
-      const levels = orderLevels(this.levels, this, this._actor)
+  calcLevel(attribute: GURPS4th.AttributesAndCharacteristics) {
+    const actor = this._actor
+    // ERROR: Unimplemented, cannot calculate skill level without actor
+    if (!actor) debugger
 
-      // if (feature.specializedName === `Armoury (Body Armor)`) debugger
+    const baseAttribute = attribute ?? this.attribute
 
-      if (levels.length > 0) return levels[0]
+    if (this.training === `trained`) {
+      // ERROR: Unimplemented
+      if (this.defaults === undefined) debugger
+
+      // ERROR: Unimplemented wildcard
+      if (this.name[this.name.length - 1] === `!`) debugger
+
+      const sourcedLevel = [] as { level: number; source: { type: string; name: string }; raw: string | ILevelDefinition }[]
+
+      // CALCULATE SKILL MODIFIER FROM DIFFICULTY
+      const difficultyDecrease = { E: 0, A: 1, H: 2, VH: 3 }[this.difficulty] ?? 0
+
+      // Skill Cost Table, B 170
+      //    negative points is possible?
+      let boughtIncrease_curve = { 4: 2, 3: 1, 2: 1, 1: 0 }[this.points] ?? (this.points > 4 ? 2 : 0) // 4 -> +2, 2 -> +1, 1 -> +0
+      let boughtIncrease_linear = Math.floor((this.points - 4) / 4) // 8 -> +3, 12 -> +4, 16 -> +5, 20 -> +6, ..., +4 -> +1
+      const boughtIncrease = boughtIncrease_curve + boughtIncrease_linear
+
+      const skillModifier = boughtIncrease - difficultyDecrease
+
+      // CALCULATE SKILL BONUS FROM ACTOR
+      const actorComponents = actor.getComponents(`skill_bonus`, component => compareComponent(component, this))
+      const actorBonus = sum(
+        actorComponents.map(component => {
+          let modifier = 1
+          if (component.per_level) modifier = component.feature.level
+
+          const value = component.amount * modifier
+
+          // ERROR: Unimplemented
+          if (isNaN(value)) debugger
+
+          return value
+        }),
+      )
+
+      // CALCULATE LEVEL BASED ON ATTRIBUTE
+      let baseLevel = (actor.system.attributes[baseAttribute.toUpperCase()] ?? actor.system[baseAttribute]).value
+      baseLevel = Math.min(20, baseLevel) // The Rule of 20, B 173
+
+      sourcedLevel.push({
+        level: baseLevel,
+        source: {
+          type: `attribute`,
+          name: baseAttribute,
+        },
+        raw: baseAttribute,
+      })
+
+      // CALCULATE LEVEL BASED ON DEFAULTS
+      const skillCache = actor.cache._skill?.trained
+      const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
+      const trainedSkillsGCA = trainedSkills.map(skill => skill.__compilation.sources.gca?._index).filter(index => !isNil(index)) as number[]
+
+      for (const _default of this.defaults) {
+        const targets = Object.values(_default.targets ?? {})
+        // skill targets compatible (clear for defaulting, usually are trained skills)
+        const compatibleTargets = targets.filter(target => {
+          if (target.type !== `skill`) return true
+
+          // check if all skills are trained
+          const skills = target.value as number[]
+          if (!skills || skills?.length === 0) return false
+
+          return skills.some(skill => skill !== this.__compilation.sources.gca?._index && trainedSkillsGCA.includes(skill))
+        })
+
+        // if are targets are compatible (type any OR type skill and trained)
+        if (compatibleTargets.length === targets.length) {
+          const defaultLevel = _default.parse(this, actor)
+
+          // ERROR: Unimplemented
+          if (!defaultLevel) debugger
+          if (targets.length !== 1) debugger
+
+          sourcedLevel.push({
+            level: defaultLevel?.level as number,
+            source: {
+              type: targets[0].type,
+              name: targets[0].fullName,
+            },
+            raw: _default,
+          })
+        }
+      }
+
+      const orderedLevels = orderBy(sourcedLevel, level => level.level, `desc`)
+      if (orderedLevels.length === 0) return null
+
+      const highest = orderedLevels[0]
+      const flags = highest.source.type === `attribute` && highest.source.name !== this.attribute ? [`other-based`] : []
+      const level = buildLevel(highest.level, skillModifier + actorBonus, { [highest.source.type]: highest.source.name, flags })
+      debugger
+      return level
     }
-
-    return null
   }
 
   /**

@@ -9,6 +9,7 @@ import { GCA } from "../../../gca/types"
 import { GenericFeatureCompilationContext } from "./generic"
 import { IFeature } from "../../base"
 import { ILevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { IGenericFeature } from "../../variants/generic"
 
 export interface FeatureRoll {
   self_control?: boolean
@@ -23,6 +24,9 @@ export interface IAdvantageFeature extends IGenericFeature {
 export default class AdvantageFeatureCompilationTemplate extends CompilationTemplate {
   static gcs(GCS: GCS.Entry, context: GenericFeatureCompilationContext): FastMigrationDataObject<any> | null {
     const MDO = {} as FastMigrationDataObject<any>
+
+    const level = get(GCS, `levels`)
+    if (!isNil(level)) MDO.level = level
 
     const vtt_notes = get(GCS, `vtt_notes`)
     if (vtt_notes && vtt_notes.includes(`:`)) {

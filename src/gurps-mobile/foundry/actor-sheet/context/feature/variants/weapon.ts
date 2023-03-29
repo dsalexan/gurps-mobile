@@ -41,7 +41,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     _variants[0].label = feature.usage ?? undefined
 
     // if there is no defaults attached to weapon, just returns its default main variant
-    if (isNil(feature.levels) || feature.levels.length === 0) {
+    if (isNil(feature.defaults) || feature.defaults.length === 0) {
       _variants[0].value = undefined
       return _variants
     }
@@ -55,7 +55,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const untrained = [] as ILevelDefinition[],
       trained = [] as { definition: ILevelDefinition; level: ILevel }[]
 
-    const levels = feature.levels ?? []
+    const levels = feature.defaults ?? []
     for (const levelDefinition of levels) {
       const targets = Object.values(levelDefinition.targets ?? [])
 
@@ -162,7 +162,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    let defaultLevels = feature.levels
+    let defaultLevels = feature.defaults
     if (isNil(defaultLevels)) {
       defaultLevels = [parseLevelDefinition({ type: `dx` })]
 

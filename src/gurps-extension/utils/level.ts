@@ -79,6 +79,7 @@ export function stringifyRelativeSkillLevel({ expression, definitions }: Partial
     debugger
     return `-`
   }
+
   let formattedExpression = expression.replaceAll(/([-+*/])/g, `<span class="operator">$1</span>`)
 
   for (const definition of Object.values(definitions ?? {})) {
@@ -304,7 +305,7 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
     if (trainedSkills.length > 0) {
       // transform if needed
       const trainedSkill = trainedSkills[0]
-      value = trainedSkill.level()?.level
+      value = trainedSkill.calcLevel()?.level
       for (const transform of transforms) {
         // if (transform === `level`) // do nothing, "level" for skill is already sl
 
@@ -364,6 +365,39 @@ export function calculateLevel(relative: IRelativeLevel) {
 }
 
 // #endregion
+
+export function buildLevel(baseLevel: number, bonus: number, { attribute, skill, flags }: { flags?: string[]; attribute?: string; skill?: string }) {
+  const level = baseLevel + bonus
+  const sign = bonus > 0 ? `+` : bonus < 0 ? `-` : ``
+
+  const definition: IVariableDefinition = {
+    variable: `A`,
+    value: baseLevel,
+  } as any
+
+  if (flags) definition.flags = flags
+
+  if (attribute !== undefined) {
+    definition.type = `attribute`
+    definition.content = attribute
+  }
+
+  if (skill !== undefined) {
+    definition.type === `skill`
+    definition.content = skill
+  }
+
+  const relative: IRelativeLevel = {
+    expression: `∂A${bonus !== 0 ? ` ${sign} ${Math.abs(bonus)}` : ``}`,
+    definitions: { A: definition },
+  }
+  const levelDefinition: ILevel = { level, relative }
+  relative.toString = function (options) {
+    return stringifyRelativeSkillLevel(relative, options)
+  }
+
+  return levelDefinition
+}
 
 export function orderLevels(levelDefinitions: ILevelDefinition[], feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) {
   let levels = levelDefinitions.map(level => level.parse(feature, actor)) as ILevel[]
