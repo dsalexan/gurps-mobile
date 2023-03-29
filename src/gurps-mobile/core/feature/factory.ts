@@ -2,34 +2,35 @@ import { isArray, isNil } from "lodash"
 
 import { FeatureCollection } from "./collection"
 
-import BaseFeature, { FeatureTemplate } from "./base"
+// import BaseFeature, { FeatureTemplate } from "./base"
 import GenericFeature from "./variants/generic"
 import AdvantageFeature from "./variants/advantage"
 import SkillFeature from "./variants/skill"
 import SpellFeature from "./variants/spell"
 import EquipmentFeature from "./variants/equipment"
 import WeaponFeature from "./variants/weapon"
+import Feature, { FeatureTemplate } from "../../foundry/actor/feature"
 
 export type FeatureFactoryTypes = `base` | `generic` | `advantage` | `skill` | `spell` | `equipment` | `weapon`
 
 export default class FeatureFactory {
-  cls(type: FeatureFactoryTypes): typeof BaseFeature {
-    if (type === `base`) return BaseFeature
-    else if (type === `generic`) return GenericFeature
-    else if (type === `advantage`) return AdvantageFeature
-    else if (type === `skill`) return SkillFeature
-    else if (type === `spell`) return SpellFeature
-    else if (type === `equipment`) return EquipmentFeature
-    else if (type === `weapon`) return WeaponFeature
+  cls(type: FeatureFactoryTypes): typeof Feature {
+    if (type === `base`) return Feature
+    // else if (type === `generic`) return GenericFeature
+    // else if (type === `advantage`) return AdvantageFeature
+    // else if (type === `skill`) return SkillFeature
+    // else if (type === `spell`) return SpellFeature
+    // else if (type === `equipment`) return EquipmentFeature
+    // else if (type === `weapon`) return WeaponFeature
 
     throw new Error(`Feature of type "${type}" is not implemented`)
   }
 
-  build<TFeature extends BaseFeature>(type: FeatureFactoryTypes, key: string | number, prefix: string, parent: TFeature | null, template: FeatureTemplate<unknown>): TFeature {
+  build<TFeature extends Feature<any, any>>(type: FeatureFactoryTypes, id: string, key: string | number, parent: Feature<any, any> | null, template: FeatureTemplate): Feature {
     const cls = this.cls(type)
 
-    template.factory = this
-    const instance = new cls(key, prefix, parent, template)
+    const instance = new cls(id, key, parent, template)
+    instance.factory = this
 
     return instance as TFeature
   }

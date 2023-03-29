@@ -8,14 +8,11 @@ import createManeuverTray, { Tray } from "./maneuverTray"
 
 import { flatten, flattenDeep, get, groupBy, isNil, orderBy, set, sortBy, uniq } from "lodash"
 import { getStatus } from "./status"
-import GenericFeature from "../../core/feature/variants/generic"
-import SkillFeature from "../../core/feature/variants/skill"
 import HTMLManager from "./html"
-import BaseFeature from "../../core/feature/base"
 import ContextManager from "./context/manager"
 import { Datachanges } from "../../../december/utils"
 import HTMLFeature from "./html/feature"
-import WeaponFeature from "../../core/feature/variants/weapon"
+import Feature from "../actor/feature"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -474,8 +471,8 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
+    sheetData.tabs.attributes.push(...this.buildAttributes())
     // sheetData.tabs.defenses.push(...this.buildDefenses())
-    // sheetData.tabs.attributes.push(...this.buildAttributes())
 
     for (const type of groupedFeatures) {
       sheetData.tabs[type.key] = flattenDeep(
@@ -618,19 +615,19 @@ const FeatureGroups = [
   // {
   //   section: `occ`,
   //   key: `advantages`,
-  //   filter: (f: GenericFeature) => f.type.compare(`generic_advantage`, false),
+  //   filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
   // },
-  {
-    section: `occ`,
-    key: `skills`,
-    filter: (f: SkillFeature) => f.type.compare(`skill`, true) && f.training === `trained`,
-    sort: (f: SkillFeature) => {
-      if (f.training === `unknown`) return -Infinity
-      if (f.training === `untrained`) return -1
-      return parseInt(f._key.tree[0].toString())
-    },
-    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  },
+  // {
+  //   section: `occ`,
+  //   key: `skills`,
+  //   filter: (f: SkillFeature) => f.type.compare(`skill`, true) && f.training === `trained`,
+  //   sort: (f: SkillFeature) => {
+  //     if (f.training === `unknown`) return -Infinity
+  //     if (f.training === `untrained`) return -1
+  //     return parseInt(f._key.tree[0].toString())
+  //   },
+  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  // },
   // {
   //   section: `occ`,
   //   key: `spells`,

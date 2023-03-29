@@ -6,11 +6,10 @@ import FeatureFactory from "../../../core/feature/factory"
 import { GCA } from "../../../core/gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../actor-sheet/context/context"
 import { GurpsMobileActor } from "../actor"
-import { cloneDeep, get, isFunction, pickBy } from "lodash"
+import { cloneDeep, get, isArray, isFunction, pickBy } from "lodash"
 import { push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
-
-function derive()
+import { IDerivation } from "./derivation"
 
 export interface IFeatureData {
   name: string
@@ -23,7 +22,9 @@ export type FeatureSources<TManualSource extends Record<string, any>> = {
 }
 
 export type FeatureTemplate<TManualSource extends Record<string, any>> = {
-  key?: () => number | number[]
+  context: {
+    templates: typeof BaseContextTemplate | (typeof BaseContextTemplate)[]
+  }
 }
 
 /**
@@ -42,6 +43,7 @@ export type FeatureTemplate<TManualSource extends Record<string, any>> = {
  *  Handlebars-Ready Object -> HTML
  *    Done inside handlebars, feature.hbs
  */
+
 export default class Feature<TData extends IFeatureData, TManualSource extends Record<string, any>> {
   // manager data
   actor: GurpsMobileActor // fill at integrate
@@ -51,7 +53,10 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
     //
     compilation: {
       previousSources: FeatureSources<TManualSource>
-      templates: Record<number, (typeof CompilationTemplate)[]>
+      previousData: TData
+      derivations: Record<number, IDerivation<string, string>[]>
+      derivationsByTarget: Record<string, Record<number, IDerivation<string, string>[]>>
+      derivationsByDestination: Record<string, Record<number, IDerivation<string, string>[]>>
     }
     //
     context: {
@@ -73,27 +78,27 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
   children: Feature<IFeatureData, TManualSource>[]
   // TODO: add path, key and prefix to GCS source
 
-  constructor(id: string, key: string | number, parent: Feature<IFeatureData, TManualSource> | null = null, template: FeatureTemplate<TManualSource> = {}) {
+  constructor(id: string, key: string | number, parent: Feature<IFeatureData, TManualSource> | null = null, template: Partial<FeatureTemplate<TManualSource>> = {}) {
     // META DATA
     this.__ = {
       compilation: {
         previousSources: {} as any,
-        templates: {},
+        previousData: {} as any,
+        derivations: {},
+        derivationsByTarget: {},
+        derivationsByDestination: {},
       },
       context: {
-        templates: [],
+        templates: template.context?.templates ? (isArray(template.context?.templates) ? template.context?.templates : [template.context?.templates]) : [],
         specs: {},
       },
     }
 
     // REACTIVE DATA
-    this.sources = observable<FeatureSources<TManualSource>>({} as FeatureSources<TManualSource>)
-    this.data = observable<TData>({} as TData)
+    this.sources = {} as FeatureSources<TManualSource>
+    this.data = {} as TData
 
-    const key_tree = Utils.keyTree(
-      this,
-      get(template, `key`, k => k),
-    )
+    const key_tree = Utils.keyTree(key, parent)
     // IMMUTABLE DATA
     this.id = id
     this.key = { tree: key_tree, value: Utils.keyTreeValue(key_tree) }
@@ -102,11 +107,31 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
   }
 
   addManualSource(manual: TManualSource) {
-    const baseStrategy = pickBy(manual, (value, key) => isFunction(value))
+    // const baseStrategy = pickBy(manual, (value, key) => isFunction(value))
+    /**
+     * In a manual source, all functions are counted as "derivations", while non-functions are simple "source-data"
+     * That source-data can be updated, thus causing subscribed derivations to fire
+     */
     const source = pickBy(manual, (value, key) => !isFunction(value))
+    const derivations = Object.values(pickBy(manual, (value, key) => isFunction(value))).map(functions => {
+      // TODO: build derivation using default protocols (check concepts)
+    })
 
     if (Object.keys(source).length > 0) this.sources[`manual`] = cloneDeep(source) as TManualSource
-    if (Object.keys(baseStrategy).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
+    // if (Object.keys(baseStrategy).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
+    if (Object.keys(derivations).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
+
+    return this
+  }
+
+  addDerivation(derivation: IDerivation<string, string>, priority: number | null = null) {
+    const prio = priority ?? Object.keys(this.__.compilation.derivations).filter(p => p !== `-1`).length
+
+    push(this.__.compilation.derivations, prio, derivation)
+    for (const destination of derivation.destinations) push(this.__.compilation.derivationsByDestination[destination], prio, derivation)
+    for (const target of derivation.targets) push(this.__.compilation.derivationsByDestination[target], prio, derivation)
+
+    return this
   }
 
   addCompilation(template: CompilationTemplate, priority: number | null = null) {
@@ -115,6 +140,12 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
     push(this.__.compilation.templates, prio, template)
 
     return this
+  }
+
+  compile(changes: string[]) {
+    // LIST derivations by updated keys
+    // EXECUTE derivations and pool results
+    // APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
   }
 
   // #region INTEGRATING

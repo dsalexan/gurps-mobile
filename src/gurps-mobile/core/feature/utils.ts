@@ -5,9 +5,10 @@ import LOGGER from "logger"
 import { isNilOrEmpty, isNumeric } from "december/utils/lodash"
 
 import { FEATURE, Type } from "./type"
-import Feature from "./base"
+// import Feature from "./base"
 import { GurpsMobileActor } from "../../foundry/actor"
 import type { GCA } from "../gca/types"
+import Feature from "../../foundry/actor/feature"
 
 export interface ModifierValue {
   label: string
@@ -128,12 +129,13 @@ export function specializedName(name: string | GCA.Entry, nameext?: string): str
  * @param feature
  * @param getter
  */
-export function keyTree(feature: Feature, getter: (key: string | number) => string | number | (string | number)[] = k => k): (string | number)[] {
-  let key = getter(feature.key)
-  if (!isArray(key)) key = [key]
 
-  if (!feature.parent) return [...key]
-  return [...feature.parent._key.tree, ...key]
+export function keyTree(key: string | number | number[] | string[], parent: Feature<any, any> | null): (string | number)[] {
+  let _key = key as number[] | string[]
+  if (!isArray(key)) _key = [key] as any
+
+  if (!parent) return [..._key]
+  return [...parent.key.tree, ..._key]
 }
 
 /**

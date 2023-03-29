@@ -233,8 +233,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
       this.prepareAttributes(cached.featureFactory, partials)
-      this.prepareFeatures(cached.featureFactory, partials)
-      this.prepareDefenses(cached.featureFactory, partials)
+      // this.prepareFeatures(cached.featureFactory, partials)
+      // this.prepareDefenses(cached.featureFactory, partials)
     }
 
     // VERBOSE LOGGIN
@@ -266,42 +266,40 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     if (do_basicspeed) {
       factory
-        .build(`generic`, `basicspeed`, `system.`, null, {
+        .build(`base`, `move-basic_speed`, 0, null, {
           context: { templates: MoveFeatureContextTemplate },
-          key: () => 0,
-          manual: {
-            id: () => `move-basic_speed`,
-            name: () => `GURPS.basicspeed`,
-            value: ({ gcs }) => gcs[`value`],
-          },
+        })
+        .addManualSource({
+          // destination: () => [target, value]
+          value: ({ gcs }) => gcs[`value`],
         })
         .addSource(`gcs`, actorData.basicspeed)
         .compile()
         .integrate(this)
     }
 
-    if (do_moves) {
-      const moves = Object.keys(actorData.move || {})
-      for (const key of moves) {
-        const move = actorData.move[key]
+    // if (do_moves) {
+    //   const moves = Object.keys(actorData.move || {})
+    //   for (const key of moves) {
+    //     const move = actorData.move[key]
 
-        const feature = factory
-          .build(`generic`, `move.${key}`, `system.`, null, {
-            context: { templates: MoveFeatureContextTemplate },
-            key: () => [1, parseInt(key)],
-            manual: {
-              id: ({ gcs: move }) => `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`,
-              name: ({ gcs: move }) => move[`mode`],
-              value: ({ gcs: move }) => move[`basic`],
-            },
-          })
-          .addSource(`gcs`, move)
-          .compile()
-          .integrate(this)
+    //     const feature = factory
+    //       .build(`generic`, `move.${key}`, `system.`, null, {
+    //         context: { templates: MoveFeatureContextTemplate },
+    //         key: () => [1, parseInt(key)],
+    //         manual: {
+    //           id: ({ gcs: move }) => `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`,
+    //           name: ({ gcs: move }) => move[`mode`],
+    //           value: ({ gcs: move }) => move[`basic`],
+    //         },
+    //       })
+    //       .addSource(`gcs`, move)
+    //       .compile()
+    //       .integrate(this)
 
-        this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
-      }
-    }
+    //     this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
+    //   }
+    // }
 
     // #endregion
 
@@ -320,55 +318,55 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
-    if (do_ads)
-      factory
-        .parse(`advantage`, rawGCS.traits, `system._import.traits.`, null, {
-          context: { templates: AdvantageFeatureContextTemplate },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
+    // if (do_ads)
+    //   factory
+    //     .parse(`advantage`, rawGCS.traits, `system._import.traits.`, null, {
+    //       context: { templates: AdvantageFeatureContextTemplate },
+    //     })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
 
-    if (do_skills) {
-      factory
-        .parse(`skill`, rawGCS.skills, `system._import.skills.`, null, {
-          context: { templates: SkillFeatureContextTemplate },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
+    // if (do_skills) {
+    //   factory
+    //     .parse(`skill`, rawGCS.skills, `system._import.skills.`, null, {
+    //       context: { templates: SkillFeatureContextTemplate },
+    //     })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
 
-      // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
-      SkillFeature.untrained(this, { factory, context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
+    //   // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
+    //   SkillFeature.untrained(this, { factory, context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
 
-      // inject "All Skills" for special display
-      const allSkills = SkillFeature.all(this, { factory, context: { templates: SkillFeatureContextTemplate } })
-      this.setCache(`query.skill`, allSkills)
-    }
+    //   // inject "All Skills" for special display
+    //   const allSkills = SkillFeature.all(this, { factory, context: { templates: SkillFeatureContextTemplate } })
+    //   this.setCache(`query.skill`, allSkills)
+    // }
 
-    if (do_spells)
-      factory
-        .parse(`spell`, rawGCS.spells, `system._import.spells.`, null, {
-          context: { templates: SpellFeatureContextTemplate },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
+    // if (do_spells)
+    //   factory
+    //     .parse(`spell`, rawGCS.spells, `system._import.spells.`, null, {
+    //       context: { templates: SpellFeatureContextTemplate },
+    //     })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
 
-    if (do_carried_equipment)
-      factory
-        .parse(`equipment`, rawGCS.equipment, `system._import.equipment.`, null, {
-          context: { templates: EquipmentFeatureContextTemplate },
-          manual: { carried: true },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
+    // if (do_carried_equipment)
+    //   factory
+    //     .parse(`equipment`, rawGCS.equipment, `system._import.equipment.`, null, {
+    //       context: { templates: EquipmentFeatureContextTemplate },
+    //       manual: { carried: true },
+    //     })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
 
-    if (do_other_equipment)
-      factory
-        .parse(`equipment`, rawGCS.other_equipment, `system._import.other_equipment.`, null, {
-          context: { templates: EquipmentFeatureContextTemplate },
-          manual: { carried: false },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
+    // if (do_other_equipment)
+    //   factory
+    //     .parse(`equipment`, rawGCS.other_equipment, `system._import.other_equipment.`, null, {
+    //       context: { templates: EquipmentFeatureContextTemplate },
+    //       manual: { carried: false },
+    //     })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
 
     const n = Object.values(this.cache.features ?? {}).length
     timer(`Prepare ${n} feature${n === 1 ? `` : `s`}`, [`font-weight: bold;`]) // COMMENT
