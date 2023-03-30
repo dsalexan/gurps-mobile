@@ -21,6 +21,7 @@ export namespace GCS {
     vtt_notes?: string
     tags?: string[]
     features?: Feature[]
+    tech_level?: string
     //
     reference: string[]
     // weapons

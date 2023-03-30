@@ -19,6 +19,8 @@ export namespace GCA {
     nameext?: string
     specializationRequired: boolean
     default: Expression[]
+    tl?: string
+    page?: string[]
     //
     type?: string
     section: Section

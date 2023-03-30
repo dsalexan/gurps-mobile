@@ -10,6 +10,7 @@ import { cloneDeep, get, isArray, isFunction, pickBy } from "lodash"
 import { push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
 import { IDerivation, IDerivationFunction } from "./derivation"
+import { typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
 
 export interface IFeatureData {
   name: string
@@ -125,6 +126,15 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     if (Object.keys(source).length > 0) this.sources[`manual`] = cloneDeep(source) as TManualSource
     // if (Object.keys(baseStrategy).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
     for (const derivation of derivations) this.addDerivation(derivation)
+
+    return this
+  }
+
+  addSource(name: string, source: object) {
+    this.sources[name] = source
+
+    if (name === `gcs`) this.type = typeFromGCS(source as any)
+    else if (name === `gca`) this.type = typeFromGCA(source as any)
 
     return this
   }

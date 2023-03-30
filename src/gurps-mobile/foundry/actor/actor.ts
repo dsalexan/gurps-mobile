@@ -284,7 +284,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
            *                — for MULTIPLE destinations ????
            */
           // value: ({ gcs }) => gcs[`value`],
-          value: proxy(`value`),
+          value: proxy.gcs(`value`),
         })
       // .addSource(`gcs`, actorData.basicspeed)
       // .compile()
