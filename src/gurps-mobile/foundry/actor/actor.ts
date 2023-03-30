@@ -19,7 +19,7 @@ import { FEATURE } from "../../core/feature/type"
 import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/variants/defense"
 import { IComponentDefinition } from "../../../gurps-extension/utils/component"
 import { FeatureState } from "../../core/feature/utils"
-import { IDerivationFunction, derivation, proxy } from "./feature/derivation"
+import { IDerivationFunction, derivation, proxy } from "./feature/pipelines"
 
 export type ActorCache = {
   links?: Record<string, string[]>

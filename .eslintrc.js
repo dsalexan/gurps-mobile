@@ -44,6 +44,7 @@ module.exports = {
     "no-undef": [`error`],
     "no-unused-vars": [`off`],
     "no-sparse-arrays": [`off`],
+    "no-useless-escape": [`off`],
     "jsdoc/require-param": [`off`],
     "jsdoc/require-param-description": [`off`],
     "jsdoc/require-returns-description": [`off`],

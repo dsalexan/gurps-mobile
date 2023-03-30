@@ -1,4 +1,3 @@
-import { observable } from "mobx"
 import { GCS } from "../../../../gurps-extension/types/gcs"
 import { Type, Utils } from "../../../core/feature"
 import CompilationTemplate from "../../../core/feature/compilation/template"
@@ -9,11 +8,12 @@ import { GurpsMobileActor } from "../actor"
 import { cloneDeep, get, isArray, isFunction, pickBy } from "lodash"
 import { push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
-import { IDerivation, IDerivationFunction } from "./derivation"
+import { IDerivation, IDerivationFunction } from "./pipelines"
 import { typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
-  name: string
+  //
 }
 
 export type IManualSourceDerivations<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = Record<string, IDerivation<TSource, TDestination>>
@@ -154,6 +154,9 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
   compile(changes: string[] | null) {
     const isFullCompilation = changes === null
     debugger
+
+    // COMPILE type
+    //    type compilation is fixed here
 
     // LIST derivations by updated keys
     // EXECUTE derivations and pool results

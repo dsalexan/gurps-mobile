@@ -24,6 +24,7 @@ export namespace GCS {
     tech_level?: string
     //
     reference: string[]
+    conditional?: string[]
     // weapons
     usage?: string
   }

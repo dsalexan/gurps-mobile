@@ -1,14 +1,54 @@
-import { flatten, flattenDeep, get, isArray, isEmpty, isNil } from "lodash"
-import { derivation, proxy } from "."
+/* eslint-disable no-debugger */
+import { flatten, flattenDeep, get, isArray, isEmpty, isNil, set } from "lodash"
+import { IDerivation, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
-import { FastMigrationDataObject, MERGE, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
-import { parseComponentDefinition } from "../../../../../gurps-extension/utils/component"
+import { FastMigrationDataObject, MERGE, MigrationValue, OVERWRITE, PUSH, WRITE, isOrigin } from "../../../../core/feature/compilation/migration"
+import { IComponentDefinition, parseComponentDefinition } from "../../../../../gurps-extension/utils/component"
 import { GCA } from "../../../../core/gca/types"
 import { CompilationContext } from "../../../../core/feature/compilation/template"
-import { FeatureSources } from ".."
+import { FeatureSources, IFeatureData, IManualSourceData } from ".."
+import { Type } from "../../../../core/feature"
+import { FeatureState } from "../../../../core/feature/utils"
+import { ILevel, ILevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
 
-export const GenericDerivations = [
+export interface IGenericFeatureData extends IFeatureData {
+  name: string
+  specialization?: string
+  specializationRequired?: boolean
+  container: boolean
+
+  label: string
+  tl?: {
+    level: number
+    required?: boolean
+    range?: string
+  }
+
+  categories: string[]
+  notes: string[]
+  meta: string
+  tags: string[]
+  conditional: string[]
+  reference: string[]
+
+  activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
+
+  level?: number
+  defaults?: ILevelDefinition[]
+  calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
+
+  // live shit
+  state: FeatureState
+
+  // relationships
+  group?: string // string to group features by
+  links: string[] // strings to establish relationships between features
+  components: IComponentDefinition[] // basically modifiers to other features or aspects of the actor
+}
+
+export const GenericFeaturePipeline: IDerivationPipeline<GCS.Entry | GCA.Entry, IGenericFeatureData> = [
   // #region GCS
   derivation.gcs(`type`, `container`, function ({ type }) {
     return { container: type?.match(/_container$/) ? OVERWRITE(`container`, true) : WRITE(`container`, false) }
@@ -54,7 +94,7 @@ export const GenericDerivations = [
     if (!tags) return {}
     return { tags: tags.filter(tag => tag !== this.type.name) }
   }),
-  derivation.gcs(`condition`, `condition`, ({ condition }) => ({ condition: flattenDeep(condition ?? []) })),
+  derivation.gcs(`conditional`, `conditional`, ({ conditional }) => ({ conditional: flattenDeep(conditional ?? []) })),
   derivation.gcs(`features`, `components`, ({ features }) => ({ components: (features ?? []).map(f => parseComponentDefinition(f as any)) })),
   // #endregion
   // #region GCA
@@ -90,28 +130,26 @@ export const GenericDerivations = [
   // #endregion
 ]
 
-GenericDerivations.conflict = function genericConflictResolution(
-  this: CompilationContext,
-  key: string,
-  migrations: MigrationValue<any>[],
-  sources: FeatureSources<any>,
-): FastMigrationDataObject<unknown> {
-  if (key === `type`) {
-    const types = flatten(Object.values(migrations)).map(migration => migration.value) as Type[]
-    const nonGeneric = types.filter(type => !type.isGeneric)
-    if (nonGeneric.length === 1) MDO[key] = nonGeneric[0]
-    else {
-      const trees = Type.uniq(nonGeneric)
-      if (trees.length === 1) MDO[key] = nonGeneric[0]
-      else {
-        // ERROR: Unimplemented multiple trees conflict resolution
-        debugger
-      }
-    }
-  } else if (key === `specialization`) {
-    if (sources.gca.specializationRequired) {
+GenericFeaturePipeline.conflict = {
+  // type: function genericConflictResolution(key: string, migrations: MigrationValue<Type>[]) {
+  //   const types = flatten(Object.values(migrations)).map(migration => migration.value)
+  //   const nonGeneric = types.filter(type => !type.isGeneric)
+  //   if (nonGeneric.length === 1) return nonGeneric[0]
+  //   else {
+  //     const trees = Type.uniq(nonGeneric)
+  //     if (trees.length === 1) return nonGeneric[0]
+  //     else {
+  //       // ERROR: Unimplemented multiple trees conflict resolution
+  //       debugger
+  //     }
+  //   }
+
+  //   return undefined
+  // },
+  specialization: function genericConflictResolution(migrations: MigrationValue<any>[], { gca }) {
+    if (gca.specializationRequired) {
       const gcsMigrations = migrations.filter(migration => isOrigin(migration._meta.origin, [`gcs`]))
-      if (gcsMigrations.length === 1) MDO[key] = gcsMigrations[0]
+      if (gcsMigrations.length === 1) return gcsMigrations[0]
       else {
         // ERROR: Unimplemented, too many migrations to decide
         debugger
@@ -120,6 +158,15 @@ GenericDerivations.conflict = function genericConflictResolution(
       // ERROR: Unimplemented conflict between two different non-required specializations
       debugger
     }
+  },
+}
+
+GenericFeaturePipeline.post = function postGeneric(data) {
+  const MDO = {} as FastMigrationDataObject<any>
+
+  if (data.tl?.required && isNilOrEmpty(data.tl)) {
+    if (isNil(this.tl)) debugger
+    set(data, `tl.level`, this.tl)
   }
 
   return MDO

@@ -1,10 +1,12 @@
 import { cloneDeep, isArray, isFunction } from "lodash"
-import { MigrationValue } from "../../../../core/feature/compilation/migration"
-import Feature from ".."
+import { FastMigrationDataObject, MigrationValue } from "../../../../core/feature/compilation/migration"
+import Feature, { FeatureSources, IFeatureData, IManualSource } from ".."
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { GCA } from "../../../../core/gca/types"
+import { Type } from "../../../../core/feature"
 export interface CompilationContext {
   humanId: string
+  type: Type
   tl?: number
 }
 
@@ -65,7 +67,7 @@ export function derivation<TSource extends Record<string, unknown>, TDestination
 }
 
 export function derivationWithPrefix<TSource extends Record<string, unknown>>(prefix: string) {
-  return function wrappedDerivation<TDestination extends string | number | symbol>(
+  return function wrappedDerivation<TDestination extends string | number | symbol | keyof TSource>(
     target: keyof TSource | (keyof TSource)[],
     destination: TDestination | TDestination[],
     derive: IDerivationFunction<TSource, TDestination>,
@@ -111,16 +113,16 @@ export function proxy<TTarget extends string>(target: TTarget | TTarget[], prior
 }
 
 export function proxyWithPrefix<TSource extends Record<string, unknown>>(prefix?: string) {
-  return (target: keyof TSource | (keyof TSource)[], priority?: number) => {
+  return function wrappedProxy<TDestination extends string | number | symbol>(target: (keyof TSource & TDestination) | (keyof TSource & TDestination)[], priority?: number) {
     const targets = isArray(target) ? target : [target]
 
-    return derivation(
+    return derivation<TSource, TDestination>(
       prefix ? targets : targets.map(target => `${prefix}.${target.toString()}`),
       targets,
-      function wrappedDerive(values: Record<keyof TSource, unknown>) {
-        const results = {} as Record<keyof TSource, unknown>
+      function wrappedDerive(values: Record<keyof TSource & TDestination, unknown>) {
+        const results = {} as Record<TDestination, unknown>
         for (const [key, value] of Object.entries(values)) {
-          results[key as keyof TSource] = value
+          results[key as TDestination] = value
         }
 
         // eslint-disable-next-line no-debugger
@@ -134,3 +136,11 @@ export function proxyWithPrefix<TSource extends Record<string, unknown>>(prefix?
 
 proxy.gcs = proxyWithPrefix<GCS.Entry>(`gcs`)
 proxy.gca = proxyWithPrefix<GCS.Entry>(`gca`)
+
+export type IConflictResolution = (this: CompilationContext, migrations: MigrationValue<any>[], sources: FeatureSources<any>) => MigrationValue<unknown>[] | unknown
+
+type DeepKeyOf<T> = T[keyof T] extends object ? DeepKeyOf<T[keyof T]> : keyof T
+export type IDerivationPipeline<TSource extends Record<string, unknown>, TData extends IFeatureData> = IDerivation<TSource, DeepKeyOf<TData>>[] & {
+  conflict?: Partial<Record<DeepKeyOf<TData>, IConflictResolution>>
+  post?: (this: CompilationContext, data: TData, sources: FeatureSources<any>) => FastMigrationDataObject<any> | null
+}

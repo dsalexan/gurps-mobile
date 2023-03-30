@@ -28,15 +28,15 @@ import { FeatureState } from "./utils"
 
 export interface IFeature {
   // relative
-  _actor: GurpsMobileActor
-  parent?: BaseFeature | null
-  children: BaseFeature[]
+  // _actor: GurpsMobileActor
+  // parent?: BaseFeature | null
+  // children: BaseFeature[]
 
   // base
-  key: string | number
-  path: string | null
-  type: Type
-  id: string
+  // key: string | number
+  // path: string | null
+  // type: Type
+  // id: string
   name: string
   specialization?: string
   specializationRequired?: boolean
