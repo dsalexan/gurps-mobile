@@ -9,19 +9,23 @@ import { GurpsMobileActor } from "../actor"
 import { cloneDeep, get, isArray, isFunction, pickBy } from "lodash"
 import { push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
-import { IDerivation } from "./derivation"
+import { IDerivation, IDerivationFunction } from "./derivation"
 
 export interface IFeatureData {
   name: string
 }
 
-export type FeatureSources<TManualSource extends Record<string, any>> = {
+export type IManualSourceDerivations<TTarget extends string, TDestination extends string> = Record<string, IDerivation<TTarget, TDestination>>
+export type IManualSourceData = Record<string, any>
+export type IManualSource<TTarget extends string, TDestination extends string> = IManualSourceDerivations<TTarget, TDestination> & IManualSourceData
+
+export type FeatureSources<TManualSource extends IManualSource<string, string>> = {
   gca: GCA.Entry
   gcs: GCS.Entry
   manual: TManualSource
 }
 
-export type FeatureTemplate<TManualSource extends Record<string, any>> = {
+export type FeatureTemplate = {
   context: {
     templates: typeof BaseContextTemplate | (typeof BaseContextTemplate)[]
   }
@@ -44,7 +48,7 @@ export type FeatureTemplate<TManualSource extends Record<string, any>> = {
  *    Done inside handlebars, feature.hbs
  */
 
-export default class Feature<TData extends IFeatureData, TManualSource extends Record<string, any>> {
+export default class Feature<TData extends IFeatureData, TManualSource extends IManualSource<string, string>> {
   // manager data
   actor: GurpsMobileActor // fill at integrate
   factory: FeatureFactory // fill externally, after construction
@@ -78,7 +82,7 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
   children: Feature<IFeatureData, TManualSource>[]
   // TODO: add path, key and prefix to GCS source
 
-  constructor(id: string, key: string | number, parent: Feature<IFeatureData, TManualSource> | null = null, template: Partial<FeatureTemplate<TManualSource>> = {}) {
+  constructor(id: string, key: string | number, parent: Feature<IFeatureData, TManualSource> | null = null, template: Partial<FeatureTemplate> = {}) {
     // META DATA
     this.__ = {
       compilation: {
@@ -112,20 +116,22 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
      * In a manual source, all functions are counted as "derivations", while non-functions are simple "source-data"
      * That source-data can be updated, thus causing subscribed derivations to fire
      */
-    const source = pickBy(manual, (value, key) => !isFunction(value))
-    const derivations = Object.values(pickBy(manual, (value, key) => isFunction(value))).map(functions => {
-      // TODO: build derivation using default protocols (check concepts)
+    const source = pickBy(manual, (value, key) => value.fn === undefined) as IManualSourceData
+    const derivationMap = pickBy(manual, (value, key) => value.fn !== undefined) as IManualSourceDerivations<string, string>
+    const derivations = Object.values(derivationMap).map(derivation => {
+      return derivation
     })
 
     if (Object.keys(source).length > 0) this.sources[`manual`] = cloneDeep(source) as TManualSource
     // if (Object.keys(baseStrategy).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
-    if (Object.keys(derivations).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
+    for (const derivation of derivations) this.addDerivation(derivation)
 
     return this
   }
 
-  addDerivation(derivation: IDerivation<string, string>, priority: number | null = null) {
-    const prio = priority ?? Object.keys(this.__.compilation.derivations).filter(p => p !== `-1`).length
+  addDerivation(derivation: IDerivation<string, string>) {
+    const prio = derivation.priority ?? Object.keys(this.__.compilation.derivations).filter(p => p !== `-1`).length
+    derivation.priority = prio
 
     push(this.__.compilation.derivations, prio, derivation)
     for (const destination of derivation.destinations) push(this.__.compilation.derivationsByDestination[destination], prio, derivation)
@@ -134,15 +140,10 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
     return this
   }
 
-  addCompilation(template: CompilationTemplate, priority: number | null = null) {
-    const prio = priority ?? Object.keys(this.__.compilation.templates).filter(p => p !== `-1`).length
+  compile(changes: string[] | null) {
+    const isFullCompilation = changes === null
+    debugger
 
-    push(this.__.compilation.templates, prio, template)
-
-    return this
-  }
-
-  compile(changes: string[]) {
     // LIST derivations by updated keys
     // EXECUTE derivations and pool results
     // APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
@@ -152,7 +153,7 @@ export default class Feature<TData extends IFeatureData, TManualSource extends R
 
   /**
    * Integrates feature into sheetData before rendering
-   * A GenericFeature, by default, has no required integrations
+   * A GenericFeature, by default, has no required integrations2
    */
   integrate(actor: GurpsMobileActor) {
     if (actor.id === null) throw new Error(`Actor is missing an id`)

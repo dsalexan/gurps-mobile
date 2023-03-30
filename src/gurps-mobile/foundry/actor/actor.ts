@@ -19,6 +19,7 @@ import { FEATURE } from "../../core/feature/type"
 import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/variants/defense"
 import { IComponentDefinition } from "../../../gurps-extension/utils/component"
 import { FeatureState } from "../../core/feature/utils"
+import { IDerivationFunction, derivation, proxy } from "./feature/derivation"
 
 export type ActorCache = {
   links?: Record<string, string[]>
@@ -232,6 +233,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
+      debugger
       this.prepareAttributes(cached.featureFactory, partials)
       // this.prepareFeatures(cached.featureFactory, partials)
       // this.prepareDefenses(cached.featureFactory, partials)
@@ -269,13 +271,24 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .build(`base`, `move-basic_speed`, 0, null, {
           context: { templates: MoveFeatureContextTemplate },
         })
+        .addDerivation(proxy(`value`))
         .addManualSource({
-          // destination: () => [target, value]
-          value: ({ gcs }) => gcs[`value`],
+          /**
+           * [target, destination, function, priority]
+           *    priority — default to -1 since it is manual
+           *    function — must be defined, since being a function is a criteria for the property to be considered a "derivation" and not a piece of data inside a source
+           *    target — for ONE target, could be function name
+           *           — for MULTIPLE targets ????
+           *    destination — for DESTINATION = TARGET, no need to inform
+           *                — for ONE destination, <> target ??????
+           *                — for MULTIPLE destinations ????
+           */
+          // value: ({ gcs }) => gcs[`value`],
+          value: proxy(`value`),
         })
-        .addSource(`gcs`, actorData.basicspeed)
-        .compile()
-        .integrate(this)
+      // .addSource(`gcs`, actorData.basicspeed)
+      // .compile()
+      // .integrate(this)
     }
 
     // if (do_moves) {

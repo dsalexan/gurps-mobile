@@ -9,7 +9,7 @@ import SkillFeature from "./variants/skill"
 import SpellFeature from "./variants/spell"
 import EquipmentFeature from "./variants/equipment"
 import WeaponFeature from "./variants/weapon"
-import Feature, { FeatureTemplate } from "../../foundry/actor/feature"
+import Feature, { FeatureTemplate, IFeatureData, IManualSource } from "../../foundry/actor/feature"
 
 export type FeatureFactoryTypes = `base` | `generic` | `advantage` | `skill` | `spell` | `equipment` | `weapon`
 
@@ -26,7 +26,13 @@ export default class FeatureFactory {
     throw new Error(`Feature of type "${type}" is not implemented`)
   }
 
-  build<TFeature extends Feature<any, any>>(type: FeatureFactoryTypes, id: string, key: string | number, parent: Feature<any, any> | null, template: FeatureTemplate): Feature {
+  build<TFeature extends Feature<IFeatureData, IManualSource<string, string>>>(
+    type: FeatureFactoryTypes,
+    id: string,
+    key: string | number,
+    parent: Feature<any, any> | null,
+    template: FeatureTemplate,
+  ): TFeature {
     const cls = this.cls(type)
 
     const instance = new cls(id, key, parent, template)
