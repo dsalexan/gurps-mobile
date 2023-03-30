@@ -13,14 +13,16 @@ export namespace GCA {
     _specializations: (string | undefined)[]
   }
 
-  type Entry = {
+  interface Entry extends Record<string, unknown> {
     _index: number
     name: string
     nameext?: string
     specializationRequired: boolean
     default: Expression[]
+    cat: string[]
     tl?: string
     page?: string[]
+    itemnotes?: string[]
     //
     type?: string
     section: Section

@@ -16,11 +16,12 @@ export interface IFeatureData {
   name: string
 }
 
-export type IManualSourceDerivations<TTarget extends string, TDestination extends string> = Record<string, IDerivation<TTarget, TDestination>>
+export type IManualSourceDerivations<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = Record<string, IDerivation<TSource, TDestination>>
 export type IManualSourceData = Record<string, any>
-export type IManualSource<TTarget extends string, TDestination extends string> = IManualSourceDerivations<TTarget, TDestination> & IManualSourceData
+export type IManualSource<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = IManualSourceDerivations<TSource, TDestination> &
+  IManualSourceData
 
-export type FeatureSources<TManualSource extends IManualSource<string, string>> = {
+export type FeatureSources<TManualSource extends IManualSource<Record<string, unknown>, string>> = {
   gca: GCA.Entry
   gcs: GCS.Entry
   manual: TManualSource
@@ -49,7 +50,7 @@ export type FeatureTemplate = {
  *    Done inside handlebars, feature.hbs
  */
 
-export default class Feature<TData extends IFeatureData, TManualSource extends IManualSource<string, string>> {
+export default class Feature<TData extends IFeatureData, TManualSource extends IManualSource<Record<string, unknown>, string>> {
   // manager data
   actor: GurpsMobileActor // fill at integrate
   factory: FeatureFactory // fill externally, after construction
@@ -59,9 +60,9 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     compilation: {
       previousSources: FeatureSources<TManualSource>
       previousData: TData
-      derivations: Record<number, IDerivation<string, string>[]>
-      derivationsByTarget: Record<string, Record<number, IDerivation<string, string>[]>>
-      derivationsByDestination: Record<string, Record<number, IDerivation<string, string>[]>>
+      derivations: Record<number, IDerivation<Record<string, unknown>, string>[]>
+      derivationsByTarget: Record<string, Record<number, IDerivation<Record<string, unknown>, string>[]>>
+      derivationsByDestination: Record<string, Record<number, IDerivation<Record<string, unknown>, string>[]>>
     }
     //
     context: {
@@ -118,7 +119,7 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
      * That source-data can be updated, thus causing subscribed derivations to fire
      */
     const source = pickBy(manual, (value, key) => value.fn === undefined) as IManualSourceData
-    const derivationMap = pickBy(manual, (value, key) => value.fn !== undefined) as IManualSourceDerivations<string, string>
+    const derivationMap = pickBy(manual, (value, key) => value.fn !== undefined) as IManualSourceDerivations<Record<string, unknown>, string>
     const derivations = Object.values(derivationMap).map(derivation => {
       return derivation
     })
@@ -139,7 +140,7 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     return this
   }
 
-  addDerivation(derivation: IDerivation<string, string>) {
+  addDerivation(derivation: IDerivation<Record<string, unknown>, string>) {
     const prio = derivation.priority ?? Object.keys(this.__.compilation.derivations).filter(p => p !== `-1`).length
     derivation.priority = prio
 

@@ -1,7 +1,7 @@
 import { GURPS4th } from "./gurps4th"
 
 export namespace GCS {
-  type Entry = {
+  interface Entry extends Record<string, unknown> {
     id: string
     name: string
     description?: string
