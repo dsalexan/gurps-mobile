@@ -1,10 +1,9 @@
-import { isNil } from "lodash"
-import BaseFeature from "../../gurps-mobile/core/feature/base"
 import { GCS } from "../types/gcs"
 import GenericFeature from "../../gurps-mobile/core/feature/variants/generic"
+import Feature, { IFeatureData } from "../../gurps-mobile/foundry/actor/feature"
 
 export interface IComponentDefinition {
-  feature: BaseFeature
+  feature: Feature<IFeatureData, any>
   type: string
   attribute?: string
   amount?: number

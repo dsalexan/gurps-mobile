@@ -1,31 +1,30 @@
+/* eslint-disable no-debugger */
 import { GCS } from "../../../../gurps-extension/types/gcs"
 import { Type, Utils } from "../../../core/feature"
 import CompilationTemplate from "../../../core/feature/compilation/template"
 import FeatureFactory from "../../../core/feature/factory"
-import { GCA } from "../../../core/gca/types"
+import { GCA as _GCA } from "../../../core/gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../actor-sheet/context/context"
 import { GurpsMobileActor } from "../actor"
-import { cloneDeep, get, isArray, isFunction, pickBy } from "lodash"
+import { cloneDeep, flatten, get, isArray, isFunction, isNil, isObjectLike, isString, omit, pick, pickBy, sortBy, uniq } from "lodash"
 import { push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
-import { IDerivation, IDerivationFunction } from "./pipelines"
-import { typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
+import { AllSources, CompilationContext, DeepKeyOf, FeatureSources, GenericSource, IDerivation, IDerivationFunction, IDerivationPipeline, IManualPipeline } from "./pipelines"
+import { FeatureState, typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
+import LOGGER from "../../../logger"
+import { FEATURE } from "../../../core/feature/type"
+import { MigratableObject, MigrationDataObject, buildMigratableObject, completeMigrationValueDefinitions } from "../../../core/feature/compilation/migration"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
-  //
+  // live shit
+  state: FeatureState
 }
 
-export type IManualSourceDerivations<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = Record<string, IDerivation<TSource, TDestination>>
-export type IManualSourceData = Record<string, any>
-export type IManualSource<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = IManualSourceDerivations<TSource, TDestination> &
-  IManualSourceData
-
-export type FeatureSources<TManualSource extends IManualSource<Record<string, unknown>, string>> = {
-  gca: GCA.Entry
-  gcs: GCS.Entry
-  manual: TManualSource
-}
+// export type IManualSourceDerivations<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = Record<string, IDerivation<TSource, TDestination>>
+// export type IManualSourceData = Record<string, any>
+// export type IManualSource<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = IManualSourceDerivations<TSource, TDestination> &
+//   IManualSourceData
 
 export type FeatureTemplate = {
   context: {
@@ -50,7 +49,7 @@ export type FeatureTemplate = {
  *    Done inside handlebars, feature.hbs
  */
 
-export default class Feature<TData extends IFeatureData, TManualSource extends IManualSource<Record<string, unknown>, string>> {
+export default class Feature<TData extends IFeatureData = IFeatureData, TManualSource extends GenericSource = GenericSource> {
   // manager data
   actor: GurpsMobileActor // fill at integrate
   factory: FeatureFactory // fill externally, after construction
@@ -60,9 +59,10 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     compilation: {
       previousSources: FeatureSources<TManualSource>
       previousData: TData
-      derivations: Record<number, IDerivation<Record<string, unknown>, string>[]>
-      derivationsByTarget: Record<string, Record<number, IDerivation<Record<string, unknown>, string>[]>>
-      derivationsByDestination: Record<string, Record<number, IDerivation<Record<string, unknown>, string>[]>>
+      pipelines: IDerivationPipeline<TData, TManualSource>[]
+      // derivations: Record<number, IDerivation<Record<string, unknown>, string>[]>
+      derivationsByTarget: Record<string, [number, number][]> // Record<target, [pipelineIndex, derivationIndex][]>>
+      derivationsByDestination: Record<keyof TData, [number, number][]> // Record<destination, [pipelineIndex, derivationIndex][]>>
     }
     //
     context: {
@@ -80,19 +80,20 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     tree: (string | number)[]
     value: number
   }
-  parent: Feature<IFeatureData, TManualSource> | null
-  children: Feature<IFeatureData, TManualSource>[]
+  parent?: Feature<any, any>
+  children: Feature<IFeatureData, GenericSource>[]
   // TODO: add path, key and prefix to GCS source
 
-  constructor(id: string, key: string | number, parent: Feature<IFeatureData, TManualSource> | null = null, template: Partial<FeatureTemplate> = {}) {
+  constructor(id: string, key: string | number, parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
     // META DATA
     this.__ = {
       compilation: {
         previousSources: {} as any,
         previousData: {} as any,
-        derivations: {},
+        pipelines: [],
+        // derivations: {},
         derivationsByTarget: {},
-        derivationsByDestination: {},
+        derivationsByDestination: {} as any,
       },
       context: {
         templates: template.context?.templates ? (isArray(template.context?.templates) ? template.context?.templates : [template.context?.templates]) : [],
@@ -102,7 +103,9 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
 
     // REACTIVE DATA
     this.sources = {} as FeatureSources<TManualSource>
-    this.data = {} as TData
+    this.data = {
+      state: FeatureState.PASSIVE,
+    } as TData
 
     const key_tree = Utils.keyTree(key, parent)
     // IMMUTABLE DATA
@@ -112,58 +115,181 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     this.children = []
   }
 
-  addManualSource(manual: TManualSource) {
+  addManualSource(manual: IManualPipeline<TData, TManualSource>) {
     // const baseStrategy = pickBy(manual, (value, key) => isFunction(value))
     /**
      * In a manual source, all functions are counted as "derivations", while non-functions are simple "source-data"
      * That source-data can be updated, thus causing subscribed derivations to fire
      */
-    const source = pickBy(manual, (value, key) => value.fn === undefined) as IManualSourceData
-    const derivationMap = pickBy(manual, (value, key) => value.fn !== undefined) as IManualSourceDerivations<Record<string, unknown>, string>
-    const derivations = Object.values(derivationMap).map(derivation => {
+    const source = pickBy<unknown>(manual, (value: any, key) => !isFunction(value.derive))
+    const derivationMap = pickBy(manual, (value, key) => isFunction(value.derive))
+    const derivations: IDerivationPipeline<TData, TManualSource> = Object.values(derivationMap).map(derivation => {
       return derivation
     })
+    derivations.name = `ManualPipeline`
 
-    if (Object.keys(source).length > 0) this.sources[`manual`] = cloneDeep(source) as TManualSource
-    // if (Object.keys(baseStrategy).length > 0) this.addCompilation(ManualCompilationTemplate.build(baseStrategy), -1)
-    for (const derivation of derivations) this.addDerivation(derivation)
+    if (Object.keys(source).length > 0) this.addSource(`manual`, cloneDeep(source))
+    if (derivations.length > 0) this.addPipeline(derivations)
 
     return this
   }
 
-  addSource(name: string, source: object) {
+  addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
     this.sources[name] = source
 
-    if (name === `gcs`) this.type = typeFromGCS(source as any)
-    else if (name === `gca`) this.type = typeFromGCA(source as any)
+    if (!ignoreCompile) this.compile([new RegExp(`^${name}.*`)])
 
     return this
   }
 
-  addDerivation(derivation: IDerivation<Record<string, unknown>, string>) {
-    const prio = derivation.priority ?? Object.keys(this.__.compilation.derivations).filter(p => p !== `-1`).length
-    derivation.priority = prio
+  addPipeline<TPipelineData extends IFeatureData>(pipeline: IDerivationPipeline<TPipelineData, TManualSource>) {
+    let pipelineIndex = this.__.compilation.pipelines.length
+    if (pipeline.name === undefined) {
+      pipelineIndex = 0
+      pipeline.name = `ManualPipeline`
+    }
 
-    push(this.__.compilation.derivations, prio, derivation)
-    for (const destination of derivation.destinations) push(this.__.compilation.derivationsByDestination[destination], prio, derivation)
-    for (const target of derivation.targets) push(this.__.compilation.derivationsByDestination[target], prio, derivation)
+    this.__.compilation.pipelines.splice(pipelineIndex, 0, pipeline as any)
+
+    for (let index = 0; index < pipeline.length; index++) {
+      const derivation = pipeline[index]
+      // derivation.pipeline = pipeline as any
+
+      for (const _destination of derivation.destinations) {
+        const destination = _destination as any as keyof TData
+        if (this.__.compilation.derivationsByDestination[destination] === undefined) this.__.compilation.derivationsByDestination[destination] = []
+        this.__.compilation.derivationsByDestination[destination].push([pipelineIndex, index])
+      }
+
+      for (const target of derivation.targets) {
+        if (this.__.compilation.derivationsByTarget[target] === undefined) this.__.compilation.derivationsByTarget[target] = []
+        this.__.compilation.derivationsByTarget[target].push([pipelineIndex, index])
+      }
+    }
 
     return this
   }
 
-  compile(changes: string[] | null) {
+  preCompile(changes: (string | RegExp)[] | null) {
+    for (const [name, source] of Object.entries(this.sources)) {
+      if (name === `gcs`) this.type = typeFromGCS(source as any)
+      else if (name === `gca`) this.type = typeFromGCA(source as any)
+    }
+  }
+
+  compile(changes: (string | RegExp)[] | null, baseContext = {}) {
     const isFullCompilation = changes === null
-    debugger
 
     // COMPILE type
     //    type compilation is fixed here
+    this.preCompile(changes)
+
+    const context: CompilationContext = baseContext as any
+    const allTargets = Object.keys(this.__.compilation.derivationsByTarget)
+
+    let targets: string[] = []
+    if (changes === null) targets = allTargets
+    else targets = flatten(changes.map(pattern => (isString(pattern) ? [pattern] : allTargets.filter(target => target.match(pattern)))))
+
+    // const MDOsByPipeline = {} as Record<keyof typeof this.__.compilation.pipelines, MigrationDataObject>
 
     // LIST derivations by updated keys
+    const derivationsPath = {} as Record<string, string[]> // Record<derivation, targets[]>
+    for (const target of targets) {
+      const paths = this.__.compilation.derivationsByTarget[target]
+
+      for (const _path of paths) {
+        const path = _path.join(`.`)
+        if (derivationsPath[path] === undefined) derivationsPath[path] = []
+        derivationsPath[path].push(target)
+      }
+    }
+
+    const derivations = Object.keys(derivationsPath).map(path => {
+      const [pipeline, derivation] = path.split(`.`)
+      return this.__.compilation.pipelines[parseInt(pipeline)][parseInt(derivation)]
+    })
+
     // EXECUTE derivations and pool results
+    const MDOs = [] as MigrationDataObject[]
+    for (const derivation of derivations) {
+      let result: ReturnType<typeof derivation.derive>
+
+      result = derivation.derive.call(this, this.sources, this.__.compilation.previousSources, {
+        previousSources: this.__.compilation.previousSources,
+        sources: this.sources,
+        object: this,
+      })
+
+      // ERROR
+      if (!isObjectLike(result)) debugger
+
+      if (result && Object.keys(result).length >= 1) {
+        completeMigrationValueDefinitions(result, derivation, {})
+
+        MDOs.push(result)
+      }
+    }
+
+    // migrate for each template (conflict resolution should be dealt with by applying the correct MigrationMode)
+    const data = buildMigratableObject() as MigratableObject
+    for (const mdo of MDOs) data.migrate(mdo, context, this.sources)
+
+    // for each pipeline, do post
+    const postMDOs = [] as MigrationDataObject[]
+    for (const pipeline of this.__.compilation.pipelines) {
+      if (!pipeline.post) continue
+      const mdo = pipeline.post.call(this, data, this, this.sources)
+      if (mdo && Object.keys(mdo).length >= 1) postMDOs.push(completeMigrationValueDefinitions(mdo, pipeline as any, { sources: [`post`] }))
+    }
+
     // APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
+    debugger
   }
 
   // #region INTEGRATING
+
+  /**
+   * Build GCA query parameters
+   */
+  prepareQueryGCA(): Record<string, unknown> {
+    if (this.type.compare(FEATURE.GENERIC)) {
+      LOGGER.get(`gca`).warn(`Cannot query a generic feature`, this)
+      return { directive: `skip` }
+    }
+
+    const type = this.type.value
+
+    return { directive: `continue`, type }
+  }
+
+  /**
+   * Load and compile GCA object (by querying pre-loaded extraction)
+   */
+  loadFromGCA(cache = false) {
+    let entry: _GCA.Entry | null
+
+    // load GCA into feature from cache (if available)
+    if (cache) {
+      entry = GCA.getCache(this.id)
+      if (entry !== undefined) return this
+    }
+
+    // prepare GCA query (with name, specializedName, type, etc...)
+    const parameters = this.prepareQueryGCA()
+    if (parameters.directive === `skip`) return this
+
+    // execute query
+    entry = GCA.query(parameters as any)
+
+    // update cache for this id
+    GCA.setCache(this.id, entry)
+
+    // if there is some result, add as source (this will trigger a compilation)
+    if (!isNil(entry)) this.addSource(`gca`, entry)
+
+    return this
+  }
 
   /**
    * Integrates feature into sheetData before rendering
@@ -173,15 +299,12 @@ export default class Feature<TData extends IFeatureData, TManualSource extends I
     if (actor.id === null) throw new Error(`Actor is missing an id`)
     this.actor = actor
 
+    debugger
     // register feature
     actor.setFeature(this.id, this)
     if (GURPS._cache.actors[actor.id].paths === undefined) GURPS._cache.actors[actor.id].paths = {}
     // TODO: What to do here? Get path after source/add
     // if (this.path) GURPS._cache.actors[actor.id].paths[this.path] = this.id
-
-    // link
-    // TODO: Cache link on compile/links
-    // if (this.links) actor.cacheLink(this.id, ...this.links)
 
     return this
   }

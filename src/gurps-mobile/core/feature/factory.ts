@@ -3,20 +3,30 @@ import { isArray, isNil } from "lodash"
 import { FeatureCollection } from "./collection"
 
 // import BaseFeature, { FeatureTemplate } from "./base"
-import GenericFeature from "./variants/generic"
 import AdvantageFeature from "./variants/advantage"
 import SkillFeature from "./variants/skill"
 import SpellFeature from "./variants/spell"
 import EquipmentFeature from "./variants/equipment"
 import WeaponFeature from "./variants/weapon"
-import Feature, { FeatureTemplate, IFeatureData, IManualSource } from "../../foundry/actor/feature"
+import Feature, { FeatureTemplate, IFeatureData } from "../../foundry/actor/feature"
+import GenericFeature from "../../foundry/actor/feature/generic"
+import { GenericSource } from "../../foundry/actor/feature/pipelines"
+import { IGenericFeatureData } from "../../foundry/actor/feature/pipelines/generic"
 
-export type FeatureFactoryTypes = `base` | `generic` | `advantage` | `skill` | `spell` | `equipment` | `weapon`
+export type FeatureDataByType = {
+  base: IFeatureData
+  generic: IGenericFeatureData
+  // advantage: IFeatureData
+  // skill: IFeatureData
+  // spell: IFeatureData
+  // equipment: IFeatureData
+  weapon: IGenericFeatureData
+}
 
 export default class FeatureFactory {
-  cls(type: FeatureFactoryTypes): typeof Feature {
+  cls<T extends keyof FeatureDataByType>(type: T) {
     if (type === `base`) return Feature
-    // else if (type === `generic`) return GenericFeature
+    else if (type === `generic`) return GenericFeature
     // else if (type === `advantage`) return AdvantageFeature
     // else if (type === `skill`) return SkillFeature
     // else if (type === `spell`) return SpellFeature
@@ -26,19 +36,19 @@ export default class FeatureFactory {
     throw new Error(`Feature of type "${type}" is not implemented`)
   }
 
-  build<TFeature extends Feature<IFeatureData, IManualSource<string, string>>>(
-    type: FeatureFactoryTypes,
+  build<TManualSource extends GenericSource = never, T extends keyof FeatureDataByType = keyof FeatureDataByType>(
+    type: T,
     id: string,
     key: string | number,
-    parent: Feature<any, any> | null,
-    template: FeatureTemplate,
-  ): TFeature {
-    const cls = this.cls(type)
+    parent?: Feature<any, any>,
+    template?: FeatureTemplate,
+  ): Feature<FeatureDataByType[T], TManualSource> {
+    const cls = this.cls<T>(type)
 
     const instance = new cls(id, key, parent, template)
     instance.factory = this
 
-    return instance as TFeature
+    return instance as any
   }
 
   /**

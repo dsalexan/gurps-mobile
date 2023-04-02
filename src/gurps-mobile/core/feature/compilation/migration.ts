@@ -1,16 +1,16 @@
 /* eslint-disable jsdoc/require-jsdoc */
-import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty } from "lodash"
+import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty, flatten } from "lodash"
 import CompilationTemplate, { CompilationContext } from "./template"
 import LOGGER from "../../../logger"
+import { AllSources, IDerivation, IDerivationPipeline } from "../../../foundry/actor/feature/pipelines"
 
 export type MigrationMode = `fallback` | `write` | `overwrite` | `push` | `merge` | `conflict`
 
 export interface MigrationValue<TValue> {
   _meta: {
-    template: typeof CompilationTemplate // template that created this value
-    prio: number // template priority
+    derivation: IDerivation<any>
     origin: {
-      // stack of sources/migrations that originated this value
+      // stack migrations that originated this value
       sources?: string[]
       migrations?: MigrationValue<any>[]
     }[]
@@ -20,13 +20,17 @@ export interface MigrationValue<TValue> {
   mode: MigrationMode
 }
 
-export interface MigrationDataObject {
-  [path: string]: MigrationValue<unknown>[]
-}
+// export interface MigrationDataObject {
+//   [path: string]: MigrationValue<unknown>[]
+// // }
+export type MigrationDataObject<TKey extends string | number | symbol = string, TValue = unknown> = { [P in TKey]?: MigrationValue<TValue>[] | TValue }
+// export type MigrationDataObject<TData extends Record<TKey, TValue>, TKey extends string | number | symbol = string, TValue = unknown> = {
+//   [P in keyof TData]?: MigrationValue<TData[P]>[] | TData[P]
+// }
 
-export interface FastMigrationDataObject<TValue> {
-  [path: string]: MigrationValue<TValue>[] | TValue
-}
+// export interface FastMigrationDataObject<TValue> {
+//   [path: string]: MigrationValue<TValue>[] | TValue
+// }
 
 export type MigratableObject = ReturnType<typeof buildMigratableObject>
 
@@ -70,8 +74,7 @@ export function FALLBACK<TValue>(key: string, value: TValue): MigrationValue<TVa
  */
 export function completeMigrationValueDefinitions(
   object: MigrationDataObject,
-  template: typeof CompilationTemplate,
-  prio: number,
+  derivation: IDerivation<any>,
   origin: { sources?: string[]; migrations?: MigrationValue<unknown>[] },
   mode?: MigrationMode,
 ) {
@@ -101,8 +104,7 @@ export function completeMigrationValueDefinitions(
 
     object[key] = migrationValue.map(item => {
       if (mode) item.mode = mode
-      item._meta.template = template
-      item._meta.prio = prio
+      item._meta.derivation = derivation
       item._meta.origin.push(origin)
 
       return item
@@ -119,7 +121,7 @@ export function completeMigrationValueDefinitions(
  */
 export function buildMigratableObject() {
   return {
-    migrate(mdo: MigrationDataObject, context: CompilationContext, sources: Record<string, object>) {
+    migrate(mdo: MigrationDataObject, context: CompilationContext, sources: AllSources<any>) {
       return resolveMigrationDataObject(this, mdo, context, sources)
     },
     migrations: [] as MigrationValue<any>[],
@@ -169,6 +171,8 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
     else {
       // if both migrations came from the same template, try conflict resolution
       let isConflict = true
+
+      debugger
 
       const sameMigration = migration._meta.template.name === lastMigration._meta.template.name
 
@@ -226,8 +230,9 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
 
       // source === listMigration
       // object === migration
-      if (isOrigin(migration._meta.origin, [`gcs`])) return value
-      else if (isOrigin(lastMigration._meta.origin, [`gcs`])) return srcValue
+      debugger
+      // if (isOrigin(migration._meta.origin, [`gcs`])) return value
+      // else if (isOrigin(lastMigration._meta.origin, [`gcs`])) return srcValue
 
       // ERROR: Mergin not implemented
       debugger
@@ -249,12 +254,12 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
 export function resolveMigrationDataObject(data: MigratableObject, mdo: MigrationDataObject, context: CompilationContext, sources: Record<string, object>) {
   const modes = [`write`, `push`, `merge`, `overwrite`, `conflict`, `fallback`]
 
-  for (const rawMigrations of Object.values(mdo)) {
-    if (rawMigrations.some(migration => isNil(migration))) debugger
-    const migrations = orderBy(rawMigrations, migration => modes.indexOf(migration.mode))
-    for (const migration of migrations) {
-      applyMigrationValue(data, migration, context, sources)
-    }
+  const rawMigrations = Object.values(mdo) as MigrationValue<unknown>[][]
+  for (const migrationByKey of rawMigrations) {
+    if (migrationByKey.some(migration => isNil(migration))) debugger // COMMENT
+
+    const migrations = orderBy(migrationByKey, migration => modes.indexOf(migration.mode))
+    for (const migration of migrations) applyMigrationValue(data, migration, context, sources)
   }
 
   return data

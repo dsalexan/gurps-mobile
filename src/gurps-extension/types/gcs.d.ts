@@ -14,9 +14,7 @@ export namespace GCS {
     points_per_level?: number
     defaults?: EntryDefault[]
     //
-    weapons: {
-      type: never
-    }[]
+    weapons?: Entry[]
     notes?: string | string[]
     vtt_notes?: string
     tags?: string[]

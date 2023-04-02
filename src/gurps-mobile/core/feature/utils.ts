@@ -130,7 +130,7 @@ export function specializedName(name: string | GCA.Entry, nameext?: string): str
  * @param getter
  */
 
-export function keyTree(key: string | number | number[] | string[], parent: Feature<any, any> | null): (string | number)[] {
+export function keyTree(key: string | number | number[] | string[], parent?: Feature<any, any>): (string | number)[] {
   let _key = key as number[] | string[]
   if (!isArray(key)) _key = [key] as any
 

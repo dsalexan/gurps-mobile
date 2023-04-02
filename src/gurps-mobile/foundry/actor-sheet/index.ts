@@ -551,7 +551,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
         id: `ooc-attributes-horizontal1`,
         classes: [`full`, `horizontal`],
         index: 1,
-        children: Object.values(moves).map((feature: BaseFeature) => {
+        children: Object.values(moves).map((feature: Feature<any>) => {
           return contextManager.feature(feature, {
             classes: [`half`, `set-move-default`],
             list: listId,

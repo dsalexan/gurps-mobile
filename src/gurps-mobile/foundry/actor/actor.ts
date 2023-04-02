@@ -20,13 +20,15 @@ import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/varian
 import { IComponentDefinition } from "../../../gurps-extension/utils/component"
 import { FeatureState } from "../../core/feature/utils"
 import { IDerivationFunction, derivation, proxy } from "./feature/pipelines"
+import { IGenericFeatureData } from "./feature/pipelines/generic"
+import Feature from "./feature"
 
 export type ActorCache = {
   links?: Record<string, string[]>
   paths?: Record<string, string>
-  _moves?: Record<string, GenericFeature>
-  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, SkillFeature>>>
-  features?: Record<string, BaseFeature>
+  _moves?: Record<string, Feature<any>>
+  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, Feature<never>>>>
+  features?: Record<string, Feature<any>>
   components?: Record<string, IComponentDefinition[]>
   //
   contextManager?: ContextManager
@@ -56,7 +58,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     set(GURPS._cache, `actors.${this.id}${path === undefined ? `` : `.${path}`}`, value)
   }
 
-  setFeature(path: string, value: BaseFeature) {
+  setFeature(path: string, value: Feature<any>) {
     if (this.id === null) throw new Error(`Cannot set actor cache with a null id`)
     if (this.cache.features === undefined) this.cache.features = {}
     this.cache.features[path] = value
@@ -73,7 +75,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
   getComponents(type: string, filter?: (component: IComponentDefinition) => boolean, states: FeatureState[] | null = [FeatureState.PASSIVE, FeatureState.ACTIVE]) {
     const typeComponents = this.cache.components?.[type] ?? ([] as IComponentDefinition[])
     const components = filter ? typeComponents.filter(component => filter(component)) : typeComponents
-    const activeComponents = states === null ? components : components.filter(component => states.some(state => component.feature.state & state))
+    const activeComponents = states === null ? components : components.filter(component => states.some(state => component.feature.data.state & state))
 
     return activeComponents
   }
@@ -233,7 +235,6 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      debugger
       this.prepareAttributes(cached.featureFactory, partials)
       // this.prepareFeatures(cached.featureFactory, partials)
       // this.prepareDefenses(cached.featureFactory, partials)
@@ -266,29 +267,26 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     // #region Moves
 
+    //    ^?
     if (do_basicspeed) {
+      /**
+       * [target, destination, function, priority]
+       *    priority — default to -1 since it is manual
+       *    function — must be defined, since being a function is a criteria for the property to be considered a "derivation" and not a piece of data inside a source
+       *    target — for ONE target, could be function name
+       *           — for MULTIPLE targets ????
+       *    destination — for DESTINATION = TARGET, no need to inform
+       *                — for ONE destination, <> target ??????
+       *                — for MULTIPLE destinations ????
+       */
       factory
-        .build(`base`, `move-basic_speed`, 0, null, {
+        .build(`base`, `move-basic_speed`, 0, undefined, {
           context: { templates: MoveFeatureContextTemplate },
         })
-        .addDerivation(proxy(`value`))
-        .addManualSource({
-          /**
-           * [target, destination, function, priority]
-           *    priority — default to -1 since it is manual
-           *    function — must be defined, since being a function is a criteria for the property to be considered a "derivation" and not a piece of data inside a source
-           *    target — for ONE target, could be function name
-           *           — for MULTIPLE targets ????
-           *    destination — for DESTINATION = TARGET, no need to inform
-           *                — for ONE destination, <> target ??????
-           *                — for MULTIPLE destinations ????
-           */
-          // value: ({ gcs }) => gcs[`value`],
-          value: proxy.gcs(`value`),
-        })
-      // .addSource(`gcs`, actorData.basicspeed)
-      // .compile()
-      // .integrate(this)
+        .addPipeline<IGenericFeatureData>([proxy.gcs(`value`)])
+        .addSource(`gcs`, actorData.basicspeed)
+        // .compile()
+        .integrate(this)
     }
 
     // if (do_moves) {
@@ -395,27 +393,27 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareDefenses`) // COMMENT
 
-    if (do_defenses) {
-      const activeDefenses = [`block`, `dodge`, `parry`]
+    // if (do_defenses) {
+    //   const activeDefenses = [`block`, `dodge`, `parry`]
 
-      for (let i = 0; i < activeDefenses.length; i++) {
-        const activeDefense = activeDefenses[i]
+    //   for (let i = 0; i < activeDefenses.length; i++) {
+    //     const activeDefense = activeDefenses[i]
 
-        const feature = factory
-          .build(`generic`, activeDefense, `system.`, null, {
-            context: { templates: DefenseFeatureContextTemplate },
-            key: () => [1, i],
-            manual: {
-              id: () => `activedefense-${activeDefense}`,
-              name: () => upperFirst(activeDefense),
-              type: () => FEATURE.GENERIC,
-            },
-          })
-          // .addSource(`gcs`, move)
-          .compile()
-          .integrate(this)
-      }
-    }
+    //     const feature = factory
+    //       .build(`generic`, activeDefense, `system.`, null, {
+    //         context: { templates: DefenseFeatureContextTemplate },
+    //         key: () => [1, i],
+    //         manual: {
+    //           id: () => `activedefense-${activeDefense}`,
+    //           name: () => upperFirst(activeDefense),
+    //           type: () => FEATURE.GENERIC,
+    //         },
+    //       })
+    //       // .addSource(`gcs`, move)
+    //       .compile()
+    //       .integrate(this)
+    //   }
+    // }
 
     timer(`Prepare defenses`, [`font-weight: bold;`]) // COMMENT
     // #endregion

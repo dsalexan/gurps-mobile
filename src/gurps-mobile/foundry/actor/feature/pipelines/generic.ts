@@ -3,11 +3,10 @@ import { flatten, flattenDeep, get, isArray, isEmpty, isNil, set } from "lodash"
 import { IDerivation, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
-import { FastMigrationDataObject, MERGE, MigrationValue, OVERWRITE, PUSH, WRITE, isOrigin } from "../../../../core/feature/compilation/migration"
+import { MigrationDataObject, MERGE, MigrationValue, OVERWRITE, PUSH, WRITE, isOrigin } from "../../../../core/feature/compilation/migration"
 import { IComponentDefinition, parseComponentDefinition } from "../../../../../gurps-extension/utils/component"
 import { GCA } from "../../../../core/gca/types"
-import { CompilationContext } from "../../../../core/feature/compilation/template"
-import { FeatureSources, IFeatureData, IManualSourceData } from ".."
+import { IFeatureData } from ".."
 import { Type } from "../../../../core/feature"
 import { FeatureState } from "../../../../core/feature/utils"
 import { ILevel, ILevelDefinition } from "../../../../../gurps-extension/utils/level"
@@ -19,6 +18,7 @@ export interface IGenericFeatureData extends IFeatureData {
   specializationRequired?: boolean
   container: boolean
 
+  value?: string | number
   label: string
   tl?: {
     level: number
@@ -39,16 +39,13 @@ export interface IGenericFeatureData extends IFeatureData {
   defaults?: ILevelDefinition[]
   calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
 
-  // live shit
-  state: FeatureState
-
   // relationships
   group?: string // string to group features by
   links: string[] // strings to establish relationships between features
   components: IComponentDefinition[] // basically modifiers to other features or aspects of the actor
 }
 
-export const GenericFeaturePipeline: IDerivationPipeline<GCS.Entry | GCA.Entry, IGenericFeatureData> = [
+export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = [
   // #region GCS
   derivation.gcs(`type`, `container`, function ({ type }) {
     return { container: type?.match(/_container$/) ? OVERWRITE(`container`, true) : WRITE(`container`, false) }
@@ -130,6 +127,7 @@ export const GenericFeaturePipeline: IDerivationPipeline<GCS.Entry | GCA.Entry, 
   // #endregion
 ]
 
+GenericFeaturePipeline.name = `GenericFeaturePipeline`
 GenericFeaturePipeline.conflict = {
   // type: function genericConflictResolution(key: string, migrations: MigrationValue<Type>[]) {
   //   const types = flatten(Object.values(migrations)).map(migration => migration.value)
@@ -162,7 +160,7 @@ GenericFeaturePipeline.conflict = {
 }
 
 GenericFeaturePipeline.post = function postGeneric(data) {
-  const MDO = {} as FastMigrationDataObject<any>
+  const MDO = {} as MigrationDataObject<any>
 
   if (data.tl?.required && isNilOrEmpty(data.tl)) {
     if (isNil(this.tl)) debugger

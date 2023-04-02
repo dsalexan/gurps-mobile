@@ -161,7 +161,7 @@ export default class GCAManager {
     })
   }
 
-  query(name: string, specializedName?: string, _types?: Feature.TypeID | Feature.TypeID[]): GCA.Entry | null {
+  query({ name, specializedName, type: _types }: { name: string; specializedName?: string; type?: Feature.TypeID | Feature.TypeID[] }): GCA.Entry | null {
     const mainTypes = _types ? this.getType(_types) : []
     const alternativeTypes = _types ? this.getAlternativeType(mainTypes) : []
 
