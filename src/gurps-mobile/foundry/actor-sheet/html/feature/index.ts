@@ -1,10 +1,10 @@
-/* eslint-disable jsdoc/require-jsdoc */
 import { v4 as uuidv4 } from "uuid"
 
 import { easeOutCubic } from "../../../../../december/utils/easings"
-import BaseFeature from "../../../../core/feature/base"
 import LOGGER from "../../../../logger"
 import { GurpsMobileActor } from "../../../actor/actor"
+import Feature from "../../../actor/feature"
+import GenericFeature from "../../../actor/feature/generic"
 
 export interface IHTMLFeature {
   listen(): void
@@ -25,9 +25,8 @@ export interface IHTMLFeature {
 /**
  *
  */
-export default function HTMLFeature(node: JQuery<HTMLElement>, feature: BaseFeature): IHTMLFeature {
-  const actor = feature._actor
-
+export default function HTMLFeature(node: JQuery<HTMLElement>, feature: GenericFeature): IHTMLFeature {
+  const actor = feature.actor
   const htmlElements = node.toArray().map(element => HTMLFeatureElement(element, feature))
 
   return {
@@ -77,8 +76,8 @@ export default function HTMLFeature(node: JQuery<HTMLElement>, feature: BaseFeat
 /**
  *
  */
-export function HTMLFeatureElement(element: HTMLElement, feature: BaseFeature): IHTMLFeature {
-  const actor = feature._actor
+export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature): IHTMLFeature {
+  const actor = feature.actor
 
   const html = $(`#MobileGurpsActorSheet-Actor-${actor.id} > section.window-content`)
 
@@ -210,7 +209,12 @@ export function HTMLFeatureElement(element: HTMLElement, feature: BaseFeature): 
       return
     }
 
-    if (node.hasClass(`set-move-default`)) feature.setMoveDefault()
+    if (node.hasClass(`set-move-default`)) {
+      // eslint-disable-next-line no-debugger
+      debugger
+      // @ts-ignore
+      feature.setMoveDefault()
+    }
   }
 
   // #endregion
@@ -291,8 +295,8 @@ export function HTMLFeatureElement(element: HTMLElement, feature: BaseFeature): 
       // clone node
       const clone = node.filter(`:not(.alternative)`).clone()
       clone.data(`context`, uuidv4())
-      clone.data(`index`, feature._key.value ?? -1)
-      HTMLFeature(clone, feature, actor).listen()
+      clone.data(`index`, feature.key.value ?? -1)
+      HTMLFeature(clone, feature).listen()
 
       // ignore classes in clone
       clone.removeClass(`pinned`).removeClass(`collapsed`).removeClass(`hidden`)
@@ -342,12 +346,12 @@ export function HTMLFeatureElement(element: HTMLElement, feature: BaseFeature): 
   //          Methods that should be in a specialized class, but i couldnt be bothered to create one yet
 
   function updateMove() {
-    const gcs: any = feature.__compilation.sources.gcs ?? {}
+    const gcs: any = feature.sources.gcs ?? {}
 
     if (gcs.default) mark(`Ruler`)
     else mark(false)
     value(gcs.basic)
-    label(feature.name)
+    label(feature.data.name)
   }
 
   // #endregion

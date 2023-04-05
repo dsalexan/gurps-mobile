@@ -1,5 +1,5 @@
 import { get, has, isArray, isEmpty, isNil, isString, uniq } from "lodash"
-import Feature, { FeatureTemplate } from "."
+import Feature, { FeatureTemplate, IFeatureData } from "."
 import { ToggableValue } from "../../../core/feature/base"
 import LOGGER from "../../../logger"
 import { GenericFeaturePipeline, IGenericFeatureData } from "./pipelines/generic"
@@ -9,9 +9,10 @@ import { IWeaponizableFeatureData, WeaponizableFeaturePipeline } from "./pipelin
 import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/weapons"
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
+import { GenericSource } from "./pipelines"
 
 export default class GenericFeature extends Feature<IGenericFeatureData & IWeaponizableFeatureData, any> {
-  constructor(id: string, key: string | number, parent?: Feature<any, any>, template?: FeatureTemplate) {
+  constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
     super(id, key, parent, template)
     this.addPipeline(GenericFeaturePipeline)
     this.addPipeline(WeaponizableFeaturePipeline)
@@ -23,12 +24,19 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     return Utils.specializedName(this.data.name, this.data.specialization)
   }
 
+  toString() {
+    return `[${this.type.name}] ${this.specializedName ?? `Unnamed Feature`}`
+  }
+
   /**
    * Integrates feature into sheetData before rendering
    * A GenericFeature, by default, has no required integrations2
    */
   integrate(actor: GurpsMobileActor) {
     super.integrate(actor)
+
+    // register feature
+    actor.setFeature(this.id, this)
 
     if (this.data.weapons) this.data.weapons.map(feature => feature.integrate(actor))
 
@@ -42,11 +50,10 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
       }
     }
 
-    debugger
     // LINK
     //    generic
     const sheetLinks = get(actor.cache.links, `${this.id}`) ?? []
-    this.data.links = sheetLinks.map(uuid => actor.cache.features?.[uuid]?.name ?? `<Missing link:${uuid}>`)
+    this.data.links = sheetLinks.map(uuid => actor.cache.features?.[uuid]?.data.name ?? `<Missing link:${uuid}>`)
 
     //    defenses
     this.data.links.push(...GenericFeature.linkForDefenses(this))
@@ -69,7 +76,13 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
 
     if (this.data.name === undefined) {
       LOGGER.get(`gca`).warn(`Cannot query a nameless feature`, this)
-      return { directive: `skip` }
+      parameters.directive = `skip`
+      return parameters
+    }
+
+    if (this.data.container) {
+      parameters.directive = `skip`
+      return parameters
     }
 
     const skips = [
@@ -82,14 +95,18 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
       /racial skills?/i,
       /techniques?/i,
       /cinematic techniques?/i,
+      /quirk i{0,3}v?i{0,3}/i,
     ]
-    if (skips.some(pattern => this.data.name.match(pattern))) return { directive: `skip` }
+    if (skips.some(pattern => this.data.name.match(pattern))) {
+      parameters.directive = `skip`
+      return parameters
+    }
 
     const name = this.data.name
     const specializedName = isNil(this.data.specialization) ? this.data.name : this.specializedName
     const merge = true
 
-    return { ...parameters, directive: `continue`, name, specializedName, merge }
+    return { ...parameters, directive: `continue` as const, name, specializedName, merge }
   }
 
   // #endregion
@@ -161,7 +178,7 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   }
 
   static linkForDefenses(feature: GenericFeature) {
-    if (feature.type.compare(`spell`)) return []
+    if (feature.type && feature.type.compare(`spell`)) return []
 
     const links = [] as string[]
 

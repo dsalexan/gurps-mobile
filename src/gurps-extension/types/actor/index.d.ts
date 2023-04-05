@@ -13,7 +13,14 @@ declare module "gurps/module/actor" {
       _import: Record<string, object>
       attributes: Record<`ST` | `DX` | `IQ` | `HT`, { value: number }>
       basicspeed: never
-      move: Record<string, unknown>
+      move: Record<
+        string,
+        {
+          mode: string
+          basic: string
+          default: boolean
+        }
+      >
     }
     flags: Record<string, any>
     popOut: boolean

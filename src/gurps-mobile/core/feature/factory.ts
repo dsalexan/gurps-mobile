@@ -1,23 +1,26 @@
+/* eslint-disable no-debugger */
 import { isArray, isNil } from "lodash"
 
 import { FeatureCollection } from "./collection"
 
 // import BaseFeature, { FeatureTemplate } from "./base"
-import AdvantageFeature from "./variants/advantage"
-import SkillFeature from "./variants/skill"
 import SpellFeature from "./variants/spell"
 import EquipmentFeature from "./variants/equipment"
 import WeaponFeature from "./variants/weapon"
 import Feature, { FeatureTemplate, IFeatureData } from "../../foundry/actor/feature"
 import GenericFeature from "../../foundry/actor/feature/generic"
+import AdvantageFeature from "../../foundry/actor/feature/advantage"
+import SkillFeature from "../../foundry/actor/feature/skill"
 import { GenericSource } from "../../foundry/actor/feature/pipelines"
 import { IGenericFeatureData } from "../../foundry/actor/feature/pipelines/generic"
+import { IAdvantageFeatureData } from "../../foundry/actor/feature/pipelines/advantage"
+import { ISkillFeatureData } from "../../foundry/actor/feature/pipelines/skill"
 
 export type FeatureDataByType = {
   base: IFeatureData
   generic: IGenericFeatureData
-  // advantage: IFeatureData
-  // skill: IFeatureData
+  advantage: IAdvantageFeatureData
+  skill: ISkillFeatureData
   // spell: IFeatureData
   // equipment: IFeatureData
   weapon: IGenericFeatureData
@@ -27,11 +30,11 @@ export default class FeatureFactory {
   cls<T extends keyof FeatureDataByType>(type: T) {
     if (type === `base`) return Feature
     else if (type === `generic`) return GenericFeature
-    // else if (type === `advantage`) return AdvantageFeature
-    // else if (type === `skill`) return SkillFeature
+    else if (type === `advantage`) return AdvantageFeature
+    else if (type === `skill`) return SkillFeature
     // else if (type === `spell`) return SpellFeature
     // else if (type === `equipment`) return EquipmentFeature
-    // else if (type === `weapon`) return WeaponFeature
+    else if (type === `weapon`) return GenericFeature //WeaponFeature
 
     throw new Error(`Feature of type "${type}" is not implemented`)
   }
@@ -39,7 +42,7 @@ export default class FeatureFactory {
   build<TManualSource extends GenericSource = never, T extends keyof FeatureDataByType = keyof FeatureDataByType>(
     type: T,
     id: string,
-    key: string | number,
+    key: number | number[],
     parent?: Feature<any, any>,
     template?: FeatureTemplate,
   ): Feature<FeatureDataByType[T], TManualSource> {
@@ -61,23 +64,31 @@ export default class FeatureFactory {
    * @param template
    * @returns
    */
-  parse<TFeature extends BaseFeature>(type: FeatureFactoryTypes, GCS: object, prefix = `system.`, parent: TFeature | null, template: FeatureTemplate<unknown> = {}) {
+  GCS<TManualSource extends GenericSource = never, T extends keyof FeatureDataByType = keyof FeatureDataByType>(
+    type: T,
+    GCS: object,
+    rootKey: number | number[],
+    parent?: Feature<any, any>,
+    template?: FeatureTemplate,
+  ) {
     const collection = new FeatureCollection()
     if (!GCS) return collection
     const map = isArray(GCS) ? Object.fromEntries(GCS.map((c, i) => [i, c])) : GCS
 
-    if (!map) debugger
+    if (!map) debugger // COMMENT
     for (const [key, gcs] of Object.entries(map)) {
-      const feature = this.build(type, key, prefix, parent, template)
+      if (isNaN(parseInt(key))) debugger // COMMENT
+      if (gcs.id === undefined) debugger // COMMENT
+
+      const feature = this.build(type, gcs.id, [...(isArray(rootKey) ? rootKey : [rootKey]), parseInt(key)], parent, template)
       feature.addSource(`gcs`, gcs)
-      feature.compile()
-      collection.add(feature)
+      collection.add(feature as any)
 
       if (!isNil(gcs.children)) {
         const children = isArray(gcs.children) ? Object.fromEntries(gcs.children.map((c, i) => [i, c])) : gcs.children
 
-        const childrenCollection = this.parse(type, children, `${prefix}${key}.children.`, feature, template)
-        feature.children.push(...childrenCollection.items)
+        const childrenCollection = this.GCS(type, children, [], feature, template)
+        feature.children.push(...(childrenCollection.items as any[]))
         collection.add(...childrenCollection.items)
       }
     }

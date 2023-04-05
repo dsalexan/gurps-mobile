@@ -308,7 +308,7 @@ module.exports.index = function (output) {
   const bySection = {}
 
   for (const entry of entries) {
-    const extendedName = `${entry.name} (${entry.nameext})`
+    const extendedName = entry.nameext === undefined ? entry.name : `${entry.name} (${entry.nameext})`
 
     // INDEX
     if (byRow[entry.row - 1] !== undefined) debugger

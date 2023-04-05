@@ -118,6 +118,7 @@ export function name(advantage: Feature, recursive = false): string | undefined 
  * @param nameext
  */
 export function specializedName(name: string | GCA.Entry, nameext?: string): string {
+  if (name === undefined) return undefined as any
   if (!isString(name)) return specializedName(name.name, name.nameext)
   if (isNilOrEmpty(nameext)) return name
   return `${name} (${nameext})`
@@ -130,8 +131,8 @@ export function specializedName(name: string | GCA.Entry, nameext?: string): str
  * @param getter
  */
 
-export function keyTree(key: string | number | number[] | string[], parent?: Feature<any, any>): (string | number)[] {
-  let _key = key as number[] | string[]
+export function keyTree(key: number | number[] | string[], parent?: Feature<any, any>): (string | number)[] {
+  let _key = key as number[]
   if (!isArray(key)) _key = [key] as any
 
   if (!parent) return [..._key]

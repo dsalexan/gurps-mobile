@@ -58,11 +58,12 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     //
     compilation: {
       previousSources: FeatureSources<TManualSource>
-      previousData: TData
-      pipelines: IDerivationPipeline<TData, TManualSource>[]
+      previousData: any
+      pipelineOrder: string[]
+      pipelines: Record<string, IDerivationPipeline<TData, TManualSource>>
       // derivations: Record<number, IDerivation<Record<string, unknown>, string>[]>
-      derivationsByTarget: Record<string, [number, number][]> // Record<target, [pipelineIndex, derivationIndex][]>>
-      derivationsByDestination: Record<keyof TData, [number, number][]> // Record<destination, [pipelineIndex, derivationIndex][]>>
+      derivationsByTarget: Record<string, [string, number][]> // Record<target, [pipelineIndex, derivationIndex][]>>
+      derivationsByDestination: Record<keyof TData, [string, number][]> // Record<destination, [pipelineIndex, derivationIndex][]>>
     }
     //
     context: {
@@ -84,13 +85,14 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   children: Feature<IFeatureData, GenericSource>[]
   // TODO: add path, key and prefix to GCS source
 
-  constructor(id: string, key: string | number, parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
+  constructor(id: string, key: number | number[], parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
     // META DATA
     this.__ = {
       compilation: {
         previousSources: {} as any,
         previousData: {} as any,
-        pipelines: [],
+        pipelineOrder: [],
+        pipelines: {} as any,
         // derivations: {},
         derivationsByTarget: {},
         derivationsByDestination: {} as any,
@@ -135,7 +137,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   }
 
   addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
-    this.sources[name] = source
+    this.sources[name] = cloneDeep(source)
 
     if (!ignoreCompile) this.compile([new RegExp(`^${name}.*`)])
 
@@ -143,13 +145,10 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   }
 
   addPipeline<TPipelineData extends IFeatureData>(pipeline: IDerivationPipeline<TPipelineData, TManualSource>) {
-    let pipelineIndex = this.__.compilation.pipelines.length
-    if (pipeline.name === undefined) {
-      pipelineIndex = 0
-      pipeline.name = `ManualPipeline`
-    }
+    let name = pipeline.name ?? `ManualPipeline`
 
-    this.__.compilation.pipelines.splice(pipelineIndex, 0, pipeline as any)
+    this.__.compilation.pipelineOrder.push(name)
+    this.__.compilation.pipelines[name] = pipeline
 
     for (let index = 0; index < pipeline.length; index++) {
       const derivation = pipeline[index]
@@ -158,12 +157,12 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       for (const _destination of derivation.destinations) {
         const destination = _destination as any as keyof TData
         if (this.__.compilation.derivationsByDestination[destination] === undefined) this.__.compilation.derivationsByDestination[destination] = []
-        this.__.compilation.derivationsByDestination[destination].push([pipelineIndex, index])
+        this.__.compilation.derivationsByDestination[destination].push([name, index])
       }
 
       for (const target of derivation.targets) {
         if (this.__.compilation.derivationsByTarget[target] === undefined) this.__.compilation.derivationsByTarget[target] = []
-        this.__.compilation.derivationsByTarget[target].push([pipelineIndex, index])
+        this.__.compilation.derivationsByTarget[target].push([name, index])
       }
     }
 
@@ -191,9 +190,10 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     if (changes === null) targets = allTargets
     else targets = flatten(changes.map(pattern => (isString(pattern) ? [pattern] : allTargets.filter(target => target.match(pattern)))))
 
-    // const MDOsByPipeline = {} as Record<keyof typeof this.__.compilation.pipelines, MigrationDataObject>
+    // let timer = LOGGER.time(`LIST`) // COMMENT
 
-    // LIST derivations by updated keys
+    // #region LIST derivations by updated keys
+
     const derivationsPath = {} as Record<string, string[]> // Record<derivation, targets[]>
     for (const target of targets) {
       const paths = this.__.compilation.derivationsByTarget[target]
@@ -207,10 +207,18 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     const derivations = Object.keys(derivationsPath).map(path => {
       const [pipeline, derivation] = path.split(`.`)
-      return this.__.compilation.pipelines[parseInt(pipeline)][parseInt(derivation)]
+      const derivationInstance = this.__.compilation.pipelines[pipeline][parseInt(derivation)]
+      if (derivationInstance === undefined) debugger // COMMENT
+      return derivationInstance
     })
 
-    // EXECUTE derivations and pool results
+    // #endregion
+
+    // timer(`LIST`) // COMMENT
+    // timer = LOGGER.time(`EXECUTE`) // COMMENT
+
+    // #region EXECUTE derivations and pool results
+
     const MDOs = [] as MigrationDataObject[]
     for (const derivation of derivations) {
       let result: ReturnType<typeof derivation.derive>
@@ -237,14 +245,42 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // for each pipeline, do post
     const postMDOs = [] as MigrationDataObject[]
-    for (const pipeline of this.__.compilation.pipelines) {
+    for (const name of this.__.compilation.pipelineOrder) {
+      const pipeline = this.__.compilation.pipelines[name]
       if (!pipeline.post) continue
+
       const mdo = pipeline.post.call(this, data, this, this.sources)
       if (mdo && Object.keys(mdo).length >= 1) postMDOs.push(completeMigrationValueDefinitions(mdo, pipeline as any, { sources: [`post`] }))
     }
 
-    // APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
-    debugger
+    // migrate for each post MDO
+    for (const mdo of postMDOs) data.migrate(mdo, context, this.sources)
+
+    // #endregion
+
+    // timer(`EXECUTE`) // COMMENT
+    // timer = LOGGER.time(`APPLY`) // COMMENT
+
+    // #region APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
+
+    for (const key of Object.keys(data)) {
+      if (key === `migrate` || key === `migrationsByKey` || key === `migrations`) continue
+      if (data[key] === undefined) continue
+      this.data[key] = data[key]
+    }
+
+    // #endregion
+
+    // timer(`APPLY`) // COMMENT
+    // timer = LOGGER.time(`FIRE`) // COMMENT
+
+    // #region FIRE subscription events for feature+keys that have changed
+
+    LOGGER.warn(`POOL FIRE SUBSCRIPTION EVENT`, targets)
+
+    // #endregion
+
+    // timer(`FIRE`) // COMMENT
   }
 
   // #region INTEGRATING
@@ -252,7 +288,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   /**
    * Build GCA query parameters
    */
-  prepareQueryGCA(): Record<string, unknown> {
+  prepareQueryGCA(): { directive: `continue` | `skip`; type?: Type[`value`]; name?: string; specializedName?: string; merge?: boolean } {
     if (this.type.compare(FEATURE.GENERIC)) {
       LOGGER.get(`gca`).warn(`Cannot query a generic feature`, this)
       return { directive: `skip` }
@@ -298,13 +334,6 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   integrate(actor: GurpsMobileActor) {
     if (actor.id === null) throw new Error(`Actor is missing an id`)
     this.actor = actor
-
-    debugger
-    // register feature
-    actor.setFeature(this.id, this)
-    if (GURPS._cache.actors[actor.id].paths === undefined) GURPS._cache.actors[actor.id].paths = {}
-    // TODO: What to do here? Get path after source/add
-    // if (this.path) GURPS._cache.actors[actor.id].paths[this.path] = this.id
 
     return this
   }

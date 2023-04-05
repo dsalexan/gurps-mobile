@@ -17,6 +17,7 @@ import GenericFeature, { IGenericFeature } from "../../gurps-mobile/core/feature
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ILevelDefinition extends GCA.Expression {
+  math: never
   tags: string[]
 
   parse(feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor): ILevel | null
@@ -133,6 +134,8 @@ export function stringifyRelativeSkillLevel({ expression, definitions }: Partial
  * Parse a object (usually a GCA.Expression or a GCS.EntryDefault) into a Level definition
  */
 export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault): ILevelDefinition {
+  if (object.type === `flat`) debugger
+
   // GCA.Expression
   if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) {
     object.tags = [] as string[]

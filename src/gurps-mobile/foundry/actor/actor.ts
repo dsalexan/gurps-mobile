@@ -10,7 +10,6 @@ import FeatureFactory from "../../core/feature/factory"
 import SkillFeature from "../../core/feature/variants/skill"
 import ContextManager from "../actor-sheet/context/manager"
 import MoveFeatureContextTemplate from "../actor-sheet/context/feature/variants/move"
-import GenericFeature from "../../core/feature/variants/generic"
 import AdvantageFeatureContextTemplate from "../actor-sheet/context/feature/variants/advantage"
 import SkillFeatureContextTemplate from "../actor-sheet/context/feature/variants/skill"
 import SpellFeatureContextTemplate from "../actor-sheet/context/feature/variants/spell"
@@ -22,13 +21,14 @@ import { FeatureState } from "../../core/feature/utils"
 import { IDerivationFunction, derivation, proxy } from "./feature/pipelines"
 import { IGenericFeatureData } from "./feature/pipelines/generic"
 import Feature from "./feature"
+import GenericFeature from "./feature/generic"
 
 export type ActorCache = {
   links?: Record<string, string[]>
   paths?: Record<string, string>
-  _moves?: Record<string, Feature<any>>
-  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, Feature<never>>>>
-  features?: Record<string, Feature<any>>
+  _moves?: Record<string, GenericFeature>
+  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, GenericFeature>>>
+  features?: Record<string, GenericFeature>
   components?: Record<string, IComponentDefinition[]>
   //
   contextManager?: ContextManager
@@ -58,7 +58,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     set(GURPS._cache, `actors.${this.id}${path === undefined ? `` : `.${path}`}`, value)
   }
 
-  setFeature(path: string, value: Feature<any>) {
+  setFeature(path: string, value: GenericFeature) {
     if (this.id === null) throw new Error(`Cannot set actor cache with a null id`)
     if (this.cache.features === undefined) this.cache.features = {}
     this.cache.features[path] = value
@@ -228,15 +228,14 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     }
     cached.links = cached.links || {}
     cached.features = cached.features || {}
-    cached.paths = cached.paths || {}
     cached.featureFactory = cached.featureFactory || new FeatureFactory()
     cached.contextManager = cached.contextManager || new ContextManager(this)
 
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      this.prepareAttributes(cached.featureFactory, partials)
-      // this.prepareFeatures(cached.featureFactory, partials)
+      // this.prepareAttributes(cached.featureFactory, partials)
+      this.prepareFeatures(cached.featureFactory, partials)
       // this.prepareDefenses(cached.featureFactory, partials)
     }
 
@@ -247,7 +246,6 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     logger.info(`    `, `features:`, cached.features, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `links:`, cached.links, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-    logger.info(`    `, `paths:`, cached.paths, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
 
     logger.group()
 
@@ -280,37 +278,38 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
        *                — for MULTIPLE destinations ????
        */
       factory
-        .build(`base`, `move-basic_speed`, 0, undefined, {
+        .build(`generic`, `move-basic_speed`, [0, 0], undefined, {
           context: { templates: MoveFeatureContextTemplate },
         })
-        .addPipeline<IGenericFeatureData>([proxy.gcs(`value`)])
+        .addPipeline<IGenericFeatureData>([proxy.gcs(`value`), proxy.manual(`name`), proxy.manual(`label`)])
+        .addSource(`manual`, { name: game.i18n.localize(`GURPS.basicspeed`), label: `GURPS.basicspeed` })
         .addSource(`gcs`, actorData.basicspeed)
         // .compile()
         .integrate(this)
     }
 
-    // if (do_moves) {
-    //   const moves = Object.keys(actorData.move || {})
-    //   for (const key of moves) {
-    //     const move = actorData.move[key]
+    if (do_moves) {
+      const moves = Object.keys(actorData.move || {})
+      for (const key of moves) {
+        type MoveType = (typeof actorData.move)[keyof typeof actorData.move]
+        const move = actorData.move[key]
 
-    //     const feature = factory
-    //       .build(`generic`, `move.${key}`, `system.`, null, {
-    //         context: { templates: MoveFeatureContextTemplate },
-    //         key: () => [1, parseInt(key)],
-    //         manual: {
-    //           id: ({ gcs: move }) => `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`,
-    //           name: ({ gcs: move }) => move[`mode`],
-    //           value: ({ gcs: move }) => move[`basic`],
-    //         },
-    //       })
-    //       .addSource(`gcs`, move)
-    //       .compile()
-    //       .integrate(this)
+        const feature = factory
+          .build<MoveType>(`generic`, `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`, [1, parseInt(key)], undefined, {
+            context: { templates: MoveFeatureContextTemplate },
+          })
+          .addPipeline<IGenericFeatureData>([
+            derivation.manual(`mode`, [`name`, `label`], ({ mode }) => ({ name: game.i18n.localize(mode), label: mode })),
+            derivation.manual(`basic`, `value`, ({ basic }) => ({ value: basic })),
+            derivation.manual(`default`, `state`, (manual: MoveType) => ({ state: manual.default ? FeatureState.ACTIVE : FeatureState.INACTIVE })),
+          ])
+          .addSource(`manual`, move)
+          // .compile()
+          .integrate(this)
 
-    //     this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
-    //   }
-    // }
+        this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
+      }
+    }
 
     // #endregion
 
@@ -329,29 +328,29 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
-    // if (do_ads)
-    //   factory
-    //     .parse(`advantage`, rawGCS.traits, `system._import.traits.`, null, {
-    //       context: { templates: AdvantageFeatureContextTemplate },
-    //     })
-    //     .loadFromGCA(true)
-    //     .integrate(this)
+    if (do_ads)
+      factory
+        .GCS(`advantage`, rawGCS.traits, [], undefined, {
+          context: { templates: AdvantageFeatureContextTemplate },
+        })
+        .loadFromGCA(true)
+        .integrate(this)
 
-    // if (do_skills) {
-    //   factory
-    //     .parse(`skill`, rawGCS.skills, `system._import.skills.`, null, {
-    //       context: { templates: SkillFeatureContextTemplate },
-    //     })
-    //     .loadFromGCA(true)
-    //     .integrate(this)
+    if (do_skills) {
+      factory
+        .GCS(`skill`, rawGCS.skills, [], undefined, {
+          context: { templates: SkillFeatureContextTemplate },
+        })
+        .loadFromGCA(true)
+        .integrate(this)
 
-    //   // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
-    //   SkillFeature.untrained(this, { factory, context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
+      //   // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
+      //   SkillFeature.untrained(this, { factory, context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
 
-    //   // inject "All Skills" for special display
-    //   const allSkills = SkillFeature.all(this, { factory, context: { templates: SkillFeatureContextTemplate } })
-    //   this.setCache(`query.skill`, allSkills)
-    // }
+      //   // inject "All Skills" for special display
+      //   const allSkills = SkillFeature.all(this, { factory, context: { templates: SkillFeatureContextTemplate } })
+      //   this.setCache(`query.skill`, allSkills)
+    }
 
     // if (do_spells)
     //   factory

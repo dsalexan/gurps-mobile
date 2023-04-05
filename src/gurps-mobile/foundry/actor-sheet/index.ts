@@ -343,7 +343,9 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       if (do_moves) {
         const moves = datachanges.get(/system\.move\.\d+$/i)
         for (const key of moves) {
-          const id = this.actor.cache.paths?.[key]
+          const move = this.actor.system.move[key]
+          debugger
+          const id = `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`
           if (!id) continue
 
           const feature = this.actor.cache.features?.[id]
@@ -451,7 +453,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
       let grouped = {} as ReturnType<typeof ContextManager.groupBy>
       if (groups === false) {
-        const sortedFeatures = sort === undefined ? orderBy(features, f => parseInt(f._key.tree[0] as string), order) : orderBy(features, sort, order)
+        const sortedFeatures = sort === undefined ? orderBy(features, f => parseInt(f.key.tree[0] as string), order) : orderBy(features, sort, order)
         grouped = {
           keys: [undefined as any],
           groups: { undefined: sortedFeatures },
@@ -471,7 +473,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
-    sheetData.tabs.attributes.push(...this.buildAttributes())
+    // sheetData.tabs.attributes.push(...this.buildAttributes())
     // sheetData.tabs.defenses.push(...this.buildDefenses())
 
     for (const type of groupedFeatures) {

@@ -1,9 +1,10 @@
 import { GCS } from "../types/gcs"
 import GenericFeature from "../../gurps-mobile/core/feature/variants/generic"
 import Feature, { IFeatureData } from "../../gurps-mobile/foundry/actor/feature"
+import { GenericSource } from "../../gurps-mobile/foundry/actor/feature/pipelines"
 
-export interface IComponentDefinition {
-  feature: Feature<IFeatureData, any>
+export interface IComponentDefinition<TFeature extends Feature<IFeatureData, GenericSource> = any> {
+  feature: TFeature
   type: string
   attribute?: string
   amount?: number

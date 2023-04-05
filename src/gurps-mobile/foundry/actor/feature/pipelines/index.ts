@@ -85,7 +85,7 @@ export function derivation<TDestination extends string | number | symbol, TManua
 
 export function derivationWithPrefix<
   TSourceName extends keyof FeatureSources<never>,
-  TManualSource extends GenericSource = never,
+  TManualSource extends GenericSource = any,
   TSource extends GenericSource = FeatureSources<TManualSource>[TSourceName],
 >(prefix: TSourceName) {
   return function wrappedDerivation<TDestination extends string | number | symbol>(
@@ -99,18 +99,20 @@ export function derivationWithPrefix<
       targets.map(target => `${prefix}.${target.toString()}`) as any[],
       destination,
       //
-      function wrappedDerive(values: TSource, previous: TSource, scope) {
-        const prefixedValues = Object.fromEntries(Object.entries(values).map(([key, value]) => [key.replace(new RegExp(`^${prefix}.`), ``), value]))
-        const prefixedPrevious = Object.fromEntries(Object.entries(previous).map(([key, value]) => [key.replace(new RegExp(`^${prefix}.`), ``), value]))
+      function wrappedDerive(values: FeatureSources<TManualSource>, previous: FeatureSources<TManualSource>, scope) {
+        // const prefixedValues = Object.fromEntries(Object.entries(values).map(([key, value]) => [key.replace(new RegExp(`^${prefix}.`), ``), value]))
+        // const prefixedPrevious = Object.fromEntries(Object.entries(previous).map(([key, value]) => [key.replace(new RegExp(`^${prefix}.`), ``), value]))
 
-        debugger
-        // @ts-ignore
-        return derive(prefixedValues, prefixedPrevious, scope)
+        const prefixedValues = values[prefix]
+        const prefixedPrevious = previous[prefix]
+
+        return derive.call(this, prefixedValues, prefixedPrevious, scope)
       },
     )
   }
 }
 
+derivation.manual = derivationWithPrefix(`manual`)
 derivation.gcs = derivationWithPrefix(`gcs`)
 derivation.gca = derivationWithPrefix(`gca`)
 
@@ -144,6 +146,7 @@ export function proxyWithPrefix<
 }
 
 export const proxy = {
+  manual: proxyWithPrefix(`manual`),
   gcs: proxyWithPrefix(`gcs`),
   gca: proxyWithPrefix(`gca`),
 }

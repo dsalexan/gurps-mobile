@@ -1,14 +1,14 @@
 import { GurpsMobileActor } from "../../foundry/actor"
-import BaseFeature, { FeatureTemplate } from "./base"
+import GenericFeature from "../../foundry/actor/feature/generic"
 
-export class FeatureCollection {
-  items: BaseFeature[]
+export class FeatureCollection<TFeature extends GenericFeature = GenericFeature> {
+  items: TFeature[]
 
-  constructor(items: BaseFeature[] = []) {
+  constructor(items: TFeature[] = []) {
     this.items = items
   }
 
-  add(...items: BaseFeature[]) {
+  add(...items: TFeature[]) {
     this.items.push(...items)
   }
 
@@ -16,6 +16,10 @@ export class FeatureCollection {
     this.items.map(item => item.loadFromGCA(cache))
 
     return this
+  }
+
+  addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
+    this.items.map(item => item.addSource(name, source, ignoreCompile))
   }
 
   /**

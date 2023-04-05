@@ -153,7 +153,7 @@ module.exports.index = function (entries) {
 
   for (let i = 0; i < entries.length; i++) {
     const entry = entries[i]
-    const extendedName = `${entry.data.name} (${entry.data.nameext})`
+    const extendedName = entry.data.nameext == undefined ? entry.data.name : `${entry.data.name} (${entry.data.nameext})`
 
     // SECTION
     let sections = flattenDeep([entry.section])
