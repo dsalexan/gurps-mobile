@@ -7,6 +7,7 @@ import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
 
 export interface SkillManualSource extends GenericSource {
+  tl?: number
   training?: `trained` | `untrained` | `unknown`
   ignoreSpecialization?: boolean
 }
@@ -50,7 +51,7 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
   }),
   // #endregion
   // #region GCA
-  derivation.gcs(`type`, [`attribute`, `difficulty`], ({ type }) => {
+  derivation.gca(`type`, [`attribute`, `difficulty`], ({ type }) => {
     if (isNilOrEmpty(type)) return {}
     const attribute = type.split(`/`)[0]
     const difficulty = type.split(`/`)[1]
@@ -75,7 +76,7 @@ SkillFeaturePipeline.conflict = {
   },
 }
 
-SkillFeaturePipeline.post = function postSkill(data) {
+SkillFeaturePipeline.post = function postSkill({ data }) {
   const MDO = {} as MigrationDataObject<any>
 
   if (data.name) {

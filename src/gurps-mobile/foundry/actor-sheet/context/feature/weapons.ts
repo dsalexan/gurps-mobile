@@ -2,7 +2,6 @@ import { cloneDeep, flattenDeep, get, isArray, isNil, isNumber, isString, set } 
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
-import BaseFeature from "../../../../core/feature/base"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
@@ -12,9 +11,11 @@ import { IWeaponizableFeature } from "../../../../core/feature/compilation/templ
 import WeaponFeature from "../../../../core/feature/variants/weapon"
 import WeaponFeatureContextTemplate, { WeaponFeatureContextSpecs } from "./variants/weapon"
 import { IWeaponFeature } from "../../../../core/feature/compilation/templates/weapon"
+import Feature from "../../../actor/feature"
+import { IWeaponizableFeatureData } from "../../../actor/feature/pipelines/weaponizable"
 
 export interface FeatureWeaponsDataContextSpecs extends ContextSpecs {
-  feature: BaseFeature & IWeaponizableFeature
+  feature: Feature<IWeaponizableFeatureData>
   //
   weapons: ContextSpecs
 }
@@ -41,7 +42,7 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
     if (data === undefined) data = []
     const feature = getSpec(specs, `feature`)
 
-    const hasWeapons = feature.weapons && feature.weapons.length > 0
+    const hasWeapons = feature.data.weapons && feature.data.weapons.length > 0
     if (!hasWeapons) return null
 
     // WARN: Unimplemented pre-defined featureData array
@@ -50,8 +51,8 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
 
     const weaponsSpecs = get(specs, `weapons`) ?? {}
 
-    for (const weapon of feature.weapons) {
-      const _specs = { ...cloneDeep(weapon._context.specs ?? {}), ...cloneDeep(weaponsSpecs) } as WeaponFeatureContextSpecs
+    for (const weapon of feature.data.weapons) {
+      const _specs = { ...cloneDeep(weapon.__.context.specs ?? {}), ...cloneDeep(weaponsSpecs) } as WeaponFeatureContextSpecs
       push(_specs, `innerClasses`, `swipe-variant`)
 
       const context = manager.feature(weapon, _specs)

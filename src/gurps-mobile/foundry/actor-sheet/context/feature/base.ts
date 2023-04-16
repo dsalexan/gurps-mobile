@@ -2,16 +2,16 @@ import { flattenDeep, get, isArray, isNil, isNumber, set } from "lodash"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
-import BaseFeature, { IFeature } from "../../../../core/feature/base"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
+import Feature from "../../../actor/feature"
 
 export interface FeatureDataVariantActionSpecs {
   noDefault?: boolean
 }
 
 export interface FeatureBaseContextSpecs extends ContextSpecs {
-  feature: IFeature
+  feature: Feature
   list: string
   //
   hidden: (id: string) => boolean
@@ -122,8 +122,8 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
       classes,
       //
       id: feature.id,
-      path: feature.path,
-      index: getSpec(specs, `index`, (feature as BaseFeature)._key.value),
+      // path: feature.path,
+      index: getSpec(specs, `index`, feature.key.value),
       //
       hidden,
       //

@@ -10,6 +10,8 @@ export namespace GCS {
     calc?: {
       points: number
       rsl: string | null
+      extended_value?: number
+      extended_weight?: string
     }
     points_per_level?: number
     defaults?: EntryDefault[]

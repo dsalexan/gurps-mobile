@@ -1,28 +1,30 @@
 /* eslint-disable no-debugger */
-import { isArray, isNil } from "lodash"
+import { cloneDeep, isArray, isNil } from "lodash"
 
 import { FeatureCollection } from "./collection"
 
 // import BaseFeature, { FeatureTemplate } from "./base"
-import SpellFeature from "./variants/spell"
-import EquipmentFeature from "./variants/equipment"
 import WeaponFeature from "./variants/weapon"
 import Feature, { FeatureTemplate, IFeatureData } from "../../foundry/actor/feature"
 import GenericFeature from "../../foundry/actor/feature/generic"
 import AdvantageFeature from "../../foundry/actor/feature/advantage"
 import SkillFeature from "../../foundry/actor/feature/skill"
+import SpellFeature from "../../foundry/actor/feature/spell"
+import EquipmentFeature from "../../foundry/actor/feature/equipment"
 import { GenericSource } from "../../foundry/actor/feature/pipelines"
 import { IGenericFeatureData } from "../../foundry/actor/feature/pipelines/generic"
 import { IAdvantageFeatureData } from "../../foundry/actor/feature/pipelines/advantage"
 import { ISkillFeatureData } from "../../foundry/actor/feature/pipelines/skill"
+import { ISpellFeatureData } from "../../foundry/actor/feature/pipelines/spell"
+import { IEquipmentFeatureData } from "../../foundry/actor/feature/pipelines/equipment"
 
 export type FeatureDataByType = {
   base: IFeatureData
   generic: IGenericFeatureData
   advantage: IAdvantageFeatureData
   skill: ISkillFeatureData
-  // spell: IFeatureData
-  // equipment: IFeatureData
+  spell: ISpellFeatureData
+  equipment: IEquipmentFeatureData
   weapon: IGenericFeatureData
 }
 
@@ -32,8 +34,8 @@ export default class FeatureFactory {
     else if (type === `generic`) return GenericFeature
     else if (type === `advantage`) return AdvantageFeature
     else if (type === `skill`) return SkillFeature
-    // else if (type === `spell`) return SpellFeature
-    // else if (type === `equipment`) return EquipmentFeature
+    else if (type === `spell`) return SpellFeature
+    else if (type === `equipment`) return EquipmentFeature
     else if (type === `weapon`) return GenericFeature //WeaponFeature
 
     throw new Error(`Feature of type "${type}" is not implemented`)

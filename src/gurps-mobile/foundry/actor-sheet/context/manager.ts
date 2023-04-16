@@ -1,6 +1,5 @@
 import { cloneDeep, has, orderBy, sortBy } from "lodash"
 
-import BaseFeature from "../../../core/feature/base"
 import WrapperContextTemplate, { IWrapperContext, WrapperContextSpecs } from "./container/wrapper"
 import BaseContextTemplate, { ContextSpecs, IContext } from "./context"
 import FeatureBaseContextTemplate, { FeatureBaseContextSpecs } from "./feature/base"
@@ -10,6 +9,7 @@ import FeatureMainVariantContextTemplate from "./feature/main"
 import PinnedFeatureContextTemplate from "./feature/pinned"
 import QueryResultFeatureContextTemplate from "./feature/queryResult"
 import { GurpsMobileActor } from "../../actor/actor"
+import Feature from "../../actor/feature"
 
 export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `collapsed`>
 export interface PinnedFeatureContextSpecs extends IgnoreFeatureFallbacks<FeatureBaseContextTemplate> {
@@ -33,7 +33,7 @@ export default class ContextManager {
     return context
   }
 
-  feature<TFeature extends BaseFeature, TTemplate extends typeof BaseContextTemplate>(
+  feature<TFeature extends Feature, TTemplate extends typeof BaseContextTemplate>(
     feature: TFeature,
     _specs: IgnoreFeatureFallbacks<FeatureBaseContextSpecs>,
     ...templates: TTemplate[]
@@ -48,16 +48,16 @@ export default class ContextManager {
     specs.pinned = specs.pinned ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.pinned.${id}`) as boolean)
     specs.collapsed = specs.collapsed ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.collapsed.${id}`) as boolean)
 
-    templates.push(...(feature._context.templates as TTemplate[]))
+    templates.push(...(feature.__.context.templates as TTemplate[]))
 
     return this.build([FeatureBaseContextTemplate, FeatureMainVariantContextTemplate, ...templates], specs) as IFeatureContext
   }
 
-  pinned<TFeature extends BaseFeature>(feature: TFeature, specs: PinnedFeatureContextSpecs) {
+  pinned<TFeature extends Feature>(feature: TFeature, specs: PinnedFeatureContextSpecs) {
     return this.feature(feature, specs as any, PinnedFeatureContextTemplate)
   }
 
-  queryResult<TFeature extends BaseFeature>(feature: TFeature, specs: IgnoreFeatureFallbacks<FeatureBaseContextSpecs>) {
+  queryResult<TFeature extends Feature>(feature: TFeature, specs: IgnoreFeatureFallbacks<FeatureBaseContextSpecs>) {
     return this.feature(feature, specs, QueryResultFeatureContextTemplate)
   }
 
@@ -73,8 +73,8 @@ export default class ContextManager {
     return this.build([ListContextTemplate], specs) as IListContext
   }
 
-  static groupBy(features: BaseFeature[], getGroup: (feature: BaseFeature) => string, getSortKey?: (feature: BaseFeature) => number, order = `asc`) {
-    const groups: Record<string, BaseFeature[]> = {} // map of grouped features
+  static groupBy(features: Feature[], getGroup: (feature: Feature) => string, getSortKey?: (feature: Feature) => number, order: `asc` | `desc` = `asc`) {
+    const groups: Record<string, Feature[]> = {} // map of grouped features
     const keys: Record<string, number> = {} // list of groups
 
     for (const feature of features) {

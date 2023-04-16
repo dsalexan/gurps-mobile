@@ -16,15 +16,10 @@ export const WeaponizableFeaturePipeline: IDerivationPipeline<IWeaponizableFeatu
 ]
 
 WeaponizableFeaturePipeline.name = `WeaponizableFeaturePipeline`
-WeaponizableFeaturePipeline.post = function postWeaponizable(data, object) {
+WeaponizableFeaturePipeline.post = function postWeaponizable({ data }, object) {
   const MDO = {} as MigrationDataObject<any>
 
-  // if (data.tl?.required && isNilOrEmpty(data.tl)) {
-  //   if (isNil(this.tl)) debugger
-  //   set(data, `tl.level`, this.tl)
-  // }
-
-  if (has(data, `weapons`)) {
+  if (has(data, `weapons`) && data.weapons.length > 0 && false) {
     const factory = object.factory
     const weapons = [] as Feature<any, never>[]
 
@@ -49,6 +44,7 @@ WeaponizableFeaturePipeline.post = function postWeaponizable(data, object) {
         ])
         .addSource(`gcs`, weapon)
 
+      debugger
       weapons.push(feature)
     }
 

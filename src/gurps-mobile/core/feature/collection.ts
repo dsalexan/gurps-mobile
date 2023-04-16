@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash"
 import { GurpsMobileActor } from "../../foundry/actor"
 import GenericFeature from "../../foundry/actor/feature/generic"
 
@@ -19,7 +20,9 @@ export class FeatureCollection<TFeature extends GenericFeature = GenericFeature>
   }
 
   addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
-    this.items.map(item => item.addSource(name, source, ignoreCompile))
+    this.items.map(item => item.addSource(name, cloneDeep(source), ignoreCompile))
+
+    return this
   }
 
   /**

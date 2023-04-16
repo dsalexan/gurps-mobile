@@ -1,19 +1,42 @@
+/* eslint-disable no-debugger */
 /* eslint-disable jsdoc/require-jsdoc */
-import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty, flatten } from "lodash"
+import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty, flatten, pick, last, cloneDeep, flattenDeep } from "lodash"
 import CompilationTemplate, { CompilationContext } from "./template"
 import LOGGER from "../../../logger"
-import { AllSources, IDerivation, IDerivationPipeline } from "../../../foundry/actor/feature/pipelines"
+import { AllSources, IConflictResolution, IDerivation, IDerivationPipeline } from "../../../foundry/actor/feature/pipelines"
 
-export type MigrationMode = `fallback` | `write` | `overwrite` | `push` | `merge` | `conflict`
+export type MigrationMode = `fallback` | `write` | `overwrite` | `push` | `merge`
+
+interface MigrationDerivationOrigin {
+  type: `derivation`
+  on: string[]
+  derivation: IDerivation<any>
+  pipeline: IDerivationPipeline<any>
+  source: string[]
+}
+
+interface MigrationPostOrigin {
+  type: `post`
+  pipeline: IDerivationPipeline<any>
+  source: string[]
+}
+
+interface MigrationConflictOrigin {
+  type: `conflict`
+  on: string[]
+  between: MigrationValue<any>[]
+  resolve: IConflictResolution<any>
+  pipeline: IDerivationPipeline<any>
+  source: string[]
+}
+
+export type MigrationOrigin = MigrationDerivationOrigin | MigrationPostOrigin | MigrationConflictOrigin
+export type FastMigrationOrigin = Omit<MigrationDerivationOrigin, `pipeline` | `source`> | Omit<MigrationPostOrigin, `source`> | Omit<MigrationConflictOrigin, `resolve` | `source`>
 
 export interface MigrationValue<TValue> {
   _meta: {
-    derivation: IDerivation<any>
-    origin: {
-      // stack migrations that originated this value
-      sources?: string[]
-      migrations?: MigrationValue<any>[]
-    }[]
+    // stack migrations that originated this value
+    origin: MigrationOrigin[]
     key: string // key to which value is to be applied
   }
   value: TValue
@@ -32,7 +55,11 @@ export type MigrationDataObject<TKey extends string | number | symbol = string, 
 //   [path: string]: MigrationValue<TValue>[] | TValue
 // }
 
-export type MigratableObject = ReturnType<typeof buildMigratableObject>
+export interface MigratableObject<TData extends object = object> {
+  data: TData
+  migrations: MigrationValue<any>[]
+  migrationsByKey: Record<string, MigrationValue<any>[]>
+}
 
 /**
  * Packages value into a MigrationValue structure
@@ -72,12 +99,7 @@ export function FALLBACK<TValue>(key: string, value: TValue): MigrationValue<TVa
 /**
  * Complete Migration Value definitions inside a MDO
  */
-export function completeMigrationValueDefinitions(
-  object: MigrationDataObject,
-  derivation: IDerivation<any>,
-  origin: { sources?: string[]; migrations?: MigrationValue<unknown>[] },
-  mode?: MigrationMode,
-) {
+export function completeMigrationValueDefinitions(object: MigrationDataObject, origin?: FastMigrationOrigin | FastMigrationOrigin[], mode?: MigrationMode) {
   const remove = [] as string[]
 
   for (const key of Object.keys(object)) {
@@ -102,10 +124,45 @@ export function completeMigrationValueDefinitions(
     } else if ((migrationValue as MigrationValue<unknown>)._meta === undefined) migrationValue = [WRITE(key, migrationValue)] as MigrationValue<unknown>[]
     else migrationValue = [migrationValue]
 
+    let DEBUGGER_CONFLICT = false // COMMENT
+
+    const origins = (origin ? (isArray(origin) ? origin : [origin]) : []).map(fastOrigin => {
+      const origin = cloneDeep(fastOrigin) as MigrationOrigin
+
+      if (fastOrigin.type === `derivation`) {
+        if (fastOrigin.derivation.pipeline === undefined) throw new Error(`Unimplemented derivation without pipeline`)
+        origin.pipeline = fastOrigin.derivation.pipeline
+        origin.source = uniq(fastOrigin.on.map(target => target.split(`.`)[0]))
+      } else if (fastOrigin.type === `post`) {
+        origin.pipeline = fastOrigin.pipeline
+        origin.source = [`feature`]
+      } else if (fastOrigin.type === `conflict`) {
+        // @ts-ignore
+        const migrationSources = uniq(flattenDeep(migrationValue.map(migration => migration._meta.origin.map(origin => origin.source))))
+
+        // WARN: Untested
+        if (migrationSources.length > 1) debugger
+
+        origin.source = migrationSources.length === 0 ? [`feature`] : migrationSources
+      } else {
+        // ERROR: Unimplemented
+        debugger
+      }
+      return origin
+    })
+
     object[key] = migrationValue.map(item => {
       if (mode) item.mode = mode
-      item._meta.derivation = derivation
-      item._meta.origin.push(origin)
+      if (origins.length > 0) {
+        const allOriginsAreConflict = origins.every(o => o.type === `conflict`)
+        const someOriginsAreConflict = origins.some(o => o.type === `conflict`)
+
+        if (allOriginsAreConflict) item._meta.origin = []
+        // ERROR: Unimplemented case where SOME (but not all) origins are conflict
+        if (!allOriginsAreConflict && someOriginsAreConflict) debugger
+
+        item._meta.origin.push(...origins)
+      }
 
       return item
     })
@@ -141,18 +198,23 @@ export function isOrigin(origin: { sources?: string[]; migrations?: MigrationVal
   return false
 }
 
-export function applyMigrationValue<TValue>(data: MigratableObject, migration: MigrationValue<TValue>, context: CompilationContext, sources: Record<string, object>) {
+export function applyMigrationValue<TValue>(
+  { data, migrations, migrationsByKey }: MigratableObject,
+  migration: MigrationValue<TValue>,
+  context: CompilationContext,
+  sources: Record<string, object>,
+) {
   const key = migration._meta.key
   const value = migration.value
   const mode = migration.mode
 
-  const keyMigrations = data.migrationsByKey[key] ?? []
+  const keyMigrations = migrationsByKey[key] ?? []
 
   const meta = () => {
-    data.migrations.push(migration)
+    migrations.push(migration)
 
-    if (data.migrationsByKey[key] === undefined) data.migrationsByKey[key] = []
-    data.migrationsByKey[key].push(migration)
+    if (migrationsByKey[key] === undefined) migrationsByKey[key] = []
+    migrationsByKey[key].push(migration)
   }
 
   const lastMigration = keyMigrations[keyMigrations.length - 1]
@@ -163,7 +225,7 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
       // pass
     }
     // if value in data is fallback OR empty AND value is something
-    else if (data[key] === undefined || lastMigration.mode === `fallback` || isEmpty(data[key])) {
+    else if (data[key] === undefined || lastMigration?.mode === `fallback` || isEmpty(data[key])) {
       data[key] = value
       meta()
     }
@@ -172,25 +234,23 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
       // if both migrations came from the same template, try conflict resolution
       let isConflict = true
 
-      debugger
+      const sameOrigin = last(migration._meta.origin)?.type === last(lastMigration._meta.origin)?.type
 
-      const sameMigration = migration._meta.template.name === lastMigration._meta.template.name
+      if (sameOrigin) {
+        const lastOrigin = last(migration._meta.origin)
+        let pipeline = lastOrigin?.pipeline
+        if (pipeline === undefined) throw new Error(`Unimplemented derivation without a pipeline`)
 
-      const manualMigration = migration._meta.template.name === `Manual`
-      const manualLastMigration = lastMigration._meta.template.name === `Manual`
-      const oneIsManual = manualMigration || manualLastMigration
+        const conflict = pipeline.conflict?.[key]
+        if (conflict) {
+          const MDO = conflict.call(context, [migration, cloneDeep(lastMigration)], sources) as MigrationDataObject
 
-      if (sameMigration || oneIsManual) {
-        const template = sameMigration || manualLastMigration ? migration._meta.template : lastMigration._meta.template
-        const prio = min([migration._meta.prio, lastMigration._meta.prio]) as number
+          if (MDO && Object.keys(MDO).length >= 1) {
+            completeMigrationValueDefinitions(MDO, { type: `conflict`, on: [key], pipeline, between: [lastMigration, migration] }, `overwrite`)
+            resolveMigrationDataObject({ data, migrations, migrationsByKey }, MDO, context, sources)
 
-        const MDO = template.conflict(key, [migration, lastMigration], context, sources) as MigrationDataObject
-
-        if (MDO && Object.keys(MDO).length >= 1) {
-          completeMigrationValueDefinitions(MDO, template, prio, { migrations: [migration, lastMigration] }, `conflict`)
-          resolveMigrationDataObject(data, MDO, context, sources)
-
-          isConflict = false
+            isConflict = false
+          }
         }
       }
 
@@ -206,11 +266,12 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
         LOGGER.info(`    `, ` values:`, data[key], `<-`, value, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
         LOGGER.info(`    `, `   from:`, data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
         LOGGER.group()
+
         // ERROR: Unimplemented conflict
         debugger
       }
     }
-  } else if (mode === `overwrite` || mode === `conflict`) {
+  } else if (mode === `overwrite`) {
     data[key] = value
     meta()
   } else if (mode === `push`) {
@@ -223,15 +284,15 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
     meta()
   } else if (mode === `merge`) {
     const merged = {}
-    mergeWith(merged, value, data[key], (value, srcValue, key, object, source) => {
-      if (srcValue !== undefined && value === undefined) return srcValue
-      else if (srcValue === undefined && value !== undefined) return value
-      else if (srcValue === value) return srcValue
+    mergeWith(merged, data[key], value, (srcValue, newValue, key, source, object) => {
+      if (srcValue === undefined && newValue !== undefined) return newValue
+      else if (srcValue !== undefined && newValue === undefined) return srcValue
+      else if (srcValue === newValue) return srcValue
 
       // source === listMigration
       // object === migration
       debugger
-      // if (isOrigin(migration._meta.origin, [`gcs`])) return value
+      // if (isOrigin(migration._meta.origin, [`gcs`])) return newValue
       // else if (isOrigin(lastMigration._meta.origin, [`gcs`])) return srcValue
 
       // ERROR: Mergin not implemented
@@ -242,16 +303,16 @@ export function applyMigrationValue<TValue>(data: MigratableObject, migration: M
     meta()
   } else if (mode === `fallback`) {
     // if there is no value in data AND value is something
-    if (data[key] !== undefined && value !== undefined) {
+    if (data[key] === undefined && value !== undefined) {
       data[key] = value
       meta()
     }
   }
 
-  return data
+  return { data, migrations, migrationsByKey }
 }
 
-export function resolveMigrationDataObject(data: MigratableObject, mdo: MigrationDataObject, context: CompilationContext, sources: Record<string, object>) {
+export function resolveMigrationDataObject(data: MigratableObject, mdo: MigrationDataObject, context: CompilationContext, sources: AllSources<any>) {
   const modes = [`write`, `push`, `merge`, `overwrite`, `conflict`, `fallback`]
 
   const rawMigrations = Object.values(mdo) as MigrationValue<unknown>[][]

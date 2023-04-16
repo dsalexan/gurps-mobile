@@ -1,5 +1,5 @@
 import { cloneDeep, get, isArray, isFunction, isNil } from "lodash"
-import { FastMigrationDataObject, MigrationDataObject, MigrationValue } from "../../../../core/feature/compilation/migration"
+import { FastMigrationDataObject, MigratableObject, MigrationDataObject, MigrationValue } from "../../../../core/feature/compilation/migration"
 import Feature, { IFeatureData } from ".."
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { GCA } from "../../../../core/gca/types"
@@ -17,6 +17,7 @@ export type SingleSource<TManualSource extends GenericSource> = FeatureSources<T
 export type AllSources<TManualSource extends GenericSource> = FeatureSources<TManualSource> | FeatureSources<TManualSource>[keyof FeatureSources<TManualSource>]
 
 export interface CompilationContext {
+  id: string
   humanId: string
   type: Type
   tl?: number
@@ -79,6 +80,19 @@ export function derivation<TDestination extends string | number | symbol, TManua
   return {
     derive: derivationFunction,
     targets,
+    destinations,
+  }
+}
+
+export function passthrough<TDestination extends string | number | symbol, TManualSource extends GenericSource = never, TSource = AllSources<TManualSource>>(
+  destination: TDestination | TDestination[],
+  derive: IDerivationFunction<TDestination, TManualSource, TSource>,
+): IDerivation<TDestination, TManualSource, TSource> {
+  const destinations = isArray(destination) ? destination : [destination]
+
+  return {
+    derive,
+    targets: [],
     destinations,
   }
 }
@@ -166,8 +180,18 @@ export type IDerivationPipeline<TData extends IFeatureData, TManualSource extend
 >[] & {
   name?: string
   conflict?: Partial<Record<keyof TData, IConflictResolution<TManualSource>>>
-  pre?: (this: CompilationContext, data: TData, object: Feature<TData, TManualSource>, sources: FeatureSources<TManualSource>) => FastMigrationDataObject<any> | null
-  post?: (this: CompilationContext, data: TData, object: Feature<TData, TManualSource>, sources: FeatureSources<TManualSource>) => FastMigrationDataObject<any> | null
+  pre?: (
+    this: CompilationContext,
+    data: MigratableObject<TData>,
+    object: Feature<TData, TManualSource>,
+    sources: FeatureSources<TManualSource>,
+  ) => FastMigrationDataObject<any> | null
+  post?: (
+    this: CompilationContext,
+    data: MigratableObject<TData>,
+    object: Feature<TData, TManualSource>,
+    sources: FeatureSources<TManualSource>,
+  ) => FastMigrationDataObject<any> | null
 }
 
 export type IManualPipeline<TData extends IFeatureData, TManualSource extends GenericSource> = Record<

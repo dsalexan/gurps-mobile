@@ -24,7 +24,6 @@ export interface ISkillFeature extends IGenericFeature {
   points: number
   training: `trained` | `untrained` | `unknown`
   defaultFrom: object[]
-  proxy?: boolean
   form: false | `art` | `sport`
 }
 

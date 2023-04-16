@@ -20,7 +20,7 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
 AdvantageFeaturePipeline.name = `AdvantageFeaturePipeline`
 AdvantageFeaturePipeline.conflict = {}
 
-AdvantageFeaturePipeline.post = function postAdvantage(data) {
+AdvantageFeaturePipeline.post = function postAdvantage({ data }) {
   const MDO = {} as MigrationDataObject<any>
 
   if (data.meta && data.meta.includes(`:`)) {

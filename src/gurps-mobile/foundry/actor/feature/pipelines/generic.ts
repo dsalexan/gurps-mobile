@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { flatten, flattenDeep, get, isArray, isEmpty, isNil, set } from "lodash"
+import { flatten, flattenDeep, get, isArray, isEmpty, isNil, set, uniq } from "lodash"
 import { IDerivation, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
@@ -72,10 +72,10 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
 
     this.tl = tl.level
 
-    return { tl }
+    return { tl: MERGE(`tl`, tl) }
   }),
   proxy.gcs(`label`),
-  derivation.gcs(`notes`, `notes`, ({ notes }) => ({ notes: flattenDeep(notes ?? []) })),
+  derivation.gcs(`notes`, `notes`, ({ notes }) => ({ notes: flattenDeep([notes ?? []]) })),
   derivation.gcs(`vtt_notes`, `meta`, ({ vtt_notes }) => ({ meta: vtt_notes })),
   derivation.gcs(`reference`, `reference`, ({ reference }) => ({
     reference: PUSH(
@@ -91,7 +91,7 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     if (!tags) return {}
     return { tags: tags.filter(tag => tag !== this.type.name) }
   }),
-  derivation.gcs(`conditional`, `conditional`, ({ conditional }) => ({ conditional: flattenDeep(conditional ?? []) })),
+  derivation.gcs(`conditional`, `conditional`, ({ conditional }) => ({ conditional: flattenDeep([conditional ?? []]) })),
   derivation.gcs(`features`, `components`, ({ features }) => ({ components: (features ?? []).map(f => parseComponentDefinition(f as any)) })),
   // #endregion
   // #region GCA
@@ -112,9 +112,9 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
       }),
     }
   }),
-  derivation.gca(`page`, `reference`, ({ page }) => ({ reference: PUSH(`reference`, flattenDeep(page ?? [])) })),
-  derivation.gca(`cat`, `categories`, ({ cat }) => ({ categories: flattenDeep(cat ?? []) })),
-  derivation.gca(`itemnotes`, `notes`, ({ itemnotes }) => ({ notes: PUSH(`notes`, flattenDeep(itemnotes ?? [])) })),
+  derivation.gca(`page`, `reference`, ({ page }) => ({ reference: PUSH(`reference`, flattenDeep([page ?? []])) })),
+  derivation.gca(`cat`, `categories`, ({ cat }) => ({ categories: flattenDeep([cat ?? []]) })),
+  derivation.gca(`itemnotes`, `notes`, ({ itemnotes }) => ({ notes: PUSH(`notes`, flattenDeep([itemnotes ?? []])) })),
   derivation.gca([`blockat`, `parryat`], [`activeDefense`], ({ blockat, parryat }) => {
     const activeDefense = {} as Record<`block` | `parry` | `dodge`, string[]>
 
@@ -146,8 +146,8 @@ GenericFeaturePipeline.conflict = {
   // },
   specialization: function genericConflictResolution(migrations: MigrationValue<any>[], { gca }) {
     if (gca.specializationRequired) {
-      const gcsMigrations = migrations.filter(migration => isOrigin(migration._meta.origin, [`gcs`]))
-      if (gcsMigrations.length === 1) return gcsMigrations[0]
+      const gcsMigrations = migrations.filter(migration => flatten(migration._meta.origin.map(origin => origin.source)).includes(`gcs`))
+      if (gcsMigrations.length === 1) return { specialization: gcsMigrations[0] }
       else {
         // ERROR: Unimplemented, too many migrations to decide
         debugger
@@ -159,7 +159,7 @@ GenericFeaturePipeline.conflict = {
   },
 }
 
-GenericFeaturePipeline.post = function postGeneric(data) {
+GenericFeaturePipeline.post = function postGeneric({ data }) {
   const MDO = {} as MigrationDataObject<any>
 
   if (data.tl?.required && isNilOrEmpty(data.tl)) {

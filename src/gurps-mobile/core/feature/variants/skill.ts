@@ -78,7 +78,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
 
     const trainedSkillIndex = actor.cache._skill?.trained ?? {}
     const trainedSkills = flatten(Object.values(trainedSkillIndex).map(skillsById => Object.values(skillsById)))
-    const trainedSkillsGCAIndex = trainedSkills.map(feature => feature.__compilation.sources.gca?._index)
+    const trainedSkillsGCAIndex = trainedSkills.map(feature => feature.sources.gca?._index).filter(index => !isNil(index))
 
     // extract a list of all untrained skills with viable SKILL defaults
     const untrainedSkills = {} as Record<
@@ -94,7 +94,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       }[]
     >
     for (const skillFeature of trainedSkills) {
-      const gcaIndex = skillFeature.__compilation.sources.gca?._index as number
+      const gcaIndex = skillFeature.sources.gca?._index as number
 
       // ERROR: Unimplemented
       // eslint-disable-next-line no-debugger
@@ -123,12 +123,13 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
           _text: text,
           _source: source,
           from: gcaIndex,
-          tl: skillFeature.tl?.level,
+          tl: skillFeature.data.tl?.level,
         })
       }
     }
     const untrainedSkillsGCAIndex = Object.keys(untrainedSkills).map(s => parseInt(s))
 
+    debugger
     // extract a list of all untrained skills with viable ATTRIBUTE defaults (that arent already in untrainedSkills)
     const attributes = [`ST`, `DX`, `IQ`, `HT`, `Will`, `Per`, `Dodge`]
     for (const attribute of attributes) {

@@ -2,14 +2,14 @@ import { flattenDeep, get, intersection, isArray, isNil, isNumber, isString, set
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
-import BaseFeature from "../../../../core/feature/base"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate from "./base"
+import Feature from "../../../actor/feature"
 
 export interface QueryResultFeatureContextSpecs extends ContextSpecs {
-  feature: BaseFeature
+  feature: Feature
   //
   hidden: boolean
   pinned: (id: string) => boolean

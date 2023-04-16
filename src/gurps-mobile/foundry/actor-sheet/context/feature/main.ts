@@ -2,15 +2,15 @@ import { flattenDeep, get, isArray, isNil, isNumber, isString, set } from "lodas
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
-import BaseFeature from "../../../../core/feature/base"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate from "./base"
 import { FeatureState, stateToString } from "../../../../core/feature/utils"
+import GenericFeature from "../../../actor/feature/generic"
 
 export interface FeatureMainVariantContextSpecs extends ContextSpecs {
-  feature: BaseFeature
+  feature: GenericFeature
   //
   hidden: boolean
   pinned: (id: string) => boolean
@@ -45,8 +45,6 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
      */
     const _tags = getSpec(specs, `tags`, [] as FastTag[])
     const _classes = getSpec(specs, `variantClasses`, [] as string[])
-    let value = feature.value
-    if (isString(value)) value = { value: value }
 
     // COMPOUNDING CLASSES
     const classes = [
@@ -69,24 +67,24 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
             label: feature.type.name,
             icon: feature.type.icon ?? undefined,
           },
-          ...(feature.state !== FeatureState.PASSIVE
+          ...(feature.data.state !== FeatureState.PASSIVE
             ? [
                 {
                   classes: `state`,
-                  label: stateToString(feature.state),
+                  label: stateToString(feature.data.state),
                 },
               ]
             : []),
         ],
       })
-    } else if (feature.state !== FeatureState.PASSIVE) {
+    } else if (feature.data.state !== FeatureState.PASSIVE) {
       tags.at(0).add({
         type: `type`,
         classes: [`box`, `collapsed`],
         children: [
           {
             classes: `state`,
-            label: stateToString(feature.state),
+            label: stateToString(feature.data.state),
           },
         ],
       })
@@ -94,7 +92,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
 
     //    TAGS (feature tags, the property)
     tags.add(
-      ...(feature.tags ?? []).map(featureTag => ({
+      ...(feature.data.tags ?? []).map(featureTag => ({
         type: `feature`,
         classes: `box`,
         children: featureTag,
@@ -102,9 +100,9 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
     )
 
     //    REFERENCE
-    if (feature.reference?.length)
+    if (feature.data.reference?.length)
       tags.add(
-        ...feature.reference.map(ref => ({
+        ...feature.data.reference.map(ref => ({
           type: `reference`,
           classes: `box`,
           children: {
@@ -128,13 +126,13 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       ...(variant ?? {}),
       classes,
       //
-      label: getSpec(specs, `label`, feature.label ?? feature.specializedName),
+      label: getSpec(specs, `label`, feature.data.label ?? feature.specializedName),
       secondary_label: getSpec(specs, `secondary_label`),
-      value,
+      // value,
       icon: getSpec(specs, `icon`, feature.type.icon) ?? undefined,
       mark: getSpec(specs, `mark`),
       //
-      notes: getSpec(specs, `notes`, feature.notes),
+      notes: getSpec(specs, `notes`, feature.data.notes),
       //
       tags: tags.tags,
     }

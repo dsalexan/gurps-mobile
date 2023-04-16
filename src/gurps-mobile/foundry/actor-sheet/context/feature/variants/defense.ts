@@ -119,7 +119,7 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
     const ADL = adls?.[0]
     const noSecondary = adls.every(adl => adl.weapon === undefined && adl.skill === undefined)
 
-    // const mark = ((feature.__compilation.sources.gcs as any).default ? `Ruler` : undefined) as string | undefined
+    // const mark = ((feature.sources.gcs as any).default ? `Ruler` : undefined) as string | undefined
     // const classes = [...(variant.classes ?? []), !!mark && `marked`] as string[]
 
     // VALUE

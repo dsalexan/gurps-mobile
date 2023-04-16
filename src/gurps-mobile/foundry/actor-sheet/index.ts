@@ -473,7 +473,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
-    // sheetData.tabs.attributes.push(...this.buildAttributes())
+    sheetData.tabs.attributes.push(...this.buildAttributes())
     // sheetData.tabs.defenses.push(...this.buildDefenses())
 
     for (const type of groupedFeatures) {

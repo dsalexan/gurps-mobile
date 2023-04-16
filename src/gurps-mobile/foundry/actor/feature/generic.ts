@@ -38,7 +38,8 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     // register feature
     actor.setFeature(this.id, this)
 
-    if (this.data.weapons) this.data.weapons.map(feature => feature.integrate(actor))
+    // if (this.data.weapons?.length > 0) debugger
+    // if (this.data.weapons) this.data.weapons.map(feature => feature.integrate(actor))
 
     // COMPONENTS
     if (this.data.components) {

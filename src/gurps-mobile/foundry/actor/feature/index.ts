@@ -6,14 +6,21 @@ import FeatureFactory from "../../../core/feature/factory"
 import { GCA as _GCA } from "../../../core/gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../actor-sheet/context/context"
 import { GurpsMobileActor } from "../actor"
-import { cloneDeep, flatten, get, isArray, isFunction, isNil, isObjectLike, isString, omit, pick, pickBy, sortBy, uniq } from "lodash"
+import { cloneDeep, flatten, get, intersection, isArray, isEqual, isFunction, isNil, isObjectLike, isString, omit, pick, pickBy, sortBy, uniq } from "lodash"
 import { push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
 import { AllSources, CompilationContext, DeepKeyOf, FeatureSources, GenericSource, IDerivation, IDerivationFunction, IDerivationPipeline, IManualPipeline } from "./pipelines"
 import { FeatureState, typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
 import LOGGER from "../../../logger"
 import { FEATURE } from "../../../core/feature/type"
-import { MigratableObject, MigrationDataObject, buildMigratableObject, completeMigrationValueDefinitions } from "../../../core/feature/compilation/migration"
+import {
+  MigratableObject,
+  MigrationDataObject,
+  buildMigratableObject,
+  completeMigrationValueDefinitions,
+  resolveMigrationDataObject,
+} from "../../../core/feature/compilation/migration"
+import { EventEmitter } from "@billjs/event-emitter"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
@@ -49,7 +56,7 @@ export type FeatureTemplate = {
  *    Done inside handlebars, feature.hbs
  */
 
-export default class Feature<TData extends IFeatureData = IFeatureData, TManualSource extends GenericSource = GenericSource> {
+export default class Feature<TData extends IFeatureData = IFeatureData, TManualSource extends GenericSource = GenericSource> extends EventEmitter {
   // manager data
   actor: GurpsMobileActor // fill at integrate
   factory: FeatureFactory // fill externally, after construction
@@ -59,6 +66,9 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     compilation: {
       previousSources: FeatureSources<TManualSource>
       previousData: any
+      //
+      migrations: Record<string, unknown>
+      //
       pipelineOrder: string[]
       pipelines: Record<string, IDerivationPipeline<TData, TManualSource>>
       // derivations: Record<number, IDerivation<Record<string, unknown>, string>[]>
@@ -86,14 +96,19 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   // TODO: add path, key and prefix to GCS source
 
   constructor(id: string, key: number | number[], parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
+    super()
+
     // META DATA
     this.__ = {
       compilation: {
+        // previous
         previousSources: {} as any,
         previousData: {} as any,
+        //
+        migrations: {} as Record<string, unknown>,
+        // pipelines
         pipelineOrder: [],
         pipelines: {} as any,
-        // derivations: {},
         derivationsByTarget: {},
         derivationsByDestination: {} as any,
       },
@@ -115,6 +130,20 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     this.key = { tree: key_tree, value: Utils.keyTreeValue(key_tree) }
     this.parent = parent
     this.children = []
+
+    this.listen()
+  }
+
+  listen() {
+    this.on(`update`, event => {
+      const { keys, ignoreCompile } = event.data as { keys: (string | RegExp)[]; ignoreCompile: string[] }
+
+      // ERROR: Unimplemented
+      if (!isNil(ignoreCompile) && !isArray(ignoreCompile)) debugger
+
+      const _keys = keys.filter(key => !isString(key) || !ignoreCompile?.includes(key))
+      if (_keys.length > 0) this.compile(_keys)
+    })
   }
 
   addManualSource(manual: IManualPipeline<TData, TManualSource>) {
@@ -139,7 +168,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
     this.sources[name] = cloneDeep(source)
 
-    if (!ignoreCompile) this.compile([new RegExp(`^${name}.*`)])
+    // if (!ignoreCompile) this.compile([new RegExp(`^${name}.*`)])
+    this.fire(`update`, { keys: [new RegExp(`^${name}.*`)] })
 
     return this
   }
@@ -148,11 +178,12 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     let name = pipeline.name ?? `ManualPipeline`
 
     this.__.compilation.pipelineOrder.push(name)
+    // @ts-ignore
     this.__.compilation.pipelines[name] = pipeline
 
     for (let index = 0; index < pipeline.length; index++) {
       const derivation = pipeline[index]
-      // derivation.pipeline = pipeline as any
+      derivation.pipeline = pipeline as any
 
       for (const _destination of derivation.destinations) {
         const destination = _destination as any as keyof TData
@@ -183,12 +214,22 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     //    type compilation is fixed here
     this.preCompile(changes)
 
-    const context: CompilationContext = baseContext as any
+    const context: CompilationContext = { id: this.id, type: this.type, ...baseContext } as any
     const allTargets = Object.keys(this.__.compilation.derivationsByTarget)
 
     let targets: string[] = []
     if (changes === null) targets = allTargets
-    else targets = flatten(changes.map(pattern => (isString(pattern) ? [pattern] : allTargets.filter(target => target.match(pattern)))))
+    else
+      targets = flatten(
+        changes.map(pattern => {
+          if (isString(pattern)) {
+            if (allTargets.includes(pattern)) return [pattern]
+            else return []
+          }
+
+          return allTargets.filter(target => target.match(pattern))
+        }),
+      )
 
     // let timer = LOGGER.time(`LIST`) // COMMENT
 
@@ -219,11 +260,12 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region EXECUTE derivations and pool results
 
+    let destinations = [] as string[]
     const MDOs = [] as MigrationDataObject[]
     for (const derivation of derivations) {
       let result: ReturnType<typeof derivation.derive>
 
-      result = derivation.derive.call(this, this.sources, this.__.compilation.previousSources, {
+      result = derivation.derive.call(context, this.sources, this.__.compilation.previousSources, {
         previousSources: this.__.compilation.previousSources,
         sources: this.sources,
         object: this,
@@ -233,28 +275,49 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       if (!isObjectLike(result)) debugger
 
       if (result && Object.keys(result).length >= 1) {
-        completeMigrationValueDefinitions(result, derivation, {})
+        completeMigrationValueDefinitions(result, { type: `derivation`, on: derivation.targets, derivation })
 
-        MDOs.push(result)
+        if (Object.keys(result).length >= 1) {
+          destinations.push(...derivation.destinations.map(destination => destination.toString()))
+          MDOs.push(result)
+        }
       }
     }
 
     // migrate for each template (conflict resolution should be dealt with by applying the correct MigrationMode)
-    const data = buildMigratableObject() as MigratableObject
-    for (const mdo of MDOs) data.migrate(mdo, context, this.sources)
+    this.__.compilation.previousData = cloneDeep(this.data)
+    const data = {
+      data: this.data,
+      migrations: [],
+      migrationsByKey: this.__.compilation.migrations,
+    } as MigratableObject
+
+    for (const mdo of MDOs) resolveMigrationDataObject(data, mdo, context, this.sources)
 
     // for each pipeline, do post
+    let postDestinations = [] as string[]
     const postMDOs = [] as MigrationDataObject[]
     for (const name of this.__.compilation.pipelineOrder) {
       const pipeline = this.__.compilation.pipelines[name]
       if (!pipeline.post) continue
 
-      const mdo = pipeline.post.call(this, data, this, this.sources)
-      if (mdo && Object.keys(mdo).length >= 1) postMDOs.push(completeMigrationValueDefinitions(mdo, pipeline as any, { sources: [`post`] }))
+      const mdo = pipeline.post.call(context, data, this, this.sources)
+      if (mdo && Object.keys(mdo).length >= 1) {
+        const completeMDO = completeMigrationValueDefinitions(mdo, { type: `post`, pipeline })
+
+        if (Object.keys(completeMDO ?? {}).length > 0) postMDOs.push(completeMDO)
+      }
     }
 
     // migrate for each post MDO
-    for (const mdo of postMDOs) data.migrate(mdo, context, this.sources)
+    for (const mdo of postMDOs) {
+      const postDestinations = Object.keys(mdo)
+
+      resolveMigrationDataObject(data, mdo, context, this.sources)
+
+      // only fire update on changed values
+      destinations.push(...postDestinations.filter(destination => !isEqual(this.__.compilation.previousData[destination], data.data[destination])))
+    }
 
     // #endregion
 
@@ -263,10 +326,17 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
 
-    for (const key of Object.keys(data)) {
-      if (key === `migrate` || key === `migrationsByKey` || key === `migrations`) continue
-      if (data[key] === undefined) continue
-      this.data[key] = data[key]
+    for (const key of Object.keys(data.data)) {
+      if (data.data[key] === undefined) continue
+
+      // this.fire(`before-compile.${key}`, { key, value: data.data[key], migration: data.migrationsByKey[key] })
+      const value = data.data[key]
+      const migration = data.migrationsByKey[key]
+
+      this.data[key] = value
+      this.__.compilation.migrations[key] = migration
+
+      // this.fire(`after-compile`, { key, value, migration })
     }
 
     // #endregion
@@ -274,11 +344,31 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // timer(`APPLY`) // COMMENT
     // timer = LOGGER.time(`FIRE`) // COMMENT
 
-    // #region FIRE subscription events for feature+keys that have changed
+    // FIRE subscription events for feature+keys that have changed
+    destinations = uniq(destinations)
+    const overlap = intersection(destinations, targets)
+    if (overlap.length > 0) {
+      // TODO: By now, i'm just removing overlaps, but this is not the best solution
+      //       The best solution would be to implement a stack overflow "refusal" in the return of derivation, to indicate a moment do stop a cycle of changes
 
-    LOGGER.warn(`POOL FIRE SUBSCRIPTION EVENT`, targets)
+      // @ts-ignore
+      if (intersection(document.__STACK_OVERFLOW_FEATURE_PROTECTION?.[this.id] ?? [], overlap).length > 0) {
+        LOGGER.warn(`Feature "${this.id}" has a possible stack overflow (a derivation is changing its targets)`, {
+          // @ts-ignore
+          previousOverlap: document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id],
+          overlap,
+          targets,
+          destinations,
+        })
+        debugger
+      }
 
-    // #endregion
+      // @ts-ignore
+      if (document.__STACK_OVERFLOW_FEATURE_PROTECTION === undefined) document.__STACK_OVERFLOW_FEATURE_PROTECTION = {}
+      // @ts-ignore
+      document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id] = overlap
+    }
+    this.fire(`update`, { feature: this, keys: destinations, ignoreCompile: overlap })
 
     // timer(`FIRE`) // COMMENT
   }

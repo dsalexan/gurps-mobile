@@ -1,4 +1,4 @@
-import { flatten, get, isArray, isEmpty, isNil, isObjectLike, isString, uniq, uniqBy } from "lodash"
+import { flatten, get, has, isArray, isEmpty, isNil, isObjectLike, isString, uniq, uniqBy } from "lodash"
 import type { GCS } from "gurps-extension/types/gcs"
 
 import LOGGER from "logger"
@@ -65,6 +65,10 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
     } else return FEATURE.GENERIC_ADVANTAGE
   } else if (type === `skill`) return FEATURE.SKILL
   else if (type === `spell`) return FEATURE.SPELL
+  else if (type === `equipment`) return FEATURE.EQUIPMENT
+  else if (type === `weapon`) return FEATURE.MELEE_WEAPON
+  else if (type === `melee_weapon`) return FEATURE.MELEE_WEAPON
+  else if (type === `ranged_weapon`) return FEATURE.RANGED_WEAPON
 
   return FEATURE.GENERIC
 }
@@ -119,7 +123,7 @@ export function name(advantage: Feature, recursive = false): string | undefined 
  */
 export function specializedName(name: string | GCA.Entry, nameext?: string): string {
   if (name === undefined) return undefined as any
-  if (!isString(name)) return specializedName(name.name, name.nameext)
+  if (!isString(name) && has(name, `name`)) return specializedName(name.name, name.nameext)
   if (isNilOrEmpty(nameext)) return name
   return `${name} (${nameext})`
 }
