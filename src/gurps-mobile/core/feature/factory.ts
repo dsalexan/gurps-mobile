@@ -21,7 +21,7 @@ import { IWeaponFeatureData } from "../../foundry/actor/feature/pipelines/weapon
 import LOGGER from "../../logger"
 import { EventEmitter } from "@billjs/event-emitter"
 
-type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext> }
+type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
 export type FeatureDataByType = {
   base: IFeatureData
@@ -38,14 +38,6 @@ export default class FeatureFactory extends EventEmitter {
     compiling: boolean
   }
 
-  pooling: {
-    index: {
-      string: string[]
-      regexp: RegExp[]
-    }
-    keys: Record<string, { features: GenericFeature[] }>
-  }
-
   compiling: {
     index: CompilationInstructions[]
     byFeature: Record<string, number>
@@ -56,6 +48,10 @@ export default class FeatureFactory extends EventEmitter {
     compiledEntities: number
     running: boolean
     //
+    pool: {
+      requests: Parameters<(typeof FeatureFactory)[`prototype`][`requestCompilation`]>[]
+      batch: number
+    }
   }
 
   constructor() {
@@ -63,14 +59,6 @@ export default class FeatureFactory extends EventEmitter {
 
     this.logs = {
       compiling: true,
-    }
-
-    this.pooling = {
-      index: {
-        string: [],
-        regexp: [],
-      },
-      keys: {},
     }
 
     this.compiling = {
@@ -82,6 +70,11 @@ export default class FeatureFactory extends EventEmitter {
       queueSize: 0,
       compiledEntities: 0,
       running: false,
+      //
+      pool: {
+        requests: [],
+        batch: 0,
+      },
     }
   }
 
@@ -158,8 +151,8 @@ export default class FeatureFactory extends EventEmitter {
     return collection
   }
 
-  requestCompilation(feature: GenericFeature, keys: (string | RegExp)[], baseContext: Partial<CompilationContext>, options: { delayCompile: boolean }) {
-    let instructions: CompilationInstructions = { feature, keys, baseContext }
+  requestCompilation(feature: GenericFeature, keys: (string | RegExp)[], baseContext: Partial<CompilationContext>, ignores: string[], options: { delayCompile: boolean }) {
+    let instructions: CompilationInstructions = { feature, keys, baseContext, ignores }
 
     if (options.delayCompile) {
       // merge instructions with next request
@@ -183,11 +176,13 @@ export default class FeatureFactory extends EventEmitter {
     if (hasDelayed) {
       const newKeys = [] as typeof instructions.keys
       let newBaseContext = {} as typeof instructions.baseContext
+      const newIgnores = [] as typeof instructions.ignores
 
       const delayedInstructions = this.compiling.delayedByFeature[feature.id]
-      for (const { keys: delayedKeys, baseContext: delayedBaseContext } of delayedInstructions) {
+      for (const { keys: delayedKeys, baseContext: delayedBaseContext, ignores: delayedIgnores } of delayedInstructions) {
         newKeys.push(...delayedKeys)
         newBaseContext = { ...newBaseContext, ...delayedBaseContext }
+        newIgnores.push(...delayedIgnores)
 
         // ERROR: Untested
         if (Object.keys(newBaseContext).length > 0) debugger
@@ -195,9 +190,11 @@ export default class FeatureFactory extends EventEmitter {
 
       newKeys.push(...instructions.keys)
       newBaseContext = { ...newBaseContext, ...instructions.baseContext }
+      newIgnores.push(...instructions.ignores)
 
       instructions.keys = uniq(newKeys)
       instructions.baseContext = newBaseContext
+      instructions.ignores = uniq(newIgnores)
 
       delete this.compiling.delayedByFeature[feature.id]
     }
@@ -217,21 +214,26 @@ export default class FeatureFactory extends EventEmitter {
             `merged`,
             feature.data.name ?? `id:${feature.id}`,
             `[${keys.map(key => key.toString()).join(`, `)}]`,
+            `![${ignores.map(key => key.toString()).join(`, `)}]`,
             `into instruction id`,
             targetInstructionsId,
             `[${this.compiling.index[targetInstructionsId].keys.map(key => key.toString()).join(`, `)}]`,
+            `![${this.compiling.index[targetInstructionsId].ignores.map(key => key.toString()).join(`, `)}]`,
             [
               `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
               `color: black; font-weight: bold; font-style: regular;`,
               `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
+              `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
               `color: black; font-weight: regular; font-style: italic;`,
               `color: darkblue; font-weight: bold; font-style: regular;`,
+              `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
               `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
             ],
           )
 
       this.compiling.index[targetInstructionsId].keys = uniq([...this.compiling.index[targetInstructionsId].keys, ...instructions.keys])
       this.compiling.index[targetInstructionsId].baseContext = { ...this.compiling.index[targetInstructionsId].baseContext, ...instructions.baseContext }
+      this.compiling.index[targetInstructionsId].ignores = uniq([...this.compiling.index[targetInstructionsId].ignores, ...instructions.ignores])
 
       // ERROR: Untested
       if (Object.keys(this.compiling.index[targetInstructionsId].baseContext).length > 0) debugger
@@ -259,6 +261,7 @@ export default class FeatureFactory extends EventEmitter {
             `[ /+1]`,
             feature.data.name ?? `id:${feature.id}`,
             `[${instructions.keys.map(key => key.toString()).join(`, `)}]`,
+            `![${instructions.ignores.map(key => key.toString()).join(`, `)}]`,
             instructions.baseContext,
             [
               `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
@@ -266,6 +269,7 @@ export default class FeatureFactory extends EventEmitter {
               `color: black; font-weight: regular; font-style: regular;`,
               `color: black; font-weight: bold; font-style: regular;`,
               `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
+              `color: rgb(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
             ],
           )
 
@@ -279,15 +283,28 @@ export default class FeatureFactory extends EventEmitter {
             id,
             feature.data.name ?? `id:${feature.id}`,
             `[${instructions.keys.map(key => key.toString()).join(`, `)}]`,
+            `![${instructions.ignores.map(key => key.toString()).join(`, `)}]`,
             instructions.baseContext,
             [
               `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
               `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
               `color: black; font-weight: bold; font-style: regular;`,
               `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
+              `color: rgb(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
             ],
           )
     }
+  }
+
+  /** Pool a compilation instruction to be requested AFTER current batch is done */
+  poolCompilationRequest(feature: GenericFeature, keys: string[], baseContext: Partial<CompilationContext>, ignores?: string[]) {
+    let instructions: CompilationInstructions = { feature, keys, baseContext, ignores: ignores ?? [] }
+    this.compiling.pool.requests.push([instructions.feature, instructions.keys, instructions.baseContext, instructions.ignores, {} as any])
+  }
+
+  prepareCompilation() {
+    this.compiling.pool.requests = []
+    this.compiling.pool.batch = 0
   }
 
   startCompilation() {
@@ -299,94 +316,135 @@ export default class FeatureFactory extends EventEmitter {
           `color: rgba(0, 0, 0, 0.5); font-weight: bold; font-style: italic;`,
           `color: black; font-weight: regular; font-style: regular;`,
         ])
-      return
-    }
-
-    if (this.logs.compiling)
-      logger.info(`start`, `Starting compilation of`, this.compiling.queue.length, `entries.`, [
-        `color: rgba(0, 0, 0, 0.5); font-weight: bold; font-style: italic;`,
-        `color: black; font-weight: regular; font-style: regular;`,
-        `color: darkblue; font-weight: bold; font-style: regular;`,
-        `color: black; font-weight: regular; font-style: regular;`,
-      ])
-
-    this.compiling.running = true
-    this.compiling.compiledEntities = 0
-    this.compiling.queueSize = this.compiling.queue.length
-    while (this.compiling.queue.length > 0) {
-      const id = this.compiling.queue.shift()!
-      const { feature, keys, baseContext } = this.compiling.index[id]
-
-      if (this.logs.compiling)
-        logger.info(
-          `run`,
-          id,
-          `[${this.compiling.compiledEntities + 1}/${this.compiling.queueSize}]`,
-          `${feature.data.name ?? `id:${feature.id}`}`,
-          `(${this.compiling.queue.length} entries left in queue)`,
-          `[${keys.map(key => key.toString()).join(`, `)}]`,
-          baseContext,
-          [
-            `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
-            `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
-            `color: black; font-weight: regular; font-style: regular;`,
-            `color: black; font-weight: bold; font-style: regular;`,
-            `color: black; font-weight: regular; font-style: italic;`,
-            `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
-          ],
-        )
-
-      feature._compile(keys, baseContext)
-
-      this.compiling.compiledEntities++
-    }
-
-    this.compiling.index = []
-    this.compiling.byFeature = {}
-    this.compiling.running = false
-
-    if (this.logs.compiling)
-      logger.info(`done`, `Compilation of`, this.compiling.compiledEntities, `out of`, this.compiling.queueSize, `entries finished.`, [
-        `color: rgba(0, 0, 0, 0.5); font-weight: bold; font-style: italic;`,
-        `color: black; font-weight: regular; font-style: regular;`,
-        `color: darkblue; font-weight: bold; font-style: regular;`,
-        `color: black; font-weight: regular; font-style: regular;`,
-        `color: darkblue; font-weight: bold; font-style: regular;`,
-        `color: black; font-weight: regular; font-style: regular;`,
-      ])
-
-    this.fire(`compilation:done`)
-  }
-
-  pool(feature: GenericFeature, keys: (string | RegExp)[]) {
-    const keysIds = [] as string[]
-    for (const key of keys) {
-      const type = isString(key) ? `string` : `regexp`
-
-      let index = -1
-      if (isString(key)) index = this.pooling.index.string.indexOf(key)
-      else index = findIndex(this.pooling.index.regexp, r => r.toString() === key.toString())
-
-      if (index === -1) {
-        if (isString(key)) this.pooling.index.string.push(key)
-        else this.pooling.index.regexp.push(key)
-
-        index = this.pooling.index[type].length - 1
+    } else {
+      if (this.logs.compiling) {
+        logger.info(`start`, `Starting compilation of`, this.compiling.queue.length, `entries.`, [
+          `color: rgba(82, 124, 64, 0.5); font-weight: bold; font-style: italic;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+          `color: darkblue; font-weight: bold; font-style: regular;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+        ])
       }
 
-      keysIds.push([type, index].join(`.`))
+      this.compiling.running = true
+      this.compiling.compiledEntities = 0
+      this.compiling.queueSize = this.compiling.queue.length
+      while (this.compiling.queue.length > 0) {
+        const id = this.compiling.queue.shift()!
+        const { feature, keys, baseContext, ignores } = this.compiling.index[id]
+
+        const targets = feature.prepareCompile(keys, baseContext, ignores)
+
+        if (targets.length > 0) {
+          if (this.logs.compiling)
+            logger.info(
+              `run`,
+              id,
+              `[${this.compiling.compiledEntities + 1}/${this.compiling.queueSize}]`,
+              `${feature.data.name ?? `id:${feature.id}`}`,
+              `(${this.compiling.queue.length} entries left in queue)`,
+              `[${targets.map(key => key.toString()).join(`, `)}]`,
+              `⇔`,
+              `[${keys.map(key => key.toString()).join(`, `)}]`,
+              `![${ignores.map(key => key.toString()).join(`, `)}]`,
+              baseContext,
+              [
+                `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
+                `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
+                `color: black; font-weight: regular; font-style: regular;`,
+                `color: black; font-weight: bold; font-style: regular;`,
+                `color: black; font-weight: regular; font-style: italic;`,
+                `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
+                `color: black; font-weight: regular; font-style: regular;`,
+                `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
+                `color: rgb(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
+              ],
+            )
+
+          feature._compile(targets, keys, baseContext)
+        } else {
+          if (this.logs.compiling)
+            logger.info(
+              `skip`,
+              id,
+              `[${this.compiling.compiledEntities + 1}/${this.compiling.queueSize}]`,
+              `${feature.data.name ?? `id:${feature.id}`}`,
+              `(${this.compiling.queue.length} entries left in queue)`,
+              `[${keys.map(key => key.toString()).join(`, `)}]`,
+              `![${ignores.map(key => key.toString()).join(`, `)}]`,
+              baseContext,
+              [
+                `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
+                `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
+                `color: black; font-weight: regular; font-style: regular;`,
+                `color: black; font-weight: bold; font-style: regular;`,
+                `color: black; font-weight: regular; font-style: italic;`,
+                `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
+                `color: rgb(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
+              ],
+            )
+        }
+
+        this.compiling.compiledEntities++
+      }
+
+      this.compiling.index = []
+      this.compiling.byFeature = {}
+      this.compiling.running = false
     }
 
-    // ERROR: No can do babydoll
-    if (keysIds.some(id => id.split(`.`)[1] === -1 || isNil(id.split(`.`)[1]))) debugger // COMMENT
+    const hasPooledBatch = this.compiling.pool.requests.length > 0
+    const eventName = hasPooledBatch || this.compiling.pool.batch > 0 ? `batch` : `done`
 
-    debugger
-    for (const id of keysIds) {
-      const pool = this.pooling.keys[id] || (this.pooling.keys[id] = { features: [] })
-      pool.features.push(feature)
-      // debounce(, 100)
-
-      debugger
+    if (this.compiling.queue.length > 0) {
+      if (this.logs.compiling) {
+        logger.info(eventName, this.compiling.pool.batch, `Compilation of`, this.compiling.compiledEntities, `out of`, this.compiling.queueSize, `entries finished.`, [
+          `color: rgba(82, 124, 64, 0.75); font-weight: bold; font-style: italic;`,
+          `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+          `color: darkblue; font-weight: bold; font-style: regular;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+          `color: darkblue; font-weight: bold; font-style: regular;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+        ])
+      }
     }
+
+    this.fire(`compilation:${eventName}`, { batch: this.compiling.pool.batch })
+
+    if (hasPooledBatch) this.nextCompilationBatch()
+  }
+
+  nextCompilationBatch() {
+    const hasPooledBatch = this.compiling.pool.requests.length > 0
+    if (!hasPooledBatch) return
+
+    const logger = LOGGER.get(`actor`).get(`pooling`)
+
+    const requests = this.compiling.pool.requests
+
+    if (this.logs.compiling)
+      logger
+        .group(true)
+        .info(`pool`, this.compiling.pool.batch + 1, `Pooling`, requests.length, `requests`, [
+          `color: rgba(82, 124, 64, 0.75); font-weight: bold; font-style: italic;`,
+          `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+          `color: darkblue; font-weight: bold; font-style: regular;`,
+          `color: black; font-weight: regular; font-style: regular;`,
+        ])
+
+    for (const request of requests) {
+      const [feature, keys, baseContext] = request
+
+      this.requestCompilation(feature, keys, baseContext, [], {} as any)
+    }
+
+    logger.group()
+
+    this.compiling.pool.requests = []
+    this.compiling.pool.batch++
+
+    this.startCompilation()
   }
 }

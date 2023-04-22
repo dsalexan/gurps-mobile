@@ -17,22 +17,16 @@ function hasStyles(message: any[]) {
 
 export default class Logger {
   name: string
-  openGroup: {
-    opened: boolean
-    collapsed: boolean
-    needsClosing: boolean
-  }
+  openGroups: { collapsed: boolean }[]
+  closeGroups: number
   timers: Record<string, { time: Date }>
   styles: Record<string, string>
 
   constructor(name: string) {
     this.name = name
 
-    this.openGroup = {
-      opened: false,
-      collapsed: false,
-      needsClosing: false,
-    }
+    this.openGroups = []
+    this.closeGroups = 0
 
     this.timers = {}
   }
@@ -82,42 +76,51 @@ export default class Logger {
   }
 
   info(...message: any[]) {
-    if (this.openGroup.opened) {
+    const doGroup = this.openGroups.pop()
+    if (doGroup) {
       const m = this.build({}, ...message)
 
-      if (this.openGroup.collapsed) console.groupCollapsed(...m)
+      if (doGroup.collapsed) console.groupCollapsed(...m)
       else console.group(...m)
 
-      this.openGroup.opened = false
-      this.openGroup.collapsed = false
-
-      this.openGroup.needsClosing = true
+      this.closeGroups++
     } else {
-      const m = this.build({ ignoreName: this.openGroup.needsClosing }, ...message)
+      const m = this.build({ ignoreName: this.closeGroups > 0 }, ...message)
 
       console.log(...m)
     }
+
+    return this
   }
 
   warn(...message: any[]) {
-    console.warn(...this.build({ ignoreName: this.openGroup.needsClosing }, ...message))
+    console.warn(...this.build({ ignoreName: this.closeGroups > 0 }, ...message))
+    return this
   }
 
   error(...message: any[]) {
     console.error(...this.build({}, ...message))
+    return this
   }
 
   group(collapsed?: boolean) {
-    if (this.openGroup.needsClosing) {
+    const needsClosing = this.closeGroups > 0
+
+    if (needsClosing) {
       console.groupEnd()
-      this.openGroup.needsClosing = false
+      this.closeGroups--
       return this
     } else {
-      this.openGroup.opened = true
-      this.openGroup.collapsed = !!collapsed
+      this.openGroups.push({ collapsed: !!collapsed })
 
       return this
     }
+  }
+
+  openGroup(collapsed?: boolean) {
+    this.openGroups.push({ collapsed: !!collapsed })
+
+    return this
   }
 
   time(key: string | number, ...message: any[]) {
@@ -128,10 +131,19 @@ export default class Logger {
       if (hasStyles(message) && message.length === 1) args.push(key)
       args.push(...message)
 
-      console.log(...this.build({ ignoreName: this.openGroup.needsClosing }, ...args))
+      console.log(...this.build({ ignoreName: this.closeGroups > 0 }, ...args))
     }
 
-    return (...endMessage: any[]) => this.timeEnd(key, ...endMessage)
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const loggerInstance = this
+    const endMessageFunction = function (...endMessage: any[]) {
+      return loggerInstance.timeEnd(key, ...endMessage)
+    }
+    endMessageFunction.group = function (collapsed?: boolean) {
+      loggerInstance.group(collapsed)
+      return endMessageFunction
+    }
+    return endMessageFunction
   }
 
   timeEnd(key: string | number, ...endMessage: any[]) {
@@ -143,7 +155,7 @@ export default class Logger {
     let timestamp = endMessage.length === 0 ? [`Elapsed Time:`, `${elapsedTime}ms`] : [`(${elapsedTime}ms)`]
     styles.push(...(endMessage.length === 0 ? [`font-style: italic; font-weight: regular; color: #999;`, `font-weight: bold;`] : [`font-style: italic; font-weight: bold;`]))
 
-    const m = this.build({ ignoreName: this.openGroup.needsClosing }, ...endMessage, ...timestamp, styles)
+    const m = this.build({ ignoreName: this.closeGroups > 0 }, ...endMessage, ...timestamp, styles)
     console.log(...m)
 
     return this

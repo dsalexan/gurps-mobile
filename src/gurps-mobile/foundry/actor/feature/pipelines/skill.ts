@@ -70,52 +70,47 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
   derivation.gca(`default`, `defaults`, gca => ({ defaults: gca.default?.map(_default => parseLevelDefinition(_default)) ?? undefined })),
   // #endregion
   // #region DATA
-  // derivation([`points`, `difficulty`, `training`], [`proficiencyModifier`], function (_, __, { object }) {
-  //   const skill = object as SkillFeature
-  //   const modifier = skill.calcProficiencyModifier()
+  derivation([`points`, `difficulty`, `attribute`, `training`], [`proficiencyModifier`], function (_, __, { object }) {
+    const skill = object as SkillFeature
+    // if (object.id === `fa49c99f-d754-4f4a-8322-e14db72c32d1`) debugger
+    const modifier = object.data.training !== `trained` ? 0 : skill.calcProficiencyModifier()
 
-  //   return { proficiencyModifier: OVERWRITE(`proficiencyModifier`, modifier) }
-  // }),
-  // derivation([`actor.components:pool`], [`actorModifier`], function (_, __, { object }) {
-  //   const actor = object.actor
+    return { proficiencyModifier: OVERWRITE(`proficiencyModifier`, modifier) }
+  }),
+  derivation([`actor.components:pool`], [`actorModifier`], function (_, __, { object }) {
+    const actor = object.actor
 
-  //   debugger
-  //   if (isNil(actor)) return {}
+    // if (object.id === `6e9287a7-221b-45f0-9256-a253498c3085`) debugger
 
-  //   const skill = object as SkillFeature
-  //   const modifier = skill.calcActorModifier()
+    if (isNil(actor)) return {}
 
-  //   return { actorModifier: OVERWRITE(`actorModifier`, modifier) }
-  // }),
-  // // TODO: add to target actor attributes
-  // derivation([`integration`, `points`, `training`], [`attributeBasedLevel`], function (_, __, { object }) {
-  //   const actor = object.actor
-  //   const { defaults, difficulty, name, points, training } = object.data
+    const skill = object as SkillFeature
+    const modifier = skill.calcActorModifier()
 
-  //   if (isNil(actor)) return {}
+    return { actorModifier: OVERWRITE(`actorModifier`, modifier) }
+  }),
+  derivation([`actorModifier`, `proficiencyModifier`, `attribute`, `training`], [`attributeBasedLevel`], function (_, __, { object }) {
+    const actor = object.actor
+    const { actorModifier, proficiencyModifier } = object.data
 
-  //   // TODO: Only call AFTER components targeting this skill are set in actor
-  //   //    probably create another intermediary value ("actorBonus") and use that as target here
+    if (isNil(actor) || actorModifier == undefined || proficiencyModifier === undefined) return {}
 
-  //   const skill = object as SkillFeature
-  //   const level = skill.calcAttributeBasedLevel({ modifier: true })
+    const skill = object as SkillFeature
+    const level = skill.calcAttributeBasedLevel({ modifier: true })
 
-  //   return { attributeBasedLevel: OVERWRITE(`attributeBasedLevel`, level) }
-  // }),
-  // // TODO: add some sort of "actor cached trained skills" to target
-  // derivation([`attributeBasedLevel`, `defaults`, `training`], [`level`], function (_, __, { object }) {
-  //   const actor = object.actor
-  //   const { defaults, difficulty, name, points, training } = object.data
+    return { attributeBasedLevel: OVERWRITE(`attributeBasedLevel`, level) }
+  }),
+  derivation([`attributeBasedLevel:pool`, `defaults`, `training`], [`level`], function (_, __, { object }) {
+    const actor = object.actor
+    const { attributeBasedLevel, container, training } = object.data
 
-  //   if (isNil(actor)) return {}
+    if (isNil(actor) || attributeBasedLevel === undefined || container) return {}
 
-  //   // TODO: Only call AFTER components targeting this skill are set in actor
+    const skill = object as SkillFeature
+    const level = skill.calcLevel()
 
-  //   const skill = object as SkillFeature
-  //   const level = skill.calcLevel()
-
-  //   return { level: OVERWRITE(`level`, level) }
-  // }),
+    return { level: OVERWRITE(`level`, level) }
+  }),
   // #endregion
 ]
 

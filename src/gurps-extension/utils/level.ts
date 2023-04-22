@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy } from "lodash"
+import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum } from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
 import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
@@ -11,7 +11,7 @@ import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
 import { specializedName } from "../../gurps-mobile/core/feature/utils"
 import { GURPS4th } from "../types/gurps4th"
-import GenericFeature, { IGenericFeature } from "../../gurps-mobile/core/feature/variants/generic"
+import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 
 // #region types
 
@@ -20,7 +20,7 @@ export interface ILevelDefinition extends GCA.Expression {
   math: never
   tags: string[]
 
-  parse(feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor): ILevel | null
+  parse(feature: GenericFeature, actor: GurpsMobileActor): ILevel | null
 }
 
 // export interface Expression {
@@ -139,7 +139,7 @@ export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault):
   // GCA.Expression
   if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) {
     object.tags = [] as string[]
-    object.parse = (feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) => parseLevel(object as any, feature, actor)
+    object.parse = (feature: GenericFeature, actor: GurpsMobileActor) => parseLevel(object as any, feature, actor)
     return object as ILevelDefinition
   }
 
@@ -201,14 +201,14 @@ export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault):
     debugger
   }
 
-  roll.parse = (feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) => parseLevel(roll as any, feature, actor)
+  roll.parse = (feature: GenericFeature, actor: GurpsMobileActor) => parseLevel(roll as any, feature, actor)
   return roll
 }
 
 /**
  * Parses a level definition into level object (level and relative level)
  */
-export function parseLevel(expression: ILevelDefinition, feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor): ILevel | null {
+export function parseLevel(expression: ILevelDefinition, feature: GenericFeature, actor: GurpsMobileActor): ILevel | null {
   const definitions = Object.entries(expression.targets ?? {}).map(([variable, target]) => parseExpressionTarget(variable, target, feature as GenericFeature, actor))
 
   const scope = Object.fromEntries(definitions.map(definition => [definition.variable, definition.value]))
@@ -273,7 +273,7 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
       debugger
     } else {
       const variable = transforms[0]
-      value = me.__compilation.sources.gca?.[variable].toString()
+      value = (me.sources.gca?.[variable] as any).toString()
 
       if (isNil(value.match(/[@%]\w+\(/i))) {
         // ERROR: Unimplemented transform
@@ -303,13 +303,17 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
     //    remove duplicates by id
     const skillEntries = skillIndexes.map(index => GCA.entries[index])
     const listOfSkillMaps = skillEntries.map(entry => actor.cache._skill?.trained?.[specializedName(entry.name, entry.nameext)]).filter(skill => !isNil(skill))
-    const trainedSkills = flatten(listOfSkillMaps.map(skillMap => Object.values(skillMap ?? {}).filter(skill => skill.training === `trained`)))
+    const trainedSkills = flatten(listOfSkillMaps.map(skillMap => Object.values(skillMap ?? {}).filter(skill => skill.data.training === `trained`)))
 
     if (trainedSkills.length > 0) {
       // transform if needed
       const trainedSkill = trainedSkills[0]
-      debugger
-      value = trainedSkill.calcLevel()?.level
+      const level = trainedSkill.data.level === undefined ? trainedSkill.data.attributeBasedLevel : trainedSkill.data.level
+      value = level?.level
+
+      // ERROR: Unimplemented
+      if (isNil(value)) debugger
+
       for (const transform of transforms) {
         // if (transform === `level`) // do nothing, "level" for skill is already sl
 
@@ -345,7 +349,7 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
   }
 
   // ERROR: Noo dawg
-  if (isNaN(value)) debugger
+  if (isNaN(value) || isNil(value)) debugger
 
   return {
     variable,
@@ -403,7 +407,7 @@ export function buildLevel(baseLevel: number, bonus: number, { attribute, skill,
   return levelDefinition
 }
 
-export function orderLevels(levelDefinitions: ILevelDefinition[], feature: GenericFeature | IGenericFeature, actor: GurpsMobileActor) {
+export function orderLevels(levelDefinitions: ILevelDefinition[], feature: GenericFeature, actor: GurpsMobileActor) {
   let levels = levelDefinitions.map(level => level.parse(feature, actor)) as ILevel[]
 
   levels = orderBy(
@@ -474,7 +478,7 @@ export function calcLevel(attribute: GURPS4th.AttributesAndCharacteristics) {
     // CALCULATE LEVEL BASED ON DEFAULTS
     const skillCache = actor.cache._skill?.trained
     const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
-    const trainedSkillsGCA = trainedSkills.map(skill => skill.__compilation.sources.gca?._index).filter(index => !isNil(index)) as number[]
+    const trainedSkillsGCA = trainedSkills.map(skill => skill.sources.gca?._index).filter(index => !isNil(index)) as number[]
 
     for (const _default of this.defaults) {
       const targets = Object.values(_default.targets ?? {})
@@ -486,7 +490,7 @@ export function calcLevel(attribute: GURPS4th.AttributesAndCharacteristics) {
         const skills = target.value as number[]
         if (!skills || skills?.length === 0) return false
 
-        return skills.some(skill => skill !== this.__compilation.sources.gca?._index && trainedSkillsGCA.includes(skill))
+        return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
       })
 
       // if are targets are compatible (type any OR type skill and trained)

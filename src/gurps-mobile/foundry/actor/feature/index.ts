@@ -134,6 +134,11 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     this.on(`update`, event => {
       const { keys, delayCompile, ignoreCompile } = event.data as { keys: (string | RegExp)[]; delayCompile?: boolean; ignoreCompile: string[] }
 
+      // ERROR: Unimplemented
+      if (!isNil(ignoreCompile) && !isArray(ignoreCompile)) debugger
+
+      let ignores = [...(ignoreCompile ?? [])]
+
       const poolables = flatten(
         keys.map(key => {
           if (isString(key) && this.__.compilation.poolables.includes(key)) return [key]
@@ -142,15 +147,21 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
           return []
         }),
       )
-      if (poolables.length > 0) debugger
-      if (poolables.length > 0) this.factory.pool(this, poolables)
 
-      // ERROR: Unimplemented
-      if (!isNil(ignoreCompile) && !isArray(ignoreCompile)) debugger
+      if (poolables.length > 0) {
+        // this.factory.pool(this, poolables)
+        this.factory.poolCompilationRequest(
+          this,
+          poolables.map(poolable => `${poolable}:pool`),
+          {},
+        )
 
-      const nonIgnoredKeys = keys.filter(key => !isString(key) || !ignoreCompile?.includes(key))
+        ignores.push(...poolables.map(poolable => `${poolable}:pool`))
+      }
+
+      const nonIgnoredKeys = keys.filter(key => !isString(key) || !ignores?.includes(key))
       if (nonIgnoredKeys.length > 0) {
-        this.compile(nonIgnoredKeys, {}, { delayCompile })
+        this.compile(nonIgnoredKeys, {}, ignores, { delayCompile })
       }
     })
 
@@ -239,14 +250,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
   }
 
-  _compile(changes: (string | RegExp)[] | null, baseContext = {}) {
-    const isFullCompilation = changes === null
-
-    // COMPILE type
-    //    type compilation is fixed here
-    this.preCompile(changes)
-
-    const context: CompilationContext = { id: this.id, type: this.type, parent: this.parent, ...baseContext } as any
+  prepareCompile(changes: (string | RegExp)[] | null, baseContext = {}, ignores: string[] = []) {
     const allTargets = Object.keys(this.__.compilation.derivationsByTarget)
 
     let targets: string[] = []
@@ -263,8 +267,20 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
         }),
       )
 
-    if (targets.length === 0) return
+    // remove those in ignores
+    targets = targets.filter(target => !ignores.includes(target))
 
+    return targets
+  }
+
+  _compile(targets: string[], changes: (string | RegExp)[] | null, baseContext = {}) {
+    // COMPILE type
+    //    type compilation is fixed here
+    this.preCompile(changes)
+
+    const context: CompilationContext = { id: this.id, type: this.type, parent: this.parent, ...baseContext } as any
+
+    if (targets.length === 0) return false
     // let timer = LOGGER.time(`LIST`) // COMMENT
 
     // #region LIST derivations by updated keys
@@ -406,7 +422,6 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     const overlap = intersection(destinations, targets)
     if (overlap.length > 0) {
-      debugger
       // TODO: By now, i'm just removing overlaps, but this is not the best solution
       //       The best solution would be to implement a stack overflow "refusal" in the return of derivation, to indicate a moment do stop a cycle of changes
 
@@ -436,9 +451,11 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
 
     // timer(`FIRE`) // COMMENT
+
+    return true
   }
 
-  compile(changes: (string | RegExp)[] | null, baseContext = {}, { delayCompile }: { delayCompile?: boolean } = {}) {
+  compile(changes: (string | RegExp)[] | null, baseContext = {}, ignores: string[] = [], { delayCompile }: { delayCompile?: boolean } = {}) {
     if (changes === null) debugger
 
     // only request keys if they are targets of derivations
@@ -458,7 +475,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // if (targetChanges.length === 0) return
 
     // but still send regexp as key if they came this way
-    this.factory.requestCompilation(this, changes, baseContext, { delayCompile })
+    this.factory.requestCompilation(this, changes, baseContext, ignores, { ignores, delayCompile })
   }
 
   // #region INTEGRATING

@@ -27,6 +27,9 @@ export type ActorCache = {
   paths?: Record<string, string>
   _moves?: Record<string, GenericFeature>
   _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, SkillFeature>>>
+  gca: {
+    skill: Record<number, SkillFeature>
+  }
   features?: Record<string, GenericFeature>
   components?: Record<string, IComponentDefinition[]>
   //
@@ -330,20 +333,20 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
-    // const timer_advantages = logger.time(`prepareAdvantages`) // COMMENT
-    // if (do_ads)
-    //   factory
-    //     .GCS(`advantage`, rawGCS.traits, [], undefined, {
-    //       context: { templates: AdvantageFeatureContextTemplate },
-    //     })
-    //     .loadFromGCAOn(`compile:gcs`, true)
-    //     .integrateOn(`loadFromGCA`, this)
+    const timer_advantages = logger.openGroup(true).info(`    Advantages`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
+    if (do_ads)
+      factory
+        .GCS(`advantage`, rawGCS.traits, [], undefined, {
+          context: { templates: AdvantageFeatureContextTemplate },
+        })
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, this)
 
-    // factory.startCompilation()
-    // timer_advantages(`    Advantages`, [`font-weight: bold;`]) // COMMENT
+    factory.startCompilation()
+    timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
 
     if (do_skills) {
-      const timer_skills = logger.time(`prepareSkills`) // COMMENT
+      const timer_skills = logger.openGroup(true).info(`    Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSkills`) // COMMENT
       factory
         .GCS(`skill`, rawGCS.skills, [], undefined, {
           context: { templates: SkillFeatureContextTemplate },
@@ -352,18 +355,23 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
-      timer_skills(`    Skills`, [`font-weight: bold;`]) // COMMENT
+      timer_skills.group()(`    Skills`, [`font-weight: bold;`]) // COMMENT
 
-      // const timer_untrained = logger.time(`prepareUntrainedSkills`) // COMMENT
-      // // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
-      // SkillFeature.untrained(this, factory, { context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
-      // timer_untrained(`      Untrained Skills`, [`font-weight: bold;`]) // COMMENT
+      // eslint-disable-next-line prettier/prettier
+      const timer_untrained = logger.openGroup(true).info(`      Untrained Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareUntrainedSkills`) // COMMENT
+      factory.logs.compiling = false
+      // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
+      SkillFeature.untrained(this, factory, { context: { templates: SkillFeatureContextTemplate } })
 
-      // const timer_other = logger.time(`prepareAllSkills`) // COMMENT
+      factory.startCompilation()
+      factory.logs.compiling = true
+      timer_untrained.group()(`      Untrained Skills`, [`font-weight: bold;`]) // COMMENT
+
+      // const timer_other = logger.openGroup().info(`      Other Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAllSkills`) // COMMENT
       // // inject "All Skills" for special display
       // const allSkills = SkillFeature.all(this, factory, { context: { templates: SkillFeatureContextTemplate } })
       // this.setCache(`query.skill`, allSkills)
-      // timer_other(`      Other Skills`, [`font-weight: bold;`]) // COMMENT
+      // timer_other.group()(`      Other Skills`, [`font-weight: bold;`]) // COMMENT
     }
 
     // const timer_spells = logger.time(`prepareSpells`) // COMMENT
@@ -399,6 +407,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // timer_other_equipment(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
 
     const n = Object.values(this.cache.features ?? {}).length
+    logger.info(``)
     timer(`Prepare ${n} feature${n === 1 ? `` : `s`}`, [`font-weight: bold;`]) // COMMENT
   }
 

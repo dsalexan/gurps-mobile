@@ -28,13 +28,26 @@ function _if(args: OperatorNode[], math: MathJsStatic, scope: Map<string, any>) 
 
   return result
 }
-
-// mark the function as "rawArgs", so it will be called with unevaluated arguments
-_if.rawArgs = true
+_if.rawArgs = true // mark the function as "rawArgs", so it will be called with unevaluated arguments
 
 function _int(x: number) {
   return Math.floor(x)
 }
+
+function _hasmod(args: OperatorNode[], math: MathJsStatic, scope: Map<string, any>) {
+  const expressions = args.map(arg => arg.toString())
+
+  // ERROR: Untested
+  if (expressions.length > 1) debugger
+
+  const modifier = expressions[0].replace(/"([^"])"/g, `$1`)
+  const feature = scope.get(`__me`)
+  // TODO: Implement modifiers in feature
+  const modifiers = [] as string[] // feature.data.modifier
+
+  return modifiers.includes(modifier) ? 1 : 0
+}
+_hasmod.rawArgs = true // mark the function as "rawArgs", so it will be called with unevaluated arguments
 
 // #endregion
 
@@ -44,6 +57,7 @@ export function create() {
   math.import({
     AT_if: _if,
     AT_int: _int,
+    AT_hasmod: _hasmod,
   })
 
   return math
@@ -65,6 +79,7 @@ export function preprocess(expression: string) {
     .replaceAll(/(?<!=)=(?!=)/g, `==`)
     .replaceAll(/ then /gi, `,`)
     .replaceAll(/ else /gi, `,`)
+    .replaceAll(/(AT_hasmod\()([\w\d\-"'\[\] ]+)(\))/gi, `$1"$2"$3`)
 
   // ERROR: Unimplemented replacement for string
   if (treated.match(/:/)) debugger
@@ -93,7 +108,9 @@ export function parseExpression(stringExpression: string, me?: object) {
 
       if (prefix === `me`) {
         if (me === undefined) throw new Error(`"me" was not informed, but expression tries to access its property "${name}".\n\n(${expression})`)
-        const _value = me[name]
+        let _value = me.data[name]
+
+        if (name === `tl`) _value = me.data.tl.level
 
         // ERROR: Unimplemented
         if (isNil(_value)) debugger
@@ -119,13 +136,16 @@ export function parseExpression(stringExpression: string, me?: object) {
         parser.set(symbol, _value)
       } else {
         // ERROR: Unimplemented
-        debugger
+        throw new Error(`Unimplemented function/prefix "${symbol}"`)
       }
     }
 
+    parser.set(`__me`, me)
+
     return parser.evaluate(expression)
   } catch (error) {
-    Logger.get(`math`).warn(`Could not parse expression`, stringExpression, `→`, expression, [
+    const logger = Logger.get(`math`)
+    logger.warn(`Could not parse expression`, stringExpression, `→`, expression, [
       `font-style: italic; color: rgba(92, 60, 0, 0.65);`,
       `font-style: regular; color: rgba(92, 60, 0); font-weight: bold;`,
       `font-weight: regular; color: rgba(92, 60, 0, 0.75);`,
@@ -133,13 +153,13 @@ export function parseExpression(stringExpression: string, me?: object) {
     ])
 
     const _debug = expression.split(``)
-    console.log(expression)
-    console.log(`scope`, parser.scope)
-    console.log(` `)
-    console.log(_debug.map((char, index) => `${char}`.padEnd(2, ` `)).join(` `))
-    console.log(_debug.map((char, index) => `${index + 1}`.padEnd(2, ` `)).join(` `))
-    console.log(` `)
-    console.log(error)
+    logger.info(expression)
+    logger.info(`scope`, parser.scope)
+    logger.info(` `)
+    logger.info(_debug.map((char, index) => `${char}`.padEnd(2, ` `)).join(` `))
+    logger.info(_debug.map((char, index) => `${index + 1}`.padEnd(2, ` `)).join(` `))
+    logger.info(` `)
+    logger.info(error)
 
     debugger
 

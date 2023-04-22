@@ -35,7 +35,6 @@ export interface IGenericFeatureData extends IFeatureData {
 
   activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
 
-  level?: ILevel | null
   defaults?: ILevelDefinition[]
   // calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
 

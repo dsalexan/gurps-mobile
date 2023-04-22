@@ -27,6 +27,29 @@ export default class SkillFeature extends GenericFeature {
     this.addPipeline(SkillFeaturePipeline)
   }
 
+  listen() {
+    super.listen()
+
+    this.on(`update`, event => {
+      const { keys, feature } = event.data as { keys: (string | RegExp)[]; feature: SkillFeature }
+
+      if (keys.includes(`level`) && feature.sources.gca) {
+        // check if there is a both way default
+        const defaultsToThis = GCA.index.bySection[`SKILLS`].byDefault[feature.sources.gca._index] ?? []
+        for (const default_ of defaultsToThis) {
+          const skill = feature.actor.cache.gca.skill[default_.skill]
+          if (!skill) continue
+          if (feature.sources.gca._index === skill.sources.gca._index) continue
+
+          // only request compile if there is already a level there
+          if (skill.data.level === undefined) continue
+
+          feature.factory.requestCompilation(skill, [`level`], {}, [], {} as any)
+        }
+      }
+    })
+  }
+
   _integrate(actor: GurpsMobileActor) {
     super._integrate(actor)
 
@@ -37,7 +60,10 @@ export default class SkillFeature extends GenericFeature {
         actor.setCache(`_${this.type.value}.${this.data.training}.${this.data.name}.${this.id}`, this)
       }
 
-      if (this.sources.gca) actor.setCache(`gca.skill.${this.sources.gca._index}`, this)
+      if (this.sources.gca) {
+        if (actor.cache.gca === undefined) actor.setCache(`gca`, {})
+        actor.setCache(`gca.skill.${this.sources.gca._index}`, this)
+      }
     }
 
     return this
@@ -177,8 +203,9 @@ export default class SkillFeature extends GenericFeature {
           //
           derivation.manual(`tl`, `tl`, manual => ({ tl: MERGE(`tl`, { level: manual.tl }) })),
         ])
-      newFeature.addSource(`manual`, manual)
+      newFeature.addSource(`manual`, manual, { delayCompile: true })
       newFeature.addSource(`gca`, skill)
+      newFeature.integrateOn(`compile:gca`, actor)
 
       features.push(newFeature as any)
     }
@@ -254,8 +281,9 @@ export default class SkillFeature extends GenericFeature {
           derivation.manual(`tl`, `tl`, manual => ({ tl: MERGE(`tl`, { level: manual.tl }) })),
           proxy.manual(`proxy`),
         ])
-        .addSource(`manual`, manual)
+        .addSource(`manual`, manual, { delayCompile: true })
         .addSource(`gca`, GCA.entries[base.skill])
+        .integrateOn(`compile:gca`, actor)
 
       features[name] = newFeature as any
     }
@@ -298,7 +326,7 @@ export default class SkillFeature extends GenericFeature {
     const componentsBonus = [] as { component: IComponentDefinition<any>; value: number }[]
     for (const component of actorComponents) {
       let modifier = 1
-      if (component.per_level) modifier = component.feature.data.level?.level
+      if (component.per_level) modifier = component.feature.data.level
 
       const value = component.amount * modifier
 
@@ -343,23 +371,26 @@ export default class SkillFeature extends GenericFeature {
     const baseAttribute = targetAttribute ?? attribute
 
     // TODO: Implement techniques
-    if (this.sources.gcs.type === `technique`) return null
+    if (this.sources.gcs?.type === `technique`) return null
 
     // ERROR: Unimplemented
-    if (isNil(actor)) throw new Error(`Cannot calculate skill level without defaults and actor`)
+    if (isNil(actor)) throw new Error(`Cannot calculate attribute-based skill level without actor`)
 
     if (training === `trained`) {
       // CALCULATE LEVEL BASED ON ATTRIBUTE
       let baseLevel = (actor.system.attributes[baseAttribute.toUpperCase()] ?? actor.system[baseAttribute]).value
       baseLevel = Math.min(20, baseLevel) // The Rule of 20, B 173
 
-      let modifier = 0
-      if (withModifier) modifier = this.calcLevelModifiers()
+      const skillModifier = withModifier ? this.data.proficiencyModifier : 0
+      const actorModifier = withModifier ? this.data.actorModifier : 0
 
       const flags = baseAttribute !== attribute ? [`other-based`] : []
-      return buildLevel(baseLevel, modifier, { attribute: baseAttribute, flags })
-    } else if (training === `untrained`) {
-      debugger
+      const attributeBasedLevel = buildLevel(baseLevel, skillModifier + actorModifier, { attribute: baseAttribute, flags })
+
+      // ERROR: Cannot
+      if (isNaN(attributeBasedLevel.level) || isNil(attributeBasedLevel.level)) debugger
+
+      return attributeBasedLevel
     }
 
     return null
@@ -370,38 +401,29 @@ export default class SkillFeature extends GenericFeature {
    */
   calcLevel(attribute?: GURPS4th.AttributesAndCharacteristics) {
     const actor = this.actor
-    const { attributeBasedLevel, defaults, name, training } = this.data
+    const { proficiencyModifier, actorModifier, attributeBasedLevel, defaults, name, training } = this.data
 
     // ERROR: Unimplemented
     if (isNil(actor)) throw new Error(`Cannot calculate skill level without defaults and actor`)
 
-    if (training === `trained`) {
+    // TODO: Implement techniques
+    if (this.sources.gcs?.type === `technique`) return null
+
+    if (training === `trained` || training === `untrained`) {
       // ERROR: Unimplemented wildcard
       if (name[name.length - 1] === `!`) debugger
-
-      // Calculate trained skill levels
-      //    Get skill modifier from spent points, difficulty and actor components
-      //    Get base attribute level (just attribute level)
-      //        pre-calculated on compile
-
-      //    For each default, get all trained skill their attribute-base levels
-      //        Skills have two "levels":
-      //          A "attribute-based level", which only takes in consideration the attribute level (and modifiers)
-      //          A "official level", which could default to another skill instead of attribute level
-      //    Order attribute-based levels descending
-      //    If self attribute-based level is higher than first default
-      //        Then calculate official level based on attribute (using self attribute-based level)
-      //        Else calculate official level based on first default skill level
 
       // GET ALL TRAINED SKILLS
       // TODO: Can only calculate after trained skills are cached
       const skillCache = actor.cache._skill?.trained
       const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
-      debugger
       const trainedSkillsGCA = trainedSkills.map(skill => skill.sources.gca?._index).filter(index => !isNil(index)) as number[]
 
-      // CALCULATE LEVEL BASED ON DEFAULTS
-      const defaultsAttributeBasedLevels = [] as ILevel[]
+      // ERROR: Cannot be
+      if (skillCache === undefined) debugger
+
+      // CALCULATE ATTRIBUTE-BASED LEVEL OF DEFAULTS
+      const defaultsAttributeBasedLevels = [] as { level: ILevel; definition: ILevelDefinition }[]
       for (const _default of defaults ?? []) {
         const targets = _default.targets ? Object.values(_default.targets) : []
         const attributes = targets.filter(target => target.type === `attribute`)
@@ -426,45 +448,60 @@ export default class SkillFeature extends GenericFeature {
             return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
           })
 
-          if (trainedSkills.length === targets.length) {
+          // If not all skill targets are trained skills, then ignore level for this default
+          if (trainedSkills.length === skills.length) {
             // WARN: Untested
             if (trainedSkills.length > 1) debugger
+            const skill = trainedSkills[0]
+            const features = ((skill.value as number[])?.map(index => actor.cache.gca.skill[index]) ?? []).filter(feature => !isNil(feature))
+            const trainedFeatures = features.filter(feature => feature.data.training === `trained`)
 
-            const skills = trainedSkills[0].value as number[]
-            const trained = skills.filter(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
+            // ERROR: Unimplemented
+            if (trainedFeatures.length !== 1) debugger
 
+            const feature = trainedFeatures[0]
+
+            // check if there is a both way default
+            const defaultsToThis = GCA.index.bySection[`SKILLS`].byDefault[this.sources.gca._index]
+            const featureDefaultsToThis = defaultsToThis?.some(default_ => default_.skill === feature.sources.gca._index)
+
+            // if there is a both way default, ignore this default if its proficiencyModifier is smaller than self.proficiencyModifier
+            if (featureDefaultsToThis) {
+              if (proficiencyModifier >= feature.data.proficiencyModifier) continue
+            }
+
+            const defaultLevel = _default.parse(this, actor)
+
+            // WARN: Untested
+            if (defaultLevel === null) debugger
+
+            level = defaultLevel
+          } else if (trainedSkills.length > 0) {
+            // WARN: Untested when some targets are trained skills
             debugger
-            level = 0
-          } else {
-            // ERROR: Not all targets are trained skills, what to do??
-            debugger
-            // const compatibleTargets = skills.filter(target => {
-            //   // if target is not skill, then it is compatible
-            //   if (target.type !== `skill`) return true
-
-            //   // check if all skills are trained
-            //   //    get skill entries
-            //   const skills = target.value as number[]
-            //   if (!skills || skills?.length === 0) return false
-
-            //   //    check if there is some entry with a trained feature AND that entry is not self
-            //   return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
-            // })
-
-            // // if are targets are compatible (type any OR type skill and trained)
-            // if (compatibleTargets.length === targets.length) {
-            //   const defaultLevel = _default.parse(this, actor)
-            // }
-            // TODO: Dont calculate level, re-utilize already calculated (which would demand we only call official level compilation AFTER ALL attribute-based compilations are done)
-            level = parseLevel(_default, this, actor)
           }
         }
 
-        if (!isNil(level)) defaultsAttributeBasedLevels.push(level)
+        if (!isNil(level)) defaultsAttributeBasedLevels.push({ level, definition: _default })
       }
 
-      const orderedLevels = orderBy(defaultLevels, ({ level }) => level.level, `desc`)
-      if (orderedLevels.length === 0) return null
+      const orderedLevels = orderBy(defaultsAttributeBasedLevels, ({ level }) => level.level, `desc`)
+
+      if (orderedLevels.length === 0) return attributeBasedLevel
+      if (attributeBasedLevel?.level > orderedLevels[0].level.level) return attributeBasedLevel
+      if (training != `trained`) return orderedLevels[0].level
+
+      // IF A DEFAULT HAS AN ABL BIGGER THEN SELF ABL, THEN USE ITS ABL AS BASE LEVEL (making it a DEFAULT-BASED LEVEL)
+      const baseLevel = orderedLevels[0].level.level
+
+      debugger
+      const flags = [`default-based`]
+      const defaultBasedLevel = buildLevel(baseLevel, proficiencyModifier + actorModifier, { skill: definition.fullName, flags })
+
+      debugger
+      return defaultBasedLevel
+    } else if (training === `untrained`) {
+      debugger
     }
 
     return null
