@@ -20,32 +20,38 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
 AdvantageFeaturePipeline.name = `AdvantageFeaturePipeline`
 AdvantageFeaturePipeline.conflict = {}
 
-AdvantageFeaturePipeline.post = function postAdvantage({ data }) {
+AdvantageFeaturePipeline.post = function postAdvantage(data) {
   const MDO = {} as MigrationDataObject<any>
 
-  if (data.meta && data.meta.includes(`:`)) {
-    const [meta1, links] = linkFromVTTNotes(data.meta)
+  if (data.has(`meta`)) {
+    const meta = data.get(`meta`)
+    if (meta.includes(`:`)) {
+      const [meta1, links] = linkFromVTTNotes(meta)
 
-    MDO.meta = OVERWRITE(`meta`, meta1)
-    MDO.links = PUSH(`links`, links)
+      MDO.meta = OVERWRITE(`meta`, meta1)
+      MDO.links = PUSH(`links`, links)
+    }
   }
 
-  if (data.notes && data.notes.length > 0) {
-    const _notes = [] as string[]
-    const rolls = [] as ILevelDefinition[]
+  if (data.has(`notes`)) {
+    const notes = data.get(`notes`)
+    if (notes.length > 0) {
+      const _notes = [] as string[]
+      const rolls = [] as ILevelDefinition[]
 
-    for (const note of data.notes) {
-      if (!note.includes(`CR`)) _notes.push(note)
-      else {
-        const [notes2, cr] = selfControlRolls(note)
+      for (const note of notes) {
+        if (!note.includes(`CR`)) _notes.push(note)
+        else {
+          const [notes2, cr] = selfControlRolls(note)
 
-        _notes.push(notes2)
-        rolls.push(cr)
+          _notes.push(notes2)
+          rolls.push(cr)
+        }
       }
-    }
 
-    MDO.notes = OVERWRITE(`notes`, _notes)
-    MDO.rolls = PUSH(`rolls`, rolls)
+      MDO.notes = OVERWRITE(`notes`, _notes)
+      MDO.rolls = PUSH(`rolls`, rolls)
+    }
   }
 
   return MDO

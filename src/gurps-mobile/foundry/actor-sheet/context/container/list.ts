@@ -17,6 +17,7 @@ export interface IListContext extends IContext {
 
 export interface ListContextSpecs extends ContextSpecs {
   id: string
+  classes: string[]
   label: string | undefined
   displayHidden?: (id?: string) => boolean
   expanded?: (id?: string) => boolean

@@ -1,4 +1,4 @@
-import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst } from "lodash"
+import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil } from "lodash"
 
 import { MODULE_ID } from "config"
 import LOGGER from "logger"
@@ -161,8 +161,10 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
   }
 
   /** @override */
-  prepareDerivedData() {
+  prepareDerivedData(dontRun = true) {
     super.prepareDerivedData()
+
+    if (dontRun) return console.log(`gurps-mobile`, `SKIPPING AUTO RUNNING`)
 
     const logger = LOGGER.get(`actor`)
 
@@ -207,7 +209,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // console.log(logger)
     // logger.info(`caralho meu`)
     logger
-      .group(true)
+      .group()
       .info(`[${this.id}]`, `prepareDerivedData${all ? `` : partial ? ` (partial)` : ` (skip)`}`, [
         `background-color: rgb(${all ? `255, 224, 60, 0.45` : partial ? `60,179,113, 0.3` : `0, 0, 0, 0.085`}); font-weight: bold; padding: 3px 0;`,
       ])
@@ -216,6 +218,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     logger.info(`    `, `actor:`, this, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `cached:`, cached, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `gcs:`, gcs, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+    logger.info(`    `, `moves`, this.system.move, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `)
 
     if (!all) logger.warn(`    `, `partial:`, partials, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
@@ -234,8 +237,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      this.prepareAttributes(cached.featureFactory, partials)
-      // this.prepareFeatures(cached.featureFactory, partials)
+      // this.prepareAttributes(cached.featureFactory, partials)
+      this.prepareFeatures(cached.featureFactory, partials)
       // this.prepareDefenses(cached.featureFactory, partials)
     }
 
@@ -281,10 +284,9 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
           context: { templates: MoveFeatureContextTemplate },
         })
         .addPipeline<IGenericFeatureData>([proxy.gcs(`value`), proxy.manual(`name`), proxy.manual(`label`)])
-        .addSource(`manual`, { name: game.i18n.localize(`GURPS.basicspeed`), label: `GURPS.basicspeed` })
+        .addSource(`manual`, { name: game.i18n.localize(`GURPS.basicspeed`), label: `GURPS.basicspeed` }, { delayCompile: true })
         .addSource(`gcs`, actorData.basicspeed)
-        // .compile()
-        .integrate(this)
+        .integrateOn(`compile:gcs`, this)
     }
 
     if (do_moves) {
@@ -298,19 +300,20 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
             context: { templates: MoveFeatureContextTemplate },
           })
           .addPipeline<IGenericFeatureData>([
-            derivation.gcs(`mode`, [`name`, `label`], ({ mode }) => ({ name: game.i18n.localize(mode), label: mode })),
+            derivation.gcs(`mode`, [`name`, `label`], ({ mode }) => ({ name: game.i18n.localize(mode as any), label: mode })),
             derivation.gcs(`basic`, `value`, ({ basic }) => ({ value: basic })),
-            derivation.gcs(`default`, `state`, (manual: MoveType) => ({ state: manual.default ? FeatureState.ACTIVE : FeatureState.INACTIVE })),
+            // derivation.gcs(`default`, `state`, (manual: MoveType) => ({ state: manual.default ? FeatureState.ACTIVE : FeatureState.INACTIVE })),
           ])
           .addSource(`gcs`, move)
-          // .compile()
-          .integrate(this)
+          .integrateOn(`compile:gcs`, this)
 
         this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
       }
     }
 
     // #endregion
+
+    factory.startCompilation()
 
     timer(`Prepare attributes`, [`font-weight: bold;`]) // COMMENT
   }
@@ -327,15 +330,17 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
-    const timer_advantages = logger.time(`prepareAdvantages`) // COMMENT
-    if (do_ads)
-      factory
-        .GCS(`advantage`, rawGCS.traits, [], undefined, {
-          context: { templates: AdvantageFeatureContextTemplate },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
-    timer_advantages(`    Advantages`, [`font-weight: bold;`]) // COMMENT
+    // const timer_advantages = logger.time(`prepareAdvantages`) // COMMENT
+    // if (do_ads)
+    //   factory
+    //     .GCS(`advantage`, rawGCS.traits, [], undefined, {
+    //       context: { templates: AdvantageFeatureContextTemplate },
+    //     })
+    //     .loadFromGCAOn(`compile:gcs`, true)
+    //     .integrateOn(`loadFromGCA`, this)
+
+    // factory.startCompilation()
+    // timer_advantages(`    Advantages`, [`font-weight: bold;`]) // COMMENT
 
     if (do_skills) {
       const timer_skills = logger.time(`prepareSkills`) // COMMENT
@@ -343,53 +348,55 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .GCS(`skill`, rawGCS.skills, [], undefined, {
           context: { templates: SkillFeatureContextTemplate },
         })
-        .loadFromGCA(true)
-        .integrate(this)
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, this)
+
+      factory.startCompilation()
       timer_skills(`    Skills`, [`font-weight: bold;`]) // COMMENT
 
-      const timer_untrained = logger.time(`prepareUntrainedSkills`) // COMMENT
-      // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
-      SkillFeature.untrained(this, factory, { context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
-      timer_untrained(`      Untrained Skills`, [`font-weight: bold;`]) // COMMENT
+      // const timer_untrained = logger.time(`prepareUntrainedSkills`) // COMMENT
+      // // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
+      // SkillFeature.untrained(this, factory, { context: { templates: SkillFeatureContextTemplate } }).map(f => f.integrate(this))
+      // timer_untrained(`      Untrained Skills`, [`font-weight: bold;`]) // COMMENT
 
-      const timer_other = logger.time(`prepareAllSkills`) // COMMENT
-      // inject "All Skills" for special display
-      const allSkills = SkillFeature.all(this, factory, { context: { templates: SkillFeatureContextTemplate } })
-      this.setCache(`query.skill`, allSkills)
-      timer_other(`      Other Skills`, [`font-weight: bold;`]) // COMMENT
+      // const timer_other = logger.time(`prepareAllSkills`) // COMMENT
+      // // inject "All Skills" for special display
+      // const allSkills = SkillFeature.all(this, factory, { context: { templates: SkillFeatureContextTemplate } })
+      // this.setCache(`query.skill`, allSkills)
+      // timer_other(`      Other Skills`, [`font-weight: bold;`]) // COMMENT
     }
 
-    const timer_spells = logger.time(`prepareSpells`) // COMMENT
-    if (do_spells)
-      factory
-        .GCS(`spell`, rawGCS.spells, [], undefined, {
-          context: { templates: SpellFeatureContextTemplate },
-        })
-        .loadFromGCA(true)
-        .integrate(this)
-    timer_spells(`    Spells`, [`font-weight: bold;`]) // COMMENT
+    // const timer_spells = logger.time(`prepareSpells`) // COMMENT
+    // if (do_spells)
+    //   factory
+    //     .GCS(`spell`, rawGCS.spells, [], undefined, {
+    //       context: { templates: SpellFeatureContextTemplate },
+    //     })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
+    // timer_spells(`    Spells`, [`font-weight: bold;`]) // COMMENT
 
-    const timer_carried_equipment = logger.time(`prepareCarriedEquipment`) // COMMENT
-    if (do_carried_equipment)
-      factory
-        .GCS(`equipment`, rawGCS.equipment, [], undefined, {
-          context: { templates: EquipmentFeatureContextTemplate },
-        })
-        .addSource(`manual`, { carried: true })
-        .loadFromGCA(true)
-        .integrate(this)
-    timer_carried_equipment(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
+    // const timer_carried_equipment = logger.time(`prepareCarriedEquipment`) // COMMENT
+    // if (do_carried_equipment)
+    //   factory
+    //     .GCS(`equipment`, rawGCS.equipment, [], undefined, {
+    //       context: { templates: EquipmentFeatureContextTemplate },
+    //     })
+    //     .addSource(`manual`, { carried: true })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
+    // timer_carried_equipment(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
 
-    const timer_other_equipment = logger.time(`prepareOtherEquipment`) // COMMENT
-    if (do_other_equipment)
-      factory
-        .GCS(`equipment`, rawGCS.other_equipment, [], undefined, {
-          context: { templates: EquipmentFeatureContextTemplate },
-        })
-        .addSource(`manual`, { carried: false })
-        .loadFromGCA(true)
-        .integrate(this)
-    timer_other_equipment(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
+    // const timer_other_equipment = logger.time(`prepareOtherEquipment`) // COMMENT
+    // if (do_other_equipment)
+    //   factory
+    //     .GCS(`equipment`, rawGCS.other_equipment, [], undefined, {
+    //       context: { templates: EquipmentFeatureContextTemplate },
+    //     })
+    //     .addSource(`manual`, { carried: false })
+    //     .loadFromGCA(true)
+    //     .integrate(this)
+    // timer_other_equipment(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
 
     const n = Object.values(this.cache.features ?? {}).length
     timer(`Prepare ${n} feature${n === 1 ? `` : `s`}`, [`font-weight: bold;`]) // COMMENT

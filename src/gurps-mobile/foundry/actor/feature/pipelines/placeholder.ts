@@ -17,7 +17,7 @@ export const PLACEHOLDERNAMEFeaturePipeline: IDerivationPipeline<PLACEHOLDERNAME
 PLACEHOLDERNAMEFeaturePipeline.name = `PLACEHOLDERNAMEFeaturePipeline`
 PLACEHOLDERNAMEFeaturePipeline.conflict = {}
 
-PLACEHOLDERNAMEFeaturePipeline.post = function postPLACEHOLDERNAME({ data }) {
+PLACEHOLDERNAMEFeaturePipeline.post = function postPLACEHOLDERNAME(data) {
   const MDO = {} as MigrationDataObject<any>
 
   return MDO

@@ -10,6 +10,7 @@ import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 import { GenericSource } from "./pipelines"
+import { ILevel } from "../../../../gurps-extension/utils/level"
 
 export default class GenericFeature extends Feature<IGenericFeatureData & IWeaponizableFeatureData, any> {
   constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
@@ -32,14 +33,13 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
    * Integrates feature into sheetData before rendering
    * A GenericFeature, by default, has no required integrations2
    */
-  integrate(actor: GurpsMobileActor) {
-    super.integrate(actor)
+  _integrate(actor: GurpsMobileActor) {
+    super._integrate(actor)
 
     // register feature
     actor.setFeature(this.id, this)
 
-    // if (this.data.weapons?.length > 0) debugger
-    // if (this.data.weapons) this.data.weapons.map(feature => feature.integrate(actor))
+    if (this.data.weapons) this.data.weapons.map(feature => feature.integrate(actor))
 
     // COMPONENTS
     if (this.data.components) {
@@ -170,12 +170,10 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   /**
    * Returns best level for feature
    */
-  calcLevel(attribute: GURPS4th.AttributesAndCharacteristics) {
+  calcLevel(attribute?: GURPS4th.AttributesAndCharacteristics): ILevel | null {
     const actor = this.actor
-    // ERROR: Unimplemented, cannot calculate skill level without actor
-    if (!actor) debugger
 
-    debugger
+    throw new Error(`Unimplemented level calculation for generic feature`)
   }
 
   static linkForDefenses(feature: GenericFeature) {

@@ -19,9 +19,8 @@ export class FeatureCollection<TFeature extends GenericFeature = GenericFeature>
     return this
   }
 
-  addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
-    this.items.map(item => item.addSource(name, cloneDeep(source), ignoreCompile))
-
+  loadFromGCAOn(eventName: string, cache = false) {
+    this.items.map(item => item.on(eventName, event => event.data.feature.loadFromGCA(cache)))
     return this
   }
 
@@ -32,6 +31,11 @@ export class FeatureCollection<TFeature extends GenericFeature = GenericFeature>
   integrate(actor: GurpsMobileActor) {
     this.items.map(item => item.integrate(actor))
 
+    return this
+  }
+
+  integrateOn(eventName: string, actor: GurpsMobileActor) {
+    this.items.map(item => item.on(eventName, event => event.data.feature.integrate(actor)))
     return this
   }
 }

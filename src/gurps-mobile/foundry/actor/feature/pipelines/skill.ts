@@ -1,15 +1,20 @@
-import { flatten, isNil, uniq } from "lodash"
+import { flatten, isNil, sum, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
-import { ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { ILevel, ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
+import { IComponentDefinition, compareComponent } from "../../../../../gurps-extension/utils/component"
+import LOGGER from "../../../../logger"
+import GenericFeature from "../generic"
+import SkillFeature from "../skill"
 
 export interface SkillManualSource extends GenericSource {
   tl?: number
   training?: `trained` | `untrained` | `unknown`
   ignoreSpecialization?: boolean
+  proxy?: boolean
 }
 
 export interface ISkillFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
@@ -20,6 +25,10 @@ export interface ISkillFeatureData extends IGenericFeatureData, IWeaponizableFea
   defaultFrom: object[]
   proxy?: boolean
   form: false | `art` | `sport`
+  //
+  proficiencyModifier: number
+  actorModifier: number
+  attributeBasedLevel: ILevel | null
 }
 
 export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
@@ -60,6 +69,54 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
   }),
   derivation.gca(`default`, `defaults`, gca => ({ defaults: gca.default?.map(_default => parseLevelDefinition(_default)) ?? undefined })),
   // #endregion
+  // #region DATA
+  // derivation([`points`, `difficulty`, `training`], [`proficiencyModifier`], function (_, __, { object }) {
+  //   const skill = object as SkillFeature
+  //   const modifier = skill.calcProficiencyModifier()
+
+  //   return { proficiencyModifier: OVERWRITE(`proficiencyModifier`, modifier) }
+  // }),
+  // derivation([`actor.components:pool`], [`actorModifier`], function (_, __, { object }) {
+  //   const actor = object.actor
+
+  //   debugger
+  //   if (isNil(actor)) return {}
+
+  //   const skill = object as SkillFeature
+  //   const modifier = skill.calcActorModifier()
+
+  //   return { actorModifier: OVERWRITE(`actorModifier`, modifier) }
+  // }),
+  // // TODO: add to target actor attributes
+  // derivation([`integration`, `points`, `training`], [`attributeBasedLevel`], function (_, __, { object }) {
+  //   const actor = object.actor
+  //   const { defaults, difficulty, name, points, training } = object.data
+
+  //   if (isNil(actor)) return {}
+
+  //   // TODO: Only call AFTER components targeting this skill are set in actor
+  //   //    probably create another intermediary value ("actorBonus") and use that as target here
+
+  //   const skill = object as SkillFeature
+  //   const level = skill.calcAttributeBasedLevel({ modifier: true })
+
+  //   return { attributeBasedLevel: OVERWRITE(`attributeBasedLevel`, level) }
+  // }),
+  // // TODO: add some sort of "actor cached trained skills" to target
+  // derivation([`attributeBasedLevel`, `defaults`, `training`], [`level`], function (_, __, { object }) {
+  //   const actor = object.actor
+  //   const { defaults, difficulty, name, points, training } = object.data
+
+  //   if (isNil(actor)) return {}
+
+  //   // TODO: Only call AFTER components targeting this skill are set in actor
+
+  //   const skill = object as SkillFeature
+  //   const level = skill.calcLevel()
+
+  //   return { level: OVERWRITE(`level`, level) }
+  // }),
+  // #endregion
 ]
 
 SkillFeaturePipeline.name = `SkillFeaturePipeline`
@@ -76,19 +133,19 @@ SkillFeaturePipeline.conflict = {
   },
 }
 
-SkillFeaturePipeline.post = function postSkill({ data }) {
+SkillFeaturePipeline.post = function postSkill(data) {
   const MDO = {} as MigrationDataObject<any>
 
-  if (data.name) {
-    const name = data.name
+  if (data.has(`name`)) {
+    const name = data.get(`name`)
 
     if (name.match(/\w art(?!\w)/i)) MDO.form = WRITE(`form`, `art`)
     else if (name.match(/\w sport(?!\w)/i)) MDO.form = WRITE(`form`, `sport`)
     else MDO.form = WRITE(`form`, false)
   }
 
-  if (data.training) {
-    const training = data.training
+  if (data.has(`training`)) {
+    const training = data.get(`training`)
 
     if (training === `untrained`) MDO.group = OVERWRITE(`group`, `Untrained Skills`)
     else if (training === `unknown`) MDO.group = OVERWRITE(`group`, `Unknown Skills`)

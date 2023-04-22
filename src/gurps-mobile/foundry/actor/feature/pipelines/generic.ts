@@ -35,9 +35,9 @@ export interface IGenericFeatureData extends IFeatureData {
 
   activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
 
-  level?: number
+  level?: ILevel | null
   defaults?: ILevelDefinition[]
-  calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
+  // calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
 
   // relationships
   group?: string // string to group features by
@@ -159,12 +159,16 @@ GenericFeaturePipeline.conflict = {
   },
 }
 
-GenericFeaturePipeline.post = function postGeneric({ data }) {
+GenericFeaturePipeline.post = function postGeneric(data) {
   const MDO = {} as MigrationDataObject<any>
 
-  if (data.tl?.required && isNilOrEmpty(data.tl)) {
-    if (isNil(this.tl)) debugger
-    set(data, `tl.level`, this.tl)
+  if (data.has(`tl`)) {
+    const tl = data.get(`tl`)
+    if (tl?.required && isNilOrEmpty(tl?.level)) {
+      debugger
+      if (isNil(this.tl)) debugger
+      MDO.tl = MERGE(`tl`, { level: this.tl })
+    }
   }
 
   return MDO

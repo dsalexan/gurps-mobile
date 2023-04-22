@@ -1,4 +1,4 @@
-import { cloneDeep, flatten, get, has, isArray, isEmpty, isNil, isString, set, uniq, upperFirst } from "lodash"
+import { cloneDeep, flatten, get, has, isArray, isEmpty, isNil, isString, orderBy, set, uniq, upperFirst } from "lodash"
 import Feature, { FeatureTemplate } from "."
 import { ToggableValue } from "../../../core/feature/base"
 import LOGGER from "../../../logger"
@@ -16,6 +16,8 @@ import { derivation, passthrough, proxy } from "./pipelines"
 import { MERGE } from "../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
+import { ILevel, ILevelDefinition, buildLevel, parseLevel } from "../../../../gurps-extension/utils/level"
+import { IComponentDefinition, compareComponent } from "../../../../gurps-extension/utils/component"
 
 export default class SkillFeature extends GenericFeature {
   declare data: ISkillFeatureData
@@ -25,8 +27,8 @@ export default class SkillFeature extends GenericFeature {
     this.addPipeline(SkillFeaturePipeline)
   }
 
-  integrate(actor: GurpsMobileActor) {
-    super.integrate(actor)
+  _integrate(actor: GurpsMobileActor) {
+    super._integrate(actor)
 
     // index by name and specializedName for quick reference
     if (!this.data.container) {
@@ -243,13 +245,14 @@ export default class SkillFeature extends GenericFeature {
 
       const id = `proxy-gca-${base.skill}`
       const skillTemplate = cloneDeep(template)
-      const manual = { training: `unknown`, tl } as SkillManualSource
+      const manual = { training: `unknown`, tl, proxy: true } as SkillManualSource
 
       const newFeature = factory
         .build(`skill`, id, base.skill, undefined, skillTemplate)
         .addPipeline<IGenericFeatureData>([
           //
           derivation.manual(`tl`, `tl`, manual => ({ tl: MERGE(`tl`, { level: manual.tl }) })),
+          proxy.manual(`proxy`),
         ])
         .addSource(`manual`, manual)
         .addSource(`gca`, GCA.entries[base.skill])
@@ -261,4 +264,209 @@ export default class SkillFeature extends GenericFeature {
   }
 
   // #endregion
+
+  calcProficiencyModifier(): number {
+    const { difficulty, points, training } = this.data
+
+    if (training === `trained`) {
+      // CALCULATE SKILL MODIFIER FROM DIFFICULTY
+      const difficultyDecrease = { E: 0, A: 1, H: 2, VH: 3 }[difficulty] ?? 0
+
+      // Skill Cost Table, B 170
+      //    negative points is possible?
+      let boughtIncrease_curve = { 4: 2, 3: 1, 2: 1, 1: 0 }[points] ?? (points > 4 ? 2 : 0) // 4 -> +2, 2 -> +1, 1 -> +0
+      let boughtIncrease_linear = Math.floor((points - 4) / 4) // 8 -> +3, 12 -> +4, 16 -> +5, 20 -> +6, ..., +4 -> +1
+      const boughtIncrease = boughtIncrease_curve + boughtIncrease_linear
+
+      const skillModifier = boughtIncrease - difficultyDecrease
+
+      return skillModifier
+    }
+
+    return 0
+  }
+
+  calcActorModifier(): number {
+    const actor = this.actor
+
+    // ERROR: Unimplemented
+    if (isNil(actor)) throw new Error(`Cannot calculate actor modifier for skill an actor dude`)
+
+    // CALCULATE SKILL BONUS FROM ACTOR
+    //    actor components can give some bonuses to skill
+    const actorComponents = actor.getComponents(`skill_bonus`, component => compareComponent(component, this))
+    const componentsBonus = [] as { component: IComponentDefinition<any>; value: number }[]
+    for (const component of actorComponents) {
+      let modifier = 1
+      if (component.per_level) modifier = component.feature.data.level?.level
+
+      const value = component.amount * modifier
+
+      if (isNil(value) || isNaN(value)) {
+        LOGGER.warn(
+          `${name}·level`,
+          `Component with undetermined level`,
+          component.type,
+          component.selection_type,
+          JSON.stringify(component.name),
+          `◄`,
+          component.feature.specializedName,
+          component,
+          [
+            `color: #826835;`,
+            `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+            `color: black; font-style: regular; font-weight: bold`,
+            `color: #826835;`,
+            `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+            `color: black; font-style: regular; font-weight: bold`,
+            `color: #826835;`,
+            ``,
+          ],
+        )
+      }
+
+      componentsBonus.push({ component, value })
+    }
+
+    const unavailableComponents = componentsBonus.filter(({ value }) => isNil(value) || isNaN(value))
+    const availableComponents = componentsBonus.filter(({ value }) => !(isNil(value) || isNaN(value)))
+
+    const actorBonus = availableComponents.map(({ value }) => value).reduce((a, b) => a + b, 0)
+
+    return actorBonus
+  }
+
+  calcAttributeBasedLevel({ attribute: targetAttribute, modifier: withModifier }: { attribute?: GURPS4th.AttributesAndCharacteristics; modifier?: boolean }): ILevel | null {
+    const actor = this.actor
+    const { attribute, training } = this.data
+
+    const baseAttribute = targetAttribute ?? attribute
+
+    // TODO: Implement techniques
+    if (this.sources.gcs.type === `technique`) return null
+
+    // ERROR: Unimplemented
+    if (isNil(actor)) throw new Error(`Cannot calculate skill level without defaults and actor`)
+
+    if (training === `trained`) {
+      // CALCULATE LEVEL BASED ON ATTRIBUTE
+      let baseLevel = (actor.system.attributes[baseAttribute.toUpperCase()] ?? actor.system[baseAttribute]).value
+      baseLevel = Math.min(20, baseLevel) // The Rule of 20, B 173
+
+      let modifier = 0
+      if (withModifier) modifier = this.calcLevelModifiers()
+
+      const flags = baseAttribute !== attribute ? [`other-based`] : []
+      return buildLevel(baseLevel, modifier, { attribute: baseAttribute, flags })
+    } else if (training === `untrained`) {
+      debugger
+    }
+
+    return null
+  }
+
+  /**
+   * Returns best level for feature
+   */
+  calcLevel(attribute?: GURPS4th.AttributesAndCharacteristics) {
+    const actor = this.actor
+    const { attributeBasedLevel, defaults, name, training } = this.data
+
+    // ERROR: Unimplemented
+    if (isNil(actor)) throw new Error(`Cannot calculate skill level without defaults and actor`)
+
+    if (training === `trained`) {
+      // ERROR: Unimplemented wildcard
+      if (name[name.length - 1] === `!`) debugger
+
+      // Calculate trained skill levels
+      //    Get skill modifier from spent points, difficulty and actor components
+      //    Get base attribute level (just attribute level)
+      //        pre-calculated on compile
+
+      //    For each default, get all trained skill their attribute-base levels
+      //        Skills have two "levels":
+      //          A "attribute-based level", which only takes in consideration the attribute level (and modifiers)
+      //          A "official level", which could default to another skill instead of attribute level
+      //    Order attribute-based levels descending
+      //    If self attribute-based level is higher than first default
+      //        Then calculate official level based on attribute (using self attribute-based level)
+      //        Else calculate official level based on first default skill level
+
+      // GET ALL TRAINED SKILLS
+      // TODO: Can only calculate after trained skills are cached
+      const skillCache = actor.cache._skill?.trained
+      const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
+      debugger
+      const trainedSkillsGCA = trainedSkills.map(skill => skill.sources.gca?._index).filter(index => !isNil(index)) as number[]
+
+      // CALCULATE LEVEL BASED ON DEFAULTS
+      const defaultsAttributeBasedLevels = [] as ILevel[]
+      for (const _default of defaults ?? []) {
+        const targets = _default.targets ? Object.values(_default.targets) : []
+        const attributes = targets.filter(target => target.type === `attribute`)
+        const nonAttributes = targets.filter(target => target.type !== `attribute`)
+
+        let level: ILevel | null = null
+        if (nonAttributes.length === 0) {
+          // WARN: Untested
+          if (attributes.length > 1) debugger
+
+          // ignore attribute-only-based defaults
+          continue
+        } else {
+          const skills = targets.filter(target => target.type === `skill`)
+          const trainedSkills = skills.filter(target => {
+            // check if all skills are trained
+            //    get skill entries
+            const skills = target.value as number[]
+            if (!skills || skills?.length === 0) return false
+
+            //    check if there is some entry with a trained feature AND that entry is not self
+            return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
+          })
+
+          if (trainedSkills.length === targets.length) {
+            // WARN: Untested
+            if (trainedSkills.length > 1) debugger
+
+            const skills = trainedSkills[0].value as number[]
+            const trained = skills.filter(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
+
+            debugger
+            level = 0
+          } else {
+            // ERROR: Not all targets are trained skills, what to do??
+            debugger
+            // const compatibleTargets = skills.filter(target => {
+            //   // if target is not skill, then it is compatible
+            //   if (target.type !== `skill`) return true
+
+            //   // check if all skills are trained
+            //   //    get skill entries
+            //   const skills = target.value as number[]
+            //   if (!skills || skills?.length === 0) return false
+
+            //   //    check if there is some entry with a trained feature AND that entry is not self
+            //   return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
+            // })
+
+            // // if are targets are compatible (type any OR type skill and trained)
+            // if (compatibleTargets.length === targets.length) {
+            //   const defaultLevel = _default.parse(this, actor)
+            // }
+            // TODO: Dont calculate level, re-utilize already calculated (which would demand we only call official level compilation AFTER ALL attribute-based compilations are done)
+            level = parseLevel(_default, this, actor)
+          }
+        }
+
+        if (!isNil(level)) defaultsAttributeBasedLevels.push(level)
+      }
+
+      const orderedLevels = orderBy(defaultLevels, ({ level }) => level.level, `desc`)
+      if (orderedLevels.length === 0) return null
+    }
+
+    return null
+  }
 }

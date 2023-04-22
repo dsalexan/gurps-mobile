@@ -20,6 +20,7 @@ export interface CompilationContext {
   id: string
   humanId: string
   type: Type
+  parent?: Feature<any, any>
   tl?: number
 }
 
@@ -188,9 +189,10 @@ export type IDerivationPipeline<TData extends IFeatureData, TManualSource extend
   ) => FastMigrationDataObject<any> | null
   post?: (
     this: CompilationContext,
-    data: MigratableObject<TData>,
-    object: Feature<TData, TManualSource>,
-    sources: FeatureSources<TManualSource>,
+    data: {
+      get: <TKey extends keyof TData>(key: TKey) => TData[TKey]
+      has: <TKey extends keyof TData>(key: TKey) => boolean
+    },
   ) => FastMigrationDataObject<any> | null
 }
 

@@ -36,7 +36,7 @@ export default class MoveFeatureContextTemplate extends BaseContextTemplate {
     let value: IFeatureValue = { value: feature.sources.gcs.value }
 
     // LINKS
-    const links = (feature.links ?? []).filter(link => !link.match(/^defenses\./))
+    const links = (feature.data.links ?? []).filter(link => !link.match(/^defenses\./))
 
     // COMPOUNDING TAGS
     const tags = new TagBuilder(variant.tags ?? [])

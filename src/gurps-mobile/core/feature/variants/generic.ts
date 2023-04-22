@@ -34,9 +34,9 @@ export interface IGenericFeature extends IFeature {
 
   reference: string[]
 
-  level?: number
+  level?: ILevel | null
   defaults?: ILevelDefinition[]
-  calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
+  // calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
 }
 
 export default class GenericFeature extends BaseFeature implements IGenericFeature, IWeaponizableFeature {
@@ -62,7 +62,7 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
   weapons: WeaponFeature[]
   activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
 
-  level?: number
+  level?: ILevel | null
   defaults?: ILevelDefinition[]
 
   /**

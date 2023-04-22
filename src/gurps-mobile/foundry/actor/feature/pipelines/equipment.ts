@@ -113,11 +113,16 @@ EquipmentFeaturePipeline.name = `EquipmentFeaturePipeline`
 // },
 // }
 
-EquipmentFeaturePipeline.post = function postEquipment({ data }) {
+EquipmentFeaturePipeline.post = function postEquipment(data) {
   const MDO = {} as MigrationDataObject<any>
 
-  if (data.description && !data.name) {
-    MDO.name = FALLBACK(`name`, data.description)
+  debugger
+  if (data.has(`description`)) {
+    const description = data.get(`description`)
+    const name = data.get(`name`)
+    if (description && !name) {
+      MDO.name = FALLBACK(`name`, description)
+    }
   }
 
   return MDO

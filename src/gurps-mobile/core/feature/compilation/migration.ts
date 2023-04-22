@@ -1,9 +1,9 @@
 /* eslint-disable no-debugger */
-/* eslint-disable jsdoc/require-jsdoc */
-import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty, flatten, pick, last, cloneDeep, flattenDeep } from "lodash"
+import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty, flatten, pick, last, cloneDeep, flattenDeep, has, isEqual } from "lodash"
 import CompilationTemplate, { CompilationContext } from "./template"
 import LOGGER from "../../../logger"
 import { AllSources, IConflictResolution, IDerivation, IDerivationPipeline } from "../../../foundry/actor/feature/pipelines"
+import Feature from "../../../foundry/actor/feature"
 
 export type MigrationMode = `fallback` | `write` | `overwrite` | `push` | `merge`
 
@@ -59,6 +59,18 @@ export interface MigratableObject<TData extends object = object> {
   data: TData
   migrations: MigrationValue<any>[]
   migrationsByKey: Record<string, MigrationValue<any>[]>
+}
+
+export interface MigrationRecipe<TValue> {
+  action: `ignore` | `same` | `pass` | `conflict` | `set` | `push` | `merge`
+  key: string
+  value: TValue
+  migrations: MigrationValue<any>[]
+}
+
+export interface MigrationConflictResolution<TValue> {
+  action: `unknown` | `pipeline`
+  pipeline?: IDerivationPipeline<any>
 }
 
 /**
@@ -173,19 +185,6 @@ export function completeMigrationValueDefinitions(object: MigrationDataObject, o
   return object
 }
 
-/**
- *
- */
-export function buildMigratableObject() {
-  return {
-    migrate(mdo: MigrationDataObject, context: CompilationContext, sources: AllSources<any>) {
-      return resolveMigrationDataObject(this, mdo, context, sources)
-    },
-    migrations: [] as MigrationValue<any>[],
-    migrationsByKey: {} as Record<string, MigrationValue<any>[]>,
-  }
-}
-
 export function isOrigin(origin: { sources?: string[]; migrations?: MigrationValue<any>[] }[], sources: string[] = [], migrations: MigrationValue<any>[] = []) {
   for (const o of origin) {
     const ISources = intersection(o.sources, sources)
@@ -198,130 +197,460 @@ export function isOrigin(origin: { sources?: string[]; migrations?: MigrationVal
   return false
 }
 
-export function applyMigrationValue<TValue>(
-  { data, migrations, migrationsByKey }: MigratableObject,
-  migration: MigrationValue<TValue>,
-  context: CompilationContext,
-  sources: Record<string, object>,
-) {
+function printConflict<TValue, TData extends object = object>(data: TData, migration: MigrationValue<TValue>, lastMigration: MigrationValue<TValue>, context: CompilationContext) {
+  LOGGER.group().info(`[${context.humanId ?? (data as any).name ?? `?`}]`, `Migration Conflict`, `"${migration._meta.key}"`, [
+    `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: regular;`,
+    `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-style: italic; color: #999;`,
+    `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: bold;`,
+  ])
+  LOGGER.info(`    `, `current:`, lastMigration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+  LOGGER.info(`    `, `    new:`, migration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+  LOGGER.info(` `)
+  LOGGER.info(`    `, ` values:`, data[migration._meta.key], `<-`, migration.value, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+  LOGGER.info(`    `, `   from:`, data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+  LOGGER.group()
+}
+
+/**
+ * Generate a resolution path to solve a migration conflict
+ */
+export function prepareMigrationConflict<TValue>(migration: MigrationValue<TValue>, lastMigration: MigrationValue<TValue>) {
   const key = migration._meta.key
-  const value = migration.value
-  const mode = migration.mode
 
-  const keyMigrations = migrationsByKey[key] ?? []
+  const resolution: MigrationConflictResolution<TValue> = { action: `unknown` } as any
 
-  const meta = () => {
-    migrations.push(migration)
+  // if both migrations have the save origin, try conflict resolution
+  const sameOrigin = last(migration._meta.origin)?.type === last(lastMigration._meta.origin)?.type
 
-    if (migrationsByKey[key] === undefined) migrationsByKey[key] = []
-    migrationsByKey[key].push(migration)
+  if (sameOrigin) {
+    const lastOrigin = last(migration._meta.origin)
+    let pipeline = lastOrigin?.pipeline
+    if (pipeline === undefined) throw new Error(`Unimplemented derivation without a pipeline`)
+
+    const conflict = pipeline.conflict?.[key]
+    if (conflict) {
+      // try to run conflict call from pipeline
+      resolution.action = `pipeline`
+      resolution.pipeline = pipeline
+
+      // there is still a change the conflict call will return undefined
+      // if it does, then THERE IS STILL CONFLICT
+    }
   }
 
+  return resolution
+}
+
+/**
+ * Base on last migrations, try to resolve a conflict (generating a list of recipes)
+ */
+export function prepareMigrationConflictResolution<TValue>(
+  key: string,
+  resolution: MigrationConflictResolution<TValue>,
+  migration: MigrationValue<TValue>,
+  lastMigration: MigrationValue<TValue>,
+  //
+  shadowData: MigratableObject[`data`],
+  migratableObject: MigratableObject,
+  context: CompilationContext,
+  object: Feature<any>,
+) {
+  let migrationRecipe: MigrationRecipe<TValue> = { action: `pass`, key, migrations: [] } as any
+
+  if (resolution.action === `pipeline`) {
+    const pipeline = resolution.pipeline!
+    const conflict = pipeline.conflict?.[key]
+
+    // there is still a change the conflict call will return undefined
+    // if it does, then THERE IS STILL CONFLICT
+
+    const MDO = conflict!.call(context, [migration, cloneDeep(lastMigration)], object.sources) as MigrationDataObject
+    if (MDO && Object.keys(MDO).length >= 1) {
+      completeMigrationValueDefinitions(MDO, { type: `conflict`, on: [key], pipeline, between: [lastMigration, migration] }, `overwrite`)
+
+      // know that we have a MDO that can be used to resolve the conflict, we can generate a recipe
+      const recipes = resolveMigrationDataObject(shadowData, migratableObject, MDO, context, object)
+
+      return recipes
+    }
+  }
+
+  debugger
+  // in case no action can solve the conflict, just pass the migration
+  return [migrationRecipe]
+}
+
+/**
+ * Parse a migration into a recipe based on current state of data
+ */
+export function prepareMigrationValue<TValue>(
+  shadowData: MigratableObject[`data`],
+  { data: immutableData, migrations, migrationsByKey }: MigratableObject,
+  migration: MigrationValue<TValue>,
+) {
+  const key = migration._meta.key
+  const mode = migration.mode
+  const keyMigrations = migrationsByKey[key] ?? []
   const lastMigration = keyMigrations[keyMigrations.length - 1]
 
+  const newValue = migration.value
+
+  // here we just decide what to do with the migration, we dont set values yet
+  let migrationRecipe: MigrationRecipe<TValue> = { action: `pass`, key, migrations: [] } as any
+
+  const recipe = (action: MigrationRecipe<TValue>[`action`], value?: MigrationRecipe<TValue>[`value`], ...migrations: MigrationRecipe<TValue>[`migrations`]) => {
+    migrationRecipe.action = action
+    if (value !== undefined) migrationRecipe.value = value
+    migrationRecipe.migrations.push(...migrations)
+  }
+
   if (mode === `write`) {
-    // if value is nothing OR value is the same as already is
-    if (value === undefined || value === data[key]) {
-      // pass
-    }
-    // if value in data is fallback OR empty AND value is something
-    else if (data[key] === undefined || lastMigration?.mode === `fallback` || isEmpty(data[key])) {
-      data[key] = value
-      meta()
-    }
-    // if there is something in data, CONLFICT!!!
-    else {
-      // if both migrations came from the same template, try conflict resolution
-      let isConflict = true
+    if (newValue === undefined) {
+      // migration sets no value
+      recipe(`ignore`)
+    } else {
+      const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
 
-      const sameOrigin = last(migration._meta.origin)?.type === last(lastMigration._meta.origin)?.type
-
-      if (sameOrigin) {
-        const lastOrigin = last(migration._meta.origin)
-        let pipeline = lastOrigin?.pipeline
-        if (pipeline === undefined) throw new Error(`Unimplemented derivation without a pipeline`)
-
-        const conflict = pipeline.conflict?.[key]
-        if (conflict) {
-          const MDO = conflict.call(context, [migration, cloneDeep(lastMigration)], sources) as MigrationDataObject
-
-          if (MDO && Object.keys(MDO).length >= 1) {
-            completeMigrationValueDefinitions(MDO, { type: `conflict`, on: [key], pipeline, between: [lastMigration, migration] }, `overwrite`)
-            resolveMigrationDataObject({ data, migrations, migrationsByKey }, MDO, context, sources)
-
-            isConflict = false
-          }
-        }
-      }
-
-      if (isConflict) {
-        LOGGER.group().info(`[${context.humanId ?? (data as any).name ?? `?`}]`, `Migration Conflict`, `"${key}"`, [
-          `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: regular;`,
-          `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-style: italic; color: #999;`,
-          `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: bold;`,
-        ])
-        LOGGER.info(`    `, `current:`, lastMigration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-        LOGGER.info(`    `, `    new:`, migration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-        LOGGER.info(` `)
-        LOGGER.info(`    `, ` values:`, data[key], `<-`, value, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-        LOGGER.info(`    `, `   from:`, data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-        LOGGER.group()
-
-        // ERROR: Unimplemented conflict
-        debugger
+      if (isEqual(newValue, currentValue)) {
+        // migration stays the same
+        recipe(`same`)
+      } else if (lastMigration?.mode === `fallback` || currentValue === undefined || isEmpty(currentValue)) {
+        // if value in data is fallback OR empty
+        recipe(`set`, newValue, migration)
+      } else {
+        // CONFLICT
+        recipe(`conflict`)
       }
     }
   } else if (mode === `overwrite`) {
-    data[key] = value
-    meta()
+    const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+
+    if (isEqual(newValue, currentValue)) {
+      recipe(`same`)
+    } else {
+      recipe(`set`, newValue, migration)
+    }
   } else if (mode === `push`) {
-    if (data[key] === undefined) data[key] = []
-    else if (!isArray(data[key])) data[key] = [data[key]]
+    const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+    const value = isArray(newValue) ? newValue : [newValue]
 
-    data[key].push(...(isArray(value) ? value : [value]))
-    data[key] = uniq(data[key])
-
-    meta()
+    if (value.length === 0 && currentValue !== undefined) {
+      // there will be no addition to the array (and it already exists, so it will not be a initialization)
+      recipe(`same`)
+    } else {
+      recipe(`push`, value as any as TValue, migration)
+    }
   } else if (mode === `merge`) {
-    const merged = {}
-    mergeWith(merged, data[key], value, (srcValue, newValue, key, source, object) => {
-      if (srcValue === undefined && newValue !== undefined) return newValue
-      else if (srcValue !== undefined && newValue === undefined) return srcValue
-      else if (srcValue === newValue) return srcValue
-
-      // source === listMigration
-      // object === migration
-      debugger
-      // if (isOrigin(migration._meta.origin, [`gcs`])) return newValue
-      // else if (isOrigin(lastMigration._meta.origin, [`gcs`])) return srcValue
-
-      // ERROR: Mergin not implemented
-      debugger
-    })
-
-    data[key] = merged
-    meta()
+    recipe(`merge`, newValue, migration)
   } else if (mode === `fallback`) {
+    const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+
     // if there is no value in data AND value is something
-    if (data[key] === undefined && value !== undefined) {
-      data[key] = value
-      meta()
+    if (currentValue === undefined && newValue !== undefined) {
+      recipe(`set`, newValue, migration)
     }
   }
 
-  return { data, migrations, migrationsByKey }
+  return migrationRecipe
 }
 
-export function resolveMigrationDataObject(data: MigratableObject, mdo: MigrationDataObject, context: CompilationContext, sources: AllSources<any>) {
+/**
+ * Apply a recipe to change values in data.
+ * This method only ensures data will be applied at the correct order, but in a reversible way
+ */
+export function applyMigrationRecipe<TValue>(shadowData: MigratableObject[`data`], immutableData: MigratableObject[`data`], recipe: MigrationRecipe<TValue>) {
+  const action = recipe.action
+  const key = recipe.key
+
+  const currentValue = shadowData[key] ?? immutableData[key]
+
+  if (action === `pass` || action === `ignore` || action === `same`) {
+    // pass, just do nothing mate
+  } else if (action === `set` || action === `push` || action === `merge`) {
+    // TODO: Store migrations history only AFTER seting data in final immutableData (in migratableObject)
+    // migrations.push(...recipe.migrations)
+
+    // if (migrationsByKey[key] === undefined) migrationsByKey[key] = []
+    // migrationsByKey[key].push(...recipe.migrations)
+
+    if (action === `set`) {
+      // ERROR: Wait, how a set of undefined is possible??
+      if (recipe.value === undefined) debugger
+
+      shadowData[key] = recipe.value
+    } else if (action === `push`) {
+      let value = [] as any[]
+      if (currentValue !== undefined && !isArray(currentValue)) value.push(currentValue)
+
+      value.push(...(recipe.value as any as TValue[]))
+      shadowData[key] = uniq(value)
+    } else if (action === `merge`) {
+      let value = {} as any
+      if (!isNil(currentValue)) value = cloneDeep(currentValue)
+
+      const merged = {}
+      mergeWith(merged, value, recipe.value, (srcValue, newValue, key, source, object) => {
+        if (srcValue === undefined && newValue !== undefined) return newValue
+        else if (srcValue !== undefined && newValue === undefined) return srcValue
+        else if (srcValue === newValue) return srcValue
+
+        // source === listMigration
+        // object === migration
+        debugger
+        // if (isOrigin(migration._meta.origin, [`gcs`])) return newValue
+        // else if (isOrigin(lastMigration._meta.origin, [`gcs`])) return srcValue
+
+        // ERROR: Mergin not implemented
+        debugger
+      })
+
+      shadowData[key] = merged
+    }
+  }
+}
+
+/**
+ * Parse a MDO into a list of recipes that can be applied to a data migratable object.
+ * You also try to resolve any conflicts inside of it
+ */
+export function resolveMigrationDataObject(
+  shadowData: MigratableObject[`data`],
+  migratableObject: MigratableObject,
+  mdo: MigrationDataObject,
+  context: CompilationContext,
+  object: Feature<any>,
+) {
   const modes = [`write`, `push`, `merge`, `overwrite`, `conflict`, `fallback`]
 
-  const rawMigrations = Object.values(mdo) as MigrationValue<unknown>[][]
-  for (const migrationByKey of rawMigrations) {
-    if (migrationByKey.some(migration => isNil(migration))) debugger // COMMENT
+  const recipes: MigrationRecipe<unknown>[] = []
 
-    const migrations = orderBy(migrationByKey, migration => modes.indexOf(migration.mode))
-    for (const migration of migrations) applyMigrationValue(data, migration, context, sources)
+  const listOfMigrationsByKey = Object.values(mdo) as MigrationValue<unknown>[][]
+
+  // migrations.push(...recipe.migrations)
+
+  // if (migrationsByKey[key] === undefined) migrationsByKey[key] = []
+  // migrationsByKey[key].push(...recipe.migrations)
+
+  for (const migrationsByKey of listOfMigrationsByKey) {
+    if (migrationsByKey.some(migration => isNil(migration))) debugger // COMMENT
+
+    const migrations = orderBy(migrationsByKey, migration => modes.indexOf(migration.mode))
+
+    // WARN: Never tested
+    if (migrations.length > 1) debugger
+
+    for (const migration of migrations) {
+      // get recipe from migration
+      const recipe = prepareMigrationValue(shadowData, migratableObject, migration)
+
+      if (recipe.action !== `conflict`) {
+        recipes.push(recipe)
+        applyMigrationRecipe(shadowData, migratableObject.data, recipe)
+      } else {
+        // if detected that some migration will resolve in conflict
+        const keyMigrations = migratableObject.migrationsByKey[recipe.key] ?? []
+        const lastMigration = keyMigrations[keyMigrations.length - 1]
+
+        // WARN: Untested
+        if (recipe.migrations.length > 1) debugger
+
+        // get resolution for specific conflict
+        const resolution = prepareMigrationConflict(migration, lastMigration)
+
+        if (resolution.action !== `unknown`) {
+          // if resolution is known, get recipes for resolution
+          const resolutionRecipes = prepareMigrationConflictResolution(
+            recipe.key,
+            resolution,
+            migration,
+            lastMigration, //
+            shadowData,
+            migratableObject,
+            context,
+            object,
+          )
+
+          // ERROR: C'mon, we just solved a conflict, how could there be other?
+          if (resolutionRecipes.some(recipe => recipe.action === `conflict`)) debugger
+
+          recipes.push(...resolutionRecipes)
+        } else {
+          // if cannot determine how to resolve conflict, print it and log it
+          printConflict(migratableObject.data, recipe.migrations[0], lastMigration, context)
+          debugger
+        }
+      }
+    }
   }
 
-  return data
+  return recipes
 }
+
+// export function _applyMigrationValue<TValue>(
+//   { data, migrations, migrationsByKey }: MigratableObject,
+//   migration: MigrationValue<TValue>,
+//   context: CompilationContext,
+//   object: Feature<any>,
+// ) {
+//   const key = migration._meta.key
+//   const value = migration.value
+//   const mode = migration.mode
+
+//   const keyMigrations = migrationsByKey[key] ?? []
+
+//   const meta = () => {
+//     migrations.push(migration)
+
+//     if (migrationsByKey[key] === undefined) migrationsByKey[key] = []
+//     migrationsByKey[key].push(migration)
+//   }
+
+//   const lastMigration = keyMigrations[keyMigrations.length - 1]
+
+//   if (mode === `write`) {
+//     // if value is nothing OR value is the same as already is
+//     if (value === undefined || value === data[key]) {
+//       // pass
+//     }
+//     // if value in data is fallback OR empty AND value is something
+//     else if (data[key] === undefined || lastMigration?.mode === `fallback` || isEmpty(data[key])) {
+//       data[key] = value
+//       meta()
+//     }
+//     // if there is something in data, CONLFICT!!!
+//     else {
+//       // if both migrations came from the same template, try conflict resolution
+//       let isConflict = true
+
+//       const sameOrigin = last(migration._meta.origin)?.type === last(lastMigration._meta.origin)?.type
+
+//       if (sameOrigin) {
+//         const lastOrigin = last(migration._meta.origin)
+//         let pipeline = lastOrigin?.pipeline
+//         if (pipeline === undefined) throw new Error(`Unimplemented derivation without a pipeline`)
+
+//         const conflict = pipeline.conflict?.[key]
+//         if (conflict) {
+//           const MDO = conflict.call(context, [migration, cloneDeep(lastMigration)], object.sources) as MigrationDataObject
+
+//           if (MDO && Object.keys(MDO).length >= 1) {
+//             completeMigrationValueDefinitions(MDO, { type: `conflict`, on: [key], pipeline, between: [lastMigration, migration] }, `overwrite`)
+//             resolveMigrationDataObject({ data, migrations, migrationsByKey }, MDO, context, object)
+
+//             isConflict = false
+//           }
+//         }
+//       }
+
+//       if (isConflict) {
+//         LOGGER.group().info(`[${context.humanId ?? (data as any).name ?? `?`}]`, `Migration Conflict`, `"${key}"`, [
+//           `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: regular;`,
+//           `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-style: italic; color: #999;`,
+//           `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: bold;`,
+//         ])
+//         LOGGER.info(`    `, `current:`, lastMigration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+//         LOGGER.info(`    `, `    new:`, migration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+//         LOGGER.info(` `)
+//         LOGGER.info(`    `, ` values:`, data[key], `<-`, value, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+//         LOGGER.info(`    `, `   from:`, data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+//         LOGGER.group()
+
+//         // ERROR: Unimplemented conflict
+//         debugger
+//       }
+//     }
+//   } else if (mode === `overwrite`) {
+//     data[key] = value
+//     meta()
+//   } else if (mode === `push`) {
+//     if (data[key] === undefined) data[key] = []
+//     else if (!isArray(data[key])) data[key] = [data[key]]
+
+//     data[key].push(...(isArray(value) ? value : [value]))
+//     data[key] = uniq(data[key])
+
+//     meta()
+//   } else if (mode === `merge`) {
+//     const merged = {}
+//     mergeWith(merged, data[key], value, (srcValue, newValue, key, source, object) => {
+//       if (srcValue === undefined && newValue !== undefined) return newValue
+//       else if (srcValue !== undefined && newValue === undefined) return srcValue
+//       else if (srcValue === newValue) return srcValue
+
+//       // source === listMigration
+//       // object === migration
+//       debugger
+//       // if (isOrigin(migration._meta.origin, [`gcs`])) return newValue
+//       // else if (isOrigin(lastMigration._meta.origin, [`gcs`])) return srcValue
+
+//       // ERROR: Mergin not implemented
+//       debugger
+//     })
+
+//     data[key] = merged
+//     meta()
+//   } else if (mode === `fallback`) {
+//     // if there is no value in data AND value is something
+//     if (data[key] === undefined && value !== undefined) {
+//       data[key] = value
+//       meta()
+//     }
+//   }
+
+//   return { data, migrations, migrationsByKey }
+// }
+
+// export function _resolveMigrationDataObject(data: MigratableObject, mdo: MigrationDataObject, context: CompilationContext, object: Feature<any>) {
+//   const modes = [`write`, `push`, `merge`, `overwrite`, `conflict`, `fallback`]
+
+//   const recipes: MigrationRecipe<unknown>[] = []
+
+//   const rawMigrations = Object.values(mdo) as MigrationValue<unknown>[][]
+//   for (const migrationByKey of rawMigrations) {
+//     if (migrationByKey.some(migration => isNil(migration))) debugger // COMMENT
+
+//     const migrations = orderBy(migrationByKey, migration => modes.indexOf(migration.mode))
+
+//     // WARN: Never tested
+//     if (migrations.length > 1) debugger
+
+//     for (const migration of migrations) {
+//       const recipe = prepareMigrationValue(data, migration)
+
+//       if (recipe.action !== `conflict`) {
+//         recipes.push(recipe)
+
+//         debugger
+//         applyMigrationValue(recipe, data)
+//       } else {
+//         const keyMigrations = data.migrationsByKey[recipe.key] ?? []
+//         const lastMigration = keyMigrations[keyMigrations.length - 1]
+
+//         // WARN: Untested
+//         if (recipe.migrations.length > 1) debugger
+
+//         debugger
+//         const resolution = prepareMigrationConflict(recipe.migrations[0], lastMigration)
+
+//         if (resolution.action !== `unknown`) {
+//           const resolutionRecipes = prepareMigrationConflictResolution(recipe.key, resolution, recipe.migrations[0], lastMigration, context, object)
+
+//           // ERROR: C'mon, we just solved a conflict
+//           if (resolutionRecipes.some(recipe => recipe.action === `conflict`)) debugger
+
+//           recipes.push(...resolutionRecipes)
+
+//           for (const resolutionRecipe of resolutionRecipes) {
+//             applyMigrationValue(resolutionRecipe, data)
+//           }
+//         } else {
+//           printConflict(data.data, recipe.migrations[0], lastMigration, context)
+//           debugger
+//         }
+//       }
+//       debugger
+//     }
+//   }
+
+//   return recipes
+// }

@@ -55,6 +55,14 @@ export default class TagBuilder {
         }
 
         if (c.icon === undefined) delete c.icon
+        if (c.label !== undefined) {
+          const match = c.label.match(/^https?:\/\//i)
+          if (match) {
+            const components = c.label.replace(match[0], ``).split(`.`)
+            c.label = components[0] !== `www` ? components[0] : components[1]
+            c.classes?.push(`external-link`)
+          }
+        }
 
         return c
       }),

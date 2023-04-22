@@ -1,7 +1,7 @@
 import { GCS } from "../types/gcs"
-import GenericFeature from "../../gurps-mobile/core/feature/variants/generic"
 import Feature, { IFeatureData } from "../../gurps-mobile/foundry/actor/feature"
 import { GenericSource } from "../../gurps-mobile/foundry/actor/feature/pipelines"
+import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 
 export interface IComponentDefinition<TFeature extends Feature<IFeatureData, GenericSource> = any> {
   feature: TFeature
@@ -33,7 +33,7 @@ export function compareComponent(component: ISkillBonusComponent, feature: Gener
         const prefix = compare === `is` || compare === `starts_with` ? `^` : ``
         const suffix = compare === `is` ? `$` : ``
 
-        return !!feature.name.match(new RegExp(`${prefix}${qualifier}${suffix}`, `i`))
+        return !!feature.data.name.match(new RegExp(`${prefix}${qualifier}${suffix}`, `i`))
       } else debugger
     } else debugger
   }

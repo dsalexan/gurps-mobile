@@ -2,7 +2,7 @@ import { cloneDeep, flatten, get, has, isArray, isEmpty, isNil, isString, set, u
 import Feature, { FeatureTemplate } from "."
 import { ToggableValue } from "../../../core/feature/base"
 import LOGGER from "../../../logger"
-import { EquipmentFeaturePipeline, IEquipmentFeatureData } from "./pipelines/equipment"
+import { WeaponFeaturePipeline, IWeaponFeatureData } from "./pipelines/weapon"
 import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
 import { IWeaponizableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/weaponizable"
@@ -17,12 +17,12 @@ import { MERGE } from "../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
 
-export default class EquipmentFeature extends GenericFeature {
-  declare data: IEquipmentFeatureData
+export default class WeaponFeature extends GenericFeature {
+  declare data: IWeaponFeatureData
 
   constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
     super(id, key, parent, template)
-    this.addPipeline(EquipmentFeaturePipeline)
+    this.addPipeline(WeaponFeaturePipeline)
   }
 
   _integrate(actor: GurpsMobileActor) {

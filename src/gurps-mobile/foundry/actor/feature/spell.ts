@@ -12,8 +12,8 @@ export default class SpellFeature extends GenericFeature {
     this.addPipeline(SpellFeaturePipeline)
   }
 
-  integrate(actor: GurpsMobileActor) {
-    super.integrate(actor)
+  _integrate(actor: GurpsMobileActor) {
+    super._integrate(actor)
 
     return this
   }

@@ -4,13 +4,13 @@ import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../../cont
 import { IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "../interfaces"
 import TagBuilder, { FastTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
-import GenericFeature from "../../../../../core/feature/variants/generic"
 import ContextManager from "../../manager"
 import { orderLevels, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { parseBonus, parseSign } from "../../../../../../gurps-extension/utils/bonus"
 import { FeatureState, stateToString } from "../../../../../core/feature/utils"
 import { activeDefenseFeatures, activeDefenseLevel, featureActiveDefenseLevel } from "../../../../../../gurps-extension/utils/defense"
+import GenericFeature from "../../../../actor/feature/generic"
 
 export interface DefenseFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: GenericFeature
@@ -109,7 +109,7 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
    */
   static main(defense, variants: IFeatureDataVariant[], specs: DefenseFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
     const feature = getSpec(specs, `feature`)
-    const actor = feature._actor
+    const actor = feature.actor
 
     let variant = variants[0] ?? {}
 
@@ -239,7 +239,7 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
     super.base(context, specs, manager)
 
     const feature = getSpec(specs, `feature`)
-    const actor = feature._actor
+    const actor = feature.actor
 
     const children = get(context, `children`) ?? {}
 

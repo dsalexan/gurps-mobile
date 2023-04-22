@@ -9,6 +9,7 @@
   align-items: stretch;
   //
   margin-bottom: var(--s1);
+  max-width: 100%;
 
   // #region CHILDREN
 
@@ -136,7 +137,8 @@
 
   & > .children {
     --list-content-margin: var(--s1);
-
+    
+    max-width: 100%;
     margin-top: calc(var(--s0-5) * 1);
     //
     display: flex;
@@ -222,6 +224,15 @@
           flex: 1 0 calc(50% - 2 * 0px);
           width: 50px;
         }
+      }
+    }
+  }
+
+  &:not(.root) {
+    & > .children {
+      & > .feature-list, & > .feature, & > .feature-wrapper {
+        margin-left: var(--s0-5);
+        margin-right: var(--s0-5);
       }
     }
   }

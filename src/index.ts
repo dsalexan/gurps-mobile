@@ -19,6 +19,8 @@ document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="http
 document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700&display=swap"/>`)[0])
 document.querySelector(`head`)?.appendChild($(`<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">`)[0])
 
+document.WAIT_FOR_PROFILE = true
+
 // Inject Globals
 window.december = new December(true)
 

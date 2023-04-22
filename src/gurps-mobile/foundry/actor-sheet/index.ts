@@ -13,6 +13,7 @@ import ContextManager from "./context/manager"
 import { Datachanges } from "../../../december/utils"
 import HTMLFeature from "./html/feature"
 import Feature from "../actor/feature"
+import SkillFeature from "../actor/feature/skill"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -448,26 +449,33 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const groupedFeatures = FeatureGroups.map(({ section, key, specs, transform, map, filter, sort, order, groups }) => {
       const transformedFeatures = transform === undefined ? allFeatures : transform(allFeatures)
       const mappedFeatures = flatten(map === undefined ? transformedFeatures : transformedFeatures.map(f => map(f as any)))
-      // TODO: Dont skip feature containers, instead render them as FeatureLists
-      const features = filter === undefined ? mappedFeatures : mappedFeatures.filter(f => filter(f as any) && f.children.length === 0)
+      const features = filter === undefined ? mappedFeatures : mappedFeatures.filter(f => filter(f as any))
 
-      let grouped = {} as ReturnType<typeof ContextManager.groupBy>
-      if (groups === false) {
-        const sortedFeatures = sort === undefined ? orderBy(features, f => parseInt(f.key.tree[0] as string), order) : orderBy(features, sort, order)
-        grouped = {
-          keys: [undefined as any],
-          groups: { undefined: sortedFeatures },
-        }
-      } else {
-        grouped = ContextManager.groupBy(
-          features,
-          f => f.group as string,
-          sort === undefined ? f => parseInt(f._key.tree[0] as string) : sort, // send value to sort by
-          order,
-        )
-      }
+      // // group by parent
+      // const grouped_ = ContextManager.toContextList(
+      //   features,
+      //   sort === undefined ? f => parseInt(f.key.tree[0] as string) : sort, // send value to sort by
+      //   order,
+      // )
+      // debugger
 
-      return { section, key, specs, features: grouped }
+      // let grouped = {} as ReturnType<typeof ContextManager.groupBy>
+      // if (groups === false) {
+      //   const sortedFeatures = sort === undefined ? orderBy(features, f => parseInt(f.key.tree[0] as string), order) : orderBy(features, sort, order)
+      //   grouped = {
+      //     keys: [undefined as any],
+      //     groups: { undefined: sortedFeatures },
+      //   }
+      // } else {
+      //   grouped = ContextManager.groupBy(
+      //     features,
+      //     f => f.group as string,
+      //     sort === undefined ? f => parseInt(f.key.tree[0] as string) : sort, // send value to sort by
+      //     order,
+      //   )
+      // }
+
+      return { section, key, specs, features: ContextManager.prepareTree(features, sort === undefined ? f => parseInt(f.key.tree[0] as string) : sort, order) }
     })
 
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
@@ -477,27 +485,56 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     // sheetData.tabs.defenses.push(...this.buildDefenses())
 
     for (const type of groupedFeatures) {
-      sheetData.tabs[type.key] = flattenDeep(
-        type.features.keys.map((key, index) => {
-          const listId = `${type.section}-${type.key}-${key}${index}`
+      const { byId, byDepth, byParent } = type.features
 
-          return contextManager.list({
-            id: listId,
-            label: key === `undefined` ? undefined : key,
-            children: type.features.groups[key]
-              .map(feature => {
-                const context = contextManager.feature(feature, {
-                  classes: [`full`],
-                  list: listId,
-                  ...(type.specs ?? {}),
-                })
+      const tabPrefix = `${type.section}-${type.key}`
 
-                return context
-              })
-              .filter(c => !isNil(c)),
-          })
-        }),
+      const children = contextManager.featuresToContexts(
+        undefined,
+        type.features,
+        (feature, parent) => {
+          return {
+            id: `${tabPrefix}-${feature.id}`,
+          }
+        },
+        (feature, parent) => {
+          return {
+            classes: [`full`],
+            list: `${tabPrefix}-${parent?.id ?? `root`}`,
+            ...(type.specs ?? {}),
+          }
+        },
       )
+
+      const root = contextManager.list({
+        id: `${tabPrefix}-root`,
+        classes: [`root`],
+        label: undefined,
+        children,
+      })
+      sheetData.tabs[type.key] = [root]
+
+      // sheetData.tabs[type.key] = flattenDeep(
+      //   type.features.keys.map((key, index) => {
+      //     const listId = `${type.section}-${type.key}-${key}${index}`
+
+      //     return contextManager.list({
+      //       id: listId,
+      //       label: key === `undefined` ? undefined : key,
+      //       children: type.features.groups[key]
+      //         .map(feature => {
+      //           const context = contextManager.feature(feature, {
+      //             classes: [`full`],
+      //             list: listId,
+      //             ...(type.specs ?? {}),
+      //           })
+
+      //           return context
+      //         })
+      //         .filter(c => !isNil(c)),
+      //     })
+      //   }),
+      // )
     }
 
     tFeatureContextBuildingAndContainerization(`    Feature Context Building and Containerization`, [`font-weight: bold;`]) // COMMENT
@@ -619,17 +656,17 @@ const FeatureGroups = [
   //   key: `advantages`,
   //   filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
   // },
-  // {
-  //   section: `occ`,
-  //   key: `skills`,
-  //   filter: (f: SkillFeature) => f.type.compare(`skill`, true) && f.training === `trained`,
-  //   sort: (f: SkillFeature) => {
-  //     if (f.training === `unknown`) return -Infinity
-  //     if (f.training === `untrained`) return -1
-  //     return parseInt(f._key.tree[0].toString())
-  //   },
-  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  // },
+  {
+    section: `occ`,
+    key: `skills`,
+    filter: (f: SkillFeature) => f.type.compare(`skill`, true) && f.data.training === `trained`,
+    sort: (f: SkillFeature) => {
+      if (f.data.training === `unknown`) return -Infinity
+      if (f.data.training === `untrained`) return -1
+      return parseInt(f.key.tree[0].toString())
+    },
+    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  },
   // {
   //   section: `occ`,
   //   key: `spells`,

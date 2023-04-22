@@ -19,8 +19,8 @@ export default class AdvantageFeature extends GenericFeature {
     this.addPipeline(AdvantageFeaturePipeline)
   }
 
-  integrate(actor: GurpsMobileActor) {
-    super.integrate(actor)
+  _integrate(actor: GurpsMobileActor) {
+    super._integrate(actor)
 
     return this
   }
@@ -28,6 +28,16 @@ export default class AdvantageFeature extends GenericFeature {
   // #region GCA query
   prepareQueryGCA() {
     const parameters = super.prepareQueryGCA()
+
+    if (this.data) {
+      if (this.data.name === `Talent`) {
+        // TODO: Talent is a special case, its GCA counterpart is "_New Talent" and i'm not in the mood to deal with that
+        return { directive: `skip` }
+      } else if (this.data.name === `List`) {
+        // just a container for other features
+        return { directive: `skip` }
+      }
+    }
 
     if (!!parameters.name?.match(/Language/i) && this.data.tags.includes(`Language`)) {
       parameters.name = `Language`

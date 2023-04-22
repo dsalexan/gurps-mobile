@@ -6,12 +6,11 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
-import { ISkillFeature } from "../../../../../core/feature/compilation/templates/skill"
-import SkillFeature from "../../../../../core/feature/variants/skill"
 import { ILevelDefinition, ILevel } from "../../../../../../gurps-extension/utils/level"
+import SkillFeature from "../../../../actor/feature/skill"
 
 export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: ISkillFeature
+  feature: SkillFeature
   //
   showDefaults?: boolean
   difficulty?: boolean
@@ -38,6 +37,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // #region VALUE
     variant.value = { value: `-` }
+    debugger
     const level = feature.calcLevel()
     if (level) {
       variant.value.value = level.level.toString()
@@ -46,9 +46,9 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     // #endregion
 
     // TAGS
-    if (feature.training === `untrained` || feature.training === `unknown`) {
+    if (feature.data.training === `untrained` || feature.data.training === `unknown`) {
       tags.type(`type`).update(tag => {
-        tag.children[0].label = `${feature.training === `untrained` ? `Untrained` : `Unknown`} Skill`
+        tag.children[0].label = `${feature.data.training === `untrained` ? `Untrained` : `Unknown`} Skill`
         tag.children[0].icon = `untrained_skill`
 
         return tag
@@ -59,7 +59,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     if (specs.difficulty !== false) {
       tags.type(`type`).update(tag => {
         tag.children.push({
-          label: { E: `Easy`, A: `Average`, H: `Hard`, VH: `Very Hard` }[feature.difficulty] ?? feature.difficulty,
+          label: { E: `Easy`, A: `Average`, H: `Hard`, VH: `Very Hard` }[feature.data.difficulty] ?? feature.data.difficulty,
         })
 
         return tag
@@ -67,9 +67,9 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     }
 
     // DEFAULTS
-    if (feature.training === `untrained` || specs.showDefaults) {
-      const levelTags = (feature.defaults ?? []).map((roll: ILevelDefinition) => {
-        const levelDefinition = roll.parse(feature as SkillFeature, (feature as SkillFeature)._actor)
+    if (feature.data.training === `untrained` || specs.showDefaults) {
+      const levelTags = (feature.data.defaults ?? []).map((roll: ILevelDefinition) => {
+        const levelDefinition = roll.parse(feature, feature.actor)
 
         if (!isNil(levelDefinition)) {
           const { level, relative } = levelDefinition
@@ -122,7 +122,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     const main = this.main(children.main?.[0]?.variants ?? [], specs, manager)
     if (main) set(children, `main.0.variants`, main)
 
-    if (feature.proxy && children?.main?.[0]) push(children.main[0], `classes`, `no-swipe`)
+    if (feature.data.proxy && children?.main?.[0]) push(children.main[0], `classes`, `no-swipe`)
 
     context = {
       ...context,

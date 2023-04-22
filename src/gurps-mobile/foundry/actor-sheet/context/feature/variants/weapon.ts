@@ -6,14 +6,13 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { isNilOrEmpty, push } from "../../../../../../december/utils/lodash"
-import { IWeaponFeature } from "../../../../../core/feature/compilation/templates/weapon"
-import WeaponFeature from "../../../../../core/feature/variants/weapon"
 import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
+import WeaponFeature from "../../../../actor/feature/weapon"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: IWeaponFeature
+  feature: WeaponFeature
   //
   showParent?: boolean
   showDefaults?: boolean
@@ -35,13 +34,13 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
    */
   static skillsVariants(_variants: IFeatureDataVariant[], specs: WeaponFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
     const feature = getSpec(specs, `feature`)
-    const actor = (feature as any)._actor
+    const actor = feature.actor
 
     // set usage as label
-    _variants[0].label = feature.usage ?? undefined
+    _variants[0].label = feature.data.usage ?? undefined
 
     // if there is no defaults attached to weapon, just returns its default main variant
-    if (isNil(feature.defaults) || feature.defaults.length === 0) {
+    if (isNil(feature.data.defaults) || feature.data.defaults.length === 0) {
       _variants[0].value = undefined
       return _variants
     }
@@ -55,7 +54,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const untrained = [] as ILevelDefinition[],
       trained = [] as { definition: ILevelDefinition; level: ILevel }[]
 
-    const levels = feature.defaults ?? []
+    const levels = feature.data.defaults ?? []
     for (const levelDefinition of levels) {
       const targets = Object.values(levelDefinition.targets ?? [])
 
@@ -139,10 +138,10 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
     if (specs.showParent && feature.parent) {
       let suffix = ``
-      if (!isNilOrEmpty(feature.usage) && !specs.ignoreUsage) {
-        suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">(${feature.usage})</span>`
+      if (!isNilOrEmpty(feature.data.usage) && !specs.ignoreUsage) {
+        suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">(${feature.data.usage})</span>`
       }
-      variant.label = `${feature.parent.name}${suffix}`
+      variant.label = `${feature.parent.data.name}${suffix}`
 
       tags.type(`type`).update(tag => {
         tag.children[0].label = undefined
@@ -162,7 +161,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    let defaultLevels = feature.defaults
+    let defaultLevels = feature.data.defaults
     if (isNil(defaultLevels)) {
       defaultLevels = [parseLevelDefinition({ type: `dx` })]
 
@@ -182,7 +181,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     if (!isNil(defaultLevels) && defaultLevels.length > 0) {
-      const levels = orderLevels(defaultLevels, feature, feature._actor)
+      const levels = orderLevels(defaultLevels, feature, feature.actor)
       const level = levels[0]
 
       variant.value = {

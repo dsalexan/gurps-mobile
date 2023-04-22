@@ -6,20 +6,14 @@ import FeatureFactory from "../../../core/feature/factory"
 import { GCA as _GCA } from "../../../core/gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../actor-sheet/context/context"
 import { GurpsMobileActor } from "../actor"
-import { cloneDeep, flatten, get, intersection, isArray, isEqual, isFunction, isNil, isObjectLike, isString, omit, pick, pickBy, sortBy, uniq } from "lodash"
-import { push } from "../../../../december/utils/lodash"
+import { cloneDeep, flatten, get, has, intersection, isArray, isEqual, isFunction, isNil, isObjectLike, isRegExp, isString, omit, pick, pickBy, sortBy, uniq } from "lodash"
+import { isPrimitive, push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
 import { AllSources, CompilationContext, DeepKeyOf, FeatureSources, GenericSource, IDerivation, IDerivationFunction, IDerivationPipeline, IManualPipeline } from "./pipelines"
 import { FeatureState, typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
 import LOGGER from "../../../logger"
 import { FEATURE } from "../../../core/feature/type"
-import {
-  MigratableObject,
-  MigrationDataObject,
-  buildMigratableObject,
-  completeMigrationValueDefinitions,
-  resolveMigrationDataObject,
-} from "../../../core/feature/compilation/migration"
+import { MigratableObject, MigrationDataObject, MigrationRecipe, completeMigrationValueDefinitions, resolveMigrationDataObject } from "../../../core/feature/compilation/migration"
 import { EventEmitter } from "@billjs/event-emitter"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -68,6 +62,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       previousData: any
       //
       migrations: Record<string, unknown>
+      poolables: string[]
       //
       pipelineOrder: string[]
       pipelines: Record<string, IDerivationPipeline<TData, TManualSource>>
@@ -106,6 +101,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
         previousData: {} as any,
         //
         migrations: {} as Record<string, unknown>,
+        poolables: [],
         // pipelines
         pipelineOrder: [],
         pipelines: {} as any,
@@ -136,13 +132,42 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
   listen() {
     this.on(`update`, event => {
-      const { keys, ignoreCompile } = event.data as { keys: (string | RegExp)[]; ignoreCompile: string[] }
+      const { keys, delayCompile, ignoreCompile } = event.data as { keys: (string | RegExp)[]; delayCompile?: boolean; ignoreCompile: string[] }
+
+      const poolables = flatten(
+        keys.map(key => {
+          if (isString(key) && this.__.compilation.poolables.includes(key)) return [key]
+          else if (isRegExp(key)) return this.__.compilation.poolables.filter(poolable => key.test(poolable))
+
+          return []
+        }),
+      )
+      if (poolables.length > 0) debugger
+      if (poolables.length > 0) this.factory.pool(this, poolables)
 
       // ERROR: Unimplemented
       if (!isNil(ignoreCompile) && !isArray(ignoreCompile)) debugger
 
-      const _keys = keys.filter(key => !isString(key) || !ignoreCompile?.includes(key))
-      if (_keys.length > 0) this.compile(_keys)
+      const nonIgnoredKeys = keys.filter(key => !isString(key) || !ignoreCompile?.includes(key))
+      if (nonIgnoredKeys.length > 0) {
+        this.compile(nonIgnoredKeys, {}, { delayCompile })
+      }
+    })
+
+    this.on(`compile`, event => {
+      const { changes, feature } = event.data as { changes: (string | RegExp)[]; feature: Feature<any> }
+
+      // check if one of the changes is a regular expression born form addSource
+      if (changes) {
+        for (const change of changes) {
+          const match = change.toString().match(/\/\^(\w+)\.\*\//)
+
+          if (match) {
+            feature.fire(`compile:source`, { source: match[1], ...event.data })
+            feature.fire(`compile:${match[1]}`, { source: match[1], ...event.data })
+          }
+        }
+      }
     })
   }
 
@@ -165,11 +190,11 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     return this
   }
 
-  addSource(name: string, source: Record<string, unknown>, ignoreCompile = false) {
+  addSource(name: string, source: Record<string, unknown>, options: { delayCompile: boolean; integrate?: GurpsMobileActor } = { delayCompile: false }) {
     this.sources[name] = cloneDeep(source)
 
     // if (!ignoreCompile) this.compile([new RegExp(`^${name}.*`)])
-    this.fire(`update`, { keys: [new RegExp(`^${name}.*`)] })
+    this.fire(`update`, { keys: [new RegExp(`^${name}.*`)], delayCompile: options.delayCompile })
 
     return this
   }
@@ -191,7 +216,12 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
         this.__.compilation.derivationsByDestination[destination].push([name, index])
       }
 
-      for (const target of derivation.targets) {
+      for (let target of derivation.targets) {
+        // add to poolables if needed
+        const poolable = target.substring(target.length - 5) === `:pool`
+        if (poolable) this.__.compilation.poolables.push(target.substring(0, target.length - 5))
+
+        // index derivation by target
         if (this.__.compilation.derivationsByTarget[target] === undefined) this.__.compilation.derivationsByTarget[target] = []
         this.__.compilation.derivationsByTarget[target].push([name, index])
       }
@@ -202,19 +232,21 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
   preCompile(changes: (string | RegExp)[] | null) {
     for (const [name, source] of Object.entries(this.sources)) {
-      if (name === `gcs`) this.type = typeFromGCS(source as any)
-      else if (name === `gca`) this.type = typeFromGCA(source as any)
+      if (isNil(this.type) || this.type.isGeneric) {
+        if (name === `gcs`) this.type = typeFromGCS(source as any)
+        else if (name === `gca`) this.type = typeFromGCA(source as any)
+      }
     }
   }
 
-  compile(changes: (string | RegExp)[] | null, baseContext = {}) {
+  _compile(changes: (string | RegExp)[] | null, baseContext = {}) {
     const isFullCompilation = changes === null
 
     // COMPILE type
     //    type compilation is fixed here
     this.preCompile(changes)
 
-    const context: CompilationContext = { id: this.id, type: this.type, ...baseContext } as any
+    const context: CompilationContext = { id: this.id, type: this.type, parent: this.parent, ...baseContext } as any
     const allTargets = Object.keys(this.__.compilation.derivationsByTarget)
 
     let targets: string[] = []
@@ -230,6 +262,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
           return allTargets.filter(target => target.match(pattern))
         }),
       )
+
+    if (targets.length === 0) return
 
     // let timer = LOGGER.time(`LIST`) // COMMENT
 
@@ -260,7 +294,6 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region EXECUTE derivations and pool results
 
-    let destinations = [] as string[]
     const MDOs = [] as MigrationDataObject[]
     for (const derivation of derivations) {
       let result: ReturnType<typeof derivation.derive>
@@ -278,30 +311,45 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
         completeMigrationValueDefinitions(result, { type: `derivation`, on: derivation.targets, derivation })
 
         if (Object.keys(result).length >= 1) {
-          destinations.push(...derivation.destinations.map(destination => destination.toString()))
           MDOs.push(result)
         }
       }
     }
 
+    // primitive fast deep clone
+    // this.__.compilation.previousData = Object.keys(this.data).map(key => {
+    //   const value = this.data[key]
+    //   if (isPrimitive(value)) return [key, value]
+    //   return this.data[key]
+    // })
+
     // migrate for each template (conflict resolution should be dealt with by applying the correct MigrationMode)
-    this.__.compilation.previousData = cloneDeep(this.data)
-    const data = {
+    const migratableObject = {
       data: this.data,
       migrations: [],
       migrationsByKey: this.__.compilation.migrations,
     } as MigratableObject
 
-    for (const mdo of MDOs) resolveMigrationDataObject(data, mdo, context, this.sources)
+    const mutableData = {} as TData
+    const recipes = [] as MigrationRecipe<unknown>[]
+    for (const mdo of MDOs) {
+      const mdoRecipes = resolveMigrationDataObject(mutableData, migratableObject, mdo, context, this)
+      recipes.push(...mdoRecipes)
+    }
 
     // for each pipeline, do post
-    let postDestinations = [] as string[]
+    const getData = function (key: string) {
+      return has(mutableData, key) ? mutableData[key] : migratableObject.data[key]
+    }
+    const hasData = function (key: string) {
+      return has(mutableData, key) || has(migratableObject.data, key)
+    }
     const postMDOs = [] as MigrationDataObject[]
     for (const name of this.__.compilation.pipelineOrder) {
       const pipeline = this.__.compilation.pipelines[name]
       if (!pipeline.post) continue
 
-      const mdo = pipeline.post.call(context, data, this, this.sources)
+      const mdo = pipeline.post.call(context, { mutable: mutableData, immutable: migratableObject.data, get: getData, has: hasData })
       if (mdo && Object.keys(mdo).length >= 1) {
         const completeMDO = completeMigrationValueDefinitions(mdo, { type: `post`, pipeline })
 
@@ -310,13 +358,10 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
 
     // migrate for each post MDO
+    const postRecipes = [] as MigrationRecipe<unknown>[]
     for (const mdo of postMDOs) {
-      const postDestinations = Object.keys(mdo)
-
-      resolveMigrationDataObject(data, mdo, context, this.sources)
-
-      // only fire update on changed values
-      destinations.push(...postDestinations.filter(destination => !isEqual(this.__.compilation.previousData[destination], data.data[destination])))
+      const mdoRecipes = resolveMigrationDataObject(mutableData, migratableObject, mdo, context, this)
+      postRecipes.push(...mdoRecipes)
     }
 
     // #endregion
@@ -326,12 +371,23 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
 
-    for (const key of Object.keys(data.data)) {
-      if (data.data[key] === undefined) continue
+    // fill migratableObject migrations index
+    const allRecipes = [...recipes, ...postRecipes]
+    for (const recipe of allRecipes) {
+      const key = recipe.key
+      migratableObject.migrations.push(...recipe.migrations)
+
+      if (migratableObject.migrationsByKey[key] === undefined) migratableObject.migrationsByKey[key] = []
+      migratableObject.migrationsByKey[key].push(...recipe.migrations)
+    }
+
+    // pass mutated data to this.data
+    for (const key of Object.keys(mutableData)) {
+      if (mutableData[key] === undefined) continue
 
       // this.fire(`before-compile.${key}`, { key, value: data.data[key], migration: data.migrationsByKey[key] })
-      const value = data.data[key]
-      const migration = data.migrationsByKey[key]
+      const value = mutableData[key]
+      const migration = migratableObject.migrationsByKey[key]
 
       this.data[key] = value
       this.__.compilation.migrations[key] = migration
@@ -345,9 +401,12 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // timer = LOGGER.time(`FIRE`) // COMMENT
 
     // FIRE subscription events for feature+keys that have changed
-    destinations = uniq(destinations)
+    const mutatingRecipes = allRecipes.filter(recipe => ![`pass`, `ignore`, `same`].includes(recipe.action))
+    const destinations = uniq(mutatingRecipes.map(recipe => recipe.key))
+
     const overlap = intersection(destinations, targets)
     if (overlap.length > 0) {
+      debugger
       // TODO: By now, i'm just removing overlaps, but this is not the best solution
       //       The best solution would be to implement a stack overflow "refusal" in the return of derivation, to indicate a moment do stop a cycle of changes
 
@@ -368,9 +427,38 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       // @ts-ignore
       document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id] = overlap
     }
-    this.fire(`update`, { feature: this, keys: destinations, ignoreCompile: overlap })
+
+    this.fire(`update`, { feature: this, changes, keys: destinations, ignoreCompile: overlap })
+    this.fire(`compile`, { feature: this, changes, keys: destinations, ignoreCompile: overlap })
+    if (this.__fire_loadFromGCA && changes?.some(key => (isString(key) ? key.startsWith(`gca.`) : key.test(`gca.`)))) {
+      this.__fire_loadFromGCA = false
+      this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: this.sources.gca })
+    }
 
     // timer(`FIRE`) // COMMENT
+  }
+
+  compile(changes: (string | RegExp)[] | null, baseContext = {}, { delayCompile }: { delayCompile?: boolean } = {}) {
+    if (changes === null) debugger
+
+    // only request keys if they are targets of derivations
+    const targets = Object.keys(this.__.compilation.derivationsByTarget)
+    const targetChanges = changes!.filter(key => {
+      if (isString(key)) return targets.includes(key)
+      else return targets.some(target => key.test(target))
+    })
+
+    const DEBUG_targetChanges = flatten(
+      changes!.map(key => {
+        if (isString(key)) return targets.includes(key) ? key : []
+        else return targets.filter(target => key.test(target))
+      }),
+    )
+
+    // if (targetChanges.length === 0) return
+
+    // but still send regexp as key if they came this way
+    this.factory.requestCompilation(this, changes, baseContext, { delayCompile })
   }
 
   // #region INTEGRATING
@@ -394,16 +482,23 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
    */
   loadFromGCA(cache = false) {
     let entry: _GCA.Entry | null
+    this.__fire_loadFromGCA = false
 
     // load GCA into feature from cache (if available)
     if (cache) {
       entry = GCA.getCache(this.id)
-      if (entry !== undefined) return this
+      if (entry !== undefined) {
+        this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: null })
+        return this
+      }
     }
 
     // prepare GCA query (with name, specializedName, type, etc...)
     const parameters = this.prepareQueryGCA()
-    if (parameters.directive === `skip`) return this
+    if (parameters.directive === `skip`) {
+      this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: null })
+      return this
+    }
 
     // execute query
     entry = GCA.query(parameters as any)
@@ -412,8 +507,18 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     GCA.setCache(this.id, entry)
 
     // if there is some result, add as source (this will trigger a compilation)
-    if (!isNil(entry)) this.addSource(`gca`, entry)
+    if (!isNil(entry)) {
+      this.__fire_loadFromGCA = true
+      this.addSource(`gca`, entry)
+    } else {
+      this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: null })
+    }
 
+    return this
+  }
+
+  loadFromGCAOn(eventName: string, cache = false) {
+    this.on(eventName, event => event.data.feature.loadFromGCA(cache))
     return this
   }
 
@@ -425,6 +530,20 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     if (actor.id === null) throw new Error(`Actor is missing an id`)
     this.actor = actor
 
+    this._integrate(actor)
+
+    // this.compile(new RegExp(`^${this.id}\\.`), { actor }))
+    this.fire(`update`, { keys: [new RegExp(`^actor.*`)] })
+
+    return this
+  }
+
+  _integrate(actor: GurpsMobileActor) {
+    // overridable shit
+  }
+
+  integrateOn(eventName: string, actor: GurpsMobileActor) {
+    this.on(eventName, event => event.data.feature.integrate(actor))
     return this
   }
 
