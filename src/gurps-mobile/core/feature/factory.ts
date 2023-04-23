@@ -58,7 +58,7 @@ export default class FeatureFactory extends EventEmitter {
     super()
 
     this.logs = {
-      compiling: true,
+      compiling: false,
     }
 
     this.compiling = {

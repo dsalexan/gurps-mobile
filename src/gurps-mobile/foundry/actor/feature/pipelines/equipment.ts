@@ -116,7 +116,6 @@ EquipmentFeaturePipeline.name = `EquipmentFeaturePipeline`
 EquipmentFeaturePipeline.post = function postEquipment(data) {
   const MDO = {} as MigrationDataObject<any>
 
-  debugger
   if (data.has(`description`)) {
     const description = data.get(`description`)
     const name = data.get(`name`)

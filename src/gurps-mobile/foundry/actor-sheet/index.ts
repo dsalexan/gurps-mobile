@@ -651,18 +651,18 @@ const FeatureGroups = [
   //   groups: false,
   // },
   // ooc
-  // {
-  //   section: `occ`,
-  //   key: `advantages`,
-  //   filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
-  // },
+  {
+    section: `occ`,
+    key: `advantages`,
+    filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
+  },
   {
     section: `occ`,
     key: `skills`,
     filter: (f: SkillFeature) => f.type.compare(`skill`, true) && f.data.training === `trained`,
     sort: (f: SkillFeature) => {
-      if (f.data.training === `unknown`) return -Infinity
       if (f.data.training === `untrained`) return -1
+      if (f.data.training === `unknown`) return -Infinity
       return parseInt(f.key.tree[0].toString())
     },
     // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)

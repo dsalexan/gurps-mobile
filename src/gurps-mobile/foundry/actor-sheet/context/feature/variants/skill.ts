@@ -37,8 +37,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // #region VALUE
     variant.value = { value: `-` }
-    debugger
-    const level = feature.calcLevel()
+    const level = feature.data.level
     if (level) {
       variant.value.value = level.level.toString()
       if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })

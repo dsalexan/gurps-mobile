@@ -27,6 +27,10 @@ export const WeaponizableFeaturePipeline: IDerivationPipeline<IWeaponizableFeatu
           })
           .addSource(`gcs`, weapon)
 
+        feature.on(`compile`, event => {
+          debugger
+        })
+
         features.push(feature)
       }
 

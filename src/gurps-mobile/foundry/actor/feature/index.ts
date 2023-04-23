@@ -10,7 +10,7 @@ import { cloneDeep, flatten, get, has, intersection, isArray, isEqual, isFunctio
 import { isPrimitive, push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
 import { AllSources, CompilationContext, DeepKeyOf, FeatureSources, GenericSource, IDerivation, IDerivationFunction, IDerivationPipeline, IManualPipeline } from "./pipelines"
-import { FeatureState, typeFromGCA, typeFromGCS } from "../../../core/feature/utils"
+import { FeatureState, typeFromGCA, typeFromGCS, typeFromManual } from "../../../core/feature/utils"
 import LOGGER from "../../../logger"
 import { FEATURE } from "../../../core/feature/type"
 import { MigratableObject, MigrationDataObject, MigrationRecipe, completeMigrationValueDefinitions, resolveMigrationDataObject } from "../../../core/feature/compilation/migration"
@@ -242,10 +242,19 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   }
 
   preCompile(changes: (string | RegExp)[] | null) {
-    for (const [name, source] of Object.entries(this.sources)) {
+    const sources = [`gcs`, `gca`, `manual`]
+
+    for (const sourceName of sources) {
+      const source = this.sources[sourceName]
+      if (isNil(source)) continue
+
       if (isNil(this.type) || this.type.isGeneric) {
-        if (name === `gcs`) this.type = typeFromGCS(source as any)
-        else if (name === `gca`) this.type = typeFromGCA(source as any)
+        if (sourceName === `gcs`) this.type = typeFromGCS(source as any)
+        else if (sourceName === `gca`) this.type = typeFromGCA(source as any)
+        else if (sourceName === `manual`) {
+          const type = typeFromManual(source as any)
+          if (type) this.type = type
+        }
       }
     }
   }
@@ -451,6 +460,9 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
 
     // timer(`FIRE`) // COMMENT
+
+    // ERROR: Can NEVER be
+    if (this.type === undefined) debugger
 
     return true
   }

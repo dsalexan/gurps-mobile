@@ -167,7 +167,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
   prepareDerivedData(dontRun = true) {
     super.prepareDerivedData()
 
-    if (dontRun) return console.log(`gurps-mobile`, `SKIPPING AUTO RUNNING`)
+    // if (dontRun) return console.log(`gurps-mobile`, `SKIPPING AUTO RUNNING`)
 
     const logger = LOGGER.get(`actor`)
 
@@ -240,9 +240,13 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      // this.prepareAttributes(cached.featureFactory, partials)
+      this.prepareAttributes(cached.featureFactory, partials)
       this.prepareFeatures(cached.featureFactory, partials)
-      // this.prepareDefenses(cached.featureFactory, partials)
+      this.prepareDefenses(cached.featureFactory, partials)
+
+      // ERROR: Caralho meu
+      // const typeless = Object.values(cached.features).filter(feature => feature.type === undefined)
+      // if (typeless.length > 0) debugger
     }
 
     // VERBOSE LOGGIN
@@ -270,6 +274,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const timer = logger.time(`prepareAttributes`) // COMMENT
 
     // #region Moves
+
+    const timer_move = logger.openGroup().info(`    Moves`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareMoves`) // COMMENT
 
     if (do_basicspeed) {
       /**
@@ -314,9 +320,10 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       }
     }
 
-    // #endregion
-
     factory.startCompilation()
+    timer_move.group()(`    Moves`, [`font-weight: bold;`]) // COMMENT
+
+    // #endregion
 
     timer(`Prepare attributes`, [`font-weight: bold;`]) // COMMENT
   }
@@ -333,8 +340,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
-    const timer_advantages = logger.openGroup(true).info(`    Advantages`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
-    if (do_ads)
+    if (do_ads) {
+      const timer_advantages = logger.openGroup().info(`    Advantages`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
       factory
         .GCS(`advantage`, rawGCS.traits, [], undefined, {
           context: { templates: AdvantageFeatureContextTemplate },
@@ -342,69 +349,79 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .loadFromGCAOn(`compile:gcs`, true)
         .integrateOn(`loadFromGCA`, this)
 
-    factory.startCompilation()
-    timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
-
-    if (do_skills) {
-      const timer_skills = logger.openGroup(true).info(`    Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSkills`) // COMMENT
-      factory
-        .GCS(`skill`, rawGCS.skills, [], undefined, {
-          context: { templates: SkillFeatureContextTemplate },
-        })
-        .loadFromGCAOn(`compile:gcs`, true)
-        .integrateOn(`loadFromGCA`, this)
-
       factory.startCompilation()
-      timer_skills.group()(`    Skills`, [`font-weight: bold;`]) // COMMENT
-
-      // eslint-disable-next-line prettier/prettier
-      const timer_untrained = logger.openGroup(true).info(`      Untrained Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareUntrainedSkills`) // COMMENT
-      factory.logs.compiling = false
-      // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
-      SkillFeature.untrained(this, factory, { context: { templates: SkillFeatureContextTemplate } })
-
-      factory.startCompilation()
-      factory.logs.compiling = true
-      timer_untrained.group()(`      Untrained Skills`, [`font-weight: bold;`]) // COMMENT
-
-      // const timer_other = logger.openGroup().info(`      Other Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAllSkills`) // COMMENT
-      // // inject "All Skills" for special display
-      // const allSkills = SkillFeature.all(this, factory, { context: { templates: SkillFeatureContextTemplate } })
-      // this.setCache(`query.skill`, allSkills)
-      // timer_other.group()(`      Other Skills`, [`font-weight: bold;`]) // COMMENT
+      timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
     }
 
-    // const timer_spells = logger.time(`prepareSpells`) // COMMENT
-    // if (do_spells)
+    // if (do_skills) {
+    //   const timer_skills = logger.openGroup().info(`    Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSkills`) // COMMENT
+    //   factory
+    //     .GCS(`skill`, rawGCS.skills, [], undefined, {
+    //       context: { templates: SkillFeatureContextTemplate },
+    //     })
+    //     .loadFromGCAOn(`compile:gcs`, true)
+    //     .integrateOn(`loadFromGCA`, this)
+
+    //   factory.startCompilation()
+    //   timer_skills.group()(`    Skills`, [`font-weight: bold;`]) // COMMENT
+
+    //   // eslint-disable-next-line prettier/prettier
+    //   const timer_untrained = logger.openGroup().info(`      Untrained Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareUntrainedSkills`) // COMMENT
+    //   // inject "Untrained Skills" (skills with default) and "Other Skills" (skills the character cant roll?)
+    //   SkillFeature.untrained(this, factory, { context: { templates: SkillFeatureContextTemplate } })
+
+    //   factory.startCompilation()
+    //   timer_untrained.group()(`      Untrained Skills`, [`font-weight: bold;`]) // COMMENT
+
+    //   const timer_other = logger.openGroup().info(`      Other Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAllSkills`) // COMMENT
+    //   // inject "All Skills" for special display
+    //   const allSkills = SkillFeature.all(this, factory, { context: { templates: SkillFeatureContextTemplate } })
+    //   this.setCache(`query.skill`, allSkills)
+    //   timer_other.group()(`      Other Skills`, [`font-weight: bold;`]) // COMMENT
+    // }
+
+    // if (do_spells) {
+    //   const timer_spells = logger.openGroup().info(`    Spells`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSpells`) // COMMENT
     //   factory
     //     .GCS(`spell`, rawGCS.spells, [], undefined, {
     //       context: { templates: SpellFeatureContextTemplate },
     //     })
-    //     .loadFromGCA(true)
-    //     .integrate(this)
-    // timer_spells(`    Spells`, [`font-weight: bold;`]) // COMMENT
+    //     .loadFromGCAOn(`compile:gcs`, true)
+    //     .integrateOn(`loadFromGCA`, this)
 
-    // const timer_carried_equipment = logger.time(`prepareCarriedEquipment`) // COMMENT
-    // if (do_carried_equipment)
+    //   factory.startCompilation()
+    //   timer_spells.group()(`    Spells`, [`font-weight: bold;`]) // COMMENT
+    // }
+
+    // if (do_carried_equipment) {
+    //   // eslint-disable-next-line prettier/prettier
+    //   const timer_carried_equipment = logger.openGroup().info(`    Carried Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareCarriedEquipment`) // COMMENT
     //   factory
     //     .GCS(`equipment`, rawGCS.equipment, [], undefined, {
     //       context: { templates: EquipmentFeatureContextTemplate },
     //     })
-    //     .addSource(`manual`, { carried: true })
-    //     .loadFromGCA(true)
-    //     .integrate(this)
-    // timer_carried_equipment(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
+    //     .addSource(`manual`, { carried: true }, { delayCompile: true })
+    //     .loadFromGCAOn(`compile:gcs`, true)
+    //     .integrateOn(`loadFromGCA`, this)
 
-    // const timer_other_equipment = logger.time(`prepareOtherEquipment`) // COMMENT
-    // if (do_other_equipment)
+    //   factory.startCompilation()
+    //   timer_carried_equipment.group()(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
+    // }
+
+    // if (do_other_equipment) {
+    //   // eslint-disable-next-line prettier/prettier
+    //   const timer_other_equipment = logger.openGroup().info(`    Other Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareOtherEquipment`) // COMMENT
     //   factory
     //     .GCS(`equipment`, rawGCS.other_equipment, [], undefined, {
     //       context: { templates: EquipmentFeatureContextTemplate },
     //     })
-    //     .addSource(`manual`, { carried: false })
-    //     .loadFromGCA(true)
-    //     .integrate(this)
-    // timer_other_equipment(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
+    //     .addSource(`manual`, { carried: false }, { delayCompile: true })
+    //     .loadFromGCAOn(`compile:gcs`, true)
+    //     .integrateOn(`loadFromGCA`, this)
+
+    //   factory.startCompilation()
+    //   timer_other_equipment.group()(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
+    // }
 
     const n = Object.values(this.cache.features ?? {}).length
     logger.info(``)
@@ -421,27 +438,27 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const timer = logger.time(`prepareDefenses`) // COMMENT
 
-    // if (do_defenses) {
-    //   const activeDefenses = [`block`, `dodge`, `parry`]
+    if (do_defenses) {
+      // eslint-disable-next-line prettier/prettier
+      const timer_active_defense = logger.openGroup().info(`    Active Defenses`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareActiveDefenses`) // COMMENT
+      const activeDefenses = [`block`, `dodge`, `parry`]
 
-    //   for (let i = 0; i < activeDefenses.length; i++) {
-    //     const activeDefense = activeDefenses[i]
+      for (let i = 0; i < activeDefenses.length; i++) {
+        const activeDefense = activeDefenses[i]
 
-    //     const feature = factory
-    //       .build(`generic`, activeDefense, `system.`, null, {
-    //         context: { templates: DefenseFeatureContextTemplate },
-    //         key: () => [1, i],
-    //         manual: {
-    //           id: () => `activedefense-${activeDefense}`,
-    //           name: () => upperFirst(activeDefense),
-    //           type: () => FEATURE.GENERIC,
-    //         },
-    //       })
-    //       // .addSource(`gcs`, move)
-    //       .compile()
-    //       .integrate(this)
-    //   }
-    // }
+        const feature = factory
+          .build(`generic`, `activedefense-${activeDefense}`, [2, 0], undefined, {
+            context: { templates: DefenseFeatureContextTemplate },
+          })
+          .addPipeline<IGenericFeatureData>([proxy.manual(`name`)])
+          .addSource(`manual`, { type: FEATURE.GENERIC, name: upperFirst(activeDefense) })
+          .integrateOn(`compile:manual`, this)
+      }
+
+      factory.startCompilation()
+
+      timer_active_defense.group()(`    Active Defenses`, [`font-weight: bold;`]) // COMMENT
+    }
 
     timer(`Prepare defenses`, [`font-weight: bold;`]) // COMMENT
     // #endregion

@@ -13,6 +13,12 @@ export class FeatureCollection<TFeature extends GenericFeature = GenericFeature>
     this.items.push(...items)
   }
 
+  addSource(name: string, source: Record<string, unknown>, options: { delayCompile: boolean; integrate?: GurpsMobileActor } = { delayCompile: false }) {
+    this.items.map(item => item.addSource(name, source, options))
+
+    return this
+  }
+
   loadFromGCA(cache = false) {
     this.items.map(item => item.loadFromGCA(cache))
 

@@ -349,7 +349,7 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
   }
 
   // ERROR: Noo dawg
-  if (isNaN(value) || isNil(value)) debugger
+  if (isNaN(value)) debugger
 
   return {
     variable,

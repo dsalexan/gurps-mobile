@@ -146,6 +146,12 @@ export function typeFromGCA(raw: GCA.Entry): Type {
   return FEATURE.GENERIC
 }
 
+export function typeFromManual(raw: object): Type | undefined {
+  if (has(raw, `type`)) return raw.type
+
+  return undefined
+}
+
 /**
  * Return name form Feature
  *
