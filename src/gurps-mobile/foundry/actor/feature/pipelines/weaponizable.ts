@@ -6,6 +6,7 @@ import { FEATURE } from "../../../../core/feature/type"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { IGenericFeatureData } from "./generic"
 import WeaponFeatureContextTemplate from "../../../actor-sheet/context/feature/variants/weapon"
+import LOGGER from "../../../../logger"
 
 export interface IWeaponizableFeatureData extends IFeatureData {
   weapons: Feature<IFeatureData, GenericSource>[]
@@ -27,9 +28,17 @@ export const WeaponizableFeaturePipeline: IDerivationPipeline<IWeaponizableFeatu
           })
           .addSource(`gcs`, weapon)
 
-        feature.on(`compile`, event => {
-          debugger
-        })
+        // feature.on(`compile:gcs`, event => {
+        //   LOGGER.info(
+        //     `WeaponizableFeaturePipeline:compile:gcs`,
+        //     event.data.feature.id,
+        //     event.data.feature.data.name,
+        //     `@`,
+        //     event.data.feature.parent.id,
+        //     event.data.feature.parent.data.name,
+        //     event.data.feature,
+        //   )
+        // })
 
         features.push(feature)
       }

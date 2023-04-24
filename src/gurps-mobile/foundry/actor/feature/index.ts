@@ -58,6 +58,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   __: {
     //
     compilation: {
+      compilations: number
       previousSources: FeatureSources<TManualSource>
       previousData: any
       //
@@ -96,6 +97,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // META DATA
     this.__ = {
       compilation: {
+        compilations: 0,
         // previous
         previousSources: {} as any,
         previousData: {} as any,
@@ -464,6 +466,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // ERROR: Can NEVER be
     if (this.type === undefined) debugger
 
+    this.__.compilation.compilations++
     return true
   }
 
@@ -572,7 +575,19 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   }
 
   integrateOn(eventName: string, actor: GurpsMobileActor) {
-    this.on(eventName, event => event.data.feature.integrate(actor))
+    this.on(eventName, event => {
+      // LOGGER.info(
+      //   `integrateOn`,
+      //   actor,
+      //   event.data.feature.id,
+      //   event.data.feature.data.name,
+      //   `@`,
+      //   event.data.feature.parent?.id,
+      //   event.data.feature.parent?.data?.name,
+      //   event.data.feature,
+      // )
+      event.data.feature.integrate(actor)
+    })
     return this
   }
 

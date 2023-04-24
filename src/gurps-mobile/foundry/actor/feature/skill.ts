@@ -61,7 +61,7 @@ export default class SkillFeature extends GenericFeature {
       }
 
       if (this.sources.gca) {
-        if (actor.cache.gca === undefined) actor.setCache(`gca`, {})
+        if (actor.cache.gca?.skill === undefined) actor.setCache(`gca.skill`, {})
         actor.setCache(`gca.skill.${this.sources.gca._index}`, this)
       }
     }
@@ -470,6 +470,7 @@ export default class SkillFeature extends GenericFeature {
               if (proficiencyModifier >= feature.data.proficiencyModifier) continue
             }
 
+            // if (_default._raw === `"SK:Smith (Iron)" - me::default2`) debugger
             const defaultLevel = _default.parse(this, actor)
 
             // WARN: Untested

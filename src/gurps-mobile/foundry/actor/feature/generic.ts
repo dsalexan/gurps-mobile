@@ -36,11 +36,35 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   _integrate(actor: GurpsMobileActor) {
     super._integrate(actor)
 
+    // if (this.id === `e0cd7330-a694-442e-9bca-e7ead83585aa`) debugger
+
     // register feature
+    if (actor.cache.features[this.id] !== undefined) {
+      LOGGER.get(`gcs`).warn(`Feature ${this.id} already exists in cache`, this)
+      LOGGER.get(`gcs`).info(`    ${this.data.name}`, this)
+      if (this.parent) LOGGER.get(`gcs`).info(`    ${this.parent.data.name} @ ${this.parent.id}`, this)
+    }
     actor.setFeature(this.id, this)
 
     // if (this.data.weapons?.map(feature => feature.integrateOn === undefined)) debugger
-    if (this.data.weapons) this.data.weapons.map(feature => feature.integrateOn(`compile:gcs`, actor))
+    // if (this.data.weapons && this.id === `8b8ce453-82c9-4a9b-9fa3-877e3e495bad`) debugger
+    if (this.data.weapons) {
+      for (const weapon of this.data.weapons) {
+        const alreadyCompiled = weapon.__.compilation.compilations > 0
+
+        // LOGGER.info(
+        //   `GenericFeature:assign:integrateOn${alreadyCompiled ? ` (:integrate)` : ``}`,
+        //   weapon.id,
+        //   weapon.data.name,
+        //   `@`,
+        //   weapon.parent.id,
+        //   weapon.parent.data.name,
+        //   weapon,
+        // )
+        weapon.integrateOn(`compile:gcs`, actor)
+        if (alreadyCompiled) weapon.integrate(actor)
+      }
+    }
 
     // COMPONENTS
     if (this.data.components) {

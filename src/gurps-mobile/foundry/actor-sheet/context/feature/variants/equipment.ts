@@ -6,11 +6,10 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
-import { IEquipmentFeature } from "../../../../../core/feature/compilation/templates/equipment"
-import EquipmentFeature from "../../../../../core/feature/variants/spell"
+import EquipmentFeature from "../../../../actor/feature/equipment"
 
 export interface EquipmentFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: IEquipmentFeature
+  feature: EquipmentFeature
   //
   showDefaults?: boolean
   difficulty?: boolean
@@ -35,11 +34,11 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
     const tags = new TagBuilder(variant.tags)
 
     // QUANTITY
-    if (!isNil(feature.quantity)) {
+    if (!isNil(feature.data.quantity)) {
       tags.type(`type`).update(tag => {
         tag.children.push({
           classes: [`interactible`, `quantity`],
-          label: `x<b>${feature.quantity}</b>`,
+          label: `x<b>${feature.data.quantity}</b>`,
         })
 
         return tag
@@ -47,20 +46,20 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
     }
 
     // WEIGHT
-    if (!isNil(feature.weight?.extended)) {
+    if (!isNil(feature.data.weight?.extended)) {
       tags.type(`type`).push({
         type: `weight`,
         classes: [`box`, `collapsed`],
         children: [
           { icon: `mdi-weight` },
           {
-            classes: [], //feature.carried ? `interactible` : [],
-            label: `<b>${feature.weight.extended}</b> kg`,
+            classes: [], //feature.data.carried ? `interactible` : [],
+            label: `<b>${feature.data.weight.extended}</b> kg`,
           },
           {
             classes: [`interactible`],
-            icon: feature.carried ? `mdi-bag-carry-on` : `mdi-bag-carry-on-off`,
-            label: feature.carried ? undefined : `Not Carried`,
+            icon: feature.data.carried ? `mdi-bag-carry-on` : `mdi-bag-carry-on-off`,
+            label: feature.data.carried ? undefined : `Not Carried`,
           },
         ],
       })
@@ -70,7 +69,7 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
       //   classes: [`horizontal`],
       //   children: [
       //     {
-      //       icon: feature.carried ? `mdi-bag-carry-on-off` : `mdi-bag-carry-on`,
+      //       icon: feature.data.carried ? `mdi-bag-carry-on-off` : `mdi-bag-carry-on`,
       //       classes: [`target`, `action-carry`],
       //     },
       //   ],
@@ -78,7 +77,7 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
     }
 
     // COST
-    if (!isNil(feature.cost?.extended)) {
+    if (!isNil(feature.data.cost?.extended)) {
       tags.type(`type`).push({
         type: `cost`,
         classes: [`box`],
@@ -88,7 +87,7 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
           },
           {
             classes: `interactible`,
-            label: `<b>${feature.cost.extended}</b> cp`,
+            label: `<b>${feature.data.cost.extended}</b> cp`,
           },
         ],
       })

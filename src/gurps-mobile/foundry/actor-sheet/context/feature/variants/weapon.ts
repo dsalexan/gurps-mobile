@@ -149,11 +149,11 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
           0,
           0,
           {
-            icon: feature.parent.type.icon ?? undefined,
+            icon: feature.parent!.type.icon ?? undefined,
           },
           {
             classes: [`interactible`],
-            label: feature.parent.type.name,
+            label: feature.parent!.type.name,
           },
         )
 
@@ -181,6 +181,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     if (!isNil(defaultLevels) && defaultLevels.length > 0) {
+      if (!feature.actor) debugger
       const levels = orderLevels(defaultLevels, feature, feature.actor)
       const level = levels[0]
 

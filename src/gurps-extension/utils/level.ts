@@ -302,8 +302,8 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
     // list all trained skills in skills
     //    remove duplicates by id
     const skillEntries = skillIndexes.map(index => GCA.entries[index])
-    const listOfSkillMaps = skillEntries.map(entry => actor.cache._skill?.trained?.[specializedName(entry.name, entry.nameext)]).filter(skill => !isNil(skill))
-    const trainedSkills = flatten(listOfSkillMaps.map(skillMap => Object.values(skillMap ?? {}).filter(skill => skill.data.training === `trained`)))
+    const skillFeatures = skillIndexes.map(index => actor.cache.gca?.skill?.[index]).filter(skill => !isNil(skill))
+    const trainedSkills = skillFeatures.filter(skill => skill.data.training === `trained`)
 
     if (trainedSkills.length > 0) {
       // transform if needed

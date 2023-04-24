@@ -6,11 +6,10 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
-import { ISpellFeature } from "../../../../../core/feature/compilation/templates/spell"
-import SpellFeature from "../../../../../core/feature/variants/spell"
+import SpellFeature from "../../../../actor/feature/spell"
 
 export interface SpellFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: ISpellFeature
+  feature: SpellFeature
   //
   showDefaults?: boolean
   difficulty?: boolean
@@ -40,22 +39,22 @@ export default class SpellFeatureContextTemplate extends BaseContextTemplate {
     variant.value.secondary_label = `CASTING<br/>`
 
     // TAGS
-    if (feature.spellClass)
-      if (feature.spellClass) {
+    if (feature.data.spellClass)
+      if (feature.data.spellClass) {
         tags.type(`type`).update(tag => {
           tag.children.push({
             classes: [`box`],
-            label: feature.spellClass,
+            label: feature.data.spellClass,
           })
 
           return tag
         })
       }
 
-    if (feature.powerSource)
+    if (feature.data.powerSource)
       tags.type(`type`).add({
         classes: [`box`],
-        children: { label: feature.powerSource },
+        children: { label: feature.data.powerSource },
       })
 
     tags.type(`feature`).update(tag => {
@@ -68,19 +67,19 @@ export default class SpellFeatureContextTemplate extends BaseContextTemplate {
     variant.stats = [
       {
         label: `Cost`,
-        value: feature.cost ?? `—`,
+        value: feature.data.cost ?? `—`,
       },
       {
         label: `Maintain`,
-        value: feature.maintain ?? `—`,
+        value: feature.data.maintain ?? `—`,
       },
       {
         label: `Casting Time`,
-        value: feature.castingTime ?? `—`,
+        value: feature.data.castingTime ?? `—`,
       },
       {
         label: `Duration`,
-        value: feature.duration ?? `—`,
+        value: feature.data.duration ?? `—`,
       },
     ]
 

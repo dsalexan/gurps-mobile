@@ -4,14 +4,14 @@ import ContextManager from "../manager"
 import { IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
-import Feature from "../../../actor/feature"
+import GenericFeature from "../../../actor/feature/generic"
 
 export interface FeatureDataVariantActionSpecs {
   noDefault?: boolean
 }
 
 export interface FeatureBaseContextSpecs extends ContextSpecs {
-  feature: Feature
+  feature: GenericFeature
   list: string
   //
   hidden: (id: string) => boolean

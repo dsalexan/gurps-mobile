@@ -231,6 +231,8 @@
   &:not(.root) {
     & > .children {
       & > .feature-list, & > .feature, & > .feature-wrapper {
+        max-width: calc(100% - var(--s0-5) * 2);
+
         margin-left: var(--s0-5);
         margin-right: var(--s0-5);
       }
