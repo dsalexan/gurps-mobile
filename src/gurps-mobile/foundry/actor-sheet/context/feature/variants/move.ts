@@ -6,6 +6,7 @@ import TagBuilder from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import GenericFeature from "../../../../actor/feature/generic"
+import { FeatureState } from "../../../../../core/feature/utils"
 
 export interface MoveFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: GenericFeature
@@ -29,11 +30,11 @@ export default class MoveFeatureContextTemplate extends BaseContextTemplate {
     const feature = getSpec(specs, `feature`)
     let variant = variants[0] ?? {}
 
-    const mark = (feature.sources.gcs.default ? `Ruler` : undefined) as string | undefined
+    const mark = (feature.data.state & FeatureState.HIGHLIGHTED ? `Ruler` : undefined) as string | undefined
     const classes = [...(variant.classes ?? []), !!mark && `marked`] as string[]
 
     // VALUE
-    let value: IFeatureValue = { value: feature.sources.gcs.value }
+    let value: IFeatureValue = { value: feature.data.value }
 
     // LINKS
     const links = (feature.data.links ?? []).filter(link => !link.match(/^defenses\./))

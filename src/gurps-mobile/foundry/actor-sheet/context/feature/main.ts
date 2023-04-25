@@ -67,17 +67,17 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
             label: feature.type.name,
             icon: feature.type.icon ?? undefined,
           },
-          ...(feature.data.state !== FeatureState.PASSIVE
-            ? [
+          ...(feature.data.state & FeatureState.PASSIVE
+            ? []
+            : [
                 {
                   classes: `state`,
                   label: stateToString(feature.data.state),
                 },
-              ]
-            : []),
+              ]),
         ],
       })
-    } else if (feature.data.state !== FeatureState.PASSIVE) {
+    } else if (!(feature.data.state & FeatureState.PASSIVE)) {
       tags.at(0).add({
         type: `type`,
         classes: [`box`, `collapsed`],

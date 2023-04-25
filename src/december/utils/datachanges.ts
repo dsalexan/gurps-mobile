@@ -1,4 +1,4 @@
-import { flattenDeep, get, isObjectLike } from "lodash"
+import { flattenDeep, get, isEmpty, isObjectLike, isRegExp } from "lodash"
 import type { RecordTree } from "./types"
 
 function flatKeys<K extends string | number | symbol, T>(obj: RecordTree<K, T>, parent?: string): { key: string; leaf?: boolean }[][] {
@@ -10,7 +10,10 @@ function flatKeys<K extends string | number | symbol, T>(obj: RecordTree<K, T>, 
   })
 }
 
+export type PatternChanges = ReturnType<Datachanges[`listAll`]>
+
 export default class Datachanges {
+  changes?: RecordTree<string, boolean>
   data: Record<string, boolean> = {}
 
   constructor(changes = {}) {
@@ -18,6 +21,7 @@ export default class Datachanges {
   }
 
   compile(changes?: RecordTree<string, boolean>) {
+    this.changes = changes
     this.data = {}
     if (changes === undefined) return
 
@@ -42,6 +46,26 @@ export default class Datachanges {
     return Object.keys(this.data)
       .filter(key => key.match(_key instanceof RegExp ? _key : new RegExp(_key.replaceAll(`.`, `\\.`), `i`)))
       .filter(key => key !== _key)
+  }
+
+  listAll(_key: string | RegExp) {
+    const keys = Object.keys(this.data)
+      .filter(key => key.match(_key instanceof RegExp ? _key : new RegExp(_key.replaceAll(`.`, `\\.`), `i`)))
+      .filter(key => key !== _key)
+
+    const pattern = isRegExp(_key) ? _key.source.replaceAll(/\\\./g, `.`) : _key
+
+    const root = keys.includes(pattern)
+
+    const keysWithoutPattern = keys.map(key => key.replace(pattern, ``)).map(key => (key.startsWith(`.`) ? key.substring(1) : key))
+    const changes = keysWithoutPattern.filter(key => !isEmpty(key))
+
+    if (changes.length === 0 && root) return { root }
+    else if (changes.length > 0) return { changes }
+    else {
+      // ERROR: Untested
+      debugger
+    }
   }
 
   /**

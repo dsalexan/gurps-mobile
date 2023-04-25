@@ -9,6 +9,7 @@ import { FEATURE, Type } from "./type"
 import { GurpsMobileActor } from "../../foundry/actor"
 import type { GCA } from "../gca/types"
 import Feature from "../../foundry/actor/feature"
+import GenericFeature from "../../foundry/actor/feature/generic"
 
 export interface ModifierValue {
   label: string
@@ -17,10 +18,11 @@ export interface ModifierValue {
 }
 
 export const FeatureState = {
-  INACTIVE: 0, //   000
-  PASSIVE: 1, //    001
-  ACTIVE: 2, //     010
-  ACTIVATING: 4, // 100
+  INACTIVE: 0, //     0000
+  PASSIVE: 1, //      0001
+  ACTIVE: 2, //       0010
+  ACTIVATING: 4, //   0100
+  HIGHLIGHTED: 8, //  1000
 } as const
 
 export type FeatureState = (typeof FeatureState)[keyof typeof FeatureState]
@@ -249,4 +251,17 @@ export function parseModifier(modifier: never, [minus, plus] = [`-`, `+`], zero 
   if (_modifier === 0) return zero
   if (_modifier < 0) return `${minus}${Math.abs(_modifier).toString()}`
   return `${plus}${_modifier.toString()}`
+}
+/**
+ * (For "MoveFeature") Set feature as default move in actor
+ */
+export function setMoveDefault(feature: GenericFeature) {
+  const actor = feature.actor
+
+  if (feature.path) {
+    LOGGER.get(`actor`).info(`[${actor.id}]`, `setMoveDefault`, feature.path.split(`.`)[1])
+    actor.setMoveDefault(feature.path.split(`.`)[1])
+  } else {
+    LOGGER.warn(`setMoveDefault`, `No path found for feature ${feature.data.name ? feature.data.name : `id:${feature.id}`}`)
+  }
 }

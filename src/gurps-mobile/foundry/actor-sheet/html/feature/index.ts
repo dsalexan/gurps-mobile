@@ -5,6 +5,7 @@ import LOGGER from "../../../../logger"
 import { GurpsMobileActor } from "../../../actor/actor"
 import Feature from "../../../actor/feature"
 import GenericFeature from "../../../actor/feature/generic"
+import { FeatureState, setMoveDefault } from "../../../../core/feature/utils"
 
 export interface IHTMLFeature {
   listen(): void
@@ -209,12 +210,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
       return
     }
 
-    if (node.hasClass(`set-move-default`)) {
-      // eslint-disable-next-line no-debugger
-      debugger
-      // @ts-ignore
-      feature.setMoveDefault()
-    }
+    if (node.hasClass(`set-move-default`)) setMoveDefault(feature)
   }
 
   // #endregion
@@ -346,11 +342,9 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
   //          Methods that should be in a specialized class, but i couldnt be bothered to create one yet
 
   function updateMove() {
-    const gcs: any = feature.sources.gcs ?? {}
-
-    if (gcs.default) mark(`Ruler`)
+    if (feature.data.state & FeatureState.HIGHLIGHTED) mark(`Ruler`)
     else mark(false)
-    value(gcs.basic)
+    value((feature.data.value ?? `?`).toString())
     label(feature.data.name)
   }
 

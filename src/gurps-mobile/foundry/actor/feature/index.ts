@@ -15,6 +15,7 @@ import LOGGER from "../../../logger"
 import { FEATURE } from "../../../core/feature/type"
 import { MigratableObject, MigrationDataObject, MigrationRecipe, completeMigrationValueDefinitions, resolveMigrationDataObject } from "../../../core/feature/compilation/migration"
 import { EventEmitter } from "@billjs/event-emitter"
+import { Datachanges } from "../../../../december/utils"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
@@ -55,6 +56,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   actor: GurpsMobileActor // fill at integrate
   factory: FeatureFactory // fill externally, after construction
   // meta data
+  __fire_loadFromGCA = false
   __: {
     //
     compilation: {
@@ -78,6 +80,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
   }
   // reactive data
+  path: string | null
   sources: FeatureSources<TManualSource>
   data: TData
   // immutable data
@@ -117,6 +120,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
 
     // REACTIVE DATA
+    this.path = null // path inside actor.system.*
     this.sources = {} as FeatureSources<TManualSource>
     this.data = {
       state: FeatureState.PASSIVE,
@@ -203,8 +207,10 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     return this
   }
 
-  addSource(name: string, source: Record<string, unknown>, options: { delayCompile: boolean; integrate?: GurpsMobileActor } = { delayCompile: false }) {
+  addSource(name: string, source: Record<string, unknown>, options: { path?: string; delayCompile?: boolean; integrate?: GurpsMobileActor } = { delayCompile: false }) {
     this.sources[name] = cloneDeep(source)
+
+    if (!isNil(options.path)) this.path = options.path
 
     // if (!ignoreCompile) this.compile([new RegExp(`^${name}.*`)])
     this.fire(`update`, { keys: [new RegExp(`^${name}.*`)], delayCompile: options.delayCompile })
@@ -490,7 +496,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // if (targetChanges.length === 0) return
 
     // but still send regexp as key if they came this way
-    this.factory.requestCompilation(this, changes, baseContext, ignores, { ignores, delayCompile })
+    this.factory.requestCompilation(this, changes ?? [], baseContext, ignores, { delayCompile })
   }
 
   // #region INTEGRATING

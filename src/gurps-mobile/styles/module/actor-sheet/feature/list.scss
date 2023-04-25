@@ -236,6 +236,10 @@
         margin-left: var(--s0-5);
         margin-right: var(--s0-5);
       }
+
+      & > .collapsed-list {
+        margin: 0 calc(var(--s0-5) * 0);
+      }
     }
   }
 

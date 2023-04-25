@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { cloneDeep, findIndex, indexOf, isArray, isNil, isString, uniq } from "lodash"
+import { before, cloneDeep, findIndex, indexOf, isArray, isNil, isString, uniq } from "lodash"
 
 import { FeatureCollection } from "./collection"
 
@@ -20,6 +20,8 @@ import { IEquipmentFeatureData } from "../../foundry/actor/feature/pipelines/equ
 import { IWeaponFeatureData } from "../../foundry/actor/feature/pipelines/weapon"
 import LOGGER from "../../logger"
 import { EventEmitter } from "@billjs/event-emitter"
+import { Datachanges } from "../../../december/utils"
+import { PatternChanges } from "../../../december/utils/datachanges"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
@@ -79,7 +81,7 @@ export default class FeatureFactory extends EventEmitter {
   }
 
   listen() {
-    this.on(`compilation:done`, event => {})
+    // this.on(`compilation:done`, event => {})
   }
 
   cls<T extends keyof FeatureDataByType>(type: T) {
@@ -151,8 +153,14 @@ export default class FeatureFactory extends EventEmitter {
     return collection
   }
 
-  requestCompilation(feature: GenericFeature, keys: (string | RegExp)[], baseContext: Partial<CompilationContext>, ignores: string[], options: { delayCompile: boolean }) {
-    let instructions: CompilationInstructions = { feature, keys, baseContext, ignores }
+  requestCompilation(
+    feature: GenericFeature | Feature<any>,
+    keys: (string | RegExp)[],
+    baseContext: Partial<CompilationContext>,
+    ignores: string[],
+    options: { delayCompile?: boolean },
+  ) {
+    let instructions: CompilationInstructions = { feature: feature as GenericFeature, keys, baseContext, ignores }
 
     if (options.delayCompile) {
       // merge instructions with next request
@@ -297,8 +305,8 @@ export default class FeatureFactory extends EventEmitter {
   }
 
   /** Pool a compilation instruction to be requested AFTER current batch is done */
-  poolCompilationRequest(feature: GenericFeature, keys: string[], baseContext: Partial<CompilationContext>, ignores?: string[]) {
-    let instructions: CompilationInstructions = { feature, keys, baseContext, ignores: ignores ?? [] }
+  poolCompilationRequest(feature: GenericFeature | Feature<any>, keys: string[], baseContext: Partial<CompilationContext>, ignores?: string[]) {
+    let instructions: CompilationInstructions = { feature: feature as GenericFeature, keys, baseContext, ignores: ignores ?? [] }
     this.compiling.pool.requests.push([instructions.feature, instructions.keys, instructions.baseContext, instructions.ignores, {} as any])
   }
 
@@ -336,7 +344,7 @@ export default class FeatureFactory extends EventEmitter {
         const targets = feature.prepareCompile(keys, baseContext, ignores)
 
         if (targets.length > 0) {
-          if (this.logs.compiling)
+          if (this.logs.compiling) {
             logger.info(
               `run`,
               id,
@@ -360,6 +368,15 @@ export default class FeatureFactory extends EventEmitter {
                 `color: rgb(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
               ],
             )
+
+            // // JUST FOR EXPENSIVE DEBUGGING
+            // logger.info(`run`, id, `[${this.compiling.compiledEntities + 1}/${this.compiling.queueSize}]`, cloneDeep(feature.sources), [
+            //   `color: rgba(0, 0, 0, 0.0); font-style: italic;`,
+            //   `color: rgba(0, 0, 139, 0.0); font-style: italic;`,
+            //   `color: rgba(0, 0, 0, 0.0);; font-weight: regular; font-style: regular;`,
+            //   `color: black; font-weight: bold; font-style: regular;`,
+            // ])
+          }
 
           feature._compile(targets, keys, baseContext)
         } else {
@@ -446,5 +463,30 @@ export default class FeatureFactory extends EventEmitter {
     this.compiling.pool.batch++
 
     this.startCompilation()
+  }
+
+  react(feature: GenericFeature, changes: PatternChanges, beforeUpdate?: (feature: GenericFeature, changes: PatternChanges) => boolean | null | void) {
+    // ERROR: Unimplemented
+    if (feature === undefined) debugger
+    if (changes === undefined) debugger
+    else if (changes.root) {
+      // ERROR: Unimplemented
+      debugger
+    } else if (changes.changes.length > 0) {
+      // ERROR: Shoudlgnt b
+
+      const sourceMappedChanges = changes.changes.map(change => `manual.${change}`)
+
+      const shouldContinue = beforeUpdate === undefined ? true : beforeUpdate(feature, changes)
+
+      // cancelable update
+      if (shouldContinue === false || shouldContinue === null) return
+
+      // inform update
+      feature.fire(`update`, { keys: sourceMappedChanges })
+    } else {
+      // ERROR: Unimplemented
+      debugger
+    }
   }
 }

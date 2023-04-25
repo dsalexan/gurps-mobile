@@ -36,13 +36,21 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   _integrate(actor: GurpsMobileActor) {
     super._integrate(actor)
 
+    const logger = LOGGER.get(`actor`)
+
     // if (this.id === `e0cd7330-a694-442e-9bca-e7ead83585aa`) debugger
 
     // register feature
     if (actor.cache.features[this.id] !== undefined) {
-      LOGGER.get(`gcs`).warn(`Feature ${this.id} already exists in cache`, this)
-      LOGGER.get(`gcs`).info(`    ${this.data.name}`, this)
-      if (this.parent) LOGGER.get(`gcs`).info(`    ${this.parent.data.name} @ ${this.parent.id}`, this)
+      const label = `${this.id}:${this.data.name ?? `(unnamed)`}`
+      const parentLabel = !this.parent ? `` : ` @ (${this.parent.id}:${this.parent.data.name ?? `(unnamed parent)`})`
+      logger.warn(`integrate`, `Feature`, `${label}${parentLabel}`, `already exists in cache`, this, [
+        `color: #826835;`,
+        `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+        `color: black; font-style: regular; font-weight: bold`,
+        `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+        ``,
+      ])
     }
     actor.setFeature(this.id, this)
 

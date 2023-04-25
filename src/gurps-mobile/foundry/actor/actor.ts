@@ -1,4 +1,4 @@
-import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil } from "lodash"
+import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil, omit } from "lodash"
 
 import { MODULE_ID } from "config"
 import LOGGER from "logger"
@@ -21,6 +21,7 @@ import { IDerivationFunction, derivation, proxy } from "./feature/pipelines"
 import { IGenericFeatureData } from "./feature/pipelines/generic"
 import GenericFeature from "./feature/generic"
 import SkillFeature from "./feature/skill"
+import { ILevel } from "../../../gurps-extension/utils/level"
 
 export type ActorCache = {
   links?: Record<string, string[]>
@@ -51,7 +52,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
   // #region CACHE
   get cache(): ActorCache {
-    if (this.id === null) return {}
+    if (this.id === null) return {} as any
     return get(GURPS._cache, `actors.${this.id}`) as ActorCache
   }
 
@@ -120,7 +121,37 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
   /** @override */
   _onUpdate(data: object, options: object & { [`data`]: object; [`render`]: boolean }, userId: string) {
-    LOGGER.info(`_onUpdate`, this, `->`, data, options, userId)
+    const logger = LOGGER.get(`actor`)
+    const _options = Object.entries(omit(options, `data`))
+      .map(([key, value]) => `${key}: ${value}`)
+      .join(`, `)
+
+    logger
+      .group(true)
+      .info(`[${this.id}]`, `_onUpdate`, `user:${userId ? userId : `unknown`}`, [
+        `color: black; font-weight: bold;`,
+        `color: rgba(0, 0, 0, 1); font-weight: bold; font-style: regular;`,
+        `color: rgba(197, 25, 22, ${userId ? `1` : `0.5`}); font-weight: regular; font-style: italic;`,
+      ])
+
+    logger.info(`  `, `options`, _options, [
+      ``,
+      `color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
+      `color: rgba(0, 0, 0, 1); font-weight: regular; font-style: regular;`,
+    ])
+    logger.info(`  `, `options`, options, [
+      ``,
+      `color: rgba(0, 0, 0, 0); font-weight: regular; font-style: italic;`,
+      `color: rgba(0, 0, 0, 1); font-weight: regular; font-style: regular;`,
+    ])
+    logger.info(`  `, `data`, data, [
+      ``,
+      `color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`,
+      `color: rgba(0, 0, 0, 1); font-weight: regular; font-style: regular;`,
+    ])
+
+    logger.group()
+
     options.data = data
 
     // super._onUpdate(data, options, userId)
@@ -189,7 +220,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const do_carried_equipment = all || this._datachanges?.has(/system\.equipment\.carried$/i)
     const do_other_equipment = all || this._datachanges?.has(/system\.equipment\.other$/i)
     //
-    const do_defenses = true //all || this._datachanges.has(//i)
+    const do_defenses = all || false //this._datachanges.has(//i)
 
     const partials = {
       do_basicspeed,
@@ -201,9 +232,11 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       do_carried_equipment,
       do_other_equipment,
       //
-
       do_defenses,
     }
+    const _partials = Object.entries(partials)
+      .filter(([_, value]) => value)
+      .map(([key]) => key.replace(`do_`, ``))
     const partial = Object.values(partials).some(p => !!p)
     all = Object.values(partials).every(p => !!p)
 
@@ -212,19 +245,18 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // console.log(logger)
     // logger.info(`caralho meu`)
     logger
-      .group()
-      .info(`[${this.id}]`, `prepareDerivedData${all ? `` : partial ? ` (partial)` : ` (skip)`}`, [
+      .group(!all)
+      .info(`[${this.id}]`, `prepareDerivedData${all ? `` : partial ? ` (partials: ${_partials.join(`, `)})` : ` (skip)`}`, [
         `background-color: rgb(${all ? `255, 224, 60, 0.45` : partial ? `60,179,113, 0.3` : `0, 0, 0, 0.085`}); font-weight: bold; padding: 3px 0;`,
       ])
-    logger.info(`    `, `last datachanges:`, this._datachanges?.data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+    logger.info(`    `, `last datachanges:`, this._datachanges, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `dos:`, { all, ...partials }, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `actor:`, this, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `cached:`, cached, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `gcs:`, gcs, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `moves`, this.system.move, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `)
-
-    if (!all) logger.warn(`    `, `partial:`, partials, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+    logger.info(`    `, `partial:`, partials, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
 
     // PREPARE CACHE
     //    if there is no cache, make it
@@ -240,9 +272,9 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      this.prepareAttributes(cached.featureFactory, partials)
-      this.prepareFeatures(cached.featureFactory, partials)
-      // this.prepareDefenses(cached.featureFactory, partials)
+      this.prepareAttributes(this._datachanges, cached.featureFactory, partials)
+      // this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
+      // this.prepareDefenses(this._datachanges, cached.featureFactory, partials)
 
       // ERROR: Caralho meu
       const typeless = Object.values(cached.features).filter(feature => feature.type === undefined)
@@ -265,7 +297,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     this.setCache(undefined, cached)
   }
 
-  prepareAttributes(factory: FeatureFactory, dos: Record<string, boolean>) {
+  prepareAttributes(datachanges: Datachanges, factory: FeatureFactory, dos: Record<string, boolean>) {
     const logger = LOGGER.get(`actor`)
 
     const actorData = this.system // where "gurps" stores parsed GCS data (as recommended by v9 of foundry)
@@ -273,57 +305,85 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const { do_basicspeed, do_moves } = dos
 
+    if ([do_basicspeed, do_moves].every(b => !b)) return
+
     const timer = logger.time(`prepareAttributes`) // COMMENT
 
     // #region Moves
 
-    const timer_move = logger.openGroup().info(`    Moves`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareMoves`) // COMMENT
+    if (do_basicspeed || do_moves) {
+      const timer_move = logger.openGroup().info(`    Moves`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareMoves`) // COMMENT
 
-    if (do_basicspeed) {
-      /**
-       * [target, destination, function, priority]
-       *    priority — default to -1 since it is manual
-       *    function — must be defined, since being a function is a criteria for the property to be considered a "derivation" and not a piece of data inside a source
-       *    target — for ONE target, could be function name
-       *           — for MULTIPLE targets ????
-       *    destination — for DESTINATION = TARGET, no need to inform
-       *                — for ONE destination, <> target ??????
-       *                — for MULTIPLE destinations ????
-       */
-      factory
-        .build(`generic`, `move-basic_speed`, [0, 0], undefined, {
-          context: { templates: MoveFeatureContextTemplate },
-        })
-        .addPipeline<IGenericFeatureData>([proxy.gcs(`value`), proxy.manual(`name`), proxy.manual(`label`)])
-        .addSource(`manual`, { name: game.i18n.localize(`GURPS.basicspeed`), label: `GURPS.basicspeed` }, { delayCompile: true })
-        .addSource(`gcs`, actorData.basicspeed)
-        .integrateOn(`compile:gcs`, this)
-    }
+      // factory.logs.compiling = true
+      if (do_basicspeed) {
+        const id = `move-basic_speed`
 
-    if (do_moves) {
-      const moves = Object.keys(actorData.move || {})
-      for (const key of moves) {
-        type MoveType = (typeof actorData.move)[keyof typeof actorData.move]
-        const move = actorData.move[key]
-
-        const feature = factory
-          .build<MoveType>(`generic`, `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`, [1, parseInt(key)], undefined, {
-            context: { templates: MoveFeatureContextTemplate },
-          })
-          .addPipeline<IGenericFeatureData>([
-            derivation.gcs(`mode`, [`name`, `label`], ({ mode }) => ({ name: game.i18n.localize(mode as any), label: mode })),
-            derivation.gcs(`basic`, `value`, ({ basic }) => ({ value: basic })),
-            // derivation.gcs(`default`, `state`, (manual: MoveType) => ({ state: manual.default ? FeatureState.ACTIVE : FeatureState.INACTIVE })),
-          ])
-          .addSource(`gcs`, move)
-          .integrateOn(`compile:gcs`, this)
-
-        this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
+        if (this.cache.features?.[id] === undefined) {
+          factory
+            .build(`generic`, `move-basic_speed`, [0, 0], undefined, {
+              context: { templates: MoveFeatureContextTemplate },
+            })
+            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`)])
+            .addSource(
+              `manual`,
+              { type: FEATURE.GENERIC, name: game.i18n.localize(`GURPS.basicspeed`), label: `GURPS.basicspeed`, ...((actorData.basicspeed as any) ?? {}) },
+              { path: `basicspeed` },
+            )
+            .integrateOn(`compile:manual`, this)
+        } else {
+          // TODO: Implement reactive compile
+          debugger
+        }
       }
-    }
 
-    factory.startCompilation()
-    timer_move.group()(`    Moves`, [`font-weight: bold;`]) // COMMENT
+      if (do_moves) {
+        const moves = Object.keys(actorData.move || {})
+        for (const key of moves) {
+          type MoveType = (typeof actorData.move)[keyof typeof actorData.move]
+          const move = actorData.move[key]
+          const id = `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`
+
+          if (this.cache.features?.[id] === undefined) {
+            const feature = factory
+              .build<MoveType>(`generic`, id, [1, parseInt(key)], undefined, {
+                context: { templates: MoveFeatureContextTemplate },
+              })
+              .addPipeline<IGenericFeatureData>([
+                derivation.manual(`mode`, [`name`, `label`], ({ mode }) => ({ name: game.i18n.localize(mode as any), label: mode })),
+                derivation.manual(`basic`, `value`, ({ basic }) => ({ value: basic })),
+                derivation.manual(`default`, `state`, (manual: MoveType) => ({ state: FeatureState.PASSIVE + (manual.default ? FeatureState.HIGHLIGHTED : 0) })),
+              ])
+              .addSource(`manual`, { type: FEATURE.GENERIC, ...move }, { path: `move.${key}` })
+              .integrateOn(`compile:manual`, this)
+
+            this.setCache(`_moves.${feature.id.replace(`move-`, ``)}`, feature)
+          } else {
+            // feature already exists, just inform update
+            const changes = datachanges?.listAll(new RegExp(`system\\.move\\.${key}`, `i`))
+            const feature = this.cache.features[id]
+
+            factory.react(feature, changes, (feature, changes) => {
+              // Unimplemented
+              if (changes?.root) debugger
+
+              // get current value
+              const path = feature.path?.split(`.`)[1]
+              const move = actorData.move[path!]
+
+              // update in feature.source
+              //    this is necessary because there is no reference to the original object (since i assigned it to a custom "manual")
+              //    could be avoided if a considered actorData.move.key as a "gcs" source
+              for (const key of changes?.changes ?? []) feature.sources.manual[key] = move[key]
+            })
+          }
+        }
+      }
+
+      factory.startCompilation()
+
+      // factory.logs.compiling = false
+      timer_move.group()(`    Moves`, [`font-weight: bold;`]) // COMMENT
+    }
 
     // #endregion
 
@@ -338,18 +398,19 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     const { do_ads, do_skills, do_spells, do_carried_equipment, do_other_equipment } = dos
 
+    if ([do_ads, do_skills, do_spells, do_carried_equipment, do_other_equipment].every(b => !b)) return
+
     console.log(` `)
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
     if (do_ads) {
       const timer_advantages = logger.openGroup(true).info(`    Advantages`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
-      factory
-        .GCS(`advantage`, rawGCS.traits, [], undefined, {
-          context: { templates: AdvantageFeatureContextTemplate },
-        })
-        .loadFromGCAOn(`compile:gcs`, true)
-        .integrateOn(`loadFromGCA`, this)
+      const advantages = factory.GCS(`advantage`, rawGCS.traits, [], undefined, {
+        context: { templates: AdvantageFeatureContextTemplate },
+      })
+
+      advantages.loadFromGCAOn(`compile:gcs`, true).integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
       timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
@@ -438,6 +499,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const rawGCS = actorData._import // where my modded version of "gurps" store raw GCS data
 
     const { do_defenses } = dos
+
+    if ([do_defenses].every(b => !b)) return
 
     const timer = logger.time(`prepareDefenses`) // COMMENT
 

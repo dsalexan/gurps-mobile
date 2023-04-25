@@ -6,7 +6,7 @@ import { GurpsMobileActor } from "../actor/actor"
 
 import createManeuverTray, { Tray } from "./maneuverTray"
 
-import { flatten, flattenDeep, get, groupBy, isNil, orderBy, set, sortBy, uniq } from "lodash"
+import { flatten, flattenDeep, get, groupBy, isNil, last, orderBy, set, sortBy, uniq } from "lodash"
 import { getStatus } from "./status"
 import HTMLManager from "./html"
 import ContextManager from "./context/manager"
@@ -181,7 +181,15 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       [`data changes`, Object.keys(datachanges).length || undefined],
     ].filter(([label, value]) => value !== undefined)
 
-    logger.group(true).info(`[${this.actor.id}]`, `_render`, context?.userId ?? `(No UserId in context)`, [force, context])
+    if (force) logger.warn(`[${this.actor.id}]`, `_render${force ? ` (force)` : ``}`, [`font-weight: bold;`])
+    logger
+      .group(true)
+      .info(`[${this.actor.id}]`, `_render${force ? ` (force)` : ``}`, `user:${context?.userId ?? `unknown`}`, [
+        `font-weight: regular;`,
+        ``,
+        `color: rgba(197, 25, 22, ${context?.userId ? `1` : `0.5`}); font-style: italic;`,
+      ])
+    logger.info(`    `, `context:`, context, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `state:`, (this as any)._state, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `element:`, (this as any).element, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `_element:`, (this as any)._element, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
@@ -199,12 +207,8 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       if (ignoreUnknownEmpty) shouldRender = dontRender(`(skipping)`, `unknown/empty context ignored`, [`font-weight: bold;`, `font-weight: regular;`])
       if (ignoreUpdate) shouldRender = dontRender(`(skipping)`, `update action ignored`, [`font-weight: bold;`, `font-weight: regular;`])
       if (ignoreRenderContext) shouldRender = dontRender(`(skipping)`, `render context ignored`, context?.renderContext, [`font-weight: bold;`, `font-weight: regular;`])
-
-      logger.group()
-    } else {
-      logger.group()
-      logger.warn(`    `, `FORCED RENDER`, [``, `font-weight: bold;`])
     }
+    logger.group()
 
     if (shouldRender) {
       logger.info(`[${this.actor.id}]`, `super._render...`, [`background-color: rgb(0,191,255, 0.3); font-weight: bold; padding: 3px 0;`])
@@ -237,19 +241,22 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const do_moves = datachanges?.has(/system\.move\.\d+$/i)
 
     const conditionals = { do_lastManeuver, do_maneuver, do_hide, do_pin, do_collapse, do_moves }
+    const _conditionals = Object.entries(conditionals)
+      .filter(([_, value]) => value)
+      .map(([key]) => key.replace(`do_`, ``))
     const some = Object.values(conditionals).some(p => !!p)
     const all = Object.values(conditionals).every(p => !!p) // rgb(60, 179, 113)
 
     const timer = logger.time(`_updateHtml`) // COMMENT
     logger
       .group(true)
-      .info(`[${this.actor.id}]`, `_updateHtml${all ? `` : some ? ` (partial)` : ` (skip)`}`, [
+      .info(`[${this.actor.id}]`, `_updateHtml${all ? `` : some ? ` (partials: ${_conditionals.join(`, `)})` : ` (skip)`}`, [
         `background-color: rgb(${all ? `255, 224, 60, 0.45` : some ? `60,179,113, 0.3` : `0, 0, 0, 0.085`}); font-weight: bold; padding: 3px 0;`,
       ])
     logger.info(`    `, `datachanges:`, datachanges.data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `context:`, context, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `conditionals:`, conditionals, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
-    logger.info(`    `, `conditionals:`)
+    logger.info(` `)
 
     if (some) {
       // MANEUVERS
@@ -344,12 +351,14 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       if (do_moves) {
         const moves = datachanges.get(/system\.move\.\d+$/i)
         for (const key of moves) {
-          const move = this.actor.system.move[key]
-          debugger
+          const move = this.actor.system.move[last(key.split(`.`))]
           const id = `move-${move.mode.replace(`GURPS.moveMode`, ``).toLowerCase()}`
-          if (!id) continue
 
           const feature = this.actor.cache.features?.[id]
+
+          // ERROR: No can do
+          if (!feature) debugger
+
           const node = html.find(`.feature[data-id="${id}"]`)
 
           if (feature) HTMLFeature(node, feature).updateMove()

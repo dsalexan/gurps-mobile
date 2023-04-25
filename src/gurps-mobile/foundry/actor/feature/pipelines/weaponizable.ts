@@ -22,6 +22,7 @@ export const WeaponizableFeaturePipeline: IDerivationPipeline<IWeaponizableFeatu
       for (let index = 0; index < weapons.length ?? 0; index++) {
         const weapon = weapons[index] as any as GCS.Entry
 
+        debugger
         const feature = factory
           .build(`weapon`, weapon.id, index, object, {
             context: { templates: [WeaponFeatureContextTemplate] },
