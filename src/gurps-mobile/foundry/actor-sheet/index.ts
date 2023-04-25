@@ -290,7 +290,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
             if (feature) {
               HTMLFeature(node, feature).updateHidden(hidden === `true`)
-              lists.push(...listId)
+              lists.push(listId)
             }
           }
         }

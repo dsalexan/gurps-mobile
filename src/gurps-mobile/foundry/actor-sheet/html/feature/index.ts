@@ -97,7 +97,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         if (!event.currentTarget.classList.contains(`do-swipe-left`)) return
         event.currentTarget.classList.remove(`do-swipe-left`)
 
-        const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
+        const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
         feature.hide(listID)
       })
 
@@ -107,7 +107,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         if (!event.currentTarget.classList.contains(`do-swipe-left`)) return
         event.currentTarget.classList.remove(`do-swipe-left`)
 
-        const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
+        const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
         feature.hide(listID)
       })
 
@@ -176,20 +176,20 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         const target = $(event.currentTarget)
 
         if (target.hasClass(`action-hide`)) {
-          const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
+          const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
           feature.hide(listID)
-          target.parents(`.feature`).addClass(`cancel-post-swipe-click`)
-          target.parents(`.feature-data`).scrollLeft(0)
+          target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
+          target.closest(`.feature-data`).scrollLeft(0)
         }
         if (target.hasClass(`action-pin`)) {
           feature.pin()
-          target.parents(`.feature`).addClass(`cancel-post-swipe-click`)
-          target.parents(`.feature-data`).scrollLeft(0)
+          target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
+          target.closest(`.feature-data`).scrollLeft(0)
         }
         if (target.hasClass(`action-collapse`)) {
           feature.collapse()
-          target.parents(`.feature`).addClass(`cancel-post-swipe-click`)
-          target.parents(`.feature-data`).scrollLeft(0)
+          target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
+          target.closest(`.feature-data`).scrollLeft(0)
         }
       })
   }
@@ -206,7 +206,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
     }
 
     if (node.hasClass(`hidden`)) {
-      const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
+      const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
       feature.hide(listID)
       return
     }

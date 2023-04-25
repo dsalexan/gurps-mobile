@@ -17,36 +17,35 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     const listID = parent.data(`list`)
     const isExpanded = parent.hasClass(`expanded`)
     sheet.actor.setLocalStorage(`${listID}.expanded`, isExpanded)
-
-    console.warn(`DONE`)
   })
 
   html.find(`.feature-list > .header > .button.display-hidden`).on(`click`, ev => {
     if ($(ev.currentTarget).hasClass(`disabled`)) return
-    const parent = $(ev.currentTarget).parents(`.feature-list`)
-    parent.toggleClass(`display-hidden`)
+    const list = $(ev.currentTarget).closest(`.feature-list`)
 
-    const listID = parent.data(`list`)
-    const isHiddenDisplayed = parent.hasClass(`display-hidden`)
+    list.toggleClass(`display-hidden`)
+
+    const listID = list.data(`list`)
+    const isHiddenDisplayed = list.hasClass(`display-hidden`)
     sheet.actor.setLocalStorage(`${listID}.displayHidden`, isHiddenDisplayed)
   })
 
   html.find(`.feature-list > .header > .button.hide-all`).on(`click`, ev => {
     if ($(ev.currentTarget).hasClass(`disabled`)) return
-    const parent = $(ev.currentTarget).parents(`.feature-list`)
+    const list = $(ev.currentTarget).closest(`.feature-list`)
 
-    const listID = parent.data(`list`)
-    const features = parent.find(`.feature:not(.hidden)`)
+    const listID = list.data(`list`)
+    const features = list.find(`> .children > .feature:not(.hidden)`)
     const ids = features.toArray().map(f => $(f).data(`id`))
     sheet.actor.update(Object.fromEntries(ids.map(id => [`flags.gurps.${`mobile.features.hidden`}.${id}.${listID}`, true])))
   })
 
   html.find(`.feature-list > .header > .button.show-all`).on(`click`, ev => {
     if ($(ev.currentTarget).hasClass(`disabled`)) return
-    const parent = $(ev.currentTarget).parents(`.feature-list`)
+    const list = $(ev.currentTarget).closest(`.feature-list`)
 
-    const listID = parent.data(`list`)
-    const features = parent.find(`.feature.hidden`)
+    const listID = list.data(`list`)
+    const features = list.find(`> .children > .collapsed-list > .feature.hidden`)
     const ids = features.toArray().map(f => $(f).data(`id`))
     sheet.actor.update(Object.fromEntries(ids.map(id => [`flags.gurps.${`mobile.features.hidden`}.${id}.${listID}`, false])))
   })
