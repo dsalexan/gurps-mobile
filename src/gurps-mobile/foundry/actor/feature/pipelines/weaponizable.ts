@@ -22,12 +22,14 @@ export const WeaponizableFeaturePipeline: IDerivationPipeline<IWeaponizableFeatu
       for (let index = 0; index < weapons.length ?? 0; index++) {
         const weapon = weapons[index] as any as GCS.Entry
 
-        debugger
+        // ERROR: Pathless parent
+        if (object && !object.path) debugger
+
         const feature = factory
           .build(`weapon`, weapon.id, index, object, {
             context: { templates: [WeaponFeatureContextTemplate] },
           })
-          .addSource(`gcs`, weapon)
+          .addSource(`gcs`, weapon, { path: `${object.path}.weapons.${index}` })
 
         // feature.on(`compile:gcs`, event => {
         //   LOGGER.info(

@@ -6,6 +6,7 @@ import { GurpsMobileActor } from "../../../actor/actor"
 import Feature from "../../../actor/feature"
 import GenericFeature from "../../../actor/feature/generic"
 import { FeatureState, setMoveDefault } from "../../../../core/feature/utils"
+import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 
 export interface IHTMLFeature {
   listen(): void
@@ -96,7 +97,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         if (!event.currentTarget.classList.contains(`do-swipe-left`)) return
         event.currentTarget.classList.remove(`do-swipe-left`)
 
-        const listID = $(event.currentTarget).parents(`.feature-list`).data(`id`)
+        const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
         feature.hide(listID)
       })
 
@@ -106,7 +107,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         if (!event.currentTarget.classList.contains(`do-swipe-left`)) return
         event.currentTarget.classList.remove(`do-swipe-left`)
 
-        const listID = $(event.currentTarget).parents(`.feature-list`).data(`id`)
+        const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
         feature.hide(listID)
       })
 
@@ -175,7 +176,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         const target = $(event.currentTarget)
 
         if (target.hasClass(`action-hide`)) {
-          const listID = $(event.currentTarget).parents(`.feature-list`).data(`id`)
+          const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
           feature.hide(listID)
           target.parents(`.feature`).addClass(`cancel-post-swipe-click`)
           target.parents(`.feature-data`).scrollLeft(0)
@@ -205,7 +206,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
     }
 
     if (node.hasClass(`hidden`)) {
-      const listID = $(event.currentTarget).parents(`.feature-list`).data(`id`)
+      const listID = $(event.currentTarget).parents(`.feature-list`).data(`list`)
       feature.hide(listID)
       return
     }
@@ -246,11 +247,22 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
 
     // select future parent based on current hidden state
     let parent: JQuery<HTMLElement>
-    if (value) parent = node.parents(`.feature-list > .children`).find(`div.collapsed-list`)
-    else {
+    if (value) {
+      const list = node.parent().parent()
+
+      // ERROR: Should be a feature list
+      if (!list.is(`.feature-list`)) debugger
+
+      parent = list.find(`> .children > div.collapsed-list`)
+    } else {
+      const list = node.parent().parent().parent()
+
+      // ERROR: Should be a feature list
+      if (!list.is(`.feature-list`)) debugger
+
       const wrapper = node.data(`wrapper`)
-      if (wrapper) parent = node.parents(`.feature-list > .children`).find(`.feature-wrapper[data-id="${wrapper}"] > .children`)
-      else parent = node.parents(`.feature-list > .children`)
+      if (!isNilOrEmpty(wrapper)) parent = list.find(`> .children > .feature-wrapper[data-id="${wrapper}"] > .children`)
+      else parent = list.find(`> .children`)
     }
 
     if (parent === null || parent.length === 0) return LOGGER.error(`Cannot ${!value ? `hide` : `show`} feature outside a FeatureList or FeatureWrapper`, node)

@@ -14,7 +14,7 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     const parent = $(ev.currentTarget).parent()
     parent.toggleClass(`expanded`)
 
-    const listID = parent.data(`id`)
+    const listID = parent.data(`list`)
     const isExpanded = parent.hasClass(`expanded`)
     sheet.actor.setLocalStorage(`${listID}.expanded`, isExpanded)
 
@@ -26,7 +26,7 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     const parent = $(ev.currentTarget).parents(`.feature-list`)
     parent.toggleClass(`display-hidden`)
 
-    const listID = parent.data(`id`)
+    const listID = parent.data(`list`)
     const isHiddenDisplayed = parent.hasClass(`display-hidden`)
     sheet.actor.setLocalStorage(`${listID}.displayHidden`, isHiddenDisplayed)
   })
@@ -35,7 +35,7 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     if ($(ev.currentTarget).hasClass(`disabled`)) return
     const parent = $(ev.currentTarget).parents(`.feature-list`)
 
-    const listID = parent.data(`id`)
+    const listID = parent.data(`list`)
     const features = parent.find(`.feature:not(.hidden)`)
     const ids = features.toArray().map(f => $(f).data(`id`))
     sheet.actor.update(Object.fromEntries(ids.map(id => [`flags.gurps.${`mobile.features.hidden`}.${id}.${listID}`, true])))
@@ -45,7 +45,7 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     if ($(ev.currentTarget).hasClass(`disabled`)) return
     const parent = $(ev.currentTarget).parents(`.feature-list`)
 
-    const listID = parent.data(`id`)
+    const listID = parent.data(`list`)
     const features = parent.find(`.feature.hidden`)
     const ids = features.toArray().map(f => $(f).data(`id`))
     sheet.actor.update(Object.fromEntries(ids.map(id => [`flags.gurps.${`mobile.features.hidden`}.${id}.${listID}`, false])))

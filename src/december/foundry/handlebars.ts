@@ -78,8 +78,13 @@ export class TemplatePreloader {
     Handlebars.registerHelper(`isObjectLike`, a => isObjectLike(a))
     Handlebars.registerHelper(`isArray`, a => isArray(a))
 
+    Handlebars.registerHelper(`isNil`, function (a, b, c = ``) {
+      return isNil(a) ? b : c
+    })
     Handlebars.registerHelper(`isNilOrEmpty`, function (a, b, c = ``) {
       return isNil(a) || isEmpty(a) || (isArray(a) && a.length === 0) ? b : c
     })
+
+    Handlebars.registerHelper(`sum`, (a, b) => a + b)
   }
 }

@@ -1,7 +1,7 @@
 
 {{!-- {{log 'gurps-mobile' 'feature-list' this level='warn'}} --}}
 {{#if (contains _template 'list-feature')}}
-<div class="feature-list {{isTrue expanded 'expanded'}} {{join classes}}" data-id="{{id}}" data-index="{{@index}}">
+<div class="feature-list {{isTrue expanded 'expanded'}} {{join classes}}" data-list="{{list}}" data-index="{{sum (isNil index @index index) 10}}" data-id="{{id}}" data-path="{{path}}">
   <div class="label {{isNilOrEmpty label 'hidden'}}">
     <div class="chevron spacer"><i class="icon mdi mdi-chevron-up"></i></div>
     <span class="text">{{ label }}</span>

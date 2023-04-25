@@ -5,10 +5,10 @@ import { IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "../in
 import TagBuilder from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
-import { IAdvantageFeature } from "../../../../../core/feature/compilation/templates/advantage"
+import AdvantageFeature from "../../../../actor/feature/advantage"
 
 export interface AdvantageFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: IAdvantageFeature
+  feature: AdvantageFeature
   //
   links: (id: string) => string[]
 }

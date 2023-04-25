@@ -273,7 +273,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
       this.prepareAttributes(this._datachanges, cached.featureFactory, partials)
-      // this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
+      this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
       // this.prepareDefenses(this._datachanges, cached.featureFactory, partials)
 
       // ERROR: Caralho meu
@@ -390,7 +390,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     timer(`Prepare attributes`, [`font-weight: bold;`]) // COMMENT
   }
 
-  prepareFeatures(factory: FeatureFactory, dos: Record<string, boolean>) {
+  prepareFeatures(datachanges: Datachanges, factory: FeatureFactory, dos: Record<string, boolean>) {
     const logger = LOGGER.get(`actor`)
 
     const actorData = this.system // where "gurps" stores parsed GCS data (as recommended by v9 of foundry)
@@ -406,11 +406,12 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     if (do_ads) {
       const timer_advantages = logger.openGroup(true).info(`    Advantages`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
-      const advantages = factory.GCS(`advantage`, rawGCS.traits, [], undefined, {
-        context: { templates: AdvantageFeatureContextTemplate },
-      })
-
-      advantages.loadFromGCAOn(`compile:gcs`, true).integrateOn(`loadFromGCA`, this)
+      factory
+        .GCS(this, datachanges, `advantage`, rawGCS.traits, [], `traits`, undefined, {
+          context: { templates: AdvantageFeatureContextTemplate },
+        })
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
       timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
@@ -419,7 +420,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     if (do_skills) {
       const timer_skills = logger.openGroup().info(`    Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSkills`) // COMMENT
       factory
-        .GCS(`skill`, rawGCS.skills, [], undefined, {
+        .GCS(this, datachanges, `skill`, rawGCS.skills, [], `skills`, undefined, {
           context: { templates: SkillFeatureContextTemplate },
         })
         .loadFromGCAOn(`compile:gcs`, true)
@@ -446,7 +447,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     if (do_spells) {
       const timer_spells = logger.openGroup().info(`    Spells`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSpells`) // COMMENT
       factory
-        .GCS(`spell`, rawGCS.spells, [], undefined, {
+        .GCS(this, datachanges, `spell`, rawGCS.spells, [], `spells`, undefined, {
           context: { templates: SpellFeatureContextTemplate },
         })
         .loadFromGCAOn(`compile:gcs`, true)
@@ -460,7 +461,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       // eslint-disable-next-line prettier/prettier
       const timer_carried_equipment = logger.openGroup().info(`    Carried Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareCarriedEquipment`) // COMMENT
       factory
-        .GCS(`equipment`, rawGCS.equipment, [], undefined, {
+        .GCS(this, datachanges, `equipment`, rawGCS.equipment, [], `equipment`, undefined, {
           context: { templates: EquipmentFeatureContextTemplate },
         })
         .addSource(`manual`, { carried: true }, { delayCompile: true })
@@ -476,7 +477,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       // eslint-disable-next-line prettier/prettier
       const timer_other_equipment = logger.openGroup().info(`    Other Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareOtherEquipment`) // COMMENT
       factory
-        .GCS(`equipment`, rawGCS.other_equipment, [], undefined, {
+        .GCS(this, datachanges, `equipment`, rawGCS.other_equipment, [], `other_equipment`, undefined, {
           context: { templates: EquipmentFeatureContextTemplate },
         })
         .addSource(`manual`, { carried: false }, { delayCompile: true })
@@ -492,7 +493,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     timer(`Prepare ${n} feature${n === 1 ? `` : `s`}`, [`font-weight: bold;`]) // COMMENT
   }
 
-  prepareDefenses(factory: FeatureFactory, dos: Record<string, boolean>) {
+  prepareDefenses(datachanges: Datachanges, factory: FeatureFactory, dos: Record<string, boolean>) {
     const logger = LOGGER.get(`actor`)
 
     const actorData = this.system // where "gurps" stores parsed GCS data (as recommended by v9 of foundry)

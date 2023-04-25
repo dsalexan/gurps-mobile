@@ -22,6 +22,8 @@ import LOGGER from "../../logger"
 import { EventEmitter } from "@billjs/event-emitter"
 import { Datachanges } from "../../../december/utils"
 import { PatternChanges } from "../../../december/utils/datachanges"
+import { GurpsMobileActor } from "../../foundry/actor"
+import { isNilOrEmpty } from "../../../december/utils/lodash"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
@@ -122,9 +124,12 @@ export default class FeatureFactory extends EventEmitter {
    * @returns
    */
   GCS<TManualSource extends GenericSource = never, T extends keyof FeatureDataByType = keyof FeatureDataByType>(
+    actor: GurpsMobileActor,
+    datachanges: Datachanges,
     type: T,
     GCS: object,
     rootKey: number | number[],
+    path: string,
     parent?: Feature<any, any>,
     template?: FeatureTemplate,
   ) {
@@ -137,16 +142,43 @@ export default class FeatureFactory extends EventEmitter {
       if (isNaN(parseInt(key))) debugger // COMMENT
       if (gcs.id === undefined) debugger // COMMENT
 
-      const feature = this.build(type, gcs.id, [...(isArray(rootKey) ? rootKey : [rootKey]), parseInt(key)], parent, template)
-      feature.addSource(`gcs`, gcs)
-      collection.add(feature as any)
+      const featureExists = actor.cache.features?.[gcs.id] !== undefined
+      let feature: GenericFeature
 
+      if (!featureExists) {
+        // effectivelly creates and compiles feature
+        feature = this.build(type, gcs.id, [...(isArray(rootKey) ? rootKey : [rootKey]), parseInt(key)], parent, template) as any
+
+        feature.addSource(`gcs`, gcs, { path: `${isNilOrEmpty(path) ? `` : `${path}.`}${key}` })
+        collection.add(feature as any)
+      } else {
+        // feature already exists, just inform update
+        debugger
+        const changes = datachanges?.listAll(new RegExp(`system\\.move\\.${key}`, `i`))
+        feature = actor.cache.features?.[gcs.id] as GenericFeature
+
+        // ERROR: Wtf m8
+        if (feature === undefined) debugger
+
+        this.react(feature!, changes, (feature, changes) => {
+          debugger
+        })
+      }
+
+      // just maintain the loop, call GCS for children
       if (!isNil(gcs.children)) {
         const children = isArray(gcs.children) ? Object.fromEntries(gcs.children.map((c, i) => [i, c])) : gcs.children
 
-        const childrenCollection = this.GCS(type, children, [], feature, template)
-        feature.children.push(...(childrenCollection.items as any[]))
-        collection.add(...childrenCollection.items)
+        // ERROR: Pathless parent
+        if (parent && !parent.path) debugger
+
+        const childrenCollection = this.GCS(actor, datachanges, type, children, [], `${feature.path!}.children`, feature, template)
+
+        // only adds to collection new features (to be GCA loaded and compiled on main thread)
+        if (!featureExists) {
+          feature.children.push(...(childrenCollection.items as any[]))
+          collection.add(...childrenCollection.items)
+        }
       }
     }
 

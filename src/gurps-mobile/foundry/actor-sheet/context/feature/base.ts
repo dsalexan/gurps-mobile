@@ -122,7 +122,7 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
       classes,
       //
       id: feature.id,
-      // path: feature.path,
+      path: feature.path,
       index: getSpec(specs, `index`, feature.key.value),
       //
       hidden,

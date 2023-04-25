@@ -6,7 +6,7 @@ import { GurpsMobileActor } from "../actor/actor"
 
 import createManeuverTray, { Tray } from "./maneuverTray"
 
-import { flatten, flattenDeep, get, groupBy, isNil, last, orderBy, set, sortBy, uniq } from "lodash"
+import { flatten, flattenDeep, get, groupBy, isBoolean, isNil, last, orderBy, set, sortBy, uniq, unzip } from "lodash"
 import { getStatus } from "./status"
 import HTMLManager from "./html"
 import ContextManager from "./context/manager"
@@ -266,28 +266,31 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       // #region FEATURE
       // hide
       if (do_hide) {
-        const features = datachanges.get(/flags\.gurps\.mobile\.features\.hidden\.[^\.]+$/)
+        const features = datachanges.get(/flags\.gurps\.mobile\.features\.hidden\.[^\.]+/)
+
+        const grouped = { true: [] as [string, string][], false: [] as [string, string][] }
+        for (const key of features) {
+          const change = get(datachanges.changes, key)
+          if (!isBoolean(change)) continue
+
+          const [id, listId] = key.split(`.`).slice(-2)
+          grouped[change.toString()].push([id, listId])
+        }
 
         let lists = [] as string[]
-        for (const key of features) {
-          let listIDS = get(this.actor, key)
-          const id = key.split(`.`).slice(-1)[0]
+        for (const hidden of [`true`, `false`]) {
+          if (!grouped[hidden] || grouped[hidden].length === 0) continue
 
-          const hiddenByList = Object.entries(listIDS)
-          const grouped = groupBy(hiddenByList, ([list, hidden]) => hidden)
-
-          for (const hidden of [`true`, `false`]) {
-            if (!grouped[hidden]) continue
-
-            const ids = grouped[hidden].map(([list]) => list)
-            const list = html.find(ids.map(listId => `.feature-list[data-id="${listId}"]`).join(`, `))
+          // const [ids, lists] = unzip(grouped[hidden])
+          for (const [id, listId] of grouped[hidden]) {
+            const list = html.find(`.feature-list[data-list="${listId}"]`)
 
             const feature = this.actor.cache.features?.[id]
             const node = list.find(`.feature[data-id="${id}"]:not(.ignore-hidden)`)
 
             if (feature) {
               HTMLFeature(node, feature).updateHidden(hidden === `true`)
-              lists.push(...ids)
+              lists.push(...listId)
             }
           }
         }
@@ -295,26 +298,26 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
         // update hide/show-all and alikes
         lists = uniq(lists)
         for (const listId of lists) {
-          const allFeatures = html.find(`.feature-list[data-id="${listId}"] .feature`).length
-          const hiddenFeatures = html.find(`.feature-list[data-id="${listId}"] .feature.hidden`).length
+          const allFeatures = html.find(`.feature-list[data-list="${listId}"] .feature`).length
+          const hiddenFeatures = html.find(`.feature-list[data-list="${listId}"] .feature.hidden`).length
 
           //    disable display-hidden and show-all if there is no hidden feature
           if (hiddenFeatures === 0) {
-            html.find(`.feature-list[data-id="${listId}"] > .header > .button.display-hidden`).addClass(`disabled`)
-            html.find(`.feature-list[data-id="${listId}"] > .header > .button.show-all`).addClass(`disabled`)
+            html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden`).addClass(`disabled`)
+            html.find(`.feature-list[data-list="${listId}"] > .header > .button.show-all`).addClass(`disabled`)
           } else {
-            html.find(`.feature-list[data-id="${listId}"] > .header > .button.display-hidden`).removeClass(`disabled`)
-            html.find(`.feature-list[data-id="${listId}"] > .header > .button.show-all`).removeClass(`disabled`)
+            html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden`).removeClass(`disabled`)
+            html.find(`.feature-list[data-list="${listId}"] > .header > .button.show-all`).removeClass(`disabled`)
           }
 
           // update display-hidden count
-          html.find(`.feature-list[data-id="${listId}"] > .header > .button.display-hidden > .label > span`).html(hiddenFeatures)
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden > .label > span`).html(hiddenFeatures.toString())
 
           //    disable hide-all if there is no visible feature
           if (hiddenFeatures === allFeatures) {
-            html.find(`.feature-list[data-id="${listId}"] > .header > .button.hide-all`).addClass(`disabled`)
+            html.find(`.feature-list[data-list="${listId}"] > .header > .button.hide-all`).addClass(`disabled`)
           } else {
-            html.find(`.feature-list[data-id="${listId}"] > .header > .button.hide-all`).removeClass(`disabled`)
+            html.find(`.feature-list[data-list="${listId}"] > .header > .button.hide-all`).removeClass(`disabled`)
           }
         }
       }
@@ -484,7 +487,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       //   )
       // }
 
-      return { section, key, specs, features: ContextManager.prepareTree(features, sort === undefined ? f => parseInt(f.key.tree[0] as string) : sort, order) }
+      return { section, key, specs, features: ContextManager.prepareTree(features, sort === undefined ? f => parseInt(f.key.value as string) : sort, order) }
     })
 
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT

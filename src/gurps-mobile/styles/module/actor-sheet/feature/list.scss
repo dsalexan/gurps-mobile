@@ -215,7 +215,7 @@
         .feature-wrapper > .children > .feature-wrapper > .children > .feature-wrapper > .children > .feature
         ...
       */
-      & .feature {
+      & > .feature, & *:not(.collapsed-list) > .feature {
         &.full {
           flex: 1 0 calc(100% - 2 * 0px);
         }
