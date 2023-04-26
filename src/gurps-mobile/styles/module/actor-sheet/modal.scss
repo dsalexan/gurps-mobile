@@ -1,3 +1,6 @@
+
+@use "../../../../december/utils/styles" as utils;
+
 .modal {
   z-index: 10000;
 
@@ -15,6 +18,9 @@
 
   & > .wrapper {
     --background-color: 238, 238, 238;
+    
+    overflow-y: scroll;
+    @include utils.no-scroll;
 
     position: absolute;
     z-index: 4;
@@ -127,65 +133,82 @@
   & > .wrapper > .section {
     color: #333;
 
-    & > .filter {
+    & > .button-wrapper.filter {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       flex-grow: 1;
+      padding: 0 var(--s0-75);
 
-      & > .label, & > .button {
-        padding: var(--s1);
-      }
+      // & > .label, & > .label + .button {      
+      //   border-bottom-left-radius: var(--s0-75);
+      //   border-top-left-radius: var(--s0-75);
+      // }
 
-      & > .label, & > .label + .button {      
-        border-bottom-left-radius: var(--s0-75);
-        border-top-left-radius: var(--s0-75);
-      }
-
-      & > .button:last-of-type {
-        border-bottom-right-radius: var(--s0-75);
-        border-top-right-radius: var(--s0-75);
-      }
+      // & > .button:last-of-type {
+      //   border-bottom-right-radius: var(--s0-75);
+      //   border-top-right-radius: var(--s0-75);
+      // }
 
       & > .label {
         display: flex;
         flex-direction: row;
         align-items: center;
+        // padding: var(--s1);
         
+        font-weight: 500;
         font-size: 13px;
         white-space: nowrap;
 
-        & > .text {
+        & > .icon ~ .text {
           margin-left: var(--s0-5);
         }
       }
 
-      & > .button {
-        flex-grow: 1;
+      & > .label ~ .buttons {
+        margin-top: var(--s1);
+      }
+
+      & > .buttons {
         display: flex;
+        flex-direction: row;
+        align-items: center;
         justify-content: center;
 
-        background-color: #d9d9d9;
-        cursor: pointer;
+        & > .button {
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;  
 
-        margin-left: 0.5px;
-        margin-right: 0.5px;
-
-        &:first-of-type {
-          margin-left: 0px;
-        }
-        &:last-of-type {
-          margin-right: 0px;
-        }
-
-        &.no-pointer {
-          pointer-events: none;
-        }
-
-        &.selected {
-          border: 0.5px solid rgb(var(--main-color), 0.5);      
-          background-color: rgb(var(--light-main-color), 0.5);
-          color: rgb(var(--darker-main-color), 1);
+          padding: var(--s0-75);
+          border-radius: var(--s0-75);
+          border: 0.5px solid #999;
+          color: #666;
           font-weight: 500;
+  
+          // background-color: #d9d9d9;
+          cursor: pointer;
+  
+          margin-left: var(--s0-5);
+          margin-right: var(--s0-5);
+  
+          &:first-of-type {
+            margin-left: 0px;
+          }
+
+          &:last-of-type {
+            margin-right: 0px;
+          }
+  
+          &.no-pointer {
+            pointer-events: none;
+          }
+  
+          &.selected {
+            border-color: rgb(var(--main-color), 0.75);      
+            background-color: rgb(var(--light-main-color), 0.25);
+            color: rgb(var(--darker-main-color), 1);
+            font-weight: 500;
+          }
         }
       }
     }

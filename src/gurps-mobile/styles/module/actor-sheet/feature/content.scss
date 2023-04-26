@@ -89,7 +89,13 @@
     }
 
     & > .secondary {
-      //
+      font-family: Roboto;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      
+      color: rgb(var(--label-color), 0.75);
     }
   }
 

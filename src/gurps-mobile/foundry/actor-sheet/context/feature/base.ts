@@ -12,7 +12,9 @@ export interface FeatureDataVariantActionSpecs {
 
 export interface FeatureBaseContextSpecs extends ContextSpecs {
   feature: GenericFeature
-  list: string
+  label?: string
+  ignoreSpecialization?: boolean
+  proxyTo?: GenericFeature[]
   //
   hidden: (id: string) => boolean
   pinned: (id: string) => boolean

@@ -7,15 +7,11 @@ import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate from "./base"
 
-import { IWeaponizableFeature } from "../../../../core/feature/compilation/templates/weaponizable"
-import WeaponFeature from "../../../../core/feature/variants/weapon"
 import WeaponFeatureContextTemplate, { WeaponFeatureContextSpecs } from "./variants/weapon"
-import { IWeaponFeature } from "../../../../core/feature/compilation/templates/weapon"
-import Feature from "../../../actor/feature"
-import { IWeaponizableFeatureData } from "../../../actor/feature/pipelines/weaponizable"
+import GenericFeature from "../../../actor/feature/generic"
 
 export interface FeatureWeaponsDataContextSpecs extends ContextSpecs {
-  feature: Feature<IWeaponizableFeatureData>
+  feature: GenericFeature
   //
   weapons: ContextSpecs
 }
@@ -28,9 +24,14 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
   static pre(context: IContext, specs: ContextSpecs, manager: ContextManager): IContext {
     super.pre(context, specs, manager)
 
-    context._template.push(`feature-weapons`)
-    if (context._metadata?.childrenKeys === undefined) set(context, `_metadata.childrenKeys`, [])
-    context._metadata?.childrenKeys.push([5, `weapons`])
+    const feature = getSpec(specs, `feature`)
+    const hasWeapons = feature.data.weapons && feature.data.weapons.length > 0
+
+    if (hasWeapons) {
+      context._template.push(`feature-weapons`)
+      if (context._metadata?.childrenKeys === undefined) set(context, `_metadata.childrenKeys`, [])
+      context._metadata?.childrenKeys.push([5, `weapons`])
+    }
 
     return context
   }

@@ -1,3 +1,4 @@
+import type FeatureFactory from "./core/feature/factory"
 import type GCAManager from "./core/gca"
 
 declare global {
@@ -5,5 +6,6 @@ declare global {
 
   interface Window {
     GCA: GCAManager
+    FeatureFactory: FeatureFactory
   }
 }

@@ -27,9 +27,8 @@ export interface IHTMLFeature {
 /**
  *
  */
-export default function HTMLFeature(node: JQuery<HTMLElement>, feature: GenericFeature): IHTMLFeature {
-  const actor = feature.actor
-  const htmlElements = node.toArray().map(element => HTMLFeatureElement(element, feature))
+export default function HTMLFeature(node: JQuery<HTMLElement>, feature: GenericFeature, actor: GurpsMobileActor): IHTMLFeature {
+  const htmlElements = node.toArray().map(element => HTMLFeatureElement(element, feature, actor))
 
   return {
     listen(...args: any[]) {
@@ -78,9 +77,7 @@ export default function HTMLFeature(node: JQuery<HTMLElement>, feature: GenericF
 /**
  *
  */
-export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature): IHTMLFeature {
-  const actor = feature.actor
-
+export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature, actor: GurpsMobileActor): IHTMLFeature {
   const html = $(`#MobileGurpsActorSheet-Actor-${actor.id} > section.window-content`)
 
   const node = $(element)

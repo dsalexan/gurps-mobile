@@ -21,7 +21,7 @@ const DATA = `D:/dsalexan/Code/foundry/gurps-mobile/data`
 const OUTPUT = `D:/Code/foundry/december/gurps-mobile/static/js`
 
 let FILE = `Basic Set`
-FILE = `default`
+// FILE = `default`
 
 console.log(`FAST INDEX`)
 // fstidx.extract(`${GCA5_DIRECTORY}/libraries/default.gds.fstndx`)
@@ -44,6 +44,9 @@ console.log(`INDEX`)
 const index = fast.index(entries)
 fast.prebuild(entries, index)
 fast.reindex(entries, index)
+
+console.log(`UNIQ`)
+fast.uniq(entries, index)
 
 console.log(`SAVE`)
 fast.save(entries, index, OUTPUT)

@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { GURPS4th } from "../../../gurps-extension/types/gurps4th"
+import SkillFeature from "../../foundry/actor/feature/skill"
 
 export namespace GCA {
   type Section = `ATTRIBUTES` | `LANGUAGES` | `CULTURES` | `ADVANTAGES` | `PERKS` | `DISADVANTAGES` | `QUIRKS` | `FEATURES` | `SKILLS` | `SPELLS` | `EQUIPMENT` | `TEMPLATES`
 
   type IndexedSkill = {
+    proxy: SkillFeature
+    id: string
     name: string
     skill: number
     ignoreSpecialization: boolean

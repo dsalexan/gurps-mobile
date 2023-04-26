@@ -11,6 +11,7 @@ import GenericFeature from "../../../actor/feature/generic"
 
 export interface FeatureMainVariantContextSpecs extends ContextSpecs {
   feature: GenericFeature
+  ignoreSpecialization?: boolean
   //
   hidden: boolean
   pinned: (id: string) => boolean
@@ -45,6 +46,11 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
      */
     const _tags = getSpec(specs, `tags`, [] as FastTag[])
     const _classes = getSpec(specs, `variantClasses`, [] as string[])
+
+    const ignoreSpecialization = get(specs, `ignoreSpecialization`) ?? false
+
+    let defaultLabel = feature.data.proxy && ignoreSpecialization ? feature.data.name : feature.specializedName
+    let defaultSecondaryLabel = undefined as any as string
 
     // COMPOUNDING CLASSES
     const classes = [
@@ -90,6 +96,17 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       })
     }
 
+    // SPECIALIZATION REQUIRED
+    if (ignoreSpecialization && feature.sources.gca?.specializationRequired) {
+      // TODO: Render #InputToTag as a tooltip maybe?
+      defaultSecondaryLabel = `Specialization Required`
+      // tags.add({
+      //   type: `feature`,
+      //   classes: `box`,
+      //   children: `Specialization Required`,
+      // })
+    }
+
     //    TAGS (feature tags, the property)
     tags.add(
       ...(feature.data.tags ?? []).map(featureTag => ({
@@ -126,8 +143,8 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       ...(variant ?? {}),
       classes,
       //
-      label: getSpec(specs, `label`, feature.data.label ?? feature.specializedName),
-      secondary_label: getSpec(specs, `secondary_label`),
+      label: getSpec(specs, `label`, feature.data.label ?? defaultLabel),
+      secondary_label: getSpec(specs, `secondary_label`, defaultSecondaryLabel),
       // value,
       icon: getSpec(specs, `icon`, feature.type.icon) ?? undefined,
       mark: getSpec(specs, `mark`),

@@ -65,7 +65,7 @@
             <div class="label">{{this.header}}</div>
             <div class="children">
               {{#each this.children}}
-                <div class="status {{equals true this.main 'main'}} {{equals true this.tray 'tray'}} {{equals undefined this.value 'valueless'}}">
+                <div class="status {{equals true this.main 'main'}} {{equals true this.tray 'tray'}} {{equals undefined this.value 'no-value'}}">
                   <i class="icon-wrapper">{{gurpsIcon icon}}</i>
                   <div class="label">{{this.label}}</div>
                   <div class="value">{{{this.value}}}</div>
@@ -332,7 +332,7 @@
     <div class="wrapper">
       <div class="header">
         <div class="button menu highlight">
-          <i class="icon mdi mdi-dots-vertical"></i>
+          <i class="icon mdi mdi-filter"></i>
         </div>
         <div class="spacer"></div>
         <div class="title">Skills</div>
@@ -345,12 +345,13 @@
       <div class="section menu">
         <div class="filter button-wrapper">
           <div class="label">
-            <div class="icon"><i class="icon mdi mdi-filter"></i></div>
-            <div class="text">Skills</div>
+            <div class="text">Training</div>
           </div>
-          <div class="button" data-value="trained">Trained</div>
-          <div class="button" data-value="untrained">Untrained</div>
-          <div class="button" data-value="unknown">Unknown</div>
+          <div class="buttons">
+            <div class="button" data-value="trained">Trained</div>
+            <div class="button" data-value="untrained">Untrained</div>
+            <div class="button" data-value="unknown">Unknown</div>
+          </div>
         </div>
       </div>
 

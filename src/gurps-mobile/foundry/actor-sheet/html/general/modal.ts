@@ -18,13 +18,13 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
   })
 
   // FILTER
-  html.find(`.modal > .wrapper > .section > .button-wrapper > .button`).on(`click`, event => {
+  html.find(`.modal > .wrapper > .section > .button-wrapper > .button, .modal > .wrapper > .section > .button-wrapper > .buttons > .button`).on(`click`, event => {
     $(event.currentTarget).toggleClass(`selected`)
 
-    const isFilter = $(event.currentTarget).parent().hasClass(`filter`)
+    const isFilter = $(event.currentTarget).parents(`.button-wrapper`).hasClass(`filter`)
     const modal = $(event.currentTarget).parents(`.modal`)
 
-    const selectNone = $(event.currentTarget).parent().data(`select-none`)
+    const selectNone = $(event.currentTarget).parents(`.button-wrapper`).data(`select-none`)
     if ($(event.currentTarget).hasClass(`selected`)) {
       if (isFilter) {
         const modalFilterId = modal.data(`filter`)

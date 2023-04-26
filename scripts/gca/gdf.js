@@ -41,7 +41,7 @@ const { TAG_TO_TYPES, IGNORE_IMPLICIT_FOR_SECTIONS } = require(`./gdf_utils`)
 const { Tree, Node } = require(`./tree`)
 const TypedValue = require(`./typed_value`)
 const { TAG_DIRECTIVES, TAG_TYPES, EXTENDED_TYPES } = require(`./tags`)
-const { isPrimitive, isNumeric } = require(`./utils`)
+const { isPrimitive, isNumeric, isTypePrimitive } = require(`./utils`)
 
 /**
  *
@@ -87,6 +87,73 @@ function deepSearch(data, search, callback, _path = []) {
   return found
 }
 
+function deepDyamicCheckNode(node) {
+  if (node.type.type === `enclosure`) {
+    if ([`brackets`].includes(node.type.character)) {
+      // ERROR: Untested
+      if (node.children.length != 1) debugger
+
+      const child = node.children[0]
+      const type = child.type.type
+
+      if (isTypePrimitive(type)) return [true]
+
+      // ERROR: Unimplemented
+      debugger
+    } else {
+      const childrenPaths = []
+      for (let i = 0; i < node.children.length; i++) {
+        const item = node.children[i]
+
+        childrenPaths.push(...deepDyamicCheckNode(item))
+      }
+
+      // ERROR: Unimplemented
+      if (childrenPaths.length !== 1 && childrenPaths.some(b => !!b)) debugger
+
+      return childrenPaths
+    }
+  } else {
+    if (isTypePrimitive(node.type.type)) return [false]
+
+    // ERROR: Unimplemented
+    debugger
+  }
+}
+
+function deepCheckDynamicTypedValue(value, path = []) {
+  // ERROR: Nananinanao
+  if (isNil(value)) debugger
+
+  if (value.isArray()) {
+    const dynamicPaths = []
+    for (let i = 0; i < value._value.length; i++) {
+      const item = value._value[i]
+
+      dynamicPaths.push(...deepCheckDynamicTypedValue(item, [...path, i]))
+    }
+
+    return dynamicPaths
+  } else if (value.isPrimitive()) {
+    if (value._metadata.context) {
+      const node = value._metadata.node
+      const dynamicAnalisis = deepDyamicCheckNode(node)
+
+      // ERROR: Unimplemented
+      if (dynamicAnalisis.length !== 1 && dynamicAnalisis.some(b => !!b)) debugger
+
+      return [[dynamicAnalisis[0], [...path]]]
+      // return dynamicAnalisis.map(isDynamic => [isDynamic, [...path]])
+    }
+
+    return [[false, path]]
+  } else {
+    // ERROR: Unimplemented
+    debugger
+    return [[false, path]]
+  }
+}
+
 class GDF {
   constructor(text, parent, section, book) {
     this.text = text
@@ -126,49 +193,12 @@ class GDF {
 
   prebuild(entries, index) {
     // TODO: Pre-parse @ expressions beforehand
-    const keys = Object.keys(this.data)
 
-    // const hasAtExpressions = deepSearch(
-    //   this.data,
-    //   value => isString(value) && value.match(/[@%]\w+\(/),
-    //   (raw, path, data) => {
-    //     const expression = raw.replaceAll(/@/g, `AT_`).replaceAll(/%/g, `P_`)
+    const changes = []
+    const data = this.data
 
-    //     // const _debug = expression.split(``)
-    //     // console.log(_debug.map((char, index) => `${char}`.padEnd(2, ` `)).join(` `))
-    //     // console.log(_debug.map((char, index) => `${index + 1}`.padEnd(2, ` `)).join(` `))
-
-    //     const node = math.parse(expression)
-    //     const symbols = node.filter(node => node.isSymbolNode)
-
-    //     // console.log(`    `, node)
-    //     // console.log(`    `, symbols)
-
-    //     return {
-    //       math: true,
-    //       raw,
-    //       expression,
-    //       symbols,
-    //     }
-    //   },
-    // )
-    // // if (target.name === `me`) {
-    // //   const expression = data[transform]
-    // //   const tree = new Tree(expression, [{ type: `enclosure`, character: [`parenthesis`, `braces`, `brackets`, `quotes`] }])
-    // //   tree.parse()
-    // //   tree.print()
-
-    // //   tree.root.traverse()
-    // //   debugger
-    // // }
-
-    // if (hasAtExpressions) debugger
-    // if (this.data.default0 !== undefined) debugger
-
+    // SKILLS: defaults
     if (this.section === `SKILLS`) {
-      const data = this.data
-      const changes = []
-
       // defaults
       const default_ = data.default ?? []
       if (default_.length > 0) {
@@ -402,32 +432,58 @@ class GDF {
 
         if (mappedDefault.length > 0) changes.push({ default: mappedDefault })
       }
+    }
 
-      // specialization required
-      const nameext = data.nameext
-      const x = data.x ?? [] // Array<Object<string:any>>
-      if (data.nameext && nameext[0] === `%` && nameext[nameext.length - 1] === `%`) changes.push({ specializationRequired: true })
-      else {
-        for (const tag of x) {
-          for (const key of Object.keys(tag)) {
-            const keyIsAllowed = [`#InputToTag`, `#InputReplace`].includes(key)
-            const matchesSpecialize = deepMatch(tag[key], /( +specialize|specialize +)/)
-            const matchesSpecialization = deepMatch(tag[key], /( +specialization|specialization +)/)
-            const manipulatesNameExt = deepMatch(tag[key], /^ *nameext *$/i)
+    // first-order inputable values
+    const keys = [`basecost`, `baseweight`]
+    for (const key of keys) {
+      if (!has(data, key)) continue
+      const value = data[key]
+      const source = this._data._value[key]
 
-            if (matchesSpecialize && !keyIsAllowed) debugger // key is not on list of allowance for specialization requirement
-            if (matchesSpecialization && !matchesSpecialize) debugger // ????
-            if (matchesSpecialization && !keyIsAllowed) debugger // ????
+      const dynamicAnalysis = deepCheckDynamicTypedValue(source)
+      const dynamicPaths = dynamicAnalysis.filter(([isDynamic]) => isDynamic).map(([, path]) => path)
+      if (dynamicPaths.length > 0) {
+        // ERROR: Unimplemented
+        if (dynamicPaths.length > 1) debugger
 
-            if ((matchesSpecialize && keyIsAllowed) || manipulatesNameExt) changes.push({ specializationRequired: true })
-          }
+        const path = dynamicPaths[0]
+
+        // ERROR: Unimplemented for other paths than root
+        if (path.length !== 0) debugger
+
+        data[key] = {
+          type: `dynamic`,
+          label: value,
         }
       }
+    }
 
-      if (changes.length > 0) {
-        for (const change of changes) {
-          for (const key of Object.keys(change)) this.data[key] = change[key]
+    // specialization required
+    const nameext = data.nameext
+    // if (nameext === `Status %Status%`) debugger
+    const x = data.x ?? [] // Array<Object<string:any>>
+    if (data.nameext?.match(/%[\w -\(\)]+%/)) changes.push({ specializationRequired: true })
+    else {
+      for (const tag of x) {
+        for (const key of Object.keys(tag)) {
+          const keyIsAllowed = [`#InputToTag`, `#InputReplace`].includes(key)
+          const matchesSpecialize = deepMatch(tag[key], /( +specialize|specialize +)/)
+          const matchesSpecialization = deepMatch(tag[key], /( +specialization|specialization +)/)
+          const manipulatesNameExt = deepMatch(tag[key], /^ *nameext *$/i)
+
+          if (matchesSpecialize && !keyIsAllowed) debugger // key is not on list of allowance for specialization requirement
+          if (matchesSpecialization && !matchesSpecialize) debugger // ????
+          if (matchesSpecialization && !keyIsAllowed) debugger // ????
+
+          if ((matchesSpecialize && keyIsAllowed) || manipulatesNameExt) changes.push({ specializationRequired: true })
         }
+      }
+    }
+
+    if (changes.length > 0) {
+      for (const change of changes) {
+        for (const key of Object.keys(change)) this.data[key] = change[key]
       }
     }
   }
@@ -953,6 +1009,46 @@ class GDF {
               object[`dynamic`].value.push(new TypedValue(`string`, `nameext`))
             }
           }
+          // else {
+          //   const directive = TAG_DIRECTIVES[key]
+          //   // eslint-disable-next-line no-inner-declarations
+          //   function deepCheckDynamic(value, path = []) {
+          //     if (value.isArray()) {
+          //       const dynamicPaths = []
+          //       for (let i = 0; i < value._value.length; i++) {
+          //         const item = value._value[i]
+
+          //         dynamicPaths.push(...deepCheckDynamic(item, [i]))
+          //       }
+
+          //       return dynamicPaths
+          //     } else if (value.isPrimitive()) {
+          //       if (value._metadata.context) {
+          //         const node = value._metadata.node
+          //         if (node.type.type === `enclosure`) {
+          //           if ([``].includes(node.type.character)) {
+          //             debugger
+          //           } else {
+          //             return deepCheckDynamic(value._value)
+          //           }
+          //         }
+          //       }
+
+          //       return [[false, path]]
+          //     } else {
+          //       debugger
+          //       return [[false, path]]
+          //     }
+          //   }
+
+          //   if (directive) {
+          //     const dynamicAnalysis = deepCheckDynamic(value)
+          //     const dynamicPaths = dynamicAnalysis.filter(([isDynamic]) => isDynamic).map(([, path]) => path)
+          //     if (dynamicPaths.length > 0) {
+          //       debugger
+          //     }
+          //   }
+          // }
 
           object[key] = value
         }

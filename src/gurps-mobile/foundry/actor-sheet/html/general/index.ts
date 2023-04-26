@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
-
 import { GurpsMobileActorSheet } from "../.."
 
 import * as modal from "./modal"
@@ -7,6 +5,7 @@ import * as modal from "./modal"
 import HTMLFeature from "../feature"
 import { createAutoComplete } from "./autocomplete"
 import { GurpsMobileActor } from "../../../actor/actor"
+import type { GCA } from "../../../../core/gca/types"
 
 export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) {
   // Feature Box
@@ -56,7 +55,10 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
   for (const id in features) {
     const feature = features[id]
 
-    HTMLFeature(html.find(`.feature[data-id="${id}"]`), feature).listen()
+    // ERROR: Cannot read actor of feature, why??
+    if (feature.actor === undefined) debugger
+
+    HTMLFeature(html.find(`.feature[data-id="${id}"]`), feature, feature.actor).listen()
   }
 
   // Modals
@@ -70,16 +72,17 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
   modal.render(sheet, html)
 
   const id = `#search-skills-auto-complete`
-  const autoCompleteJS = createAutoComplete(id, GCA.allSkills.list, `queryResult`, (entry: GCA.IndexedSkill) => {
+  const autoCompleteJS = createAutoComplete(id, GCA.skills.list, `queryResult`, (entry: { value: GCA.IndexedSkill }) => {
     const actor = GURPS.LastAccessedActor as any as GurpsMobileActor
 
-    const skillTrainingTags = window[`modal-filter_${`search-skills`}`] ?? []
+    const skillTrainingTags = window[`modal-filter_search-skills`] ?? []
 
     const { name } = entry.value
+    const { features } = actor.cache.query.skill[name]
 
-    const trained = skillTrainingTags.includes(`trained`) && actor.cache.query.skill[name].training === `trained`
-    const untrained = skillTrainingTags.includes(`untrained`) && actor.cache.query.skill[name].training === `untrained`
-    const unknown = skillTrainingTags.includes(`unknown`) && actor.cache.query.skill[name].training === `unknown`
+    const trained = skillTrainingTags.includes(`trained`) && features.some(feature => feature.data.training === `trained`)
+    const untrained = skillTrainingTags.includes(`untrained`) && features.some(feature => feature.data.training === `untrained`)
+    const unknown = skillTrainingTags.includes(`unknown`) && features.every(feature => feature.data.training !== `trained` && feature.data.training !== `untrained`)
 
     return trained || untrained || unknown
   })

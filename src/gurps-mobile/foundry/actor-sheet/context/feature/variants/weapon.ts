@@ -36,6 +36,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const feature = getSpec(specs, `feature`)
     const actor = feature.actor
 
+    // ERROR: Unimplemented actorless feature
+    if (!actor) debugger
+
     // set usage as label
     _variants[0].label = feature.data.usage ?? undefined
 
@@ -181,7 +184,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     if (!isNil(defaultLevels) && defaultLevels.length > 0) {
+      // ERROR: Unimplemented actorless feature
       if (!feature.actor) debugger
+
       const levels = orderLevels(defaultLevels, feature, feature.actor)
       const level = levels[0]
 

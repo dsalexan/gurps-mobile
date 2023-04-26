@@ -196,21 +196,19 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       if (tls.length > 1) debugger
 
       const skillTemplate: FeatureTemplate<SkillManualSource> = {
-        ...omit(template, [`manual`]),
         manual: {
-          ...get(template, `manual`, {}),
-          id: () => `gca-${skillIndex}`,
           // ignoreSpecialization: !!ignoreSpecialization,
           training: `untrained`,
         },
       }
 
-      if (tls.length === 1) skillTemplate.manual.tl = () => tls[0]
+      if (tls.length === 1) skillTemplate.manual.tl = tls[0]!
 
+      debugger
       const newFeature = template.factory
-        .build(`skill`, skillIndex, `untrainedSkills.`, null, skillTemplate) //
+        .build(`skill`, `gca-${skillIndex}`, [-parseInt(skillIndex)], undefined, skillTemplate)
         .addSource(`gca`, skill)
-        .compile() as SkillFeature
+        .integrateOn(`compile:gca`, actor) as unknown as SkillFeature
 
       features.push(newFeature)
     }
@@ -219,7 +217,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
   }
 
   static all(actor: GurpsMobileActor, template: FeatureTemplate) {
-    // TODO: implement byDefaultAttribute with this shit
+    const tl = parseInt(actor.system.traits.techlevel)
 
     // pre-process indexes for trained/untrained skills
     const trainedSkills = Object.fromEntries(
@@ -231,7 +229,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
 
     const skills = {} as Record<string, { base?: GCA.IndexedSkill; trained?: SkillFeature[]; untrained?: SkillFeature[] }>
     // index all skills as base
-    for (const [name, skill] of Object.entries(GCA.allSkills.index)) set(skills, [name, `base`], skill)
+    for (const [name, skill] of Object.entries(GCA.skills.index)) set(skills, [name, `base`], skill)
 
     // index trained/untrained skills
     //    trained -> character has "formal training", i.e. some level bought with points
@@ -274,22 +272,20 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
       if (base === undefined) continue
 
       const skillTemplate: FeatureTemplate<SkillManualSource> = {
-        ...omit(template, [`manual`]),
         manual: {
-          ...get(template, `manual`, {}),
-          id: () => `proxy-gca-${base.skill}`,
-          ignoreSpecialization: () => base.ignoreSpecialization,
-          proxy: () => true,
+          ignoreSpecialization: base.ignoreSpecialization,
+          proxy: true,
           training: `unknown`,
+          tl,
         },
       }
 
-      const tl = parseInt(actor.system.traits.techlevel)
-
+      debugger
+      // `proxy-gca-${base.skill}`
       const feature = template.factory
-        .build(`skill`, base.skill, `gca.skills.`, null, skillTemplate) //
+        .build(`skill`, base.skill, `gca.skills.`, undefined, skillTemplate) //
         .addSource(`gca`, GCA.entries[base.skill])
-        .compile({ tl }) as SkillFeature
+        .integrateOn(`compile:gca`, actor) as unknown as SkillFeature
 
       // TODO: Skill from ALL should have actor linked?
       feature._actor = actor

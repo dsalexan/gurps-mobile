@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid"
 import { isNilOrEmpty, xget } from "../../../../december/utils/lodash"
 import BaseFeature from "../../../core/feature/base"
 import ContextManager from "./manager"
+import GenericFeature from "../../actor/feature/generic"
 
 export function getSpec<TObject extends ContextSpecs, TPath extends string, TValue = GetFieldType<TObject, TPath>>(specs: TObject, path: TPath): TValue
 export function getSpec<TObject extends ContextSpecs, TPath extends string, TValue = GetFieldType<TObject, TPath>>(specs: TObject, path: TPath, defaultValue?: TValue): TValue
@@ -25,6 +26,11 @@ export interface IContext {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContextSpecs {
+  feature: GenericFeature
+  list?: undefined
+  hidden: any
+  pinned: any
+  collapsed: any
   _context?: string
   //
   classes?: string[]

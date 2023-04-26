@@ -1,17 +1,22 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-debugger */
-import { isNil, isObjectLike, isArray, get, flattenDeep, remove, zip, flatten, sortBy, orderBy, isElement, isEmpty, isString, isEqual, uniqBy } from "lodash"
+import { isNil, isObjectLike, isArray, get, flattenDeep, remove, zip, flatten, sortBy, orderBy, isElement, isEmpty, isString, isEqual, uniqBy, cloneDeep } from "lodash"
 import { isNilOrEmpty } from "utils/lodash"
 import Fuse from "fuse.js"
 
-import type { GCA } from "./types"
+import type { GCA as _GCA } from "./types"
 import LOGGER from "../../logger"
 import * as Feature from "../feature"
+import { derivation, proxy } from "../../foundry/actor/feature/pipelines"
+import { MERGE } from "../feature/compilation/migration"
+import { ISkillFeatureData, SkillManualSource } from "../../foundry/actor/feature/pipelines/skill"
+import SkillFeature from "../../foundry/actor/feature/skill"
+import SkillFeatureContextTemplate from "../../foundry/actor-sheet/context/feature/variants/skill"
 
 type SearchResult = {
   source: `byName` | `byNameExt` | `byFullname`
   sourceWeight: number
-  type: GCA.Section
+  type: _GCA.Section
   typeWeight: number
   item: string
   refIndex: number
@@ -22,16 +27,16 @@ type SearchResult = {
 export default class GCAManager {
   e: number
 
-  cache: Record<string, GCA.Entry | null>
+  cache: Record<string, _GCA.Entry | null>
 
-  entries: Record<string | number, GCA.Entry>
-  index: GCA.CompletePreCompiledIndex<Record<string, number[]>>
+  entries: Record<string | number, _GCA.Entry>
+  index: _GCA.CompletePreCompiledIndex<Record<string, number[]>>
 
-  fuse: GCA.BarebonesPreCompiledIndex<Fuse<string>>
-  types: GCA.Section[]
-  allSkills: {
-    index: Record<string, GCA.IndexedSkill>
-    list: GCA.IndexedSkill[]
+  fuse: _GCA.BarebonesPreCompiledIndex<Fuse<string>>
+  types: _GCA.Section[]
+  skills: {
+    index: Record<string, _GCA.IndexedSkill>
+    list: _GCA.IndexedSkill[]
     fuse: Fuse<string>
   }
 
@@ -55,7 +60,7 @@ export default class GCAManager {
       byNameExt: new Fuse(Object.keys(this.index.byNameExt), { includeScore: true }),
       byFullname: new Fuse(Object.keys(this.index.byFullname), { includeScore: true }),
       bySection: Object.fromEntries(
-        (Object.keys(this.index.bySection) as GCA.Section[]).map(key => {
+        (Object.keys(this.index.bySection) as _GCA.Section[]).map(key => {
           const section = this.index.bySection[key]
           return [
             key,
@@ -66,31 +71,50 @@ export default class GCAManager {
             },
           ]
         }),
-      ) as Record<GCA.Section, { byName: Fuse<string>; byNameExt: Fuse<string>; byFullname: Fuse<string> }>,
+      ) as Record<_GCA.Section, { byName: Fuse<string>; byNameExt: Fuse<string>; byFullname: Fuse<string> }>,
     }
 
-    this.types = Object.keys(this.index.bySection) as GCA.Section[]
-    this.allSkills = this.compileAllSkills()
+    this.types = Object.keys(this.index.bySection) as _GCA.Section[]
+    this.skills = this.compileAllGCASkills()
   }
 
-  compileAllSkills() {
-    const index = {} as Record<string, GCA.IndexedSkill>
+  /**
+   * Compile all GCA skills into a single index for searching purposes
+   */
+  compileAllGCASkills() {
+    const index = {} as Record<string, _GCA.IndexedSkill>
+
+    const logger = LOGGER.get(`gca`)
+    const timer = logger.openGroup(true).info(`Pre-Compile All GCA Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`compileAllGCASkills`)
 
     const byName = this.index.bySection.SKILLS.byName
     for (const [name, skillsAndTechniques] of Object.entries(byName)) {
       if (name.substring(0, 4) === `_New` || name.substring(0, 4) === `New `) continue
 
-      const skills = skillsAndTechniques.filter(trait => !this.entries[trait].type?.match(/^(Tech|Combo)/i)).map(skill => ({ skill, entry: this.entries[skill] }))
+      // TODO: Deal with techniques/combos/imbuements
+      const skills = skillsAndTechniques.filter(trait => !this.entries[trait].type?.match(/^(Tech|Combo|Imbue)/i)).map(skill => ({ skill, entry: this.entries[skill] }))
       if (skills.length === 0) continue
 
       const specializations = skills.filter(skill => skill.entry.nameext)
       const nonSpecializations = skills.filter(skill => isNilOrEmpty(skill.entry.nameext))
       const ignoreSpecialization = specializations.length > 1 || (specializations.length === 1 && nonSpecializations.length > 0)
 
+      // ERROR: Unimplemented
       if (nonSpecializations.length > 1) debugger
+      if (!window.FeatureFactory) debugger
+
+      const id = `proxy-gca-${skills[0].skill}`
+      const manual = { proxy: true } as SkillManualSource
+
+      const feature = window.FeatureFactory.build(`skill`, id, skills[0].skill, undefined, { context: { templates: SkillFeatureContextTemplate } })
+        .addPipeline<ISkillFeatureData>([proxy.manual(`proxy`)])
+        .addSource(`manual`, manual, { delayCompile: true })
+        .addSource(`gca`, this.entries[skills[0].skill])
 
       // aggregate specializations
-      index[name] = {
+      const indexedSkill: _GCA.IndexedSkill = {
+        proxy: feature as any as SkillFeature,
+        id,
         name,
         skill: skills[0].skill,
         // entry: skills[0].entry,
@@ -98,7 +122,13 @@ export default class GCAManager {
         specializations: ignoreSpecialization ? specializations.map(skill => skill.skill) : [],
         _specializations: ignoreSpecialization ? specializations.map(skill => skill.entry.nameext) : [],
       }
+
+      index[name] = indexedSkill
     }
+
+    window.FeatureFactory.startCompilation()
+
+    timer.group()(`Pre-Compile All GCA Skills`, [`font-weight: bold;`])
 
     return {
       index,
@@ -121,13 +151,13 @@ export default class GCAManager {
 
     // pluralize and yield errors if missing
     return treatedTypes.map(lowerType => {
-      let type = lowerType.toUpperCase() as GCA.Section
+      let type = lowerType.toUpperCase() as _GCA.Section
 
       if (!this.types.includes(type)) {
         // if type is missing
         // check if arg is singular
         if (type[type.length - 1] !== `S`) {
-          type = `${type}S` as GCA.Section
+          type = `${type}S` as _GCA.Section
           if (!this.types.includes(type)) throw new Error(`Type "${type}" is missing in GCA extraction`)
         } else {
           throw new Error(`Type "${type}" is missing in GCA extraction`)
@@ -138,16 +168,16 @@ export default class GCAManager {
     })
   }
 
-  getAlternativeType(types: GCA.Section[]) {
+  getAlternativeType(types: _GCA.Section[]) {
     return flatten(
       types.map(t => {
-        if ([`ADVANTAGES`, `DISADVANTAGES`, `PERKS`, `QUIRKS`].includes(t)) return [`CULTURES`] as GCA.Section[]
+        if ([`ADVANTAGES`, `DISADVANTAGES`, `PERKS`, `QUIRKS`].includes(t)) return [`CULTURES`] as _GCA.Section[]
         return []
       }),
     ).filter((value, index, array) => array.findIndex(v2 => value === v2) === index)
   }
 
-  search(name: string, specializedName: string | undefined, types: GCA.Section[], weight = 0): SearchResult[][] {
+  search(name: string, specializedName: string | undefined, types: _GCA.Section[], weight = 0): SearchResult[][] {
     return types.map(type => {
       const byName = this.fuse.bySection[type].byName.search(name)
       const byFullname = specializedName ? this.fuse.bySection[type].byFullname.search(specializedName) : []
@@ -161,7 +191,7 @@ export default class GCAManager {
     })
   }
 
-  query({ name, specializedName, type: _types }: { name: string; specializedName?: string; type?: Feature.TypeID | Feature.TypeID[] }): GCA.Entry | null {
+  query({ name, specializedName, type: _types }: { name: string; specializedName?: string; type?: Feature.TypeID | Feature.TypeID[] }): _GCA.Entry | null {
     const mainTypes = _types ? this.getType(_types) : []
     const alternativeTypes = _types ? this.getAlternativeType(mainTypes) : []
 
@@ -242,13 +272,13 @@ export default class GCAManager {
   }
 
   decide(
-    entries: GCA.Entry[],
+    entries: _GCA.Entry[],
     matches: SearchResult[],
     name: string,
     specializedName: string | undefined,
-    mainTypes: GCA.Section[],
-    alternativeTypes: GCA.Section[],
-  ): GCA.Entry | undefined {
+    mainTypes: _GCA.Section[],
+    alternativeTypes: _GCA.Section[],
+  ): _GCA.Entry | undefined {
     if (entries.length === 1) return entries[0]
     else {
       const matchingSpecialization = !!specializedName && entries.find(entry => Feature.Utils.specializedName(entry.name, entry.nameext) === specializedName)
@@ -278,10 +308,10 @@ export default class GCAManager {
   }
 
   // CACHE
-  getCache(id: string): GCA.Entry | null {
+  getCache(id: string): _GCA.Entry | null {
     return this.cache[id]
   }
-  setCache(id: string, object: GCA.Entry | null) {
+  setCache(id: string, object: _GCA.Entry | null) {
     if (object !== undefined) this.cache[id] = object
   }
   removeCache(id: string) {

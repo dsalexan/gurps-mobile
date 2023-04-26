@@ -54,12 +54,12 @@ module.exports.extract = function (pathfile) {
 
     // if (![11893, 3375, 1588, 802, 759, 308, 205, 166, 147, 135, 122, 112, 111, 105, 92, 68, 50, 36, 47, 7, 0].includes(i)) continue
     // if (![105].includes(i)) continue
+    // if (![459].includes(i)) continue
 
     let line = _line
     const shiftLine = line.substring(1)
     // console.log(`  `, i, `:`, shiftLine.substring(0, 69 ** 1) + `...`)
 
-    // debugger
     const entry = new GDF(shiftLine)
     entry._index = entries.length
     entry._row = i
@@ -216,6 +216,70 @@ module.exports.reindex = function (entries, index) {
       }
     }
   }
+}
+
+module.exports.uniq = function (allEntries, index) {
+  const sections = Object.keys(index.bySection)
+
+  const duplicates = {}
+  for (const section of sections) {
+    duplicates[section] = {} // map of all entries with some duplicate (N:N, squared table)
+
+    // check for repeating full names
+    const fullNames = Object.keys(index.bySection[section].byFullname)
+    for (const fullName of fullNames) {
+      const indexes = index.bySection[section].byFullname[fullName]
+      if (indexes.length === 1) continue
+
+      console.log(`  `, `Repeating full name "${fullName}" for ${indexes.length} entries:`, `  `, indexes.join(`, `))
+    }
+
+    // check for repeating names
+    const names = Object.keys(index.bySection[section].byName)
+    for (const name of names) {
+      const indexes = index.bySection[section].byName[name]
+      if (indexes.length === 1) continue
+
+      const entries = indexes.map(i => allEntries[i])
+
+      const similarities = compare(entries)
+      const differences = Object.fromEntries(Object.entries(similarities).filter(([key, value]) => value !== true))
+      const differingKeys = Object.keys(differences)
+
+      // determine quantitative difference in keys
+      const avgK = _.sum(entries.map(entry => Object.keys(entry.data).length)) / entries.length
+      const D = differingKeys.length
+
+      // if there are not enough differences, skip
+      const threshold = D <= 6 || D / avgK < 0.1
+      if (!threshold) continue
+
+      // if they are many versions of the same entry differing in TL, skip
+      if (differingKeys.includes(`techlvl`)) continue
+
+      // organize differences
+
+      const nameext = entries.map(entry => entry.data.nameext)
+      const specializationRequired = entries.map(entry => entry.data.specializationRequired)
+      debugger
+    }
+  }
+}
+
+function compare(entries) {
+  const allKeys = uniq(flatten(entries.map(entry => Object.keys(entry.data))))
+
+  const comparison = {}
+  for (const key of allKeys) {
+    if (key === `name`) continue
+    const values = entries.map(entry => entry.data[key])
+
+    const same = values.every(value => isEqual(value, values[0]))
+
+    comparison[key] = same || values
+  }
+
+  return comparison
 }
 
 module.exports.save = function (entries, index, OUTPUT) {

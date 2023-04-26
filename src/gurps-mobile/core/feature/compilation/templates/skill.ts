@@ -16,6 +16,7 @@ import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
 export interface SkillManualSource extends GenericFeatureManualSource {
   training?: `trained` | `untrained` | `unknown`
   ignoreSpecialization?: boolean
+  tl?: number
 }
 
 export interface ISkillFeature extends IGenericFeature {

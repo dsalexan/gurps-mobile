@@ -109,7 +109,6 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
    */
   static main(defense, variants: IFeatureDataVariant[], specs: DefenseFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
     const feature = getSpec(specs, `feature`)
-    const actor = feature.actor
 
     let variant = variants[0] ?? {}
 
@@ -240,6 +239,9 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
 
     const feature = getSpec(specs, `feature`)
     const actor = feature.actor
+
+    // ERROR: Unimplemented actorless feature
+    if (!actor) debugger
 
     const children = get(context, `children`) ?? {}
 

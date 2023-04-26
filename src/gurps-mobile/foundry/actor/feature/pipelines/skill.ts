@@ -23,7 +23,6 @@ export interface ISkillFeatureData extends IGenericFeatureData, IWeaponizableFea
   points: number
   training: `trained` | `untrained` | `unknown`
   defaultFrom: object[]
-  proxy?: boolean
   form: false | `art` | `sport`
   //
   proficiencyModifier: number

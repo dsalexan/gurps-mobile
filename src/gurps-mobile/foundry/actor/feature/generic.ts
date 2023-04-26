@@ -11,6 +11,7 @@ import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 import { GenericSource } from "./pipelines"
 import { ILevel } from "../../../../gurps-extension/utils/level"
+import FeatureProxiesDataContextTemplate from "../../actor-sheet/context/feature/proxy"
 
 export default class GenericFeature extends Feature<IGenericFeatureData & IWeaponizableFeatureData, any> {
   constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
@@ -19,6 +20,7 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     this.addPipeline(WeaponizableFeaturePipeline)
 
     this.__.context.templates.push(FeatureWeaponsDataContextTemplate)
+    this.__.context.templates.push(FeatureProxiesDataContextTemplate)
   }
 
   get specializedName() {

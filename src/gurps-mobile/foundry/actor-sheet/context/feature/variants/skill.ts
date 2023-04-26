@@ -14,6 +14,7 @@ export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
   //
   showDefaults?: boolean
   difficulty?: boolean
+  tl?: number
 }
 
 export default class SkillFeatureContextTemplate extends BaseContextTemplate {
@@ -37,15 +38,33 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // #region VALUE
     variant.value = { value: `-` }
-    const level = feature.data.level
-    if (level) {
-      variant.value.value = level.level.toString()
-      if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
+    if (feature.data.proxy) variant.value = undefined
+    else {
+      const level = feature.data.level
+      if (level) {
+        variant.value.value = level.level.toString()
+        if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
+      }
     }
+
     // #endregion
 
     // TAGS
-    if (feature.data.training === `untrained` || feature.data.training === `unknown`) {
+
+    if (feature.data.proxy) {
+      const proxyTo = get(specs, `proxyTo`) ?? []
+      const unknown = proxyTo.length === 0
+
+      tags.type(`type`).update(tag => {
+        tag.children[0].icon = undefined
+        if (unknown) {
+          tag.children[0].label = `Unknown Skill`
+          tag.children[0].icon = `untrained_skill`
+        }
+
+        return tag
+      })
+    } else if (feature.data.training === `untrained` || feature.data.training === `unknown`) {
       tags.type(`type`).update(tag => {
         tag.children[0].label = `${feature.data.training === `untrained` ? `Untrained` : `Unknown`} Skill`
         tag.children[0].icon = `untrained_skill`
@@ -58,7 +77,18 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     if (specs.difficulty !== false) {
       tags.type(`type`).update(tag => {
         tag.children.push({
-          label: { E: `Easy`, A: `Average`, H: `Hard`, VH: `Very Hard` }[feature.data.difficulty] ?? feature.data.difficulty,
+          label: { E: `Easy`, A: `Average`, H: `Hard`, VH: `Very Hard` }[feature.data.difficulty] ?? feature.data.difficulty ?? `—`,
+        })
+
+        return tag
+      })
+    }
+
+    // ATTRIBUTE
+    if (feature.data.proxy) {
+      tags.type(`type`).update(tag => {
+        tag.children.push({
+          label: feature.data.attribute,
         })
 
         return tag
@@ -67,7 +97,16 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     // DEFAULTS
     if (feature.data.training === `untrained` || specs.showDefaults) {
-      const levelTags = (feature.data.defaults ?? []).map((roll: ILevelDefinition) => {
+      // ERROR: Unimplemented actorless feature
+      if (!feature.actor) debugger
+
+      const levelTags = [] as {
+        type: string
+        classes: string[]
+        children: FastDisplayable[]
+      }[][]
+
+      for (const roll of feature.data.defaults ?? []) {
         const levelDefinition = roll.parse(feature, feature.actor)
 
         if (!isNil(levelDefinition)) {
@@ -96,11 +135,11 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
           tag.children.push({ label: sl })
 
-          return [tag]
+          levelTags.push([tag])
+        } else {
+          levelTags.push([])
         }
-
-        return []
-      })
+      }
 
       tags.at(1).add(...flatten(levelTags))
     }

@@ -6,11 +6,13 @@ import GurpsMobileToken from "./foundry/token"
 
 import { ManeuverHUDButton, GurpsMobileActor } from "./foundry/actor"
 import { GurpsMobileActorSheet } from "./foundry/actor-sheet"
+import FeatureFactory from "./core/feature/factory"
 
 export default class GurpsMobile {
   // #region DOM
 
   static onLoad() {
+    window.FeatureFactory = new FeatureFactory()
     window.GCA = new GCAManager()
     GurpsMobileToken.onLoad()
   }

@@ -17,6 +17,7 @@ export interface IGenericFeatureData extends IFeatureData {
   specialization?: string
   specializationRequired?: boolean
   container: boolean
+  proxy?: boolean
 
   value?: string | number
   label: string
@@ -164,9 +165,7 @@ GenericFeaturePipeline.post = function postGeneric(data) {
   if (data.has(`tl`)) {
     const tl = data.get(`tl`)
     if (tl?.required && isNilOrEmpty(tl?.level)) {
-      debugger
-      if (isNil(this.tl)) debugger
-      MDO.tl = MERGE(`tl`, { level: this.tl })
+      if (!isNil(this.tl)) MDO.tl = MERGE(`tl`, { level: this.tl })
     }
   }
 

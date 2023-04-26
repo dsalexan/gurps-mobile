@@ -147,7 +147,7 @@
 
           // #region  VARIANTS
 
-          &.valueless {
+          &.no-value {
             & > .label {
               border-radius: 5px;
             }
@@ -259,7 +259,7 @@
 
             // VARIANTS
 
-            &.valueless {
+            &.no-value {
               & > .value {
                 display: none;
               }

@@ -15,8 +15,9 @@ import GenericFeature from "../../actor/feature/generic"
 import LOGGER from "../../../logger"
 
 export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `collapsed`>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PinnedFeatureContextSpecs extends IgnoreFeatureFallbacks<FeatureBaseContextTemplate> {
-  list?: undefined
+  //
 }
 
 export type ContextGroup = {
@@ -46,18 +47,18 @@ export default class ContextManager {
     return context
   }
 
-  feature<TFeature extends GenericFeature, TTemplate extends typeof BaseContextTemplate>(
+  feature<TFeature extends GenericFeature, TTemplate extends typeof BaseContextTemplate, TSpecs extends FeatureBaseContextSpecs = FeatureBaseContextSpecs>(
     feature: TFeature,
-    _specs: IgnoreFeatureFallbacks<FeatureBaseContextSpecs>,
+    _specs: IgnoreFeatureFallbacks<TSpecs>,
     ...templates: TTemplate[]
   ) {
-    const specs = (_specs || {}) as FeatureBaseContextSpecs
+    const specs = (_specs || {}) as TSpecs
 
     specs.feature = feature
 
     // Inject fallback state getters
     if (specs.list !== undefined)
-      specs.hidden = specs.hidden ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.hidden.${id}.${specs.list.replaceAll(/\./g, `-`)}`) as boolean)
+      specs.hidden = specs.hidden ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.hidden.${id}.${specs.list!.replaceAll(/\./g, `-`)}`) as boolean)
     specs.pinned = specs.pinned ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.pinned.${id}`) as boolean)
     specs.collapsed = specs.collapsed ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.collapsed.${id}`) as boolean)
 
@@ -70,7 +71,7 @@ export default class ContextManager {
     return this.feature(feature, specs as any, PinnedFeatureContextTemplate)
   }
 
-  queryResult<TFeature extends Feature>(feature: TFeature, specs: IgnoreFeatureFallbacks<FeatureBaseContextSpecs>) {
+  queryResult<TFeature extends Feature, TSpecs extends FeatureBaseContextSpecs = FeatureBaseContextSpecs>(feature: TFeature, specs: IgnoreFeatureFallbacks<TSpecs>) {
     return this.feature(feature, specs, QueryResultFeatureContextTemplate)
   }
 

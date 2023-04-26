@@ -18,6 +18,10 @@ import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
 import { ILevel, ILevelDefinition, buildLevel, parseLevel } from "../../../../gurps-extension/utils/level"
 import { IComponentDefinition, compareComponent } from "../../../../gurps-extension/utils/component"
+import { IFeatureContext } from "../../actor-sheet/context/feature/interfaces"
+import BaseContextTemplate from "../../actor-sheet/context/context"
+import { FeatureBaseContextSpecs } from "../../actor-sheet/context/feature/base"
+import { SkillFeatureContextSpecs } from "../../actor-sheet/context/feature/variants/skill"
 
 export default class SkillFeature extends GenericFeature {
   declare data: ISkillFeatureData
@@ -113,11 +117,16 @@ export default class SkillFeature extends GenericFeature {
 
         // skill is already trained
         if (trainedSkillsGCAIndex.includes(untrainedIndex)) continue
-        if (untrainedSkills[untrainedIndex] === undefined) untrainedSkills[untrainedIndex] = []
 
+        const entry = GCA.entries[untrainedIndex]
+
+        // TODO: Deal with techniques/combos/imbuements
+        if (entry.type?.match(/^(Tech|Combo|Imbue)/i)) continue
+
+        if (untrainedSkills[untrainedIndex] === undefined) untrainedSkills[untrainedIndex] = []
         untrainedSkills[untrainedIndex].push({
           _index: i,
-          _skill: specializedName(GCA.entries[untrainedIndex]),
+          _skill: specializedName(entry),
           _from: skillFeature.specializedName,
           _text: text,
           _source: source,
@@ -163,8 +172,11 @@ export default class SkillFeature extends GenericFeature {
 
         // skill is already trained
         if (trainedSkillsGCAIndex.includes(untrainedIndex)) continue
-        if (untrainedSkills[untrainedIndex] === undefined) untrainedSkills[untrainedIndex] = []
 
+        // TODO: Deal with techniques/combos/imbuements
+        if (untrainedSkillEntry.type?.match(/^(Tech|Combo|Imbue)/i)) continue
+
+        if (untrainedSkills[untrainedIndex] === undefined) untrainedSkills[untrainedIndex] = []
         untrainedSkills[untrainedIndex].push({
           _index: i,
           _skill: specializedName(untrainedSkillEntry),
@@ -199,7 +211,7 @@ export default class SkillFeature extends GenericFeature {
 
       const newFeature = factory.build(`skill`, id, parseInt(skillIndex), undefined, skillTemplate)
       if (tls.length === 1)
-        newFeature.addPipeline<IGenericFeatureData>([
+        newFeature.addPipeline<ISkillFeatureData>([
           //
           derivation.manual(`tl`, `tl`, manual => ({ tl: MERGE(`tl`, { level: manual.tl }) })),
         ])
@@ -226,7 +238,7 @@ export default class SkillFeature extends GenericFeature {
 
     const skills = {} as Record<string, { base?: GCA.IndexedSkill; trained?: SkillFeature[]; untrained?: SkillFeature[] }>
     // index all skills as base
-    for (const [name, skill] of Object.entries(GCA.allSkills.index)) set(skills, [name, `base`], skill)
+    for (const [name, skill] of Object.entries(GCA.skills.index)) set(skills, [name, `base`], skill)
 
     // index trained/untrained skills
     //    trained -> character has "formal training", i.e. some level bought with points
@@ -250,45 +262,49 @@ export default class SkillFeature extends GenericFeature {
       skills[name].untrained.push(feature)
     }
 
-    // create missing entries
-    const features = {} as Record<string, SkillFeature>
+    // create proxy contextx
+    const contextManager = actor.cache.contextManager!
+
+    // ERROR: Context manager should be defined
+    if (!contextManager) debugger
+
+    const contexts = {} as Record<string, { context: IFeatureContext; features: SkillFeature[] }>
     for (const [name, { base, trained, untrained }] of Object.entries(skills)) {
+      // WARN: Unimplemented for non-GCA skills?? Shouldnt be possible
+      if (base === undefined) debugger
+
+      const proxy = base?.proxy
+
+      // ERROR: Every pre-indexed skill should have a proxy feature
+      if (!proxy) debugger
+
+      // build context for proxy
+      // TODO: add as specs:
+      //      all trained/untrained skills
+      //      tl
+      const context = contextManager.queryResult<SkillFeature, typeof BaseContextTemplate, SkillFeatureContextSpecs>(proxy!, {
+        classes: [`full`],
+        ignoreSpecialization: base?.ignoreSpecialization,
+        proxyTo: trained || untrained,
+        tl: parseInt(actor.system.traits.techlevel),
+      })
+
       const trainedOrUntrained = trained || untrained
       if (trainedOrUntrained && trainedOrUntrained.length > 0) {
-        // // ERROR: Unimplemented
-        // if (trainedOrUntrained.length > 1) debugger
-
-        // TODO: How to deal with multiple specializations?
-
-        features[name] = trainedOrUntrained[0]
-        continue
+        // ERROR: Unimplemented
+        if (trainedOrUntrained.length > 1)
+          LOGGER.warn(`gca`, `Multiple possible entries for queriable skill`, `"${name}"`, trainedOrUntrained, [
+            `color: #826835;`,
+            `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+            `color: black; font-style: regular; font-weight: bold`,
+            ``,
+          ])
       }
 
-      // ERROR: Unimplemented
-      if (base === undefined) debugger
-      if (base === undefined) continue
-
-      const tl = parseInt(actor.system.traits.techlevel)
-
-      const id = `proxy-gca-${base.skill}`
-      const skillTemplate = cloneDeep(template)
-      const manual = { training: `unknown`, tl, proxy: true } as SkillManualSource
-
-      const newFeature = factory
-        .build(`skill`, id, base.skill, undefined, skillTemplate)
-        .addPipeline<IGenericFeatureData>([
-          //
-          derivation.manual(`tl`, `tl`, manual => ({ tl: MERGE(`tl`, { level: manual.tl }) })),
-          proxy.manual(`proxy`),
-        ])
-        .addSource(`manual`, manual, { delayCompile: true })
-        .addSource(`gca`, GCA.entries[base.skill])
-        .integrateOn(`compile:gca`, actor)
-
-      features[name] = newFeature as any
+      contexts[name] = { context, features: trainedOrUntrained ?? [] }
     }
 
-    return features
+    return contexts
   }
 
   // #endregion
@@ -370,8 +386,7 @@ export default class SkillFeature extends GenericFeature {
 
     const baseAttribute = targetAttribute ?? attribute
 
-    // TODO: Implement techniques
-    if (this.sources.gcs?.type === `technique`) return null
+    if (this.sources.gcs?.type?.match(/^(Tech|Combo|Imbue)/i)) return null
 
     // ERROR: Unimplemented
     if (isNil(actor)) throw new Error(`Cannot calculate attribute-based skill level without actor`)
@@ -406,8 +421,8 @@ export default class SkillFeature extends GenericFeature {
     // ERROR: Unimplemented
     if (isNil(actor)) throw new Error(`Cannot calculate skill level without defaults and actor`)
 
-    // TODO: Implement techniques
-    if (this.sources.gcs?.type === `technique`) return null
+    // TODO: Deal with techniques/combos/imbuements
+    if (this.sources.gcs?.type?.match(/^(Tech|Combo|Imbue)/i)) return null
 
     if (training === `trained` || training === `untrained`) {
       // ERROR: Unimplemented wildcard
