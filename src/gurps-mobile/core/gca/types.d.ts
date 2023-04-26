@@ -36,10 +36,33 @@ export namespace GCA {
     parryat?: string
   }
 
-  export interface TargetProperty {
-    type?: `unknown` | `list` | `dynamic`
-    value: never
+  export interface BaseDynamicValue {
+    type: string
+    label?: string
   }
+
+  export interface UnknownDynamicValue extends BaseDynamicValue {
+    type: `unknown`
+    value?: unknown
+  }
+
+  export interface InputDynamicValue extends BaseDynamicValue {
+    type: `input`
+    schema: { type: string }
+  }
+
+  export interface ListDynamicValue extends BaseDynamicValue {
+    type: `list`
+    options: unknown[]
+  }
+
+  export type DynamicValue = UnknownDynamicValue | InputDynamicValue | ListDynamicValue
+  export type TargetProperty = DynamicValue
+
+  // export interface TargetProperty {
+  //   type?: `unknown` | `list` | `dynamic`
+  //   value: never
+  // }
 
   export interface Expression {
     _raw: string

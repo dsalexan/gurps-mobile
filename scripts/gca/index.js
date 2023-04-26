@@ -16,7 +16,7 @@ const fstidx = require(`./fstidx`)
 
 let GCA5_DIRECTORY = `C:/Users/dsale/Documents/GURPS Character Assistant 5`
 GCA5_DIRECTORY = `D:/Code/foundry/december/gurps-mobile/data`
-// GCA5_DIRECTORY = `D:/dsalexan/Code/foundry/gurps-mobile/data`
+GCA5_DIRECTORY = `D:/dsalexan/Code/foundry/gurps-mobile/data`
 const DATA = `D:/dsalexan/Code/foundry/gurps-mobile/data`
 const OUTPUT = `D:/Code/foundry/december/gurps-mobile/static/js`
 

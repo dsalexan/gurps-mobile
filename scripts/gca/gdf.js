@@ -42,6 +42,7 @@ const { Tree, Node } = require(`./tree`)
 const TypedValue = require(`./typed_value`)
 const { TAG_DIRECTIVES, TAG_TYPES, EXTENDED_TYPES } = require(`./tags`)
 const { isPrimitive, isNumeric, isTypePrimitive } = require(`./utils`)
+const { dynamicValue } = require(`./dynamic`)
 
 /**
  *
@@ -101,6 +102,7 @@ function deepDyamicCheckNode(node) {
       // ERROR: Unimplemented
       debugger
     } else {
+      if (node.children.length > 3) return [false]
       const childrenPaths = []
       for (let i = 0; i < node.children.length; i++) {
         const item = node.children[i]
@@ -108,8 +110,8 @@ function deepDyamicCheckNode(node) {
         childrenPaths.push(...deepDyamicCheckNode(item))
       }
 
-      // ERROR: Unimplemented
-      if (childrenPaths.length !== 1 && childrenPaths.some(b => !!b)) debugger
+      // // ERROR: Unimplemented
+      // if (childrenPaths.length !== 1 && childrenPaths.some(b => !!b)) debugger
 
       return childrenPaths
     }
@@ -138,11 +140,12 @@ function deepCheckDynamicTypedValue(value, path = []) {
     if (value._metadata.context) {
       const node = value._metadata.node
       const dynamicAnalisis = deepDyamicCheckNode(node)
+      const results = uniq(dynamicAnalisis)
 
-      // ERROR: Unimplemented
-      if (dynamicAnalisis.length !== 1 && dynamicAnalisis.some(b => !!b)) debugger
+      // // ERROR: Unimplemented
+      // if (dynamicAnalisis.length !== 1 && dynamicAnalisis.some(b => !!b)) debugger
 
-      return [[dynamicAnalisis[0], [...path]]]
+      return [[results.length === 2 ? false : results[0], [...path]]]
       // return dynamicAnalisis.map(isDynamic => [isDynamic, [...path]])
     }
 
@@ -293,25 +296,27 @@ class GDF {
               // NAME/NAMEEXT
               if (isString(_name)) name = _name.trim()
               else if (isObjectLike(_name) && _name.context !== undefined) {
-                name = { type: `unknown`, value: _name.value }
+                name = dynamicValue(`unknown`, _name.value)
 
-                if ([`percentage`].includes(_name.context)) name.type = `list`
-                else if ([`brackets`].includes(_name.context)) name.type = `dynamic`
+                if ([`percentage`].includes(_name.context)) name = dynamicValue(`list`, { options: _name.value })
+                else if ([`brackets`].includes(_name.context)) name = dynamicValue(`input`, { label: _name.value, schema: { type: `string` } })
                 else debugger
               } else debugger
 
               if (_nameext !== undefined) {
-                if (_nameext.context === `parenthesis`) _nameext = _nameext.value
-                else if (isString(_nameext)) {
+                if (_nameext.context === `parenthesis`) {
+                  _nameext = _nameext.value
+                } else if (isString(_nameext)) {
                   // ERROR: whut? should be parenthesis always
                   debugger
                 }
 
                 if (isString(_nameext)) nameext = _nameext.trim()
                 else {
-                  nameext = { type: `unknown`, value: _nameext.value.trim() }
-                  if ([`percentage`].includes(_nameext.context)) nameext.type = `list`
-                  else if ([`brackets`].includes(_nameext.context)) nameext.type = `dynamic`
+                  nameext = dynamicValue(`unknown`, _nameext.value.trim())
+
+                  if ([`percentage`].includes(_nameext.context)) nameext = dynamicValue(`list`, { options: _nameext.value.trim() })
+                  else if ([`brackets`].includes(_nameext.context)) nameext = dynamicValue(`input`, { label: _nameext.value.trim(), schema: { type: `string` } })
                   else debugger
                 }
               }
@@ -452,10 +457,7 @@ class GDF {
         // ERROR: Unimplemented for other paths than root
         if (path.length !== 0) debugger
 
-        data[key] = {
-          type: `dynamic`,
-          label: value,
-        }
+        data[key] = dynamicValue(`input`, { label: value })
       }
     }
 
@@ -467,16 +469,15 @@ class GDF {
     else {
       for (const tag of x) {
         for (const key of Object.keys(tag)) {
-          const keyIsAllowed = [`#InputToTag`, `#InputReplace`].includes(key)
+          const keyIsAllowed = [`#InputToTag`, `#InputReplace`, `#InputToTagReplace`, `#ChoiceList`].includes(key)
           const matchesSpecialize = deepMatch(tag[key], /( +specialize|specialize +)/)
           const matchesSpecialization = deepMatch(tag[key], /( +specialization|specialization +)/)
           const manipulatesNameExt = deepMatch(tag[key], /^ *nameext *$/i)
 
-          if (matchesSpecialize && !keyIsAllowed) debugger // key is not on list of allowance for specialization requirement
-          if (matchesSpecialization && !matchesSpecialize) debugger // ????
-          if (matchesSpecialization && !keyIsAllowed) debugger // ????
+          // key is not on list of allowance for specialization requirement
+          if ((matchesSpecialize || matchesSpecialization) && !keyIsAllowed) debugger
 
-          if ((matchesSpecialize && keyIsAllowed) || manipulatesNameExt) changes.push({ specializationRequired: true })
+          if (((matchesSpecialize || matchesSpecialization) && keyIsAllowed) || manipulatesNameExt) changes.push({ specializationRequired: true })
         }
       }
     }
@@ -999,6 +1000,7 @@ class GDF {
               object[`nameext`].leaf.value = nameext.trim()
 
               if (nameext.trim().match(/^\[[^\[\]]+\]$/) || nameext.trim().match(/^%[^%]+%$/)) {
+                debugger
                 if (object[`dynamic`] === undefined) object[`dynamic`] = new TypedValue([`array`, `string`], [], { manual: true })
                 object[`dynamic`].value.push(new TypedValue(`string`, `nameext`))
               }

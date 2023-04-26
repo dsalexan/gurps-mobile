@@ -234,6 +234,7 @@ module.exports.uniq = function (allEntries, index) {
       console.log(`  `, `Repeating full name "${fullName}" for ${indexes.length} entries:`, `  `, indexes.join(`, `))
     }
 
+    const merges = []
     // check for repeating names
     const names = Object.keys(index.bySection[section].byName)
     for (const name of names) {
@@ -259,8 +260,35 @@ module.exports.uniq = function (allEntries, index) {
 
       // organize differences
 
-      const nameext = entries.map(entry => entry.data.nameext)
       const specializationRequired = entries.map(entry => entry.data.specializationRequired)
+      const onlyOneSpecializationRequired = specializationRequired.filter(b => b === true).length === 1
+
+      // if only one of the entries is specialization required, merge all with it as main
+      if (onlyOneSpecializationRequired) {
+        // ERROR: Untested
+        if (entries.length > 2) debugger
+
+        const specializationRequiredEntry = entries.filter(entry => entry.data.specializationRequired)[0]
+
+        merges.push([specializationRequiredEntry, entries])
+        continue
+      }
+
+      // if every differing key is allowed to merge, merge all with first as main
+      const mergeableKeys = [`bassecost`, `baseweight`, `nameext`]
+      if (differingKeys.every(key => mergeableKeys.includes(key))) {
+        merges.push([entries[0], entries])
+        continue
+      }
+
+      // if there is an unmergeable key, skip merge
+      const unMergeableKeys = [`minst`, `damage`, `reach`]
+      if (differingKeys.some(key => unMergeableKeys.includes(key))) continue
+
+      console.log(`  `, `Undecided merge for`, `"${name}"`, `of`, indexes.join(`, `))
+    }
+
+    if (merges.length > 0) {
       debugger
     }
   }
