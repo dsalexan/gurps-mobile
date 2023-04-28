@@ -140,12 +140,15 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const tags = new TagBuilder(variant.tags)
 
     if (specs.showParent && feature.parent) {
-      let suffix = ``
-      if (!isNilOrEmpty(feature.data.usage) && !specs.ignoreUsage) {
-        suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">(${feature.data.usage})</span>`
-      }
       if (!variant.label) variant.label = {}
-      variant.label.main = `${feature.parent.data.name}${suffix}`
+
+      let suffix = ``
+      if (!isNilOrEmpty(feature.data.usage) && !specs.ignoreUsage && feature.data.usage !== variant.label.main) {
+        // suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">${feature.parent.data.name}</span>`
+        suffix = ` (${feature.data.usage})`
+      }
+      // variant.label.main = `${}`
+      variant.label.secondary = `${feature.parent.data.name}${suffix}`
 
       tags.type(`type`).update(tag => {
         tag.children[0].label = undefined

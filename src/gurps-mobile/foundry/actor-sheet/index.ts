@@ -14,6 +14,8 @@ import { Datachanges } from "../../../december/utils"
 import HTMLFeature from "./html/feature"
 import Feature from "../actor/feature"
 import SkillFeature from "../actor/feature/skill"
+import GenericFeature from "../actor/feature/generic"
+import WeaponFeature from "../actor/feature/weapon"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -654,14 +656,17 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
 const FeatureGroups = [
   // combat
-  // {
-  //   section: `combat`,
-  //   key: `attacks`,
-  //   map: (f: GenericFeature) => f.weapons ?? [],
-  //   sort: (f: WeaponFeature) => f.calcLevel()?.level ?? Infinity,
-  //   order: `desc`,
-  //   groups: false,
-  // },
+  {
+    section: `combat`,
+    key: `attacks`,
+    map: (f: GenericFeature) => f.data.weapons ?? [],
+    // sort: (f: WeaponFeature) => f?.level ?? Infinity,
+    specs: {
+      showParent: true,
+    },
+    order: `desc`,
+    groups: false,
+  },
   // ooc
   {
     section: `occ`,
