@@ -91,6 +91,10 @@ export default class GCAManager {
     for (const [name, skillsAndTechniques] of Object.entries(byName)) {
       if (name.substring(0, 4) === `_New` || name.substring(0, 4) === `New `) continue
 
+      for (const trait of skillsAndTechniques) {
+        if (this.entries[trait].type === undefined) debugger
+        if (this.entries[trait].type?.match === undefined) debugger
+      }
       // TODO: Deal with techniques/combos/imbuements
       const skills = skillsAndTechniques.filter(trait => !this.entries[trait].type?.match(/^(Tech|Combo|Imbue)/i)).map(skill => ({ skill, entry: this.entries[skill] }))
       if (skills.length === 0) continue

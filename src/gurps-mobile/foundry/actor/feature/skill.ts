@@ -60,6 +60,7 @@ export default class SkillFeature extends GenericFeature {
     // index by name and specializedName for quick reference
     if (!this.data.container) {
       if (this.data.training !== `unknown`) {
+        // if (this.sources.gca?._index === 7116) debugger
         actor.setCache(`_${this.type.value}.${this.data.training}.${this.specializedName}.${this.id}`, this)
         actor.setCache(`_${this.type.value}.${this.data.training}.${this.data.name}.${this.id}`, this)
       }
@@ -262,13 +263,8 @@ export default class SkillFeature extends GenericFeature {
       skills[name].untrained.push(feature)
     }
 
-    // create proxy contextx
-    const contextManager = actor.cache.contextManager!
-
-    // ERROR: Context manager should be defined
-    if (!contextManager) debugger
-
-    const contexts = {} as Record<string, { context: IFeatureContext; features: SkillFeature[] }>
+    // create proxy context specs
+    const contextSpecs = {} as Record<string, { specs: Partial<SkillFeatureContextSpecs>; features: SkillFeature[] }>
     for (const [name, { base, trained, untrained }] of Object.entries(skills)) {
       // WARN: Unimplemented for non-GCA skills?? Shouldnt be possible
       if (base === undefined) debugger
@@ -278,33 +274,30 @@ export default class SkillFeature extends GenericFeature {
       // ERROR: Every pre-indexed skill should have a proxy feature
       if (!proxy) debugger
 
-      // build context for proxy
-      // TODO: add as specs:
-      //      all trained/untrained skills
-      //      tl
-      const context = contextManager.queryResult<SkillFeature, typeof BaseContextTemplate, SkillFeatureContextSpecs>(proxy!, {
-        classes: [`full`],
-        ignoreSpecialization: base?.ignoreSpecialization,
-        proxyTo: trained || untrained,
-        tl: parseInt(actor.system.traits.techlevel),
-      })
+      const trainedOrUntrained = [...(trained ?? []), ...(untrained ?? [])]
 
-      const trainedOrUntrained = trained || untrained
-      if (trainedOrUntrained && trainedOrUntrained.length > 0) {
-        // ERROR: Unimplemented
-        if (trainedOrUntrained.length > 1)
-          LOGGER.warn(`gca`, `Multiple possible entries for queriable skill`, `"${name}"`, trainedOrUntrained, [
-            `color: #826835;`,
-            `color: rgba(130, 104, 53, 60%); font-style: italic;`,
-            `color: black; font-style: regular; font-weight: bold`,
-            ``,
-          ])
+      // if (trainedOrUntrained && trainedOrUntrained.length > 0) {
+      //   // ERROR: Unimplemented
+      //   if (trainedOrUntrained.length > 1)
+      //     LOGGER.warn(`gca`, `Multiple possible entries for queriable skill`, `"${name}"`, trainedOrUntrained, [
+      //       `color: #826835;`,
+      //       `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+      //       `color: black; font-style: regular; font-weight: bold`,
+      //       ``,
+      //     ])
+      // }
+
+      contextSpecs[name] = {
+        specs: {
+          ignoreSpecialization: base?.ignoreSpecialization,
+          proxyTo: trainedOrUntrained,
+          tl: parseInt(actor.system.traits.techlevel),
+        },
+        features: trainedOrUntrained,
       }
-
-      contexts[name] = { context, features: trainedOrUntrained ?? [] }
     }
 
-    return contexts
+    return contextSpecs
   }
 
   // #endregion
@@ -382,7 +375,7 @@ export default class SkillFeature extends GenericFeature {
 
   calcAttributeBasedLevel({ attribute: targetAttribute, modifier: withModifier }: { attribute?: GURPS4th.AttributesAndCharacteristics; modifier?: boolean }): ILevel | null {
     const actor = this.actor
-    const { attribute, training } = this.data
+    const { attribute, training, defaults } = this.data
 
     const baseAttribute = targetAttribute ?? attribute
 
@@ -406,6 +399,53 @@ export default class SkillFeature extends GenericFeature {
       if (isNaN(attributeBasedLevel.level) || isNil(attributeBasedLevel.level)) debugger
 
       return attributeBasedLevel
+    } else if (training === `untrained`) {
+      if (!defaults) return null
+
+      // ERROR: Wot dawg
+      if (isNil(baseAttribute)) debugger
+
+      // CALCULATE ATTRIBUTE-BASED LEVEL OF ATTRIBUTE-ONLY DEFAULTS
+      const defaultsAttributeBasedLevels = [] as { level: ILevel; definition: ILevelDefinition }[]
+      for (const _default of defaults ?? []) {
+        const targets = _default.targets ? Object.values(_default.targets) : []
+        const attributes = targets.filter(target => target.type === `attribute`)
+        const nonAttributes = targets.filter(target => target.type !== `attribute`)
+
+        let definition = _default
+        let level: ILevel | null = null
+
+        // just use attribute-only-based defaults
+        if (nonAttributes.length === 0) {
+          // WARN: Unimplemented case (since i'm hardcoding changing variable "A" always)
+          if (attributes.length > 1) debugger
+
+          if (baseAttribute !== attributes[0].value) {
+            // if base attribute is different than default attribute, just change target/variables in default
+            definition = cloneDeep(_default)
+            definition.variables!.A = baseAttribute
+            definition.targets!.A = {
+              fullName: baseAttribute,
+              name: baseAttribute,
+              type: `attribute`,
+              value: baseAttribute,
+              _raw: baseAttribute,
+            }
+          }
+
+          level = parseLevel(definition, this, actor)
+        }
+
+        if (!isNil(level)) defaultsAttributeBasedLevels.push({ level, definition })
+      }
+
+      // in the case of multiple attribute-only default (like Boating) choose those matching base attribute
+      const ablsWithBaseAttribute = orderBy(defaultsAttributeBasedLevels, ({ level }) => level.level, `desc`)
+
+      // TODO: Unimplemented multiple options
+      // if (ablsWithBaseAttribute.length !== 1) debugger
+
+      return ablsWithBaseAttribute[0]?.level ?? null
     }
 
     return null
@@ -500,6 +540,8 @@ export default class SkillFeature extends GenericFeature {
 
         if (!isNil(level)) defaultsAttributeBasedLevels.push({ level, definition: _default })
       }
+
+      // if (this.id === `gca-528`) debugger
 
       const orderedLevels = orderBy(defaultsAttributeBasedLevels, ({ level }) => level.level, `desc`)
 

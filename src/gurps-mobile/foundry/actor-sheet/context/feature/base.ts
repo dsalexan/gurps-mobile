@@ -151,7 +151,13 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
         data.variants.map(variant => {
           variant.classes = variant.classes.filter(_class => !isNilOrEmpty(_class) && (_class as any) !== false)
 
-          if (!variant.secondary_label) delete variant.secondary_label
+          if (!variant.label) {
+            variant.label = {}
+          } else {
+            if (variant.label.classes) variant.label.classes = variant.label.classes.filter(_class => !isNilOrEmpty(_class) && (_class as any) !== false)
+            if (!variant.label.main) delete variant.label.main
+            if (!variant.label.secondary) delete variant.label.secondary
+          }
           if (!variant.value) delete variant.value
           if (!variant.icon) delete variant.icon
           if (!variant.mark) delete variant.mark

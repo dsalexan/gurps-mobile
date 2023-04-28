@@ -48,12 +48,17 @@ export function createAutoComplete(id: string, source: GCA.IndexedSkill[], conte
         const actor = GURPS.LastAccessedActor as any as GurpsMobileActor
         if (!actor) return
 
+        const contextManager = actor.cache.contextManager!
+
+        // ERROR: Context manager should be defined
+        if (!contextManager) debugger
+
         const indexedSkill = GCA.skills.index[name]
         const queriableIndex = actor.cache.query.skill[name]
 
-        if (!queriableIndex || !queriableIndex.context || !indexedSkill || !indexedSkill.proxy) {
-          if (!queriableIndex.context)
-            LOGGER.get(`actor`).warn(actor.id, `Incomplete queriable skill (missing context)`, `"${name}"`, queriableIndex, [
+        if (!queriableIndex || !queriableIndex.specs || !indexedSkill || !indexedSkill.proxy) {
+          if (!queriableIndex.specs)
+            LOGGER.get(`actor`).warn(actor.id, `Incomplete queriable skill (missing specs)`, `"${name}"`, queriableIndex, [
               `color: #826835;`,
               `color: rgba(130, 104, 53, 60%); font-style: italic;`,
               `color: black; font-style: regular; font-weight: bold`,
@@ -61,7 +66,7 @@ export function createAutoComplete(id: string, source: GCA.IndexedSkill[], conte
             ])
 
           if (!indexedSkill.proxy)
-            LOGGER.get(`actor`).warn(`gca`, `Incomplete indexed GCS skill (missing proxy)`, `"${name}"`, queriableIndex, [
+            LOGGER.get(`actor`).warn(`gca`, `Incomplete indexed GCA skill (missing proxy)`, `"${name}"`, queriableIndex, [
               `color: #826835;`,
               `color: rgba(130, 104, 53, 60%); font-style: italic;`,
               `color: black; font-style: regular; font-weight: bold`,
@@ -72,8 +77,22 @@ export function createAutoComplete(id: string, source: GCA.IndexedSkill[], conte
           return
         }
 
-        const { context } = queriableIndex
+        const { specs } = queriableIndex
         const { proxy } = indexedSkill
+
+        const skillTrainingTags = window[`modal-filter_search-skills`] ?? []
+
+        const context = contextManager.queryResult(proxy as any, {
+          classes: [`full`],
+          ...specs,
+          proxyTo: specs.proxyTo.filter(feature => {
+            const trained = skillTrainingTags.includes(`trained`) && feature.data.training === `trained`
+            const untrained = skillTrainingTags.includes(`untrained`) && feature.data.training === `untrained`
+            const unknown = skillTrainingTags.includes(`unknown`) && feature.data.training === `unknown`
+
+            return trained || untrained || unknown
+          }),
+        })
 
         const html = Handlebars.partials[`gurps/feature`](context)
         const node = $(html)

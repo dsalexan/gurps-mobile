@@ -1,4 +1,4 @@
-import { flatten, isNil, sum, uniq } from "lodash"
+import { flatten, isArray, isNil, sum, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { ILevel, ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
@@ -66,7 +66,12 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
 
     return { attribute, difficulty }
   }),
-  derivation.gca(`default`, `defaults`, gca => ({ defaults: gca.default?.map(_default => parseLevelDefinition(_default)) ?? undefined })),
+  derivation.gca(`default`, `defaults`, gca => {
+    // TODO: Deal with dynamic values
+    if (!isArray(gca.default)) return {}
+
+    return { defaults: gca.default?.map(_default => parseLevelDefinition(_default)) ?? undefined }
+  }),
   // #endregion
   // #region DATA
   derivation([`points`, `difficulty`, `attribute`, `training`], [`proficiencyModifier`], function (_, __, { object }) {
@@ -88,7 +93,7 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
 
     return { actorModifier: OVERWRITE(`actorModifier`, modifier) }
   }),
-  derivation([`actorModifier`, `proficiencyModifier`, `attribute`, `training`], [`attributeBasedLevel`], function (_, __, { object }) {
+  derivation([`actorModifier`, `proficiencyModifier`, `attribute`, `training`, `defaults`], [`attributeBasedLevel`], function (_, __, { object }) {
     const actor = object.actor
     const { actorModifier, proficiencyModifier } = object.data
 

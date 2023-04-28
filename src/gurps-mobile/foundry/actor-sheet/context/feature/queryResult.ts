@@ -5,11 +5,10 @@ import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFea
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
-import FeatureBaseContextTemplate from "./base"
-import Feature from "../../../actor/feature"
+import GenericFeature from "../../../actor/feature/generic"
 
 export interface QueryResultFeatureContextSpecs extends ContextSpecs {
-  feature: Feature
+  feature: GenericFeature
   //
   hidden: boolean
   pinned: (id: string) => boolean
@@ -32,6 +31,9 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
   static base(context: IFeatureContext, specs: QueryResultFeatureContextSpecs, manager: ContextManager): IFeatureContext {
     super.base(context, specs, manager)
 
+    const feature = getSpec(specs, `feature`)
+    const proxyTo: GenericFeature[] = get(specs, `proxyTo`) ?? []
+
     context.classes.push(`alternative`)
 
     // ignore highlighting for pinned
@@ -49,7 +51,7 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
 
     // remove some actions for main featureData
     const main = context.children.main[0]
-    const excludeActions = [`action-collapse`, `action-hide`]
+    let excludeActions = [`action-collapse`, `action-hide`]
 
     if (main?.actions) {
       const sides = [`left`, `right`] as const
@@ -62,7 +64,10 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
                 children: container.children
                   .map(action => {
                     if (intersection(excludeActions, action?.classes ?? []).length > 0) return null
-                    if (action.classes?.includes(`action-pin`)) action.icon = `mdi-pin-off`
+                    if (action.classes?.includes(`action-pin`)) {
+                      if (feature.data.proxy && proxyTo.length > 0) return null // only remove pin for a proxied proxy
+                      else action.icon = `mdi-pin-off`
+                    }
 
                     return action
                   })
@@ -70,6 +75,34 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
               } as IFeatureAction
             })
             .filter(container => container.children.length > 0)
+        }
+      }
+    }
+
+    // remove some actions for proxies featureData
+    excludeActions = [`action-collapse`, `action-hide`]
+    // if (feature.data.name === `Smith`) debugger
+    for (const proxy of context.children.proxies ?? []) {
+      if (proxy?.actions) {
+        const sides = [`left`, `right`] as const
+        for (const side of sides) {
+          if (proxy.actions[side]) {
+            proxy.actions[side] = proxy.actions[side]
+              .map(container => {
+                return {
+                  ...container,
+                  children: container.children
+                    .map(action => {
+                      if (intersection(excludeActions, action?.classes ?? []).length > 0) return null
+                      if (action.classes?.includes(`action-pin`)) action.icon = `mdi-pin-off`
+
+                      return action
+                    })
+                    .filter(action => !isNil(action)),
+                } as IFeatureAction
+              })
+              .filter(container => container.children.length > 0)
+          }
         }
       }
     }

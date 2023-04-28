@@ -97,6 +97,16 @@
       
       color: rgb(var(--label-color), 0.75);
     }
+
+    // VARIANTS
+    &.soft {
+      & > .main {
+        & > span {
+          font-style: italic;
+          color: rgb(var(--label-color), 0.6);
+        }
+      }
+    }
   }
 
   & > .value {

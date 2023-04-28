@@ -53,17 +53,17 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
 
     if (feature.data.proxy) {
       const proxyTo = get(specs, `proxyTo`) ?? []
-      const unknown = proxyTo.length === 0
 
-      tags.type(`type`).update(tag => {
-        tag.children[0].icon = undefined
-        if (unknown) {
+      // if is proxy, but actor has no trained/untrained skills attached
+      //    show label and icon in type tag (otherwise show nothing, let that to featureData proxies)
+      if (proxyTo.length === 0) {
+        tags.type(`type`).update(tag => {
           tag.children[0].label = `Unknown Skill`
           tag.children[0].icon = `untrained_skill`
-        }
 
-        return tag
-      })
+          return tag
+        })
+      }
     } else if (feature.data.training === `untrained` || feature.data.training === `unknown`) {
       tags.type(`type`).update(tag => {
         tag.children[0].label = `${feature.data.training === `untrained` ? `Untrained` : `Unknown`} Skill`
@@ -77,6 +77,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     if (specs.difficulty !== false) {
       tags.type(`type`).update(tag => {
         tag.children.push({
+          classes: [`difficulty`],
           label: { E: `Easy`, A: `Average`, H: `Hard`, VH: `Very Hard` }[feature.data.difficulty] ?? feature.data.difficulty ?? `—`,
         })
 

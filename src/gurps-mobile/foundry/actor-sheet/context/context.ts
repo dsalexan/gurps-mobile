@@ -27,7 +27,7 @@ export interface IContext {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContextSpecs {
   feature: GenericFeature
-  list?: undefined
+  list?: string
   hidden: any
   pinned: any
   collapsed: any

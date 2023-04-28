@@ -5,10 +5,12 @@
   <div class="tag {{join classes}} {{join types}}">
   {{#each children}}
     {{!-- {{#if @index}}<div class="divider"><div></div></div>{{/if}} --}}
-    <a class="label {{join classes}}">
-      {{#if icon}}{{gurpsIcon icon}}{{/if}}
-      {{#unless (isNilOrEmpty label)}}<span>{{{label}}}</span>{{/unless}}
-    </a>
+    {{#if (or (not (isNilOrEmpty icon)) (not (isNilOrEmpty label)))}}
+      <a class="label {{join classes}}">
+        {{#if icon}}{{gurpsIcon icon}}{{/if}}
+        {{#unless (isNilOrEmpty label)}}<span>{{{label}}}</span>{{/unless}}
+      </a>
+    {{/if}}
   {{/each}}
   </div>
 {{/if}}

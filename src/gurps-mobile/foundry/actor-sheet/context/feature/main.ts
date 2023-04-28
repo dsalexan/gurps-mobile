@@ -58,20 +58,32 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       !!getSpec(specs, `mark`) && `marked`,
     ] as string[]
 
+    const labelClasses = [
+      //
+      !!(feature.data.proxy && getSpec(specs, `proxyTo`, []).length > 0) && `soft`,
+    ] as string[]
+
     // #region COMPOUNDING TAGS
 
     const tags = new TagBuilder(_tags)
 
     //    TYPE
     if (!feature.type.isGeneric) {
+      let typeLabel = feature.type.name
+      let icon = feature.type.icon ?? undefined
+      if (feature.data.proxy) {
+        typeLabel = undefined as any
+        icon = undefined
+      }
+
       tags.at(0).add({
         type: `type`,
         classes: [`box`, `collapsed`],
         children: [
           {
             classes: `bold`,
-            label: feature.type.name,
-            icon: feature.type.icon ?? undefined,
+            label: typeLabel,
+            icon,
           },
           ...(feature.data.state & FeatureState.PASSIVE
             ? []
@@ -97,7 +109,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
     }
 
     // SPECIALIZATION REQUIRED
-    if (ignoreSpecialization && feature.sources.gca?.specializationRequired) {
+    else if (ignoreSpecialization && feature.sources.gca?.specializationRequired) {
       // TODO: Render #InputToTag as a tooltip maybe?
       defaultSecondaryLabel = `Specialization Required`
       // tags.add({
@@ -143,8 +155,11 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       ...(variant ?? {}),
       classes,
       //
-      label: getSpec(specs, `label`, feature.data.label ?? defaultLabel),
-      secondary_label: getSpec(specs, `secondary_label`, defaultSecondaryLabel),
+      label: {
+        classes: labelClasses,
+        main: getSpec(specs, `label`, feature.data.label ?? defaultLabel),
+        secondary: getSpec(specs, `secondary_label`, defaultSecondaryLabel),
+      },
       // value,
       icon: getSpec(specs, `icon`, feature.type.icon) ?? undefined,
       mark: getSpec(specs, `mark`),

@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { flatten, flattenDeep, get, isArray, isEmpty, isNil, set, uniq } from "lodash"
+import { flatten, flattenDeep, get, isArray, isEmpty, isNil, isString, set, uniq } from "lodash"
 import { IDerivation, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
@@ -98,7 +98,13 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
   derivation.gca([`name`, `nameext`], [`name`, `specialization`], function ({ name, nameext }) {
     this.humanId = this.humanId ?? name
 
-    return { name, specialization: nameext?.replaceAll(/[\[\]]/g, ``) }
+    let specialization = nameext
+    if (nameext !== undefined && !isString(nameext)) {
+      debugger
+    }
+
+    // TODO: Implement a better dynamic detector in GCA parsing
+    return { name, specialization: specialization?.replaceAll(/[\[\]]/g, ``) }
   }),
   proxy.gca(`specializationRequired`),
   proxy.gca(`label`),

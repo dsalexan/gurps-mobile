@@ -41,7 +41,7 @@
                 <div class="chevron prev"><i class="icon mdi mdi-chevron-left"></i></div>
                 <div class="wrapper">
                   <div class="content">
-                    <div class="label {{isNilOrEmpty label 'hidden'}}">
+                    <div class="label {{isNilOrEmpty label.main 'hidden'}} {{join label.classes}}">
                       <div class="main">
                         <div class="tray">
                           <div class="children">
@@ -51,9 +51,9 @@
                             <div class="icon-wrapper collapse"><i class="icon mdi mdi-arrow-collapse"></i></div>
                           </div>
                         </div>
-                        <span>{{{i18n label}}}</span>
+                        <span>{{{i18n label.main}}}</span>
                       </div>
-                      <div class="secondary">{{secondary_label}}</div>
+                      <div class="secondary {{isNilOrEmpty label.secondary 'hidden'}}">{{label.secondary}}</div>
                     </div>
                     <div class="notes {{isNilOrEmpty notes 'hidden'}}">
                       {{#each notes}}<p>{{this}}</p>{{/each}}

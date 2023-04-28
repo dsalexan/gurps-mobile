@@ -62,9 +62,9 @@ export default class ContextManager {
     specs.pinned = specs.pinned ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.pinned.${id}`) as boolean)
     specs.collapsed = specs.collapsed ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.collapsed.${id}`) as boolean)
 
-    templates.push(...(feature.__.context.templates as TTemplate[]))
+    const finalTemplates = [...(feature.__.context.templates as TTemplate[]), ...templates]
 
-    return this.build([FeatureBaseContextTemplate, FeatureMainVariantContextTemplate, ...templates], specs) as IFeatureContext
+    return this.build([FeatureBaseContextTemplate, FeatureMainVariantContextTemplate, ...finalTemplates], specs) as IFeatureContext
   }
 
   pinned<TFeature extends Feature>(feature: TFeature, specs: PinnedFeatureContextSpecs) {

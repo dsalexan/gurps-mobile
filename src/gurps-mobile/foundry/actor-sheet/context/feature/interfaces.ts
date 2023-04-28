@@ -38,8 +38,11 @@ export interface IFeatureDataContext {
 export interface IFeatureDataVariant {
   classes: string[]
   //
-  label?: string
-  secondary_label?: string
+  label?: {
+    classes?: string[]
+    main?: string
+    secondary?: string
+  }
   value?: IFeatureValue
   icon?: string
   mark?: string

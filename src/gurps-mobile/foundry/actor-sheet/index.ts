@@ -289,7 +289,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
             const node = list.find(`.feature[data-id="${id}"]:not(.ignore-hidden)`)
 
             if (feature) {
-              HTMLFeature(node, feature).updateHidden(hidden === `true`)
+              HTMLFeature(node, feature, this.actor).updateHidden(hidden === `true`)
               lists.push(listId)
             }
           }
@@ -332,7 +332,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
           const feature = this.actor.cache.features?.[id]
           const node = html.find(`.feature[data-id="${id}"]:not(.ignore-pinned)`)
 
-          if (feature) HTMLFeature(node, feature).updatePinned(pinned as boolean)
+          if (feature) HTMLFeature(node, feature, this.actor).updatePinned(pinned as boolean)
         }
       }
 
@@ -346,7 +346,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
           const feature = this.actor.cache.features?.[id]
           const node = html.find(`.feature[data-id="${id}"]:not(.ignore-collapsed)`)
 
-          if (feature) HTMLFeature(node, feature).updateCollapsed(collapsed as boolean)
+          if (feature) HTMLFeature(node, feature, this.actor).updateCollapsed(collapsed as boolean)
         }
       }
 
@@ -364,7 +364,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
           const node = html.find(`.feature[data-id="${id}"]`)
 
-          if (feature) HTMLFeature(node, feature).updateMove()
+          if (feature) HTMLFeature(node, feature, this.actor).updateMove()
         }
       }
       // #endregion

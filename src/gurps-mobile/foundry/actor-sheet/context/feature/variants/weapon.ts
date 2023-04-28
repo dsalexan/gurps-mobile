@@ -144,7 +144,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       if (!isNilOrEmpty(feature.data.usage) && !specs.ignoreUsage) {
         suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">(${feature.data.usage})</span>`
       }
-      variant.label = `${feature.parent.data.name}${suffix}`
+      if (!variant.label) variant.label = {}
+      variant.label.main = `${feature.parent.data.name}${suffix}`
 
       tags.type(`type`).update(tag => {
         tag.children[0].label = undefined

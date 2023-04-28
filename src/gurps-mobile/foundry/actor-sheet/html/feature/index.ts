@@ -196,6 +196,8 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
   function click(event: any) {
     const node = $(event.currentTarget)
 
+    console.debug(`gurps-mobile`, `feature`, `click`, node.data(`id`))
+
     // cancel event if swipe is open
     if (node.hasClass(`cancel-post-swipe-click`)) {
       node.removeClass(`cancel-post-swipe-click`)

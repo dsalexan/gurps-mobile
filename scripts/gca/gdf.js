@@ -457,7 +457,7 @@ class GDF {
         // ERROR: Unimplemented for other paths than root
         if (path.length !== 0) debugger
 
-        data[key] = dynamicValue(`input`, { label: value })
+        data[key] = dynamicValue(`input`, { label: value, schema: { type: `string` } })
       }
     }
 
