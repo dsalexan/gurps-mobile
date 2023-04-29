@@ -40,7 +40,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     if (!actor) debugger
 
     // set usage as label
-    _variants[0].label = feature.data.usage ?? undefined
+    if (!_variants[0].label) _variants[0].label = {}
+    _variants[0].label.main = feature.data.usage ?? undefined
 
     // if there is no defaults attached to weapon, just returns its default main variant
     if (isNil(feature.data.defaults) || feature.data.defaults.length === 0) {
@@ -136,7 +137,6 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const feature = getSpec(specs, `feature`)
     let variant = variants[0] ?? { classes: [] }
 
-    variant.classes.push(`value-interactible`)
     const tags = new TagBuilder(variant.tags)
 
     if (specs.showParent && feature.parent) {
@@ -200,7 +200,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       }
     }
 
-    variant.buttons = [
+    variant.stats = [
       {
         classes: [],
         icon: `minimal_parry`,
@@ -212,20 +212,20 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         value: `No`,
       },
       {
-        classes: [`small`],
+        classes: [],
         icon: `damage`,
         value: `2d-4 cut`,
       },
-      {
-        classes: [`small`],
-        icon: `mdi-help`,
-        value: `C, 1`,
-      },
-      {
-        classes: [`small`],
-        icon: `mdi-help`,
-        value: `???`,
-      },
+      // {
+      //   classes: [],
+      //   icon: `mdi-help`,
+      //   value: `C, 1`,
+      // },
+      // {
+      //   classes: [],
+      //   icon: `mdi-help`,
+      //   value: `???`,
+      // },
     ]
 
     variant.tags = tags.tags

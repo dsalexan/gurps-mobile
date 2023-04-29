@@ -45,13 +45,9 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
     context.classes.push(`ignore-hidden`)
     context.hidden = false
 
-    // ignore collapsed
-    context.classes = context.classes?.filter(c => c !== `collapsed`)
-    context.classes.push(`ignore-collapsed`)
-
     // remove some actions for main featureData
     const main = context.children.main[0]
-    let excludeActions = [`action-collapse`, `action-hide`]
+    let excludeActions = [`action-roller`, `action-hide`]
 
     if (main?.actions) {
       const sides = [`left`, `right`] as const
@@ -80,7 +76,7 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
     }
 
     // remove some actions for proxies featureData
-    excludeActions = [`action-collapse`, `action-hide`]
+    excludeActions = [`action-roller`, `action-hide`]
     // if (feature.data.name === `Smith`) debugger
     for (const proxy of context.children.proxies ?? []) {
       if (proxy?.actions) {

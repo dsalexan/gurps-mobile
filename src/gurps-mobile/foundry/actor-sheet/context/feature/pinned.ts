@@ -27,13 +27,9 @@ export default class PinnedFeatureContextTemplate extends BaseContextTemplate {
     context.classes.push(`ignore-hidden`)
     context.hidden = false
 
-    // ignore collapsed
-    context.classes = context.classes?.filter(c => c !== `collapsed`)
-    context.classes.push(`ignore-collapsed`)
-
     // remove some actions for main featureData
     const main = context.children.main[0]
-    const excludeActions = [`action-collapse`, `action-hide`]
+    const excludeActions = [`action-hide`]
 
     if (main?.actions) {
       const sides = [`left`, `right`] as const

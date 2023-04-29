@@ -45,7 +45,6 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
       const main = context.children.main[0]
       main.actions = false
       main.variants[0].buttons = undefined
-      main.variants[0].classes.push(`value-interactible`)
       main.variants[0].notes = undefined
       main.variants[0].value = {
         value: level + bonus + actorBonus,
@@ -126,7 +125,6 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
     if (ADL) value = { value: ADL.level + ADL.bonus + actorBonus }
     else value = { value: `-` }
 
-    variant.classes.push(`value-interactible`)
     if (!noSecondary) variant.classes.push(`hide-value-expanded`)
     variant.value = value
 

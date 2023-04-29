@@ -14,7 +14,7 @@ import { push } from "../../../../december/utils/lodash"
 import GenericFeature from "../../actor/feature/generic"
 import LOGGER from "../../../logger"
 
-export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `collapsed`>
+export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `expanded`>
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PinnedFeatureContextSpecs extends IgnoreFeatureFallbacks<FeatureBaseContextTemplate> {
   //
@@ -60,7 +60,8 @@ export default class ContextManager {
     if (specs.list !== undefined)
       specs.hidden = specs.hidden ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.hidden.${id}.${specs.list!.replaceAll(/\./g, `-`)}`) as boolean)
     specs.pinned = specs.pinned ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.pinned.${id}`) as boolean)
-    specs.collapsed = specs.collapsed ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.collapsed.${id}`) as boolean)
+    specs.expanded = specs.expanded ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.expanded.${id}`) as boolean)
+    specs.roller = specs.roller ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.roller.${id}`) as boolean)
 
     const finalTemplates = [...(feature.__.context.templates as TTemplate[]), ...templates]
 
@@ -282,44 +283,6 @@ export default class ContextManager {
     }
 
     return orderBy(indexedChildren, obj => obj.index! + (obj._template.includes(`list-feature`) ? 10 : 0), `asc`)
-
-    // return children
-    //   .map((featureOrWrapperOrList, _index) => {
-    //     if (parentScopedIndex !== null) _index = featureOrWrapperOrList.index - parentScopedIndex
-
-    //     const index = base + _index / 10 ** e
-
-    //     if (featureOrWrapperOrList._template.includes(`list-feature`)) {
-    //       const list = featureOrWrapperOrList as IListContext
-
-    //       const collapsed = list.children.collapsed as (IWrapperContext | IListContext | IFeatureContext)[]
-    //       const shown = list.children.shown as (IWrapperContext | IListContext | IFeatureContext)[]
-
-    //       // list children should already have proper indexes, so we are replacing them for ones with this new context
-    //       return {
-    //         ...list,
-    //         index,
-    //         children: {
-    //           collapsed: ContextManager.indexFeatureWrapper(collapsed, null, index, e + 1, list.index ?? 0),
-    //           shown: ContextManager.indexFeatureWrapper(shown, null, index, e + 1, list.index ?? 0),
-    //         },
-    //       } as IListContext
-    //     } else if (featureOrWrapperOrList._template.includes(`wrapper-feature`)) {
-    //       const wrapper = featureOrWrapperOrList as IWrapperContext
-
-    //       return {
-    //         ...wrapper,
-    //         index,
-    //         children: ContextManager.indexFeatureWrapper(wrapper.children as (IWrapperContext | IListContext | IFeatureContext)[], wrapper.id, index, e + 1, null),
-    //       } as IWrapperContext
-    //     }
-
-    //     return featureOrWrapperOrList
-    //   })
-    //   .map(obj => {
-    //     if (_wrapper !== null) obj._wrapper = _wrapper
-    //     return obj
-    //   })
   }
 
   static splitCollapsedAndShown(children: (IWrapperContext | IListContext | IFeatureContext)[]) {

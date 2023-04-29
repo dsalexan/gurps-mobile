@@ -238,11 +238,12 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
     const do_hide = datachanges.has(`flags.gurps.mobile.features.hidden`)
     const do_pin = datachanges.has(`flags.gurps.mobile.features.pinned`)
-    const do_collapse = datachanges.has(`flags.gurps.mobile.features.collapsed`)
+    const do_expand = datachanges.has(`flags.gurps.mobile.features.expanded`)
+    const do_roller = datachanges.has(`flags.gurps.mobile.features.roller`)
 
     const do_moves = datachanges?.has(/system\.move\.\d+$/i)
 
-    const conditionals = { do_lastManeuver, do_maneuver, do_hide, do_pin, do_collapse, do_moves }
+    const conditionals = { do_lastManeuver, do_maneuver, do_hide, do_pin, do_expand, do_roller, do_moves }
     const _conditionals = Object.entries(conditionals)
       .filter(([_, value]) => value)
       .map(([key]) => key.replace(`do_`, ``))
@@ -339,16 +340,30 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       }
 
       // collapse
-      if (do_collapse) {
-        const features = datachanges.get(`flags.gurps.mobile.features.collapsed`)
+      if (do_expand) {
+        const features = datachanges.get(`flags.gurps.mobile.features.expanded`)
 
         for (const key of features) {
-          const [collapsed, id] = datachanges.getState(key)
+          const [expanded, id] = datachanges.getState(key)
 
           const feature = this.actor.cache.features?.[id]
-          const node = html.find(`.feature[data-id="${id}"]:not(.ignore-collapsed)`)
+          const node = html.find(`.feature[data-id="${id}"]:not(.ignore-expanded)`)
 
-          if (feature) HTMLFeature(node, feature, this.actor).updateCollapsed(collapsed as boolean)
+          if (feature) HTMLFeature(node, feature, this.actor).updateExpanded(expanded as boolean)
+        }
+      }
+
+      // roller
+      if (do_roller) {
+        const features = datachanges.get(`flags.gurps.mobile.features.roller`)
+
+        for (const key of features) {
+          const [expanded, id] = datachanges.getState(key)
+
+          const feature = this.actor.cache.features?.[id]
+          const node = html.find(`.feature[data-id="${id}"]:not(.ignore-roller)`)
+
+          if (feature) HTMLFeature(node, feature, this.actor).updateRoller(expanded as boolean)
         }
       }
 
@@ -668,34 +683,34 @@ const FeatureGroups = [
     groups: false,
   },
   // ooc
-  {
-    section: `occ`,
-    key: `advantages`,
-    filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
-  },
-  {
-    section: `occ`,
-    key: `skills`,
-    filter: (f: SkillFeature) => {
-      if (!f.type.compare(`skill`, true)) return false
-      if (f.data.container) return f.children.some(c => c.data.training === `trained`)
-      return f.data.training === `trained`
-    },
-    sort: (f: SkillFeature) => {
-      if (f.data.training === `untrained`) return -1
-      if (f.data.training === `unknown`) return -Infinity
-      return parseInt(f.key.tree[0].toString())
-    },
-    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  },
-  {
-    section: `occ`,
-    key: `spells`,
-    filter: (f: Feature<any, any>) => f.type.compare(`spell`, true),
-  },
-  {
-    section: `occ`,
-    key: `equipment`,
-    filter: (f: Feature<any, any>) => f.type.compare(`equipment`, true),
-  },
+  // {
+  //   section: `occ`,
+  //   key: `advantages`,
+  //   filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `skills`,
+  //   filter: (f: SkillFeature) => {
+  //     if (!f.type.compare(`skill`, true)) return false
+  //     if (f.data.container) return f.children.some(c => c.data.training === `trained`)
+  //     return f.data.training === `trained`
+  //   },
+  //   sort: (f: SkillFeature) => {
+  //     if (f.data.training === `untrained`) return -1
+  //     if (f.data.training === `unknown`) return -Infinity
+  //     return parseInt(f.key.tree[0].toString())
+  //   },
+  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `spells`,
+  //   filter: (f: Feature<any, any>) => f.type.compare(`spell`, true),
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `equipment`,
+  //   filter: (f: Feature<any, any>) => f.type.compare(`equipment`, true),
+  // },
 ]

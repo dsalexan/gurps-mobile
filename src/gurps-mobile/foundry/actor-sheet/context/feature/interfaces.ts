@@ -38,18 +38,20 @@ export interface IFeatureDataContext {
 export interface IFeatureDataVariant {
   classes: string[]
   //
+  icon?: {
+    classes?: string[]
+    value?: string
+  }
   label?: {
     classes?: string[]
     main?: string
     secondary?: string
   }
   value?: IFeatureValue
-  icon?: string
   mark?: string
   //
   notes?: string[]
   stats?: Displayable[]
-  buttons?: Displayable[]
   tags: ITag[]
 }
 

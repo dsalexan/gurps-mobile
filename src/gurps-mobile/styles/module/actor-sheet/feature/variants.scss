@@ -11,47 +11,6 @@
 
       // #region VALUE
 
-      // value-interactible
-      &:not(.value-interactible) {
-        & > .wrapper > .content {
-          & > .tags {
-            margin-top: 0;
-          }
-          & > .value {
-            align-items: center;
-          }
-        }
-      }
-
-      &.value-interactible {
-        & > .wrapper > .content {
-          & > .label {
-            padding-top: var(--s0-5);
-            padding-bottom: var(--s1-5);
-          }
-
-          & > .value {
-            padding-left: 0;
-
-            & > .display {
-              border: 1px solid rgb(var(--highlight-color), 1);
-              background-color: rgb(var(--lighter-highlight-color), 1);
-              border-radius: var(--border-radius-size);
-              padding: var(--s1-5);
-
-              & > .label {
-                text-align: center;
-              }
-
-              & > .value {
-                color: rgb(var(--darker-main-color), 1);
-                text-align: center;
-              }
-            }
-          }
-        }
-      }
-
       // without value
       &:not(.has-value) {
         & > .wrapper > .content > .value {
@@ -204,13 +163,8 @@
               background-color: rgb(var(--background-color), 0.5);
 
               & > .content {
-                grid-template-areas:
-                  "label value"
-                  "label value"
-                  "slot2 slot2"
-                  "stats stats"
-                  "buttons buttons";
-                padding: var(--s1-5);
+                display: flex;
+                padding: var(--s1-25);
 
                 & > .label {
                   padding: 0;
@@ -229,15 +183,22 @@
                       display: none;
                     }
                   }
+
+                  & > .secondary {
+                    display: none;
+                  }
                 }
+
                 & > .value {
                   display: none;
                 }
 
+                & > .icon,
+                & > .expand,
                 & > .notes,
                 & > .tags,
                 & > .stats,
-                & > .buttons {
+                & > .rolls {
                   display: none;
                 }
               }
@@ -319,7 +280,28 @@
 
   // #endregion
 
-  // #region COLLAPSED
+  // #region EXPANDED
+
+  &:not(.expanded) {
+    & > .children > .feature-data {
+      &:first-of-type {
+        & > .children > .feature-variant {
+          &:first-of-type {
+            & > .wrapper {
+              & > .content {
+                & > .roller,
+                & > .stats,
+                & > .tags,
+                & > .notes {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   &.collapsed:not(.hidden) {
     & > .children > .feature-data {
@@ -389,6 +371,41 @@
             & > .tags {
               & > .children > .tag.collapsed-only {
                 display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // #endregion
+
+  // #region ROLLER
+
+  &.roller:not(.hidden) {
+    & > .children > .feature-data {
+      &:first-of-type {
+        & > .children > .feature-variant {
+          &:first-of-type {
+            & > .wrapper {
+              & > .content {
+                & > .rolls {
+                  display: flex;
+                  //
+                  margin-top: var(--s1-5);
+                  margin-bottom: 0px;
+                  
+                  & > .previous, & > .next {
+                    color: transparent;
+                  }
+
+                  & > .wrapper {
+                    & > .roll:not(.from-value) {
+                      display: none;
+                    }
+                  }
+                }
               }
             }
           }

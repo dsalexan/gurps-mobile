@@ -1,4 +1,8 @@
+@use "../../../../../december/utils/styles" as utils;
+
 & > .content {
+  --icon-height: calc(7 * var(--s1));
+
   grid-area: content;
   //
   flex-grow: 1;
@@ -7,25 +11,52 @@
   position: relative;
   //
   display: grid;
-  grid-template-areas:
-    "label value"
-    "slot1 value"
-    "slot2 slot2"
-    "stats stats"
-    "buttons buttons";
-  grid-template-columns: 1fr min-content;
+  // grid-template-areas:
+  //   "label value"
+  //   "slot1 value"
+  //   "slot2 slot2"
+  //   "stats stats"
+  //   "buttons buttons";
+  grid-template-areas: 
+    "icon main main expand"
+    "icon secondary value value"
+    "icon secondary value value"
+    "icon label-value value value"
+    "stats stats stats stats"
+    "rolls rolls rolls rolls"
+    "slot1 slot1 slot1 slot1"
+    "slot2 slot2 slot2 slot2";
+  grid-template-columns: var(--icon-height) 1fr auto min-content;
   /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
-  grid-template-rows: auto 1fr min-content min-content min-content;
+  grid-template-rows: auto auto auto auto auto auto auto;
 
   & > * {
     z-index: 1;
   }
 
+  & > .icon {
+    grid-area: icon;
+
+    border-radius: var(--s1);
+    background-color: #999999;
+    width: var(--icon-height);
+    height: var(--icon-height);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    & > .icon-wrapper {
+      font-size: var(--s2-5);
+      color: #333333;
+    }
+  }
+
   & > .label {
-    grid-area: label;
     //
     padding: 0;
-    padding-bottom: var(--s0-25);
+    margin-left: var(--s1);
     //
     font-family: Roboto;
     font-weight: 500;
@@ -34,68 +65,91 @@
     //
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
     //
     color: rgb(var(--label-color), 0.9);
 
-    & > .main {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    &.main {
+      grid-area: main;
+      margin-bottom: var(--s0-25);
 
-      & > span {
-        white-space: pre-wrap;
+      & > .main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        //
+        padding-top: 1px;
 
-        & > .roll {
-          font-weight: 400;
-          
-          & > .variable {
-            font-weight: 500 !important;
+        & > span {
+          white-space: pre-wrap;
+
+          & > .roll {
+            font-weight: 400;
+            
+            & > .variable {
+              font-weight: 500 !important;
+            }
           }
         }
-      }
 
-      & > .tray {
-        grid-area: tray;
+        & > .tray {
+          grid-area: tray;
 
-        & > .children {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+          & > .children {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
 
-          & > .spacer {
-            flex-grow: 1;
-          }
-
-          & > .icon-wrapper {
-            margin-right: var(--s0-5);
-            i {
-              font-size: var(--s2);
-            }
-            svg.icon {
-              width: calc(var(--s2));
+            & > .spacer {
+              flex-grow: 1;
             }
 
-            &.hidden {
-              display: none;
-            }
-            &.type {
-              display: none;
+            & > .icon-wrapper {
+              margin-right: var(--s0-5);
+              i {
+                font-size: var(--s2);
+              }
+              svg.icon {
+                width: calc(var(--s2));
+              }
+
+              &.hidden {
+                display: none;
+              }
+              &.type {
+                display: none;
+              }
             }
           }
         }
       }
     }
 
-    & > .secondary {
-      font-family: Roboto;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 18px;
+    &.secondary {
+      grid-area: secondary;
+
+      & > .secondary {
+        font-family: Roboto;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        
+        color: rgb(var(--label-color), 0.75);
+      }
+    }
+
+    &.value {
+      grid-area: label-value;
       
-      color: rgb(var(--label-color), 0.75);
+      font-size: 12px;
+      line-height: 8px;
+      font-weight: 400;
+      font-family: 'Roboto';
+      color: rgba(238, 238, 238, 0.5);
+      //
+      margin-right: 4.5px;
     }
 
     // VARIANTS
@@ -109,22 +163,42 @@
     }
   }
 
+  & > .expand {
+    grid-area: expand;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    & > i.icon {
+      line-height: var(--s1-5);
+      font-size: var(--s2-5);
+      width: calc(2.25 * var(--s1));
+      color: #CCCCCC;
+      
+      &.collapse {
+        display: none;
+      }
+    }
+  }
+
   & > .value {
     grid-area: value;
     //
     font-family: Alatsi;
     font-weight: 400;
     font-size: 27px;
-    line-height: 23.5px;
+    line-height: 21px;
     //
-    margin-left: var(--s1-5);
+    // margin-left: var(--s1-5);
     // margin-bottom: var(--s0-75);
+    padding-bottom: 1px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: flex-end;
+    align-items: flex-end;
     //
     color: rgb(var(--value-color), 0.95);
-    border: 0 solid rgb(var(--border-color), 1);
+    // border: 0 solid rgb(var(--border-color), 1);
 
     & > .asterisk {
       color: rgb(var(--label-color), 0.75);
@@ -134,8 +208,9 @@
     & > .display {
       & > .label {
         padding: 0;
-        font-size: 13.5px;
-        line-height: 13.5px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 8px;
         font-family: Roboto;
         color: rgb(var(--dark-main-color), 1);
         text-transform: uppercase;
@@ -151,7 +226,7 @@
 
       & > .value {
         font-family: Alatsi;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       & > .label ~ .value {
@@ -182,6 +257,177 @@
   @import "./tags";
 
   & > .stats {
+    grid-area: stats;
+    //
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    //
+    margin-top: var(--s1);
+    margin-bottom: var(--s1);
+
+    & > .stat {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      //
+      margin-left: var(--s1);
+
+      & > .icon {
+        width: calc(var(--s1) * 1.8);
+        font-size: calc(var(--s1) * 1.8);
+        line-height: calc(var(--s1) * 1.5);
+        //
+        color: rgb(136, 136, 136, 1);
+      }
+
+      & > .label {
+        font-style: italic;
+        font-weight: 300;
+        font-size: calc(var(--s1) * 1.125);
+        line-height: calc(var(--s1) * 1);
+        //
+        font-family: Molengo;
+        color: rgb(var(--lighter-main-color), 1);
+      }
+
+      & > .value {
+        font-size: 15px;
+        font-weight: 400;
+        //
+        font-family: Molengo;
+        color: rgb(var(--lighter-main-color), 1); //
+      }
+      
+      & > .icon ~ .value {
+        margin-left: 3px;
+      }
+
+      & > .hidden {
+        display: none;
+      }
+    }
+  }
+
+  & > .rolls {
+    grid-area: rolls;
+    position: relative;
+    //
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    //
+    margin-top: var(--s1);
+    margin-bottom: var(--s1);
+    margin-left: calc(-2 * var(--s1));
+    margin-right: calc(-2 * var(--s1));
+    max-width: calc(100% + 4 * var(--s1));
+
+    & > * {
+      z-index: 2;
+    }
+
+    & > .background {
+      z-index: 1;
+      position: absolute;
+      background: linear-gradient(272.62deg, rgba(30, 30, 30, 0.4) -0.45%, rgba(24, 24, 24, 0.4) 84.66%, rgba(30, 30, 30, 0.4) 100.42%);
+      width: 100%;
+      height: calc(100% - 2 * 5px);
+    }
+
+    & > .previous, & > .next {
+      color: #555555;
+      margin-left: var(--s0-5);
+      margin-right: var(--s0-5);
+    }
+
+    &.has-previous > .previous, &.has-next > .next {
+      color: rgba(var(--main-color), 1);      
+    }
+
+    & > .wrapper {
+      flex-grow: 1;
+      display: flex;
+      //
+      overflow-x: scroll;
+      scroll-snap-type: x proximity;
+      @include utils.no-scroll;
+
+      & > .roll {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        //
+        min-width: 100%;
+        scroll-snap-align: end;
+
+        & > .content-wrapper {
+          & > .content {
+            text-align: right;
+
+            & > .primary {
+              color: #BBBBBB;
+              font-family: 'Roboto';
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 14px;
+            }
+
+            & > .secondary, & > .tertiary {
+              color: #999999;
+              font-family: 'Roboto';
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 12px;
+            }
+          }
+        }
+
+        & > .button {
+          border-radius: 3px;
+          border: 1px solid rgb(var(--border-color), 1);
+          padding: calc(2 * var(--s1));
+          margin-left: var(--s1-5);
+
+          & > .value {
+            font-family: Alatsi;
+            font-weight: 500;
+            font-size: 27px;
+            line-height: 21px;
+            //
+            color: rgb(var(--value-color), 0.95);
+          }
+
+          & > .label {
+            padding: 0;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 8px;
+            font-family: Roboto;
+            color: rgb(var(--dark-main-color), 1);
+            text-transform: uppercase;
+    
+            & > i {
+              font-style: italic;
+              white-space: pre-wrap;
+              font-size: calc(var(--s1) * 1.25);
+              line-height: calc(var(--s1) * 1);
+              font-weight: 300;
+            }
+          }
+
+          & > .value ~ .label {
+            margin-top: var(--s0-5);
+          }
+        }
+      }
+    }
+  }
+
+  & > .stats1 {
     grid-area: stats;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -227,7 +473,7 @@
     }
   }
 
-  & > .buttons {
+  & > .buttons1 {
     grid-area: buttons;
     //
     margin: 0 calc(-1 * var(--s0-5));
@@ -341,7 +587,7 @@
 
     & > .variable:not([data-type="me"]) {
       font-style: normal;
-      font-weight: bold;
+      // font-weight: bold;
     }
 
     & > .operator {

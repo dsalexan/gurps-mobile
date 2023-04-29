@@ -18,7 +18,8 @@ export interface FeatureBaseContextSpecs extends ContextSpecs {
   //
   hidden: (id: string) => boolean
   pinned: (id: string) => boolean
-  collapsed: (id: string) => boolean
+  expanded: (id: string) => boolean
+  roller: (id: string) => boolean
   //
   index?: number
   innerClasses?: string[]
@@ -46,7 +47,7 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
 
     const hidden = get(specs, `hidden`)?.(feature.id) ?? false
     const pinned = get(specs, `pinned`)?.(feature.id) ?? false
-    const collapsed = get(specs, `collapsed`)?.(feature.id) ?? false
+    const expanded = get(specs, `expanded`)?.(feature.id) ?? false
 
     let actions = false as any as { left: IFeatureAction[]; right: IFeatureAction[] }
     if (_actions !== false) {
@@ -77,8 +78,8 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
             classes: [`horizontal`],
             children: [
               {
-                icon: collapsed ? `mdi-arrow-expand` : `mdi-arrow-collapse`,
-                classes: [`target`, `action-collapse`],
+                icon: `mdi-dice-d6`,
+                classes: [`target`, `action-roller`],
               },
               {
                 icon: pinned ? `mdi-pin-off` : `mdi-pin`,
@@ -108,7 +109,8 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
 
     const hidden = get(specs, `hidden`)?.(feature.id) ?? false
     const pinned = get(specs, `pinned`)?.(feature.id) ?? false
-    const collapsed = get(specs, `collapsed`)?.(feature.id) ?? false
+    const expanded = get(specs, `expanded`)?.(feature.id) ?? false
+    const roller = get(specs, `roller`)?.(feature.id) ?? false
 
     // COMPOUNDING CLASSES
     const classes = [
@@ -116,7 +118,8 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
       //
       !!hidden && `hidden`,
       !!pinned && `pinned`,
-      !!collapsed && `collapsed`,
+      !!expanded && `expanded`,
+      !!roller && `roller`,
     ] as string[]
 
     context = {

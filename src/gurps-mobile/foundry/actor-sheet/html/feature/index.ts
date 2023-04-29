@@ -19,7 +19,8 @@ export interface IHTMLFeature {
   //
   updateHidden(value: boolean): void
   updatePinned(value: boolean): void
-  updateCollapsed(value: boolean): void
+  updateExpanded(value: boolean): void
+  updateRoller(value: boolean): void
   //
   updateMove(): void
 }
@@ -62,9 +63,13 @@ export default function HTMLFeature(node: JQuery<HTMLElement>, feature: GenericF
       // @ts-ignore
       htmlElements.map(html => html.updatePinned(...args))
     },
-    updateCollapsed(...args: any[]) {
+    updateExpanded(...args: any[]) {
       // @ts-ignore
-      htmlElements.map(html => html.updateCollapsed(...args))
+      htmlElements.map(html => html.updateExpanded(...args))
+    },
+    updateRoller(...args: any[]) {
+      // @ts-ignore
+      htmlElements.map(html => html.updateRoller(...args))
     },
     //
     updateMove(...args: any[]) {
@@ -183,8 +188,8 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
-        if (target.hasClass(`action-collapse`)) {
-          feature.collapse()
+        if (target.hasClass(`action-roller`)) {
+          feature.roller()
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
@@ -334,16 +339,25 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
     }
   }
 
-  function updateCollapsed(value: boolean) {
-    // assign collapsed class state
+  function updateExpanded(value: boolean) {
+    // TODO: assign expanded class state
     if (value) {
-      node.addClass(`collapsed`)
+      node.addClass(`expanded`)
 
       node.find(`> .children > .feature-data:first-of-type .action div.target.action-collapse > i`).removeClass(`mdi-arrow-collapse`).addClass(`mdi-arrow-expand`)
     } else {
-      node.removeClass(`collapsed`)
+      node.removeClass(`expanded`)
 
       node.find(`> .children > .feature-data:first-of-type .action div.target.action-collapse > i`).removeClass(`mdi-arrow-expand`).addClass(`mdi-arrow-collapse`)
+    }
+  }
+
+  function updateRoller(value: boolean) {
+    // TODO: assign roller class state to FEATURE DATA, not feature
+    if (value) {
+      node.addClass(`roller`)
+    } else {
+      node.removeClass(`roller`)
     }
   }
 
@@ -372,7 +386,8 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
     //
     updateHidden,
     updatePinned,
-    updateCollapsed,
+    updateExpanded,
+    updateRoller,
     //
     updateMove,
   }

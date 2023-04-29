@@ -33,7 +33,6 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     const feature = getSpec(specs, `feature`)
     let variant = variants[0] ?? { classes: [] }
 
-    variant.classes.push(`value-interactible`)
     const tags = new TagBuilder(variant.tags)
 
     // #region VALUE

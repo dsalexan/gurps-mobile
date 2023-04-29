@@ -110,32 +110,49 @@
       
 
       & > .children > .feature-variant {
-        &.value-interactible {
-          & > .wrapper > .content {
-            & > .value {
-              & > .display {
-                border-color: rgb(var(--highlight-color), 0.6);
-                background-color: rgb(var(--lighter-highlight-color), 0.25);
-
-                & > .value {
-                  color: rgb(var(--lighter-main-color), 1);
-                }
-                & > .label {
-                  color: rgb(var(--semi-dark-main-color), 1);
-                }
-              }
-            }
-          }          
-        }
-
         & > .wrapper {
           background: #232323;
-          background: linear-gradient(310deg, hsl(0deg 0% 10%) 14%, hsl(0deg 0% 14%) 90.84%);
+          background: linear-gradient(320deg, hsl(0deg 0% 18%) 14%, hsl(0deg 0% 14%) 90.84%);
           --border-color: 51,51,51;
 
           & > .content {
             & > .label {
               color: rgb(233, 233, 233, 0.95);
+
+              &.value {
+                color: rgba(238, 238, 238, 0.5);
+              }
+            }
+
+            & > .value {
+              & > .display {
+                & > .value {
+                  color: rgb(var(--lighter-main-color), 1);
+                }
+
+                & > .label {
+                  color: rgb(var(--light-main-color), 1);
+                }
+              }
+            }
+
+            & > .rolls {
+              & > .wrapper {
+                & > .roll {
+                  & > .button {
+                    background-color: rgb(var(--darker-main-color), 1);
+                    border-color: rgb(var(--dark-main-color), 1);
+
+                    & > .value {
+                      color: rgb(var(--lighter-main-color), 1);
+                    }
+    
+                    & > .label {
+                      color: rgb(var(--light-main-color), 1);
+                    }
+                  }
+                }
+              }
             }
 
             & > .tags > .children > .tag {
@@ -197,12 +214,12 @@
       }
 
       & > .action {
-        --background-color: var(--darker-main-color);
+        --background-color: var(--semi-dark-main-color);
         background: rgb(var(--background-color), 0.95);
 
         & > div > div:not(.divider) > div {
           & > .icon {
-            color: rgb(var(--main-color), 0.9);
+            color: white; // rgb(var(--lighter-main-color), 0.9);
           }
         }
       }

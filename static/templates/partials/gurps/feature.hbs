@@ -41,46 +41,91 @@
                 <div class="chevron prev"><i class="icon mdi mdi-chevron-left"></i></div>
                 <div class="wrapper">
                   <div class="content">
-                    <div class="label {{isNilOrEmpty label.main 'hidden'}} {{join label.classes}}">
+                    <!-- ICON -->
+                    <div class="icon {{join icon.classes}}">
+                      <div class="icon-wrapper">{{gurpsIcon icon.value}}</div>
+                    </div>
+                    <!-- LABEL -->
+                    <div class="label main {{isNilOrEmpty label.main 'hidden'}} {{join label.classes}}">
                       <div class="main">
+                        <!-- LABEL.TRAY -->
                         <div class="tray">
                           <div class="children">
                             <div class="icon-wrapper pin"><i class="icon mdi mdi-pin"></i></div>
-                            {{#if icon}}<div class="icon-wrapper type">{{gurpsIcon icon}}</div>{{/if}}
-                            {{!-- <div class="spacer"></div> --}}
-                            <div class="icon-wrapper collapse"><i class="icon mdi mdi-arrow-collapse"></i></div>
                           </div>
                         </div>
+                        <!-- LABEL.MAIN -->
                         <span>{{{i18n label.main}}}</span>
                       </div>
-                      <div class="secondary {{isNilOrEmpty label.secondary 'hidden'}}">{{{label.secondary}}}</div>
                     </div>
-                    <div class="notes {{isNilOrEmpty notes 'hidden'}}">
-                      {{#each notes}}<p>{{this}}</p>{{/each}}
+                    <div class="label secondary {{isNilOrEmpty label.secondary 'hidden'}} {{join label.classes}}">
+                      <div class="secondary">{{{label.secondary}}}</div>
                     </div>
-                    {{#if value}}<div class="value {{isNilOrEmpty value 'hidden'}}">{{> gurps/feature_value value}}</div>{{/if}}
-                    <div class="tags"><div class="children">{{#each tags}}{{> gurps/feature_tag this}}{{/each}}</div></div>
-                    <div class="stats {{isNilOrEmpty stats 'hidden'}}">
-                      {{#each stats}}
-                        <div class="stat">
-                          <div class="label">{{this.label}}</div>
-                          <div class="value">{{this.value}}</div>
-                        </div>
-                      {{/each}}
+                    <!-- EXPAND -->
+                    <div class="expand">
+                      <i class="expand icon mdi mdi-chevron-down"></i>
+                      <i class="collapse icon mdi mdi-chevron-up"></i>
                     </div>
-                    {{#if buttons}}
-                      <div class="buttons">
-                        {{#each buttons}}
-                          <div class="button {{join classes}}">
-                            {{#if (not (isNilOrEmpty label))}}<div class="label">{{label}}</div>{{/if}}
-                            {{#if (not (isNilOrEmpty icon))}}<div class="icon">{{gurpsIcon icon}}</div>{{/if}}
-                            <div class="value">{{value}}</div>
+                    <!-- VALUE -->
+                    {{#if value}}
+                      <div class="label value {{isNilOrEmpty value.secondary_label 'hidden'}} {{join value.classes}}">
+                        {{{'value.secondary_label'}}}
+                      </div>
+                      <div class="value {{isNilOrEmpty value 'hidden'}}">{{> gurps/feature_value value}}</div>
+                    {{/if}}
+                    <!-- STATS -->
+                    {{#if stats}}
+                      <div class="stats {{isNilOrEmpty stats 'hidden'}}">
+                        {{#each stats}}
+                          <div class="stat  {{join classes}}">
+                            <div class="icon {{isNilOrEmpty this.icon 'hidden'}}">{{gurpsIcon this.icon}}</div>
+                            <div class="label {{isNilOrEmpty this.label 'hidden'}}">{{this.label}}</div>
+                            <div class="value">{{this.value}}</div>
                           </div>
                         {{/each}}
                       </div>
                     {{/if}}
+                    <!-- ROLLS -->
+                    <div class="rolls">
+                      <div class="background"></div>
+                      <div class="previous"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
+                      <div class="wrapper">
+                        <div class="roll from-value active" data-id="id">
+                          <div class="content-wrapper">
+                            <div class="content">
+                              <div class="primary">Primary</div>
+                              <div class="secondary">Secondary</div>
+                              <div class="tertiary">Tertiary</div>
+                            </div>
+                          </div>
+                          <div class="button">
+                            <div class="value">16</div>
+                            <div class="label">IQ+1</div>
+                          </div>
+                        </div>
+                        <div class="roll" data-id="id">
+                          <div class="content-wrapper">
+                            <div class="content">
+                              <div class="primary">Primary</div>
+                              <div class="secondary">Secondary</div>
+                              <div class="tertiary">Tertiary</div>
+                            </div>
+                          </div>
+                          <div class="button">
+                            <div class="value">16</div>
+                            <div class="label">IQ+1</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="next"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
+                    </div>
+                    <!-- NOTES -->
+                    <div class="notes {{isNilOrEmpty notes 'hidden'}}">
+                      {{#each notes}}<p>{{this}}</p>{{/each}}
+                    </div>
+                    <!-- TAGS -->
+                    <div class="tags"><div class="children">{{#each tags}}{{> gurps/feature_tag this}}{{/each}}</div></div>
                   </div>
-                  {{#if icon}} <div class="background-icon"> {{gurpsIcon icon}} </div> {{/if}}
                 </div>
                 <div class="chevron next"><i class="icon mdi mdi-chevron-right"></i></div>
               </div>

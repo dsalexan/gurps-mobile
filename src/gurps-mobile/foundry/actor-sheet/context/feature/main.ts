@@ -15,7 +15,7 @@ export interface FeatureMainVariantContextSpecs extends ContextSpecs {
   //
   hidden: boolean
   pinned: (id: string) => boolean
-  collapsed: (id: string) => boolean
+  expanded: (id: string) => boolean
   //
   index?: number
   tags?: FastTag[]
@@ -155,13 +155,16 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       ...(variant ?? {}),
       classes,
       //
+      icon: {
+        classes: [],
+        value: getSpec(specs, `icon`, feature.type.icon) ?? undefined,
+      },
       label: {
         classes: labelClasses,
         main: getSpec(specs, `label`, feature.data.label ?? defaultLabel),
         secondary: getSpec(specs, `secondary_label`, defaultSecondaryLabel),
       },
       // value,
-      icon: getSpec(specs, `icon`, feature.type.icon) ?? undefined,
       mark: getSpec(specs, `mark`),
       //
       notes: getSpec(specs, `notes`, feature.data.notes),

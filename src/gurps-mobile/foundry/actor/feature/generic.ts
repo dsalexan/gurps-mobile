@@ -200,6 +200,13 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     this._toggleFlag(`mobile.features.collapsed`, value)
   }
 
+  /**
+   * Toogle ROLLER flag
+   */
+  roller(value?: boolean) {
+    this._toggleFlag(`mobile.features.roller`, value)
+  }
+
   // #endregion
 
   /**
