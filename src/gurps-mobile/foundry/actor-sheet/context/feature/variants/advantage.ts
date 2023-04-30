@@ -6,6 +6,7 @@ import TagBuilder from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import AdvantageFeature from "../../../../actor/feature/advantage"
+import { rollToRollContext } from "../../../../../../gurps-extension/utils/roll"
 
 export interface AdvantageFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: AdvantageFeature
@@ -30,28 +31,38 @@ export default class AdvantageFeatureContextTemplate extends BaseContextTemplate
     let variant = variants[0] ?? {}
 
     // LINKS
-    const links = feature.links ?? []
+    const links = feature.data.links ?? []
 
     // COMPOUNDING TAGS
     const tags = new TagBuilder(variant.tags ?? [])
     tags.add(...links)
 
     // if attached roll is a self control roll
-    if (feature.rolls) {
-      for (const roll of feature.rolls) {
-        if (roll?.self_control) {
+    if (feature.data.rolls) {
+      for (const roll of feature.data.rolls) {
+        if (roll.tags.includes(`self_control`)) {
           variant.value = {
-            label: `WILL`,
-            secondary_label: `CR`,
-            value: variant.value,
+            label: roll.definition.relative?.toString(),
+            value: roll.definition.level,
           }
 
-          tags.at(1).add({
-            classes: `box interactible`,
-            label: `Self-Control Roll`,
+          if (!variant.rolls) variant.rolls = []
+          variant.rolls.push(rollToRollContext(roll, 0))
+
+          tags.type(`feature`).add({
+            type: `self-control`,
+            classes: [`box`],
+            children: [
+              {
+                label: `Self-Control Roll`,
+              },
+            ],
           })
 
           break
+        } else {
+          // ERROR: Roll not implemented
+          debugger
         }
       }
     }

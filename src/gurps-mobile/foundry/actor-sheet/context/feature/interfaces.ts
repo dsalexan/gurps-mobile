@@ -1,3 +1,4 @@
+import { IRollContext } from "../../../../../gurps-extension/utils/roll"
 import BaseFeature from "../../../../core/feature/base"
 import { IContext } from "../context"
 
@@ -55,7 +56,7 @@ export interface IFeatureDataVariant {
   //
   notes?: string[]
   stats?: (Displayable & { roll: number })[]
-  rolls?: (Displayable & { step: number })[]
+  rolls?: IRollContext[]
   tags: ITag[]
 }
 

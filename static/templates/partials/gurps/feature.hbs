@@ -87,22 +87,24 @@
                     {{/if}}
                     <!-- ROLLS -->
                     {{#if rolls}}
-                      <div class="rolls at-first {{isNilOrEmpty stats 'hidden'}}" data-selected="0">
+                      <div class="rolls {{#if (gt rolls.length 0)}}at-first{{/if}} {{#if (eq rolls.length 1)}}at-last{{/if}} {{isNilOrEmpty stats 'hidden'}}" data-selected="0">
                         <div class="background"></div>
                         <div class="previous"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
                         <div class="wrapper">
                           {{#each rolls}}
-                            <div class="roll" data-step="{{step}}">
+                            <div class="roll {{join classes}}" data-step="{{step}}">
                               <div class="content-wrapper">
-                                <div class="content">
-                                  <div class="primary">Primary</div>
-                                  <div class="secondary">Secondary</div>
-                                  <div class="tertiary">Tertiary</div>
-                                </div>
+                                {{#each content}}
+                                  <div class="content">
+                                    <div class="primary {{isNilOrEmpty primary 'hidden'}}">{{primary}}</div>
+                                    <div class="secondary {{isNilOrEmpty secondary 'hidden'}}">{{secondary}}</div>
+                                    <div class="tertiary {{isNilOrEmpty tertiary 'hidden'}}">{{tertiary}}</div>
+                                  </div>
+                                {{/each}}
                               </div>
                               <div class="button">
-                                <div class="value">16</div>
-                                <div class="label">IQ+1</div>
+                                <div class="value">{{{value}}}</div>
+                                <div class="label">{{{label}}}</div>
                               </div>
                             </div>
                           {{/each}}

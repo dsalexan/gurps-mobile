@@ -39,7 +39,6 @@
     background-color: hsl(0, 0%, 95%);
     width: var(--icon-height);
     height: var(--icon-height);
-    margin-bottom: var(--s1);
 
     & > .wrapper {
       --icon-size: var(--s2-5);
@@ -191,7 +190,6 @@
     line-height: 21px;
     //
     // margin-left: var(--s1-5);
-    margin-bottom: var(--s1);
     padding-bottom: 1px;
     display: flex;
     justify-content: flex-end;
@@ -214,6 +212,7 @@
         font-family: Roboto;
         color: rgb(var(--darker-main-color), 1);
         text-transform: uppercase;
+        text-align: center;
 
         & > i {
           font-style: italic;
@@ -349,6 +348,7 @@
 
     & > .previous, & > .next {
       color: #BBBBBB;
+      color: transparent;
       margin-left: var(--s0-5);
       margin-right: var(--s0-5);
     }
@@ -392,6 +392,8 @@
               font-size: 12px;
               line-height: 12px;
             }
+
+            & > .hidden { display: none; }
           }
         }
 
@@ -411,6 +413,7 @@
             line-height: 21px;
             //
             color: rgb(var(--darker-main-color), 0.95);
+            text-align: center;
           }
 
           & > .label {
@@ -422,6 +425,7 @@
             text-transform: uppercase;
             //
             color: rgb(var(--dark-main-color), 1);
+            text-align: center;
     
             & > i {
               font-style: italic;

@@ -22,6 +22,8 @@ import { IGenericFeatureData } from "./feature/pipelines/generic"
 import GenericFeature from "./feature/generic"
 import SkillFeature from "./feature/skill"
 import { ILevel } from "../../../gurps-extension/utils/level"
+import Fuse from "fuse.js"
+import { push } from "../../../december/utils/lodash"
 
 export type ActorCache = {
   links?: Record<string, string[]>
@@ -531,6 +533,40 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     }
 
     timer(`Prepare defenses`, [`font-weight: bold;`]) // COMMENT
-    // #endregion
   }
+
+  // #endregion
+
+  // #region UTIL
+
+  findFeature(name: string, type?: string, leaf?: boolean) {
+    const features = Object.values(this.cache.features ?? {})
+    const filteredFeatures = !type ? features : features.filter(feature => feature.type.compare(type, leaf))
+
+    const index = {} as Record<string, string[]>
+    for (const feature of filteredFeatures) push(index, feature.specializedName, feature.id)
+
+    const names = Object.keys(index)
+    const fuse = new Fuse(names, { includeScore: true })
+
+    const results = fuse.search(name)
+
+    if (results[0].score === 0) {
+      const ids = index[results[0].item]
+      const features = ids.map(id => this.cache.features?.[id])
+
+      if (features.length === 1) return features[0]
+      return features
+    }
+
+    return results.map(({ item, score }) => {
+      const ids = index[item]
+      const features = ids.map(id => this.cache.features?.[id])
+
+      if (features.length === 1) return { score, feature: features[0] }
+      return { score, features, ids }
+    })
+  }
+
+  // #endregion
 }

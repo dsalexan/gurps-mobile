@@ -8,6 +8,7 @@ import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
 import { ILevelDefinition, ILevel } from "../../../../../../gurps-extension/utils/level"
 import SkillFeature from "../../../../actor/feature/skill"
+import { buildRoll, contextualizeRoll, levelToRollContext } from "../../../../../../gurps-extension/utils/roll"
 
 export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: SkillFeature
@@ -43,6 +44,9 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
       if (level) {
         variant.value.value = level.level.toString()
         if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
+
+        if (!variant.rolls) variant.rolls = []
+        variant.rolls.push(levelToRollContext([{ primary: feature.data.training.capitalize() }], level, 0))
       }
     }
 

@@ -487,6 +487,8 @@
 
                 // STATS
                 & > .stats {
+                  margin-bottom: 0px;
+                  
                   & > .stat.roll-selected {
                     & > .icon {
                       color: rgba(var(--dark-main-color), 1);
@@ -509,7 +511,7 @@
             & > .wrapper {
               & > .content {
                 & > .rolls {
-                  margin-top: var(--s1-5);
+                  // margin-top: var(--s1-5);
                   margin-bottom: 0px;
                   
                   & > .previous, & > .next {

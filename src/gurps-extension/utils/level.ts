@@ -119,7 +119,7 @@ export function stringifyRelativeSkillLevel({ expression, definitions }: Partial
       (prefix ?? ``) + variable,
       `<span class="variable ${classes.filter(b => !!b).join(` `)}" ${Object.entries(data)
         .map(([prop, value]) => (isNil(value) ? `` : `data-${prop}="${value}"`))
-        .join(` `)}>${_content}</span>`,
+        .join(` `)}>${_content ?? value}</span>`,
     )
   }
 
@@ -374,7 +374,7 @@ export function calculateLevel(relative: IRelativeLevel) {
 
 // #endregion
 
-export function buildLevel(baseLevel: number, bonus: number, { attribute, skill, flags }: { flags?: string[]; attribute?: string; skill?: string }) {
+export function buildLevel(baseLevel: number, bonus: number, { attribute, skill, flat, flags }: { flags?: string[]; attribute?: string; skill?: string; flat?: string }) {
   const level = baseLevel + bonus
   const sign = bonus > 0 ? `+` : bonus < 0 ? `-` : ``
 
@@ -391,8 +391,13 @@ export function buildLevel(baseLevel: number, bonus: number, { attribute, skill,
   }
 
   if (skill !== undefined) {
-    definition.type === `skill`
+    definition.type = `skill`
     definition.content = skill
+  }
+
+  if (flat !== undefined) {
+    definition.type = `flat`
+    definition.content = flat
   }
 
   const relative: IRelativeLevel = {

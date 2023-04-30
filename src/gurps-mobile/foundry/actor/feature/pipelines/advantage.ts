@@ -1,13 +1,14 @@
 import { isNil } from "lodash"
 import { IDerivationPipeline, derivation, proxy } from "."
-import { ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { ILevel, ILevelDefinition, buildLevel, buildLevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { MigrationDataObject, OVERWRITE, PUSH } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
 import { parseExpression } from "../../../../../december/utils/math"
+import { IRoll, buildRoll } from "../../../../../gurps-extension/utils/roll"
 
 export interface IAdvantageFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
-  rolls?: ILevelDefinition[]
+  rolls?: IRoll[]
   cost: string
   // points?: number
   level?: number
@@ -68,6 +69,22 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
   }),
   // #endregion
   // #region DATA
+  derivation([`gcs:cr`, `gca:mods`], [`rolls`], function (_, __, { object }) {
+    const { gcs, gca } = object.sources
+    const { cr } = gcs ?? {}
+    const { mods } = gca ?? {}
+
+    if (isNil(cr) || isNil(mods)) return {}
+
+    if (mods!.some(mod => mod.match(/self-control/i))) {
+      const level = buildLevel(cr, 0, { flat: `CR`, flags: [`self_control`] })
+      const roll = buildRoll(level, [`self_control`])
+
+      return { rolls: PUSH(`rolls`, roll) }
+    }
+
+    return {}
+  }),
   // derivation([`canLevel`, `points`, `pointsPerLevel`, `maxLevel`], [`level`], function (_, __, { object }) {
   //   const actor = object.actor
   //   const { canLevel, points, pointsPerLevel, maxLevel } = object.data
@@ -98,27 +115,6 @@ AdvantageFeaturePipeline.post = function postAdvantage(data) {
 
       MDO.meta = OVERWRITE(`meta`, meta1)
       MDO.links = PUSH(`links`, links)
-    }
-  }
-
-  if (data.has(`notes`)) {
-    const notes = data.get(`notes`)
-    if (notes.length > 0) {
-      const _notes = [] as string[]
-      const rolls = [] as ILevelDefinition[]
-
-      for (const note of notes) {
-        if (!note.includes(`CR`)) _notes.push(note)
-        else {
-          const [notes2, cr] = selfControlRolls(note)
-
-          _notes.push(notes2)
-          rolls.push(cr)
-        }
-      }
-
-      MDO.notes = OVERWRITE(`notes`, _notes)
-      MDO.rolls = PUSH(`rolls`, rolls)
     }
   }
 

@@ -32,10 +32,10 @@ export default class AdvantageFeature extends GenericFeature {
     if (this.data) {
       if (this.data.name === `Talent`) {
         // TODO: Talent is a special case, its GCA counterpart is "_New Talent" and i'm not in the mood to deal with that
-        return { directive: `skip` }
+        return { directive: `skip` } as const
       } else if (this.data.name === `List`) {
         // just a container for other features
-        return { directive: `skip` }
+        return { directive: `skip` } as const
       }
     }
 
