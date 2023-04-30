@@ -59,6 +59,7 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
       const context = manager.feature(weapon, _specs)
 
       const main = context.children.main[0]
+      main.id = `weapon-${weapon.id}`
       main.variants = WeaponFeatureContextTemplate.skillsVariants(main.variants, _specs, manager)
 
       main.actions = false

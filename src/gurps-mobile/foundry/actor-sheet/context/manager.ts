@@ -60,8 +60,8 @@ export default class ContextManager {
     if (specs.list !== undefined)
       specs.hidden = specs.hidden ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.hidden.${id}.${specs.list!.replaceAll(/\./g, `-`)}`) as boolean)
     specs.pinned = specs.pinned ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.pinned.${id}`) as boolean)
-    specs.expanded = specs.expanded ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.expanded.${id}`) as boolean)
-    specs.roller = specs.roller ?? ((id: string) => this.actor.getFlag(`gurps`, `mobile.features.roller.${id}`) as boolean)
+    specs.expanded = specs.expanded ?? ((id: string, dataId: string) => this.actor.getFlag(`gurps`, `mobile.features.expanded.${id}.${dataId}`) as boolean)
+    specs.roller = specs.roller ?? ((id: string, dataId: string) => this.actor.getFlag(`gurps`, `mobile.features.roller.${id}.${dataId}`) as boolean)
 
     const finalTemplates = [...(feature.__.context.templates as TTemplate[]), ...templates]
 

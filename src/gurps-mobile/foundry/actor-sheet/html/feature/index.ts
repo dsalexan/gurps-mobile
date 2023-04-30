@@ -170,6 +170,19 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         } else $(event.currentTarget).parent().addClass(`scrolling`)
       })
 
+    // expand/collapse feature variant
+    $(element)
+      .find(`> .children > .feature-data > .children > .feature-variant > .wrapper > .content > .expand`)
+      .on(`click`, event => {
+        const target = $(event.currentTarget)
+        const data = target.closest(`.feature-data`)
+        const dataId = data.data(`id`)
+
+        feature.expand(dataId)
+        if (data.hasClass(`expanded`)) data.removeClass(`expanded`)
+        else data.addClass(`expanded`)
+      })
+
     // swipe clicks
     $(element)
       .find(`.feature-data > .action .target`)
@@ -183,13 +196,19 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
+
         if (target.hasClass(`action-pin`)) {
           feature.pin()
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
+
         if (target.hasClass(`action-roller`)) {
-          feature.roller()
+          const target = $(event.currentTarget)
+          const data = target.closest(`.feature-data`)
+          const dataId = data.data(`id`)
+
+          feature.roller(dataId)
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
@@ -339,25 +358,27 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
     }
   }
 
-  function updateExpanded(value: boolean) {
-    // TODO: assign expanded class state
+  function updateExpanded(dataId: string, value: boolean) {
+    const data = node.find(`.feature-data[data-id="${dataId}"]`)
+
+    if (!data) debugger
+
     if (value) {
-      node.addClass(`expanded`)
-
-      node.find(`> .children > .feature-data:first-of-type .action div.target.action-collapse > i`).removeClass(`mdi-arrow-collapse`).addClass(`mdi-arrow-expand`)
+      data.addClass(`expanded`)
     } else {
-      node.removeClass(`expanded`)
-
-      node.find(`> .children > .feature-data:first-of-type .action div.target.action-collapse > i`).removeClass(`mdi-arrow-expand`).addClass(`mdi-arrow-collapse`)
+      data.removeClass(`expanded`)
     }
   }
 
-  function updateRoller(value: boolean) {
-    // TODO: assign roller class state to FEATURE DATA, not feature
+  function updateRoller(dataId: string, value: boolean) {
+    const data = node.find(`.feature-data[data-id="${dataId}"]`)
+
+    if (!data) debugger
+
     if (value) {
-      node.addClass(`roller`)
+      data.addClass(`roller`)
     } else {
-      node.removeClass(`roller`)
+      data.removeClass(`roller`)
     }
   }
 

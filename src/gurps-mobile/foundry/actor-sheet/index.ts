@@ -16,6 +16,7 @@ import Feature from "../actor/feature"
 import SkillFeature from "../actor/feature/skill"
 import GenericFeature from "../actor/feature/generic"
 import WeaponFeature from "../actor/feature/weapon"
+import { push } from "../../../december/utils/lodash"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -236,14 +237,14 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const do_lastManeuver = datachanges.has(`flags.gurps.mobile.lastManeuver`)
     const do_maneuver = context?.renderContext === `updateActiveEffect`
 
-    const do_hide = datachanges.has(`flags.gurps.mobile.features.hidden`)
     const do_pin = datachanges.has(`flags.gurps.mobile.features.pinned`)
-    const do_expand = datachanges.has(`flags.gurps.mobile.features.expanded`)
+    const do_hidden = datachanges.has(`flags.gurps.mobile.features.hidden`)
+    const do_expanded = datachanges.has(`flags.gurps.mobile.features.expanded`)
     const do_roller = datachanges.has(`flags.gurps.mobile.features.roller`)
 
     const do_moves = datachanges?.has(/system\.move\.\d+$/i)
 
-    const conditionals = { do_lastManeuver, do_maneuver, do_hide, do_pin, do_expand, do_roller, do_moves }
+    const conditionals = { do_lastManeuver, do_maneuver, do_hidden, do_pin, do_expanded, do_roller, do_moves }
     const _conditionals = Object.entries(conditionals)
       .filter(([_, value]) => value)
       .map(([key]) => key.replace(`do_`, ``))
@@ -267,61 +268,92 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       if (do_maneuver) this.htmlManager.Combat.ManeuverTray.updateManeuver(html, this.actor.system.conditions.maneuver)
 
       // #region FEATURE
-      // hide
-      if (do_hide) {
-        const features = datachanges.get(/flags\.gurps\.mobile\.features\.hidden\.[^\.]+/)
 
-        const grouped = { true: [] as [string, string][], false: [] as [string, string][] }
-        for (const key of features) {
-          const change = get(datachanges.changes, key)
-          if (!isBoolean(change)) continue
+      // hide, expanded, roller
+      let lists = [] as string[]
+      const doubles = [`hidden`, `expanded`, `roller`]
+      for (const state of doubles) {
+        const do_state = conditionals[`do_${state}`]
+        if (do_state) {
+          const parentType = { hidden: `list`, expanded: `data`, roller: `data` }[state]
 
-          const [id, listId] = key.split(`.`).slice(-2)
-          grouped[change.toString()].push([id, listId])
-        }
+          const pattern = new RegExp(`flags\\.gurps\\.mobile\\.features\\.${state}\\.[^\\.]+`)
+          const features = datachanges.get(pattern)
 
-        let lists = [] as string[]
-        for (const hidden of [`true`, `false`]) {
-          if (!grouped[hidden] || grouped[hidden].length === 0) continue
+          const grouped = {} as Record<`true` | `false`, [string, string][]>
+          for (const key of features) {
+            const change = get(datachanges.changes, key)
+            if (!isBoolean(change)) continue
 
-          // const [ids, lists] = unzip(grouped[hidden])
-          for (const [id, listId] of grouped[hidden]) {
-            const list = html.find(`.feature-list[data-list="${listId}"]`)
+            // secondaryId is listId for hidden and dataId for expanded/roller
+            const [id, secondaryId] = key.split(`.`).slice(-2)
+            push(grouped, change.toString(), [id, secondaryId])
+          }
 
-            const feature = this.actor.cache.features?.[id]
-            const node = list.find(`.feature[data-id="${id}"]:not(.ignore-hidden)`)
+          for (const value of [`true`, `false`]) {
+            if (!grouped[value] || grouped[value].length === 0) continue
 
-            if (feature) {
-              HTMLFeature(node, feature, this.actor).updateHidden(hidden === `true`)
-              lists.push(listId)
+            for (const [id, secondaryId] of grouped[value]) {
+              /**
+               * HOW IT WORKS
+               *  (hidden)            SECONDARY -> FEATURE
+               *      Feature's parent is determined by secondaryId
+               *  (expanded, roller)  FEATURE   -> SECONDARY
+               *      Feature's child is determined by secondaryId
+               */
+
+              const feature = this.actor.cache.features?.[id]
+
+              let node: JQuery<HTMLElement>
+              if ([`hidden`].includes(state)) {
+                const parent = html.find(`.feature-${parentType}[data-${parentType === `list` ? `list` : `id`}="${secondaryId}"]`)
+
+                node = parent.find(`.feature[data-id="${id}"]:not(.ignore-${state})`)
+              } else if ([`expanded`, `roller`].includes(state)) {
+                const child = html.find(`.feature-${parentType}[data-${parentType === `list` ? `list` : `id`}="${secondaryId}"]`)
+
+                node = child.closest(`.feature[data-id="${id}"]:not(.ignore-${state})`)
+              }
+
+              // Unimplemented
+              if (!node) debugger
+
+              if (feature) {
+                if (state === `hidden`) HTMLFeature(node!, feature, this.actor).updateHidden(value === `true`)
+                else if (state === `expanded`) HTMLFeature(node!, feature, this.actor).updateExpanded(secondaryId, value === `true`)
+                else if (state === `roller`) HTMLFeature(node!, feature, this.actor).updateRoller(secondaryId, value === `true`)
+
+                if (parentType === `list`) lists.push(secondaryId)
+              }
             }
           }
         }
 
-        // update hide/show-all and alikes
         lists = uniq(lists)
-        for (const listId of lists) {
-          const allFeatures = html.find(`.feature-list[data-list="${listId}"] .feature`).length
-          const hiddenFeatures = html.find(`.feature-list[data-list="${listId}"] .feature.hidden`).length
+      }
 
-          //    disable display-hidden and show-all if there is no hidden feature
-          if (hiddenFeatures === 0) {
-            html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden`).addClass(`disabled`)
-            html.find(`.feature-list[data-list="${listId}"] > .header > .button.show-all`).addClass(`disabled`)
-          } else {
-            html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden`).removeClass(`disabled`)
-            html.find(`.feature-list[data-list="${listId}"] > .header > .button.show-all`).removeClass(`disabled`)
-          }
+      // update hide/show-all and alikes
+      for (const listId of lists) {
+        const allFeatures = html.find(`.feature-list[data-list="${listId}"] .feature`).length
+        const hiddenFeatures = html.find(`.feature-list[data-list="${listId}"] .feature.hidden`).length
 
-          // update display-hidden count
-          html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden > .label > span`).html(hiddenFeatures.toString())
+        //    disable display-hidden and show-all if there is no hidden feature
+        if (hiddenFeatures === 0) {
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden`).addClass(`disabled`)
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.show-all`).addClass(`disabled`)
+        } else {
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden`).removeClass(`disabled`)
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.show-all`).removeClass(`disabled`)
+        }
 
-          //    disable hide-all if there is no visible feature
-          if (hiddenFeatures === allFeatures) {
-            html.find(`.feature-list[data-list="${listId}"] > .header > .button.hide-all`).addClass(`disabled`)
-          } else {
-            html.find(`.feature-list[data-list="${listId}"] > .header > .button.hide-all`).removeClass(`disabled`)
-          }
+        // update display-hidden count
+        html.find(`.feature-list[data-list="${listId}"] > .header > .button.display-hidden > .label > span`).html(hiddenFeatures.toString())
+
+        //    disable hide-all if there is no visible feature
+        if (hiddenFeatures === allFeatures) {
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.hide-all`).addClass(`disabled`)
+        } else {
+          html.find(`.feature-list[data-list="${listId}"] > .header > .button.hide-all`).removeClass(`disabled`)
         }
       }
 
@@ -336,34 +368,6 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
           const node = html.find(`.feature[data-id="${id}"]:not(.ignore-pinned)`)
 
           if (feature) HTMLFeature(node, feature, this.actor).updatePinned(pinned as boolean)
-        }
-      }
-
-      // collapse
-      if (do_expand) {
-        const features = datachanges.get(`flags.gurps.mobile.features.expanded`)
-
-        for (const key of features) {
-          const [expanded, id] = datachanges.getState(key)
-
-          const feature = this.actor.cache.features?.[id]
-          const node = html.find(`.feature[data-id="${id}"]:not(.ignore-expanded)`)
-
-          if (feature) HTMLFeature(node, feature, this.actor).updateExpanded(expanded as boolean)
-        }
-      }
-
-      // roller
-      if (do_roller) {
-        const features = datachanges.get(`flags.gurps.mobile.features.roller`)
-
-        for (const key of features) {
-          const [expanded, id] = datachanges.getState(key)
-
-          const feature = this.actor.cache.features?.[id]
-          const node = html.find(`.feature[data-id="${id}"]:not(.ignore-roller)`)
-
-          if (feature) HTMLFeature(node, feature, this.actor).updateRoller(expanded as boolean)
         }
       }
 

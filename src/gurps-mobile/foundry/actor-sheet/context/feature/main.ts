@@ -154,6 +154,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
     variant = {
       ...(variant ?? {}),
       classes,
+      id: `main-variant`,
       //
       icon: {
         classes: [],
@@ -188,7 +189,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       // {key: FeatureData} -> {main, ...secondaries}
       children: {
         ...children,
-        main: [FeatureBaseContextTemplate.data(main, specs as any, manager)],
+        main: [FeatureBaseContextTemplate.data(`main`, main, specs as any, manager)],
       },
     }
     return context

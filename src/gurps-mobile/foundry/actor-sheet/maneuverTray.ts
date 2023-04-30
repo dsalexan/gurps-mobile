@@ -73,7 +73,7 @@ const BASE_TRAY = [
     //
     GROUP(`do_nothing`, undefined, [`do_nothing`]),
     GROUP(`basic`, `Basic`, [`ready`, `concentrate`, `wait`, `move`]),
-    GROUP(`preparation`, `Preparation`, [`allout_defense`, `evaluate`, `aim`]),
+    GROUP(`nonoffensive`, `Non-Offensive`, [`allout_defense`, `evaluate`, `aim`]),
     GROUP(`offensive`, `Offensive`, [`move_and_attack`, `attack`, `feint`, `allout_attack`]),
   ],
   [

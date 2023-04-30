@@ -282,11 +282,11 @@
 
   // #region EXPANDED
 
-  &:not(.expanded) {
+  & {
     & > .children > .feature-data {
-      &:first-of-type {
+      &:not(.expanded) {
         & > .children > .feature-variant {
-          &:first-of-type {
+          & { // &:first-of-type {
             & > .wrapper {
               & > .content {
                 & > .roller,
@@ -295,8 +295,36 @@
                 & > .notes {
                   display: none;
                 }
+                
+                & > .expand {
+                  & > i.icon {
+                  }
+                }
               }
             }
+          }
+        }
+      }
+      
+      &.expanded {
+        & > .children > .feature-variant {
+          & {
+            & > .wrapper {
+              & > .content {                
+                & > .expand {
+                  & > i.icon {
+                    &.collapse {
+                      display: flex;
+                    }
+                                   
+                    &.expand {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+
           }
         }
       }
@@ -383,16 +411,28 @@
 
   // #region ROLLER
 
-  &.roller:not(.hidden) {
-    & > .children > .feature-data {
-      &:first-of-type {
+  &:not(.hidden) {
+    & > .children > .feature-data.roller {
+      & { //}:first-of-type {
         & > .children > .feature-variant {
-          &:first-of-type {
+          & { //:first-of-type {
             & > .wrapper {
               & > .content {
                 & > .rolls {
                   display: flex;
-                  //
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      &:not(.expanded) { //}:first-of-type {
+        & > .children > .feature-variant {
+          & {
+            & > .wrapper {
+              & > .content {
+                & > .rolls {
                   margin-top: var(--s1-5);
                   margin-bottom: 0px;
                   

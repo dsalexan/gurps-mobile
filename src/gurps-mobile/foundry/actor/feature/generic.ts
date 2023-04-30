@@ -194,17 +194,45 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   }
 
   /**
-   * Toogle COLLAPSE flag
+   * Toogle EXAPANDED flag
    */
-  collapse(value?: boolean) {
-    this._toggleFlag(`mobile.features.collapsed`, value)
+  expand<T>(dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
+    // ERROR: It NEEDS a list ID to update hidden
+    // eslint-disable-next-line no-debugger
+    if (isNil(dataId) || isEmpty(dataId) || !isString(dataId)) debugger
+
+    const _dataId = dataId.replaceAll(/\./g, `-`)
+
+    const flag = get(this.actor.flags, `gurps.mobile.features.expanded.${this.id}`) ?? {}
+    const current = flag[_dataId] as T
+
+    let _value = value as T | boolean
+    if (_value === `__TOGGLE__`) _value = !current
+
+    flag[_dataId] = _value
+
+    this._toggleFlag(`mobile.features.expanded`, flag)
   }
 
   /**
    * Toogle ROLLER flag
    */
-  roller(value?: boolean) {
-    this._toggleFlag(`mobile.features.roller`, value)
+  roller<T>(dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
+    // ERROR: It NEEDS a list ID to update hidden
+    // eslint-disable-next-line no-debugger
+    if (isNil(dataId) || isEmpty(dataId) || !isString(dataId)) debugger
+
+    const _dataId = dataId.replaceAll(/\./g, `-`)
+
+    const flag = get(this.actor.flags, `gurps.mobile.features.roller.${this.id}`) ?? {}
+    const current = flag[_dataId] as T
+
+    let _value = value as T | boolean
+    if (_value === `__TOGGLE__`) _value = !current
+
+    flag[_dataId] = _value
+
+    this._toggleFlag(`mobile.features.roller`, flag)
   }
 
   // #endregion

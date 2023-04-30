@@ -98,6 +98,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     for (const levels of levelssByLevel) {
       const variant = deepClone(main)
 
+      variant.id = `skill-variant`
+
       const tags = new TagBuilder(variant.tags)
       // tags.at(0).remove() // remove type tag
 
@@ -105,7 +107,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       if (isNil(variant.label)) {
         const prefix = ``
         // const prefix = `<div class="wrapper-icon"><i class="icon">${Handlebars.helpers[`gurpsIcon`](`skill`)}</i></div>`
-        variant.label = `${prefix}${levels.level.relative?.toString()}`
+        variant.label = { main: `${prefix}${levels.level.relative?.toString()}` }
       }
       // if (feature.usage) {
       //   tags.type(`type`).update(tag => {

@@ -30,6 +30,7 @@ export interface IFeatureContext extends IContext {
 
 export interface IFeatureDataContext {
   classes: string[]
+  id: string
   //
   variants: IFeatureDataVariant[]
   actions: false | { left: IFeatureAction[]; right: IFeatureAction[] }
@@ -37,6 +38,7 @@ export interface IFeatureDataContext {
 
 export interface IFeatureDataVariant {
   classes: string[]
+  id: string
   //
   icon?: {
     classes?: string[]
@@ -52,6 +54,7 @@ export interface IFeatureDataVariant {
   //
   notes?: string[]
   stats?: Displayable[]
+  rolls?: never[]
   tags: ITag[]
 }
 

@@ -1,4 +1,4 @@
-import { flattenDeep, get, isArray, isNil, isNumber, set } from "lodash"
+import { flattenDeep, get, isArray, isNil, isNumber, set, uniq } from "lodash"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
@@ -18,8 +18,8 @@ export interface FeatureBaseContextSpecs extends ContextSpecs {
   //
   hidden: (id: string) => boolean
   pinned: (id: string) => boolean
-  expanded: (id: string) => boolean
-  roller: (id: string) => boolean
+  expanded: (id: string, variantId: string) => boolean
+  roller: (id: string, dataId: string) => boolean
   //
   index?: number
   innerClasses?: string[]
@@ -39,15 +39,24 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
   /**
    * Wrap feature data-variants into a data-context (which by now is mostly building actions)
    */
-  static data(variants: IFeatureDataVariant[], specs: FeatureBaseContextSpecs, manager: ContextManager): IFeatureDataContext {
+  static data(id: string, variants: IFeatureDataVariant[], specs: FeatureBaseContextSpecs, manager: ContextManager): IFeatureDataContext {
     const feature = getSpec(specs, `feature`)
 
-    const classes = getSpec(specs, `innerClasses`) ?? []
+    const _classes = getSpec(specs, `innerClasses`) ?? []
     const _actions = getSpec(specs, `actions`)
 
     const hidden = get(specs, `hidden`)?.(feature.id) ?? false
     const pinned = get(specs, `pinned`)?.(feature.id) ?? false
-    const expanded = get(specs, `expanded`)?.(feature.id) ?? false
+    const expanded = get(specs, `expanded`)?.(feature.id, id) ?? false
+    const roller = get(specs, `roller`)?.(feature.id, id) ?? false
+
+    // COMPOUNDING CLASSES
+    const classes = [
+      ..._classes,
+      //
+      !!expanded && `expanded`,
+      !!roller && `roller`,
+    ] as string[]
 
     let actions = false as any as { left: IFeatureAction[]; right: IFeatureAction[] }
     if (_actions !== false) {
@@ -92,7 +101,9 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
     }
 
     const wrapper: IFeatureDataContext = {
-      classes,
+      classes: uniq(classes),
+      id,
+      //
       variants: isArray(variants) ? variants : [variants],
       actions,
     }
@@ -109,8 +120,6 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
 
     const hidden = get(specs, `hidden`)?.(feature.id) ?? false
     const pinned = get(specs, `pinned`)?.(feature.id) ?? false
-    const expanded = get(specs, `expanded`)?.(feature.id) ?? false
-    const roller = get(specs, `roller`)?.(feature.id) ?? false
 
     // COMPOUNDING CLASSES
     const classes = [
@@ -118,8 +127,6 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
       //
       !!hidden && `hidden`,
       !!pinned && `pinned`,
-      !!expanded && `expanded`,
-      !!roller && `roller`,
     ] as string[]
 
     context = {
@@ -150,10 +157,13 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
     // for each FeatureData[] in children
     for (const key of Object.keys(context.children ?? {})) {
       // remove empty undefined values (ease to read on console) and classes
-      context.children[key].map(data => {
-        data.variants.map(variant => {
+      context.children[key].map((data, dataIndex) => {
+        if (!data.id) debugger //data.id = `${key}-${dataIndex}`
+
+        data.variants.map((variant, variantIndex) => {
           variant.classes = variant.classes.filter(_class => !isNilOrEmpty(_class) && (_class as any) !== false)
 
+          if (!variant.id) debugger //  variant.id = `${key}-${dataIndex}-${variantIndex}`
           if (!variant.label) {
             variant.label = {}
           } else {
@@ -166,7 +176,7 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
           if (!variant.mark) delete variant.mark
           if (!variant.notes) delete variant.notes
           if (!variant.stats) delete variant.stats
-          if (!variant.buttons) delete variant.buttons
+          if (!variant.rolls) delete variant.rolls
         })
       })
 
