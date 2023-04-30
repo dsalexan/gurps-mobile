@@ -36,15 +36,17 @@
 
           <div class="children">
             {{#each variants}}
-              <div class="feature-variant {{join classes}} {{isNilOrEmpty tags '' 'has-tags'}} {{isNilOrEmpty notes '' 'has-notes'}} {{isNilOrEmpty value '' 'has-value'}}" data-id="{{id}}">
+              <div class="feature-variant {{join classes}} {{isNilOrEmpty tags '' 'has-tags'}} {{isNilOrEmpty notes '' 'has-notes'}} {{isNilOrEmpty value '' 'has-value'}} {{isNilOrEmpty stats '' 'has-stats'}} {{isNilOrEmpty icon '' 'has-icon'}} {{isNilOrEmpty rolls '' 'has-rolls'}}" data-id="{{id}}">
                 <div class="mark"><div>{{mark}}</div></div>
                 <div class="chevron prev"><i class="icon mdi mdi-chevron-left"></i></div>
                 <div class="wrapper">
                   <div class="content">
                     <!-- ICON -->
-                    <div class="icon {{join icon.classes}}">
-                      <div class="icon-wrapper">{{gurpsIcon icon.value}}</div>
-                    </div>
+                    {{#if icon}}
+                      <div class="icon {{join icon.classes}}">
+                        <div class="icon-wrapper">{{gurpsIcon icon.value}}</div>
+                      </div>
+                    {{/if}}
                     <!-- LABEL -->
                     <div class="label main {{isNilOrEmpty label.main 'hidden'}} {{join label.classes}}">
                       <div class="main">

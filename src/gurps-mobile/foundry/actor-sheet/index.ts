@@ -611,6 +611,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       children.push(
         contextManager.feature(f, {
           classes: [`full`],
+          variantClasses: [`no-icon`],
           list: listId,
         }),
       )
@@ -626,6 +627,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
         children: Object.values(moves).map((feature: Feature<any>) => {
           return contextManager.feature(feature, {
             classes: [`half`, `set-move-default`],
+            variantClasses: [`no-icon`],
             list: listId,
           })
         }),

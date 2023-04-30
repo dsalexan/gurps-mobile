@@ -31,7 +31,10 @@ export default class MoveFeatureContextTemplate extends BaseContextTemplate {
     let variant = variants[0] ?? {}
 
     const mark = (feature.data.state & FeatureState.HIGHLIGHTED ? `Ruler` : undefined) as string | undefined
-    const classes = [...(variant.classes ?? []), !!mark && `marked`] as string[]
+    const classes = [
+      ...(variant.classes ?? []), //
+      !!mark && `marked`,
+    ] as string[]
 
     // VALUE
     let value: IFeatureValue = { value: feature.data.value }

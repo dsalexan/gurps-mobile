@@ -447,49 +447,49 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       timer_other.group()(`      Other Skills (Contextualization)`, [`font-weight: bold;`]) // COMMENT
     }
 
-    // if (do_spells) {
-    //   const timer_spells = logger.openGroup().info(`    Spells`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSpells`) // COMMENT
-    //   factory
-    //     .GCS(this, datachanges, `spell`, rawGCS.spells, [], `spells`, undefined, {
-    //       context: { templates: SpellFeatureContextTemplate },
-    //     })
-    //     .loadFromGCAOn(`compile:gcs`, true)
-    //     .integrateOn(`loadFromGCA`, this)
+    if (do_spells) {
+      const timer_spells = logger.openGroup().info(`    Spells`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSpells`) // COMMENT
+      factory
+        .GCS(this, datachanges, `spell`, rawGCS.spells, [], `spells`, undefined, {
+          context: { templates: SpellFeatureContextTemplate },
+        })
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, this)
 
-    //   factory.startCompilation()
-    //   timer_spells.group()(`    Spells`, [`font-weight: bold;`]) // COMMENT
-    // }
+      factory.startCompilation()
+      timer_spells.group()(`    Spells`, [`font-weight: bold;`]) // COMMENT
+    }
 
-    // if (do_carried_equipment) {
-    //   // eslint-disable-next-line prettier/prettier
-    //   const timer_carried_equipment = logger.openGroup().info(`    Carried Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareCarriedEquipment`) // COMMENT
-    //   factory
-    //     .GCS(this, datachanges, `equipment`, rawGCS.equipment, [], `equipment`, undefined, {
-    //       context: { templates: EquipmentFeatureContextTemplate },
-    //     })
-    //     .addSource(`manual`, { carried: true }, { delayCompile: true })
-    //     .loadFromGCAOn(`compile:gcs`, true)
-    //     .integrateOn(`loadFromGCA`, this)
+    if (do_carried_equipment) {
+      // eslint-disable-next-line prettier/prettier
+      const timer_carried_equipment = logger.openGroup().info(`    Carried Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareCarriedEquipment`) // COMMENT
+      factory
+        .GCS(this, datachanges, `equipment`, rawGCS.equipment, [], `equipment`, undefined, {
+          context: { templates: EquipmentFeatureContextTemplate },
+        })
+        .addSource(`manual`, { carried: true }, { delayCompile: true })
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, this)
 
-    //   factory.startCompilation()
+      factory.startCompilation()
 
-    //   timer_carried_equipment.group()(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
-    // }
+      timer_carried_equipment.group()(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
+    }
 
-    // if (do_other_equipment) {
-    //   // eslint-disable-next-line prettier/prettier
-    //   const timer_other_equipment = logger.openGroup().info(`    Other Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareOtherEquipment`) // COMMENT
-    //   factory
-    //     .GCS(this, datachanges, `equipment`, rawGCS.other_equipment, [], `other_equipment`, undefined, {
-    //       context: { templates: EquipmentFeatureContextTemplate },
-    //     })
-    //     .addSource(`manual`, { carried: false }, { delayCompile: true })
-    //     .loadFromGCAOn(`compile:gcs`, true)
-    //     .integrateOn(`loadFromGCA`, this)
+    if (do_other_equipment) {
+      // eslint-disable-next-line prettier/prettier
+      const timer_other_equipment = logger.openGroup().info(`    Other Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareOtherEquipment`) // COMMENT
+      factory
+        .GCS(this, datachanges, `equipment`, rawGCS.other_equipment, [], `other_equipment`, undefined, {
+          context: { templates: EquipmentFeatureContextTemplate },
+        })
+        .addSource(`manual`, { carried: false }, { delayCompile: true })
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, this)
 
-    //   factory.startCompilation()
-    //   timer_other_equipment.group()(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
-    // }
+      factory.startCompilation()
+      timer_other_equipment.group()(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
+    }
 
     const n = Object.values(this.cache.features ?? {}).length
     logger.info(``)

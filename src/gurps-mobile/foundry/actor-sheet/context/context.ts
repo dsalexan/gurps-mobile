@@ -22,6 +22,7 @@ export interface IContext {
   _wrapper?: string
   //
   classes: string[]
+  variantClasses?: string[]
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
