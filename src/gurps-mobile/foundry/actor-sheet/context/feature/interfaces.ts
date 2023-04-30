@@ -53,18 +53,20 @@ export interface IFeatureDataVariant {
   mark?: string
   //
   notes?: string[]
-  stats?: Displayable[]
-  rolls?: never[]
+  stats?: (Displayable & { roll: number })[]
+  rolls?: (Displayable & { step: number })[]
   tags: ITag[]
+}
+
+export interface IFeatureActionChild {
+  classes: string[]
+  icon?: string
 }
 
 export interface IFeatureAction {
   classes: string[]
   //
-  children: {
-    classes: string[]
-    icon?: string
-  }[]
+  children: IFeatureActionChild[]
 }
 
 export type IFeatureValue =

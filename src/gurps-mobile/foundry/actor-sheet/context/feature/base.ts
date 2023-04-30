@@ -1,7 +1,7 @@
 import { flattenDeep, get, isArray, isNil, isNumber, set, uniq } from "lodash"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
-import { IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
+import { IFeatureAction, IFeatureActionChild, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import GenericFeature from "../../../actor/feature/generic"
@@ -15,11 +15,6 @@ export interface FeatureBaseContextSpecs extends ContextSpecs {
   label?: string
   ignoreSpecialization?: boolean
   proxyTo?: GenericFeature[]
-  //
-  hidden: (id: string) => boolean
-  pinned: (id: string) => boolean
-  expanded: (id: string, variantId: string) => boolean
-  roller: (id: string, dataId: string) => boolean
   //
   index?: number
   innerClasses?: string[]
@@ -194,6 +189,19 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
           for (let i = 0; i < sideActions.length; i++) {
             const current = sideActions[i]
             const next = sideActions[i + 1]
+
+            // TODO: remove roller if there is no rolls
+            // const children = [] as IFeatureActionChild[]
+            // for (const child of current.children) {
+            //   if (child.classes.includes(`action-roller`)) {
+            //     debugger
+            //   }
+
+            //   children.push(child)
+            // }
+
+            // if (children.length === 0) continue
+            // current.children = children
 
             // if action IS NOT a divider, pass it
             if (!current.classes.includes(`divider`)) actions.push(current)

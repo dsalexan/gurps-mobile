@@ -41,6 +41,7 @@
     background-color: #D1D1D1;
     width: var(--icon-height);
     height: var(--icon-height);
+    margin-bottom: var(--s1);
 
     display: flex;
     flex-direction: row;
@@ -227,6 +228,7 @@
       & > .value {
         font-family: Alatsi;
         font-weight: 500;
+        text-align: center;
       }
 
       & > .label ~ .value {
@@ -264,7 +266,6 @@
     justify-content: flex-end;
     align-items: center;
     //
-    margin-top: var(--s1);
     margin-bottom: var(--s1);
 
     & > .stat {
@@ -280,7 +281,7 @@
         font-size: calc(var(--s1) * 1.8);
         line-height: calc(var(--s1) * 1.5);
         //
-        color: rgb(136, 136, 136, 1);
+        color: rgb(var(--light-main-color), 1);
       }
 
       & > .label {
@@ -307,6 +308,12 @@
 
       & > .hidden {
         display: none;
+      }
+
+      &.disabled {
+        & > .icon, & > .value, & > .label  {
+          color: #777777;
+        }
       }
     }
   }
@@ -343,9 +350,9 @@
       margin-left: var(--s0-5);
       margin-right: var(--s0-5);
     }
-
-    &.has-previous > .previous, &.has-next > .next {
-      color: rgba(var(--main-color), 1);      
+    
+    &:not(.at-first) > .previous, &:not(.at-last) > .next {
+      color: rgba(var(--main-color), 1);
     }
 
     & > .wrapper {
@@ -591,7 +598,7 @@
     }
 
     & > .operator {
-      margin: 0 var(--s0-25);
+      // margin: 0 var(--s0-25);
     }
   }
 }

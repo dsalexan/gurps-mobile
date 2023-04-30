@@ -13,10 +13,6 @@ export interface FeatureMainVariantContextSpecs extends ContextSpecs {
   feature: GenericFeature
   ignoreSpecialization?: boolean
   //
-  hidden: boolean
-  pinned: (id: string) => boolean
-  expanded: (id: string) => boolean
-  //
   index?: number
   tags?: FastTag[]
   variantClasses?: string[]
@@ -158,7 +154,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       //
       icon: {
         classes: [],
-        value: getSpec(specs, `icon`, feature.type.icon) ?? undefined,
+        value: getSpec(specs, `icon`, feature.type.icon) ?? `mdi-help-rhombus`,
       },
       label: {
         classes: labelClasses,

@@ -14,7 +14,7 @@ import { push } from "../../../../december/utils/lodash"
 import GenericFeature from "../../actor/feature/generic"
 import LOGGER from "../../../logger"
 
-export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `expanded`>
+export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `expanded` | `roller`>
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PinnedFeatureContextSpecs extends IgnoreFeatureFallbacks<FeatureBaseContextTemplate> {
   //
@@ -76,16 +76,16 @@ export default class ContextManager {
     return this.feature(feature, specs, QueryResultFeatureContextTemplate)
   }
 
-  wrapper(specs: WrapperContextSpecs) {
-    return this.build([WrapperContextTemplate], specs) as IWrapperContext
+  wrapper(specs: IgnoreFeatureFallbacks<WrapperContextSpecs>) {
+    return this.build([WrapperContextTemplate], specs as WrapperContextSpecs) as IWrapperContext
   }
 
-  list(specs: ListContextSpecs) {
+  list(specs: IgnoreFeatureFallbacks<ListContextSpecs>) {
     // Inject fallback state getters
     specs.expanded = specs.expanded ?? ((id: string) => this.actor.getLocalStorage(`${id.replaceAll(/\./g, `-`)}.expanded`, true) as boolean)
     specs.displayHidden = specs.displayHidden ?? ((id: string) => this.actor.getLocalStorage(`${id.replaceAll(/\./g, `-`)}.displayHidden`, true) as boolean)
 
-    return this.build([ListContextTemplate], specs) as IListContext
+    return this.build([ListContextTemplate], specs as ListContextSpecs) as IListContext
   }
 
   toContext<TFeature extends GenericFeature>(feature: TFeature, specs: IgnoreFeatureFallbacks<FeatureBaseContextSpecs>) {

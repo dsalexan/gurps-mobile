@@ -19,8 +19,8 @@ export interface IHTMLFeature {
   //
   updateHidden(value: boolean): void
   updatePinned(value: boolean): void
-  updateExpanded(value: boolean): void
-  updateRoller(value: boolean): void
+  updateExpanded(dataId: string, value: boolean): void
+  updateRoller(dataId: string, value: boolean): void
   //
   updateMove(): void
 }
@@ -181,6 +181,41 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         feature.expand(dataId)
         if (data.hasClass(`expanded`)) data.removeClass(`expanded`)
         else data.addClass(`expanded`)
+      })
+
+    // roll scroll
+    $(element)
+      .find(`> .children > .feature-data > .children > .feature-variant > .wrapper > .content > .rolls > .wrapper`)
+      .on(`scroll`, event => {
+        const target = $(event.currentTarget)
+        const rolls = target.closest(`.rolls`)
+
+        const distance = event.currentTarget.scrollLeft
+        const width = event.currentTarget.getBoundingClientRect().width
+
+        const child = Math.floor(distance / width)
+        const step = parseInt(rolls.find(`> .wrapper > .roll:nth-of-type(${child + 1})`).data(`step`))
+
+        const current = parseInt(rolls.data(`selected`))
+        if (current !== step) {
+          rolls.data(`selected`, step)
+
+          // update chevrons
+          if (child === 0) rolls.addClass(`at-first`)
+          else rolls.removeClass(`at-first`)
+
+          if (child === rolls.find(`> .wrapper > .roll`).length - 1) rolls.addClass(`at-last`)
+          else rolls.removeClass(`at-last`)
+
+          // update roll elsewhere (value, stats)
+          const variant = target.closest(`.feature-variant`)
+          variant.find(`.roll-selected`).removeClass(`roll-selected`)
+          variant.find(`[data-roll-step="${step}"]`).addClass(`roll-selected`)
+
+          console.log(`gurps-mobile`, `update roll step`, step, variant)
+        }
+
+        console.log(`gurps-mobile`, `scrolling`, `#${step}`, distance, `w:`, width, event)
       })
 
     // swipe clicks

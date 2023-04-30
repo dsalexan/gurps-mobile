@@ -207,16 +207,19 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         classes: [],
         icon: `minimal_parry`,
         value: 10,
+        roll: 1,
       },
       {
         classes: [`disabled`],
         icon: `minimal_block`,
         value: `No`,
+        roll: 2,
       },
       {
         classes: [],
         icon: `damage`,
         value: `2d-4 cut`,
+        roll: 3,
       },
       // {
       //   classes: [],
@@ -228,6 +231,27 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       //   icon: `mdi-help`,
       //   value: `???`,
       // },
+    ]
+
+    variant.rolls = [
+      {
+        classes: [],
+        icon: `minimal_parry`,
+        value: 10,
+        step: 0,
+      },
+      {
+        classes: [],
+        icon: `minimal_parry`,
+        value: 10,
+        step: 1,
+      },
+      {
+        classes: [],
+        icon: `damage`,
+        value: `2d-4 cut`,
+        step: 3,
+      },
     ]
 
     variant.tags = tags.tags

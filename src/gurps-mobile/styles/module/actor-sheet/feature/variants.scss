@@ -421,6 +421,36 @@
                 & > .rolls {
                   display: flex;
                 }
+
+                // VALUE
+                & > .label.value.roll-selected {
+                  color: rgba(var(--lighter-main-color), 1);
+                }
+
+                & > .value.roll-selected {
+                  & > .display {
+                    & > .label {
+                      color: rgba(var(--dark-main-color), 1);
+                    }
+
+                    & > .value {
+                      color: rgba(var(--light-main-color), 1);
+                    }
+                  }
+                }
+
+                // STATS
+                & > .stats {
+                  & > .stat.roll-selected {
+                    & > .icon {
+                      color: rgba(var(--semi-dark-main-color), 1);
+                    }
+                    
+                    & > .label, & > .value {
+                      color: rgba(var(--light-main-color), 1);
+                    }
+                  }
+                }
               }
             }
           }
@@ -441,7 +471,7 @@
                   }
 
                   & > .wrapper {
-                    & > .roll:not(.from-value) {
+                    & > .roll:not([data-step="0"]) {
                       display: none;
                     }
                   }

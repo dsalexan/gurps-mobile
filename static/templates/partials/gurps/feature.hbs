@@ -68,16 +68,16 @@
                     </div>
                     <!-- VALUE -->
                     {{#if value}}
-                      <div class="label value {{isNilOrEmpty value.secondary_label 'hidden'}} {{join value.classes}}">
+                      <div class="label value roll-selected {{isNilOrEmpty value.secondary_label 'hidden'}} {{join value.classes}}" data-roll-step="0">
                         {{{'value.secondary_label'}}}
                       </div>
-                      <div class="value {{isNilOrEmpty value 'hidden'}}">{{> gurps/feature_value value}}</div>
+                      <div class="value roll-selected {{isNilOrEmpty value 'hidden'}}" data-roll-step="0">{{> gurps/feature_value value}}</div>
                     {{/if}}
                     <!-- STATS -->
                     {{#if stats}}
                       <div class="stats {{isNilOrEmpty stats 'hidden'}}">
                         {{#each stats}}
-                          <div class="stat  {{join classes}}">
+                          <div class="stat  {{join classes}}" data-roll-step="{{roll}}">
                             <div class="icon {{isNilOrEmpty this.icon 'hidden'}}">{{gurpsIcon this.icon}}</div>
                             <div class="label {{isNilOrEmpty this.label 'hidden'}}">{{this.label}}</div>
                             <div class="value">{{this.value}}</div>
@@ -86,39 +86,30 @@
                       </div>
                     {{/if}}
                     <!-- ROLLS -->
-                    <div class="rolls">
-                      <div class="background"></div>
-                      <div class="previous"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
-                      <div class="wrapper">
-                        <div class="roll from-value active" data-id="id">
-                          <div class="content-wrapper">
-                            <div class="content">
-                              <div class="primary">Primary</div>
-                              <div class="secondary">Secondary</div>
-                              <div class="tertiary">Tertiary</div>
+                    {{#if rolls}}
+                      <div class="rolls at-first {{isNilOrEmpty stats 'hidden'}}" data-selected="0">
+                        <div class="background"></div>
+                        <div class="previous"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
+                        <div class="wrapper">
+                          {{#each rolls}}
+                            <div class="roll" data-step="{{step}}">
+                              <div class="content-wrapper">
+                                <div class="content">
+                                  <div class="primary">Primary</div>
+                                  <div class="secondary">Secondary</div>
+                                  <div class="tertiary">Tertiary</div>
+                                </div>
+                              </div>
+                              <div class="button">
+                                <div class="value">16</div>
+                                <div class="label">IQ+1</div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="button">
-                            <div class="value">16</div>
-                            <div class="label">IQ+1</div>
-                          </div>
+                          {{/each}}
                         </div>
-                        <div class="roll" data-id="id">
-                          <div class="content-wrapper">
-                            <div class="content">
-                              <div class="primary">Primary</div>
-                              <div class="secondary">Secondary</div>
-                              <div class="tertiary">Tertiary</div>
-                            </div>
-                          </div>
-                          <div class="button">
-                            <div class="value">16</div>
-                            <div class="label">IQ+1</div>
-                          </div>
-                        </div>
+                        <div class="next"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
                       </div>
-                      <div class="next"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
-                    </div>
+                    {{/if}}
                     <!-- NOTES -->
                     <div class="notes {{isNilOrEmpty notes 'hidden'}}">
                       {{#each notes}}<p>{{this}}</p>{{/each}}
