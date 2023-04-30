@@ -154,7 +154,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       //
       icon: {
         classes: [],
-        value: getSpec(specs, `icon`, feature.type.icon) ?? `mdi-help-rhombus`,
+        main: getSpec(specs, `icon`, feature.type.icon) ?? `mdi-help-rhombus`,
       },
       label: {
         classes: labelClasses,

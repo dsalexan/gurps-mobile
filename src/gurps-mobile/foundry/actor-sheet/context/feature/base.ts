@@ -43,7 +43,7 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
     const hidden = get(specs, `hidden`)?.(feature.id) ?? false
     const pinned = get(specs, `pinned`)?.(feature.id) ?? false
     const expanded = get(specs, `expanded`)?.(feature.id, id) ?? false
-    const roller = get(specs, `roller`)?.(feature.id, id) ?? false
+    const roller = get(specs, `roller`)?.(feature.id) ?? false
 
     // COMPOUNDING CLASSES
     const classes = [
@@ -149,11 +149,20 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
     // inject feature reference
     context._feature = feature as any
 
+    let everyMainRoller = context.children[`main`]?.every(data => data.classes.includes(`roller`))
+    let someMainRoller = context.children[`main`]?.some(data => data.classes.includes(`roller`))
+
+    // ERROR: Unimplemented
+    if (everyMainRoller !== someMainRoller) debugger
+
+    let mainRoller = everyMainRoller
+
     // for each FeatureData[] in children
     for (const key of Object.keys(context.children ?? {})) {
       // remove empty undefined values (ease to read on console) and classes
       context.children[key].map((data, dataIndex) => {
         if (!data.id) debugger //data.id = `${key}-${dataIndex}`
+        if (mainRoller) data.classes = uniq([...data.classes, `roller`])
 
         data.variants.map((variant, variantIndex) => {
           variant.classes = variant.classes.filter(_class => !isNilOrEmpty(_class) && (_class as any) !== false)

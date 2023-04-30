@@ -57,12 +57,13 @@ export default class FeatureProxiesDataContextTemplate extends BaseContextTempla
 
     for (const proxy of proxyTo) {
       const _specs = { ...cloneDeep(proxy.__.context.specs ?? {}), ...cloneDeep(proxiesSpecs) } as FeatureBaseContextSpecs
+      _specs.list = specs.list
       push(_specs, `innerClasses`, `swipe-variant`)
 
       const context = manager.feature(proxy, _specs)
 
       const main = context.children.main[0]
-
+      main.id = `proxy-${proxy.id}`
       for (const variant of main.variants) {
         const tags = new TagBuilder(variant.tags)
 
@@ -119,6 +120,11 @@ export default class FeatureProxiesDataContextTemplate extends BaseContextTempla
 
       // main.actions = false
       // main.classes = main.classes.filter(classe => classe !== `has-swipe`)
+
+      const expanded = get(specs, `expanded`)?.(feature.id, main.id) ?? false
+      if (expanded && !main.classes.includes(`expanded`)) main.classes.push(`expanded`)
+      else main.classes = main.classes.filter(classe => classe !== `expanded`)
+
       data.push(main)
     }
 

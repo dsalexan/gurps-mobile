@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { v4 as uuidv4 } from "uuid"
 
 import { easeOutCubic } from "../../../../../december/utils/easings"
@@ -20,7 +21,7 @@ export interface IHTMLFeature {
   updateHidden(value: boolean): void
   updatePinned(value: boolean): void
   updateExpanded(dataId: string, value: boolean): void
-  updateRoller(dataId: string, value: boolean): void
+  updateRoller(value: boolean): void
   //
   updateMove(): void
 }
@@ -100,7 +101,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         event.currentTarget.classList.remove(`do-swipe-left`)
 
         const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
-        feature.hide(listID)
+        feature.hide(actor, listID)
       })
 
     $(element)
@@ -110,7 +111,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         event.currentTarget.classList.remove(`do-swipe-left`)
 
         const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
-        feature.hide(listID)
+        feature.hide(actor, listID)
       })
 
     // gradual action opacity + scroll trigger (for those without snapping)
@@ -178,7 +179,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
         const data = target.closest(`.feature-data`)
         const dataId = data.data(`id`)
 
-        feature.expand(dataId)
+        feature.expand(actor, dataId)
         if (data.hasClass(`expanded`)) data.removeClass(`expanded`)
         else data.addClass(`expanded`)
       })
@@ -227,23 +228,22 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
 
         if (target.hasClass(`action-hide`)) {
           const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
-          feature.hide(listID)
+          feature.hide(actor, listID)
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
 
         if (target.hasClass(`action-pin`)) {
-          feature.pin()
+          feature.pin(actor)
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
 
         if (target.hasClass(`action-roller`)) {
           const target = $(event.currentTarget)
-          const data = target.closest(`.feature-data`)
-          const dataId = data.data(`id`)
+          const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
 
-          feature.roller(dataId)
+          feature.roller(actor, listID)
           target.closest(`.feature`).addClass(`cancel-post-swipe-click`)
           target.closest(`.feature-data`).scrollLeft(0)
         }
@@ -265,7 +265,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
 
     if (node.hasClass(`hidden`)) {
       const listID = $(event.currentTarget).closest(`.feature-list`).data(`list`)
-      feature.hide(listID)
+      feature.hide(actor, listID)
       return
     }
 
@@ -362,7 +362,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
       const clone = node.filter(`:not(.alternative)`).clone()
       clone.data(`context`, uuidv4())
       clone.data(`index`, feature.key.value ?? -1)
-      HTMLFeature(clone, feature).listen()
+      HTMLFeature(clone, feature, actor).listen()
 
       // ignore classes in clone
       clone.removeClass(`pinned`).removeClass(`collapsed`).removeClass(`hidden`)
@@ -396,25 +396,16 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
   function updateExpanded(dataId: string, value: boolean) {
     const data = node.find(`.feature-data[data-id="${dataId}"]`)
 
-    if (!data) debugger
-
-    if (value) {
-      data.addClass(`expanded`)
-    } else {
-      data.removeClass(`expanded`)
-    }
+    if (value) data.addClass(`expanded`)
+    else data.removeClass(`expanded`)
   }
 
-  function updateRoller(dataId: string, value: boolean) {
-    const data = node.find(`.feature-data[data-id="${dataId}"]`)
+  function updateRoller(value: boolean) {
+    const data = node.find(`.feature-data`)
 
-    if (!data) debugger
-
-    if (value) {
-      data.addClass(`roller`)
-    } else {
-      data.removeClass(`roller`)
-    }
+    // assign roller class state to datas
+    if (value) data.addClass(`roller`)
+    else data.removeClass(`roller`)
   }
 
   // #endregion

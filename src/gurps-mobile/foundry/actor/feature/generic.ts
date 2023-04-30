@@ -152,10 +152,12 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   /**
    * Any change made here should not affect the html (this._manager.nodes), it will be done inside _updateHTML or _replaceHTML at actor sheet
    */
-  _toggleFlag<T>(key: string | number, value: ToggableValue<T> = `__TOGGLE__`, { id = null, removeFalse = true }: { id?: string | null; removeFalse?: boolean } = {}) {
-    // TODO: there should be a reference to actor here?
-    const actor = this.actor
-
+  _toggleFlag<T>(
+    actor: GurpsMobileActor,
+    key: string | number,
+    value: ToggableValue<T> = `__TOGGLE__`,
+    { id = null, removeFalse = true }: { id?: string | null; removeFalse?: boolean } = {},
+  ) {
     const _id = id ?? this.id
 
     const _value = value === `__TOGGLE__` ? !actor.getFlag(`gurps`, `${key}.${_id}`) : value
@@ -168,14 +170,14 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
   /**
    * Toogle HIDDEN flag
    */
-  hide<T>(listID: string, value: ToggableValue<T> = `__TOGGLE__`) {
+  hide<T>(actor: GurpsMobileActor, listID: string, value: ToggableValue<T> = `__TOGGLE__`) {
     // ERROR: It NEEDS a list ID to update hidden
     // eslint-disable-next-line no-debugger
     if (isNil(listID) || isEmpty(listID) || !isString(listID)) debugger
 
     const _listID = listID.replaceAll(/\./g, `-`)
 
-    const flag = get(this.actor.flags, `gurps.mobile.features.hidden.${this.id}`) ?? {}
+    const flag = get(actor.flags, `gurps.mobile.features.hidden.${this.id}`) ?? {}
     const current = flag[_listID] as T
 
     let _value = value as T | boolean
@@ -183,27 +185,27 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
 
     flag[_listID] = _value
 
-    this._toggleFlag(`mobile.features.hidden`, flag)
+    this._toggleFlag(actor, `mobile.features.hidden`, flag)
   }
 
   /**
    * Toogle PIN flag
    */
-  pin(value?: boolean) {
-    this._toggleFlag(`mobile.features.pinned`, value)
+  pin(actor: GurpsMobileActor, value?: boolean) {
+    this._toggleFlag(actor, `mobile.features.pinned`, value)
   }
 
   /**
    * Toogle EXAPANDED flag
    */
-  expand<T>(dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
+  expand<T>(actor: GurpsMobileActor, dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
     // ERROR: It NEEDS a list ID to update hidden
     // eslint-disable-next-line no-debugger
     if (isNil(dataId) || isEmpty(dataId) || !isString(dataId)) debugger
 
     const _dataId = dataId.replaceAll(/\./g, `-`)
 
-    const flag = get(this.actor.flags, `gurps.mobile.features.expanded.${this.id}`) ?? {}
+    const flag = get(actor.flags, `gurps.mobile.features.expanded.${this.id}`) ?? {}
     const current = flag[_dataId] as T
 
     let _value = value as T | boolean
@@ -211,28 +213,28 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
 
     flag[_dataId] = _value
 
-    this._toggleFlag(`mobile.features.expanded`, flag)
+    this._toggleFlag(actor, `mobile.features.expanded`, flag)
   }
 
   /**
    * Toogle ROLLER flag
    */
-  roller<T>(dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
+  roller<T>(actor: GurpsMobileActor, listId: string, value: ToggableValue<T> = `__TOGGLE__`) {
     // ERROR: It NEEDS a list ID to update hidden
     // eslint-disable-next-line no-debugger
-    if (isNil(dataId) || isEmpty(dataId) || !isString(dataId)) debugger
+    if (isNil(listId) || isEmpty(listId) || !isString(listId)) debugger
 
-    const _dataId = dataId.replaceAll(/\./g, `-`)
+    const _listId = listId.replaceAll(/\./g, `-`)
 
-    const flag = get(this.actor.flags, `gurps.mobile.features.roller.${this.id}`) ?? {}
-    const current = flag[_dataId] as T
+    const flag = get(actor.flags, `gurps.mobile.features.roller.${this.id}`) ?? {}
+    const current = flag[_listId] as T
 
     let _value = value as T | boolean
     if (_value === `__TOGGLE__`) _value = !current
 
-    flag[_dataId] = _value
+    flag[_listId] = _value
 
-    this._toggleFlag(`mobile.features.roller`, flag)
+    this._toggleFlag(actor, `mobile.features.roller`, flag)
   }
 
   // #endregion

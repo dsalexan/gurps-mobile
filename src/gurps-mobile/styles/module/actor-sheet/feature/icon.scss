@@ -1,0 +1,28 @@
+@use "../../../../../december/utils/styles" as utils;
+
+.feature-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  & > .wrapper {
+    --icon-size: var(--1);
+
+    & > .icon {     
+      &.main {
+        font-size: calc(1 * var(--icon-size));
+      }
+
+      &.secondary {        
+        font-size: calc(0.6 * var(--icon-size));
+        margin-right: calc(-0.2 * var(--icon-size));
+        margin-top: calc(-0.6 * var(--icon-size));
+        text-align: right;
+        color: black;
+      }
+
+      &.hidden {display:none;}
+    }
+  }
+}

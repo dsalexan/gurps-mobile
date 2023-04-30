@@ -43,9 +43,7 @@
                   <div class="content">
                     <!-- ICON -->
                     {{#if icon}}
-                      <div class="icon {{join icon.classes}}">
-                        <div class="icon-wrapper">{{gurpsIcon icon.value}}</div>
-                      </div>
+                      {{> gurps/feature_icon icon}}
                     {{/if}}
                     <!-- LABEL -->
                     <div class="label main {{isNilOrEmpty label.main 'hidden'}} {{join label.classes}}">

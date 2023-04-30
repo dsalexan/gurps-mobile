@@ -36,6 +36,7 @@ export default class GCAManager {
   types: _GCA.Section[]
   skills: {
     index: Record<string, _GCA.IndexedSkill>
+    byId: Record<string, SkillFeature>
     list: _GCA.IndexedSkill[]
     fuse: Fuse<string>
   }
@@ -83,6 +84,7 @@ export default class GCAManager {
    */
   compileAllGCASkills() {
     const index = {} as Record<string, _GCA.IndexedSkill>
+    const byId = {} as Record<string, SkillFeature>
 
     const logger = LOGGER.get(`gca`)
     const timer = logger.openGroup(true).info(`Pre-Compile All GCA Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`compileAllGCASkills`)
@@ -128,6 +130,7 @@ export default class GCAManager {
       }
 
       index[name] = indexedSkill
+      byId[id] = feature as any as SkillFeature
     }
 
     window.FeatureFactory.startCompilation()
@@ -136,6 +139,7 @@ export default class GCAManager {
 
     return {
       index,
+      byId,
       list: Object.values(index),
       fuse: new Fuse(Object.keys(index), { includeScore: true }),
     }

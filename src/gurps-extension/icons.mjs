@@ -18,7 +18,7 @@ const base = {
   reeling: `heart-down`,
   tired: `lightning-bolt-down`,
   //
-  ranged: `mdi-bullseye-arrow`,
+  ranged: `mdi-bow-arrow`,
   melee: `mdi-sword-cross`,
   // basic
   to_hit: `3d6`,

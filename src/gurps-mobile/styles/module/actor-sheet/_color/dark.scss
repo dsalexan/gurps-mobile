@@ -119,8 +119,14 @@
             & > .icon {
               background-color: hsl(0, 0%, 20%);
               
-              & > .icon-wrapper {
+              & > .wrapper {
                 color: #777777;
+                
+                & > .icon {
+                  &.secondary {
+                    color: rgb(var(--main-color), 1);
+                  }
+                }
               }
             }
 
@@ -153,6 +159,10 @@
             & > .rolls {
               & > .background {
                 opacity: 1;
+              }
+
+              & > .previous, & > .next {
+                color: #555555;
               }
 
               & > .wrapper {

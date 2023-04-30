@@ -42,7 +42,8 @@ export interface IFeatureDataVariant {
   //
   icon?: {
     classes?: string[]
-    value?: string
+    main?: string
+    secondary?: string
   }
   label?: {
     classes?: string[]

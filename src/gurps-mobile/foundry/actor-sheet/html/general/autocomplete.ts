@@ -84,6 +84,7 @@ export function createAutoComplete(id: string, source: GCA.IndexedSkill[], conte
 
         const context = contextManager.queryResult(proxy as any, {
           classes: [`full`],
+          list: `${id}`,
           ...specs,
           proxyTo: specs.proxyTo.filter(feature => {
             const trained = skillTrainingTags.includes(`trained`) && feature.data.training === `trained`

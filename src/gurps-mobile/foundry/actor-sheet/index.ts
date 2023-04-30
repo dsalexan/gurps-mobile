@@ -275,7 +275,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       for (const state of doubles) {
         const do_state = conditionals[`do_${state}`]
         if (do_state) {
-          const parentType = { hidden: `list`, expanded: `data`, roller: `data` }[state]
+          const subtype = { hidden: `list`, expanded: `data`, roller: `list` }[state]!
 
           const pattern = new RegExp(`flags\\.gurps\\.mobile\\.features\\.${state}\\.[^\\.]+`)
           const features = datachanges.get(pattern)
@@ -296,34 +296,37 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
             for (const [id, secondaryId] of grouped[value]) {
               /**
                * HOW IT WORKS
-               *  (hidden)            SECONDARY -> FEATURE
+               *  (hidden, roller)            SECONDARY -> FEATURE
                *      Feature's parent is determined by secondaryId
-               *  (expanded, roller)  FEATURE   -> SECONDARY
+               *  (expanded)  FEATURE   -> SECONDARY
                *      Feature's child is determined by secondaryId
                */
 
-              const feature = this.actor.cache.features?.[id]
+              const feature = id.startsWith(`proxy-`) ? GCA.skills.byId?.[id] : this.actor.cache.features?.[id]
 
               let node: JQuery<HTMLElement>
-              if ([`hidden`].includes(state)) {
-                const parent = html.find(`.feature-${parentType}[data-${parentType === `list` ? `list` : `id`}="${secondaryId}"]`)
+              if ([`list`].includes(subtype)) {
+                const parent = html.find(`.feature-${subtype}[data-${subtype === `list` ? `list` : `id`}="${secondaryId}"]`)
 
                 node = parent.find(`.feature[data-id="${id}"]:not(.ignore-${state})`)
               } else if ([`expanded`, `roller`].includes(state)) {
-                const child = html.find(`.feature-${parentType}[data-${parentType === `list` ? `list` : `id`}="${secondaryId}"]`)
+                const child = html.find(`.feature-${subtype}[data-${subtype === `list` ? `list` : `id`}="${secondaryId}"]`)
 
                 node = child.closest(`.feature[data-id="${id}"]:not(.ignore-${state})`)
               }
 
               // Unimplemented
-              if (!node) debugger
+              if (!feature) debugger
+              if (!node || node.length === 0) debugger
 
               if (feature) {
-                if (state === `hidden`) HTMLFeature(node!, feature, this.actor).updateHidden(value === `true`)
-                else if (state === `expanded`) HTMLFeature(node!, feature, this.actor).updateExpanded(secondaryId, value === `true`)
-                else if (state === `roller`) HTMLFeature(node!, feature, this.actor).updateRoller(secondaryId, value === `true`)
+                const htmlFeature = HTMLFeature(node!, feature, this.actor)
 
-                if (parentType === `list`) lists.push(secondaryId)
+                if (state === `hidden`) htmlFeature.updateHidden(value === `true`)
+                else if (state === `roller`) htmlFeature.updateRoller(value === `true`)
+                else if (state === `expanded`) htmlFeature.updateExpanded(secondaryId, value === `true`)
+
+                if (state === `list`) lists.push(secondaryId)
               }
             }
           }

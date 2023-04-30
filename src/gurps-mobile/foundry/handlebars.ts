@@ -14,6 +14,8 @@ export class TemplatePreloader {
     })
 
     Handlebars.registerHelper(`gurpsIcon`, function (value: string) {
+      if (!value) return ``
+
       if (value.includes(`mdi-`)) return new Handlebars.SafeString(`<i class="icon mdi ${value}"></i>`)
 
       const icon = GURPSIcons[value] as string

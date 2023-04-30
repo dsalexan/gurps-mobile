@@ -47,7 +47,7 @@ export default class QueryResultFeatureContextTemplate extends BaseContextTempla
 
     // remove some actions for main featureData
     const main = context.children.main[0]
-    let excludeActions = [`action-roller`, `action-hide`]
+    let excludeActions = [`action-hide`]
 
     if (main?.actions) {
       const sides = [`left`, `right`] as const

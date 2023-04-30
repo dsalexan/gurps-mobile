@@ -33,7 +33,7 @@ export interface ContextSpecs {
   hidden: (id: string) => boolean
   pinned: (id: string) => boolean
   expanded: (id: string, variantId: string) => boolean
-  roller: (id: string, dataId: string) => boolean
+  roller: (id: string) => boolean
   _context?: string
   //
   classes?: string[]

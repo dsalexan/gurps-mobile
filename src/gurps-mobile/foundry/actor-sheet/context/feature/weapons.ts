@@ -54,6 +54,7 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
 
     for (const weapon of feature.data.weapons) {
       const _specs = { ...cloneDeep(weapon.__.context.specs ?? {}), ...cloneDeep(weaponsSpecs) } as WeaponFeatureContextSpecs
+      _specs.list = specs.list
       push(_specs, `innerClasses`, `swipe-variant`)
 
       const context = manager.feature(weapon, _specs)
@@ -64,6 +65,11 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
 
       main.actions = false
       main.classes = main.classes.filter(classe => classe !== `has-swipe`)
+
+      const expanded = get(specs, `expanded`)?.(feature.id, main.id) ?? false
+      if (expanded && !main.classes.includes(`expanded`)) main.classes.push(`expanded`)
+      else main.classes = main.classes.filter(classe => classe !== `expanded`)
+
       data.push(main)
     }
 
