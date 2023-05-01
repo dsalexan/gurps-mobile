@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum } from "lodash"
+import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum, groupBy, intersection, unzip } from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
 import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
@@ -123,7 +123,7 @@ export function stringifyRelativeSkillLevel({ expression, definitions }: Partial
     )
   }
 
-  return `<div class="roll">${formattedExpression}</div>`
+  return `${formattedExpression}`
 }
 
 // #endregion
@@ -209,9 +209,16 @@ export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault):
  * Parses a level definition into level object (level and relative level)
  */
 export function parseLevel(expression: ILevelDefinition, feature: GenericFeature, actor: GurpsMobileActor): ILevel | null {
-  const definitions = Object.entries(expression.targets ?? {}).map(([variable, target]) => parseExpressionTarget(variable, target, feature as GenericFeature, actor))
+  const { entries, targetsByType, types } = setupCheck(expression)
 
-  const scope = Object.fromEntries(definitions.map(definition => [definition.variable, definition.value]))
+  const variables = [] as IVariableDefinition[]
+  for (const [variable, target] of entries) {
+    const definition = parseExpressionTarget(variable, target, feature, actor)
+
+    variables.push(definition)
+  }
+
+  const scope = Object.fromEntries(variables.map(definition => [definition.variable, definition.value]))
   let level: number
 
   const viable = Object.values(scope).every(value => !isNil(value))
@@ -222,7 +229,7 @@ export function parseLevel(expression: ILevelDefinition, feature: GenericFeature
       level,
       relative: {
         expression: expression.expression,
-        definitions: Object.fromEntries(definitions.map(definition => [definition.variable, definition])),
+        definitions: Object.fromEntries(variables.map(definition => [definition.variable, definition])),
         toString(options) {
           return stringifyRelativeSkillLevel(this, options)
         },
@@ -310,6 +317,7 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
       const trainedSkill = trainedSkills[0]
       const level = trainedSkill.data.level === undefined ? trainedSkill.data.attributeBasedLevel : trainedSkill.data.level
       value = level?.level
+      content = trainedSkill.specializedName
 
       // ERROR: Unimplemented
       if (isNil(value)) debugger
@@ -424,106 +432,71 @@ export function orderLevels(levelDefinitions: ILevelDefinition[], feature: Gener
   return levels
 }
 
-export function calcLevel(attribute: GURPS4th.AttributesAndCharacteristics) {
-  const actor = this._actor
-  // ERROR: Unimplemented, cannot calculate skill level without actor
-  if (!actor) debugger
+// #region TARGETS
 
-  const baseAttribute = attribute ?? this.attribute
+export function setupCheck(definition: ILevelDefinition) {
+  const entries = Object.entries(definition.targets ?? {})
+  const [variables, targets] = unzip(entries) as [string[], GCA.ExpressionTarget[]]
+  const targetsByType = groupBy(targets, `type`)
+  const types = Object.keys(targetsByType)
 
-  if (this.training === `trained`) {
-    // ERROR: Unimplemented
-    if (this.defaults === undefined) debugger
+  // ERROR: Untested viability of targetless definitions (if they really exist)  // COMMENT
+  if (!definition.targets) debugger // COMMENT
 
-    // ERROR: Unimplemented wildcard
-    if (this.name[this.name.length - 1] === `!`) debugger
+  // ERROR: Untested, other types then skill/atribute // COMMENT
+  if (!types.includes(`skill`) && !types.includes(`attribute`)) debugger // COMMENT
 
-    const sourcedLevel = [] as { level: number; source: { type: string; name: string }; raw: string | ILevelDefinition }[]
+  // ERROR: Untested, multiple attributes in definition // COMMENT
+  if (types.length === 1 && types[0] === `attribute` && targetsByType[`attribute`].length > 1) debugger // COMMENT
 
-    // CALCULATE SKILL MODIFIER FROM DIFFICULTY
-    const difficultyDecrease = { E: 0, A: 1, H: 2, VH: 3 }[this.difficulty] ?? 0
-
-    // Skill Cost Table, B 170
-    //    negative points is possible?
-    let boughtIncrease_curve = { 4: 2, 3: 1, 2: 1, 1: 0 }[this.points] ?? (this.points > 4 ? 2 : 0) // 4 -> +2, 2 -> +1, 1 -> +0
-    let boughtIncrease_linear = Math.floor((this.points - 4) / 4) // 8 -> +3, 12 -> +4, 16 -> +5, 20 -> +6, ..., +4 -> +1
-    const boughtIncrease = boughtIncrease_curve + boughtIncrease_linear
-
-    const skillModifier = boughtIncrease - difficultyDecrease
-
-    // CALCULATE SKILL BONUS FROM ACTOR
-    const actorComponents = actor.getComponents(`skill_bonus`, component => compareComponent(component, this))
-    const actorBonus = sum(
-      actorComponents.map(component => {
-        let modifier = 1
-        if (component.per_level) modifier = component.feature.level
-
-        const value = component.amount * modifier
-
-        // ERROR: Unimplemented
-        if (isNaN(value)) debugger
-
-        return value
-      }),
-    )
-
-    // CALCULATE LEVEL BASED ON ATTRIBUTE
-    let baseLevel = (actor.system.attributes[baseAttribute.toUpperCase()] ?? actor.system[baseAttribute]).value
-    baseLevel = Math.min(20, baseLevel) // The Rule of 20, B 173
-
-    sourcedLevel.push({
-      level: baseLevel,
-      source: {
-        type: `attribute`,
-        name: baseAttribute,
-      },
-      raw: baseAttribute,
-    })
-
-    // CALCULATE LEVEL BASED ON DEFAULTS
-    const skillCache = actor.cache._skill?.trained
-    const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
-    const trainedSkillsGCA = trainedSkills.map(skill => skill.sources.gca?._index).filter(index => !isNil(index)) as number[]
-
-    for (const _default of this.defaults) {
-      const targets = Object.values(_default.targets ?? {})
-      // skill targets compatible (clear for defaulting, usually are trained skills)
-      const compatibleTargets = targets.filter(target => {
-        if (target.type !== `skill`) return true
-
-        // check if all skills are trained
-        const skills = target.value as number[]
-        if (!skills || skills?.length === 0) return false
-
-        return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
-      })
-
-      // if are targets are compatible (type any OR type skill and trained)
-      if (compatibleTargets.length === targets.length) {
-        const defaultLevel = _default.parse(this, actor)
-
-        // ERROR: Unimplemented
-        if (!defaultLevel) debugger
-        if (targets.length !== 1) debugger
-
-        sourcedLevel.push({
-          level: defaultLevel?.level as number,
-          source: {
-            type: targets[0].type,
-            name: targets[0].fullName,
-          },
-          raw: _default,
-        })
-      }
-    }
-
-    const orderedLevels = orderBy(sourcedLevel, level => level.level, `desc`)
-    if (orderedLevels.length === 0) return null
-
-    const highest = orderedLevels[0]
-    const flags = highest.source.type === `attribute` && highest.source.name !== this.attribute ? [`other-based`] : []
-    const level = buildLevel(highest.level, skillModifier + actorBonus, { [highest.source.type]: highest.source.name, flags })
-    debugger
-    return level
-  }
+  return { entries, targets, variables, targetsByType, types }
 }
+
+export function trainedSkillTargets(definition: ILevelDefinition, trainedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
+  let setup = cachedSetup
+  if (!setup) setup = setupCheck(definition)
+  const { targetsByType, types } = setup
+
+  const skillTargets = targetsByType[`skill`] ?? []
+
+  const trainedSkillTargets = skillTargets.filter(target => intersection((target.value as number[]) ?? [], trainedSkillList).length >= 1)
+
+  return trainedSkillTargets
+}
+
+export function nonSkillOrTrainedSkillTargets(definition: ILevelDefinition, trainedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
+  let setup = cachedSetup
+  if (!setup) setup = setupCheck(definition)
+  const { targets: targetList, targetsByType, types } = setup
+
+  const targets = [] as GCA.ExpressionTarget[]
+
+  // non-skills
+  targets.push(...targetList.filter(target => target.type !== `skill`))
+
+  // trained skills
+  targets.push(...trainedSkillTargets(definition, trainedSkillList, setup))
+
+  return targets
+}
+
+export function getFeaturesFromTarget(actor: GurpsMobileActor, target: GCA.ExpressionTarget) {
+  if (target.type === `skill`) {
+    const GCAIndexes = (target.value as number[]) ?? []
+    const features = GCAIndexes.map(index => actor.cache.gca?.skill?.[index]).filter(skill => !isNil(skill))
+
+    return features
+  } else if (target.type === `attribute`) {
+    debugger
+  } else if (target.type === `me`) {
+    debugger
+  } else if (target.type === `unknown`) {
+    debugger
+  }
+
+  // ERROR: Unimplemented
+  debugger
+  return []
+}
+
+// #endregion

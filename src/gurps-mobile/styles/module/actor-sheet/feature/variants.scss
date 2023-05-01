@@ -76,6 +76,15 @@
           }
         }
       }
+      
+      // TAGS 
+      &:not(.has-stats):not(.has-notes) {
+        & > .wrapper > .content {
+          & > .tags {
+            margin-top: var(--s0-5);
+          }
+        }
+      }
 
       // #endregion
 
@@ -488,7 +497,7 @@
                 // STATS
                 & > .stats {
                   margin-bottom: 0px;
-                  
+
                   & > .stat.roll-selected {
                     & > .icon {
                       color: rgba(var(--dark-main-color), 1);
@@ -498,6 +507,15 @@
                       color: rgba(var(--semi-dark-main-color), 1);
                     }
                   }
+                }
+              }
+            }
+            
+            // TAGS 
+            &:not(.has-stats):not(.has-notes) {
+              & > .wrapper > .content {
+                & > .tags {
+                  margin-top: calc(var(--s0-5) * -1);
                 }
               }
             }

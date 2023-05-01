@@ -1,4 +1,5 @@
-import { cloneDeep, flatten, get, has, isArray, isEmpty, isNil, isString, orderBy, set, uniq, upperFirst } from "lodash"
+/* eslint-disable no-debugger */
+import { cloneDeep, flatten, get, groupBy, has, intersection, isArray, isEmpty, isNil, isString, orderBy, set, uniq, upperFirst } from "lodash"
 import Feature, { FeatureTemplate } from "."
 import { ToggableValue } from "../../../core/feature/base"
 import LOGGER from "../../../logger"
@@ -16,7 +17,7 @@ import { derivation, passthrough, proxy } from "./pipelines"
 import { MERGE } from "../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
-import { ILevel, ILevelDefinition, buildLevel, parseLevel } from "../../../../gurps-extension/utils/level"
+import { ILevel, ILevelDefinition, buildLevel, getFeaturesFromTarget, parseLevel, trainedSkillTargets, viabilityCheck } from "../../../../gurps-extension/utils/level"
 import { IComponentDefinition, compareComponent } from "../../../../gurps-extension/utils/component"
 import { IFeatureContext } from "../../actor-sheet/context/feature/interfaces"
 import BaseContextTemplate from "../../actor-sheet/context/context"
@@ -59,11 +60,9 @@ export default class SkillFeature extends GenericFeature {
 
     // index by name and specializedName for quick reference
     if (!this.data.container) {
-      if (this.data.training !== `unknown`) {
-        // if (this.sources.gca?._index === 7116) debugger
-        actor.setCache(`_${this.type.value}.${this.data.training}.${this.specializedName}.${this.id}`, this)
-        actor.setCache(`_${this.type.value}.${this.data.training}.${this.data.name}.${this.id}`, this)
-      }
+      // if (this.sources.gca?._index === 7116) debugger{
+      if (this.data.training === undefined || this.data.training.toString() === `undefined`) debugger
+      actor.setCache(`_skill.${this.data.training}.${this.id}`, this)
 
       if (this.sources.gca) {
         if (actor.cache.gca?.skill === undefined) actor.setCache(`gca.skill`, {})
@@ -80,9 +79,11 @@ export default class SkillFeature extends GenericFeature {
   static untrained(actor: GurpsMobileActor, factory: FeatureFactory, template: FeatureTemplate) {
     if (!factory) throw new Error(`Missing factory on untrained call`)
 
-    const trainedSkillIndex = actor.cache._skill?.trained ?? {}
-    const trainedSkills = flatten(Object.values(trainedSkillIndex).map(skillsById => Object.values(skillsById)))
+    const trainedSkills = Object.values(actor.cache._skill?.trained ?? {}).filter(skill => skill.data.training === `trained`)
     const trainedSkillsGCAIndex = trainedSkills.map(feature => feature.sources.gca?._index).filter(index => !isNil(index))
+
+    // ERROR: Cannot be
+    if (trainedSkillsGCAIndex.length === 0) debugger
 
     // extract a list of all untrained skills with viable SKILL defaults
     const untrainedSkills = {} as Record<
@@ -99,10 +100,7 @@ export default class SkillFeature extends GenericFeature {
     >
     for (const skillFeature of trainedSkills) {
       const gcaIndex = skillFeature.sources.gca?._index as number
-
-      // ERROR: Unimplemented
-      // eslint-disable-next-line no-debugger
-      if (gcaIndex === undefined) debugger
+      if (gcaIndex === undefined) continue
 
       const defaultOf = GCA.index.bySection.SKILLS.byDefault[gcaIndex]
       if (defaultOf === undefined) continue // no skill default to feature
@@ -141,6 +139,7 @@ export default class SkillFeature extends GenericFeature {
     // extract a list of all untrained skills with viable ATTRIBUTE defaults (that arent already in untrainedSkills)
     const attributes = [`ST`, `DX`, `IQ`, `HT`, `Will`, `Per`, `Dodge`]
     for (const attribute of attributes) {
+      // get all default definitions for
       let defaults = GCA.index.bySection.SKILLS.byDefaultAttribute[attribute] ?? GCA.index.bySection.SKILLS.byDefaultAttribute[upperFirst(attribute)]
       // defaults = defaults.filter(d => GCA.index.bySection.SKILLS.byName[`Shield`].includes(d.skill))
 
@@ -227,14 +226,16 @@ export default class SkillFeature extends GenericFeature {
   }
 
   static all(actor: GurpsMobileActor, factory: FeatureFactory, template: FeatureTemplate) {
-    // TODO: implement byDefaultAttribute with this shit
-
     // pre-process indexes for trained/untrained skills
     const trainedSkills = Object.fromEntries(
-      flatten(Object.values(actor.cache._skill?.trained ?? {}).map(features => Object.values(features).map(feature => [feature.sources.gca._index, feature]))),
+      Object.values(actor.cache._skill?.trained ?? {})
+        .filter(feature => !isNil(feature.sources.gca))
+        .map(feature => [feature.sources.gca?._index, feature]),
     )
     const untrainedSkills = Object.fromEntries(
-      flatten(Object.values(actor.cache._skill?.untrained ?? {}).map(features => Object.values(features).map(feature => [feature.sources.gca._index, feature]))),
+      Object.values(actor.cache._skill?.untrained ?? {})
+        .filter(feature => !isNil(feature.sources.gca))
+        .map(feature => [feature.sources.gca?._index, feature]),
     )
 
     const skills = {} as Record<string, { base?: GCA.IndexedSkill; trained?: SkillFeature[]; untrained?: SkillFeature[] }>
@@ -469,76 +470,53 @@ export default class SkillFeature extends GenericFeature {
       if (name[name.length - 1] === `!`) debugger
 
       // GET ALL TRAINED SKILLS
-      // TODO: Can only calculate after trained skills are cached
-      const skillCache = actor.cache._skill?.trained
-      const trainedSkills = flatten(Object.values(skillCache ?? {}).map(idMap => Object.values(idMap)))
-      const trainedSkillsGCA = trainedSkills.map(skill => skill.sources.gca?._index).filter(index => !isNil(index)) as number[]
+      const allTrainedSkills = Object.values(actor.cache._skill?.trained ?? {}).filter(skill => skill.data.training === `trained`)
+      //    make sure to not list self as trained skill
+      const trainedSkillsGCA = allTrainedSkills.map(feature => feature.sources.gca?._index).filter(index => !isNil(index) && index !== this.sources.gca?._index)
 
       // ERROR: Cannot be
-      if (skillCache === undefined) debugger
+      if (trainedSkillsGCA.length === 0) debugger
 
       // CALCULATE ATTRIBUTE-BASED LEVEL OF DEFAULTS
       const defaultsAttributeBasedLevels = [] as { level: ILevel; definition: ILevelDefinition }[]
       for (const _default of defaults ?? []) {
-        const targets = _default.targets ? Object.values(_default.targets) : []
-        const attributes = targets.filter(target => target.type === `attribute`)
-        const nonAttributes = targets.filter(target => target.type !== `attribute`)
+        if (!_default.targets) continue
 
-        let level: ILevel | null = null
-        if (nonAttributes.length === 0) {
-          // WARN: Untested
-          if (attributes.length > 1) debugger
+        // if (training === `untrained` && name === `Smith`) debugger
 
-          // ignore attribute-only-based defaults
-          continue
-        } else {
-          const skills = targets.filter(target => target.type === `skill`)
-          const trainedSkills = skills.filter(target => {
-            // check if all skills are trained
-            //    get skill entries
-            const skills = target.value as number[]
-            if (!skills || skills?.length === 0) return false
+        // viability check
+        // ignore if definition doenst have any trained skill targets
+        const targets = trainedSkillTargets(_default, trainedSkillsGCA)
+        if (targets.length === 0) continue
 
-            //    check if there is some entry with a trained feature AND that entry is not self
-            return skills.some(skill => skill !== this.sources.gca?._index && trainedSkillsGCA.includes(skill))
-          })
+        // ERROR: Untested, multiple trained skill targets in definition // COMMENT
+        //        Since bellow i'm assuming there is only only trained-skill-based target to get its skill feature // COMMENT
+        if (targets.length > 1) debugger // COMMENT
 
-          // If not all skill targets are trained skills, then ignore level for this default
-          if (trainedSkills.length === skills.length) {
-            // WARN: Untested
-            if (trainedSkills.length > 1) debugger
-            const skill = trainedSkills[0]
-            const features = ((skill.value as number[])?.map(index => actor.cache.gca.skill[index]) ?? []).filter(feature => !isNil(feature))
-            const trainedFeatures = features.filter(feature => feature.data.training === `trained`)
+        const features = getFeaturesFromTarget(actor, targets[0]).filter(feature => feature.data.training === `trained`)
 
-            // ERROR: Unimplemented
-            if (trainedFeatures.length !== 1) debugger
+        // ERROR: Unimplemented // COMMENT
+        if (features.length !== 1) debugger // COMMENT
 
-            const feature = trainedFeatures[0]
+        // check if there is a both way default (current skill defaults to default skill and default skill defaults to current skill)
+        const skillsThatDefaultToThis = GCA.index.bySection[`SKILLS`].byDefault[this.sources.gca._index] ?? []
+        const featureDefaultsToThis = skillsThatDefaultToThis.some(defaultDefinition => defaultDefinition.skill === features[0].sources.gca._index)
+        //    no need to check the other way since we already now that this DO defaults to feature (we get feature from this.defaults after all)
 
-            // check if there is a both way default
-            const defaultsToThis = GCA.index.bySection[`SKILLS`].byDefault[this.sources.gca._index]
-            const featureDefaultsToThis = defaultsToThis?.some(default_ => default_.skill === feature.sources.gca._index)
-
-            // if there is a both way default, ignore this default if its proficiencyModifier is smaller than self.proficiencyModifier
-            if (featureDefaultsToThis) {
-              if (proficiencyModifier >= feature.data.proficiencyModifier) continue
-            }
-
-            // if (_default._raw === `"SK:Smith (Iron)" - me::default2`) debugger
-            const defaultLevel = _default.parse(this, actor)
-
-            // WARN: Untested
-            if (defaultLevel === null) debugger
-
-            level = defaultLevel
-          } else if (trainedSkills.length > 0) {
-            // WARN: Untested when some targets are trained skills
-            debugger
-          }
+        //    if there is a both way default, ignore current default definition ONLY if this.proficiencyModifier is greather than feature.proficiencyModifier
+        //        if this has a better modifier to begin with then basing it on feature is pointless, the final level would be worse
+        //        having a bigger proficiency modifier means the character spent more points in this skill
+        if (featureDefaultsToThis) {
+          if (proficiencyModifier >= features[0].data.proficiencyModifier) continue
         }
 
-        if (!isNil(level)) defaultsAttributeBasedLevels.push({ level, definition: _default })
+        // default is good to go, calculate level and ship it
+        const level = _default.parse(this, actor)
+
+        // ERROR: Untested // COMMENT
+        if (level === null) debugger // COMMENT
+
+        if (level) defaultsAttributeBasedLevels.push({ level, definition: _default })
       }
 
       // if (this.id === `gca-528`) debugger
@@ -547,7 +525,7 @@ export default class SkillFeature extends GenericFeature {
 
       if (orderedLevels.length === 0) return attributeBasedLevel
       if (attributeBasedLevel?.level > orderedLevels[0].level.level) return attributeBasedLevel
-      if (training != `trained`) return orderedLevels[0].level
+      if (training !== `trained`) return orderedLevels[0].level
 
       // IF A DEFAULT HAS AN ABL BIGGER THEN SELF ABL, THEN USE ITS ABL AS BASE LEVEL (making it a DEFAULT-BASED LEVEL)
       const baseLevel = orderedLevels[0].level.level

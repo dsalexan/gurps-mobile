@@ -1,0 +1,111 @@
+
+.feature-roll {
+  white-space: nowrap;
+  //
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > .value {
+    --font-size: 27px;
+    //
+    color: #303030;
+    font-family: Alatsi;
+    font-weight: 500;
+    font-size: calc(var(--font-size) * 1);
+    line-height: calc(var(--font-size) * 0.8);
+    //
+    text-align: center;
+  }
+
+  & > .label {
+    --font-size: 12px;
+    //
+    padding: 0;
+    color: #585858;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: calc(var(--font-size) * 1);
+    line-height: calc(var(--font-size) * 0.8);
+    //
+    text-align: center;
+    
+    & > i {
+      font-style: italic;
+      white-space: pre-wrap;
+      font-weight: 300;
+      font-size: calc(var(--font-size) * 1);
+      line-height: calc(var(--font-size) * 0.8);
+    }
+
+    & > .variable:not([data-type="me"]) {
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    & > .operator {
+      margin: 0 var(--s0-25);
+    }
+  }
+  
+  & > .asterisk {
+    --font-size: 27px;
+    //
+    font-family: Alatsi;
+    font-weight: 400;
+    color: #585858;
+    font-style: normal;
+  }
+  
+  & > .label ~ .value {
+    margin-top: 2px;
+  }
+
+  & > .value ~ .label {
+    margin-top: var(--s0-5);
+  }
+
+  & > .hidden { display: none; }
+}
+
+// VARIANT WRAPPERS
+.roll-wrapper {
+  // compact
+  &.compact {
+    & > .feature-roll {
+      & > .label {
+        display: inline-flex;
+
+        & > .variable:not([data-type="me"]) {
+          font-weight: 400;
+        }
+
+        & > .operator {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+
+  &.interactible {
+    & > .feature-roll {
+      border-radius: 3px;
+      padding: calc(1.5 * var(--s1));
+      margin-left: var(--s1-5);
+      //
+      border: 1px solid rgb(255, 0, 0, 1);
+      background-color: rgb(255, 183, 183);
+
+      & > .label {
+        & > .variable:not([data-type="me"]) {
+          font-weight: 400;
+        }
+
+        & > .operator {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+}

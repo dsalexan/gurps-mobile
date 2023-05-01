@@ -76,6 +76,7 @@ export default class SkillFeature extends GenericFeature implements ISkillFeatur
   static untrained(actor: GurpsMobileActor, template: FeatureTemplate<SkillManualSource>) {
     if (!template.factory) throw new Error(`Missing factory on untrained call`)
 
+    debugger
     const trainedSkillIndex = actor.cache._skill?.trained ?? {}
     const trainedSkills = flatten(Object.values(trainedSkillIndex).map(skillsById => Object.values(skillsById)))
     const trainedSkillsGCAIndex = trainedSkills.map(feature => feature.sources.gca?._index).filter(index => !isNil(index))

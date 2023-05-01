@@ -68,10 +68,10 @@
                     </div>
                     <!-- VALUE -->
                     {{#if value}}
-                      <div class="label value roll-selected {{isNilOrEmpty value.secondary_label 'hidden'}} {{join value.classes}}" data-roll-step="0">
+                      <div class="label value roll-selected roll-wrapper compact {{isNilOrEmpty value.secondary_label 'hidden'}} {{join value.classes}}" data-roll-step="0">
                         {{{'value.secondary_label'}}}
                       </div>
-                      <div class="value roll-selected {{isNilOrEmpty value 'hidden'}}" data-roll-step="0">{{> gurps/feature_value value}}</div>
+                      <div class="value roll-selected roll-wrapper compact {{isNilOrEmpty value 'hidden'}}" data-roll-step="0">{{> gurps/feature_roll value}}</div>
                     {{/if}}
                     <!-- STATS -->
                     {{#if stats}}
@@ -92,7 +92,7 @@
                         <div class="previous"><div class="icon"><i class="mdi mdi-circle-medium"></i></div></div>
                         <div class="wrapper">
                           {{#each rolls}}
-                            <div class="roll {{join classes}}" data-step="{{step}}">
+                            <div class="roll {{join classes}} roll-wrapper interactible" data-step="{{step}}">
                               <div class="content-wrapper">
                                 {{#each content}}
                                   <div class="content">
@@ -102,10 +102,7 @@
                                   </div>
                                 {{/each}}
                               </div>
-                              <div class="button">
-                                <div class="value">{{{value}}}</div>
-                                <div class="label">{{{label}}}</div>
-                              </div>
+                              {{> gurps/feature_roll this}}
                             </div>
                           {{/each}}
                         </div>

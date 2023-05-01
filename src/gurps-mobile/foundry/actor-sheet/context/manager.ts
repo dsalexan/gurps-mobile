@@ -55,6 +55,7 @@ export default class ContextManager {
     const specs = (_specs || {}) as TSpecs
 
     specs.feature = feature
+    specs.actor = specs.actor ?? feature.actor
 
     // Inject fallback state getters
     if (specs.list !== undefined)

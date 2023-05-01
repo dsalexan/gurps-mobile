@@ -139,7 +139,7 @@
             }
 
             & > .value {
-              & > .display {
+              & > .feature-roll {
                 & > .value {
                   color: rgb(var(--lighter-main-color), 1);
                 }
@@ -180,7 +180,7 @@
                 }
 
                 & > .roll {
-                  & > .button {
+                  &.interactible > .feature-roll {
                     background-color: rgb(var(--darker-main-color), 1);
                     border-color: rgb(var(--dark-main-color), 1);
 

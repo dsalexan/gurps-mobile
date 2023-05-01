@@ -83,6 +83,7 @@ export function createAutoComplete(id: string, source: GCA.IndexedSkill[], conte
         const skillTrainingTags = window[`modal-filter_search-skills`] ?? []
 
         const context = contextManager.queryResult(proxy as any, {
+          actor,
           classes: [`full`],
           list: `${id}`,
           ...specs,

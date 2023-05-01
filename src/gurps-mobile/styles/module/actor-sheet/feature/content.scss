@@ -184,57 +184,24 @@
   & > .value {
     grid-area: value;
     //
-    font-family: Alatsi;
-    font-weight: 400;
-    font-size: 27px;
-    line-height: 21px;
-    //
     // margin-left: var(--s1-5);
     padding-bottom: 1px;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     //
-    color: rgb(var(--value-color), 0.95);
-    // border: 0 solid rgb(var(--border-color), 1);
 
-    & > .asterisk {
-      color: rgb(var(--label-color), 0.75);
-      font-style: normal;
-    }
-
-    & > .display {
+    & > .feature-roll {
       & > .label {
-        padding: 0;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 8px;
-        font-family: Roboto;
         color: rgb(var(--darker-main-color), 1);
-        text-transform: uppercase;
-        text-align: center;
-
-        & > i {
-          font-style: italic;
-          white-space: pre-wrap;
-          font-size: calc(var(--s1) * 1.25);
-          line-height: calc(var(--s1) * 1);
-          font-weight: 300;
-        }
       }
 
       & > .value {
-        font-family: Alatsi;
-        font-weight: 500;
-        text-align: center;
+        color: rgb(var(--value-color), 0.95);
       }
 
-      & > .label ~ .value {
-        margin-top: 2px;
-      }
-
-      & > .value ~ .label {
-        margin-top: var(--s0-5);
+      & > .asterisk { 
+        color: rgb(var(--label-color), 0.75); 
       }
     }
   }
@@ -368,6 +335,7 @@
       & > .roll {
         flex-grow: 1;
         display: flex;
+        flex-direction: row;
         justify-content: flex-end;
         //
         min-width: 100%;
@@ -397,47 +365,16 @@
           }
         }
 
-        & > .button {
-          border-radius: 3px;
-          padding: calc(2 * var(--s1));
-          margin-left: var(--s1-5);
-          //
-          border: 1px solid rgb(var(--border-color), 1);
+        &.interactible > .feature-roll {
           background-color: rgb(var(--lighter-main-color), 1);
           border-color: rgb(var(--main-color), 1);
 
           & > .value {
-            font-family: Alatsi;
-            font-weight: 500;
-            font-size: 27px;
-            line-height: 21px;
-            //
             color: rgb(var(--darker-main-color), 0.95);
-            text-align: center;
           }
 
           & > .label {
-            padding: 0;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 8px;
-            font-family: Roboto;
-            text-transform: uppercase;
-            //
             color: rgb(var(--dark-main-color), 1);
-            text-align: center;
-    
-            & > i {
-              font-style: italic;
-              white-space: pre-wrap;
-              font-size: calc(var(--s1) * 1.25);
-              line-height: calc(var(--s1) * 1);
-              font-weight: 300;
-            }
-          }
-
-          & > .value ~ .label {
-            margin-top: var(--s0-5);
           }
         }
       }
@@ -593,22 +530,5 @@
 
   & > *.hidden {
     display: none;
-  }
-
-  & .roll {
-    white-space: nowrap;
-    //
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    & > .variable:not([data-type="me"]) {
-      font-style: normal;
-      // font-weight: bold;
-    }
-
-    & > .operator {
-      // margin: 0 var(--s0-25);
-    }
   }
 }

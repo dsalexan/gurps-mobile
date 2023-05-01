@@ -6,7 +6,7 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { isNilOrEmpty, push } from "../../../../../../december/utils/lodash"
-import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
+import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition, nonSkillOrTrainedSkillTargets } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 import WeaponFeature from "../../../../actor/feature/weapon"
@@ -34,10 +34,14 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
    */
   static skillsVariants(_variants: IFeatureDataVariant[], specs: WeaponFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
     const feature = getSpec(specs, `feature`)
-    const actor = feature.actor
+    const actor = getSpec(specs, `actor`)
 
     // ERROR: Unimplemented actorless feature
     if (!actor) debugger
+
+    // GET ALL TRAINED SKILLS
+    const allTrainedSkills = Object.values(actor.cache._skill?.trained ?? {}).filter(skill => skill.data.training === `trained`)
+    const trainedSkillsGCA = allTrainedSkills.map(feature => feature.sources.gca?._index).filter(index => !isNil(index))
 
     // set usage as label
     if (!_variants[0].label) _variants[0].label = {}
@@ -54,36 +58,37 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     // use first variant as a model for weapon skills -> FeatureVariant[]
     const variants = [] as IFeatureDataVariant[]
 
+    // split into viable/unviable defaults
+    //    usually a viable default is a trained skill default OR a attribute default
+    //    usually a unviable default is a untrained/unknown skill default
     // split trained/untrained skills
-    const untrained = [] as ILevelDefinition[],
-      trained = [] as { definition: ILevelDefinition; level: ILevel }[]
+    const unviable = [] as ILevelDefinition[],
+      viable = [] as { definition: ILevelDefinition; level: ILevel }[]
 
-    const levels = feature.data.defaults ?? []
-    for (const levelDefinition of levels) {
-      const targets = Object.values(levelDefinition.targets ?? [])
+    const definitions = feature.data.defaults ?? []
+    for (const defaultDefinition of definitions) {
+      // viability check
+      const targets = nonSkillOrTrainedSkillTargets(defaultDefinition, trainedSkillsGCA)
 
-      const allSkillsAreTrained = targets.every(target => {
-        if (target.type !== `skill`) return true
+      // ERROR: Untested, no targets to begin with
+      if (Object.keys(defaultDefinition.targets ?? {}).length === 0) debugger
 
-        return !isNil(actor.cache._skill?.trained?.[target.fullName])
-      })
+      // if all targets pass viability check, then default IS viable
+      if (targets.length === Object.keys(defaultDefinition.targets ?? {}).length) {
+        const level = defaultDefinition.parse(feature as any, actor) ?? { level: -Infinity }
 
-      if (allSkillsAreTrained || targets.length === 0) {
-        trained.push({
-          definition: levelDefinition,
-          level: levelDefinition.parse(feature as any, actor) ?? { level: -Infinity },
-        })
-      } else untrained.push(levelDefinition)
+        viable.push({ definition: defaultDefinition, level })
+      } else unviable.push(defaultDefinition)
     }
 
-    // if there is some untrained skills, show it
-    const untrainedTag = untrained.length && {
+    // show unviable defaults as tags
+    const unviableTag = unviable.length && {
       classes: `box`,
       children: [
         { icon: `untrained_skill` },
         {
           classes: `interactible`,
-          label: `<b>${untrained.length}</b> skills`,
+          label: `<b>${unviable.length}</b> skills`,
         },
         // ...untrained.map(skill => {
         //   return {
@@ -93,9 +98,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       ],
     }
 
-    // order skills by level, and for each skill, yield a variant
-    const levelssByLevel = orderBy(trained, ({ level }) => level.level, `desc`)
-    for (const levels of levelssByLevel) {
+    // order defaults by level, and for each default, yield a variant
+    const viableDefaults = orderBy(viable, ({ level }) => level.level, `desc`)
+    for (const default_ of viableDefaults) {
       const variant = deepClone(main)
 
       variant.id = `skill-variant`
@@ -107,7 +112,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       if (isNil(variant.label)) {
         const prefix = ``
         // const prefix = `<div class="wrapper-icon"><i class="icon">${Handlebars.helpers[`gurpsIcon`](`skill`)}</i></div>`
-        variant.label = { main: `${prefix}${levels.level.relative?.toString()}` }
+        variant.label = { main: `${prefix}${default_.level.relative?.toString()}` }
       }
       // if (feature.usage) {
       //   tags.type(`type`).update(tag => {
@@ -118,12 +123,12 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       // NON-TRAINED ALTERNATIVE SKILLS
       // WHAT?
-      if (untrainedTag) tags.type(`type`).push(untrainedTag)
+      if (unviableTag) tags.type(`type`).push(unviableTag)
 
       // VALUE
       variant.value = {
-        value: levels.level.level,
-        label: levels.level.relative?.toString({ skillAcronym: true }),
+        value: default_.level.level,
+        label: default_.level.relative?.toString({ skillAcronym: true }),
       }
 
       variants.push({ ...variant, tags: tags.tags })
@@ -137,6 +142,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
    */
   static main(variants: IFeatureDataVariant[], specs: WeaponFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
     const feature = getSpec(specs, `feature`)
+    const actor = getSpec(specs, `actor`)
+
     let variant = variants[0] ?? { classes: [] }
 
     const tags = new TagBuilder(variant.tags)
@@ -191,9 +198,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
     if (!isNil(defaultLevels) && defaultLevels.length > 0) {
       // ERROR: Unimplemented actorless feature
-      if (!feature.actor) debugger
+      if (!actor) debugger
 
-      const levels = orderLevels(defaultLevels, feature, feature.actor)
+      const levels = orderLevels(defaultLevels, feature, actor)
       const level = levels[0]
 
       variant.value = {

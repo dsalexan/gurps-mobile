@@ -2,7 +2,7 @@ import { flatten, isArray, isNil, sum, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { ILevel, ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
-import { MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
+import { FALLBACK, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
 import { IComponentDefinition, compareComponent } from "../../../../../gurps-extension/utils/component"
@@ -28,6 +28,7 @@ export interface ISkillFeatureData extends IGenericFeatureData, IWeaponizableFea
   proficiencyModifier: number
   actorModifier: number
   attributeBasedLevel: ILevel | null
+  level: ILevel | null
 }
 
 export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
@@ -66,11 +67,14 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
 
     return { attribute, difficulty }
   }),
-  derivation.gca(`default`, `defaults`, gca => {
+  derivation.gca(`default`, [`defaults`, `training`], gca => {
     // TODO: Deal with dynamic values
-    if (!isArray(gca.default)) return {}
 
-    return { defaults: gca.default?.map(_default => parseLevelDefinition(_default)) ?? undefined }
+    if (!isArray(gca.default)) return { training: FALLBACK(`training`, `unknown`) }
+
+    const definitions = gca.default.map(_default => parseLevelDefinition(_default))
+
+    return { defaults: definitions, training: FALLBACK(`training`, definitions.length > 0 ? `untrained` : `unknown`) }
   }),
   // #endregion
   // #region DATA

@@ -8,7 +8,7 @@ import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
 import { ILevelDefinition, ILevel } from "../../../../../../gurps-extension/utils/level"
 import SkillFeature from "../../../../actor/feature/skill"
-import { buildRoll, contextualizeRoll, levelToRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { buildRoll, levelToRollContext } from "../../../../../../gurps-extension/utils/roll"
 
 export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: SkillFeature
@@ -32,6 +32,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
    */
   static main(variants: IFeatureDataVariant[], specs: SkillFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
     const feature = getSpec(specs, `feature`)
+    const actor = getSpec(specs, `actor`)
     let variant = variants[0] ?? { classes: [] }
 
     const tags = new TagBuilder(variant.tags)
@@ -46,7 +47,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
         if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
 
         if (!variant.rolls) variant.rolls = []
-        variant.rolls.push(levelToRollContext([{ primary: feature.data.training.capitalize() }], level, 0))
+        variant.rolls.push(levelToRollContext([], level, 0))
       }
     }
 
@@ -102,7 +103,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     // DEFAULTS
     if (feature.data.training === `untrained` || specs.showDefaults) {
       // ERROR: Unimplemented actorless feature
-      if (!feature.actor) debugger
+      if (!actor) debugger
 
       const levelTags = [] as {
         type: string
@@ -111,7 +112,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
       }[][]
 
       for (const roll of feature.data.defaults ?? []) {
-        const levelDefinition = roll.parse(feature, feature.actor)
+        const levelDefinition = roll.parse(feature, actor)
 
         if (!isNil(levelDefinition)) {
           const { level, relative } = levelDefinition

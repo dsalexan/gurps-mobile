@@ -29,7 +29,7 @@ export type ActorCache = {
   links?: Record<string, string[]>
   paths?: Record<string, string>
   _moves?: Record<string, GenericFeature>
-  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, Record<string, SkillFeature>>>
+  _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, SkillFeature>>
   gca: {
     skill: Record<number, SkillFeature>
   }

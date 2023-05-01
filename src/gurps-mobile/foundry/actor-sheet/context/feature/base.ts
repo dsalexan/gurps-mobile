@@ -5,12 +5,14 @@ import { IFeatureAction, IFeatureActionChild, IFeatureContext, IFeatureDataConte
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import GenericFeature from "../../../actor/feature/generic"
+import { GurpsMobileActor } from "../../../actor/actor"
 
 export interface FeatureDataVariantActionSpecs {
   noDefault?: boolean
 }
 
 export interface FeatureBaseContextSpecs extends ContextSpecs {
+  actor: GurpsMobileActor
   feature: GenericFeature
   label?: string
   ignoreSpecialization?: boolean

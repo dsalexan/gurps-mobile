@@ -236,7 +236,7 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
     super.base(context, specs, manager)
 
     const feature = getSpec(specs, `feature`)
-    const actor = feature.actor
+    const actor = getSpec(specs, `actor`)
 
     // ERROR: Unimplemented actorless feature
     if (!actor) debugger
