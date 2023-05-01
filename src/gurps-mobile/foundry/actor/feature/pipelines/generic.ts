@@ -1,16 +1,25 @@
 /* eslint-disable no-debugger */
-import { flatten, flattenDeep, get, isArray, isEmpty, isNil, isString, set, uniq } from "lodash"
+import { cloneDeep, flatten, flattenDeep, get, groupBy, isArray, isEmpty, isNil, isString, set, uniq } from "lodash"
 import { IDerivation, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { MigrationDataObject, MERGE, MigrationValue, OVERWRITE, PUSH, WRITE, isOrigin } from "../../../../core/feature/compilation/migration"
-import { IComponentDefinition, parseComponentDefinition } from "../../../../../gurps-extension/utils/component"
+import {
+  IAttributeBonusComponent,
+  IComponentDefinition,
+  IDRBonusComponent,
+  ISkillBonusComponent,
+  IWeaponBonusComponent,
+  parseComponentDefinition,
+  updateComponentSchema,
+} from "../../../../../gurps-extension/utils/component"
 import { GCA } from "../../../../core/gca/types"
 import { IFeatureData } from ".."
 import { Type } from "../../../../core/feature"
 import { FeatureState } from "../../../../core/feature/utils"
 import { ILevel, ILevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
+import { deepDiff } from "../../../../../december/utils/diff"
 
 export interface IGenericFeatureData extends IFeatureData {
   name: string
@@ -92,7 +101,84 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     return { tags: tags.filter(tag => tag !== this.type.name) }
   }),
   derivation.gcs(`conditional`, `conditional`, ({ conditional }) => ({ conditional: flattenDeep([conditional ?? []]) })),
-  derivation.gcs(`features`, `components`, ({ features }) => ({ components: (features ?? []).map(f => parseComponentDefinition(f as any)) })),
+  derivation.gcs(`features`, `components`, ({ features }) => {
+    const definitions = (features ?? []).map(f => parseComponentDefinition(f as any))
+    const byType = groupBy(definitions, `type`) as Record<IComponentDefinition[`type`], IComponentDefinition[]>
+    const entries = Object.entries(byType) as [IComponentDefinition[`type`], IComponentDefinition[]][]
+
+    const finalComponents = [] as IComponentDefinition[]
+    for (const [type, allComponents] of entries) {
+      if (allComponents.length === 1) {
+        finalComponents.push(updateComponentSchema(allComponents[0], cloneDeep(allComponents[0])))
+        continue
+      }
+
+      // GENERIC DIFF ANALYSIS
+      const tableDiff = [] as any[][]
+      const allDiff = [] as [number, number, any][]
+
+      for (let i = 0; i < allComponents.length; i++) {
+        tableDiff[i] = []
+        for (let j = 0; j <= i; j++) {
+          if (i === j) continue
+          else {
+            const diff = deepDiff(allComponents[i], allComponents[j])
+            tableDiff[i][j] = diff
+            allDiff.push([i, j, diff])
+          }
+        }
+      }
+
+      const allKeys = uniq(allDiff.map(([i, j, diff]) => Object.keys(diff ?? {})).flat())
+      const firstOrderKeys = uniq(allKeys.map(key => key.split(`.`)[0]))
+
+      // decide speficic aggregation technique
+      let authorizedProperties = null as any as string[]
+      if (type === `skill_bonus` || type === `weapon_bonus`) {
+        const components = allComponents as ISkillBonusComponent[] | IWeaponBonusComponent[]
+        const selectionTypes = uniq(components.map(c => c.selection_type))
+
+        // AGGREGATE IF
+        //    all selection types are the same
+        if (selectionTypes.length === 1 && (selectionTypes[0] === `skills_with_name` || selectionTypes[0] === `weapons_with_name`)) {
+          authorizedProperties = [`name`, `specialization`]
+        } else {
+          // ERROR: Unimplemented multiple selection type aggregation
+          debugger
+        }
+      } else if (type === `attribute_bonus` || type === `dr_bonus`) {
+        const components = allComponents as IAttributeBonusComponent[] | IDRBonusComponent[]
+
+        // all attribute/dr bonuses can just agrgegate its attributes/locations
+        authorizedProperties = type === `attribute_bonus` ? [`attribute`] : [`location`]
+      }
+
+      // if there authorized properties is null, then component was not analysed
+      if (authorizedProperties !== null) {
+        // if aggregation is authorized, go for it
+        //    authorized mens: if all diffs are in those expected for this technique
+        if (firstOrderKeys.every(key => authorizedProperties.includes(key))) {
+          // TODO: How to factor amount into aggregation? Since it doenst invalidade a aggregation, just break into by similar amounts (kind of like with component.type han)
+
+          const component = updateComponentSchema(allComponents[0], cloneDeep(allComponents[0]))
+
+          for (const otherComponent of allComponents.slice(1)) {
+            updateComponentSchema(otherComponent, component)
+          }
+
+          finalComponents.push(component)
+        }
+
+        // was not authorized, but passed analysis
+        continue
+      }
+
+      // if it was not aggregated, breakpoint to read analysis
+      debugger
+    }
+
+    return { components: PUSH(`components`, finalComponents) }
+  }),
   // #endregion
   // #region GCA
   derivation.gca([`name`, `nameext`], [`name`, `specialization`], function ({ name, nameext }) {

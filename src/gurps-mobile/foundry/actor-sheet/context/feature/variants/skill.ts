@@ -47,6 +47,7 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
         if (level.relative) variant.value.label = level.relative.toString({ skillAcronym: true })
 
         if (!variant.rolls) variant.rolls = []
+        // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
         variant.rolls.push(levelToRollContext([], level, 0))
       }
     }

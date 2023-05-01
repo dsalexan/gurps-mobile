@@ -40,6 +40,7 @@ export namespace GCS {
     type: string
     attribute?: string
     amount?: number
+    situation?: string
   }
 
   // interface SkillDefault {

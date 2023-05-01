@@ -80,6 +80,7 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     if (this.data.components) {
       for (const component of this.data.components) {
         component.feature = this
+
         if (!has(actor.cache, `components.${component.type}`)) actor.setCache(`components.${component.type}`, [])
         const modifierArray = get(actor.cache, `components.${component.type}`)
         if (isArray(modifierArray)) modifierArray.push(component)

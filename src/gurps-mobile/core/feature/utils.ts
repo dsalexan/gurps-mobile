@@ -244,7 +244,7 @@ export function parseWeight(_weight: string | null): number | null {
 /**
  * Parse modifier object to string
  */
-export function parseModifier(modifier: never, [minus, plus] = [`-`, `+`], zero = ``) {
+export function parseModifier(modifier: number | string, [minus, plus] = [`-`, `+`], zero = ``) {
   if (isNil(modifier) || modifier === `` || isNaN(parseInt(modifier))) return (modifier ?? ``).toString()
 
   const _modifier = parseInt(modifier)

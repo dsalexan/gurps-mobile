@@ -10,7 +10,7 @@ export type WeaponManualSource = GenericSource
 
 export interface IWeaponFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
   block: string | false
-  damage: string
+  damage: { base: string; type: string }
   parry: string | false
   range: string
   reach: string[]

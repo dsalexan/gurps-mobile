@@ -1,4 +1,5 @@
-import { flattenDeep, get, isArray, isNil, isNumber, isString, set } from "lodash"
+/* eslint-disable no-debugger */
+import { flattenDeep, get, groupBy, isArray, isNil, isNumber, isString, set } from "lodash"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
@@ -6,8 +7,10 @@ import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate from "./base"
-import { FeatureState, stateToString } from "../../../../core/feature/utils"
+import { FeatureState, parseModifier, stateToString } from "../../../../core/feature/utils"
 import GenericFeature from "../../../actor/feature/generic"
+import { IRollContext } from "../../../../../gurps-extension/utils/roll"
+import { IConditionalModifierComponent, IReactionBonusComponent } from "../../../../../gurps-extension/utils/component"
 
 export interface FeatureMainVariantContextSpecs extends ContextSpecs {
   feature: GenericFeature
@@ -146,6 +149,70 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
       )
 
     // #endregion
+
+    if (!variant.stats) variant.stats = []
+    if (!variant.rolls) variant.rolls = []
+
+    if (feature.data.components?.length > 0) {
+      for (const component of feature.data.components) {
+        const stat = { classes: [] } as any as Displayable & { roll: number }
+        const roll = { classes: [] } as any as IRollContext
+
+        if (component.type === `reaction_bonus` || component.type === `conditional_modifier`) {
+          stat.value = parseModifier(component.amount, [`-`, `+`], `+0`)
+          stat.icon = [component.amount < 0 ? `reaction_negative` : `reaction`]
+
+          if (component.type === `conditional_modifier`) {
+            stat.icon = [`mdi-help-rhombus`]
+
+            // TODO: Set target icon as stat icon
+            if (component.target) debugger
+          }
+
+          // TODO: What to do with situation? Maybe show in roll
+
+          variant.stats.push(stat)
+        } else if (component.type === `skill_bonus` || component.type === `dr_bonus` || component.type === `attribute_bonus` || component.type === `weapon_bonus`) {
+          stat.value = parseModifier(component.amount, [`-`, `+`], `+0`)
+          stat.icon = [`skill`]
+
+          // TODO: Show dr of where
+          if (component.type === `dr_bonus`) stat.icon = [`mdi-alpha-d`, `mdi-alpha-r`]
+          else if (component.type === `attribute_bonus`) {
+            stat.icon = []
+
+            if (component.attribute.length === 0) debugger // COMMENT
+
+            for (const attribute of component.attribute) {
+              if ([`dodge`, `parry`, `block`].includes(attribute)) stat.icon.push(`minimal_${attribute}`)
+              else if ([`fp`, `hp`].includes(attribute)) stat.icon.push(attribute)
+              else if ([`st`, `dx`, `iq`, `ht`, `will`, `per`].includes(attribute)) stat.icon.push(...attribute.split(``).map(letter => `mdi-alpha-${letter}`))
+              else {
+                // ERROR: Attribute not implemented
+                debugger
+                stat.icon.push(`mdi-help-rhombus`)
+              }
+            }
+          } else if (component.type === `weapon_bonus`) stat.icon = [`melee`]
+
+          // TODO: What to do with selection_type ?? roll prob
+        } else if ([`cost_reduction`].includes(component.type)) {
+          continue
+        } else {
+          // ERROR: Unimplemented
+          debugger
+        }
+
+        // if stat is not empty, add it
+        if (!(Object.keys(stat).length === 1 && Object.keys(stat)[0] === `classes`)) variant.stats.push(stat)
+
+        // if roll is not empty, add it
+        if (!(Object.keys(roll).length === 1 && Object.keys(roll)[0] === `classes`)) {
+          stat.roll = variant.rolls.length
+          variant.rolls.push(roll)
+        }
+      }
+    }
 
     variant = {
       ...(variant ?? {}),

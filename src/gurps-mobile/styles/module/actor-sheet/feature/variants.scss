@@ -42,8 +42,14 @@
 
       // without value
       &:not(.has-value) {
-        & > .wrapper > .content > .value {
-          display: none;
+        & > .wrapper > .content {
+          & > .value {
+            display: none;
+          }
+
+          & > .stats {      
+            margin-top: 0;
+          }
         }
       }
 

@@ -15,8 +15,13 @@ const base = {
   untrained_skill: `mdi-hexagon-multiple-outline`,
   spell: `spell`,
   equipment: `mdi-bag-personal`,
+  hp: `mdi-heart`,
+  fp: `mdi-lightning-bolt`,
   reeling: `heart-down`,
   tired: `lightning-bolt-down`,
+  //
+  reaction: `mdi-thumb-up`,
+  reaction_negative: `mdi-thumb-down`,
   //
   ranged: `mdi-bow-arrow`,
   melee: `mdi-sword-cross`,

@@ -6,7 +6,7 @@ export interface Displayable {
   classes?: string[]
   label?: string
   value?: string | number
-  icon?: string
+  icon?: string[]
 }
 
 export type FastDisplayable =
@@ -55,7 +55,7 @@ export interface IFeatureDataVariant {
   mark?: string
   //
   notes?: string[]
-  stats?: (Displayable & { roll: number })[]
+  stats?: (Displayable & { roll?: number })[]
   rolls?: IRollContext[]
   tags: ITag[]
 }

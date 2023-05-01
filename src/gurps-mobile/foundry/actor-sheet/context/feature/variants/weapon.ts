@@ -1,7 +1,7 @@
 import { flatten, flattenDeep, get, isArray, isNil, isNumber, isString, orderBy, set, uniq } from "lodash"
 import { FeatureBaseContextSpecs } from "../base"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../../context"
-import { FastDisplayable, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "../interfaces"
+import { Displayable, FastDisplayable, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "../interfaces"
 import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
@@ -10,6 +10,8 @@ import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition, nonSkillOr
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 import WeaponFeature from "../../../../actor/feature/weapon"
+import { IRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { parseModifier } from "../../../../../core/feature/utils"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: WeaponFeature
@@ -209,57 +211,129 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       }
     }
 
-    variant.stats = [
-      {
-        classes: [],
-        icon: `minimal_parry`,
-        value: 10,
-        roll: 1,
-      },
-      {
-        classes: [`disabled`],
-        icon: `minimal_block`,
-        value: `No`,
-        roll: 2,
-      },
-      {
-        classes: [],
-        icon: `damage`,
-        value: `2d-4 cut`,
-        roll: 3,
-      },
-      // {
-      //   classes: [],
-      //   icon: `mdi-help`,
-      //   value: `C, 1`,
-      // },
-      // {
-      //   classes: [],
-      //   icon: `mdi-help`,
-      //   value: `???`,
-      // },
-    ]
+    if (!variant.stats) variant.stats = []
+    if (!variant.rolls) variant.rolls = []
 
-    variant.rolls = [
-      {
+    /**
+     * TODO: Stats Sources
+     *    👍active defenses
+     *    damage
+     *    reach
+     *    range
+     *    minimum strenght
+     *    accuracy
+     *    rate of fire
+     *    shots
+     *    bulk
+     *    recoil
+     *    ammo
+     */
+
+    // if (feature.parent?.data?.name === `Light Cloak`) debugger
+
+    // active defenses
+    const activeDefenses = [`block`, `parry`, `dodge`]
+    for (const defense of activeDefenses) {
+      const value = feature.data[defense]
+
+      if (value !== false && !isNil(value)) {
+        variant.stats.push({
+          classes: [],
+          icon: [`minimal_${defense}`],
+          value: `X${parseModifier(value, [`-`, `+`], `+0`)}`,
+        })
+      }
+    }
+
+    if (feature.data.damage) {
+      variant.stats.push({
         classes: [],
-        icon: `minimal_parry`,
-        value: 10,
-        step: 0,
-      },
-      {
+        icon: [`damage`],
+        value: `${feature.data.damage.base} ${feature.data.damage.type}`,
+      })
+    }
+
+    // TODO: Fix weapon parsing from GCA/GCS (specificcly statistics)
+    // TODO: check if reach and range exists simultaneously, prob dont
+    // TODO: Change reach/range icon to something with hexagon
+    if (feature.data.reach) {
+      debugger
+    }
+
+    if (feature.data.range) {
+      const range = feature.data.range.split(`/`)
+
+      // ERROR: Unimplemented
+      if (range.length !== 2) debugger
+
+      variant.stats.push({
         classes: [],
-        icon: `minimal_parry`,
-        value: 10,
-        step: 1,
-      },
-      {
-        classes: [],
-        icon: `damage`,
-        value: `2d-4 cut`,
-        step: 3,
-      },
-    ]
+        icon: [`ranged`],
+        value: `${range[0]}/${range[1]}`,
+      })
+    }
+
+    if (!isNil(feature.data.strength) && !isNaN(feature.data.strength)) {
+      debugger
+    }
+    // if (feature.data.accuracy) debugger
+    // if (feature.data.rate of fire) debugger
+    // if (feature.data.shots) debugger
+    // if (feature.data.bulk) debugger
+    // if (feature.data.recoil) debugger
+    // if (feature.data.ammo) debugger
+
+    // variant.stats = [
+    //   {
+    //     classes: [],
+    //     icon: `minimal_parry`,
+    //     value: 10,
+    //     roll: 1,
+    //   },
+    //   {
+    //     classes: [`disabled`],
+    //     icon: `minimal_block`,
+    //     value: `No`,
+    //     roll: 2,
+    //   },
+    //   {
+    //     classes: [],
+    //     icon: `damage`,
+    //     value: `2d-4 cut`,
+    //     roll: 3,
+    //   },
+    //   // {
+    //   //   classes: [],
+    //   //   icon: `mdi-help`,
+    //   //   value: `C, 1`,
+    //   // },
+    //   // {
+    //   //   classes: [],
+    //   //   icon: `mdi-help`,
+    //   //   value: `???`,
+    //   // },
+    // ]
+
+    // variant.rolls = [
+    //   {
+    //     classes: [],
+    //     icon: `minimal_parry`,
+    //     value: 10,
+    //     step: 0,
+    //   },
+    //   {
+    //     classes: [],
+    //     icon: `minimal_parry`,
+    //     value: 10,
+    //     step: 1,
+    //   },
+    //   {
+    //     classes: [],
+    //     icon: `damage`,
+    //     value: `2d-4 cut`,
+    //     step: 3,
+    //   },
+    // ]
 
     variant.tags = tags.tags
     return [variant]
