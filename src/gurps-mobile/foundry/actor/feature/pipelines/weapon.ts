@@ -9,13 +9,19 @@ import { IWeaponizableFeatureData } from "./weaponizable"
 export type WeaponManualSource = GenericSource
 
 export interface IWeaponFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
-  block: string | false
-  damage: { base: string; type: string }
-  parry: string | false
-  range: string
-  reach: string[]
   usage: string
+  // weapon
+  block: string | false
+  parry: string | false
+  damage: { base: string; type: string }
   strength: number
+  // melee
+  reach: string[]
+  // ranged
+  range: string
+  accuracy: number
+  rof: string
+  recoil: string
 }
 
 export const WeaponFeaturePipeline: IDerivationPipeline<IWeaponFeatureData> = [
@@ -31,16 +37,38 @@ export const WeaponFeaturePipeline: IDerivationPipeline<IWeaponFeatureData> = [
   }),
   derivation.gcs(`block`, [`block`], ({ block }) => ({ block: block === `No` || block === `-` || isEmpty(block) ? false : block })),
   derivation.gcs(`parry`, [`parry`], ({ parry }) => ({ parry: parry === `No` || parry === `-` ? false : parry })),
+  derivation.gcs(`strength`, [`strength`], ({ strength }) => {
+    if (strength === `-` || strength === ``) return {}
+
+    const value = parseInt(strength)
+    if (isNaN(value)) return {}
+
+    return { strength: value }
+  }),
   //
   proxy.gcs(`damage`),
   proxy.gcs(`range`),
   proxy.gcs(`usage`),
   //
-  derivation.gcs(`reach`, [`reach`], ({ reach }) => {
-    let _reach = (reach ?? ``).split(`,`)
-    return { reach: _reach.length === 0 ? undefined : _reach }
+  derivation.gcs(`accuracy`, [`accuracy`], ({ accuracy }) => {
+    if (isNilOrEmpty(accuracy)) return {}
+
+    const value = parseInt(accuracy)
+
+    if (isNaN(value)) debugger
+
+    return { accuracy: value }
   }),
-  derivation.gcs(`strength`, [`strength`], ({ strength }) => ({ strength: strength === `-` || strength === `` ? undefined : parseInt(strength) })),
+  derivation.gcs(`reach`, [`reach`], ({ reach }) => {
+    if (isNilOrEmpty(reach)) return {}
+
+    let _reach = reach.split(`,`)
+    if (_reach.length === 0) return {}
+
+    return { reach: _reach }
+  }),
+  proxy.gcs(`rate_of_fire`, `rof`),
+  proxy.gcs(`recoil`),
   // #endregion
   // #region GCA
 

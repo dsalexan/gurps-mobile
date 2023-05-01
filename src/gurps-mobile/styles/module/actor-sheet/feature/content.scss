@@ -252,6 +252,9 @@
         align-items: center;
 
         & > .icon {
+          display: flex;
+          align-items: center;
+          //
           height: calc(var(--s1) * 1.8);
         }
       }
@@ -284,6 +287,7 @@
         display: none;
       }
 
+      // variants
       &.disabled {
         & > .icon-wrapper, & > .value, & > .label  {
           color: #BBBBBB;
@@ -297,6 +301,15 @@
 
         & > .value, & > .label  {
           color: #222222;
+        }
+      }
+      
+
+      &.spacer {
+        flex-grow: 1;
+        
+        & > .icon-wrapper, & > .value, & > .label  {
+          display: none;
         }
       }
     }

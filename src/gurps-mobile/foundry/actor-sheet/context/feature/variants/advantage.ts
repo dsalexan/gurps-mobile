@@ -47,7 +47,7 @@ export default class AdvantageFeatureContextTemplate extends BaseContextTemplate
           }
 
           if (!variant.rolls) variant.rolls = []
-          variant.rolls.push(rollToRollContext(roll, 0))
+          variant.rolls.push(rollToRollContext(roll, variant.rolls.length))
 
           tags.type(`feature`).add({
             type: `self-control`,

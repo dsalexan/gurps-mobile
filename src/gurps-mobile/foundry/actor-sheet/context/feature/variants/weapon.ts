@@ -5,12 +5,12 @@ import { Displayable, FastDisplayable, IFeatureContext, IFeatureDataContext, IFe
 import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
-import { isNilOrEmpty, push } from "../../../../../../december/utils/lodash"
+import { isNilOrEmpty, isNumeric, push } from "../../../../../../december/utils/lodash"
 import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition, nonSkillOrTrainedSkillTargets } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 import WeaponFeature from "../../../../actor/feature/weapon"
-import { IRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { IRollContext, levelToRollContext } from "../../../../../../gurps-extension/utils/roll"
 import { parseModifier } from "../../../../../core/feature/utils"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
@@ -209,6 +209,10 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         value: level.level,
         label: level.relative?.toString({ skillAcronym: true }),
       }
+
+      if (!variant.rolls) variant.rolls = []
+      // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
+      variant.rolls.push(levelToRollContext([], level, variant.rolls.length))
     }
 
     if (!variant.stats) variant.stats = []
@@ -232,6 +236,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     // if (feature.parent?.data?.name === `Light Cloak`) debugger
 
     // active defenses
+    let spacer = false
     const activeDefenses = [`block`, `parry`, `dodge`]
     for (const defense of activeDefenses) {
       const value = feature.data[defense]
@@ -241,47 +246,95 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
           classes: [],
           icon: [`minimal_${defense}`],
           value: `X${parseModifier(value, [`-`, `+`], `+0`)}`,
+          roll: variant.rolls.length,
         })
+
+        // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
+        variant.rolls.push(levelToRollContext([], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length))
+
+        spacer = true
       }
     }
 
-    if (feature.data.damage) {
+    if (spacer) variant.stats.push({ classes: [`spacer`] })
+
+    if (!isNil(feature.data.damage)) {
+      if (feature.data.damage.type !== `-` && !(feature.data.damage.base === undefined && feature.data.damage.type.match(/special/i))) {
+        let base = feature.data.damage.base
+        if (base === undefined) {
+          base = feature.data.damage.st === `sw` ? actor.system.swing : actor.system.thrust
+        }
+
+        variant.stats.push({
+          classes: [],
+          icon: [`damage`],
+          value: `${base} ${feature.data.damage.type}`,
+          roll: variant.rolls.length,
+        })
+
+        // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
+        variant.rolls.push(levelToRollContext([], { level: base, relative: feature.data.damage.type }, variant.rolls.length))
+      }
+    }
+
+    if (!isNil(feature.data.reach)) {
       variant.stats.push({
         classes: [],
-        icon: [`damage`],
-        value: `${feature.data.damage.base} ${feature.data.damage.type}`,
+        icon: [`mdi-hexagon-slice-6`],
+        // icon: feature.data.reach.map(letter => (isNumeric(letter) ? `mdi-numeric-${letter}` : `mdi-alpha-${letter}`)),
+        value: `${feature.data.reach.join(`, `)}`,
       })
     }
 
-    // TODO: Fix weapon parsing from GCA/GCS (specificcly statistics)
-    // TODO: check if reach and range exists simultaneously, prob dont
-    // TODO: Change reach/range icon to something with hexagon
-    if (feature.data.reach) {
-      debugger
-    }
-
-    if (feature.data.range) {
-      const range = feature.data.range.split(`/`)
+    if (!isNil(feature.data.range)) {
+      const range = feature.data.range
 
       // ERROR: Unimplemented
-      if (range.length !== 2) debugger
+      if (range.startsWith(`x`)) debugger
 
       variant.stats.push({
         classes: [],
-        icon: [`ranged`],
-        value: `${range[0]}/${range[1]}`,
+        icon: [`mdi-hexagon-slice-6`],
+        value: `${range}`,
       })
     }
 
-    if (!isNil(feature.data.strength) && !isNaN(feature.data.strength)) {
-      debugger
+    if (!isNil(feature.data.accuracy)) {
+      variant.stats.push({
+        classes: [],
+        icon: [`mdi-target`],
+        value: `${feature.data.accuracy}`,
+      })
     }
-    // if (feature.data.accuracy) debugger
-    // if (feature.data.rate of fire) debugger
-    // if (feature.data.shots) debugger
-    // if (feature.data.bulk) debugger
-    // if (feature.data.recoil) debugger
-    // if (feature.data.ammo) debugger
+
+    if (!isNil(feature.data.rof)) {
+      variant.stats.push({
+        classes: [],
+        icon: [`mdi-alpha-r`, `mdi-alpha-o`, `mdi-alpha-f`],
+        value: `${feature.data.rof}`,
+      })
+    }
+
+    if (!isNil(feature.data.recoil)) {
+      variant.stats.push({
+        classes: [],
+        icon: [`mdi-pistol`],
+        value: `${feature.data.recoil}`,
+      })
+    }
+
+    if (!isNil(feature.data.strength)) {
+      variant.stats.push({
+        classes: [],
+        icon: [`mdi-dumbbell`],
+        value: `${feature.data.strength}`,
+      })
+    }
+
+    // TODO: Implement
+    // if (!isNil(feature.data.shots)) debugger
+    // if (!isNil(feature.data.bulk)) debugger
+    // if (!isNil(feature.data.ammo)) debugger
 
     // variant.stats = [
     //   {
