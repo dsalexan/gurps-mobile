@@ -47,6 +47,8 @@ export default class FeatureBaseContextTemplate extends BaseContextTemplate {
     const expanded = get(specs, `expanded`)?.(feature.id, id) ?? false
     const roller = get(specs, `roller`)?.(feature.id) ?? false
 
+    console.log(`expanded`, feature.id, `data`, id, expanded)
+
     // COMPOUNDING CLASSES
     const classes = [
       ..._classes,

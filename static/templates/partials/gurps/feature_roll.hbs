@@ -1,6 +1,9 @@
 
 <!-- <* class="roll-wrapper"></*> -->
 <span class="feature-roll">
+  <div class="icon-wrapper {{isNilOrEmpty icon 'hidden'}}">
+    {{#each icon}}{{gurpsIcon this}}{{/each}}
+  </div>
   <div class="value">{{{value}}}</div>
   <div class="label {{isNilOrEmpty label 'hidden'}}">{{{label}}}</div>
 </span>

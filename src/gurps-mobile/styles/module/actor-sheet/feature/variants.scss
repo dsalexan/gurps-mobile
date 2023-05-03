@@ -489,7 +489,7 @@
                 }
 
                 & > .value.roll-selected {
-                  & > .display {
+                  & > .feature-roll {
                     & > .label {
                       color: rgba(var(--darker-main-color), 1);
                     }
@@ -504,13 +504,15 @@
                 & > .stats {
                   margin-bottom: 0px;
 
-                  & > .stat.roll-selected {
-                    & > .icon {
-                      color: rgba(var(--dark-main-color), 1);
-                    }
-                    
-                    & > .label, & > .value {
-                      color: rgba(var(--semi-dark-main-color), 1);
+                  &, & > .row {
+                    & > .stat.roll-selected {
+                      & > .icon-wrapper {
+                        color: rgba(var(--darker-main-color), 1);
+                      }
+                      
+                      & > .label, & > .value {
+                        color: rgba(var(--semi-dark-main-color), 1);
+                      }
                     }
                   }
                 }

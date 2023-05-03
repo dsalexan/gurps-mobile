@@ -37,6 +37,8 @@ export interface IFeatureDataContext {
   actions: false | { left: IFeatureAction[]; right: IFeatureAction[] }
 }
 
+export type IFeatureStat = Displayable & { roll?: number }
+
 export interface IFeatureDataVariant {
   classes: string[]
   id: string
@@ -55,7 +57,7 @@ export interface IFeatureDataVariant {
   mark?: string
   //
   notes?: string[]
-  stats?: (Displayable & { roll?: number })[]
+  stats?: [IFeatureStat[], IFeatureStat[]]
   rolls?: IRollContext[]
   tags: ITag[]
 }

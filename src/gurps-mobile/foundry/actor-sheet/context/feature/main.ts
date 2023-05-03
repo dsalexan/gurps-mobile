@@ -2,7 +2,7 @@
 import { flattenDeep, get, groupBy, isArray, isNil, isNumber, isString, set } from "lodash"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
-import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
+import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant, IFeatureStat } from "./interfaces"
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
@@ -150,12 +150,12 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
 
     // #endregion
 
-    if (!variant.stats) variant.stats = []
+    if (!variant.stats) variant.stats = [[], []]
     if (!variant.rolls) variant.rolls = []
 
     if (feature.data.components?.length > 0) {
       for (const component of feature.data.components) {
-        const stat = { classes: [] } as any as Displayable & { roll: number }
+        const stat = { classes: [] } as any as IFeatureStat
         const roll = { classes: [] } as any as IRollContext
 
         if (component.type === `reaction_bonus` || component.type === `conditional_modifier`) {
@@ -170,8 +170,6 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
           }
 
           // TODO: What to do with situation? Maybe show in roll
-
-          variant.stats.push(stat)
         } else if (component.type === `skill_bonus` || component.type === `dr_bonus` || component.type === `attribute_bonus` || component.type === `weapon_bonus`) {
           stat.value = parseModifier(component.amount, [`-`, `+`], `+0`)
           stat.icon = [`skill`]
@@ -204,7 +202,7 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
         }
 
         // if stat is not empty, add it
-        if (!(Object.keys(stat).length === 1 && Object.keys(stat)[0] === `classes`)) variant.stats.push(stat)
+        if (!(Object.keys(stat).length === 1 && Object.keys(stat)[0] === `classes`)) variant.stats[0]!.push(stat)
 
         // if roll is not empty, add it
         if (!(Object.keys(roll).length === 1 && Object.keys(roll)[0] === `classes`)) {

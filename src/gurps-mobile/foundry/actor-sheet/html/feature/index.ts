@@ -213,10 +213,10 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
           variant.find(`.roll-selected`).removeClass(`roll-selected`)
           variant.find(`[data-roll-step="${step}"]`).addClass(`roll-selected`)
 
-          console.log(`gurps-mobile`, `update roll step`, step, variant)
+          // console.log(`gurps-mobile`, `update roll step`, step, variant)
         }
 
-        console.log(`gurps-mobile`, `scrolling`, `#${step}`, distance, `w:`, width, event)
+        // console.log(`gurps-mobile`, `scrolling`, `#${step}`, distance, `w:`, width, event)
       })
 
     // swipe clicks
@@ -289,7 +289,7 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
   }
 
   function value(_value: string) {
-    variant.find(`.value > .display > .value`).html(_value)
+    variant.find(`.value > .feature-roll > .value`).html(_value)
   }
 
   // #endregion

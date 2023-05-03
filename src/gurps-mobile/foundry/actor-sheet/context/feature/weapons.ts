@@ -67,8 +67,9 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
       main.classes = main.classes.filter(classe => classe !== `has-swipe`)
 
       const expanded = get(specs, `expanded`)?.(feature.id, main.id) ?? false
+
       if (expanded && !main.classes.includes(`expanded`)) main.classes.push(`expanded`)
-      else main.classes = main.classes.filter(classe => classe !== `expanded`)
+      else if (!expanded && main.classes.includes(`expanded`)) main.classes = main.classes.filter(classe => classe !== `expanded`)
 
       data.push(main)
     }

@@ -2,13 +2,40 @@
 .feature-roll {
   white-space: nowrap;
   //
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: 
+    "icon value"
+    "icon label";
+
+  & > .icon-wrapper {
+    --font-size: calc(var(--s1) * 1.8);
+    grid-area: icon;
+    //
+    font-size: calc(var(--font-size) * 1);
+    line-height: calc(var(--font-size) * 0.8);
+    color: #303030;
+    //
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > .icon {
+      display: flex;
+      align-items: center;
+      //
+      height: calc(var(--font-size) * 1);
+    }
+  }
 
   & > .value {
     --font-size: 27px;
+    grid-area: value;
     //
     color: #303030;
     font-family: Alatsi;
@@ -21,15 +48,24 @@
 
   & > .label {
     --font-size: 12px;
+    grid-area: label;
     //
     padding: 0;
     color: #585858;
     font-family: Roboto;
     font-weight: 400;
     font-size: calc(var(--font-size) * 1);
-    line-height: calc(var(--font-size) * 0.8);
+    line-height: calc(var(--font-size) * 0.9);
+    max-width: calc(var(--font-size) * 8);
     //
+    margin-bottom: calc(var(--font-size) * -0.1);
+    display: flex;
+    justify-content: center;
     text-align: center;
+
+    & > span {
+      white-space: normal;
+    }
     
     & > i {
       font-style: italic;
@@ -63,7 +99,7 @@
   }
 
   & > .value ~ .label {
-    margin-top: var(--s0-5);
+    margin-top: var(--s0-25);
   }
 
   & > .hidden { display: none; }

@@ -133,6 +133,11 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         label: default_.level.relative?.toString({ skillAcronym: true }),
       }
 
+      if (!variant.rolls) variant.rolls = []
+
+      // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
+      variant.rolls[0] = levelToRollContext([], default_.level, 0)
+
       variants.push({ ...variant, tags: tags.tags })
     }
 
@@ -212,10 +217,10 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       if (!variant.rolls) variant.rolls = []
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls.push(levelToRollContext([], level, variant.rolls.length))
+      variant.rolls.push(levelToRollContext([{ primary: `To Hit`, secondary: feature.data.usage ?? undefined }], level, variant.rolls.length))
     }
 
-    if (!variant.stats) variant.stats = []
+    if (!variant.stats) variant.stats = [[], []]
     if (!variant.rolls) variant.rolls = []
 
     /**
@@ -242,7 +247,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       const value = feature.data[defense]
 
       if (value !== false && !isNil(value)) {
-        variant.stats.push({
+        variant.stats[1]!.push({
           classes: [],
           icon: [`minimal_${defense}`],
           value: `X${parseModifier(value, [`-`, `+`], `+0`)}`,
@@ -250,13 +255,13 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         })
 
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(levelToRollContext([], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length))
+        variant.rolls.push(levelToRollContext([{ primary: defense.capitalize() }], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length))
 
         spacer = true
       }
     }
 
-    if (spacer) variant.stats.push({ classes: [`spacer`] })
+    // if (spacer) variant.stats[0].push({ classes: [`spacer`] })
 
     if (!isNil(feature.data.damage)) {
       if (feature.data.damage.type !== `-` && !(feature.data.damage.base === undefined && feature.data.damage.type.match(/special/i))) {
@@ -265,7 +270,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
           base = feature.data.damage.st === `sw` ? actor.system.swing : actor.system.thrust
         }
 
-        variant.stats.push({
+        variant.stats[0].push({
           classes: [],
           icon: [`damage`],
           value: `${base} ${feature.data.damage.type}`,
@@ -273,12 +278,12 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         })
 
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(levelToRollContext([], { level: base, relative: feature.data.damage.type }, variant.rolls.length))
+        variant.rolls.push(levelToRollContext([{ primary: `Damage` }], { level: base, relative: feature.data.damage.type }, variant.rolls.length))
       }
     }
 
     if (!isNil(feature.data.reach)) {
-      variant.stats.push({
+      variant.stats[0].push({
         classes: [],
         icon: [`mdi-hexagon-slice-6`],
         // icon: feature.data.reach.map(letter => (isNumeric(letter) ? `mdi-numeric-${letter}` : `mdi-alpha-${letter}`)),
@@ -292,7 +297,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       // ERROR: Unimplemented
       if (range.startsWith(`x`)) debugger
 
-      variant.stats.push({
+      variant.stats[0].push({
         classes: [],
         icon: [`mdi-hexagon-slice-6`],
         value: `${range}`,
@@ -300,23 +305,23 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     if (!isNil(feature.data.accuracy)) {
-      variant.stats.push({
+      variant.stats[0].push({
         classes: [],
         icon: [`mdi-target`],
         value: `${feature.data.accuracy}`,
       })
     }
 
-    if (!isNil(feature.data.rof)) {
-      variant.stats.push({
+    if (!isNil(feature.data.rof) && feature.data.rof != `1`) {
+      variant.stats[0].push({
         classes: [],
         icon: [`mdi-alpha-r`, `mdi-alpha-o`, `mdi-alpha-f`],
         value: `${feature.data.rof}`,
       })
     }
 
-    if (!isNil(feature.data.recoil)) {
-      variant.stats.push({
+    if (!isNil(feature.data.recoil) && feature.data.recoil != `1`) {
+      variant.stats[0].push({
         classes: [],
         icon: [`mdi-pistol`],
         value: `${feature.data.recoil}`,
@@ -324,7 +329,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     if (!isNil(feature.data.strength)) {
-      variant.stats.push({
+      variant.stats[0].push({
         classes: [],
         icon: [`mdi-dumbbell`],
         value: `${feature.data.strength}`,

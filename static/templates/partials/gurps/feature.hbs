@@ -77,14 +77,18 @@
                     {{#if stats}}
                       <div class="stats {{isNilOrEmpty stats 'hidden'}}">
                         {{#each stats}}
-                          <div class="stat {{join classes}} {{isNilOrEmpty roll 'non-interactible'}}" data-roll-step="{{roll}}">
-                            <div class="icon-wrapper {{isNilOrEmpty this.icon 'hidden'}}">
-                              {{#each this.icon}}
-                                {{gurpsIcon this}}
-                              {{/each}}
-                            </div>
-                            <div class="label {{isNilOrEmpty this.label 'hidden'}}">{{this.label}}</div>
-                            <div class="value">{{this.value}}</div>
+                          <div class="row">
+                            {{#each this}}
+                              <div class="stat {{join classes}} {{isNilOrEmpty roll 'non-interactible'}}" data-roll-step="{{roll}}">
+                                <div class="icon-wrapper {{isNilOrEmpty this.icon 'hidden'}}">
+                                  {{#each this.icon}}
+                                    {{gurpsIcon this}}
+                                  {{/each}}
+                                </div>
+                                <div class="label {{isNilOrEmpty this.label 'hidden'}}">{{this.label}}</div>
+                                <div class="value">{{this.value}}</div>
+                              </div>
+                            {{/each}}
                           </div>
                         {{/each}}
                       </div>
