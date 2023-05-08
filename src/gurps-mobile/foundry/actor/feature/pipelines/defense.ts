@@ -1,7 +1,7 @@
 import { flatten, get, isEmpty, isNil, sum, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
-import { ILevel, buildLevel, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { ILevel, calculateLevel, createLevelDefinition, createVariable, levelToHTML, levelToString } from "../../../../../gurps-extension/utils/level"
 import { FALLBACK, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
@@ -113,9 +113,6 @@ export const DefenseFeaturePipeline: IDerivationPipeline<IDefenseFeatureData> = 
     // ERROR: Unimplemented
     if (features.some(f => isNil(f))) debugger
 
-    // TODO: Adapt to new level shit
-    debugger
-
     for (const feature of features) {
       const dl = { source: feature.id } as IDefenseLevel
 
@@ -123,66 +120,31 @@ export const DefenseFeaturePipeline: IDerivationPipeline<IDefenseFeatureData> = 
         // TODO: Power Dodge
         // TODO: Encumbrance is dodge's source bonus
 
-        const defenseFormula = get(feature.data.formulas, `activeDefense.${activeDefense}`) ?? `@int(ST:Basic Speed) + 3`
         const sourceDefenseModifier = 0
+        let defenseFormula = get(feature.data.formulas, `activeDefense.${activeDefense}`)
+        if (defenseFormula) {
+          // ERROR: Unimplemented defense formula
+          debugger
+        } else {
+          defenseFormula = `@int(∂A) + 3`
+        }
 
-        const targets = {
-          A: {
-            type: `attribute`,
-            _raw: `ST:Basic Speed`,
-            fullName: `Basic Speed`,
-            name: `Basic Speed`,
-            value: `Basic Speed`,
-          },
-          SOURCE_MODIFIER: {
-            type: `flat`,
-            _raw: `∂SOURCE_MODIFIER`,
-            fullName: `Source Modifier`,
-            name: `Source Modifier`,
-            value: sourceDefenseModifier,
-          },
-          ACTOR_MODIFIER: {
-            type: `flat`,
-            _raw: `∂ACTOR_MODIFIER`,
-            fullName: `Actor Modifier`,
-            name: `Actor Modifier`,
-            value: -1 * actorModifier,
-          },
-        } as Record<string, GCA.ExpressionTarget>
+        const A = createVariable(`A`, `attribute`, `Basic Speed`)
+        const SOURCE_MODIFIER = createVariable(`SOURCE_MODIFIER`, `constant`, sourceDefenseModifier)
+        const ACTOR_MODIFIER = createVariable(`ACTOR_MODIFIER`, `constant`, -1 * actorModifier)
 
-        const expression = {
-          math: true,
-          _raw: `@int(ST:Basic Speed) + 3 + ∂SOURCE_MODIFIER + ∂ACTOR_MODIFIER`,
-          expression: `@int(∂A) + 3 + ∂SOURCE_MODIFIER + ∂ACTOR_MODIFIER`,
-          variables: Object.fromEntries(Object.entries(targets).map(([key, target]) => [key, target._raw])),
-          targets,
-        } as GCA.Expression
+        const definition = createLevelDefinition(`${defenseFormula} + ∂SOURCE_MODIFIER + ∂ACTOR_MODIFIER`, { A, SOURCE_MODIFIER, ACTOR_MODIFIER })
+        const level = calculateLevel(definition, feature, actor)!
 
-        const levelDefinition = parseLevelDefinition(expression)
-        const ilevel = levelDefinition.parse(feature, actor)
+        LOGGER.info(level.value)
+        LOGGER.info(levelToHTML(level))
 
-        LOGGER.info(ilevel?.level)
-        LOGGER.info(ilevel?.relative.toString({ showZero: false }))
-
-        const math = mathInstance()
-
-        const node = ilevel?.relative.node
-        const scope = ilevel?.relative.scope
-
-        const simplifySymbols = [`SOURCE_MODIFIER`, `ACTOR_MODIFIER`]
-        const simplifiedNode = math.simplify(node!, Object.fromEntries(simplifySymbols.map(symbol => [symbol, scope[symbol]])))
-
-        LOGGER.info(simplifiedNode.toString(), simplifiedNode, node, scope)
-
-        const html = toHTML(simplifiedNode, {
-          parenthesis: `auto`,
-          implicit: `hide`,
-        })
-
-        LOGGER.info(html)
+        LOGGER.info(levelToString(level))
+        LOGGER.info(levelToHTML(level, { simplify: [`SOURCE_MODIFIER`, `ACTOR_MODIFIER`] }))
 
         debugger
       } else {
+        debugger
         const baseDefenseLevel = 10
         dl.level = buildLevel(baseDefenseLevel, actorModifier, { flat: `<flat>` })
       }

@@ -8,7 +8,7 @@ import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
 import { IWeaponizableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/weaponizable"
 import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/weapons"
-import { isNilOrEmpty } from "../../../../december/utils/lodash"
+import { isNilOrEmpty, push } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 import GenericFeature from "./generic"
 import FeatureFactory from "../../../core/feature/factory"
@@ -17,12 +17,21 @@ import { derivation, passthrough, proxy } from "./pipelines"
 import { MERGE } from "../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
-import { ILevel, ILevelDefinition, buildLevel, getFeaturesFromTarget, parseLevel, allowedSkillTargets, viabilityCheck } from "../../../../gurps-extension/utils/level"
+import {
+  ILevel,
+  createLevelDefinition,
+  createVariable,
+  calculateLevel,
+  IAttributeVariable,
+  allowedSkillVariables,
+  getFeaturesFromVariable,
+} from "../../../../gurps-extension/utils/level"
 import { IComponentDefinition, compareComponent } from "../../../../gurps-extension/utils/component"
 import { IFeatureContext } from "../../actor-sheet/context/feature/interfaces"
 import BaseContextTemplate from "../../actor-sheet/context/context"
 import { FeatureBaseContextSpecs } from "../../actor-sheet/context/feature/base"
 import { SkillFeatureContextSpecs } from "../../actor-sheet/context/feature/variants/skill"
+import { expression } from "mathjs"
 
 export default class SkillFeature extends GenericFeature {
   declare data: ISkillFeatureData
@@ -390,17 +399,33 @@ export default class SkillFeature extends GenericFeature {
 
     if (training === `trained`) {
       // CALCULATE LEVEL BASED ON ATTRIBUTE
-      let baseLevel = (actor.system.attributes[baseAttribute.toUpperCase()] ?? actor.system[baseAttribute]).value
-      baseLevel = Math.min(20, baseLevel) // The Rule of 20, B 173
 
-      const skillModifier = withModifier ? this.data.proficiencyModifier : 0
+      const proficiencyModifier = withModifier ? this.data.proficiencyModifier : 0
       const actorModifier = withModifier ? this.data.actorModifier : 0
 
       const flags = baseAttribute !== attribute ? [`other-based`] : []
-      const attributeBasedLevel = buildLevel(baseLevel, skillModifier + actorModifier, { attribute: baseAttribute, flags })
+
+      // The Rule of 20, B 173 [max=20]
+      const B = createVariable(`B`, `attribute`, baseAttribute, { flags, transforms: [`max=20`] })
+
+      let expression = `∂B`
+      const variables = { B } as any
+
+      if (proficiencyModifier) {
+        variables.P = createVariable(`P`, `constant`, proficiencyModifier, { label: `Profiency` })
+        expression += ` + ∂P`
+      }
+
+      if (actorModifier) {
+        variables.A = createVariable(`A`, `constant`, actorModifier, { label: `Actor` })
+        expression += ` + ∂A`
+      }
+
+      const definition = createLevelDefinition(expression, variables, { flags })
+      const attributeBasedLevel = calculateLevel(definition, this, actor)
 
       // ERROR: Cannot
-      if (isNaN(attributeBasedLevel.level) || isNil(attributeBasedLevel.level)) debugger
+      if (isNil(attributeBasedLevel) || isNaN(attributeBasedLevel?.value)) debugger
 
       return attributeBasedLevel
     } else if (training === `untrained`) {
@@ -410,13 +435,13 @@ export default class SkillFeature extends GenericFeature {
       if (isNil(baseAttribute)) debugger
 
       // CALCULATE ATTRIBUTE-BASED LEVEL OF ATTRIBUTE-ONLY DEFAULTS
-      const defaultsAttributeBasedLevels = [] as { level: ILevel; definition: ILevelDefinition }[]
-      for (const _default of defaults ?? []) {
-        const targets = _default.targets ? Object.values(_default.targets) : []
-        const attributes = targets.filter(target => target.type === `attribute`)
-        const nonAttributes = targets.filter(target => target.type !== `attribute`)
+      const defaultsAttributeBasedLevels = [] as ILevel[]
+      for (const definition of defaults ?? []) {
+        const variables = Object.values(definition.variables ?? {})
+        const attributes = variables.filter(variable => variable.type === `attribute`)
+        const nonAttributes = variables.filter(variable => variable.type !== `attribute`)
 
-        let definition = _default
+        let localDefinition = definition
         let level: ILevel | null = null
 
         // just use attribute-only-based defaults
@@ -426,30 +451,29 @@ export default class SkillFeature extends GenericFeature {
 
           if (baseAttribute !== attributes[0].value) {
             // if base attribute is different than default attribute, just change target/variables in default
-            definition = cloneDeep(_default)
-            definition.variables!.A = baseAttribute
-            definition.targets!.A = {
-              fullName: baseAttribute,
-              name: baseAttribute,
-              type: `attribute`,
-              value: baseAttribute,
-              _raw: baseAttribute,
-            }
+
+            localDefinition = cloneDeep(definition)
+
+            const handle = attributes[0].handle
+            const attributeVariable = localDefinition.variables![handle] as IAttributeVariable
+
+            attributeVariable.value = baseAttribute
+            attributeVariable.meta = { name: baseAttribute }
+            attributeVariable.flags = [...(attributeVariable.flags ?? []), `other-based`]
+
+            push(localDefinition, `flags`, `other-based`)
           }
 
-          level = parseLevel(definition, this, actor)
+          level = calculateLevel(localDefinition, this, actor)
         }
 
-        if (!isNil(level)) defaultsAttributeBasedLevels.push({ level, definition })
+        if (!isNil(level)) defaultsAttributeBasedLevels.push(level)
       }
 
       // in the case of multiple attribute-only default (like Boating) choose those matching base attribute
-      const ablsWithBaseAttribute = orderBy(defaultsAttributeBasedLevels, ({ level }) => level.level, `desc`)
+      const ablsWithBaseAttribute = orderBy(defaultsAttributeBasedLevels, level => level.value, `desc`)
 
-      // TODO: Unimplemented multiple options
-      // if (ablsWithBaseAttribute.length !== 1) debugger
-
-      return ablsWithBaseAttribute[0]?.level ?? null
+      return ablsWithBaseAttribute[0] ?? null
     }
 
     return null
@@ -481,22 +505,22 @@ export default class SkillFeature extends GenericFeature {
       if (trainedSkillsGCA.length === 0) debugger
 
       // CALCULATE ATTRIBUTE-BASED LEVEL OF DEFAULTS
-      const defaultsAttributeBasedLevels = [] as { level: ILevel; definition: ILevelDefinition }[]
-      for (const _default of defaults ?? []) {
-        if (!_default.targets) continue
+      const defaultsAttributeBasedLevels = [] as ILevel[]
+      for (const definition of defaults ?? []) {
+        if (!definition.variables) continue
 
         // if (training === `untrained` && name === `Smith`) debugger
 
         // viability check
-        // ignore if definition doenst have any trained skill targets
-        const targets = allowedSkillTargets(_default, trainedSkillsGCA)
-        if (targets.length === 0) continue
+        // ignore if definition doenst have any trained skill in variables
+        const variables = allowedSkillVariables(definition, trainedSkillsGCA)
+        if (variables.length === 0) continue
 
-        // ERROR: Untested, multiple trained skill targets in definition // COMMENT
+        // ERROR: Untested, multiple trained skill variables in definition // COMMENT
         //        Since bellow i'm assuming there is only only trained-skill-based target to get its skill feature // COMMENT
-        if (targets.length > 1) debugger // COMMENT
+        if (variables.length > 1) debugger // COMMENT
 
-        const features = getFeaturesFromTarget(actor, targets[0]).filter(feature => feature.data.training === `trained`)
+        const features = getFeaturesFromVariable(actor, variables[0]).filter(feature => feature.data.training === `trained`)
 
         // ERROR: Unimplemented // COMMENT
         if (features.length !== 1) debugger // COMMENT
@@ -514,24 +538,24 @@ export default class SkillFeature extends GenericFeature {
         }
 
         // default is good to go, calculate level and ship it
-        const level = _default.parse(this, actor)
+        const level = calculateLevel(definition, this, actor)
 
         // ERROR: Untested // COMMENT
         if (level === null) debugger // COMMENT
 
-        if (level) defaultsAttributeBasedLevels.push({ level, definition: _default })
+        if (level) defaultsAttributeBasedLevels.push(level)
       }
 
       // if (this.id === `gca-528`) debugger
 
-      const orderedLevels = orderBy(defaultsAttributeBasedLevels, ({ level }) => level.level, `desc`)
+      const orderedLevels = orderBy(defaultsAttributeBasedLevels, level => level.value, `desc`)
 
       if (orderedLevels.length === 0) return attributeBasedLevel
-      if (attributeBasedLevel?.level > orderedLevels[0].level.level) return attributeBasedLevel
-      if (training !== `trained`) return orderedLevels[0].level
+      if (attributeBasedLevel?.value > orderedLevels[0].value) return attributeBasedLevel
+      if (training !== `trained`) return orderedLevels[0].value
 
       // IF A DEFAULT HAS AN ABL BIGGER THEN SELF ABL, THEN USE ITS ABL AS BASE LEVEL (making it a DEFAULT-BASED LEVEL)
-      const baseLevel = orderedLevels[0].level.level
+      const baseLevel = orderedLevels[0].value
 
       debugger
       const flags = [`default-based`]
@@ -539,7 +563,7 @@ export default class SkillFeature extends GenericFeature {
 
       debugger
       return defaultBasedLevel
-    } else if (training === `untrained`) {
+    } else if (training === `unknown`) {
       debugger
     }
 

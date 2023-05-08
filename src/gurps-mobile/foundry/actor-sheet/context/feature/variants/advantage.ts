@@ -6,7 +6,8 @@ import TagBuilder from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import AdvantageFeature from "../../../../actor/feature/advantage"
-import { rollToRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { parseRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { levelToHTML } from "../../../../../../gurps-extension/utils/level"
 
 export interface AdvantageFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: AdvantageFeature
@@ -42,12 +43,12 @@ export default class AdvantageFeatureContextTemplate extends BaseContextTemplate
       for (const roll of feature.data.rolls) {
         if (roll.tags.includes(`self_control`)) {
           variant.value = {
-            label: roll.definition.relative?.toString(),
-            value: roll.definition.level,
+            label: levelToHTML(roll),
+            value: roll.value,
           }
 
           if (!variant.rolls) variant.rolls = []
-          variant.rolls.push(rollToRollContext(roll, variant.rolls.length))
+          variant.rolls.push(parseRollContext(roll, variant.rolls.length))
 
           tags.type(`feature`).add({
             type: `self-control`,

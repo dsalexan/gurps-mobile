@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import { cloneDeep, flatten, flattenDeep, groupBy, intersection, isNil, orderBy, partition, sum, uniq, uniqBy, unzip } from "lodash"
 import { parseBonus } from "./bonus"
-import { ILevel, ILevelDefinition, calculateLevel, nonSkillOrAllowedSkillTargets } from "./level"
+import { ILevel, ILevelDefinition, calculateLevel, nonSkillOrAllowedSkillVariables } from "./level"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { parseExpression } from "../../december/utils/math"
 import SkillFeature from "../../gurps-mobile/foundry/actor/feature/skill"
@@ -136,6 +136,7 @@ export function activeDefenseLevel(
         )
         // const skillsOrderedByLevel = orderBy(skillsOrderedByForm, ([skill, formula]) => skill.data.level?.level ?? -Infinity)
 
+        debugger
         // group (form-variant skill, formula) by level (to later only get the highest level for a skill+formula tuple)
         return groupBy(formVariantSkillsOrderedByForm, ([skill]) => skill.data.level?.level ?? -Infinity)
       },
@@ -182,14 +183,14 @@ export function activeDefenseLevel(
       const defaults = weapon.data.defaults ?? []
       if (defaults.length === 0) continue
 
-      const viableDefinitions = defaults.filter(definition => nonSkillOrAllowedSkillTargets(definition, knownLeveledSkills))
+      const viableDefinitions = defaults.filter(definition => nonSkillOrAllowedSkillVariables(definition, knownLeveledSkills))
 
       // get all known leveled skills from viable definitions
       const skillIndexes = viableDefinitions
         .map(definition => {
-          const targets = Object.values(definition.targets ?? {})
-          const skillTargets = targets.filter(target => target.type === `skill`)
-          return skillTargets.map(target => (target.value as number[]).filter(value => knownLeveledSkills.includes(value))).flat()
+          const variables = Object.values(definition.variables ?? {})
+          const skillVariables = variables.filter(target => target.type === `skill`)
+          return skillVariables.map(target => (target.value as number[]).filter(value => knownLeveledSkills.includes(value))).flat()
         })
         .flat()
 
@@ -201,6 +202,7 @@ export function activeDefenseLevel(
     }
   }
 
+  debugger
   // group (weapon, skill) by skill level, defense bonus, feature and formula
   const bySkillLevelAndDefenseBonusAndFeatureAndFormula = groupBy(
     weaponSkills,

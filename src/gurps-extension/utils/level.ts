@@ -1,17 +1,18 @@
 /* eslint-disable no-debugger */
-import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum, groupBy, intersection, unzip, omit, isFunction, isString, mapValues } from "lodash"
+import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum, groupBy, intersection, unzip, omit, isFunction, isString, mapValues, get } from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
 import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { MathNode, evaluate } from "mathjs"
 import { isNilOrEmpty, isNumeric } from "../../december/utils/lodash"
-import mathInstance, { MathPrintOptions, MathScope, ignorableSymbols, mathError, parseExpression, preprocess, setupExpression, toHTML } from "../../december/utils/math"
+import mathInstance, { MathPrintOptions, MathScope, buildScope, ignorableSymbols, mathError, parseExpression, preprocess, setupExpression, toHTML } from "../../december/utils/math"
 import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
 import { specializedName } from "../../gurps-mobile/core/feature/utils"
 import { GURPS4th } from "../types/gurps4th"
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
+import { TypeVariable } from "typescript"
 
 // #region Final level representation
 
@@ -79,7 +80,6 @@ export function prepareScope<TMe extends GenericFeature = GenericFeature>(
         symbolValue.number = isFunction(property) ? property.call(me) : property
       }
     } else if (prefix === `VAR`) {
-      debugger
       const multiValue = parseVariable(definition.variables[name], me, actor)
 
       symbolValue = multiValue
@@ -93,7 +93,6 @@ export function prepareScope<TMe extends GenericFeature = GenericFeature>(
     if (isNil(symbolValue.number)) debugger
 
     scope[symbol] = symbolValue
-    debugger
   }
 
   return scope
@@ -110,13 +109,13 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
 
   let scope = {} as CompoundMathScope
   try {
-    scope = prepareScope(node, {} as any, me, actor)
+    scope = prepareScope(node, definition, me, actor)
   } catch (error) {
     mathError(expression, scope, error)
     debugger
   }
 
-  const numericScope = mapValues(scope, value => value.number)
+  const numericScope = mapValues(scope, value => value.number ?? value.string)
 
   const viable = Object.values(numericScope).every(value => !isNil(value))
   if (!viable) return null
@@ -176,7 +175,7 @@ export interface IBaseVariable<THandle extends string = string> {
   meta?: unknown // metadata from GCA/GCS source
   handle: THandle // variable handle (usually a letter)
   //
-  type: `attribute` | `skill` | `me` // type of variable, indicates which algorithm to use to acquire numeric value
+  type: `unknown` | `attribute` | `skill` | `me` | `constant` // type of variable, indicates which algorithm to use to acquire numeric value
   value?: unknown // arguments to supply numeric acquiring algorithm
   transforms?: string[] // any transforms to apply to numeric value
   //
@@ -184,6 +183,16 @@ export interface IBaseVariable<THandle extends string = string> {
   flags?: string[]
 }
 
+export interface IUnknownVariable<THandle extends string = string> extends IBaseVariable<THandle> {
+  type: `unknown`
+  meta: {
+    fullName: string
+    name: GCA.TargetProperty | string
+    nameext?: GCA.TargetProperty | string
+  }
+  //
+  value: undefined
+}
 export interface IAttributeVariable<THandle extends string = string> extends IBaseVariable<THandle> {
   type: `attribute`
   meta?: {
@@ -210,13 +219,37 @@ export interface IMeVariable<THandle extends string = string> extends IBaseVaria
   value: string
 }
 
-export type IVariable<THandle extends string = string> = IAttributeVariable<THandle> | ISkillVariable<THandle> | IMeVariable<THandle>
+export interface IConstantVariable<THandle extends string = string> extends IBaseVariable<THandle> {
+  type: `constant`
+  //
+  value: number
+}
+
+export type IVariable<THandle extends string = string> =
+  | IUnknownVariable<THandle>
+  | IAttributeVariable<THandle>
+  | ISkillVariable<THandle>
+  | IMeVariable<THandle>
+  | IConstantVariable<THandle>
+
+export type VariableType<TVariable extends IVariable> = TVariable[`type`]
+export type VariableValue<TVariable extends IVariable> = TVariable[`value`]
+
+// ```
+
+export interface CreateVariableOptions<THandle extends string = string, TVariable extends IVariable<THandle> = IVariable<THandle>> {
+  _raw?: string
+  meta?: TVariable[`meta`]
+  label?: TVariable[`label`]
+  transforms?: TVariable[`transforms`]
+  flags?: TVariable[`flags`]
+}
 
 export function createVariable<THandle extends string = string, TVariable extends IVariable<THandle> = IVariable<THandle>>(
   handle: THandle,
-  type: TVariable[`type`],
-  value: TVariable[`value`],
-  options: { _raw?: string; meta?: TVariable[`meta`]; label?: TVariable[`label`]; transforms?: TVariable[`transforms`]; flags?: TVariable[`flags`] } = {},
+  type: VariableType<TVariable>,
+  value: VariableValue<TVariable>,
+  options: CreateVariableOptions<THandle, TVariable> = {},
 ): TVariable {
   const variable = {
     _raw: options._raw ?? `∂${handle}`,
@@ -226,45 +259,87 @@ export function createVariable<THandle extends string = string, TVariable extend
     value,
   } as TVariable
 
+  if (type === `skill` && variable.value === undefined) variable.value = [] as number[]
+
   // ERROR: Checks
   if (type === `me`) {
-    if (!isString(value)) debugger
+    if (!isString(variable.value)) debugger
   } else if (type === `skill`) {
-    if (!isArray(value)) debugger
+    if (!isArray(variable.value)) debugger
+  } else if (type === `unknown`) {
+    if (!isNil(variable.value)) debugger
   }
 
-  if (options.meta) variable.meta
-  if (options.label) variable.label
-  if (options.transforms) variable.transforms
-  if (options.flags) variable.flags
+  if (options.meta) variable.meta = options.meta
+  if (options.label) variable.label = options.label
+  if (options.transforms) variable.transforms = options.transforms
+  if (options.flags) variable.flags = options.flags
 
   return variable
 }
 
 export function parseVariable<TMe extends GenericFeature = GenericFeature, THandle extends string = string>(variable: IVariable<THandle>, me: TMe, actor: GurpsMobileActor) {
-  const transforms = variable.transforms ?? []
+  const _middleTransforms = [] as RegExp[]
+  const _postTransforms = [/max=\d+/i]
+
+  const _transforms = variable.transforms ?? []
+
+  const invalidTransforms = [] as string[]
+  const postTransforms = [] as string[]
+  const transforms = [] as string[]
+
+  for (const transform of _transforms) {
+    if (_middleTransforms.some(expected => expected.test(transform))) transforms.push(transform)
+    else if (_postTransforms.some(expected => expected.test(transform))) postTransforms.push(transform)
+    else invalidTransforms.push(transform)
+  }
 
   // TODO: Deal with dynamic
   const dynamicMeta = Object.values(variable.meta ?? {}).some(value => value?.type === `dynamic`)
   if (dynamicMeta) LOGGER.get(`level`).warn(`Found dynamic metadata in variable`, `"${variable.label ?? `${variable.type}:${variable.value}`}"`, `from`, variable._raw, variable)
 
   // ERROR: Unimplemented
-  if (transforms.length !== 0) debugger
+  if (invalidTransforms.length !== 0) debugger
   if (dynamicMeta) debugger
 
   let value: { number: number; string?: string } = { number: null } as any
 
   if (variable.type === `me`) {
-    const _value = me[variable.value as keyof TMe]
+    if (has(me, variable.value as keyof TMe)) {
+      const _value = get(me, variable.value as keyof TMe)
 
-    if (isNumeric(_value)) {
-      value.number = parseFloat(_value)
+      if (isNumeric(_value) || typeof _value === `number`) {
+        value.number = parseFloat(_value)
+      } else if (!isNil(_value)) {
+        value.string = _value?.toString()
+        debugger
+      }
     } else {
-      value.string = (me.sources.gca?.[variable.value] as any).toString()
+      const originalExpression = me.sources.gca?.[variable.value]?.toString()
+      if (isNil(originalExpression)) debugger
 
-      debugger
+      const math = mathInstance()
+      const expression = preprocess(originalExpression!)
+      const node = math.parse(expression)
+
+      let scope = {} as MathScope
+      try {
+        scope = buildScope(node, me, scope)
+      } catch (error) {
+        mathError(originalExpression!, scope, error)
+        debugger
+      }
+
+      const code = node.compile()
+      const _value = code.evaluate(scope)
+
+      if (isNumeric(_value) || typeof _value === `number`) {
+        value.number = parseFloat(_value)
+      } else {
+        debugger
+        value.string = _value?.toString()
+      }
     }
-    debugger
   } else if (variable.type === `attribute`) {
     const attribute = variable.value as GURPS4th.Attributes
     const _value = (actor.system.attributes[attribute.toUpperCase()] ?? actor.system[attribute.toLowerCase().replaceAll(/ +/g, ``)]).value
@@ -274,7 +349,6 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
     if (![`ST`, `DX`, `IQ`, `HT`, `PER`, `WILL`, `DODGE`, `BASIC SPEED`].includes(attribute.toUpperCase())) debugger
 
     // The Rule of 20 (B 173) applies only to defaulting skills to attributes (not every level math is about skills m8)
-    debugger
   } else if (variable.type === `skill`) {
     let skillIndexes = variable.value
 
@@ -284,22 +358,28 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
     // ERROR: Unimplemented for undefined list of skills (target.value === undefined)
     if (skillIndexes?.length === undefined) debugger
 
-    debugger
-    // TODO: Should send level FOR ANY SKILL, trained or not. If the caller has a preference for any training, he should be able to specify on call
-
-    // list all trained skills in skills
+    // list all skills
     //    remove duplicates by id
     const skillEntries = skillIndexes.map(index => GCA.entries[index])
     const skillFeatures = skillIndexes.map(index => actor.cache.gca?.skill?.[index]).filter(skill => !isNil(skill))
-    const trainedSkills = skillFeatures.filter(skill => skill.data.training === `trained`)
 
-    if (trainedSkills.length > 0) {
+    const knownSkills = skillFeatures.filter(skill => skill.data.training !== `unknown`)
+
+    if (skillFeatures.length > 0) {
+      const orderedByLevel = orderBy(knownSkills, skill => skill.data.level?.value ?? skill.data.attributeBasedLevel?.value ?? -Infinity, `desc`)
       // transform if needed
-      const trainedSkill = trainedSkills[0]
-      const level = trainedSkill.data.level === undefined ? trainedSkill.data.attributeBasedLevel : trainedSkill.data.level
+      const skill = orderedByLevel[0]
 
-      value.number = level?.level
-      value.string = trainedSkill.specializedName
+      // ERROR: Cannotb
+      if (isNil(skill.data.attributeBasedLevel) && isNil(skill.data.level)) debugger
+
+      // ERROR: Untested
+      if (skill.data.training !== `trained`) debugger
+
+      const level = skill.data.level === undefined ? skill.data.attributeBasedLevel : skill.data.level
+
+      value.number = level!.value
+      value.string = skill.specializedName
 
       // ERROR: Unimplemented
       if (isNil(value.number)) debugger
@@ -311,11 +391,11 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
         if (transform !== `level`) debugger
       }
     } else {
-      // untrained skill
-      value = null
+      // no skill here
+      value.number = null
     }
-
-    debugger
+  } else if (variable.type === `constant`) {
+    value.number = parseFloat(variable.value)
   } else {
     // ERROR: Unimplemented
     debugger
@@ -324,8 +404,89 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
   // ERROR: Noo dawg
   if (isNil(value.number)) debugger
 
+  for (const transform of postTransforms) {
+    const [name, arg] = transform.split(`=`)
+
+    if (name === `max`) {
+      value.number = Math.min(value.number, parseFloat(arg))
+    } else if (name === `min`) {
+      value.number = Math.max(value.number, parseFloat(arg))
+    } else {
+      // ERROR: Unimplemented transform
+      debugger
+    }
+  }
+
   return value
 }
+
+// #region Variable checks
+
+export function setupCheck(definition: ILevelDefinition) {
+  const variables = Object.values(definition.variables ?? {})
+  const variablesByType = groupBy(variables, `type`)
+  const types = Object.keys(variablesByType)
+
+  // ERROR: Untested viability of targetless definitions (if they really exist)  // COMMENT
+  if (!definition.variables) debugger // COMMENT
+
+  // ERROR: Untested, other types then skill/atribute // COMMENT
+  if (!types.includes(`skill`) && !types.includes(`attribute`)) debugger // COMMENT
+
+  // ERROR: Untested, multiple attributes in definition // COMMENT
+  if (types.length === 1 && types[0] === `attribute` && variablesByType[`attribute`].length > 1) debugger // COMMENT
+
+  return { variables, variablesByType, types }
+}
+
+export function allowedSkillVariables(definition: ILevelDefinition, allowedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
+  let setup = cachedSetup
+  if (!setup) setup = setupCheck(definition)
+  const { variablesByType } = setup
+
+  const skillVariables = variablesByType[`skill`] ?? []
+
+  const allowedSkillVariables = skillVariables.filter(target => intersection((target.value as number[]) ?? [], allowedSkillList).length >= 1)
+
+  return allowedSkillVariables
+}
+
+export function nonSkillOrAllowedSkillVariables(definition: ILevelDefinition, allowedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
+  let setup = cachedSetup
+  if (!setup) setup = setupCheck(definition)
+  const { variables } = setup
+
+  const nonSkillOrAllowedSkillVariables = [] as IVariable[]
+
+  // non-skills
+  nonSkillOrAllowedSkillVariables.push(...variables.filter(target => target.type !== `skill`))
+
+  // trained skills
+  nonSkillOrAllowedSkillVariables.push(...allowedSkillVariables(definition, allowedSkillList, setup))
+
+  return nonSkillOrAllowedSkillVariables
+}
+
+export function getFeaturesFromVariable(actor: GurpsMobileActor, variable: IVariable) {
+  if (variable.type === `skill`) {
+    const GCAIndexes = (variable.value as number[]) ?? []
+    const features = GCAIndexes.map(index => actor.cache.gca?.skill?.[index]).filter(skill => !isNil(skill))
+
+    return features
+  } else if (variable.type === `attribute`) {
+    debugger
+  } else if (variable.type === `me`) {
+    debugger
+  } else if (variable.type === `constant`) {
+    debugger
+  }
+
+  // ERROR: Unimplemented
+  debugger
+  return []
+}
+
+// #endregion
 
 // #endregion
 
@@ -367,16 +528,14 @@ export function parseLevelDefinitionFromGCA(object: GCA.Expression) {
       if (!isNil(expressionTarget.value)) debugger
 
       variable = createVariable<typeof handle, IMeVariable<typeof handle>>(handle, `me`, expressionTarget.transform as string)
-
-      debugger
     } else if (expressionTarget.type === `attribute`) {
       variable = createVariable<typeof handle, IAttributeVariable<typeof handle>>(handle, `attribute`, expressionTarget.value as string, {
         label: expressionTarget.fullName,
         meta: { name: expressionTarget.fullName },
       })
-
-      debugger
     } else if (expressionTarget.type === `skill`) {
+      if (isNil(expressionTarget.value)) LOGGER.get(`gca`).error(`Target`, `"${expressionTarget._raw}"`, `came from GCA without a value`, expressionTarget, object)
+
       variable = createVariable<typeof handle, ISkillVariable<typeof handle>>(handle, `skill`, expressionTarget.value as number[], {
         label: expressionTarget.fullName,
         meta: {
@@ -385,8 +544,15 @@ export function parseLevelDefinitionFromGCA(object: GCA.Expression) {
           nameext: expressionTarget.nameext,
         },
       })
-
-      debugger
+    } else if (expressionTarget.type === `unknown`) {
+      variable = createVariable<typeof handle, IUnknownVariable<typeof handle>>(handle, `unknown`, expressionTarget.value as undefined, {
+        label: expressionTarget.fullName,
+        meta: {
+          fullName: expressionTarget.fullName,
+          name: expressionTarget.name,
+          nameext: expressionTarget.nameext,
+        },
+      })
     } else {
       // ERROR: Untested
       debugger
@@ -428,8 +594,6 @@ export function parseLevelDefinitionFromGCS(object: GCS.EntryDefault) {
     })
 
     definition = createLevelDefinition(`∂A ${object.modifier ?? ``}`.trim(), { A }, { _raw: JSON.stringify(object) })
-
-    debugger
   } else if (object.type === `skill`) {
     // ERROR: Unimplemented
     if (isNil(object.name)) debugger
@@ -453,8 +617,6 @@ export function parseLevelDefinitionFromGCS(object: GCS.EntryDefault) {
     })
 
     definition = createLevelDefinition(`∂S ${object.modifier ?? ``}`.trim(), { S }, { _raw: JSON.stringify(object) })
-
-    debugger
   } else {
     // ERROR: Unimplemented
     debugger

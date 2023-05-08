@@ -314,14 +314,13 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
         continue
       }
 
-      // TODO: Adapt this to new shit
       for (const definition of definitions) {
-        const { targetsByType } = setupCheck(definition)
+        const { variablesByType } = setupCheck(definition)
 
-        const skillTargets = targetsByType[`skill`] ?? []
-        if (skillTargets.length === 0) continue
+        const skillVariables = variablesByType[`skill`] ?? []
+        if (skillVariables.length === 0) continue
 
-        const indexes = skillTargets.map(target => target.value).flat() as number[]
+        const indexes = skillVariables.map(target => target.value).flat() as number[]
         const entries = indexes.map(index => GCA.entries[index])
         skills.push(...entries.filter(entry => !isNil(entry)))
       }

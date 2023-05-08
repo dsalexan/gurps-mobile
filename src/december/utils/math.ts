@@ -124,7 +124,7 @@ export type MathScope = Record<string, number>
 /**
  * Prepare a scope for mathjs to evaluate an expression. U
  */
-export function prepareScope<TMe extends object = object>(
+export function buildScope<TMe extends object = object>(
   node: MathNode,
   me?: TMe,
   baseScope?:
@@ -134,7 +134,7 @@ export function prepareScope<TMe extends object = object>(
       },
 ) {
   const math = mathInstance()
-  const scope = {} as MathScope<TMe>
+  const scope = {} as MathScope
 
   const symbols = node.filter((node: any) => node.isSymbolNode).map((node: any) => node.name)
 

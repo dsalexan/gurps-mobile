@@ -6,11 +6,11 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { isNilOrEmpty, isNumeric, push } from "../../../../../../december/utils/lodash"
-import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition, nonSkillOrAllowedSkillTargets, levelToHTML } from "../../../../../../gurps-extension/utils/level"
+import { ILevelDefinition, ILevel, parseLevelDefinition, levelToHTML, calculateLevel, nonSkillOrAllowedSkillVariables } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 import WeaponFeature from "../../../../actor/feature/weapon"
-import { levelToRollContext, parseRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { parseRollContext, parseRollContextWithContent } from "../../../../../../gurps-extension/utils/roll"
 import { parseModifier } from "../../../../../core/feature/utils"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
@@ -67,20 +67,19 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const unviable = [] as ILevelDefinition[],
       viable = [] as ILevel[]
 
-    // TODO: Adapt viability check to new shit
     const definitions = feature.data.defaults ?? []
     for (const defaultDefinition of definitions) {
       // viability check
-      const targets = nonSkillOrAllowedSkillTargets(defaultDefinition, trainedSkillsGCA)
+      const variables = nonSkillOrAllowedSkillVariables(defaultDefinition, trainedSkillsGCA)
 
-      // ERROR: Untested, no targets to begin with
-      if (Object.keys(defaultDefinition.targets ?? {}).length === 0) debugger
+      // ERROR: Untested, no variables to begin with
+      if (Object.keys(defaultDefinition.variables ?? {}).length === 0) debugger
 
-      // if all targets pass viability check, then default IS viable
-      if (targets.length === Object.keys(defaultDefinition.targets ?? {}).length) {
-        const level = defaultDefinition.parse(feature as any, actor) ?? { level: -Infinity }
+      // if all variables pass viability check, then default IS viable
+      if (variables.length === Object.keys(defaultDefinition.variables ?? {}).length) {
+        const level = calculateLevel(defaultDefinition, feature, actor) ?? ({ value: -Infinity, definition: defaultDefinition } as any as ILevel)
 
-        viable.push({ definition: defaultDefinition, level })
+        viable.push(level)
       } else unviable.push(defaultDefinition)
     }
 
@@ -102,8 +101,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     }
 
     // order defaults by level, and for each default, yield a variant
-    const viableDefaults = orderBy(viable, ({ level }) => level.level, `desc`)
-    for (const default_ of viableDefaults) {
+    const viableDefaults = orderBy(viable, level => level.value, `desc`)
+    for (const level of viableDefaults) {
       const variant = deepClone(main)
 
       variant.id = `skill-variant`
@@ -115,7 +114,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       if (isNil(variant.label)) {
         const prefix = ``
         // const prefix = `<div class="wrapper-icon"><i class="icon">${Handlebars.helpers[`gurpsIcon`](`skill`)}</i></div>`
-        variant.label = { main: `${prefix}${default_.level.relative?.toString()}` }
+        variant.label = { main: `${prefix}${levelToHTML(level)}` }
       }
       // if (feature.usage) {
       //   tags.type(`type`).update(tag => {
@@ -130,15 +129,15 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       // VALUE
       variant.value = {
-        value: default_.level.value,
-        label: levelToHTML(default_.level),
+        value: level.value,
+        label: levelToHTML(level),
         // TODO: ACRYNOYM .relative?.toString({ acronym: true }),
       }
 
       if (!variant.rolls) variant.rolls = []
 
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls[0] = parseRollContext(default_.level, 0)
+      variant.rolls[0] = parseRollContext(level, 0)
 
       variants.push({ ...variant, tags: tags.tags })
     }
@@ -212,17 +211,22 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       // ERROR: Unimplemented actorless feature
       if (!actor) debugger
 
-      const levels = orderLevels(defaultLevels, feature, actor)
-      const level = levels[0]
+      const levels = defaultLevels.map(definition => calculateLevel(definition, feature, actor)).filter(l => !isNil(l))
+      const orderedLevels = orderBy(levels, def => def!.value, `desc`)
+      const level = orderedLevels[0]!
+
+      // ERROR: Untested
+      if (isNil(level)) debugger
 
       variant.value = {
-        value: level.level,
-        label: level.relative?.toString({ acronym: true }),
+        value: level.value,
+        label: levelToHTML(level),
+        // TODO: Acronym level.relative?.toString({ acronym: true }),
       }
 
       if (!variant.rolls) variant.rolls = []
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls.push(levelToRollContext([{ primary: `To Hit`, secondary: feature.data.usage ?? undefined }], level, variant.rolls.length))
+      variant.rolls.push(parseRollContextWithContent([{ primary: `To Hit`, secondary: feature.data.usage ?? undefined }], level, variant.rolls.length))
     }
 
     if (!variant.stats) variant.stats = [[], []]
@@ -230,16 +234,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
     /**
      * TODO: Stats Sources
-     *    👍active defenses
-     *    damage
-     *    reach
-     *    range
-     *    minimum strenght
-     *    accuracy
-     *    rate of fire
      *    shots
      *    bulk
-     *    recoil
      *    ammo
      */
 
@@ -262,7 +258,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         })
 
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(levelToRollContext([{ primary: `Damage` }], { level: base, relative: feature.data.damage.type }, variant.rolls.length))
+        variant.rolls.push(parseRollContextWithContent([{ primary: `Damage` }], { level: base, relative: feature.data.damage.type }, variant.rolls.length))
       }
     }
 
@@ -339,7 +335,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         })
 
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(levelToRollContext([{ primary: defense.capitalize() }], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length))
+        variant.rolls.push(
+          parseRollContextWithContent([{ primary: defense.capitalize() }], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length),
+        )
       }
     }
 
