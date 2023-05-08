@@ -206,7 +206,7 @@ class GDF {
       const default_ = data.default ?? []
       if (default_.length > 0) {
         const mappedDefault = []
-        const ATTRIBUTES = [`ST`, `DX`, `IQ`, `HT`, `WILL`, `PER`, `DODGE`]
+        const ATTRIBUTES = [`ST`, `DX`, `IQ`, `HT`, `WILL`, `PER`, `DODGE`, `BASIC SPEED`]
 
         for (const defaultSkill of default_) {
           // if (defaultSkill === `SK:Cooking-3`) debugger

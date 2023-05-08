@@ -167,19 +167,19 @@
               }
 
               & > .wrapper {
-                & > .content-wrapper {
-                  & > .content {
-                    & > .primary {
-                      color: #BBBBBB;
-                    }
-
-                    & > .secondary, & > .tertiary {
-                      color: #999999;
+                & > .roll {
+                  & > .content-wrapper {
+                    & > .content {
+                      & > .primary {
+                        color: #BBBBBB;
+                      }
+  
+                      & > .secondary, & > .tertiary {
+                        color: #999999;
+                      }
                     }
                   }
-                }
 
-                & > .roll {
                   &.interactible > .feature-roll {
                     background-color: rgb(var(--darker-main-color), 1);
                     border-color: rgb(var(--dark-main-color), 1);
@@ -219,7 +219,7 @@
               &, & > .row {
                 & > .stat {
                   & > .icon-wrapper {
-                    color: rgb(var(--light-main-color), 1);
+                    color: rgb(var(--main-color), 0.75);
                   }
                   
                   & > .label, & > .value {
@@ -269,7 +269,7 @@
       }
 
       &.roller {
-        &.expanded > .children > .feature-variant {
+        &.expanded > .children > .feature-variant.has-rolls {
           & > .wrapper > .content {
             // VALUE
             & > .label.value.roll-selected {
@@ -279,7 +279,7 @@
             & > .value.roll-selected {
               & > .feature-roll {
                 & > .icon-wrapper {
-                  color: rgba(var(--light-main-color), 1);
+                  color: rgba(var(--light-main-color), 1) !important;
                 }
 
                 & > .label {

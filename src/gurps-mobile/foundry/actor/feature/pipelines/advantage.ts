@@ -1,11 +1,11 @@
 import { isNil } from "lodash"
 import { IDerivationPipeline, derivation, proxy } from "."
-import { ILevel, ILevelDefinition, buildLevel, buildLevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { calculateLevel, createLevelDefinition, createVariable } from "../../../../../gurps-extension/utils/level"
 import { MigrationDataObject, OVERWRITE, PUSH } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
 import { parseExpression } from "../../../../../december/utils/math"
-import { IRoll, buildRoll } from "../../../../../gurps-extension/utils/roll"
+import { IRoll, createRoll } from "../../../../../gurps-extension/utils/roll"
 
 export interface IAdvantageFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
   rolls?: IRoll[]
@@ -77,8 +77,9 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
     if (isNil(cr) || isNil(mods)) return {}
 
     if (mods!.some(mod => mod.match(/self-control/i))) {
-      const level = buildLevel(cr, 0, { flat: `CR`, flags: [`self_control`] })
-      const roll = buildRoll(level, [`self_control`])
+      const definition = createLevelDefinition(`CR`, createVariable(`CR`, `me`, `sources.gcs.cr`))
+      const level = calculateLevel(definition, object, object.actor)
+      const roll = createRoll(level!, [`self_control`])
 
       return { rolls: PUSH(`rolls`, roll) }
     }
@@ -127,23 +128,4 @@ function linkFromVTTNotes(_meta: string) {
   const meta = _meta.replace(pattern, ``)
 
   return [meta, links ? links.map(match => match.replace(/ */gi, ``).replace(/:/gi, `.`)) : []] as [string, string[]]
-}
-
-function selfControlRolls(_notes: string) {
-  const pattern = /\[CR: (\d+) \(([\w ]+)\): (.+)\]/
-  const cr = _notes.match(pattern)
-  const notes = _notes.replace(pattern, ``)
-
-  debugger
-
-  const definition = parseLevelDefinition({
-    type: `flat`,
-    name: cr?.[2],
-    specialization: `Self-Control Roll`,
-    value: cr?.[1],
-  })
-  definition.tags = [`self_control`]
-
-  debugger
-  return [notes, definition] as const
 }

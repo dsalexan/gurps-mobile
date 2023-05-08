@@ -21,12 +21,19 @@ import { IDerivationFunction, derivation, proxy } from "./feature/pipelines"
 import { IGenericFeatureData } from "./feature/pipelines/generic"
 import GenericFeature from "./feature/generic"
 import SkillFeature from "./feature/skill"
-import { ILevel } from "../../../gurps-extension/utils/level"
 import Fuse from "fuse.js"
 import { push } from "../../../december/utils/lodash"
 
 export type ActorCache = {
-  links?: Record<string, string[]>
+  lastImport: string
+  //
+  links?: Record<string, string[]> & {
+    formulas?: {
+      activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
+    }
+    //
+    activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
+  }
   paths?: Record<string, string>
   _moves?: Record<string, GenericFeature>
   _skill?: Record<`trained` | `untrained` | `unknown`, Record<string, SkillFeature>>
@@ -34,7 +41,10 @@ export type ActorCache = {
     skill: Record<number, SkillFeature>
   }
   features?: Record<string, GenericFeature>
-  components?: Record<string, IComponentDefinition[]>
+  components?: {
+    index: Record<string, IComponentDefinition>
+    byType: Record<string, string[]>
+  }
   //
   contextManager?: ContextManager
   featureFactory?: FeatureFactory
@@ -42,6 +52,7 @@ export type ActorCache = {
 
 export class GurpsMobileActor extends GURPS.GurpsActor {
   skipRenderOnCalculateDerivedValues = false
+  forceRenderAfterSheetImport = false
   _datachanges: Datachanges
 
   // @ts-ignore
@@ -69,20 +80,74 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     this.cache.features[path] = value
   }
 
-  cacheLink(feature: string, ...links: string[]) {
-    for (const link of links) {
-      if (!has(this.cache, `links.${link}`)) this.setCache(`links.${link}`, [])
-      const cacheLink = get(this.cache, `links.${link}`)
-      if (isArray(cacheLink) && !cacheLink.includes(feature)) cacheLink.push(feature)
+  addComponent(component: IComponentDefinition) {
+    if (!has(this.cache, `components`)) this.setCache(`components`, { index: {}, byType: {} })
+    const components = this.cache.components!
+
+    // ERROR: Component was already added
+    if (components.index[component.id] !== undefined) debugger
+
+    components.index[component.id] = component
+
+    if (components.byType[component.type] === undefined) components.byType[component.type] = []
+
+    // ERROR: Component was already added
+    if (components.byType[component.type].includes(component.id)) debugger
+
+    components.byType[component.type].push(component.id)
+
+    const features = Object.values(this.cache.features ?? {})
+    for (const feature of features) {
+      const keys = [] as string[]
+      if (feature.__.compilation.derivationsByTarget[`actor.components`]) keys.push(`actor.components`)
+      if (feature.__.compilation.derivationsByTarget[`actor.components.${component.type}`]) keys.push(`actor.components.${component.type}`)
+
+      if (keys.length > 0) feature.fire(`update`, { keys: keys })
     }
   }
 
-  getComponents(type: string, filter?: (component: IComponentDefinition) => boolean, states: FeatureState[] | null = [FeatureState.PASSIVE, FeatureState.ACTIVE]) {
-    const typeComponents = this.cache.components?.[type] ?? ([] as IComponentDefinition[])
-    const components = filter ? typeComponents.filter(component => filter(component)) : typeComponents
-    const activeComponents = states === null ? components : components.filter(component => states.some(state => component.feature.data.state & state))
+  getComponents(
+    type: IComponentDefinition[`type`],
+    filter?: (component: IComponentDefinition) => boolean,
+    states: FeatureState[] | null = [FeatureState.PASSIVE, FeatureState.ACTIVE],
+  ) {
+    const cachedComponents = this.cache.components ?? { index: {}, byType: {} }
+
+    const ids = cachedComponents.byType?.[type] ?? ([] as string[])
+    const allComponents = ids.map(id => cachedComponents.index[id])
+    const components = filter ? allComponents.filter(component => filter(component)) : allComponents
+    const activeComponents =
+      states === null
+        ? components
+        : components.filter(component => {
+            return states.some(state => {
+              const feature = this.cache.features?.[component.feature]
+              if (!feature) debugger
+              return feature!.data.state & state
+            })
+          })
 
     return activeComponents
+  }
+
+  addLink(feature: GenericFeature, links: string[]) {
+    if (!has(this.cache, `links`)) this.setCache(`links`, {})
+
+    // adding new links
+    for (const link of links) {
+      if (!has(this.cache, `links.${link}`)) this.setCache(`links.${link}`, [])
+
+      const cacheLink = get(this.cache, `links.${link}`)
+      if (isArray(cacheLink) && !cacheLink.includes(feature.id)) cacheLink.push(feature.id)
+    }
+
+    const features = Object.values(this.cache.features ?? {})
+    for (const feature of features) {
+      const keys = [] as string[]
+      if (feature.__.compilation.derivationsByTarget[`actor.links`]) keys.push(`actor.links`)
+
+      if (keys.length > 0) feature.fire(`update`, { keys: keys })
+    }
   }
   // #endregion
 
@@ -212,7 +277,11 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     // COMPILE CONDITIONALS
     //    TODO: for now features are compiled in groups, maybe make it compile individually
-    let all = this._datachanges === undefined && Object.keys(cached ?? {}).length === 0
+
+    const sheetWasReimported = this.cache && this.cache.lastImport !== this.system.lastImport
+    if (sheetWasReimported) this.forceRenderAfterSheetImport = true
+
+    let all = (this._datachanges === undefined && Object.keys(cached ?? {}).length === 0) || sheetWasReimported
     const do_basicspeed = all || this._datachanges?.has(`system.basicspeed`)
     const do_moves = all || this._datachanges?.has(/system\.move\.\d+$/i)
     //
@@ -248,7 +317,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // logger.info(`caralho meu`)
     logger
       .group(!all)
-      .info(`[${this.id}]`, `prepareDerivedData${all ? `` : partial ? ` (partials: ${_partials.join(`, `)})` : ` (skip)`}`, [
+      .info(`[${this.id}]`, `prepareDerivedData${all ? (sheetWasReimported ? ` (re-import)` : ``) : partial ? ` (partials: ${_partials.join(`, `)})` : ` (skip)`}`, [
         `background-color: rgb(${all ? `255, 224, 60, 0.45` : partial ? `60,179,113, 0.3` : `0, 0, 0, 0.085`}); font-weight: bold; padding: 3px 0;`,
       ])
     logger.info(`    `, `last datachanges:`, this._datachanges, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
@@ -261,15 +330,19 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     logger.info(`    `, `partial:`, partials, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
 
     // PREPARE CACHE
+    let contextManager = cached?.contextManager || new ContextManager(this)
+    if (sheetWasReimported) cached = undefined as any
+
     //    if there is no cache, make it
     if (cached === undefined) {
       this.setCache(undefined, {})
       cached = this.cache
+      cached.lastImport = this.system.lastImport as any as string
     }
     cached.links = cached.links || {}
     cached.features = cached.features || {}
     cached.featureFactory = cached.featureFactory || window.FeatureFactory
-    cached.contextManager = cached.contextManager || new ContextManager(this)
+    cached.contextManager = contextManager
 
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
@@ -322,13 +395,19 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
         if (this.cache.features?.[id] === undefined) {
           factory
-            .build(`generic`, `move-basic_speed`, [0, 0], undefined, {
+            .build(`generic`, id, [0, 0], undefined, {
               context: { templates: MoveFeatureContextTemplate },
             })
-            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`)])
+            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`), proxy.manual(`links`)])
             .addSource(
               `manual`,
-              { type: FEATURE.GENERIC, name: game.i18n.localize(`GURPS.basicspeed`), label: `GURPS.basicspeed`, ...((actorData.basicspeed as any) ?? {}) },
+              {
+                type: FEATURE.GENERIC,
+                name: game.i18n.localize(`GURPS.basicspeed`),
+                label: `GURPS.basicspeed`,
+                ...((actorData.basicspeed as any) ?? {}),
+                links: [`activeDefense.dodge`],
+              },
               { path: `basicspeed` },
             )
             .integrateOn(`compile:manual`, this)
@@ -517,14 +596,20 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
       for (let i = 0; i < activeDefenses.length; i++) {
         const activeDefense = activeDefenses[i]
+        const id = `activedefense-${activeDefense}`
 
-        const feature = factory
-          .build(`generic`, `activedefense-${activeDefense}`, [2, 0], undefined, {
-            context: { templates: DefenseFeatureContextTemplate },
-          })
-          .addPipeline<IGenericFeatureData>([proxy.manual(`name`)])
-          .addSource(`manual`, { type: FEATURE.GENERIC, name: upperFirst(activeDefense) })
-          .integrateOn(`compile:manual`, this)
+        if (this.cache.features?.[id] === undefined) {
+          factory
+            .build(`defense`, id, [2, i], undefined, {
+              context: { templates: DefenseFeatureContextTemplate },
+            })
+            .addPipeline<IGenericFeatureData>([proxy.manual(`name`)])
+            .addSource(`manual`, { type: FEATURE.GENERIC, name: upperFirst(activeDefense) })
+            .integrateOn(`compile:manual`, this)
+        } else {
+          // TODO: Implement reactive compile
+          debugger
+        }
       }
 
       factory.startCompilation()

@@ -4,9 +4,10 @@ import { GenericSource } from "../../gurps-mobile/foundry/actor/feature/pipeline
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 import { cloneDeep, isArray, isNil } from "lodash"
 
-export interface IBaseComponent<TFeature extends GenericFeature = GenericFeature> {
-  feature: TFeature
+export interface IBaseComponent {
+  feature: string
   type: string
+  id: string
   //
 }
 
@@ -16,7 +17,7 @@ export interface IComponentComparator<TKey extends string> {
   qualifier: string
 }
 
-export interface ISkillBonusComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface ISkillBonusComponent extends IBaseComponent {
   type: `skill_bonus`
   per_level?: boolean
   amount: number
@@ -26,25 +27,25 @@ export interface ISkillBonusComponent<TFeature extends GenericFeature = GenericF
   // specialization: IComponentComparator
 }
 
-export interface IReactionBonusComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface IReactionBonusComponent extends IBaseComponent {
   type: `reaction_bonus`
   amount: number
   situation: string
 }
 
-export interface IDRBonusComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface IDRBonusComponent extends IBaseComponent {
   type: `dr_bonus`
   amount: number
   location: string[]
 }
 
-export interface IAttributeBonusComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface IAttributeBonusComponent extends IBaseComponent {
   type: `attribute_bonus`
   amount: number
   attribute: (`st` | `dx` | `iq` | `ht` | `dodge` | `block` | `parry` | `will` | `per` | `fp` | `hp`)[]
 }
 
-export interface IWeaponBonusComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface IWeaponBonusComponent extends IBaseComponent {
   type: `weapon_bonus`
   per_level?: boolean
   amount: number
@@ -54,14 +55,14 @@ export interface IWeaponBonusComponent<TFeature extends GenericFeature = Generic
   // specialization: IComponentComparator
 }
 
-export interface IConditionalModifierComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface IConditionalModifierComponent extends IBaseComponent {
   type: `conditional_modifier`
   amount: number
   situation: string
   target: string | undefined
 }
 
-export interface ICostReductionComponent<TFeature extends GenericFeature = GenericFeature> extends IBaseComponent<TFeature> {
+export interface ICostReductionComponent extends IBaseComponent {
   type: `cost_reduction`
   attribute: string
   percentage: number
@@ -76,18 +77,23 @@ export type IComponentDefinition =
   | IConditionalModifierComponent
   | ICostReductionComponent
 
-export function parseComponentDefinition(raw: GCS.Feature) {
+export function parseComponentDefinition(raw: GCS.Feature, feature: string, index: number) {
+  let component: IComponentDefinition
+
   if (raw.type === `conditional_modifier`) {
     const [situation, target] = raw.situation?.split(`|`) ?? []
 
-    const component = cloneDeep(raw) as IConditionalModifierComponent
+    component = raw as IConditionalModifierComponent
     component.situation = situation
     component.target = target
-
-    return component
+  } else {
+    component = raw as IComponentDefinition
   }
 
-  return raw as IComponentDefinition
+  component.feature = feature
+  component.id = `${feature}-${index}`
+
+  return component
 }
 
 export function compareComponent(component: ISkillBonusComponent | IComponentDefinition, feature: GenericFeature) {

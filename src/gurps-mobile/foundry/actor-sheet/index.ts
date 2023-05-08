@@ -17,6 +17,7 @@ import SkillFeature from "../actor/feature/skill"
 import GenericFeature from "../actor/feature/generic"
 import WeaponFeature from "../actor/feature/weapon"
 import { push } from "../../../december/utils/lodash"
+import { IListContext } from "./context/container/list"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -163,6 +164,9 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const ignorableRenderContexts = [`createActiveEffect`, `updateActiveEffect`, `deleteActiveEffect`]
 
     // state
+    const sheetWasReimported = this.actor.forceRenderAfterSheetImport
+    if (sheetWasReimported) force = true
+
     const unknownOrigin = origin === undefined
     const internalOrigin = origin === game.userId
     const externalOrigin = origin !== game.userId && !unknownOrigin
@@ -184,10 +188,10 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       [`data changes`, Object.keys(datachanges).length || undefined],
     ].filter(([label, value]) => value !== undefined)
 
-    if (force) logger.warn(`[${this.actor.id}]`, `_render${force ? ` (force)` : ``}`, [`font-weight: bold;`])
+    if (force) logger.warn(`[${this.actor.id}]`, `_render${force ? ` (${sheetWasReimported ? `re-import` : `force`})` : ``}`, [`font-weight: bold;`])
     logger
       .group(true)
-      .info(`[${this.actor.id}]`, `_render${force ? ` (force)` : ``}`, `user:${context?.userId ?? `unknown`}`, [
+      .info(`[${this.actor.id}]`, `_render${force ? ` (${sheetWasReimported ? `re-import` : `force`})` : ``}`, `user:${context?.userId ?? `unknown`}`, [
         `font-weight: regular;`,
         ``,
         `color: rgba(197, 25, 22, ${context?.userId ? `1` : `0.5`}); font-style: italic;`,
@@ -197,6 +201,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     logger.info(`    `, `element:`, (this as any).element, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `_element:`, (this as any)._element, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
     logger.info(`    `, `datachanges:`, datachanges, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+    logger.info(`    `, `re-import:`, sheetWasReimported, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
 
     logger.info(` `)
     logger.info(`Relevant parameters`)
@@ -219,6 +224,8 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     } else {
       await this._updateHtml({ ...context, datachanges })
     }
+
+    this.actor.forceRenderAfterSheetImport = false
     // if (!(this.object?.ignoreRender || this.ignoreRender))
     // Hooks.call(`postRenderMobileGurpsActorSheet`)
   }
@@ -511,14 +518,14 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       //   )
       // }
 
-      return { section, key, specs, features: ContextManager.prepareTree(features, sort === undefined ? f => parseInt(f.key.value as string) : sort, order) }
+      return { section, key, specs, features: ContextManager.prepareTree(features, sort === undefined ? f => f.key.value : sort, order) }
     })
 
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
     sheetData.tabs.attributes.push(...this.buildAttributes())
-    // sheetData.tabs.defenses.push(...this.buildDefenses())
+    sheetData.tabs.defenses.push(...this.buildDefenses())
 
     for (const type of groupedFeatures) {
       const { byId, byDepth, byParent } = type.features
@@ -548,29 +555,8 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
         label: undefined,
         children,
       })
+
       sheetData.tabs[type.key] = [root]
-
-      // sheetData.tabs[type.key] = flattenDeep(
-      //   type.features.keys.map((key, index) => {
-      //     const listId = `${type.section}-${type.key}-${key}${index}`
-
-      //     return contextManager.list({
-      //       id: listId,
-      //       label: key === `undefined` ? undefined : key,
-      //       children: type.features.groups[key]
-      //         .map(feature => {
-      //           const context = contextManager.feature(feature, {
-      //             classes: [`full`],
-      //             list: listId,
-      //             ...(type.specs ?? {}),
-      //           })
-
-      //           return context
-      //         })
-      //         .filter(c => !isNil(c)),
-      //     })
-      //   }),
-      // )
     }
 
     tFeatureContextBuildingAndContainerization(`    Feature Context Building and Containerization`, [`font-weight: bold;`]) // COMMENT
@@ -650,26 +636,60 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     if (!contextManager) return []
     if (!cache.features) return []
 
-    const listId = `combat-defenses-active`
-    const children = [] as any[]
+    const lists = [] as IListContext[]
 
+    const tab = `combat-defenses`
     const activeDefenses = [`block`, `dodge`, `parry`]
     for (const activeDefense of activeDefenses) {
-      const id = `activedefense-${activeDefense}`
+      const listId = `${tab}-activedefense-${activeDefense}`
 
-      const defense = cache.features[id]
-      if (!defense) continue
+      // get all features linked with active defense
+      const links = cache.links?.defenses?.[activeDefense] ?? []
+      const features = links.map(uuid => cache.features?.[uuid]).filter(f => !isNil(f)) as GenericFeature[]
 
-      children.push(
-        contextManager.feature(defense, {
-          classes: [`full`],
-          list: listId,
-        }),
+      // build contexts
+      const tree = ContextManager.prepareTree(features, f => f.key.value, `asc`)
+      const { byId, byDepth, byParent } = tree
+
+      const children = contextManager.featuresToContexts(
+        undefined,
+        tree,
+        (feature, parent) => {
+          return {
+            id: `${tab}-${feature.id}`,
+          }
+        },
+        (feature, parent) => {
+          return {
+            classes: [`full`],
+            list: `${tab}-${parent?.id ?? `activeDefense-${activeDefense}`}`,
+          }
+        },
       )
+
+      const list = contextManager.list({
+        id: listId,
+        classes: [],
+        label: activeDefense.capitalize(),
+        children,
+      })
+
+      lists.push(list)
+
+      // const defense = cache.features[id]
+      // if (!defense) continue
+
+      // children.push(
+      //   contextManager.feature(defense, {
+      //     classes: [`full`],
+      //     list: listId,
+      //   }),
+      // )
     }
 
     // build list
-    return [contextManager.list({ id: listId, label: undefined, children })]
+    // return [contextManager.list({ id: listId, label: undefined, children })]
+    return lists
   }
   // #endregion
 

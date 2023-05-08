@@ -2,7 +2,7 @@ import { get, has, isArray, isEmpty, isNil, isString, uniq } from "lodash"
 import Feature, { FeatureTemplate, IFeatureData } from "."
 import { ToggableValue } from "../../../core/feature/base"
 import LOGGER from "../../../logger"
-import { GenericFeaturePipeline, IGenericFeatureData } from "./pipelines/generic"
+import { GenericFeaturePipeline, IGenericFeatureData, IGenericFeatureFormulas } from "./pipelines/generic"
 import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
 import { IWeaponizableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/weaponizable"
@@ -12,6 +12,7 @@ import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 import { GenericSource } from "./pipelines"
 import { ILevel } from "../../../../gurps-extension/utils/level"
 import FeatureProxiesDataContextTemplate from "../../actor-sheet/context/feature/proxy"
+import SkillFeature from "./skill"
 
 export default class GenericFeature extends Feature<IGenericFeatureData & IWeaponizableFeatureData, any> {
   constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
@@ -40,13 +41,15 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
 
     const logger = LOGGER.get(`actor`)
 
+    // TODO: Some things here should not be on integrate. Mostly information that depends on other features. Maybe make a "post compile" function inside feature object (not pipeline)
+
     // if (this.id === `e0cd7330-a694-442e-9bca-e7ead83585aa`) debugger
 
     // register feature
-    if (actor.cache.features[this.id] !== undefined) {
+    if (actor.cache.features?.[this.id] !== undefined) {
       const label = `${this.id}:${this.data.name ?? `(unnamed)`}`
       const parentLabel = !this.parent ? `` : ` @ (${this.parent.id}:${this.parent.data.name ?? `(unnamed parent)`})`
-      logger.warn(`integrate`, `Feature`, `${label}${parentLabel}`, `already exists in cache`, this, [
+      logger.error(`integrate`, `Feature`, `${label}${parentLabel}`, `already exists in cache`, this, [
         `color: #826835;`,
         `color: rgba(130, 104, 53, 60%); font-style: italic;`,
         `color: black; font-style: regular; font-weight: bold`,
@@ -59,6 +62,14 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     // if (this.data.weapons?.map(feature => feature.integrateOn === undefined)) debugger
     // if (this.data.weapons && this.id === `8b8ce453-82c9-4a9b-9fa3-877e3e495bad`) debugger
     if (this.data.weapons) {
+      const compiledWeapons = Object.fromEntries(this.data.weapons.map(weapon => [weapon.id, false]))
+      const registerCompiledWeapon = (weapon: Feature<any, any>) => {
+        compiledWeapons[weapon.id] = true
+
+        const allLoaded = Object.values(compiledWeapons).every(loaded => loaded)
+        if (allLoaded) this.fire(`update`, { keys: [`weapons:compiled`] })
+      }
+
       for (const weapon of this.data.weapons) {
         const alreadyCompiled = weapon.__.compilation.compilations > 0
 
@@ -71,32 +82,16 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
         //   weapon.parent.data.name,
         //   weapon,
         // )
+
         weapon.integrateOn(`compile:gcs`, actor)
-        if (alreadyCompiled) weapon.integrate(actor)
+        if (alreadyCompiled) {
+          registerCompiledWeapon(weapon)
+          weapon.integrate(actor)
+        } else {
+          weapon.once(`compile`, () => registerCompiledWeapon(weapon))
+        }
       }
     }
-
-    // COMPONENTS
-    if (this.data.components) {
-      for (const component of this.data.components) {
-        component.feature = this
-
-        if (!has(actor.cache, `components.${component.type}`)) actor.setCache(`components.${component.type}`, [])
-        const modifierArray = get(actor.cache, `components.${component.type}`)
-        if (isArray(modifierArray)) modifierArray.push(component)
-      }
-    }
-
-    // LINK
-    //    generic
-    const sheetLinks = get(actor.cache.links, `${this.id}`) ?? []
-    this.data.links = sheetLinks.map(uuid => actor.cache.features?.[uuid]?.data.name ?? `<Missing link:${uuid}>`)
-
-    //    defenses
-    this.data.links.push(...GenericFeature.linkForDefenses(this))
-    this.data.links = uniq(this.data.links)
-
-    actor.cacheLink(this.id, ...this.data.links)
 
     // TECH_LEVEL
     if (this.data.tl?.required && isNilOrEmpty(this.data.tl.level)) {
@@ -247,33 +242,5 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     const actor = this.actor
 
     throw new Error(`Unimplemented level calculation for generic feature`)
-  }
-
-  static linkForDefenses(feature: GenericFeature) {
-    if (feature.type && feature.type.compare(`spell`)) return []
-
-    const links = [] as string[]
-
-    // BLOCK
-    if (feature.data.weapons?.length > 0) {
-      const canBlock = feature.data.weapons.filter((weapon: Feature<never>) => weapon.block !== false)
-      if (canBlock.length > 0) links.push(`defenses.block`)
-    }
-    if (feature.data.activeDefense?.block?.length) links.push(`defenses.block`)
-
-    // DODGE
-    if (feature.data.activeDefense?.dodge?.length) {
-      debugger
-      links.push(`defenses.dodge`)
-    }
-
-    // PARRY
-    if (feature.data.weapons?.length > 0) {
-      const canParry = feature.data.weapons.filter((weapon: Feature<never>) => weapon.parry !== false)
-      if (canParry.length > 0) links.push(`defenses.parry`)
-    }
-    if (feature.data.activeDefense?.parry?.length) links.push(`defenses.parry`)
-
-    return uniq(links)
   }
 }

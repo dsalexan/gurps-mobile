@@ -12,7 +12,7 @@ declare module "gurps/module/actor" {
     system: object & {
       _import: Record<string, object>
       attributes: Record<`ST` | `DX` | `IQ` | `HT`, { value: number }>
-      basicspeed: never
+      basicspeed: { value: string; points: number }
       move: Record<
         string,
         {

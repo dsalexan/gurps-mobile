@@ -1,7 +1,6 @@
 import { flatten, isNil, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
-import { ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { FALLBACK, MERGE, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"
@@ -15,8 +14,8 @@ export interface IEquipmentFeatureData extends IGenericFeatureData, IWeaponizabl
   description: string
   carried: boolean
   quantity: number
-  cost: { base: number | null; extended: string; unit: string }
-  weight: { base: number | null; extended: string; unit: string }
+  cost: { base: number | null; extended: number; unit: string }
+  weight: { base: number | null; extended: number; unit: string }
   piece: boolean
 }
 
@@ -34,19 +33,28 @@ export const EquipmentFeaturePipeline: IDerivationPipeline<IEquipmentFeatureData
   derivation.gcs(`name`, `name`, ({ name }) => ({ name })),
   derivation.gcs(`label`, `label`, ({ label }) => ({ label })),
   derivation.gcs(`quantity`, `quantity`, ({ quantity }) => ({ quantity: quantity ?? 1 })),
-  derivation.gcs([`value`, `weight`, `calc`], [`cost`, `weight`], ({ value, weight: _weight, calc }) => {
+  derivation.gcs([`value`, `weight`, `calc`], [`cost`, `weight`], function ({ value, weight: _weight, calc }) {
     const cost = value ?? null
     const weight = parseWeight(_weight ?? null)
+
+    const logisticalContainerForCost = this.container && isNil(cost) && !isNil(calc?.extended_value)
+    const logisticalContainerForWeight = this.container && isNil(weight) && !isNil(calc?.extended_weight)
+
+    if (logisticalContainerForCost && logisticalContainerForWeight) return {}
+    else if (logisticalContainerForCost || logisticalContainerForWeight) {
+      // ERROR: How?
+      debugger
+    }
 
     return {
       cost: MERGE(`cost`, {
         base: isNil(cost) ? null : parseFloat(cost),
-        extend: calc?.extended_value ?? null,
+        // extended: calc?.extended_value ?? null,
         unit: `unknown`,
       }),
       weight: MERGE(`weight`, {
         base: weight,
-        extend: parseWeight(calc?.extended_weight ?? null),
+        // extended: parseWeight(calc?.extended_weight ?? null),
         unit: `kg`,
       }),
     }
@@ -84,13 +92,23 @@ export const EquipmentFeaturePipeline: IDerivationPipeline<IEquipmentFeatureData
   // }),
   // #endregion
   // #region FEATURE
-  derivation<keyof IEquipmentFeatureData, any, IEquipmentFeatureData>([`quantity`, `cost`, `weight`], [`cost`, `weight`], function (_, __, { object }) {
-    const { quantity, cost, weight } = object.data
+  derivation<keyof IEquipmentFeatureData, any, IEquipmentFeatureData>([`quantity`, `cost`], [`cost`], function (_, __, { object }) {
+    const { quantity, cost } = object.data
+
+    if (isNil(cost) || isNil(quantity)) return {}
 
     return {
       cost: MERGE(`cost`, {
         extended: isNil(cost.base) ? null : quantity * cost.base,
       }),
+    }
+  }),
+  derivation<keyof IEquipmentFeatureData, any, IEquipmentFeatureData>([`quantity`, `weight`], [`weight`], function (_, __, { object }) {
+    const { quantity, weight } = object.data
+
+    if (isNil(weight) || isNil(quantity)) return {}
+
+    return {
       weight: MERGE(`weight`, {
         extended: isNil(weight.base) ? null : quantity * weight.base,
       }),

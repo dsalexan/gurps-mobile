@@ -1,310 +1,291 @@
 /* eslint-disable no-debugger */
-import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum, groupBy, intersection, unzip } from "lodash"
+import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum, groupBy, intersection, unzip, omit, isFunction, isString, mapValues } from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
 import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
-import { evaluate } from "mathjs"
+import { MathNode, evaluate } from "mathjs"
 import { isNilOrEmpty, isNumeric } from "../../december/utils/lodash"
-import mathInstance, { ignorableSymbols, parseExpression, preprocess } from "../../december/utils/math"
+import mathInstance, { MathPrintOptions, MathScope, ignorableSymbols, mathError, parseExpression, preprocess, setupExpression, toHTML } from "../../december/utils/math"
 import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
 import { specializedName } from "../../gurps-mobile/core/feature/utils"
 import { GURPS4th } from "../types/gurps4th"
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 
-// #region types
+// #region Final level representation
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ILevelDefinition extends GCA.Expression {
-  math: never
-  tags: string[]
-
-  parse(feature: GenericFeature, actor: GurpsMobileActor): ILevel | null
-}
-
-// export interface Expression {
-//   _raw: string
-//   math: boolean
-//   expression: string
-//   variables?: Record<string, string>
-//   targets?: Record<string, ExpressionTarget>
-//   value?: never
-//   text?: never
-// }
-
-// export interface ExpressionTarget {
-//   _raw: string // value from Expression.variables
-//   type: `unknown` | `attribute` | `skill` | `me`
-//   fullName: string
-//   name: TargetProperty
-//   nameext?: TargetProperty
-//   attribute?: string
-//   value?: string | number[] // attribute name (string) | array of entry indexes (number[])
-//   transform?: string | string[]
-// }
-
-export interface ILevel {
-  level: number
-  relative?: IRelativeLevel
-}
-export interface IRelativeLevel {
+/**
+ * A level object (with its algebraic source)
+ */
+export interface ILevel<THandle extends string = string> {
+  value: number
   expression: string
-  definitions: Record<IVariableDefinition[`variable`], IVariableDefinition>
-  toString(options?: object): string
-}
-/**
- * Builds the definition for a variable (its value, any flags that should be displayed, any live transformations, etc...)
- */
-export interface IVariableDefinition {
-  variable: string
-  content: string | number
-  value: number | null
-  flags: string[]
-  type?: string
-  id?: string | null
-  transforms?: string[]
-  prefix?: string
+  scope: CompoundMathScope // holds many types for each variable, but usually numeric and string
+  definition: ILevelDefinition<THandle>
 }
 
-// #endregion
-
-// #region stringify
+export type CompoundMathScope = Record<string, { number: number; string?: string }>
 
 /**
- *  Parses a relative level definition into a html string
+ * Get scope for a level definition (based on its variables)
  */
-export function stringifyRelativeSkillLevel({ expression, definitions }: Partial<IRelativeLevel> = {}, { skillAcronym = false } = {}): string {
-  // ERROR: Unimplemented
-  if (expression === undefined) {
-    debugger
-    return `-`
-  }
+export function prepareScope<TMe extends GenericFeature = GenericFeature>(
+  node: MathNode,
+  definition: ILevelDefinition,
+  me: TMe,
+  actor: GurpsMobileActor,
+  options: { ignore?: string[] } = {},
+) {
+  const scope = {} as CompoundMathScope
+  const math = mathInstance()
 
-  let formattedExpression = expression.replaceAll(/([-+*/])/g, `<span class="operator">$1</span>`)
+  const symbols = node.filter((node: any) => node.isSymbolNode).map((node: any) => node.name)
 
-  for (const definition of Object.values(definitions ?? {})) {
-    const {
-      viable,
-      //
-      variable,
-      type,
-      id,
-      content,
-      value,
-      //
-      transforms,
-      flags,
-      prefix: _prefix,
-    } = definition
+  for (const symbol of symbols) {
+    if (options.ignore?.some(s => s.toUpperCase() === symbol.toUpperCase())) continue
+    if (math[symbol] !== undefined) continue
 
-    const classes = flags ?? []
-    let _content = content
-    const prefix = _prefix ?? `∂`
+    const firstUnderscoreIndex = symbol.indexOf(`_`)
+    const prefix = symbol.substring(0, firstUnderscoreIndex).toUpperCase()
+    const name = symbol.substring(firstUnderscoreIndex + 1)
 
-    if (skillAcronym && type === `skill`) {
-      _content = Handlebars.helpers[`gurpsIcon`](`skill`)?.string
-      classes.push(`acronym`)
-    }
+    let symbolValue: { number: number; string?: string } = { number: null } as any
 
-    const data = {
-      name: variable,
-      type,
-      id,
-      value,
-      ...Object.fromEntries(transforms?.map(transform => [`transform-${transform}`, true]) ?? []),
-    }
+    if (prefix === `ME`) {
+      if (me === undefined) throw new Error(`"me" was not informed, but expression tries to access its property "me::${name}".`)
+      debugger
 
-    formattedExpression = formattedExpression.replace(
-      (prefix ?? ``) + variable,
-      `<span class="variable ${classes.filter(b => !!b).join(` `)}" ${Object.entries(data)
-        .map(([prop, value]) => (isNil(value) ? `` : `data-${prop}="${value}"`))
-        .join(` `)}>${_content ?? value}</span>`,
-    )
-  }
+      symbolValue.number = me.data[name]
+      if (name === `tl`) symbolValue.number = me.data.tl.level
 
-  return `${formattedExpression}`
-}
+      debugger
+    } else if (prefix === `P`) {
+      if (me === undefined) throw new Error(`"me" was not informed, but expression tries to access its property "%${name}".`)
 
-// #endregion
+      debugger
 
-// #region parsing
+      const property = me[name]
 
-/**
- * Parse a object (usually a GCA.Expression or a GCS.EntryDefault) into a Level definition
- */
-export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault): ILevelDefinition {
-  if (object.type === `flat`) debugger
+      // CUSTOM IMPLEMENTATIONS
+      if (name === `level`) {
+        //  TODO: There should be an accessor for level like %level instead of me::level???
+        debugger
+        symbolValue.number = me.data.level?.level ?? me.data.level ?? 0
+      } else {
+        // ERROR: Unimplemented
+        if (property === undefined) debugger
 
-  // GCA.Expression
-  if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) {
-    object.tags = [] as string[]
-    object.parse = (feature: GenericFeature, actor: GurpsMobileActor) => parseLevel(object as any, feature, actor)
-    return object as ILevelDefinition
-  }
+        symbolValue.number = isFunction(property) ? property.call(me) : property
+      }
+    } else if (prefix === `VAR`) {
+      debugger
+      const multiValue = parseVariable(definition.variables[name], me, actor)
 
-  // GCS.EntryDefault
-  const _default = object as GCS.EntryDefault
-  let roll = {
-    _raw: JSON.stringify(_default),
-    math: true,
-    tags: [] as string[],
-  } as ILevelDefinition
-
-  if ([`dx`, `st`, `iq`, `ht`].includes(_default.type)) {
-    const attribute = _default.type.toUpperCase()
-
-    if (_default.name !== undefined) debugger
-    if (_default.specialization !== undefined) debugger
-    // ERROR: Unimplemented non-numeric modifier
-    if (!isNil(_default.modifier) && !isNumeric(_default.modifier) && typeof _default.modifier !== `number`) debugger
-
-    roll.expression = `∂A ${_default.modifier ?? ``}`.trim()
-    roll.variables = {
-      [`A`]: attribute,
-    }
-    roll.targets = {
-      [`A`]: {
-        _raw: attribute,
-        type: `attribute`,
-        fullName: attribute,
-        name: attribute,
-        value: attribute,
-      },
-    }
-  } else if (_default.type === `skill`) {
-    // ERROR: Unimplemented
-    if (isNil(_default.name)) debugger
-    const fullName = specializedName(_default.name as string, _default.specialization)
-    const skillIndexes = isNil(_default.specialization) ? GCA.index.bySection.SKILLS.byName[_default.name as string] : GCA.index.bySection.SKILLS.byFullname[fullName]
-
-    if (skillIndexes === undefined) debugger
-    // ERROR: Unimplemented non-numeric modifier
-    if (!isNil(_default.modifier) && !isNumeric(_default.modifier) && typeof _default.modifier !== `number`) debugger
-
-    roll.expression = `∂A ${_default.modifier ?? ``}`.trim()
-    roll.variables = {
-      [`A`]: fullName,
-    }
-    roll.targets = {
-      [`A`]: {
-        _raw: fullName,
-        type: `skill`,
-        fullName,
-        name: _default.name as string,
-        nameext: _default.specialization,
-        value: skillIndexes,
-      },
-    }
-  } else {
-    // ERROR: Unimplemented
-    debugger
-  }
-
-  roll.parse = (feature: GenericFeature, actor: GurpsMobileActor) => parseLevel(roll as any, feature, actor)
-  return roll
-}
-
-/**
- * Parses a level definition into level object (level and relative level)
- */
-export function parseLevel(expression: ILevelDefinition, feature: GenericFeature, actor: GurpsMobileActor): ILevel | null {
-  const { entries, targetsByType, types } = setupCheck(expression)
-
-  const variables = [] as IVariableDefinition[]
-  for (const [variable, target] of entries) {
-    const definition = parseExpressionTarget(variable, target, feature, actor)
-
-    variables.push(definition)
-  }
-
-  const scope = Object.fromEntries(variables.map(definition => [definition.variable, definition.value]))
-  let level: number
-
-  const viable = Object.values(scope).every(value => !isNil(value))
-  if (viable) {
-    level = evaluate(expression.expression.replaceAll(/∂/g, ``), scope)
-
-    return {
-      level,
-      relative: {
-        expression: expression.expression,
-        definitions: Object.fromEntries(variables.map(definition => [definition.variable, definition])),
-        toString(options) {
-          return stringifyRelativeSkillLevel(this, options)
-        },
-      },
-    }
-  }
-
-  return null
-}
-
-/**
- * Parses a expression target (from a roll definition) into a variable definition (with numeric values and shit)
- */
-export function parseExpressionTarget(variable: string, target: GCA.ExpressionTarget, feature: GenericFeature, actor: GurpsMobileActor): IVariableDefinition {
-  const me = feature
-  const transforms = isNil(target.transform) ? [] : isArray(target.transform) ? target.transform : [target.transform]
-
-  // ERROR: There should be no "specialization" in target
-  // eslint-disable-next-line no-debugger
-  if ((target as any).specialization !== undefined) debugger
-
-  const dynamic = target.name?.type === `dynamic` || target.nameext?.type === `dynamic`
-
-  // relative definition
-  let value: null | any = null
-  let flags: [boolean | string] = [dynamic && `dynamic`]
-  let type = target.type
-  let id: null | string = target.fullName
-  let content: string | number = target.fullName
-
-  if (target.fullName === `me` || target.type === `me`) {
-    // ME
-    //    usually when some value is attached to the entry in GCA
-
-    // TODO: check here when IF EXPRESSION goes online
-
-    // ERROR: Unimplemented
-    if (transforms.length !== 1) debugger
-    if (dynamic) debugger
-
-    id = `me`
-    value = me[transforms[0]]
-    if (isNumeric(value)) {
-      content = value = parseFloat(value)
-      flags.push(`constant`)
-    } else if (isNil(transforms[0])) {
+      symbolValue = multiValue
+    } else {
       // ERROR: Unimplemented
       debugger
-    } else {
-      const variable = transforms[0]
-      value = (me.sources.gca?.[variable] as any).toString()
-
-      if (isNil(value.match(/[@%]\w+\(/i))) {
-        // ERROR: Unimplemented transform
-        debugger
-      } else {
-        value = parseExpression(value, me)
-        if (value !== null) {
-          content = value
-        } else {
-          content = `!!`
-          flags.push(`error`)
-        }
-      }
+      throw new Error(`Unimplemented function/prefix "${symbol}"`)
     }
-  } else if (target.type === `skill`) {
-    // SKILL
-    //    get skill level from another skill
-    id = null
-    let skillIndexes = target.value as number[]
 
-    if (dynamic) skillIndexes = [] // TODO: Deal with dynamic shit
+    // ERROR: Unimplemented
+    if (isNil(symbolValue.number)) debugger
+
+    scope[symbol] = symbolValue
+    debugger
+  }
+
+  return scope
+}
+
+/**
+ * Calculate numeric value from a level definition
+ */
+export function calculateLevel<TMe extends GenericFeature = GenericFeature>(definition: ILevelDefinition, me: TMe, actor: GurpsMobileActor): ILevel | null {
+  const math = mathInstance()
+
+  const expression = preprocess(definition.expression)
+  const node = math.parse(expression)
+
+  let scope = {} as CompoundMathScope
+  try {
+    scope = prepareScope(node, {} as any, me, actor)
+  } catch (error) {
+    mathError(expression, scope, error)
+    debugger
+  }
+
+  const numericScope = mapValues(scope, value => value.number)
+
+  const viable = Object.values(numericScope).every(value => !isNil(value))
+  if (!viable) return null
+
+  const code = node.compile()
+  const value = code.evaluate(numericScope)
+
+  const level = {
+    value,
+    expression,
+    scope,
+    definition,
+  } as ILevel
+
+  return level
+}
+
+export function levelToHTML(level: ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
+  const math = mathInstance()
+  const completeNode = math.parse(level.expression)
+
+  let node = completeNode
+  if (options.simplify) {
+    const simplifyScope = options.simplify === true ? level.scope : Object.fromEntries(options.simplify.map(symbol => [symbol, level.scope[symbol]]))
+    node = math.simplify(completeNode, simplifyScope)
+  }
+
+  // TODO: Acronym
+  // TODO: Transforms and flags
+  // TODO: Take label from variable into consideration
+  // TODO: Add variable.value from definition into a data-tag in HTML
+  return toHTML(node, options)
+}
+
+export function levelToString(level: ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
+  const math = mathInstance()
+  const completeNode = math.parse(level.expression)
+
+  let node = completeNode
+  if (options.simplify) {
+    const simplifyScope = options.simplify === true ? level.scope : Object.fromEntries(options.simplify.map(symbol => [symbol, level.scope[symbol]]))
+    node = math.simplify(completeNode, simplifyScope)
+  }
+
+  return node.toString(options)
+}
+
+// #endregion
+
+// #region Variable definition
+
+/**
+ * Describes the base of a variable object
+ */
+export interface IBaseVariable<THandle extends string = string> {
+  _raw: string // raw expression, before any preprocessing
+  meta?: unknown // metadata from GCA/GCS source
+  handle: THandle // variable handle (usually a letter)
+  //
+  type: `attribute` | `skill` | `me` // type of variable, indicates which algorithm to use to acquire numeric value
+  value?: unknown // arguments to supply numeric acquiring algorithm
+  transforms?: string[] // any transforms to apply to numeric value
+  //
+  label: string // printable string to show in place of numeric variable
+  flags?: string[]
+}
+
+export interface IAttributeVariable<THandle extends string = string> extends IBaseVariable<THandle> {
+  type: `attribute`
+  meta?: {
+    name: string
+  }
+  //
+  value: string
+}
+
+export interface ISkillVariable<THandle extends string = string> extends IBaseVariable<THandle> {
+  type: `skill`
+  meta?: {
+    fullName: string
+    name: GCA.TargetProperty | string
+    nameext?: GCA.TargetProperty | string
+  }
+  //
+  value: number[]
+}
+
+export interface IMeVariable<THandle extends string = string> extends IBaseVariable<THandle> {
+  type: `me`
+  //
+  value: string
+}
+
+export type IVariable<THandle extends string = string> = IAttributeVariable<THandle> | ISkillVariable<THandle> | IMeVariable<THandle>
+
+export function createVariable<THandle extends string = string, TVariable extends IVariable<THandle> = IVariable<THandle>>(
+  handle: THandle,
+  type: TVariable[`type`],
+  value: TVariable[`value`],
+  options: { _raw?: string; meta?: TVariable[`meta`]; label?: TVariable[`label`]; transforms?: TVariable[`transforms`]; flags?: TVariable[`flags`] } = {},
+): TVariable {
+  const variable = {
+    _raw: options._raw ?? `∂${handle}`,
+    handle,
+    //
+    type,
+    value,
+  } as TVariable
+
+  // ERROR: Checks
+  if (type === `me`) {
+    if (!isString(value)) debugger
+  } else if (type === `skill`) {
+    if (!isArray(value)) debugger
+  }
+
+  if (options.meta) variable.meta
+  if (options.label) variable.label
+  if (options.transforms) variable.transforms
+  if (options.flags) variable.flags
+
+  return variable
+}
+
+export function parseVariable<TMe extends GenericFeature = GenericFeature, THandle extends string = string>(variable: IVariable<THandle>, me: TMe, actor: GurpsMobileActor) {
+  const transforms = variable.transforms ?? []
+
+  // TODO: Deal with dynamic
+  const dynamicMeta = Object.values(variable.meta ?? {}).some(value => value?.type === `dynamic`)
+  if (dynamicMeta) LOGGER.get(`level`).warn(`Found dynamic metadata in variable`, `"${variable.label ?? `${variable.type}:${variable.value}`}"`, `from`, variable._raw, variable)
+
+  // ERROR: Unimplemented
+  if (transforms.length !== 0) debugger
+  if (dynamicMeta) debugger
+
+  let value: { number: number; string?: string } = { number: null } as any
+
+  if (variable.type === `me`) {
+    const _value = me[variable.value as keyof TMe]
+
+    if (isNumeric(_value)) {
+      value.number = parseFloat(_value)
+    } else {
+      value.string = (me.sources.gca?.[variable.value] as any).toString()
+
+      debugger
+    }
+    debugger
+  } else if (variable.type === `attribute`) {
+    const attribute = variable.value as GURPS4th.Attributes
+    const _value = (actor.system.attributes[attribute.toUpperCase()] ?? actor.system[attribute.toLowerCase().replaceAll(/ +/g, ``)]).value
+    value.number = parseFloat(_value)
+
+    // WARN: Checking UNTESTED attributes
+    if (![`ST`, `DX`, `IQ`, `HT`, `PER`, `WILL`, `DODGE`, `BASIC SPEED`].includes(attribute.toUpperCase())) debugger
+
+    // The Rule of 20 (B 173) applies only to defaulting skills to attributes (not every level math is about skills m8)
+    debugger
+  } else if (variable.type === `skill`) {
+    let skillIndexes = variable.value
+
+    // TODO: Deal with dynamic shit
+    if (dynamicMeta) skillIndexes = []
 
     // ERROR: Unimplemented for undefined list of skills (target.value === undefined)
     if (skillIndexes?.length === undefined) debugger
+
+    debugger
+    // TODO: Should send level FOR ANY SKILL, trained or not. If the caller has a preference for any training, he should be able to specify on call
 
     // list all trained skills in skills
     //    remove duplicates by id
@@ -316,11 +297,12 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
       // transform if needed
       const trainedSkill = trainedSkills[0]
       const level = trainedSkill.data.level === undefined ? trainedSkill.data.attributeBasedLevel : trainedSkill.data.level
-      value = level?.level
-      content = trainedSkill.specializedName
+
+      value.number = level?.level
+      value.string = trainedSkill.specializedName
 
       // ERROR: Unimplemented
-      if (isNil(value)) debugger
+      if (isNil(value.number)) debugger
 
       for (const transform of transforms) {
         // if (transform === `level`) // do nothing, "level" for skill is already sl
@@ -328,175 +310,177 @@ export function parseExpressionTarget(variable: string, target: GCA.ExpressionTa
         // ERROR: Unimplemented
         if (transform !== `level`) debugger
       }
-
-      id = trainedSkill.id
     } else {
       // untrained skill
       value = null
     }
-  } else if (target.type === `attribute`) {
-    // ERROR: Unimplemented
-    if (transforms.length > 0) debugger
-    if (dynamic) debugger
 
-    const attribute = target.fullName as GURPS4th.Attributes
-    value = (actor.system.attributes[attribute.toUpperCase()] ?? actor.system[attribute]).value
-
-    // The Rule of 20, B 173
-    value = Math.min(20, value)
-  } else if (target.type === `unknown`) {
-    LOGGER.warn(`Unimplemented "${target.type}" target`, target)
-
-    content = `??`
-    flags.push(`unknown`)
-  } else {
     debugger
-
-    content = `??`
-    flags.push(`unknown`)
+  } else {
+    // ERROR: Unimplemented
+    debugger
   }
 
   // ERROR: Noo dawg
-  if (isNaN(value)) debugger
+  if (isNil(value.number)) debugger
 
-  return {
-    variable,
-    type,
-    id,
-    content,
-    value,
-    //
-    transforms,
-    flags: uniq(flags).filter(b => !!b && !isNilOrEmpty(b)) as string[],
-  }
-}
-
-export function calculateLevel(relative: IRelativeLevel) {
-  const scope = Object.fromEntries(Object.values(relative.definitions).map(definition => [definition.variable, definition.value]))
-
-  const viable = Object.values(scope).every(value => !isNil(value))
-  if (viable) return evaluate(relative.expression.replaceAll(/∂/g, ``), scope)
-
-  return null
+  return value
 }
 
 // #endregion
 
-export function buildLevel(baseLevel: number, bonus: number, { attribute, skill, flat, flags }: { flags?: string[]; attribute?: string; skill?: string; flat?: string }) {
-  const level = baseLevel + bonus
-  const sign = bonus > 0 ? `+` : bonus < 0 ? `-` : ``
+// #region Level definition
 
-  const definition: IVariableDefinition = {
-    variable: `A`,
-    value: baseLevel,
-  } as any
-
-  if (flags) definition.flags = flags
-
-  if (attribute !== undefined) {
-    definition.type = `attribute`
-    definition.content = attribute
-  }
-
-  if (skill !== undefined) {
-    definition.type = `skill`
-    definition.content = skill
-  }
-
-  if (flat !== undefined) {
-    definition.type = `flat`
-    definition.content = flat
-  }
-
-  const relative: IRelativeLevel = {
-    expression: `∂A${bonus !== 0 ? ` ${sign} ${Math.abs(bonus)}` : ``}`,
-    definitions: { A: definition },
-  }
-  const levelDefinition: ILevel = { level, relative }
-  relative.toString = function (options) {
-    return stringifyRelativeSkillLevel(relative, options)
-  }
-
-  return levelDefinition
+/**
+ * Describes how to calculate a level
+ */
+export interface ILevelDefinition<THandle extends string = string> {
+  _raw?: string // raw expression, before any preprocessing
+  expression: string
+  variables: Record<THandle, IVariable<THandle>>
+  flags: string[] // any necessary flags (like 'other-based' for skill levels with different attribute bases then regular)
 }
 
-export function orderLevels(levelDefinitions: ILevelDefinition[], feature: GenericFeature, actor: GurpsMobileActor) {
-  let levels = levelDefinitions.map(level => level.parse(feature, actor)) as ILevel[]
+/**
+ * Parse a object (usually a GCA.Expression or a GCS.EntryDefault) into a Level definition (a object that describes the calculation of a level, but doesn't actualy make the calculation)
+ */
+export function parseLevelDefinition(object: GCA.Expression | GCS.EntryDefault) {
+  // GCA.Expression
+  if (has(object, `_raw`) && (has(object, `expression`) || has(object, `math`))) return parseLevelDefinitionFromGCA(object)
 
-  levels = orderBy(
-    levels.filter(l => !isNil(l)),
-    def => def.level,
-    `desc`,
-  )
-
-  return levels
+  return parseLevelDefinitionFromGCS(object)
 }
 
-// #region TARGETS
+export function parseLevelDefinitionFromGCA(object: GCA.Expression) {
+  const variables = {} as Record<string, IVariable>
 
-export function setupCheck(definition: ILevelDefinition) {
-  const entries = Object.entries(definition.targets ?? {})
-  const [variables, targets] = unzip(entries) as [string[], GCA.ExpressionTarget[]]
-  const targetsByType = groupBy(targets, `type`)
-  const types = Object.keys(targetsByType)
+  const targets = Object.entries(object.targets ?? {})
 
-  // ERROR: Untested viability of targetless definitions (if they really exist)  // COMMENT
-  if (!definition.targets) debugger // COMMENT
+  // ERROR: Untested
+  if (targets.length === 0) debugger
 
-  // ERROR: Untested, other types then skill/atribute // COMMENT
-  if (!types.includes(`skill`) && !types.includes(`attribute`)) debugger // COMMENT
+  for (const [handle, expressionTarget] of targets) {
+    let variable: IVariable<typeof handle>
 
-  // ERROR: Untested, multiple attributes in definition // COMMENT
-  if (types.length === 1 && types[0] === `attribute` && targetsByType[`attribute`].length > 1) debugger // COMMENT
+    if (expressionTarget.fullName === `me` || expressionTarget.type === `me`) {
+      // ERROR: Unimplemented
+      if (!isNil(expressionTarget.value)) debugger
 
-  return { entries, targets, variables, targetsByType, types }
+      variable = createVariable<typeof handle, IMeVariable<typeof handle>>(handle, `me`, expressionTarget.transform as string)
+
+      debugger
+    } else if (expressionTarget.type === `attribute`) {
+      variable = createVariable<typeof handle, IAttributeVariable<typeof handle>>(handle, `attribute`, expressionTarget.value as string, {
+        label: expressionTarget.fullName,
+        meta: { name: expressionTarget.fullName },
+      })
+
+      debugger
+    } else if (expressionTarget.type === `skill`) {
+      variable = createVariable<typeof handle, ISkillVariable<typeof handle>>(handle, `skill`, expressionTarget.value as number[], {
+        label: expressionTarget.fullName,
+        meta: {
+          fullName: expressionTarget.fullName,
+          name: expressionTarget.name,
+          nameext: expressionTarget.nameext,
+        },
+      })
+
+      debugger
+    } else {
+      // ERROR: Untested
+      debugger
+
+      continue
+    }
+
+    variable._raw = expressionTarget._raw
+    if (expressionTarget.transform) {
+      variable.transforms = isArray(expressionTarget.transform) ? expressionTarget.transform : [expressionTarget.transform]
+      if (variable.type === `me`) variable.transforms.shift()
+    }
+
+    // ERROR: Repeating handles
+    if (variables[handle] !== undefined) debugger
+
+    variables[handle] = variable
+  }
+
+  return createLevelDefinition(object.expression, variables, { _raw: object._raw })
 }
 
-export function trainedSkillTargets(definition: ILevelDefinition, trainedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
-  let setup = cachedSetup
-  if (!setup) setup = setupCheck(definition)
-  const { targetsByType, types } = setup
+export function parseLevelDefinitionFromGCS(object: GCS.EntryDefault) {
+  let definition: ILevelDefinition
 
-  const skillTargets = targetsByType[`skill`] ?? []
+  if ([`dx`, `st`, `iq`, `ht`].includes(object.type)) {
+    const attribute = object.type.toUpperCase()
 
-  const trainedSkillTargets = skillTargets.filter(target => intersection((target.value as number[]) ?? [], trainedSkillList).length >= 1)
+    // ERROR: This is skill shit, why is it here
+    if (object.name !== undefined) debugger
+    if (object.specialization !== undefined) debugger
 
-  return trainedSkillTargets
-}
+    // ERROR: Unimplemented non-numeric modifier
+    if (!isNil(object.modifier) && !isNumeric(object.modifier) && typeof object.modifier !== `number`) debugger
 
-export function nonSkillOrTrainedSkillTargets(definition: ILevelDefinition, trainedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
-  let setup = cachedSetup
-  if (!setup) setup = setupCheck(definition)
-  const { targets: targetList, targetsByType, types } = setup
+    const A = createVariable<`A`, IAttributeVariable<`A`>>(`A`, `attribute`, attribute, {
+      label: attribute,
+      meta: { name: attribute },
+    })
 
-  const targets = [] as GCA.ExpressionTarget[]
+    definition = createLevelDefinition(`∂A ${object.modifier ?? ``}`.trim(), { A }, { _raw: JSON.stringify(object) })
 
-  // non-skills
-  targets.push(...targetList.filter(target => target.type !== `skill`))
-
-  // trained skills
-  targets.push(...trainedSkillTargets(definition, trainedSkillList, setup))
-
-  return targets
-}
-
-export function getFeaturesFromTarget(actor: GurpsMobileActor, target: GCA.ExpressionTarget) {
-  if (target.type === `skill`) {
-    const GCAIndexes = (target.value as number[]) ?? []
-    const features = GCAIndexes.map(index => actor.cache.gca?.skill?.[index]).filter(skill => !isNil(skill))
-
-    return features
-  } else if (target.type === `attribute`) {
     debugger
-  } else if (target.type === `me`) {
+  } else if (object.type === `skill`) {
+    // ERROR: Unimplemented
+    if (isNil(object.name)) debugger
+
+    const fullName = specializedName(object.name!, object.specialization)
+    const indexes = isNil(object.specialization) ? GCA.index.bySection.SKILLS.byName[object.name!] : GCA.index.bySection.SKILLS.byFullname[fullName]
+
+    // ERROR: Must ALWAYS find GCA indexes
+    if (indexes === undefined || indexes.length === 0) debugger
+
+    // ERROR: Unimplemented non-numeric modifier
+    if (!isNil(object.modifier) && !isNumeric(object.modifier) && typeof object.modifier !== `number`) debugger
+
+    const S = createVariable<`S`, ISkillVariable<`S`>>(`S`, `skill`, indexes, {
+      label: fullName,
+      meta: {
+        fullName: fullName,
+        name: object.name!,
+        nameext: object.specialization,
+      },
+    })
+
+    definition = createLevelDefinition(`∂S ${object.modifier ?? ``}`.trim(), { S }, { _raw: JSON.stringify(object) })
+
     debugger
-  } else if (target.type === `unknown`) {
+  } else {
+    // ERROR: Unimplemented
     debugger
+
+    definition = null as any
   }
 
-  // ERROR: Unimplemented
-  debugger
-  return []
+  // ERROR: Unimplemented expressionless definition
+  if (definition?.expression === ``) debugger
+
+  return definition
+}
+
+export function createLevelDefinition<THandle extends string = string>(
+  expression: string,
+  variables: Record<THandle, IVariable<THandle>> | IVariable<THandle> = {} as any,
+  options: { _raw?: string; flags?: string[] } = {},
+) {
+  const _variables = variables.handle !== undefined ? { [variables.handle]: variables } : variables
+
+  const definition = { expression, variables: _variables } as ILevelDefinition<THandle>
+
+  if (options._raw) definition._raw = options._raw
+  if (options.flags) definition.flags = options.flags
+
+  return definition
 }
 
 // #endregion

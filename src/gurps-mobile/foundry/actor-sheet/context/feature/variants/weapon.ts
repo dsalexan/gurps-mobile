@@ -6,11 +6,11 @@ import TagBuilder, { PartialTag } from "../../tag"
 import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { isNilOrEmpty, isNumeric, push } from "../../../../../../december/utils/lodash"
-import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition, nonSkillOrTrainedSkillTargets } from "../../../../../../gurps-extension/utils/level"
+import { ILevelDefinition, ILevel, orderLevels, parseLevelDefinition, nonSkillOrAllowedSkillTargets, levelToHTML } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 import WeaponFeature from "../../../../actor/feature/weapon"
-import { IRollContext, levelToRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { levelToRollContext, parseRollContext } from "../../../../../../gurps-extension/utils/roll"
 import { parseModifier } from "../../../../../core/feature/utils"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
@@ -65,12 +65,13 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     //    usually a unviable default is a untrained/unknown skill default
     // split trained/untrained skills
     const unviable = [] as ILevelDefinition[],
-      viable = [] as { definition: ILevelDefinition; level: ILevel }[]
+      viable = [] as ILevel[]
 
+    // TODO: Adapt viability check to new shit
     const definitions = feature.data.defaults ?? []
     for (const defaultDefinition of definitions) {
       // viability check
-      const targets = nonSkillOrTrainedSkillTargets(defaultDefinition, trainedSkillsGCA)
+      const targets = nonSkillOrAllowedSkillTargets(defaultDefinition, trainedSkillsGCA)
 
       // ERROR: Untested, no targets to begin with
       if (Object.keys(defaultDefinition.targets ?? {}).length === 0) debugger
@@ -129,14 +130,15 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       // VALUE
       variant.value = {
-        value: default_.level.level,
-        label: default_.level.relative?.toString({ skillAcronym: true }),
+        value: default_.level.value,
+        label: levelToHTML(default_.level),
+        // TODO: ACRYNOYM .relative?.toString({ acronym: true }),
       }
 
       if (!variant.rolls) variant.rolls = []
 
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls[0] = levelToRollContext([], default_.level, 0)
+      variant.rolls[0] = parseRollContext(default_.level, 0)
 
       variants.push({ ...variant, tags: tags.tags })
     }
@@ -158,13 +160,16 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     if (specs.showParent && feature.parent) {
       if (!variant.label) variant.label = {}
 
-      let suffix = ``
-      if (!isNilOrEmpty(feature.data.usage) && !specs.ignoreUsage && feature.data.usage !== variant.label.main) {
-        // suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">${feature.parent.data.name}</span>`
-        suffix = ` (${feature.data.usage})`
-      }
-      // variant.label.main = `${}`
-      variant.label.secondary = `${feature.parent.data.name}${suffix}`
+      // let suffix = ``
+      // if (!isNilOrEmpty(feature.data.usage) && !specs.ignoreUsage && feature.data.usage !== variant.label.main) {
+      //   // suffix = ` <span style="opacity: 0.75; font-weight: 400; color: rgb(var(--light-main-color), 0.95);">${feature.parent.data.name}</span>`
+      //   suffix = ` (${feature.data.usage})`
+      // }
+      // // variant.label.main = `${}`
+      // variant.label.secondary = `${feature.parent.data.name}${suffix}`
+
+      variant.label.main = feature.parent.data.name
+      variant.label.secondary = feature.data.usage ?? undefined
 
       tags.type(`type`).update(tag => {
         tag.children[0].label = undefined
@@ -212,7 +217,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       variant.value = {
         value: level.level,
-        label: level.relative?.toString({ skillAcronym: true }),
+        label: level.relative?.toString({ acronym: true }),
       }
 
       if (!variant.rolls) variant.rolls = []
@@ -239,27 +244,6 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
      */
 
     // if (feature.parent?.data?.name === `Light Cloak`) debugger
-
-    // active defenses
-    let spacer = false
-    const activeDefenses = [`block`, `parry`, `dodge`]
-    for (const defense of activeDefenses) {
-      const value = feature.data[defense]
-
-      if (value !== false && !isNil(value)) {
-        variant.stats[1]!.push({
-          classes: [],
-          icon: [`minimal_${defense}`],
-          value: `X${parseModifier(value, [`-`, `+`], `+0`)}`,
-          roll: variant.rolls.length,
-        })
-
-        // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(levelToRollContext([{ primary: defense.capitalize() }], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length))
-
-        spacer = true
-      }
-    }
 
     // if (spacer) variant.stats[0].push({ classes: [`spacer`] })
 
@@ -341,57 +325,23 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     // if (!isNil(feature.data.bulk)) debugger
     // if (!isNil(feature.data.ammo)) debugger
 
-    // variant.stats = [
-    //   {
-    //     classes: [],
-    //     icon: `minimal_parry`,
-    //     value: 10,
-    //     roll: 1,
-    //   },
-    //   {
-    //     classes: [`disabled`],
-    //     icon: `minimal_block`,
-    //     value: `No`,
-    //     roll: 2,
-    //   },
-    //   {
-    //     classes: [],
-    //     icon: `damage`,
-    //     value: `2d-4 cut`,
-    //     roll: 3,
-    //   },
-    //   // {
-    //   //   classes: [],
-    //   //   icon: `mdi-help`,
-    //   //   value: `C, 1`,
-    //   // },
-    //   // {
-    //   //   classes: [],
-    //   //   icon: `mdi-help`,
-    //   //   value: `???`,
-    //   // },
-    // ]
+    // active defenses
+    const activeDefenses = [`block`, `parry`, `dodge`]
+    for (const defense of activeDefenses) {
+      const value = feature.data[defense]
 
-    // variant.rolls = [
-    //   {
-    //     classes: [],
-    //     icon: `minimal_parry`,
-    //     value: 10,
-    //     step: 0,
-    //   },
-    //   {
-    //     classes: [],
-    //     icon: `minimal_parry`,
-    //     value: 10,
-    //     step: 1,
-    //   },
-    //   {
-    //     classes: [],
-    //     icon: `damage`,
-    //     value: `2d-4 cut`,
-    //     step: 3,
-    //   },
-    // ]
+      if (value !== false && !isNil(value)) {
+        variant.stats[1]!.push({
+          classes: [],
+          icon: [`minimal_${defense}`],
+          value: `X${parseModifier(value, [`-`, `+`], `+0`)}`,
+          roll: variant.rolls.length,
+        })
+
+        // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
+        variant.rolls.push(levelToRollContext([{ primary: defense.capitalize() }], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length))
+      }
+    }
 
     variant.tags = tags.tags
     return [variant]

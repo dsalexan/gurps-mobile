@@ -45,7 +45,7 @@ export class Type {
     return typeFromGCS(raw)
   }
 
-  compare(types: string | Type | (string | Type)[], leaf = true) {
+  compare(types: Exclude<string, Type> | Type | (Exclude<string, Type> | Type)[], leaf = true) {
     const values = leaf ? [this.value] : this.values
     const aTypes = isArray(types) ? types : [types]
 

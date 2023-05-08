@@ -1,22 +1,66 @@
 /* eslint-disable no-debugger */
 import { cloneDeep, flatten, flattenDeep, groupBy, intersection, isNil, orderBy, partition, sum, uniq, uniqBy, unzip } from "lodash"
 import { parseBonus } from "./bonus"
-import { ILevel, ILevelDefinition, calculateLevel } from "./level"
-import GenericFeature from "../../gurps-mobile/core/feature/variants/generic"
+import { ILevel, ILevelDefinition, calculateLevel, nonSkillOrAllowedSkillTargets } from "./level"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
-import SkillFeature from "../../gurps-mobile/core/feature/variants/skill"
 import { parseExpression } from "../../december/utils/math"
-import WeaponFeature from "../../gurps-mobile/core/feature/variants/weapon"
+import SkillFeature from "../../gurps-mobile/foundry/actor/feature/skill"
+import WeaponFeature from "../../gurps-mobile/foundry/actor/feature/weapon"
+import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
+import { LOGGER } from "../../mobile"
+import AdvantageFeature from "../../gurps-mobile/foundry/actor/feature/advantage"
 
-export interface IActiveDefenseLevel {
-  bonus: number
+export interface IBaseActiveDefenseLevel {
+  type: string
+  //
   level: number
-  skill: SkillFeature
-  weapon: WeaponFeature
-  equivalentUsages: WeaponFeature[]
-  equivalentSkills: SkillFeature[]
-  ignoreSpecialization: boolean
+  sourceBonus: number
+  //
+  source: GenericFeature | null
+  base: Record<string, unknown>
+  breakdown: Record<string, unknown>
 }
+
+export interface IWeaponActiveDefenseLevel extends IBaseActiveDefenseLevel {
+  type: `weapon`
+  source: WeaponFeature
+  base: {
+    skill: SkillFeature
+    ignoreSpecialization: boolean
+  }
+  breakdown: {
+    weapons: WeaponFeature[]
+    skills: SkillFeature[]
+  }
+}
+
+export interface IAttributeActiveDefenseLevel extends IBaseActiveDefenseLevel {
+  type: `attribute`
+  source: null
+  base: {
+    attribute: `st` | `dx` | `iq` | `ht` | `will` | `per` | `fp` | `hp` | `speed` | `move`
+  }
+  breakdown: {
+    attributes: (`st` | `dx` | `iq` | `ht` | `will` | `per` | `fp` | `hp` | `speed` | `move`)[]
+  }
+}
+
+export interface IPowerActiveDefenseLevel extends IBaseActiveDefenseLevel {
+  type: `power`
+  source: AdvantageFeature
+  base: {
+    attribute: `st` | `dx` | `iq` | `ht` | `will` | `per` | `fp` | `hp` | `speed` | `move`
+  }
+  breakdown: {
+    powers: unknown[] // TODO: Power would be the limitation?
+    advantages: AdvantageFeature[]
+    // a power defense can have skills attached, and so can attributes
+    skills: SkillFeature[]
+    attributes: (`st` | `dx` | `iq` | `ht` | `will` | `per` | `fp` | `hp` | `speed` | `move`)[]
+  }
+}
+
+export type IActiveDefenseLevel = IWeaponActiveDefenseLevel | IAttributeActiveDefenseLevel | IPowerActiveDefenseLevel
 
 export function activeDefenseLevel(activeDefense: `block` | `dodge` | `parry` | `all`, actor: GurpsMobileActor, highest?: false): IActiveDefenseLevel[]
 export function activeDefenseLevel(activeDefense: `block` | `dodge` | `parry` | `all`, actor: GurpsMobileActor, highest: true): IActiveDefenseLevel | undefined
@@ -25,168 +69,226 @@ export function activeDefenseLevel(
   actor: GurpsMobileActor,
   highest = false,
 ): IActiveDefenseLevel | IActiveDefenseLevel[] | undefined {
+  // get all features linked to defense
   const features = activeDefenseFeatures(activeDefense, actor)
 
   let adls = [] as IActiveDefenseLevel[]
-  let weaponSkills = [] as any[]
+  const weaponSkills = [] as { weapon: WeaponFeature; skill: Similars }[]
+
+  type Similars = { sl: number; skill: SkillFeature; forms: SkillFeature[]; specializations: SkillFeature[] }
 
   if (features.length > 0) {
-    // list all actor skills with activeDefense property
-    const allSkills = features.filter(feature => feature.activeDefense?.[activeDefense])
-    const skillsIndex = allSkills.map(skill => skill.__compilation.sources.gca?._index)
-    const skillsMap = Object.fromEntries(allSkills.map(skill => [skill.__compilation.sources.gca?._index, skill]))
+    const nonSkills = features.filter(feature => !feature.type.compare(`skill`, false))
+    if (nonSkills.length > 0) LOGGER.warn(`Non-skill features in activeDefenseLevel calculation`, activeDefense, nonSkills, actor)
 
-    // aggregate specializations
-    const byNonSpecializedNameAndSkillLevel = groupBy(allSkills, skill => `${skill.name}+${skill.calcLevel()?.level}`)
-    const skillsAndIgnoreSpecializationFlag = Object.values(byNonSpecializedNameAndSkillLevel).map(
-      specializedSkills =>
-        [
-          specializedSkills[0] as SkillFeature,
-          specializedSkills.map(skill => [skill.__compilation.sources.gca?._index, specializedSkills[0].__compilation.sources.gca?._index]),
-        ] as const,
+    // list all actor skills with activeDefense property (only skills have activeDefense property)
+    const allSkills = features.filter(feature => feature.data.activeDefense?.[activeDefense]) as SkillFeature[]
+    const allSkillsWithLevel = allSkills.filter(skill => !isNil(skill.data.level)) as SkillFeature[]
+    const knownLeveledSkills = allSkillsWithLevel.map(skill => skill.sources.gca?._index)
+    const skillsGCAIndex = Object.fromEntries(allSkillsWithLevel.map(skill => [skill.sources.gca?._index, skill]))
+
+    // aggregate specializations and build indexes for specializations
+    //        ReferenceSkill: A SkillFeature used as reference for a subset of specializations (ex.: Smith (Iron) could be the ReferenceSkill for a subset of Smith (Iron), Smith (Copper) and Smith (Tin))
+    //                        Its mostly the first skill in the sheet which shares the same level with its other specializations
+    //
+    //    Record<name+level, Skill[]>
+    const byBaseNameAndSkillLevel = groupBy(allSkillsWithLevel, skill => `${skill.data.name}+${skill.data.level!.level}`)
+    //    List<(ReferenceSkill, (SpecializedSkill.gca.index, ReferenceSkill.gca.index)[])>
+    const skillsAndIgnoreSpecializationFlag = Object.values(byBaseNameAndSkillLevel).map(
+      specializedSkills => [specializedSkills[0] as SkillFeature, specializedSkills.map(skill => [skill.sources.gca?._index, specializedSkills[0].sources.gca?._index])] as const,
     )
-    const [flaggedSkills, specializationPairs] = unzip(skillsAndIgnoreSpecializationFlag) as [SkillFeature[], [number, number][][]]
-    const specializationToNonSpecialized = Object.fromEntries(flatten(specializationPairs))
-    const nonSpecializedToSpecialization = {}
-    for (const [key, value] of Object.entries(specializationToNonSpecialized)) {
-      if (nonSpecializedToSpecialization[value] === undefined) nonSpecializedToSpecialization[value] = []
-      nonSpecializedToSpecialization[value].push(key)
+    //    List<ReferenceSkill>, List<(SpecializedSkill.gca.index, ReferenceSkill.gca.index)[]>
+    const [referenceSkills, specializationPairs] = unzip(skillsAndIgnoreSpecializationFlag) as [SkillFeature[], [number, number][][]]
+    //    Record<SpecializedSkill.gca.index, ReferenceSkill.gca.index[]>
+    //      This is used to get the ReferenceSkill from a SpecializedSkill
+    const specializationToReference = Object.fromEntries(flatten(specializationPairs))
+    //    Record<ReferenceSkill.gca.index, SpecializedSkill.gca.index[]>
+    //       This is used to get a list of SpecializedSkill indexes from a ReferenceSkill
+    const referenceToSpecialization = {} as Record<number, number[]>
+    for (const [key, value] of Object.entries(specializationToReference)) {
+      if (referenceToSpecialization[value] === undefined) referenceToSpecialization[value] = []
+      referenceToSpecialization[value].push(parseInt(key))
     }
 
-    // SPECIAL CASE FOR SKILLS: get the better of GENERAL/ART/SPORT skills (every combat skill can have a Art or Sport variant)
-    const skillsAndDefenseLevel = flatten((flaggedSkills ?? []).map(skill => (skill.activeDefense?.[activeDefense] ?? []).map(formula => [skill, formula] as const)))
+    // #region SPECIAL CASES
+
+    // FORM-VARIANT SKILL (ART/SPORT Skills)
+    //        get the better of GENERAL/ART/SPORT skills (every combat skill can have a Art or Sport variant)
+    //    List<(ReferenceSkill, ActiveDefenseFormula)>
+    //      get all active defense formulas for a given reference skill
+    const skillsAndDefenseLevel = flatten((referenceSkills ?? []).map(skill => (skill.data.activeDefense?.[activeDefense] ?? []).map(formula => [skill, formula] as const))) as [
+      SkillFeature,
+      string,
+    ][]
+    //    Record<name+ActiveDefenseFormula, List<ReferenceSkill>>
+    //      group skills by base name (modified to ignore art/sport variance) and active defense formula
     const byNameAndDefenseLevelFormula = groupBy(
       skillsAndDefenseLevel,
-      ([skill, formula]) => `${skill.name.replace(/(?<=\w) sport(?!\w)/i, ``).replace(/(?<=\w) art(?!\w)/i, ``)}+${formula}`,
-    )
-    const byNameAndSkillLevel = Object.values(byNameAndDefenseLevelFormula).map(skillAndDefenseLevelFormula =>
-      groupBy(
-        skillAndDefenseLevelFormula.map(([skill]) => skill),
-        skill => skill.calcLevel()?.level ?? -Infinity,
-      ),
-    )
+      ([skill, formula]) => `${skill.data.name.replace(/(?<=\w) sport(?!\w)/i, ``).replace(/(?<=\w) art(?!\w)/i, ``)}+${formula}`,
+    ) as Record<string, [SkillFeature, string][]>
+    const listsOfFormVariantSkillsAndFormulasByNameAndDefenseLevelFormula = Object.values(byNameAndDefenseLevelFormula)
+    //      each entry of list has form-variants of reference skills grouped by skill level
+    const listOfFormVariantSkillsAndFormulasBySkillLevel = listsOfFormVariantSkillsAndFormulasByNameAndDefenseLevelFormula.map(
+      listOfFormVariantSkillsAndFormulasByNameAndDefenseLevelFormula => {
+        const formVariantSkillsOrderedByForm = orderBy(
+          listOfFormVariantSkillsAndFormulasByNameAndDefenseLevelFormula,
+          ([skill, formula]) => ({ false: 0, sport: 1, art: 2 }[skill.data.form as string] ?? 3),
+        )
+        // const skillsOrderedByLevel = orderBy(skillsOrderedByForm, ([skill, formula]) => skill.data.level?.level ?? -Infinity)
 
-    const nonSpecialializedToCompact = {}
-    const compactSkills = Object.fromEntries(
-      flatten(
-        byNameAndSkillLevel.map(bySkillLevel =>
-          Object.entries(bySkillLevel).map(([sl, skills]) => {
-            const skill = orderBy(skills, (skill: SkillFeature) => ({ false: 0, sport: 1, art: 2 }[skill.form as string]))[0]
-            const index = skill.__compilation.sources.gca?._index
-
-            for (const s of skills) {
-              // ERROR: There should be NO overriding
-              if (nonSpecialializedToCompact[s.__compilation.sources.gca?._index] !== undefined) debugger
-              nonSpecialializedToCompact[s.__compilation.sources.gca?._index] = index
-            }
-
-            return [
-              index,
-              {
-                sl,
-                pool: skills,
-                skill,
-                specializations: nonSpecializedToSpecialization[index].map(gcaIndex => skillsMap[gcaIndex]),
-              },
-            ]
-          }),
-        ),
-      ),
+        // group (form-variant skill, formula) by level (to later only get the highest level for a skill+formula tuple)
+        return groupBy(formVariantSkillsOrderedByForm, ([skill]) => skill.data.level?.level ?? -Infinity)
+      },
     )
+    // #endregion
+
+    // just mash all "similar" skills together in a "similars" object
+    const referenceToSimilars = {} as Record<number, number>
+    const similarsIndex = {} as Record<number, Similars>
+    for (const formVariantSkillsAndFormulasBySkillLevel of listOfFormVariantSkillsAndFormulasBySkillLevel) {
+      const skillLevels = Object.keys(formVariantSkillsAndFormulasBySkillLevel)
+
+      for (const skillLevel of skillLevels) {
+        const [formVariantSkills, formulas] = unzip(formVariantSkillsAndFormulasBySkillLevel[skillLevel]) as [SkillFeature[], string[]]
+
+        // order form-variant skills by form (GENERAL, SPORT, ART) (like, I just ordered this guys above but ok)
+        const orderedSkills = orderBy(formVariantSkills, skill => ({ false: 0, sport: 1, art: 2 }[skill.data.form as string]))
+        const skill = orderedSkills[0]
+        const index = skill.sources.gca?._index
+
+        // index all form-variant skills to the same "compact" skill (since each form-variant is a reference skill)
+        for (const formVariant of formVariantSkills) {
+          // ERROR: There should be NO overriding
+          if (referenceToSimilars[formVariant.sources.gca?._index] !== undefined) debugger
+          referenceToSimilars[formVariant.sources.gca?._index] = index
+        }
+
+        similarsIndex[index] = {
+          sl: parseInt(skillLevel),
+          skill,
+          forms: formVariantSkills,
+          specializations: referenceToSpecialization[index].map(index => skillsGCAIndex[index]),
+        }
+      }
+    }
 
     // list all weapons with activeDefense property (for power defenses)
-    const equipments = features.filter(feature => feature.type.compare(`equipment`))
-    const weapons = flatten(equipments.map(equipment => equipment.weapons ?? []))
-    const defenseWeapons = weapons.filter(weapon => weapon[activeDefense] !== false)
+    const weaponizedFeatures = features.filter(feature => feature.data.weapons?.length > 0)
+    const weapons = flatten(weaponizedFeatures.map(feature => feature.data.weapons ?? []))
+    const defenseWeapons = weapons.filter(weapon => weapon.data[activeDefense] !== false && !isNil(weapon.data[activeDefense])) as any as WeaponFeature[]
 
-    // choose skill for equipment weapons
-    weaponSkills = flatten(
-      defenseWeapons.map(weapon => {
-        const levels = weapon.defaults ?? []
-        if (levels.length === 0) return []
+    // choose skill for feature weapons
+    for (const weapon of defenseWeapons) {
+      const defaults = weapon.data.defaults ?? []
+      if (defaults.length === 0) continue
 
-        const allSkillTargetsAreInList = levels.filter(level => {
-          const targets = level.targets ?? {}
-          const notSkillOrIsInList = Object.values(targets).every(target => target.type !== `skill` || intersection(target.value as any, skillsIndex).length > 0)
-          const hasSkillTarget = Object.values(targets).some(target => target.type === `skill`)
+      const viableDefinitions = defaults.filter(definition => nonSkillOrAllowedSkillTargets(definition, knownLeveledSkills))
 
-          return notSkillOrIsInList && hasSkillTarget
+      // get all known leveled skills from viable definitions
+      const skillIndexes = viableDefinitions
+        .map(definition => {
+          const targets = Object.values(definition.targets ?? {})
+          const skillTargets = targets.filter(target => target.type === `skill`)
+          return skillTargets.map(target => (target.value as number[]).filter(value => knownLeveledSkills.includes(value))).flat()
         })
+        .flat()
 
-        const skills = flattenDeep(
-          allSkillTargetsAreInList.map(level =>
-            Object.values(level.targets ?? {})
-              .filter(target => target.type === `skill`)
-              .map(target => target.value),
-          ),
-        )
-        const toNonSpecialized = skills.map(skill => specializationToNonSpecialized[skill])
-        const toCompactSkill = uniq(toNonSpecialized).map(skill => nonSpecialializedToCompact[skill])
-        const skillList = uniq(toCompactSkill).map(skill => compactSkills[skill])
+      const referenceSkills = skillIndexes.map(skill => specializationToReference[skill])
+      const similarsSkills = uniq(referenceSkills).map(skill => referenceToSimilars[skill])
+      const similars = uniq(similarsSkills).map(skill => similarsIndex[skill])
 
-        return skillList.map(skill => [skill, weapon])
-      }),
-    )
+      weaponSkills.push(...similars.map(skill => ({ weapon, skill })))
+    }
   }
 
-  const byEquipmentAndDefenseBonusAndDefenseFormulaAndSkillLevel = groupBy(
+  // group (weapon, skill) by skill level, defense bonus, feature and formula
+  const bySkillLevelAndDefenseBonusAndFeatureAndFormula = groupBy(
     weaponSkills,
-    ([{ sl, skill }, weapon]) => `${sl}+${skill.activeDefense[activeDefense]}+${weapon.parent.name}+${weapon[activeDefense]}`,
+    ({ skill: { sl, skill }, weapon }) => `${sl}+${skill.data.activeDefense![activeDefense]}+${weapon.parent!.data.name}+${weapon.data[activeDefense]}`,
   )
+  const listsOfGroupedWeaponSkills = Object.values(bySkillLevelAndDefenseBonusAndFeatureAndFormula) as { weapon: WeaponFeature; skill: Similars }[][]
 
-  const flatTuples = Object.values(byEquipmentAndDefenseBonusAndDefenseFormulaAndSkillLevel).map(similar => {
-    const arbitraryOrder = orderBy(similar, ([{ skill }]) => (({ false: 0, sport: 1, art: 2 }[skill.form as string] ?? 3) - (skill.training === `trained` ? 0 : 0.5)))
+  type DefenseLevelDefinition = { pool: { skills: SkillFeature[]; weapons: WeaponFeature[] }; skill: SkillFeature; specializations: SkillFeature[]; weapon: WeaponFeature }
+  const definitions = [] as DefenseLevelDefinition[]
+  for (const weaponSkillsBySkillLevelAndDefenseBonusAndFeatureAndFormula of listsOfGroupedWeaponSkills) {
+    const orderedWeaponSkills = orderBy(
+      weaponSkillsBySkillLevelAndDefenseBonusAndFeatureAndFormula,
+      ({ skill: { skill } }) => (({ false: 0, sport: 1, art: 2 }[skill.data.form as string] ?? 3) - (skill.data.training === `trained` ? 0 : 0.5)),
+    )
 
-    let _pool = [] as any[],
-      usages = [] as any[]
+    const relatedSkills = orderedWeaponSkills.map(({ skill: similar }) => [...similar.forms, ...similar.specializations, similar.skill]).flat()
+    const similarSkills = uniqBy(relatedSkills, skill => skill.id)
 
-    for (const [{ pool, skill, specializations }, weapon] of arbitraryOrder) {
-      _pool.push(skill, ...pool, ...specializations)
-      usages.push(weapon)
-    }
+    const weaponPool = uniqBy(
+      orderedWeaponSkills.map(({ weapon }) => weapon),
+      weapon => weapon.id,
+    )
 
-    return {
-      pool: uniqBy(_pool, skill => skill.id),
-      specializations: similar[0][0].specializations,
-      usages: uniqBy(usages, skill => skill.id),
-      skill: similar[0][0].skill,
-      weapon: similar[0][1],
-    }
-  })
+    definitions.push({
+      pool: {
+        skills: similarSkills,
+        weapons: weaponPool,
+      },
+      skill: orderedWeaponSkills[0].skill.skill,
+      specializations: orderedWeaponSkills[0].skill.specializations,
+      weapon: orderedWeaponSkills[0].weapon,
+    })
+  }
 
   if (activeDefense === `block` || activeDefense === `parry`) {
+    // TODO: Power Block
+    // TODO: Power Parry
     // block depends on weapon AND skill
-    //    weapon comes from equipment - which must have a block skill (skill with block at, usually defaulted to CLOAK or SHIELD)
+    //    weapon comes from features (usually equipment or advantage) - which must have a block skill (skill with block at, usually defaulted to CLOAK or SHIELD)
     //    skill with block at, usually defaulted to CLOAK or SHIELD
-    for (const { pool, specializations, usages, skill, weapon } of flatTuples) {
+    for (const { pool, skill, specializations, weapon } of definitions) {
       const ignoreSpecialization = specializations.length > 1
 
-      // ERROR: Unimplemented
-      if (skill.activeDefense[activeDefense].length !== 1) debugger
+      // ERROR: Unimplemented, main skill for defense MUST have ONLY one suitable active defense property (block or parry here)
+      //        Untested for many and none, basically
+      if (skill.data.activeDefense?.[activeDefense]?.length !== 1) debugger
 
-      const weaponBonus = parseBonus(weapon[activeDefense])
-      const defenseLevel = parseExpression(skill.activeDefense[activeDefense][0], skill)
+      const weaponBonus = parseBonus(weapon.data[activeDefense] as string)
+      const defenseLevel = parseExpression(skill.data.activeDefense![activeDefense][0], skill)
 
       const adl = {
-        bonus: weaponBonus.value,
+        type: `weapon`,
+        //
         level: defenseLevel,
-        skill,
-        weapon,
-        equivalentUsages: usages,
-        equivalentSkills: pool,
-        ignoreSpecialization,
-      } as IActiveDefenseLevel
+        sourceBonus: weaponBonus.value,
+        //
+        source: weapon,
+        base: { skill, ignoreSpecialization },
+        //
+        breakdown: {
+          weapons: pool.weapons,
+          skills: pool.skills,
+        },
+      } as IWeaponActiveDefenseLevel
 
       adls.push(adl)
     }
   } else if (activeDefense === `dodge`) {
-    const DX = actor.system.attributes.DX
-    const defenseLevel = Math.floor(parseFloat(DX.value as any) / 2) + 3
+    // TODO: Power Dodge
+    // TODO: Get basic speed from actor (which should be a feature)
+    // TODO: Encumbrance is dodge's source bonus
+
+    const BASIC_SPEED = parseFloat(actor.system.basicspeed.value)
+    const level = BASIC_SPEED + 3
 
     const adl = {
-      bonus: 0,
-      level: defenseLevel,
-    } as IActiveDefenseLevel
+      type: `attribute`,
+      //
+      level,
+      sourceBonus: 0,
+      //
+      source: null,
+      base: { attribute: `speed` },
+      //
+      breakdown: {
+        attributes: [`speed`],
+      },
+    } as IAttributeActiveDefenseLevel
 
     adls.push(adl)
   } else {
@@ -203,12 +305,16 @@ export function activeDefenseLevel(
   //   debugger
   // }
 
-  const _adls = orderBy(adls, adl => adl.level + adl.bonus, `desc`)
+  const _adls = orderBy(adls, adl => adl.level + adl.sourceBonus, `desc`)
 
   if (!highest) return _adls
   return _adls[0]
 }
 
+/**
+ * Return all features of actor connected to some active defense.
+ * Usually will return ALL parryable and blockable skills, even untrained ones.
+ */
 export function activeDefenseFeatures(activeDefense: `block` | `dodge` | `parry` | `all`, actor: GurpsMobileActor): GenericFeature[] {
   const defenses = actor.cache.links?.defenses ?? {}
   const links = defenses[activeDefense] ?? []

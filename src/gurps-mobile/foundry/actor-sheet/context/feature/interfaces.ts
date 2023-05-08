@@ -1,5 +1,6 @@
 import { IRollContext } from "../../../../../gurps-extension/utils/roll"
 import BaseFeature from "../../../../core/feature/base"
+import GenericFeature from "../../../actor/feature/generic"
 import { IContext } from "../context"
 
 export interface Displayable {
@@ -19,7 +20,7 @@ export type FastDisplayable =
     }
 
 export interface IFeatureContext extends IContext {
-  _feature: BaseFeature
+  _feature: GenericFeature
   //
   id: string
   index: number

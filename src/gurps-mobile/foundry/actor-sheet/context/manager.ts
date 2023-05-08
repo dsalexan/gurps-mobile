@@ -14,7 +14,7 @@ import { push } from "../../../../december/utils/lodash"
 import GenericFeature from "../../actor/feature/generic"
 import LOGGER from "../../../logger"
 
-export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `hidden` | `pinned` | `expanded` | `roller`>
+export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `actor` | `hidden` | `pinned` | `expanded` | `roller`>
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PinnedFeatureContextSpecs extends IgnoreFeatureFallbacks<FeatureBaseContextTemplate> {
   //

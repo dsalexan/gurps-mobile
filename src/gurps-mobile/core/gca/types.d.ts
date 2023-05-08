@@ -76,12 +76,12 @@ export namespace GCA {
 
   export interface ExpressionTarget {
     _raw: string // value from Expression.variables
-    type: `unknown` | `attribute` | `skill` | `me`
+    type: `unknown` | `attribute` | `skill` | `me` | `flat`
     fullName: string
     name: TargetProperty | string
     nameext?: TargetProperty | string
     // attribute?: string
-    value?: string | number[] // attribute name (string) | array of entry indexes (number[])
+    value?: string | number[] | number // attribute name (string) | array of entry indexes (number[]) | numeric value (number)
     transform?: string | string[]
   }
 

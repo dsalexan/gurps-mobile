@@ -20,6 +20,7 @@ export interface CompilationContext {
   id: string
   humanId: string
   type: Type
+  container: boolean
   parent?: Feature<any, any>
   tl?: number
 }

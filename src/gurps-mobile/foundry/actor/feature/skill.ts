@@ -17,7 +17,7 @@ import { derivation, passthrough, proxy } from "./pipelines"
 import { MERGE } from "../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
-import { ILevel, ILevelDefinition, buildLevel, getFeaturesFromTarget, parseLevel, trainedSkillTargets, viabilityCheck } from "../../../../gurps-extension/utils/level"
+import { ILevel, ILevelDefinition, buildLevel, getFeaturesFromTarget, parseLevel, allowedSkillTargets, viabilityCheck } from "../../../../gurps-extension/utils/level"
 import { IComponentDefinition, compareComponent } from "../../../../gurps-extension/utils/component"
 import { IFeatureContext } from "../../actor-sheet/context/feature/interfaces"
 import BaseContextTemplate from "../../actor-sheet/context/context"
@@ -333,10 +333,13 @@ export default class SkillFeature extends GenericFeature {
     // CALCULATE SKILL BONUS FROM ACTOR
     //    actor components can give some bonuses to skill
     const actorComponents = actor.getComponents(`skill_bonus`, component => compareComponent(component, this))
-    const componentsBonus = [] as { component: IComponentDefinition<any>; value: number }[]
+    const componentsBonus = [] as { component: IComponentDefinition; value: number }[]
     for (const component of actorComponents) {
+      const componentFeature = actor.cache.features?.[component.feature]
+      if (!componentFeature) debugger
+
       let modifier = 1
-      if (component.per_level) modifier = component.feature.data.level
+      if (component.per_level) modifier = componentFeature!.data.level
 
       const value = component.amount * modifier
 
@@ -346,9 +349,9 @@ export default class SkillFeature extends GenericFeature {
           `Component with undetermined level`,
           component.type,
           component.selection_type,
-          JSON.stringify(component.name),
+          JSON.stringify(component.selection_filter),
           `◄`,
-          component.feature.specializedName,
+          componentFeature!.specializedName,
           component,
           [
             `color: #826835;`,
@@ -486,7 +489,7 @@ export default class SkillFeature extends GenericFeature {
 
         // viability check
         // ignore if definition doenst have any trained skill targets
-        const targets = trainedSkillTargets(_default, trainedSkillsGCA)
+        const targets = allowedSkillTargets(_default, trainedSkillsGCA)
         if (targets.length === 0) continue
 
         // ERROR: Untested, multiple trained skill targets in definition // COMMENT

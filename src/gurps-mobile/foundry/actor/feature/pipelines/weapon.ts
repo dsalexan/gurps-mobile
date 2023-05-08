@@ -1,7 +1,7 @@
 import { flatten, isEmpty, isNil, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
-import { ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { FALLBACK, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IWeaponizableFeatureData } from "./weaponizable"

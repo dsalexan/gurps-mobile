@@ -6,16 +6,43 @@ import FeatureFactory from "../../../core/feature/factory"
 import { GCA as _GCA } from "../../../core/gca/types"
 import BaseContextTemplate, { ContextSpecs } from "../../actor-sheet/context/context"
 import { GurpsMobileActor } from "../actor"
-import { cloneDeep, flatten, get, has, intersection, isArray, isEqual, isFunction, isNil, isObjectLike, isRegExp, isString, omit, pick, pickBy, sortBy, uniq } from "lodash"
+import {
+  cloneDeep,
+  difference,
+  flatten,
+  get,
+  has,
+  intersection,
+  isArray,
+  isEqual,
+  isFunction,
+  isNil,
+  isObjectLike,
+  isRegExp,
+  isString,
+  omit,
+  pick,
+  pickBy,
+  sortBy,
+  uniq,
+} from "lodash"
 import { isPrimitive, push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
 import { AllSources, CompilationContext, DeepKeyOf, FeatureSources, GenericSource, IDerivation, IDerivationFunction, IDerivationPipeline, IManualPipeline } from "./pipelines"
 import { FeatureState, typeFromGCA, typeFromGCS, typeFromManual } from "../../../core/feature/utils"
 import LOGGER from "../../../logger"
 import { FEATURE } from "../../../core/feature/type"
-import { MigratableObject, MigrationDataObject, MigrationRecipe, completeMigrationValueDefinitions, resolveMigrationDataObject } from "../../../core/feature/compilation/migration"
+import {
+  MigratableObject,
+  MigrationDataObject,
+  MigrationRecipe,
+  MigrationValue,
+  completeMigrationValueDefinitions,
+  resolveMigrationDataObject,
+} from "../../../core/feature/compilation/migration"
 import { EventEmitter } from "@billjs/event-emitter"
 import { Datachanges } from "../../../../december/utils"
+import { deepDiff } from "../../../../december/utils/diff"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
@@ -156,13 +183,9 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
       if (poolables.length > 0) {
         // this.factory.pool(this, poolables)
-        this.factory.poolCompilationRequest(
-          this,
-          poolables.map(poolable => `${poolable}:pool`),
-          {},
-        )
+        this.factory.poolCompilationRequest(this, poolables, {})
 
-        ignores.push(...poolables.map(poolable => `${poolable}:pool`))
+        ignores.push(...poolables)
       }
 
       const nonIgnoredKeys = keys.filter(key => !isString(key) || !ignores?.includes(key))
@@ -236,13 +259,18 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       }
 
       for (let target of derivation.targets) {
+        const [key, ...modifiers] = target.split(`:`)
+
         // add to poolables if needed
-        const poolable = target.substring(target.length - 5) === `:pool`
-        if (poolable) this.__.compilation.poolables.push(target.substring(0, target.length - 5))
+        const poolable = modifiers.includes(`pool`) // target.substring(target.length - 5) === `:pool`
+        if (poolable) this.__.compilation.poolables.push(key)
+
+        let registeredTarget = key
+        if (modifiers.includes(`compiled`)) registeredTarget = `${key}:compiled`
 
         // index derivation by target
-        if (this.__.compilation.derivationsByTarget[target] === undefined) this.__.compilation.derivationsByTarget[target] = []
-        this.__.compilation.derivationsByTarget[target].push([name, index])
+        if (this.__.compilation.derivationsByTarget[registeredTarget] === undefined) this.__.compilation.derivationsByTarget[registeredTarget] = []
+        this.__.compilation.derivationsByTarget[registeredTarget].push([name, index])
       }
     }
 
@@ -415,6 +443,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     }
 
     // pass mutated data to this.data
+    const mutations = [] as [string, unknown, unknown, MigrationValue<any>[]][]
+    const mutatedKeys = [] as string[]
     for (const key of Object.keys(mutableData)) {
       if (mutableData[key] === undefined) continue
 
@@ -422,8 +452,21 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       const value = mutableData[key]
       const migration = migratableObject.migrationsByKey[key]
 
-      this.data[key] = value
-      this.__.compilation.migrations[key] = migration
+      let keyMutated = false
+      if (isNil(value) || isNil(this.data[key])) keyMutated = !isEqual(value, this.data[key])
+      else if (isPrimitive(value) && isPrimitive(this.data[key])) keyMutated = !isEqual(value, this.data[key])
+      else {
+        const diff = deepDiff(this.data[key], value)
+        keyMutated = !isNil(diff) && Object.keys(diff).length > 0
+      }
+
+      if (keyMutated) {
+        mutatedKeys.push(key)
+        mutations.push([key, cloneDeep(this.data[key]), cloneDeep(value), migration])
+
+        this.data[key] = value
+        this.__.compilation.migrations[key] = migration
+      }
 
       // this.fire(`after-compile`, { key, value, migration })
     }
@@ -434,24 +477,27 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     // timer = LOGGER.time(`FIRE`) // COMMENT
 
     // FIRE subscription events for feature+keys that have changed
-    const mutatingRecipes = allRecipes.filter(recipe => ![`pass`, `ignore`, `same`].includes(recipe.action))
-    const destinations = uniq(mutatingRecipes.map(recipe => recipe.key))
-
-    const overlap = intersection(destinations, targets)
+    const overlap = intersection(mutatedKeys, targets)
     if (overlap.length > 0) {
       // TODO: By now, i'm just removing overlaps, but this is not the best solution
       //       The best solution would be to implement a stack overflow "refusal" in the return of derivation, to indicate a moment do stop a cycle of changes
 
+      const protection = document.__STACK_OVERFLOW_FEATURE_PROTECTION?.[this.id] ?? []
       // @ts-ignore
-      if (intersection(document.__STACK_OVERFLOW_FEATURE_PROTECTION?.[this.id] ?? [], overlap).length > 0) {
-        LOGGER.warn(`Feature "${this.id}" has a possible stack overflow (a derivation is changing its targets)`, {
-          // @ts-ignore
-          previousOverlap: document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id],
-          overlap,
-          targets,
-          destinations,
-        })
-        debugger
+      if (intersection(protection, overlap).length > 0) {
+        const ignoreDebugger = protection.every(key => [`cost`, `weight`].includes(key))
+        if (!ignoreDebugger) {
+          LOGGER.warn(`Feature "${this.id}" has a possible stack overflow (a derivation is changing its targets)`, {
+            // @ts-ignore
+            previousOverlap: document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id],
+            overlap,
+            targets,
+            mutatedKeys,
+            mutations,
+          })
+
+          debugger
+        }
       }
 
       // @ts-ignore
@@ -460,8 +506,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id] = overlap
     }
 
-    this.fire(`update`, { feature: this, changes, keys: destinations, ignoreCompile: overlap })
-    this.fire(`compile`, { feature: this, changes, keys: destinations, ignoreCompile: overlap })
+    this.fire(`update`, { feature: this, changes, keys: mutatedKeys, ignoreCompile: overlap })
+    this.fire(`compile`, { feature: this, changes, keys: mutatedKeys, ignoreCompile: overlap })
     if (this.__fire_loadFromGCA && changes?.some(key => (isString(key) ? key.startsWith(`gca.`) : key.test(`gca.`)))) {
       this.__fire_loadFromGCA = false
       this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: this.sources.gca })
@@ -526,7 +572,10 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     if (cache) {
       entry = GCA.getCache(this.id)
       if (entry !== undefined) {
-        this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: null })
+        this.__fire_loadFromGCA = true // this flag fires loadFromGCA event after compiling GCA (addSource fires update which fires compile)
+        if (entry) this.addSource(`gca`, entry)
+        else this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: null })
+
         return this
       }
     }
@@ -546,7 +595,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // if there is some result, add as source (this will trigger a compilation)
     if (!isNil(entry)) {
-      this.__fire_loadFromGCA = true
+      this.__fire_loadFromGCA = true // this flag fires loadFromGCA event after compiling GCA (addSource fires update which fires compile)
       this.addSource(`gca`, entry)
     } else {
       this.fire(`loadFromGCA`, { source: `gca`, feature: this, entry: null })

@@ -24,6 +24,8 @@ import { Datachanges } from "../../../december/utils"
 import { PatternChanges } from "../../../december/utils/datachanges"
 import { GurpsMobileActor } from "../../foundry/actor"
 import { isNilOrEmpty } from "../../../december/utils/lodash"
+import DefenseFeature from "../../foundry/actor/feature/defense"
+import { IDefenseFeatureData } from "../../foundry/actor/feature/pipelines/defense"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
@@ -35,11 +37,16 @@ export type FeatureDataByType = {
   spell: ISpellFeatureData
   equipment: IEquipmentFeatureData
   weapon: IWeaponFeatureData
+  //
+  defense: IDefenseFeatureData
 }
 
 export default class FeatureFactory extends EventEmitter {
   logs: {
-    compiling: boolean
+    compiling: {
+      general: boolean
+      request: boolean
+    }
   }
 
   compiling: {
@@ -62,7 +69,10 @@ export default class FeatureFactory extends EventEmitter {
     super()
 
     this.logs = {
-      compiling: false,
+      compiling: {
+        general: true,
+        request: false,
+      },
     }
 
     this.compiling = {
@@ -94,6 +104,7 @@ export default class FeatureFactory extends EventEmitter {
     else if (type === `spell`) return SpellFeature
     else if (type === `equipment`) return EquipmentFeature
     else if (type === `weapon`) return WeaponFeature
+    else if (type === `defense`) return DefenseFeature
 
     throw new Error(`Feature of type "${type}" is not implemented`)
   }
@@ -199,9 +210,9 @@ export default class FeatureFactory extends EventEmitter {
       if (!this.compiling.delayedByFeature[feature.id]) this.compiling.delayedByFeature[feature.id] = []
       this.compiling.delayedByFeature[feature.id].push(instructions)
 
-      if (this.logs.compiling)
+      if (this.logs.compiling.request)
         LOGGER.get(`actor`)
-          .get(`compilation`)
+          .get(`factory`)
           .info(`delay`, feature.data.name ?? `id:${feature.id}`, keys.map(key => key.toString()).join(`, `), baseContext, [
             `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
             `color: black; font-weight: bold; font-style: regular;`,
@@ -247,9 +258,9 @@ export default class FeatureFactory extends EventEmitter {
 
       const targetInstructionsId = futureQueuedInstructions[0]
 
-      if (this.logs.compiling)
+      if (this.logs.compiling.request)
         LOGGER.get(`actor`)
-          .get(`compilation`)
+          .get(`factory`)
           .info(
             `merged`,
             feature.data.name ?? `id:${feature.id}`,
@@ -292,9 +303,9 @@ export default class FeatureFactory extends EventEmitter {
     // update queue size (if already running)
     const log_extras = [hasDelayed && `delayed`].filter(b => !!b)
     if (this.compiling.running) {
-      if (this.logs.compiling)
+      if (this.logs.compiling.request)
         LOGGER.get(`actor`)
-          .get(`compilation`)
+          .get(`factory`)
           .info(
             `request${log_extras.length > 0 ? ` (${log_extras.join(`, `)})` : ``}`,
             id,
@@ -315,9 +326,9 @@ export default class FeatureFactory extends EventEmitter {
 
       this.compiling.queueSize++
     } else {
-      if (this.logs.compiling)
+      if (this.logs.compiling.request)
         LOGGER.get(`actor`)
-          .get(`compilation`)
+          .get(`factory`)
           .info(
             `request${log_extras.length > 0 ? ` (${log_extras.join(`, `)})` : ``}`,
             id,
@@ -348,16 +359,16 @@ export default class FeatureFactory extends EventEmitter {
   }
 
   startCompilation() {
-    const logger = LOGGER.get(`actor`).get(`compilation`)
+    const logger = LOGGER.get(`actor`).get(`factory`)
 
     if (this.compiling.queue.length === 0) {
-      if (this.logs.compiling)
+      if (this.logs.compiling.general)
         logger.info(`start`, `There are no features in queue to compile`, [
           `color: rgba(0, 0, 0, 0.5); font-weight: bold; font-style: italic;`,
           `color: black; font-weight: regular; font-style: regular;`,
         ])
     } else {
-      if (this.logs.compiling) {
+      if (this.logs.compiling.general) {
         logger.info(`start`, `Starting compilation of`, this.compiling.queue.length, `entries.`, [
           `color: rgba(82, 124, 64, 0.5); font-weight: bold; font-style: italic;`,
           `color: black; font-weight: regular; font-style: regular;`,
@@ -376,7 +387,7 @@ export default class FeatureFactory extends EventEmitter {
         const targets = feature.prepareCompile(keys, baseContext, ignores)
 
         if (targets.length > 0) {
-          if (this.logs.compiling) {
+          if (this.logs.compiling.request) {
             logger.info(
               `run`,
               id,
@@ -412,7 +423,7 @@ export default class FeatureFactory extends EventEmitter {
 
           feature._compile(targets, keys, baseContext)
         } else {
-          if (this.logs.compiling)
+          if (this.logs.compiling.request)
             logger.info(
               `skip`,
               id,
@@ -445,8 +456,8 @@ export default class FeatureFactory extends EventEmitter {
     const hasPooledBatch = this.compiling.pool.requests.length > 0
     const eventName = hasPooledBatch || this.compiling.pool.batch > 0 ? `batch` : `done`
 
-    if (this.compiling.queue.length > 0) {
-      if (this.logs.compiling) {
+    if (this.compiling.queueSize > 0) {
+      if (this.logs.compiling.general) {
         logger.info(eventName, this.compiling.pool.batch, `Compilation of`, this.compiling.compiledEntities, `out of`, this.compiling.queueSize, `entries finished.`, [
           `color: rgba(82, 124, 64, 0.75); font-weight: bold; font-style: italic;`,
           `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
@@ -462,17 +473,18 @@ export default class FeatureFactory extends EventEmitter {
     this.fire(`compilation:${eventName}`, { batch: this.compiling.pool.batch })
 
     if (hasPooledBatch) this.nextCompilationBatch()
+    else this.prepareCompilation()
   }
 
   nextCompilationBatch() {
     const hasPooledBatch = this.compiling.pool.requests.length > 0
     if (!hasPooledBatch) return
 
-    const logger = LOGGER.get(`actor`).get(`pooling`)
+    const logger = LOGGER.get(`actor`).get(`factory`)
 
     const requests = this.compiling.pool.requests
 
-    if (this.logs.compiling)
+    if (this.logs.compiling.general)
       logger
         .group(true)
         .info(`pool`, this.compiling.pool.batch + 1, `Pooling`, requests.length, `requests`, [

@@ -1,9 +1,9 @@
+import { cloneDeep, isNil } from "lodash"
 import { Displayable } from "../../gurps-mobile/foundry/actor-sheet/context/feature/interfaces"
-import { ILevel } from "./level"
+import { ILevel, levelToHTML } from "./level"
 
-export interface IRoll {
+export interface IRoll extends ILevel {
   tags: string[]
-  definition: ILevel
 }
 
 export interface IRollContext extends Displayable {
@@ -11,38 +11,46 @@ export interface IRollContext extends Displayable {
   content: { primary?: string; secondary?: string; tertiary?: string }[]
 }
 
-export function buildRoll(definition: ILevel, tags?: string[]): IRoll {
+export function createRoll(level: ILevel, tags?: string[]): IRoll {
+  // ERROR: Unimplemented
+  if (isNil(level)) debugger
+
+  // TODO: Find out if it should cloneDeep
   return {
     tags: tags ?? [],
-    definition,
+    ...cloneDeep(level),
   }
 }
 
-export function rollToRollContext(roll: IRoll, step: number, classes?: string[]): IRollContext {
+export function parseRollContext(roll: IRoll | ILevel, step: number, classes?: string[]): IRollContext {
   const content = [] as IRollContext[`content`]
 
-  if (roll.tags.includes(`self_control`)) {
+  const tags = roll?.tags ?? []
+  if (tags?.includes(`self_control`)) {
     content.push({
       primary: `Self-Control Roll`,
-      secondary: `Hit ${roll.definition.level} or less`,
+      secondary: `Hit ${roll.value} or less`,
     })
   }
 
   return {
     step,
     classes: classes ?? [],
-    value: roll.definition.level,
-    label: roll.definition.relative?.toString(),
+    value: roll.value,
+    label: levelToHTML(roll), //  roll.definition.relative?.toString(),
     content,
   }
 }
 
-export function levelToRollContext(content: { primary?: string; secondary?: string; tertiary?: string }[], level: ILevel, step: number, classes?: string[]): IRollContext {
-  return {
-    step,
-    classes: classes ?? [],
-    value: level.level,
-    label: level.relative?.toString(),
-    content,
-  }
+export function parseRollContextWithContent(
+  content: { primary?: string; secondary?: string; tertiary?: string }[],
+  roll: IRoll | ILevel,
+  step: number,
+  classes?: string[],
+): IRollContext {
+  const context = parseRollContext(roll, step, classes)
+
+  context.content = content
+
+  return context
 }

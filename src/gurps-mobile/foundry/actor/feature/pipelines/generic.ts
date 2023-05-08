@@ -13,13 +13,19 @@ import {
   parseComponentDefinition,
   updateComponentSchema,
 } from "../../../../../gurps-extension/utils/component"
-import { GCA } from "../../../../core/gca/types"
 import { IFeatureData } from ".."
 import { Type } from "../../../../core/feature"
 import { FeatureState } from "../../../../core/feature/utils"
-import { ILevel, ILevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { ILevelDefinition, setupCheck } from "../../../../../gurps-extension/utils/level"
 import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
 import { deepDiff } from "../../../../../december/utils/diff"
+import GenericFeature from "../generic"
+import SkillFeature from "../skill"
+import LOGGER from "../../../../logger"
+
+export interface IGenericFeatureFormulas {
+  activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
+}
 
 export interface IGenericFeatureData extends IFeatureData {
   name: string
@@ -43,7 +49,7 @@ export interface IGenericFeatureData extends IFeatureData {
   conditional: string[]
   reference: string[]
 
-  activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
+  formulas?: IGenericFeatureFormulas
 
   defaults?: ILevelDefinition[]
   // calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
@@ -57,7 +63,9 @@ export interface IGenericFeatureData extends IFeatureData {
 export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = [
   // #region GCS
   derivation.gcs(`type`, `container`, function ({ type }) {
-    return { container: type?.match(/_container$/) ? OVERWRITE(`container`, true) : WRITE(`container`, false) }
+    const isContainer = type?.match(/_container$/)
+    this.container = !!isContainer
+    return { container: isContainer ? OVERWRITE(`container`, true) : WRITE(`container`, false) }
   }),
   derivation.gcs([`name`, `specialization`], [`name`, `specialization`], function ({ name, specialization }) {
     this.humanId = name
@@ -101,8 +109,10 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     return { tags: tags.filter(tag => tag !== this.type.name) }
   }),
   derivation.gcs(`conditional`, `conditional`, ({ conditional }) => ({ conditional: flattenDeep([conditional ?? []]) })),
-  derivation.gcs(`features`, `components`, ({ features }) => {
-    const definitions = (features ?? []).map(f => parseComponentDefinition(f as any))
+  derivation.gcs(`features`, `components`, ({ features }, _, { object }) => {
+    if (!features) return {}
+
+    const definitions = (features ?? []).map((f, index) => parseComponentDefinition(f as any, object.id, index))
     const byType = groupBy(definitions, `type`) as Record<IComponentDefinition[`type`], IComponentDefinition[]>
     const entries = Object.entries(byType) as [IComponentDefinition[`type`], IComponentDefinition[]][]
 
@@ -157,7 +167,7 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
       if (authorizedProperties !== null) {
         // if aggregation is authorized, go for it
         //    authorized mens: if all diffs are in those expected for this technique
-        if (firstOrderKeys.every(key => authorizedProperties.includes(key))) {
+        if (firstOrderKeys.every(key => key === `id` || authorizedProperties.includes(key))) {
           // TODO: How to factor amount into aggregation? Since it doenst invalidade a aggregation, just break into by similar amounts (kind of like with component.type han)
 
           const component = updateComponentSchema(allComponents[0], cloneDeep(allComponents[0]))
@@ -167,6 +177,8 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
           }
 
           finalComponents.push(component)
+        } else {
+          debugger
         }
 
         // was not authorized, but passed analysis
@@ -178,6 +190,22 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     }
 
     return { components: PUSH(`components`, finalComponents) }
+  }),
+  // #endregion
+  // #region ACTOR
+  derivation([`actor`, `components`], [], function (_, __, { object }) {
+    if (isNil(object.actor) || isNil(object.data.components)) return {}
+
+    for (const component of object.data.components) object.actor.addComponent(component)
+
+    return {}
+  }),
+  derivation([`actor`, `links`], [], function (_, __, { object }) {
+    if (isNil(object.actor) || isNil(object.data.links)) return {}
+
+    object.actor.addLink(object, object.data.links)
+
+    return {}
   }),
   // #endregion
   // #region GCA
@@ -207,14 +235,113 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
   derivation.gca(`page`, `reference`, ({ page }) => ({ reference: PUSH(`reference`, flattenDeep([page ?? []])) })),
   derivation.gca(`cat`, `categories`, ({ cat }) => ({ categories: flattenDeep([cat ?? []]) })),
   derivation.gca(`itemnotes`, `notes`, ({ itemnotes }) => ({ notes: PUSH(`notes`, flattenDeep([itemnotes ?? []])) })),
-  derivation.gca([`blockat`, `parryat`], [`activeDefense`], ({ blockat, parryat }) => {
+  derivation.gca([`blockat`, `parryat`, `dodgeat`], [`formulas`], ({ blockat, parryat, dodgeat }) => {
     const activeDefense = {} as Record<`block` | `parry` | `dodge`, string[]>
 
     if (blockat && !isEmpty(blockat)) push(activeDefense, `block`, blockat)
     if (parryat && !isEmpty(parryat)) push(activeDefense, `parry`, parryat)
+    if (dodgeat && !isEmpty(dodgeat)) push(activeDefense, `dodge`, dodgeat)
 
     if (Object.keys(activeDefense).length === 0) return {}
-    return { activeDefense }
+    return { formulas: MERGE(`formulas`, { activeDefense }) }
+  }),
+  // #endregion
+  // #region DATA
+  derivation([`formulas`], [`links`], function (_, __, { object }: { object: GenericFeature }) {
+    const formulas = object.data.formulas ?? {}
+
+    if (isNil(formulas)) return {}
+
+    const links = object.data.links ?? []
+
+    const categories = Object.keys(formulas ?? {}) as (keyof IGenericFeatureFormulas)[]
+    for (const category of categories) {
+      const formulaIndex = formulas[category]
+      if (!formulaIndex) continue
+
+      for (const [key, formulas] of Object.entries(formulaIndex)) {
+        if (formulas.length === 0) continue
+
+        links.push(`formulas.${category}.${key}`)
+      }
+    }
+
+    if (links.length === 0) return {}
+    return { links: PUSH(`links`, uniq(links)) }
+  }),
+  derivation([`container`, `weapons:compiled`, `formulas`], [`links`], function (_, __, { object }: { object: GenericFeature }) {
+    const { container, weapons, formulas } = object.data
+
+    // if (object.data.name === `Light Cloak`) debugger
+    if (container || ![`advantage`, `equipment`].some(type => object.type.compare(type)) || (isNil(weapons) && isNil(formulas))) return {}
+
+    // SOURCES of defenses are:
+    //    A. features with a defense property (or with at least a weapon with a defense property)
+    //    B. features with a defense formula property (<defense>at, usually only if GCA)
+    //    C. features linked with a defense-capable skill
+    //    D. VTT_NOTES tag
+
+    const defenses = [`block`, `dodge`, `parry`] as const
+    let links = [] as string[]
+
+    // A (technically weapons will never change after source is first-compiled)
+    for (const defense of defenses) {
+      for (const weapon of weapons ?? []) {
+        if (weapon.data[defense] && !links.includes(`activeDefense.${defense}`)) links.push(`activeDefense.${defense}`)
+      }
+    }
+
+    // B (technically formulas will never change after source is first-compiled)
+    for (const defense of defenses) {
+      if (formulas?.activeDefense?.[defense]?.length && !links.includes(`activeDefense.${defense}`)) links.push(`activeDefense.${defense}`)
+    }
+
+    links = []
+    // C (technically a skill defense capability will never change after source is first-compiled)
+    //    determine skills related to feature
+    const skills = [] as GCA.Entry[]
+
+    //    from weapons
+    for (const weapon of weapons ?? []) {
+      const definitions = weapon.data.defaults as any as ILevelDefinition[]
+      if (!definitions) {
+        LOGGER.error(`gcs`, `Weapon entry`, `"${weapon.data.name}"`, `for`, `"${weapon.parent?.data.name}"`, `lacks default definitions.`, [
+          `color: #826835;`,
+          `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+          `color: black; font-style: regular; font-weight: bold`,
+          ``,
+        ])
+        continue
+      }
+
+      // TODO: Adapt this to new shit
+      for (const definition of definitions) {
+        const { targetsByType } = setupCheck(definition)
+
+        const skillTargets = targetsByType[`skill`] ?? []
+        if (skillTargets.length === 0) continue
+
+        const indexes = skillTargets.map(target => target.value).flat() as number[]
+        const entries = indexes.map(index => GCA.entries[index])
+        skills.push(...entries.filter(entry => !isNil(entry)))
+      }
+    }
+
+    // TODO: Implement for powers
+    // TODO: Implement taking modifiers (limitations and enhancements) into account
+
+    for (const skill of skills) {
+      // check if skill is defense-capable (has some defense formula)
+      for (const defense of defenses) {
+        if (!isNil(skill[`${defense}at`])) links.push(`activeDefense.${defense}`)
+      }
+    }
+
+    // D
+    // TODO: Implement for VTT_NOTES tags (mind shield would require it, for example)
+
+    if (links.length === 0) return {}
+    return { links: PUSH(`links`, uniq(links)) }
   }),
   // #endregion
 ]
