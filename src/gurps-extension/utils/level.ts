@@ -1,11 +1,30 @@
 /* eslint-disable no-debugger */
-import { flatten, isArray, isNil, uniq, uniqBy, orderBy as _orderBy, has, orderBy, sum, groupBy, intersection, unzip, omit, isFunction, isString, mapValues, get } from "lodash"
+import {
+  flatten,
+  isArray,
+  isNil,
+  uniq,
+  uniqBy,
+  orderBy as _orderBy,
+  has,
+  orderBy,
+  sum,
+  groupBy,
+  intersection,
+  unzip,
+  omit,
+  isFunction,
+  isString,
+  mapValues,
+  get,
+  escape,
+} from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
 import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { MathNode, evaluate } from "mathjs"
-import { isNilOrEmpty, isNumeric } from "../../december/utils/lodash"
+import { isNilOrEmpty, isNumeric, push } from "../../december/utils/lodash"
 import mathInstance, { MathPrintOptions, MathScope, buildScope, ignorableSymbols, mathError, parseExpression, preprocess, setupExpression, toHTML } from "../../december/utils/math"
 import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
@@ -89,8 +108,8 @@ export function prepareScope<TMe extends GenericFeature = GenericFeature>(
       throw new Error(`Unimplemented function/prefix "${symbol}"`)
     }
 
-    // ERROR: Unimplemented
-    if (isNil(symbolValue.number)) debugger
+    // // ERROR: Unimplemented
+    // if (isNil(symbolValue.number)) debugger
 
     scope[symbol] = symbolValue
   }
@@ -113,6 +132,7 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
   } catch (error) {
     mathError(expression, scope, error)
     debugger
+    scope = prepareScope(node, definition, me, actor)
   }
 
   const numericScope = mapValues(scope, value => value.number ?? value.string)
@@ -120,8 +140,18 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
   const viable = Object.values(numericScope).every(value => !isNil(value))
   if (!viable) return null
 
-  const code = node.compile()
-  const value = code.evaluate(numericScope)
+  let value: number = undefined as any as number
+  try {
+    const code = node.compile()
+    value = code.evaluate(numericScope)
+  } catch (error) {
+    mathError(expression, scope, error)
+    debugger
+    const code = node.compile()
+    value = code.evaluate(numericScope)
+  }
+
+  if (value === undefined) return null
 
   const level = {
     value,
@@ -133,7 +163,7 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
   return level
 }
 
-export function levelToHTML(level: ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
+export function levelToHTML(level: ILevel, options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | string[]; acronym?: boolean } = {}) {
   const math = mathInstance()
   const completeNode = math.parse(level.expression)
 
@@ -147,7 +177,43 @@ export function levelToHTML(level: ILevel, options: MathPrintOptions & { simplif
   // TODO: Transforms and flags
   // TODO: Take label from variable into consideration
   // TODO: Add variable.value from definition into a data-tag in HTML
-  return toHTML(node, options)
+  return toHTML(node, {
+    html(node, options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | string[]; acronym?: boolean }) {
+      if (node.type === `SymbolNode`) {
+        const name = escape(node.name)
+
+        let html = {} as Record<string, true> & {
+          classes?: string[]
+          type?: string
+          content?: string
+          value?: number
+        }
+
+        if (name.startsWith(`VAR_`)) {
+          const handle = name.substring(4)
+          const variable = level.definition.variables[handle]
+
+          html.type = variable.type
+          for (const transform of variable.transforms ?? []) html[`transform-${transform}`] = true
+          for (const flag of variable.flags ?? []) push(html, `classes`, flag)
+
+          if (options.acronym && [`skill`].includes(variable.type)) {
+            push(html, `classes`, `acronym`)
+            html.content = Handlebars.helpers[`gurpsIcon`](variable.type)?.string
+          }
+        }
+
+        if (has(level.scope, name)) {
+          const value = level.scope[name]
+          html.value = value.number
+          if (!html.content && !isNil(value.string)) html.content = value.string
+        }
+
+        return Object.keys(html).length === 0 ? undefined : html
+      }
+    },
+    ...options,
+  })
 }
 
 export function levelToString(level: ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
@@ -343,7 +409,9 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
   } else if (variable.type === `attribute`) {
     const attribute = variable.value as GURPS4th.Attributes
     const _value = (actor.system.attributes[attribute.toUpperCase()] ?? actor.system[attribute.toLowerCase().replaceAll(/ +/g, ``)]).value
+
     value.number = parseFloat(_value)
+    value.string = attribute.toUpperCase()
 
     // WARN: Checking UNTESTED attributes
     if (![`ST`, `DX`, `IQ`, `HT`, `PER`, `WILL`, `DODGE`, `BASIC SPEED`].includes(attribute.toUpperCase())) debugger
@@ -373,9 +441,6 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
       // ERROR: Cannotb
       if (isNil(skill.data.attributeBasedLevel) && isNil(skill.data.level)) debugger
 
-      // ERROR: Untested
-      if (skill.data.training !== `trained`) debugger
-
       const level = skill.data.level === undefined ? skill.data.attributeBasedLevel : skill.data.level
 
       value.number = level!.value
@@ -401,16 +466,13 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
     debugger
   }
 
-  // ERROR: Noo dawg
-  if (isNil(value.number)) debugger
-
   for (const transform of postTransforms) {
     const [name, arg] = transform.split(`=`)
 
     if (name === `max`) {
-      value.number = Math.min(value.number, parseFloat(arg))
+      if (!isNil(value.number)) value.number = Math.min(value.number, parseFloat(arg))
     } else if (name === `min`) {
-      value.number = Math.max(value.number, parseFloat(arg))
+      if (!isNil(value.number)) value.number = Math.max(value.number, parseFloat(arg))
     } else {
       // ERROR: Unimplemented transform
       debugger

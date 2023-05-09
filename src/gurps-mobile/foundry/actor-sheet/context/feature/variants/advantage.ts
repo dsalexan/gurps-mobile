@@ -43,8 +43,8 @@ export default class AdvantageFeatureContextTemplate extends BaseContextTemplate
       for (const roll of feature.data.rolls) {
         if (roll.tags.includes(`self_control`)) {
           variant.value = {
-            label: levelToHTML(roll),
-            value: roll.value,
+            label: `<span class="math-symbol">CR</span>`,
+            value: roll.target?.toString(),
           }
 
           if (!variant.rolls) variant.rolls = []

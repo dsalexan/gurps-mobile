@@ -7,7 +7,7 @@ import { IFeatureValue } from "../interfaces"
 import ContextManager from "../../manager"
 import { push } from "../../../../../../december/utils/lodash"
 import SkillFeature from "../../../../actor/feature/skill"
-import { parseRollContext } from "../../../../../../gurps-extension/utils/roll"
+import { createRoll, parseRollContext } from "../../../../../../gurps-extension/utils/roll"
 import { levelToHTML } from "../../../../../../gurps-extension/utils/level"
 
 export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
@@ -44,14 +44,11 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
       const level = feature.data.level
       if (level) {
         variant.value.value = level.value.toString()
-        variant.value.label = levelToHTML(level)
-        // TODO: Acronym
-        // level.relative.toString({ acronym: true })
-        debugger
+        variant.value.label = levelToHTML(level, { acronym: true })
 
         if (!variant.rolls) variant.rolls = []
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(parseRollContext(level, variant.rolls.length))
+        variant.rolls.push(parseRollContext(createRoll(level, `regular`), variant.rolls.length))
       }
     }
 

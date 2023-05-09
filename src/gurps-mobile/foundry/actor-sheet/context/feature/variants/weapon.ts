@@ -10,7 +10,7 @@ import { ILevelDefinition, ILevel, parseLevelDefinition, levelToHTML, calculateL
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
 import WeaponFeature from "../../../../actor/feature/weapon"
-import { parseRollContext, parseRollContextWithContent } from "../../../../../../gurps-extension/utils/roll"
+import { createRoll, parseRollContext, parseRollContextWithContent } from "../../../../../../gurps-extension/utils/roll"
 import { parseModifier } from "../../../../../core/feature/utils"
 
 export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
@@ -114,7 +114,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       if (isNil(variant.label)) {
         const prefix = ``
         // const prefix = `<div class="wrapper-icon"><i class="icon">${Handlebars.helpers[`gurpsIcon`](`skill`)}</i></div>`
-        variant.label = { main: `${prefix}${levelToHTML(level)}` }
+        variant.label = { main: `${prefix}${levelToHTML(level, { acronym: true })}` }
       }
       // if (feature.usage) {
       //   tags.type(`type`).update(tag => {
@@ -130,14 +130,13 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       // VALUE
       variant.value = {
         value: level.value,
-        label: levelToHTML(level),
-        // TODO: ACRYNOYM .relative?.toString({ acronym: true }),
+        label: levelToHTML(level, { acronym: true }),
       }
 
       if (!variant.rolls) variant.rolls = []
 
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls[0] = parseRollContext(level, 0)
+      variant.rolls[0] = parseRollContext(createRoll(level, `regular`), 0)
 
       variants.push({ ...variant, tags: tags.tags })
     }
@@ -220,13 +219,12 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       variant.value = {
         value: level.value,
-        label: levelToHTML(level),
-        // TODO: Acronym level.relative?.toString({ acronym: true }),
+        label: levelToHTML(level, { acronym: true }),
       }
 
       if (!variant.rolls) variant.rolls = []
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls.push(parseRollContextWithContent([{ primary: `To Hit`, secondary: feature.data.usage ?? undefined }], level, variant.rolls.length))
+      variant.rolls.push(parseRollContextWithContent([{ primary: `To Hit`, secondary: feature.data.usage ?? undefined }], createRoll(level, `regular`), variant.rolls.length))
     }
 
     if (!variant.stats) variant.stats = [[], []]
@@ -258,7 +256,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
         })
 
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-        variant.rolls.push(parseRollContextWithContent([{ primary: `Damage` }], { level: base, relative: feature.data.damage.type }, variant.rolls.length))
+        variant.rolls.push(parseRollContextWithContent([{ primary: `Damage` }], createRoll(base, `damage`, feature.data.damage), variant.rolls.length))
       }
     }
 
@@ -336,7 +334,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
         variant.rolls.push(
-          parseRollContextWithContent([{ primary: defense.capitalize() }], { level: `X`, relative: `X${parseModifier(value, [`-`, `+`], `+0`)}` }, variant.rolls.length),
+          parseRollContextWithContent([{ primary: defense.capitalize() }], createRoll(`X${parseModifier(value, [`-`, `+`], `+0`)}`, `custom`), variant.rolls.length),
         )
       }
     }

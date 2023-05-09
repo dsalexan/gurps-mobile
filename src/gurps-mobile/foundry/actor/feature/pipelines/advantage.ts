@@ -77,9 +77,10 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
     if (isNil(cr) || isNil(mods)) return {}
 
     if (mods!.some(mod => mod.match(/self-control/i))) {
-      const definition = createLevelDefinition(`∂CR`, createVariable(`CR`, `me`, `sources.gcs.cr`))
-      const level = calculateLevel(definition, object, object.actor)
-      const roll = createRoll(level!, [`self_control`])
+      // ERROR: Unimplemented
+      if (typeof cr !== `number`) debugger
+
+      const roll = createRoll(cr, `regular`, undefined, [`self_control`])
 
       return { rolls: PUSH(`rolls`, roll) }
     }

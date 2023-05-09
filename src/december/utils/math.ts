@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { isFunction, isNil } from "lodash"
+import { isFunction, isNil, omit } from "lodash"
 import { ConstantNode, MathJsStatic, MathNode, OperatorNode, SymbolNode, create as _create, all, typeOf } from "mathjs"
 import Logger from "./logger"
 
@@ -523,9 +523,10 @@ export interface MathPrintOptions {
   parenthesis?: `keep` | `auto` | `all`
   implicit?: `hide`
   handler?: (node: MathNode, options: Omit<MathPrintOptions, `handler`>) => string | undefined
+  html?: (node: MathNode, options: Omit<MathPrintOptions, `handler`>) => (Record<string, true | string> & { classes?: string[] }) | undefined | void
 }
 
-export function toHTML(_node: MathNode, scope: object, options: MathPrintOptions = {}) {
+export function toHTML(_node: MathNode, options: MathPrintOptions = {}) {
   const custom = options?.handler?.(_node, options)
   if (typeof custom !== `undefined`) return custom
 
@@ -638,7 +639,15 @@ export function toHTML(_node: MathNode, scope: object, options: MathPrintOptions
       return `<span class="math-symbol math-undefined-symbol">` + name + `</span>`
     }
 
-    return `<span class="math-symbol">` + name + `</span>`
+    const html = options?.html?.(_node, options) ?? {}
+
+    const classes = (html.classes ?? []).filter(b => !!b).join(` `)
+    const props = Object.entries(omit(html, [`classes`, `content`]))
+      .map(([prop, value]) => (isNil(value) ? false : `data-${prop}="${value}"`))
+      .filter(b => !!b)
+      .join(` `)
+
+    return `<span class="math-symbol ${classes}" data-name="${name}" ${props}>` + (html.content ?? name) + `</span>`
   } else if (_node.type === `ConstantNode`) {
     const node = _node as ConstantNode
 

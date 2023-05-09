@@ -66,6 +66,15 @@
 
     & > span {
       white-space: normal;
+
+      & > .icon {
+        --icon-size: calc(var(--font-size) * 1.2);
+
+        font-size: calc(var(--icon-size) * 1);
+        line-height: calc(var(--icon-size) * 0.8);
+        
+        height: calc(var(--icon-size) * 1);
+      }
     }
     
     & > i {
@@ -76,13 +85,18 @@
       line-height: calc(var(--font-size) * 0.8);
     }
 
-    & > .variable:not([data-type="me"]) {
+    // .math-
+    & > .math-operator {
+      margin: 0 var(--s0-25);
+    }
+
+    & > .math-symbol {
       font-style: normal;
       font-weight: bold;
     }
 
-    & > .operator {
-      margin: 0 var(--s0-25);
+    & > .math-number {
+
     }
   }
   
@@ -100,7 +114,7 @@
   }
 
   & > .value ~ .label {
-    margin-top: var(--s0-25);
+    margin-top: var(--s0-5);
   }
 
   & > .hidden { display: none; }

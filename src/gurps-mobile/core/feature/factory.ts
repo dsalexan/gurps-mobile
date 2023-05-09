@@ -70,7 +70,7 @@ export default class FeatureFactory extends EventEmitter {
 
     this.logs = {
       compiling: {
-        general: true,
+        general: false,
         request: false,
       },
     }

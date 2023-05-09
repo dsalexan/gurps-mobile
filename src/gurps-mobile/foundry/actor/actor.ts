@@ -347,9 +347,14 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      this.prepareAttributes(this._datachanges, cached.featureFactory, partials)
-      this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
-      // this.prepareDefenses(this._datachanges, cached.featureFactory, partials)
+      try {
+        this.prepareAttributes(this._datachanges, cached.featureFactory, partials)
+        this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
+        // this.prepareDefenses(this._datachanges, cached.featureFactory, partials)
+      } catch (error) {
+        LOGGER.info(`prepareDerivedData`, `error`, error)
+        debugger
+      }
 
       // ERROR: Caralho meu
       const typeless = Object.values(cached.features).filter(feature => feature.type === undefined)
