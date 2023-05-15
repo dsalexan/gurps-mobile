@@ -1,4 +1,4 @@
-import { String, flatten, indexOf, isEmpty, isNil, last, uniq } from "lodash"
+import { String, flatten, indexOf, isArray, isEmpty, isNil, last, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from ".."
 import { isNilOrEmpty } from "../../../../../../december/utils/lodash"
 import { ILevelDefinition, parseLevelDefinition, setupCheck } from "../../../../../../gurps-extension/utils/level"
@@ -19,6 +19,7 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
   // #endregion
   // #region GCS
   derivation([`gcs`], [`label`, `use`, `hit`], ({ gcs, manual }, __, { object }) => {
+    const feature = object.parent as any as GenericFeature
     const activeDefense = manual.mode as `parry` | `block` | `dodge`
 
     const value = gcs[activeDefense] as string
@@ -32,14 +33,64 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
     const use = { rule: `automatic` } as IUse
     const hit = { rule: `roll_to_hit`, target: null } as IHit
 
-    // get modifier from GCS weapon
+    /**
+     * A Defense Level Definition can be broken in specific parts:
+     * - Base Formula
+     *    - Generaly found in many places, describes the mathematical expression to calculate final level
+     * - Modifier
+     *    - A numeric bonus applied to formula before calculation
+     *    - Sometimes more complex bonuses (another math expressions such as Talent/2 or a advantage level) can be found
+     * - Base
+     *    - Base feature which's level is applied in base formula (usually a attribute or skill)
+     *    - Can be found directly in feature (parent) or implied by defaults of GCS.weapons
+     */
+
+    /**
+     * Defense to hit definitions can be found in many places:
+     * - Feature (parent) can have both formula and modifier
+     *   - Basic Speed, for example, has formula for dodge (that formula is responsible for requesting the usage creation in derivationLinksToDefenseUsages)
+     * - GCS weapon can have modifier
+     * - Skills attached to GCS weapon (weapon.defaults) can have both formula and modifier
+     *   - Those formulas can be found in equivalent GCA entry OR be derived by default based on pre-defined list of defense-capable skills
+     *   - It will always be skills online. If there is no skill (when a attribute is the defense base, for example), any necessary descriptions will be found in feature formula
+     */
+
+    // most important data, those informations take precedence over the rest
+    // feature can imply base, if not specified it will be derived from GCS.weapons
+    let featureFormula: string | null = null
+    let featureBase: { type: `skill` | `attribute`; value: number[] | string } | null
+
+    // only ADVANTAGE or EQUIPMENT feature can have a formula
+    if (![`advantage`, `equipment`].some(type => object.type.compare(type))) {
+      featureFormula = (feature?.data.formulas?.activeDefense?.[activeDefense] ?? null) as string | null
+      if (isArray(featureFormula)) debugger
+    }
+
+    // setup default formula/base
+    if (featureFormula === `__default__formula__`) {
+      if (activeDefense === `block`) {
+        featureFormula = `@int(∂A) + 3`
+        featureBase = { type: `attribute`, value: `basic speed` }
+      } else if (activeDefense === `dodge`) {
+        debugger
+      } else if (activeDefense === `parry`) {
+        debugger
+      } else {
+        debugger
+      }
+    }
+
+    // a weapon modifier takes precedence over base specific modifiers
+    // skills from weapons.defaults are implied as bases for defense
     const weaponModifier = parseInt(isEmpty(value) ? `0` : value)
     if (isNaN(weaponModifier)) debugger
 
+    // default formulas and mofifiers for defense as described for a specific usage ("mode") in GCA.Entry
+    const skillDefenseFormulasAndModifiers = [] as { formula: string | null; modifier: number | null; base: { type: `skill` | `attribute`; value: number[] | string }[] | null }[]
+
     // #region get formulas from GCS weapon.defaults
 
-    // for each definition of roll for weapon, get a list of formulas
-    const formulas = [] as { formula: string; modifier: number }[]
+    // for each definition of roll for weapon, get a list of formulas and modifiers
     const definitions = defaults.map(_default => parseLevelDefinition(_default)) ?? []
     for (const definition of definitions) {
       // #region get skill (GCA entry) from definition
@@ -81,12 +132,14 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
 
       // #endregion
 
-      let baseDefenseFormula = undefined as any as string
-      const baseDefenseModifier = parseInt(modifier)
+      // cannot defend
+      if (modifier === `No` || modifier === `-`) continue
+
+      let baseDefenseFormula = null as string | null
+      const baseDefenseModifier = !isNil(modifier) ? parseInt(modifier) : null
 
       // ERROR: Untested
-      if (baseDefenseModifier !== weaponModifier) debugger
-      if (isNaN(baseDefenseModifier)) debugger
+      if (!isNil(baseDefenseModifier) && isNaN(baseDefenseModifier)) debugger
 
       // #region default formulas where they dont exist
 
@@ -105,21 +158,36 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
       }
       // #endregion
 
-      // EROROR: Unimplemented
-      if (isNil(baseDefenseFormula)) debugger
+      // ERROR: Untested, shouldnt be
+      if (isNil(baseDefenseModifier) && isNil(baseDefenseFormula)) debugger
 
-      const handle = `skill`[0].toUpperCase()
-
-      // replace level references for vS/vA in formula (to allow for me:: references only in feature context)
-      if (baseDefenseFormula) baseDefenseFormula = baseDefenseFormula.replaceAll(/%level/g, `∂${handle}`).replaceAll(/me::level/g, `∂${handle}`)
-
-      // ERROR: Unimplemented "me::" formula for skill
-      if (baseDefenseFormula.match(/me::/i)) debugger
+      const base = {
+        formula: baseDefenseFormula,
+        modifier: baseDefenseModifier,
+        base: [{ type: `skill` as const, value: [skill.index] }],
+      }
 
       debugger
+
+      skillDefenseFormulasAndModifiers.push(base)
     }
 
     // #endregion
+
+    debugger
+
+    /**
+     * Defense Level Definition -> Level Definition -> Level
+     * {formula(base)} + {modifier}
+     */
+
+    const handle = `skill`[0].toUpperCase()
+
+    // replace level references for vS/vA in formula (to allow for me:: references only in feature context)
+    if (baseDefenseFormula) baseDefenseFormula = baseDefenseFormula.replaceAll(/%level/g, `∂${handle}`).replaceAll(/me::level/g, `∂${handle}`)
+
+    // ERROR: Unimplemented "me::" formula for skill
+    if (baseDefenseFormula.match(/me::/i)) debugger
 
     // ERROR: Should have rolls
     if (!hit.rolls) debugger

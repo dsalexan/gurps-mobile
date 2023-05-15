@@ -518,7 +518,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
                 name: game.i18n.localize(`GURPS.basicspeed`),
                 label: `GURPS.basicspeed`,
                 ...((actorData.basicspeed as any) ?? {}),
-                formulas: { activeDefense: { dodge: [`@int(∂A) + 3`] } },
+                formulas: { activeDefense: { dodge: [`__default__formula__`] } },
               },
               { path: `basicspeed` },
             )
