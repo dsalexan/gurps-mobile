@@ -7,30 +7,30 @@ import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate from "./base"
 
-import WeaponFeatureContextTemplate, { WeaponFeatureContextSpecs } from "./variants/weapon"
+import FeatureUsageContextTemplate, { FeatureUsageContextSpecs } from "./variants/usage"
 import GenericFeature from "../../../actor/feature/generic"
 
-export interface FeatureWeaponsDataContextSpecs extends ContextSpecs {
+export interface FeatureUsagesDataContextSpecs extends ContextSpecs {
   feature: GenericFeature
   //
-  weapons: ContextSpecs
+  usages: ContextSpecs
 }
 
 export interface IWeaponizableFeatureContext extends IContext {
   children: Record<string, IFeatureDataContext[]> & { weapons?: IFeatureDataContext[] }
 }
 
-export default class FeatureWeaponsDataContextTemplate extends BaseContextTemplate {
+export default class FeatureUsagesDataContextTemplate extends BaseContextTemplate {
   static pre(context: IContext, specs: ContextSpecs, manager: ContextManager): IContext {
     super.pre(context, specs, manager)
 
     const feature = getSpec(specs, `feature`)
-    const hasWeapons = feature.data.weapons && feature.data.weapons.length > 0
+    const hasUsages = feature.data.usages && feature.data.usages.length > 0
 
-    if (hasWeapons) {
-      context._template.push(`feature-weapons`)
+    if (hasUsages) {
+      context._template.push(`feature-usages`)
       if (context._metadata?.childrenKeys === undefined) set(context, `_metadata.childrenKeys`, [])
-      context._metadata?.childrenKeys.push([5, `weapons`])
+      context._metadata?.childrenKeys.push([5, `usages`])
     }
 
     return context
@@ -39,29 +39,30 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
   /**
    * Builds N FeatureData's, one for every weapon linked to feature
    */
-  static weapons(data: IFeatureDataContext[], specs: FeatureWeaponsDataContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
+  static usages(data: IFeatureDataContext[], specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
     if (data === undefined) data = []
     const feature = getSpec(specs, `feature`)
 
-    const hasWeapons = feature.data.weapons && feature.data.weapons.length > 0
-    if (!hasWeapons) return null
+    const hasUsages = feature.data.usages && feature.data.usages.length > 0
+    if (!hasUsages) return null
 
     // WARN: Unimplemented pre-defined featureData array
     // eslint-disable-next-line no-debugger
     if (data.length > 0) debugger
 
-    const weaponsSpecs = get(specs, `weapons`) ?? {}
+    const usagesSpecs = get(specs, `usages`) ?? {}
 
-    for (const weapon of feature.data.weapons) {
-      const _specs = { ...cloneDeep(weapon.__.context.specs ?? {}), ...cloneDeep(weaponsSpecs) } as WeaponFeatureContextSpecs
+    for (const usage of feature.data.usages) {
+      const _specs = { ...cloneDeep(usage.__.context.specs ?? {}), ...cloneDeep(usagesSpecs) } as FeatureUsageContextSpecs
       _specs.list = specs.list
       push(_specs, `innerClasses`, `swipe-variant`)
 
-      const context = manager.feature(weapon, _specs)
+      const context = manager.feature(usage, _specs)
 
       const main = context.children.main[0]
-      main.id = `weapon-${weapon.id}`
-      main.variants = WeaponFeatureContextTemplate.skillsVariants(main.variants, _specs, manager)
+      main.id = `usage-${usage.id}`
+      debugger
+      main.variants = FeatureUsageContextTemplate.skillsVariants(main.variants, _specs, manager)
 
       main.actions = false
       main.classes = main.classes.filter(classe => classe !== `has-swipe`)
@@ -78,20 +79,20 @@ export default class FeatureWeaponsDataContextTemplate extends BaseContextTempla
     return data
   }
 
-  static base(context: IFeatureContext, specs: FeatureWeaponsDataContextSpecs, manager: ContextManager): IWeaponizableFeatureContext {
+  static base(context: IFeatureContext, specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IWeaponizableFeatureContext {
     super.base(context, specs, manager)
 
     const children = get(context, `children`) ?? {}
 
-    const weapons = this.weapons(children.weapons, specs, manager)
-    if (!weapons) return context
+    const usages = this.usages(children.usages, specs, manager)
+    if (!usages) return context
 
     context = {
       ...context,
       // {key: FeatureData} -> {main, ...secondaries}
       children: {
         ...children,
-        weapons,
+        usages,
       },
     }
 

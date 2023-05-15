@@ -7,7 +7,7 @@ import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
 import FeatureBaseContextTemplate, { FeatureBaseContextSpecs } from "./base"
 
-import WeaponFeatureContextTemplate, { WeaponFeatureContextSpecs } from "./variants/weapon"
+import WeaponFeatureContextTemplate, { WeaponFeatureContextSpecs } from "./variants/usage"
 import GenericFeature from "../../../actor/feature/generic"
 
 export interface FeatureProxiesDataContextSpecs extends ContextSpecs {

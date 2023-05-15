@@ -13,6 +13,7 @@ import Feature from "../../actor/feature"
 import { push } from "../../../../december/utils/lodash"
 import GenericFeature from "../../actor/feature/generic"
 import LOGGER from "../../../logger"
+import DefenseFeatureContextTemplate from "./feature/defense"
 
 export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `actor` | `hidden` | `pinned` | `expanded` | `roller`>
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -75,6 +76,10 @@ export default class ContextManager {
 
   queryResult<TFeature extends Feature, TSpecs extends FeatureBaseContextSpecs = FeatureBaseContextSpecs>(feature: TFeature, specs: IgnoreFeatureFallbacks<TSpecs>) {
     return this.feature(feature, specs, QueryResultFeatureContextTemplate)
+  }
+
+  defense<TFeature extends Feature, TSpecs extends FeatureBaseContextSpecs = FeatureBaseContextSpecs>(feature: TFeature, specs: IgnoreFeatureFallbacks<TSpecs>) {
+    return this.feature(feature, specs, DefenseFeatureContextTemplate)
   }
 
   wrapper(specs: IgnoreFeatureFallbacks<WrapperContextSpecs>) {

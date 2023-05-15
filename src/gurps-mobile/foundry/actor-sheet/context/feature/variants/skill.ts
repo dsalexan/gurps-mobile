@@ -112,6 +112,8 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
         children: FastDisplayable[]
       }[][]
 
+      debugger
+      // there must be so many bugs here
       for (const roll of feature.data.defaults ?? []) {
         const levelDefinition = roll.parse(feature, actor)
 

@@ -10,14 +10,14 @@ import AdvantageFeature from "../../foundry/actor/feature/advantage"
 import SkillFeature from "../../foundry/actor/feature/skill"
 import SpellFeature from "../../foundry/actor/feature/spell"
 import EquipmentFeature from "../../foundry/actor/feature/equipment"
-import WeaponFeature from "../../foundry/actor/feature/weapon"
+import FeatureUsage from "../../foundry/actor/feature/usage"
 import { CompilationContext, GenericSource } from "../../foundry/actor/feature/pipelines"
 import { IGenericFeatureData } from "../../foundry/actor/feature/pipelines/generic"
 import { IAdvantageFeatureData } from "../../foundry/actor/feature/pipelines/advantage"
 import { ISkillFeatureData } from "../../foundry/actor/feature/pipelines/skill"
 import { ISpellFeatureData } from "../../foundry/actor/feature/pipelines/spell"
 import { IEquipmentFeatureData } from "../../foundry/actor/feature/pipelines/equipment"
-import { IWeaponFeatureData } from "../../foundry/actor/feature/pipelines/weapon"
+import { IFeatureUsageData } from "../../foundry/actor/feature/pipelines/usage/usage"
 import LOGGER from "../../logger"
 import { EventEmitter } from "@billjs/event-emitter"
 import { Datachanges } from "../../../december/utils"
@@ -36,7 +36,7 @@ export type FeatureDataByType = {
   skill: ISkillFeatureData
   spell: ISpellFeatureData
   equipment: IEquipmentFeatureData
-  weapon: IWeaponFeatureData
+  usage: IFeatureUsageData
   //
   defense: IDefenseFeatureData
 }
@@ -103,7 +103,7 @@ export default class FeatureFactory extends EventEmitter {
     else if (type === `skill`) return SkillFeature
     else if (type === `spell`) return SpellFeature
     else if (type === `equipment`) return EquipmentFeature
-    else if (type === `weapon`) return WeaponFeature
+    else if (type === `usage`) return FeatureUsage
     else if (type === `defense`) return DefenseFeature
 
     throw new Error(`Feature of type "${type}" is not implemented`)
@@ -358,18 +358,18 @@ export default class FeatureFactory extends EventEmitter {
     this.compiling.pool.batch = 0
   }
 
-  startCompilation() {
+  startCompilation(name?: string) {
     const logger = LOGGER.get(`actor`).get(`factory`)
 
     if (this.compiling.queue.length === 0) {
       if (this.logs.compiling.general)
-        logger.info(`start`, `There are no features in queue to compile`, [
+        logger.info(`start`, `${name ? `[${name}] ` : ``}There are no features in queue to compile`, [
           `color: rgba(0, 0, 0, 0.5); font-weight: bold; font-style: italic;`,
           `color: black; font-weight: regular; font-style: regular;`,
         ])
     } else {
       if (this.logs.compiling.general) {
-        logger.info(`start`, `Starting compilation of`, this.compiling.queue.length, `entries.`, [
+        logger.info(`start`, `${name ? `[${name}] ` : ``}Starting compilation of`, this.compiling.queue.length, `entries.`, [
           `color: rgba(82, 124, 64, 0.5); font-weight: bold; font-style: italic;`,
           `color: black; font-weight: regular; font-style: regular;`,
           `color: darkblue; font-weight: bold; font-style: regular;`,
@@ -458,25 +458,39 @@ export default class FeatureFactory extends EventEmitter {
 
     if (this.compiling.queueSize > 0) {
       if (this.logs.compiling.general) {
-        logger.info(eventName, this.compiling.pool.batch, `Compilation of`, this.compiling.compiledEntities, `out of`, this.compiling.queueSize, `entries finished.`, [
-          `color: rgba(82, 124, 64, 0.75); font-weight: bold; font-style: italic;`,
-          `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
-          `color: black; font-weight: regular; font-style: regular;`,
-          `color: darkblue; font-weight: bold; font-style: regular;`,
-          `color: black; font-weight: regular; font-style: regular;`,
-          `color: darkblue; font-weight: bold; font-style: regular;`,
-          `color: black; font-weight: regular; font-style: regular;`,
-        ])
+        logger.info(
+          eventName,
+          this.compiling.pool.batch,
+          `${name ? `[${name}] ` : ``}Compilation of`,
+          this.compiling.compiledEntities,
+          `out of`,
+          this.compiling.queueSize,
+          `entries finished.`,
+          [
+            `color: rgba(82, 124, 64, 0.75); font-weight: bold; font-style: italic;`,
+            `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
+            `color: black; font-weight: regular; font-style: regular;`,
+            `color: darkblue; font-weight: bold; font-style: regular;`,
+            `color: black; font-weight: regular; font-style: regular;`,
+            `color: darkblue; font-weight: bold; font-style: regular;`,
+            `color: black; font-weight: regular; font-style: regular;`,
+          ],
+        )
       }
     }
 
-    this.fire(`compilation:${eventName}`, { batch: this.compiling.pool.batch })
+    this.fire(`compilation:${eventName}`, { batch: this.compiling.pool.batch, name })
+    this.fire(`compilation:${eventName}:${name}`, { batch: this.compiling.pool.batch, name })
 
-    if (hasPooledBatch) this.nextCompilationBatch()
-    else this.prepareCompilation()
+    if (hasPooledBatch) this.nextCompilationBatch(name)
+    else {
+      this.fire(`compiled`, { batch: this.compiling.pool.batch, name })
+      if (name) this.fire(`compiled:${name}`, { batch: this.compiling.pool.batch, name })
+      this.prepareCompilation()
+    }
   }
 
-  nextCompilationBatch() {
+  nextCompilationBatch(name?: string) {
     const hasPooledBatch = this.compiling.pool.requests.length > 0
     if (!hasPooledBatch) return
 
@@ -487,7 +501,7 @@ export default class FeatureFactory extends EventEmitter {
     if (this.logs.compiling.general)
       logger
         .group(true)
-        .info(`pool`, this.compiling.pool.batch + 1, `Pooling`, requests.length, `requests`, [
+        .info(`pool`, this.compiling.pool.batch + 1, `${name ? `[${name}] ` : ``}Pooling`, requests.length, `requests`, [
           `color: rgba(82, 124, 64, 0.75); font-weight: bold; font-style: italic;`,
           `color: rgba(0, 0, 139, 0.35); font-style: italic;`,
           `color: black; font-weight: regular; font-style: regular;`,
@@ -506,7 +520,7 @@ export default class FeatureFactory extends EventEmitter {
     this.compiling.pool.requests = []
     this.compiling.pool.batch++
 
-    this.startCompilation()
+    this.startCompilation(name)
   }
 
   react(feature: GenericFeature, changes: PatternChanges, beforeUpdate?: (feature: GenericFeature, changes: PatternChanges) => boolean | null | void) {

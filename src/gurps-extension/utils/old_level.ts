@@ -245,6 +245,7 @@ export function parseScope(levelDefinition: ILevelDefinition, feature: GenericFe
 export function parseNode(expression: string, baseScope: object, me?: object) {
   const math = mathInstance()
   const node = math.parse(expression)
+  postprocess(node)
 
   let scope = undefined as any as ReturnType<typeof prepareScope>
   try {

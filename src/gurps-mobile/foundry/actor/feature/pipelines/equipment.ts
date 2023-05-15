@@ -3,14 +3,14 @@ import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { FALLBACK, MERGE, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
-import { IWeaponizableFeatureData } from "./weaponizable"
+import { IUsableFeatureData } from "./usable"
 import { parseWeight } from "../../../../core/feature/utils"
 
 export interface EquipmentManualSource extends GenericSource {
   carried?: boolean
 }
 
-export interface IEquipmentFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
+export interface IEquipmentFeatureData extends IGenericFeatureData, IUsableFeatureData {
   description: string
   carried: boolean
   quantity: number

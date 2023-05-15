@@ -1,10 +1,10 @@
 import { flatten, isArray, isNil, sum, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
-import { ILevel, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
+import { ILevel, ILevelDefinition, parseLevelDefinition } from "../../../../../gurps-extension/utils/level"
 import { FALLBACK, MERGE, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
-import { IWeaponizableFeatureData } from "./weaponizable"
+import { IUsableFeatureData } from "./usable"
 import { IComponentDefinition, compareComponent } from "../../../../../gurps-extension/utils/component"
 import LOGGER from "../../../../logger"
 import GenericFeature from "../generic"
@@ -17,7 +17,7 @@ export interface SkillManualSource extends GenericSource {
   proxy?: boolean
 }
 
-export interface ISkillFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
+export interface ISkillFeatureData extends IGenericFeatureData, IUsableFeatureData {
   attribute: string
   difficulty: string
   points: number
@@ -25,6 +25,7 @@ export interface ISkillFeatureData extends IGenericFeatureData, IWeaponizableFea
   defaultFrom: object[]
   form: false | `art` | `sport`
   //
+  defaults?: ILevelDefinition[]
   proficiencyModifier: number
   actorModifier: number
   attributeBasedLevel: ILevel | null

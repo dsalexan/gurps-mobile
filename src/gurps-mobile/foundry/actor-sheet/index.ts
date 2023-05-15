@@ -15,9 +15,12 @@ import HTMLFeature from "./html/feature"
 import Feature from "../actor/feature"
 import SkillFeature from "../actor/feature/skill"
 import GenericFeature from "../actor/feature/generic"
-import WeaponFeature from "../actor/feature/weapon"
+import WeaponFeature from "../actor/feature/usage"
 import { push } from "../../../december/utils/lodash"
 import { IListContext } from "./context/container/list"
+import DefenseFeature from "../actor/feature/defense"
+import { IDefenseLevel } from "../actor/feature/pipelines/defense"
+import { IContext } from "./context/context"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -525,7 +528,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
     sheetData.tabs.attributes.push(...this.buildAttributes())
-    sheetData.tabs.defenses.push(...this.buildDefenses())
+    // sheetData.tabs.defenses.push(...this.buildDefenses())
 
     for (const type of groupedFeatures) {
       const { byId, byDepth, byParent } = type.features
@@ -642,30 +645,38 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const activeDefenses = [`block`, `dodge`, `parry`]
     for (const activeDefense of activeDefenses) {
       const listId = `${tab}-activedefense-${activeDefense}`
+      const defenseId = `activedefense-${activeDefense}`
 
-      // get all features linked with active defense
-      const links = cache.links?.defenses?.[activeDefense] ?? []
-      const features = links.map(uuid => cache.features?.[uuid]).filter(f => !isNil(f)) as GenericFeature[]
+      const feature = cache.features?.[defenseId] as DefenseFeature
 
-      // build contexts
-      const tree = ContextManager.prepareTree(features, f => f.key.value, `asc`)
-      const { byId, byDepth, byParent } = tree
+      // ERROR: Untested when no levels
+      if (!feature.data.levels?.length) debugger
 
-      const children = contextManager.featuresToContexts(
-        undefined,
-        tree,
-        (feature, parent) => {
-          return {
-            id: `${tab}-${feature.id}`,
-          }
-        },
-        (feature, parent) => {
-          return {
-            classes: [`full`],
-            list: `${tab}-${parent?.id ?? `activeDefense-${activeDefense}`}`,
-          }
-        },
-      )
+      const bySource = groupBy(feature.data.levels, `source`)
+
+      const children = [] as IContext[]
+      for (const levels of Object.values(bySource)) {
+        const source = cache.features?.[levels[0].source] as GenericFeature
+
+        // const orderedLevels = orderBy(levels, `level.value`, `desc`)
+        // for (const { base, level } of orderedLevels) {
+        //   if (base.type === `skill`) {
+        //     const skill = cache.features?.[base.id] as SkillFeature
+        //   } else {
+        //     debugger
+        //   }
+        // }
+
+        const context = contextManager.defense(source, {
+          classes: [`full`],
+          list: listId,
+          defense: activeDefense,
+          components: feature.data.actorComponents,
+          levels,
+        })
+
+        children.push(context)
+      }
 
       const list = contextManager.list({
         id: listId,
@@ -700,17 +711,18 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
 const FeatureGroups = [
   // combat
-  {
-    section: `combat`,
-    key: `attacks`,
-    map: (f: GenericFeature) => f.data.weapons ?? [],
-    // sort: (f: WeaponFeature) => f?.level ?? Infinity,
-    specs: {
-      showParent: true,
-    },
-    order: `desc`,
-    groups: false,
-  },
+  // TODO: Only damaging usages (whot)
+  // {
+  //   section: `combat`,
+  //   key: `attacks`,
+  //   map: (f: GenericFeature) => f.data.usages ?? [],
+  //   // sort: (f: WeaponFeature) => f?.level ?? Infinity,
+  //   specs: {
+  //     showParent: true,
+  //   },
+  //   order: `desc`,
+  //   groups: false,
+  // },
   // ooc
   {
     section: `occ`,

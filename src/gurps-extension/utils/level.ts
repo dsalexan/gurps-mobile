@@ -18,20 +18,39 @@ import {
   mapValues,
   get,
   escape,
+  toPath,
+  set,
+  isRegExp,
 } from "lodash"
 import BaseFeature from "../../gurps-mobile/core/feature/base"
 import type { GCS } from "../types/gcs"
 import type { GCA } from "../../gurps-mobile/core/gca/types"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
-import { MathNode, evaluate } from "mathjs"
+import { MathNode, SymbolNode, evaluate } from "mathjs"
 import { isNilOrEmpty, isNumeric, push } from "../../december/utils/lodash"
-import mathInstance, { MathPrintOptions, MathScope, buildScope, ignorableSymbols, mathError, parseExpression, preprocess, setupExpression, toHTML } from "../../december/utils/math"
+import mathInstance, {
+  MathPrintOptions,
+  MathScope,
+  buildScope,
+  ignorableSymbols,
+  mathError,
+  parseExpression,
+  postprocess,
+  preprocess,
+  setupExpression,
+  toHTML,
+  toTex,
+  toTree,
+} from "../../december/utils/math"
 import { LOGGER } from "../../mobile"
 import { Logger } from "../../december/utils"
 import { specializedName } from "../../gurps-mobile/core/feature/utils"
 import { GURPS4th } from "../types/gurps4th"
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 import { TypeVariable } from "typescript"
+import SkillFeature from "../../gurps-mobile/foundry/actor/feature/skill"
+import katex from "katex"
+import escapeLatex from "escape-latex"
 
 // #region Final level representation
 
@@ -102,6 +121,32 @@ export function prepareScope<TMe extends GenericFeature = GenericFeature>(
       const multiValue = parseVariable(definition.variables[name], me, actor)
 
       symbolValue = multiValue
+    } else if (prefix === `STAT`) {
+      if (name.match(/power (parry)/i)) {
+        const [, activeDefense, skill] = name.match(/^power (parry) (.+)/i)
+
+        if ([`beam`, `breath`, `gaze`, `projectile`].includes(skill.toLowerCase())) {
+          const features = Object.values(actor.cache.features!)
+          const skills = features.filter(feature => feature.type.compare(`skill`))
+          const innateAttacks = skills.filter(skill => skill.data.name === `Innate Attack`)
+
+          const speciality = innateAttacks.find(innateAttack => innateAttack.data.specialization?.toLowerCase() === skill.toLowerCase()) as SkillFeature
+
+          // ERROR: Could not found specialization
+          if (!speciality) debugger
+
+          // TODO: Get the correct value, which in this case is to detect the correct talent for the feature and check if its bonus was already added to Innate Attack skill
+          //          if t was not added, add it
+          //          else, do not add it (or maybe subtract from innate attack to show them separately)
+          symbolValue = { number: 0 }
+        } else {
+          // ERROR: Unimplemented stat (attribute internaly)
+          debugger
+        }
+      } else {
+        // ERROR: Unimplemented stat (attribute internaly)
+        debugger
+      }
     } else {
       // ERROR: Unimplemented
       debugger
@@ -125,26 +170,37 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
 
   const expression = preprocess(definition.expression)
   const node = math.parse(expression)
+  postprocess(node)
 
   let scope = {} as CompoundMathScope
   try {
     scope = prepareScope(node, definition, me, actor)
   } catch (error) {
+    console.error(`parseScope`)
+    console.error(error)
     mathError(expression, scope, error)
     debugger
     scope = prepareScope(node, definition, me, actor)
   }
 
-  const numericScope = mapValues(scope, value => value.number ?? value.string)
+  const entries = mapValues(scope, value => value.number ?? value.string)
+  const numericScope = new Map(Object.entries(entries))
 
-  const viable = Object.values(numericScope).every(value => !isNil(value))
+  const viable = [...numericScope.values()].some(value => !isNil(value))
   if (!viable) return null
 
   let value: number = undefined as any as number
+  // if (expression === `VAR_B + VAR_P`) {
+  //   debugger
+  //   const code = node.compile()
+  //   value = code.evaluate(numericScope)
+  // }
   try {
     const code = node.compile()
     value = code.evaluate(numericScope)
   } catch (error) {
+    console.error(`code.evaluate`)
+    console.error(error)
     mathError(expression, scope, error)
     debugger
     const code = node.compile()
@@ -163,22 +219,44 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
   return level
 }
 
-export function levelToHTML(level: ILevel, options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | string[]; acronym?: boolean } = {}) {
+export function levelToTex(
+  level: ILevel,
+  options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | (string | RegExp | Record<string, string>)[]; acronym?: boolean; tex?: boolean } = {},
+) {
   const math = mathInstance()
   const completeNode = math.parse(level.expression)
+  postprocess(node)
 
   let node = completeNode
+  // TODO: Reimplement simplify from mathjs to keep register of which nodes were simplified
   if (options.simplify) {
-    const simplifyScope = options.simplify === true ? level.scope : Object.fromEntries(options.simplify.map(symbol => [symbol, level.scope[symbol]]))
+    let simplifyScope = level.scope as CompoundMathScope | MathScope
+
+    if (options.simplify !== true) {
+      simplifyScope = new Map()
+
+      const keys = Object.keys(level.scope)
+      for (const simplifyDirective of options.simplify) {
+        if (typeof simplifyDirective === `string`) {
+          simplifyScope.set(simplifyDirective, level.scope[simplifyDirective].number ?? level.scope[simplifyDirective].string)
+        } else if (isRegExp(simplifyDirective)) {
+          const chosenKeys = keys.filter(key => key.match(simplifyDirective))
+          for (const key of chosenKeys) {
+            simplifyScope.set(key, level.scope[key].number ?? level.scope[key].string)
+          }
+        } else {
+          for (const [key, value] of Object.entries(simplifyDirective)) {
+            simplifyScope.set(key, value)
+          }
+        }
+      }
+    }
+
     node = math.simplify(completeNode, simplifyScope)
   }
 
-  // TODO: Acronym
-  // TODO: Transforms and flags
-  // TODO: Take label from variable into consideration
-  // TODO: Add variable.value from definition into a data-tag in HTML
-  return toHTML(node, {
-    html(node, options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | string[]; acronym?: boolean }) {
+  const raw = toTex(node, {
+    tex(node, options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | (string | RegExp | Record<string, string>)[]; acronym?: boolean; tex?: boolean }) {
       if (node.type === `SymbolNode`) {
         const name = escape(node.name)
 
@@ -200,6 +278,103 @@ export function levelToHTML(level: ILevel, options: Omit<MathPrintOptions, `labe
           if (options.acronym && [`skill`].includes(variable.type)) {
             push(html, `classes`, `acronym`)
             html.content = Handlebars.helpers[`gurpsIcon`](variable.type)?.string
+
+            return `\\gurpsicon{${escapeLatex(variable.type)}}`
+          }
+        }
+
+        // if (has(level.scope, name)) {
+        //   const value = level.scope[name]
+        //   html.value = value.number
+        //   if (!html.content && !isNil(value.string)) html.content = value.string
+        // }
+
+        // \\textrm
+
+        // const classes = (html.classes ?? []).filter(b => !!b).join(` `)
+        // const props = Object.entries(omit(html, [`classes`, `content`]))
+        //   .map(([prop, value]) => (isNil(value) ? false : `data-${prop}="${value}"`))
+        //   .filter(b => !!b)
+        //   .join(` `)
+
+        // // return `<span class="math-symbol ${classes}" data-name="${name}" ${props}>` + (html.content ?? name) + `</span>`
+      }
+    },
+    ...options,
+  })
+
+  const html = katex.renderToString(raw)
+
+  return html
+}
+
+export function levelToHTML(
+  level: ILevel,
+  options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | (string | RegExp | Record<string, string>)[]; acronym?: boolean; tex?: boolean } = {},
+) {
+  const math = mathInstance()
+  const completeNode = math.parse(level.expression)
+  postprocess(completeNode)
+
+  let node = completeNode
+  // TODO: Reimplement simplify from mathjs to keep register of which nodes were simplified
+  if (options.simplify) {
+    let simplifyScope = level.scope as CompoundMathScope | MathScope
+
+    if (options.simplify !== true) {
+      simplifyScope = new Map()
+
+      const keys = Object.keys(level.scope)
+      for (const simplifyDirective of options.simplify) {
+        if (typeof simplifyDirective === `string`) {
+          simplifyScope.set(simplifyDirective, level.scope[simplifyDirective].number ?? level.scope[simplifyDirective].string)
+        } else if (isRegExp(simplifyDirective)) {
+          const chosenKeys = keys.filter(key => key.match(simplifyDirective))
+          for (const key of chosenKeys) {
+            simplifyScope.set(key, level.scope[key].number ?? level.scope[key].string)
+          }
+        } else {
+          for (const [key, value] of Object.entries(simplifyDirective)) {
+            simplifyScope.set(key, value)
+          }
+        }
+      }
+    }
+
+    node = math.simplify(completeNode, simplifyScope)
+  }
+
+  return toHTML(node, {
+    html(node, options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | (string | RegExp | Record<string, string>)[]; acronym?: boolean; tex?: boolean }) {
+      if (node.type === `SymbolNode`) {
+        const name = escape(node.name)
+
+        let html = {} as Record<string, true> & {
+          classes?: string[]
+          type?: string
+          content?: string
+          value?: number
+        }
+
+        if (name.startsWith(`VAR_`)) {
+          const handle = name.substring(4)
+          const variable = level.definition.variables[handle]
+
+          html.type = variable.type
+          for (const transform of variable.transforms ?? []) html[`transform-${transform}`] = true
+          for (const flag of variable.flags ?? []) push(html, `classes`, flag)
+
+          if (options.acronym) {
+            if ([`skill`].includes(variable.type)) {
+              push(html, `classes`, `acronym`)
+              html.content = Handlebars.helpers[`gurpsIcon`](variable.type)?.string
+            } else if (variable.type === `attribute`) {
+              if ([`dx`, `st`, `iq`, `ht`, `per`, `will`].includes(variable.value.toLowerCase())) {
+                html.content = variable.value.toUpperCase()
+              } else {
+                html.content = Handlebars.helpers[`gurpsIcon`](variable.type)?.string
+              }
+            }
           }
         }
 
@@ -219,6 +394,7 @@ export function levelToHTML(level: ILevel, options: Omit<MathPrintOptions, `labe
 export function levelToString(level: ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
   const math = mathInstance()
   const completeNode = math.parse(level.expression)
+  postprocess(node)
 
   let node = completeNode
   if (options.simplify) {
@@ -387,14 +563,9 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
       const math = mathInstance()
       const expression = preprocess(originalExpression!)
       const node = math.parse(expression)
+      postprocess(node)
 
-      let scope = {} as MathScope
-      try {
-        scope = buildScope(node, me, scope)
-      } catch (error) {
-        mathError(originalExpression!, scope, error)
-        debugger
-      }
+      const scope = buildScope(node, me, {})
 
       const code = node.compile()
       const _value = code.evaluate(scope)

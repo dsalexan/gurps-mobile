@@ -4,6 +4,52 @@ import Feature, { IFeatureData } from ".."
 import { GCS } from "../../../../../gurps-extension/types/gcs"
 import { GCA } from "../../../../core/gca/types"
 import { Type } from "../../../../core/feature"
+import { GurpsMobileActor } from "../../actor"
+import GenericFeature from "../generic"
+import FeatureFactory from "../../../../core/feature/factory"
+import ContextManager from "../../../actor-sheet/context/manager"
+import { IGenericFeatureData } from "./generic"
+import { IUsableFeatureData } from "./usable"
+
+// export type FeatureNonRecursiveTypes = Feature | GurpsMobileActor | FeatureFactory | ContextManager
+// export type FeatureReactiveKeys = `path` | `sources` | `data` | `type` | `id` | `key`
+
+// type NestedKeyOf<TObject extends object, RecursiveNoop = never> = Exclude<
+//   {
+//     [Key in keyof TObject & (string | number)]: TObject[Key] extends Function
+//       ? never
+//       : TObject[Key] extends RecursiveNoop
+//       ? Key
+//       : TObject[Key] extends object
+//       ? `${Key}` | `${Key}.${NestedKeyOf<TObject[Key], RecursiveNoop>}`
+//       : Key
+//   }[keyof TObject & (string | number)],
+//   undefined
+// >
+
+// // type keys = NestedKeyOf<GenericFeature[`data`], FeatureNonRecursiveTypes>
+// // //    ^?
+
+// type Prefix<prefix extends string, TKeys extends string> = `${prefix}${TKeys}`
+
+// type TTarget<
+//   TFeature extends Feature = Feature,
+//   TFeatureData extends IFeatureData = TFeature[`data`],
+//   TManualSource extends GenericSource = TFeature[`sources`][`manual`],
+//   RecursiveNoop = FeatureNonRecursiveTypes,
+// > = NestedKeyOf<TFeatureData, RecursiveNoop> | Prefix<'manual.', NestedKeyOf<TManualSource, RecursiveNoop>> | Prefix<'gcs:', NestedKeyOf<GCS.Entry>> | Prefix<'gca:', NestedKeyOf<GCA.Entry>>,
+
+// type keys2 = TTarget<GenericFeature>
+// //    ^?
+
+// type keys25 = Prefix<`manual`, `key1` | `key2`>
+// //    ^?
+
+// type keys26 = NestedKeyOf<GCS.Entry>
+// //    ^?
+
+// type keys3 = TTarget<never, IUsableFeatureData, { move: { base: number; type: `calorum` | `exandria` } }>
+// //    ^?
 
 export type GenericSource = { [P in string]?: unknown }
 
@@ -11,6 +57,7 @@ export interface FeatureSources<TManualSource extends GenericSource> {
   gca: GCA.Entry
   gcs: GCS.Entry
   manual: TManualSource
+  actor: GurpsMobileActor
 }
 
 export type SingleSource<TManualSource extends GenericSource> = FeatureSources<TManualSource>[keyof FeatureSources<TManualSource>]

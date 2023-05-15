@@ -3,11 +3,11 @@ import { IDerivationPipeline, derivation, proxy } from "."
 import { calculateLevel, createLevelDefinition, createVariable } from "../../../../../gurps-extension/utils/level"
 import { MigrationDataObject, OVERWRITE, PUSH } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
-import { IWeaponizableFeatureData } from "./weaponizable"
+import { IUsableFeatureData } from "./usable"
 import { parseExpression } from "../../../../../december/utils/math"
 import { IRoll, createRoll } from "../../../../../gurps-extension/utils/roll"
 
-export interface IAdvantageFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
+export interface IAdvantageFeatureData extends IGenericFeatureData, IUsableFeatureData {
   rolls?: IRoll[]
   cost: string
   // points?: number

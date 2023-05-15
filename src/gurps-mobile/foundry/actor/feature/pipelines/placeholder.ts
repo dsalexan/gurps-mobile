@@ -1,9 +1,9 @@
 import { IDerivationPipeline } from "."
 import { MigrationDataObject } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
-import { IWeaponizableFeatureData } from "./weaponizable"
+import { IUsableFeatureData } from "./usable"
 
-export interface PLACEHOLDERNAMEFeatureData extends IGenericFeatureData, IWeaponizableFeatureData {
+export interface PLACEHOLDERNAMEFeatureData extends IGenericFeatureData, IUsableFeatureData {
   property1: never
 }
 

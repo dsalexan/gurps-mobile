@@ -9,12 +9,11 @@ import { isNilOrEmpty, isNumeric, push } from "../../../../../../december/utils/
 import { ILevelDefinition, ILevel, parseLevelDefinition, levelToHTML, calculateLevel, nonSkillOrAllowedSkillVariables } from "../../../../../../gurps-extension/utils/level"
 import BaseFeature from "../../../../../core/feature/base"
 import { GurpsMobileActor } from "../../../../actor/actor"
-import WeaponFeature from "../../../../actor/feature/weapon"
+import FeatureUsage from "../../../../actor/feature/usage"
 import { createRoll, parseRollContext, parseRollContextWithContent } from "../../../../../../gurps-extension/utils/roll"
 import { parseModifier } from "../../../../../core/feature/utils"
 
-export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: WeaponFeature
+export interface FeatureUsageContextSpecs extends FeatureBaseContextSpecs {
   //
   showParent?: boolean
   showDefaults?: boolean
@@ -22,11 +21,11 @@ export interface WeaponFeatureContextSpecs extends FeatureBaseContextSpecs {
   ignoreUsage?: boolean
 }
 
-export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
+export default class FeatureUsageContextTemplate extends BaseContextTemplate {
   static pre(context: IContext, specs: ContextSpecs, manager: ContextManager): IContext {
     super.pre(context, specs, manager)
 
-    context._template.push(`weapon-feature`)
+    context._template.push(`feature-usage`)
 
     return context
   }
@@ -34,12 +33,14 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
   /**
    * Builds weapon skills as FeatureVariant[]
    */
-  static skillsVariants(_variants: IFeatureDataVariant[], specs: WeaponFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
-    const feature = getSpec(specs, `feature`)
+  static skillsVariants(_variants: IFeatureDataVariant[], specs: FeatureUsageContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
+    const feature = getSpec(specs, `feature`) as FeatureUsage
     const actor = getSpec(specs, `actor`)
 
     // ERROR: Unimplemented actorless feature
     if (!actor) debugger
+
+    debugger
 
     // GET ALL TRAINED SKILLS
     const allTrainedSkills = Object.values(actor.cache._skill?.trained ?? {}).filter(skill => skill.data.training === `trained`)
@@ -47,10 +48,10 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
     // set usage as label
     if (!_variants[0].label) _variants[0].label = {}
-    _variants[0].label.main = feature.data.usage ?? undefined
+    _variants[0].label.main = feature.data.name ?? undefined
 
-    // if there is no defaults attached to weapon, just returns its default main variant
-    if (isNil(feature.data.defaults) || feature.data.defaults.length === 0) {
+    // if there is no rolls attached to usage, just returns its default main variant
+    if (isNil(feature.data.rolls) || feature.data.rolls.length === 0) {
       _variants[0].value = undefined
       return _variants
     }
@@ -67,7 +68,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     const unviable = [] as ILevelDefinition[],
       viable = [] as ILevel[]
 
-    const definitions = feature.data.defaults ?? []
+    const definitions = feature.data.rolls ?? []
     for (const defaultDefinition of definitions) {
       // viability check
       const variables = nonSkillOrAllowedSkillVariables(defaultDefinition, trainedSkillsGCA)
@@ -77,6 +78,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       // if all variables pass viability check, then default IS viable
       if (variables.length === Object.keys(defaultDefinition.variables ?? {}).length) {
+        debugger
+        // calculate level should be source feature, right? (since FeatureUsage is not a GCA concept, most of the formulas would not require a me::)
         const level = calculateLevel(defaultDefinition, feature, actor) ?? ({ value: -Infinity, definition: defaultDefinition } as any as ILevel)
 
         viable.push(level)
@@ -147,8 +150,8 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
   /**
    * Build main data-variant of feature
    */
-  static main(variants: IFeatureDataVariant[], specs: WeaponFeatureContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
-    const feature = getSpec(specs, `feature`)
+  static main(variants: IFeatureDataVariant[], specs: FeatureUsageContextSpecs, manager: ContextManager): IFeatureDataVariant[] {
+    const feature = getSpec(specs, `feature`) as FeatureUsage
     const actor = getSpec(specs, `actor`)
 
     let variant = variants[0] ?? { classes: [] }
@@ -187,9 +190,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    let defaultLevels = feature.data.defaults
-    if (isNil(defaultLevels)) {
-      defaultLevels = [parseLevelDefinition({ type: `dx` })]
+    let rolls = feature.data.rolls
+    if (isNil(rolls)) {
+      rolls = [parseLevelDefinition({ type: `dx` })]
 
       tags.type(`parent`, `type`).push({
         type: `feature`,
@@ -206,11 +209,13 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    if (!isNil(defaultLevels) && defaultLevels.length > 0) {
+    if (!isNil(rolls) && rolls.length > 0) {
       // ERROR: Unimplemented actorless feature
       if (!actor) debugger
 
-      const levels = defaultLevels.map(definition => calculateLevel(definition, feature, actor)).filter(l => !isNil(l))
+      debugger
+      // calculate level should be source feature, right? (since FeatureUsage is not a GCA concept, most of the formulas would not require a me::)
+      const levels = rolls.map(definition => calculateLevel(definition, feature, actor)).filter(l => !isNil(l))
       const orderedLevels = orderBy(levels, def => def!.value, `desc`)
       const level = orderedLevels[0]!
 
@@ -224,7 +229,7 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
 
       if (!variant.rolls) variant.rolls = []
       // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
-      variant.rolls.push(parseRollContextWithContent([{ primary: `To Hit`, secondary: feature.data.usage ?? undefined }], createRoll(level, `regular`), variant.rolls.length))
+      variant.rolls.push(parseRollContextWithContent([{ primary: `To Hit`, secondary: feature.data.name ?? undefined }], createRoll(level, `regular`), variant.rolls.length))
     }
 
     if (!variant.stats) variant.stats = [[], []]
@@ -306,11 +311,11 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
       })
     }
 
-    if (!isNil(feature.data.strength)) {
+    if (!isNil(feature.data.minimumStrength)) {
       variant.stats[0].push({
         classes: [],
         icon: [`mdi-dumbbell`],
-        value: `${feature.data.strength}`,
+        value: `${feature.data.minimumStrength}`,
       })
     }
 
@@ -343,10 +348,9 @@ export default class WeaponFeatureContextTemplate extends BaseContextTemplate {
     return [variant]
   }
 
-  static base(context: IFeatureContext, specs: WeaponFeatureContextSpecs, manager: ContextManager): IFeatureContext {
+  static base(context: IFeatureContext, specs: FeatureUsageContextSpecs, manager: ContextManager): IFeatureContext {
     super.base(context, specs, manager)
 
-    const feature = getSpec(specs, `feature`)
     const children = get(context, `children`) ?? {}
 
     // COMPOUNDING CLASSES

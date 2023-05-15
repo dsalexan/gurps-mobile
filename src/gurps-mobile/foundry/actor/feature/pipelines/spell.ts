@@ -3,7 +3,7 @@ import { GenericSource, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
-import { IWeaponizableFeatureData } from "./weaponizable"
+import { IUsableFeatureData } from "./usable"
 import { ISkillFeatureData, SkillManualSource } from "./skill"
 
 export interface SpellManualSource extends SkillManualSource {

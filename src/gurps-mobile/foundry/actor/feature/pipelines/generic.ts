@@ -51,9 +51,6 @@ export interface IGenericFeatureData extends IFeatureData {
 
   formulas?: IGenericFeatureFormulas
 
-  defaults?: ILevelDefinition[]
-  // calcLevel(attribute: GURPS4th.AttributesAndCharacteristics): ILevel | null
-
   // relationships
   group?: string // string to group features by
   links: string[] // strings to establish relationships between features
@@ -269,14 +266,22 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     if (links.length === 0) return {}
     return { links: PUSH(`links`, uniq(links)) }
   }),
-  derivation([`container`, `weapons:compiled`, `formulas`], [`links`], function (_, __, { object }: { object: GenericFeature }) {
-    const { container, weapons, formulas } = object.data
+  derivation([`container`, `rolls`, `formulas`], [`links`], function (_, __, { object }: { object: GenericFeature }) {
+    // usages:compiled is not on derivation because rolls are already derived from it
+    const { container, usages, rolls, formulas } = object.data
+
+    return {}
+
+    const actor = object.actor
 
     // if (object.data.name === `Light Cloak`) debugger
-    if (container || ![`advantage`, `equipment`].some(type => object.type.compare(type)) || (isNil(weapons) && isNil(formulas))) return {}
+    if (!actor || container || ![`advantage`, `equipment`].some(type => object.type.compare(type)) || (isNil(usages) && isNil(rolls) && isNil(formulas))) return {}
+
+    debugger
+    // TODO: How to get skills related to feature? Probably all gonna come from usages (but usages theirselves can come from different places, like weapons and modifiers)
 
     // SOURCES of defenses are:
-    //    A. features with a defense property (or with at least a weapon with a defense property)
+    //    A. features with a defense property (or with at least a usage with a defense property)
     //    B. features with a defense formula property (<defense>at, usually only if GCA)
     //    C. features linked with a defense-capable skill
     //    D. VTT_NOTES tag
@@ -284,10 +289,10 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     const defenses = [`block`, `dodge`, `parry`] as const
     let links = [] as string[]
 
-    // A (technically weapons will never change after source is first-compiled)
+    // A (technically usages will never change after source is first-compiled)
     for (const defense of defenses) {
-      for (const weapon of weapons ?? []) {
-        if (weapon.data[defense] && !links.includes(`activeDefense.${defense}`)) links.push(`activeDefense.${defense}`)
+      for (const usage of usages ?? []) {
+        if (usage.data[defense] && !links.includes(`activeDefense.${defense}`)) links.push(`activeDefense.${defense}`)
       }
     }
 
@@ -296,48 +301,23 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
       if (formulas?.activeDefense?.[defense]?.length && !links.includes(`activeDefense.${defense}`)) links.push(`activeDefense.${defense}`)
     }
 
-    links = []
     // C (technically a skill defense capability will never change after source is first-compiled)
-    //    determine skills related to feature
-    const skills = [] as GCA.Entry[]
+    //    determine skills related to features is done in a separate derivation
+    for (const skill of skills ?? []) {
+      const feature = actor.cache?.features?.[skill] as SkillFeature | undefined
 
-    //    from weapons
-    for (const weapon of weapons ?? []) {
-      const definitions = weapon.data.defaults as any as ILevelDefinition[]
-      if (!definitions) {
-        LOGGER.error(`gcs`, `Weapon entry`, `"${weapon.data.name}"`, `for`, `"${weapon.parent?.data.name}"`, `lacks default definitions.`, [
-          `color: #826835;`,
-          `color: rgba(130, 104, 53, 60%); font-style: italic;`,
-          `color: black; font-style: regular; font-weight: bold`,
-          ``,
-        ])
-        continue
-      }
-
-      for (const definition of definitions) {
-        const { variablesByType } = setupCheck(definition)
-
-        const skillVariables = variablesByType[`skill`] ?? []
-        if (skillVariables.length === 0) continue
-
-        const indexes = skillVariables.map(target => target.value).flat() as number[]
-        const entries = indexes.map(index => GCA.entries[index])
-        skills.push(...entries.filter(entry => !isNil(entry)))
-      }
-    }
-
-    // TODO: Implement for powers
-    // TODO: Implement taking modifiers (limitations and enhancements) into account
-
-    for (const skill of skills) {
       // check if skill is defense-capable (has some defense formula)
       for (const defense of defenses) {
-        if (!isNil(skill[`${defense}at`])) links.push(`activeDefense.${defense}`)
+        if (!feature) debugger
+        if (feature!.data.defenses?.includes(defense)) links.push(`activeDefense.${defense}`)
       }
     }
 
     // D
     // TODO: Implement for VTT_NOTES tags (mind shield would require it, for example)
+
+    // TODO: Implement for powers
+    // TODO: Implement taking modifiers (limitations and enhancements) into account
 
     if (links.length === 0) return {}
     return { links: PUSH(`links`, uniq(links)) }

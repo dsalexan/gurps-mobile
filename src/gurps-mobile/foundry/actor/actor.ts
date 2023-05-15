@@ -1,11 +1,11 @@
-import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil, omit } from "lodash"
+import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil, omit, sum } from "lodash"
 
 import { MODULE_ID } from "config"
 import LOGGER from "logger"
 
 import { Datachanges } from "december/utils"
 import BaseFeature from "../../core/feature/base"
-import FeatureFactory from "../../core/feature/factory"
+import FeatureFactory, { FeatureDataByType } from "../../core/feature/factory"
 
 import ContextManager from "../actor-sheet/context/manager"
 import MoveFeatureContextTemplate from "../actor-sheet/context/feature/variants/move"
@@ -13,8 +13,8 @@ import AdvantageFeatureContextTemplate from "../actor-sheet/context/feature/vari
 import SkillFeatureContextTemplate from "../actor-sheet/context/feature/variants/skill"
 import SpellFeatureContextTemplate from "../actor-sheet/context/feature/variants/spell"
 import EquipmentFeatureContextTemplate from "../actor-sheet/context/feature/variants/equipment"
-import { FEATURE } from "../../core/feature/type"
-import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/variants/defense"
+import { FEATURE, Type, TypeID } from "../../core/feature/type"
+import DefenseFeatureContextTemplate from "../actor-sheet/context/feature/defense"
 import { IComponentDefinition } from "../../../gurps-extension/utils/component"
 import { FeatureState } from "../../core/feature/utils"
 import { IDerivationFunction, derivation, proxy } from "./feature/pipelines"
@@ -23,6 +23,7 @@ import GenericFeature from "./feature/generic"
 import SkillFeature from "./feature/skill"
 import Fuse from "fuse.js"
 import { push } from "../../../december/utils/lodash"
+import Feature from "./feature"
 
 export type ActorCache = {
   lastImport: string
@@ -74,11 +75,105 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     set(GURPS._cache, `actors.${this.id}${path === undefined ? `` : `.${path}`}`, value)
   }
 
+  // #region FEATURES
   setFeature(path: string, value: GenericFeature) {
     if (this.id === null) throw new Error(`Cannot set actor cache with a null id`)
     if (this.cache.features === undefined) this.cache.features = {}
     this.cache.features[path] = value
   }
+
+  updateFeature(features: GenericFeature[], targets: string[]) {
+    const updated = [] as string[]
+
+    const listOfFeatures = isArray(features) ? features : [features]
+    for (const feature of listOfFeatures) {
+      const keys = [] as string[]
+
+      for (const target of targets) {
+        if (feature.__.compilation.derivationsByTarget[target]) keys.push(target)
+      }
+
+      if (keys.length > 0) {
+        feature.fire(`update`, { keys: keys })
+        updated.push(feature.id)
+      }
+    }
+
+    return updated
+  }
+
+  findFeature(name: string, type?: string, leaf?: boolean) {
+    const features = Object.values(this.cache.features ?? {})
+    const filteredFeatures = !type ? features : features.filter(feature => feature.type.compare(type, leaf))
+
+    const index = {} as Record<string, string[]>
+    for (const feature of filteredFeatures) push(index, feature.specializedName, feature.id)
+
+    const names = Object.keys(index)
+    const fuse = new Fuse(names, { includeScore: true })
+
+    const results = fuse.search(name)
+
+    if (results[0].score === 0) {
+      const ids = index[results[0].item]
+      const features = ids.map(id => this.cache.features?.[id])
+
+      if (features.length === 1) return features[0]
+      return features
+    }
+
+    return results.map(({ item, score }) => {
+      const ids = index[item]
+      const features = ids.map(id => this.cache.features?.[id])
+
+      if (features.length === 1) return { score, feature: features[0] }
+      return { score, features, ids }
+    })
+  }
+
+  getFeatures<TFeature extends GenericFeature = GenericFeature>(
+    type: TypeID,
+    filter?: ((feature: TFeature) => boolean) | true | null,
+    states: FeatureState[] | true | null = [FeatureState.PASSIVE, FeatureState.ACTIVE],
+  ) {
+    const features = Object.values(this.cache.features ?? {})
+    const typeFeatures = features.filter(feature => feature.type.compare(type)) as TFeature[]
+    const filteredFeatures = filter === true || filter === null || filter === undefined ? typeFeatures : typeFeatures.filter(feature => filter(feature))
+
+    if (states === true || states === null || states === undefined) return filteredFeatures
+
+    return filteredFeatures.filter(feature => {
+      return states.some(state => {
+        return feature.data.state & state
+      })
+    })
+  }
+
+  getSkills<TFeature extends SkillFeature = SkillFeature>(
+    training?: `trained` | `untrained` | `unknown` | `known`,
+    states: FeatureState[] | true | null = [FeatureState.PASSIVE, FeatureState.ACTIVE],
+  ) {
+    const skills = [] as TFeature[]
+
+    if (training) {
+      if (training === `unknown`) skills.push(...(Object.values(this.cache._skill?.unknown ?? {}) as TFeature[]))
+      else if (training === `known`) {
+        skills.push(...(Object.values(this.cache._skill?.trained ?? {}) as TFeature[]))
+        skills.push(...(Object.values(this.cache._skill?.untrained ?? {}) as TFeature[]))
+      } else if (training === `trained`) skills.push(...(Object.values(this.cache._skill?.trained ?? {}) as TFeature[]))
+      else if (training === `untrained`) skills.push(...(Object.values(this.cache._skill?.untrained ?? {}) as TFeature[]))
+    }
+
+    if (states === true || states === null || states === undefined) return skills
+
+    return skills.filter(feature => {
+      return states.some(state => {
+        return feature.data.state & state
+      })
+    })
+  }
+
+  // #endregion
 
   addComponent(component: IComponentDefinition) {
     if (!has(this.cache, `components`)) this.setCache(`components`, { index: {}, byType: {} })
@@ -97,13 +192,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     components.byType[component.type].push(component.id)
 
     const features = Object.values(this.cache.features ?? {})
-    for (const feature of features) {
-      const keys = [] as string[]
-      if (feature.__.compilation.derivationsByTarget[`actor.components`]) keys.push(`actor.components`)
-      if (feature.__.compilation.derivationsByTarget[`actor.components.${component.type}`]) keys.push(`actor.components.${component.type}`)
-
-      if (keys.length > 0) feature.fire(`update`, { keys: keys })
-    }
+    this.updateFeature(features, [`actor.components`, `actor.components.${component.type}`])
   }
 
   getComponents(
@@ -130,6 +219,29 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     return activeComponents
   }
 
+  sumComponents(components: IComponentDefinition[]) {
+    const componentSummary = [] as { value: number; component: string }[]
+    for (const component of components) {
+      const componentFeature = this.cache.features?.[component.feature]
+      if (!componentFeature) debugger
+
+      let modifier = 1
+      if (component.per_level) modifier = componentFeature!.data.level
+
+      componentSummary.push({
+        value: component.amount * modifier,
+        component: component.id,
+      })
+    }
+
+    const modifier = sum(componentSummary.map(component => component.value))
+
+    // EROROR: Unimplemented
+    if (isNaN(modifier)) debugger
+
+    return modifier
+  }
+
   addLink(feature: GenericFeature, links: string[]) {
     if (!has(this.cache, `links`)) this.setCache(`links`, {})
 
@@ -142,12 +254,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     }
 
     const features = Object.values(this.cache.features ?? {})
-    for (const feature of features) {
-      const keys = [] as string[]
-      if (feature.__.compilation.derivationsByTarget[`actor.links`]) keys.push(`actor.links`)
-
-      if (keys.length > 0) feature.fire(`update`, { keys: keys })
-    }
+    this.updateFeature(features, [`actor.links`])
   }
   // #endregion
 
@@ -347,14 +454,14 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     // PREPARE DATA
     //    only if there is gcs data inside actor and some new data to prepare
     if (gcs && (all || partial)) {
-      try {
-        this.prepareAttributes(this._datachanges, cached.featureFactory, partials)
-        this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
-        // this.prepareDefenses(this._datachanges, cached.featureFactory, partials)
-      } catch (error) {
-        LOGGER.info(`prepareDerivedData`, `error`, error)
-        debugger
-      }
+      // try {
+      this.prepareAttributes(this._datachanges, cached.featureFactory, partials)
+      this.prepareFeatures(this._datachanges, cached.featureFactory, partials)
+      this.prepareDefenses(this._datachanges, cached.featureFactory, partials)
+      // } catch (error) {
+      //   LOGGER.info(`prepareDerivedData`, `error`, error)
+      //   debugger
+      // }
 
       // ERROR: Caralho meu
       const typeless = Object.values(cached.features).filter(feature => feature.type === undefined)
@@ -403,7 +510,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
             .build(`generic`, id, [0, 0], undefined, {
               context: { templates: MoveFeatureContextTemplate },
             })
-            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`), proxy.manual(`links`)])
+            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`), proxy.manual(`formulas`)])
             .addSource(
               `manual`,
               {
@@ -411,7 +518,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
                 name: game.i18n.localize(`GURPS.basicspeed`),
                 label: `GURPS.basicspeed`,
                 ...((actorData.basicspeed as any) ?? {}),
-                links: [`activeDefense.dodge`],
+                formulas: { activeDefense: { dodge: [`@int(∂A) + 3`] } },
               },
               { path: `basicspeed` },
             )
@@ -466,6 +573,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       }
 
       factory.startCompilation()
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.move`])
 
       // factory.logs.compiling = false
       timer_move.group()(`    Moves`, [`font-weight: bold;`]) // COMMENT
@@ -500,6 +608,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.advantages`])
       timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
     }
 
@@ -531,6 +640,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
       factory.startCompilation()
       timer_other.group()(`      Other Skills (Contextualization)`, [`font-weight: bold;`]) // COMMENT
+
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.skills`])
     }
 
     if (do_spells) {
@@ -543,6 +654,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.spells`])
       timer_spells.group()(`    Spells`, [`font-weight: bold;`]) // COMMENT
     }
 
@@ -558,6 +670,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.equipment`])
 
       timer_carried_equipment.group()(`    Carried Equipment`, [`font-weight: bold;`]) // COMMENT
     }
@@ -574,6 +687,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.equipment`])
       timer_other_equipment.group()(`    Other Equipment`, [`font-weight: bold;`]) // COMMENT
     }
 
@@ -618,6 +732,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       }
 
       factory.startCompilation()
+      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.defenses`])
 
       timer_active_defense.group()(`    Active Defenses`, [`font-weight: bold;`]) // COMMENT
     }
@@ -628,35 +743,6 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
   // #endregion
 
   // #region UTIL
-
-  findFeature(name: string, type?: string, leaf?: boolean) {
-    const features = Object.values(this.cache.features ?? {})
-    const filteredFeatures = !type ? features : features.filter(feature => feature.type.compare(type, leaf))
-
-    const index = {} as Record<string, string[]>
-    for (const feature of filteredFeatures) push(index, feature.specializedName, feature.id)
-
-    const names = Object.keys(index)
-    const fuse = new Fuse(names, { includeScore: true })
-
-    const results = fuse.search(name)
-
-    if (results[0].score === 0) {
-      const ids = index[results[0].item]
-      const features = ids.map(id => this.cache.features?.[id])
-
-      if (features.length === 1) return features[0]
-      return features
-    }
-
-    return results.map(({ item, score }) => {
-      const ids = index[item]
-      const features = ids.map(id => this.cache.features?.[id])
-
-      if (features.length === 1) return { score, feature: features[0] }
-      return { score, features, ids }
-    })
-  }
 
   // #endregion
 }

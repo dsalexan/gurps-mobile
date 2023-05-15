@@ -1,5 +1,25 @@
 /* eslint-disable no-debugger */
-import { Primitive, isArray, set as _set, uniq, mergeWith, intersection, orderBy, min, isNil, isEmpty, flatten, pick, last, cloneDeep, flattenDeep, has, isEqual } from "lodash"
+import {
+  Primitive,
+  isArray,
+  set as _set,
+  uniq,
+  mergeWith,
+  intersection,
+  orderBy,
+  min,
+  isNil,
+  isEmpty,
+  flatten,
+  pick,
+  last,
+  cloneDeep,
+  flattenDeep,
+  has,
+  isEqual,
+  set,
+  get,
+} from "lodash"
 import CompilationTemplate, { CompilationContext } from "./template"
 import LOGGER from "../../../logger"
 import { AllSources, IConflictResolution, IDerivation, IDerivationPipeline } from "../../../foundry/actor/feature/pipelines"
@@ -115,9 +135,8 @@ export function completeMigrationValueDefinitions(object: MigrationDataObject, o
   const remove = [] as string[]
 
   for (const key of Object.keys(object)) {
-    let migrationValue = object[key] as MigrationValue<unknown>[]
+    let migrationValue = get(object, key) as MigrationValue<unknown>[]
 
-    if (migrationValue === null) debugger
     if (migrationValue === undefined) {
       remove.push(key)
       continue
@@ -133,7 +152,7 @@ export function completeMigrationValueDefinitions(object: MigrationDataObject, o
         // ERROR: Unimplemented case where SOME (but not all) items in array are MigrationValue
         debugger
       }
-    } else if ((migrationValue as MigrationValue<unknown>)._meta === undefined) migrationValue = [WRITE(key, migrationValue)] as MigrationValue<unknown>[]
+    } else if ((migrationValue as MigrationValue<unknown>)?._meta === undefined) migrationValue = [WRITE(key, migrationValue)] as MigrationValue<unknown>[]
     else migrationValue = [migrationValue]
 
     let DEBUGGER_CONFLICT = false // COMMENT
@@ -219,6 +238,8 @@ export function prepareMigrationConflict<TValue>(migration: MigrationValue<TValu
 
   const resolution: MigrationConflictResolution<TValue> = { action: `unknown` } as any
 
+  if (migration === undefined || lastMigration === undefined) debugger
+
   // if both migrations have the save origin, try conflict resolution
   const sameOrigin = last(migration._meta.origin)?.type === last(lastMigration._meta.origin)?.type
 
@@ -293,6 +314,8 @@ export function prepareMigrationValue<TValue>(
   const keyMigrations = migrationsByKey[key] ?? []
   const lastMigration = keyMigrations[keyMigrations.length - 1]
 
+  const ___key = key.split(`.`)
+
   const newValue = migration.value
 
   // here we just decide what to do with the migration, we dont set values yet
@@ -309,7 +332,7 @@ export function prepareMigrationValue<TValue>(
       // migration sets no value
       recipe(`ignore`)
     } else {
-      const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+      const currentValue = has(shadowData, key) ? get(shadowData, key) : get(immutableData, key)
 
       if (isEqual(newValue, currentValue)) {
         // migration stays the same
@@ -323,7 +346,7 @@ export function prepareMigrationValue<TValue>(
       }
     }
   } else if (mode === `overwrite`) {
-    const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+    const currentValue = has(shadowData, key) ? get(shadowData, key) : get(immutableData, key)
 
     if (isEqual(newValue, currentValue)) {
       recipe(`same`)
@@ -331,7 +354,7 @@ export function prepareMigrationValue<TValue>(
       recipe(`set`, newValue, migration)
     }
   } else if (mode === `push`) {
-    const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+    const currentValue = has(shadowData, key) ? get(shadowData, key) : get(immutableData, key)
     const value = isArray(newValue) ? newValue : [newValue]
 
     if (value.length === 0 && currentValue !== undefined) {
@@ -341,9 +364,11 @@ export function prepareMigrationValue<TValue>(
       recipe(`push`, value as any as TValue, migration)
     }
   } else if (mode === `merge`) {
+    if (___key.length > 1) debugger
+
     recipe(`merge`, newValue, migration)
   } else if (mode === `fallback`) {
-    const currentValue = has(shadowData, key) ? shadowData[key] : immutableData[key]
+    const currentValue = has(shadowData, key) ? get(shadowData, key) : get(immutableData, key)
 
     // if there is no value in data AND value is something
     if (currentValue === undefined && newValue !== undefined) {
@@ -362,6 +387,8 @@ export function applyMigrationRecipe<TValue>(shadowData: MigratableObject[`data`
   const action = recipe.action
   const key = recipe.key
 
+  const ___key = key.split(`.`)
+
   const currentValue = shadowData[key] ?? immutableData[key]
 
   if (action === `pass` || action === `ignore` || action === `same`) {
@@ -377,13 +404,14 @@ export function applyMigrationRecipe<TValue>(shadowData: MigratableObject[`data`
       // ERROR: Wait, how a set of undefined is possible??
       if (recipe.value === undefined) debugger
 
-      shadowData[key] = recipe.value
+      set(shadowData, key, recipe.value)
     } else if (action === `push`) {
       let value = [] as any[]
       if (currentValue !== undefined && !isArray(currentValue)) value.push(currentValue)
 
       value.push(...(recipe.value as any as TValue[]))
-      shadowData[key] = uniq(value)
+
+      set(shadowData, key, recipe.value)
     } else if (action === `merge`) {
       let value = {} as any
       if (!isNil(currentValue)) value = cloneDeep(currentValue)
@@ -404,7 +432,8 @@ export function applyMigrationRecipe<TValue>(shadowData: MigratableObject[`data`
         debugger
       })
 
-      shadowData[key] = merged
+      if (___key.length > 1) debugger
+      set(shadowData, key, merged)
     }
   }
 }

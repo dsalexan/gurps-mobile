@@ -12,9 +12,8 @@ export const TypeIDS = [
   `skill`,
   `spell`,
   `equipment`,
-  `weapon`,
-  `melee_weapon`,
-  `ranged_weapon`,
+  // usage
+  `usage`,
 ] as const
 export type TypeID = (typeof TypeIDS)[number]
 
@@ -93,7 +92,6 @@ export const FEATURE = {
   SKILL: new Type(`Skill`, `skill`, `skill`),
   SPELL: new Type(`Spell`, [`skill`, `spell`], `spell`),
   EQUIPMENT: new Type(`Equipment`, `equipment`, `equipment`),
-  WEAPON: new Type(`Weapon`, `weapon`, `weapon`),
-  MELEE_WEAPON: new Type(`Melee Weapon`, [`weapon`, `melee_weapon`], `melee`),
-  RANGED_WEAPON: new Type(`Ranged Weapon`, [`weapon`, `ranged_weapon`], `ranged`),
+  //
+  USAGE: new Type(`Usage`, `usage`, `usage`),
 } as Record<Uppercase<TypeID>, Type>

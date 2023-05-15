@@ -116,9 +116,7 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
   } else if (type === `skill`) return FEATURE.SKILL
   else if (type === `spell`) return FEATURE.SPELL
   else if (type === `equipment`) return FEATURE.EQUIPMENT
-  else if (type === `weapon`) return FEATURE.MELEE_WEAPON
-  else if (type === `melee_weapon`) return FEATURE.MELEE_WEAPON
-  else if (type === `ranged_weapon`) return FEATURE.RANGED_WEAPON
+  else if (type === `weapon`) return FEATURE.USAGE
 
   return FEATURE.GENERIC
 }

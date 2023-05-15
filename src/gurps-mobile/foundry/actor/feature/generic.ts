@@ -5,7 +5,7 @@ import LOGGER from "../../../logger"
 import { GenericFeaturePipeline, IGenericFeatureData, IGenericFeatureFormulas } from "./pipelines/generic"
 import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
-import { IWeaponizableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/weaponizable"
+import { IUsableFeatureData, UsableFeaturePipeline } from "./pipelines/usable"
 import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/weapons"
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
@@ -13,12 +13,13 @@ import { GenericSource } from "./pipelines"
 import { ILevel } from "../../../../gurps-extension/utils/level"
 import FeatureProxiesDataContextTemplate from "../../actor-sheet/context/feature/proxy"
 import SkillFeature from "./skill"
+import FeatureUsage from "./usage"
 
-export default class GenericFeature extends Feature<IGenericFeatureData & IWeaponizableFeatureData, any> {
+export default class GenericFeature extends Feature<IGenericFeatureData & IUsableFeatureData, any> {
   constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
     super(id, key, parent, template)
     this.addPipeline(GenericFeaturePipeline)
-    this.addPipeline(WeaponizableFeaturePipeline)
+    this.addPipeline(UsableFeaturePipeline)
 
     this.__.context.templates.push(FeatureWeaponsDataContextTemplate)
     this.__.context.templates.push(FeatureProxiesDataContextTemplate)
@@ -59,36 +60,43 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     }
     actor.setFeature(this.id, this)
 
-    // if (this.data.weapons?.map(feature => feature.integrateOn === undefined)) debugger
-    // if (this.data.weapons && this.id === `8b8ce453-82c9-4a9b-9fa3-877e3e495bad`) debugger
-    if (this.data.weapons) {
-      const compiledWeapons = Object.fromEntries(this.data.weapons.map(weapon => [weapon.id, false]))
-      const registerCompiledWeapon = (weapon: Feature<any, any>) => {
-        compiledWeapons[weapon.id] = true
+    if (this.data.usages) {
+      const compiledUsages = Object.fromEntries(this.data.usages.map(usage => [usage.id, false]))
+      const registerCompiledUsage = (usage: FeatureUsage) => {
+        compiledUsages[usage.id] = true
 
-        const allLoaded = Object.values(compiledWeapons).every(loaded => loaded)
-        if (allLoaded) this.fire(`update`, { keys: [`weapons:compiled`] })
+        const allLoaded = Object.values(compiledUsages).every(loaded => loaded)
+        if (allLoaded) this.fire(`update`, { keys: [`usages:compiled`] })
       }
 
-      for (const weapon of this.data.weapons) {
-        const alreadyCompiled = weapon.__.compilation.compilations > 0
+      const registerIntegratedUsage = (usage: FeatureUsage) => {
+        compiledUsages[usage.id] = true
+
+        const allLoaded = Object.values(compiledUsages).every(loaded => loaded)
+        if (allLoaded) this.fire(`update`, { keys: [`usages:integrated`] })
+      }
+
+      for (const usage of this.data.usages) {
+        const alreadyCompiled = usage.__.compilation.compilations > 0
 
         // LOGGER.info(
         //   `GenericFeature:assign:integrateOn${alreadyCompiled ? ` (:integrate)` : ``}`,
-        //   weapon.id,
-        //   weapon.data.name,
+        //   usage.id,
+        //   usage.data.name,
         //   `@`,
-        //   weapon.parent.id,
-        //   weapon.parent.data.name,
-        //   weapon,
+        //   usage.parent.id,
+        //   usage.parent.data.name,
+        //   usage,
         // )
 
-        weapon.integrateOn(`compile:gcs`, actor)
+        usage.integrateOn(`compile:gcs`, actor)
         if (alreadyCompiled) {
-          registerCompiledWeapon(weapon)
-          weapon.integrate(actor)
+          registerCompiledUsage(usage)
+          usage.integrate(actor)
+          registerIntegratedUsage(usage)
         } else {
-          weapon.once(`compile`, () => registerCompiledWeapon(weapon))
+          usage.once(`compile`, () => registerCompiledUsage(usage))
+          usage.once(`integrate`, () => registerIntegratedUsage(usage))
         }
       }
     }
@@ -96,6 +104,7 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IWeapo
     // TECH_LEVEL
     if (this.data.tl?.required && isNilOrEmpty(this.data.tl.level)) {
       // ERROR: Untrained take TL from default, and all shit from GCS should come with tech_level already
+      // eslint-disable-next-line no-debugger
       debugger
     }
 

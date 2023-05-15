@@ -10,7 +10,7 @@ import { GenericFeatureCompilationContext } from "./generic"
 import BaseFeature, { FeatureTemplate, IFeature } from "../../base"
 import FeatureFactory from "../../factory"
 import WeaponFeature from "../../variants/weapon"
-import WeaponFeatureContextTemplate from "../../../../foundry/actor-sheet/context/feature/variants/weapon"
+import WeaponFeatureContextTemplate from "../../../../foundry/actor-sheet/context/feature/variants/usage"
 
 export interface IWeaponizableFeature {
   weapons: WeaponFeature[]

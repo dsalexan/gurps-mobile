@@ -3,6 +3,8 @@ import Feature, { IFeatureData } from "../../gurps-mobile/foundry/actor/feature"
 import { GenericSource } from "../../gurps-mobile/foundry/actor/feature/pipelines"
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 import { cloneDeep, isArray, isNil } from "lodash"
+import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
+import { FeatureState } from "../../gurps-mobile/core/feature/utils"
 
 export interface IBaseComponent {
   feature: string

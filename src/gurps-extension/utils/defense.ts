@@ -5,10 +5,11 @@ import { ILevel, ILevelDefinition, calculateLevel, nonSkillOrAllowedSkillVariabl
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { parseExpression } from "../../december/utils/math"
 import SkillFeature from "../../gurps-mobile/foundry/actor/feature/skill"
-import WeaponFeature from "../../gurps-mobile/foundry/actor/feature/weapon"
+import WeaponFeature from "../../gurps-mobile/foundry/actor/feature/usage"
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
 import { LOGGER } from "../../mobile"
 import AdvantageFeature from "../../gurps-mobile/foundry/actor/feature/advantage"
+import FeatureUsage from "../../gurps-mobile/foundry/actor/feature/usage"
 
 export interface IBaseActiveDefenseLevel {
   type: string
@@ -73,7 +74,7 @@ export function activeDefenseLevel(
   const features = activeDefenseFeatures(activeDefense, actor)
 
   let adls = [] as IActiveDefenseLevel[]
-  const weaponSkills = [] as { weapon: WeaponFeature; skill: Similars }[]
+  const usageSkills = [] as { usage: FeatureUsage; skill: Similars }[]
 
   type Similars = { sl: number; skill: SkillFeature; forms: SkillFeature[]; specializations: SkillFeature[] }
 
@@ -82,7 +83,8 @@ export function activeDefenseLevel(
     if (nonSkills.length > 0) LOGGER.warn(`Non-skill features in activeDefenseLevel calculation`, activeDefense, nonSkills, actor)
 
     // list all actor skills with activeDefense property (only skills have activeDefense property)
-    const allSkills = features.filter(feature => feature.data.activeDefense?.[activeDefense]) as SkillFeature[]
+    debugger
+    const allSkills = features.filter(feature => feature.type.compare(`skill`) && (feature as any as SkillFeature).data.activeDefense?.[activeDefense]) as any as SkillFeature[]
     const allSkillsWithLevel = allSkills.filter(skill => !isNil(skill.data.level)) as SkillFeature[]
     const knownLeveledSkills = allSkillsWithLevel.map(skill => skill.sources.gca?._index)
     const skillsGCAIndex = Object.fromEntries(allSkillsWithLevel.map(skill => [skill.sources.gca?._index, skill]))
@@ -174,13 +176,13 @@ export function activeDefenseLevel(
     }
 
     // list all weapons with activeDefense property (for power defenses)
-    const weaponizedFeatures = features.filter(feature => feature.data.weapons?.length > 0)
-    const weapons = flatten(weaponizedFeatures.map(feature => feature.data.weapons ?? []))
-    const defenseWeapons = weapons.filter(weapon => weapon.data[activeDefense] !== false && !isNil(weapon.data[activeDefense])) as any as WeaponFeature[]
+    const usableFeatures = features.filter(feature => feature.data.usages?.length > 0)
+    const usages = flatten(usableFeatures.map(feature => feature.data.usages ?? []))
+    const defenseUsages = usages.filter(weapon => weapon.data.activeDefense?.[activeDefense] !== false && !isNil(weapon.data.activeDefense?.[activeDefense]))
 
     // choose skill for feature weapons
-    for (const weapon of defenseWeapons) {
-      const defaults = weapon.data.defaults ?? []
+    for (const usage of defenseUsages) {
+      const defaults = usage.data.rolls ?? []
       if (defaults.length === 0) continue
 
       const viableDefinitions = defaults.filter(definition => nonSkillOrAllowedSkillVariables(definition, knownLeveledSkills))
@@ -198,17 +200,17 @@ export function activeDefenseLevel(
       const similarsSkills = uniq(referenceSkills).map(skill => referenceToSimilars[skill])
       const similars = uniq(similarsSkills).map(skill => similarsIndex[skill])
 
-      weaponSkills.push(...similars.map(skill => ({ weapon, skill })))
+      usageSkills.push(...similars.map(skill => ({ usage, skill })))
     }
   }
 
   debugger
-  // group (weapon, skill) by skill level, defense bonus, feature and formula
+  // group (usage, skill) by skill level, defense bonus, feature and formula
   const bySkillLevelAndDefenseBonusAndFeatureAndFormula = groupBy(
-    weaponSkills,
-    ({ skill: { sl, skill }, weapon }) => `${sl}+${skill.data.activeDefense![activeDefense]}+${weapon.parent!.data.name}+${weapon.data[activeDefense]}`,
+    usageSkills,
+    ({ skill: { sl, skill }, usage }) => `${sl}+${skill.data.activeDefense![activeDefense]}+${usage.parent!.data.name}+${usage.data[activeDefense]}`,
   )
-  const listsOfGroupedWeaponSkills = Object.values(bySkillLevelAndDefenseBonusAndFeatureAndFormula) as { weapon: WeaponFeature; skill: Similars }[][]
+  const listsOfGroupedWeaponSkills = Object.values(bySkillLevelAndDefenseBonusAndFeatureAndFormula) as { usage: FeatureUsage; skill: Similars }[][]
 
   type DefenseLevelDefinition = { pool: { skills: SkillFeature[]; weapons: WeaponFeature[] }; skill: SkillFeature; specializations: SkillFeature[]; weapon: WeaponFeature }
   const definitions = [] as DefenseLevelDefinition[]

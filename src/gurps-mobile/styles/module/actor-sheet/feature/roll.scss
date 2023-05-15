@@ -95,8 +95,30 @@
       font-weight: bold;
     }
 
-    & > .math-number {
+    & > .math-number, & > .math-paranthesis, & > .math-operator {
+      font-weight: 300;
+      color: rgb(var(--light-main-color), 0.75);
+    }
 
+    // katex
+    & > .katex {
+      font-size: calc(var(--font-size) * 1);
+
+      & .mord {
+        font-family: Roboto;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+      }
+      
+      & .mbin {
+        margin-left: var(--s0-25);
+        margin-right: var(--s0-25);
+      }
+
+      & .mspace + .mbin {
+        margin-left: 0;
+        margin-right: 0;
+      }
     }
   }
   
@@ -109,11 +131,11 @@
     font-style: normal;
   }
   
-  & > .label ~ .value {
+  & > .label + .value {
     margin-top: 2px;
   }
 
-  & > .value ~ .label {
+  & > .value + .label {
     margin-top: var(--s0-5);
   }
 

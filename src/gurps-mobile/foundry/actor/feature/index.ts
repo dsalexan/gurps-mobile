@@ -20,9 +20,12 @@ import {
   isObjectLike,
   isRegExp,
   isString,
+  max,
   omit,
+  orderBy,
   pick,
   pickBy,
+  set,
   sortBy,
   uniq,
 } from "lodash"
@@ -241,36 +244,38 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     return this
   }
 
-  addPipeline<TPipelineData extends IFeatureData>(pipeline: IDerivationPipeline<TPipelineData, TManualSource>) {
-    let name = pipeline.name ?? `ManualPipeline`
+  addPipeline<TPipelineData extends IFeatureData>(...pipelines: IDerivationPipeline<TPipelineData, TManualSource>[]) {
+    for (const pipeline of pipelines) {
+      let name = pipeline.name ?? `ManualPipeline`
 
-    this.__.compilation.pipelineOrder.push(name)
-    // @ts-ignore
-    this.__.compilation.pipelines[name] = pipeline
+      this.__.compilation.pipelineOrder.push(name)
+      // @ts-ignore
+      this.__.compilation.pipelines[name] = pipeline
 
-    for (let index = 0; index < pipeline.length; index++) {
-      const derivation = pipeline[index]
-      derivation.pipeline = pipeline as any
+      for (let index = 0; index < pipeline.length; index++) {
+        const derivation = pipeline[index]
+        derivation.pipeline = pipeline as any
 
-      for (const _destination of derivation.destinations) {
-        const destination = _destination as any as keyof TData
-        if (this.__.compilation.derivationsByDestination[destination] === undefined) this.__.compilation.derivationsByDestination[destination] = []
-        this.__.compilation.derivationsByDestination[destination].push([name, index])
-      }
+        for (const _destination of derivation.destinations) {
+          const destination = _destination as any as keyof TData
+          if (this.__.compilation.derivationsByDestination[destination] === undefined) this.__.compilation.derivationsByDestination[destination] = []
+          this.__.compilation.derivationsByDestination[destination].push([name, index])
+        }
 
-      for (let target of derivation.targets) {
-        const [key, ...modifiers] = target.split(`:`)
+        for (let target of derivation.targets) {
+          const [key, ...modifiers] = target.split(`:`)
 
-        // add to poolables if needed
-        const poolable = modifiers.includes(`pool`) // target.substring(target.length - 5) === `:pool`
-        if (poolable) this.__.compilation.poolables.push(key)
+          // add to poolables if needed
+          const poolable = modifiers.includes(`pool`) // target.substring(target.length - 5) === `:pool`
+          if (poolable) this.__.compilation.poolables.push(key)
 
-        let registeredTarget = key
-        if (modifiers.includes(`compiled`)) registeredTarget = `${key}:compiled`
+          let registeredTarget = key
+          if (modifiers.includes(`compiled`)) registeredTarget = `${key}:compiled`
 
-        // index derivation by target
-        if (this.__.compilation.derivationsByTarget[registeredTarget] === undefined) this.__.compilation.derivationsByTarget[registeredTarget] = []
-        this.__.compilation.derivationsByTarget[registeredTarget].push([name, index])
+          // index derivation by target
+          if (this.__.compilation.derivationsByTarget[registeredTarget] === undefined) this.__.compilation.derivationsByTarget[registeredTarget] = []
+          this.__.compilation.derivationsByTarget[registeredTarget].push([name, index])
+        }
       }
     }
 
@@ -391,16 +396,38 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       migrationsByKey: this.__.compilation.migrations,
     } as MigratableObject
 
+    let depther = false
+    const preIndexedMDOs = MDOs.map((mdo, index) => {
+      const keys = Object.keys(mdo)
+      const depths = keys.map(key => key.split(`.`).length)
+      const depth = max(depths) || 1
+
+      if (depth > 1) depther = true
+
+      return [depth + index / 10, mdo]
+    })
+
+    const orderedMDOs = orderBy(preIndexedMDOs, ([depth]) => depth, [`asc`]).map(([, mdo]) => mdo)
+
     const mutableData = {} as TData
     const recipes = [] as MigrationRecipe<unknown>[]
-    for (const mdo of MDOs) {
+    for (const mdo of orderedMDOs) {
       const mdoRecipes = resolveMigrationDataObject(mutableData, migratableObject, mdo, context, this)
+
+      for (const recipe of mdoRecipes) {
+        const key = recipe.key
+        migratableObject.migrations.push(...recipe.migrations)
+
+        if (migratableObject.migrationsByKey[key] === undefined) migratableObject.migrationsByKey[key] = []
+        migratableObject.migrationsByKey[key].push(...recipe.migrations)
+      }
+
       recipes.push(...mdoRecipes)
     }
 
     // for each pipeline, do post
     const getData = function (key: string) {
-      return has(mutableData, key) ? mutableData[key] : migratableObject.data[key]
+      return has(mutableData, key) ? get(mutableData, key) : get(migratableObject.data, key)
     }
     const hasData = function (key: string) {
       return has(mutableData, key) || has(migratableObject.data, key)
@@ -422,6 +449,15 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     const postRecipes = [] as MigrationRecipe<unknown>[]
     for (const mdo of postMDOs) {
       const mdoRecipes = resolveMigrationDataObject(mutableData, migratableObject, mdo, context, this)
+
+      for (const recipe of mdoRecipes) {
+        const key = recipe.key
+        migratableObject.migrations.push(...recipe.migrations)
+
+        if (migratableObject.migrationsByKey[key] === undefined) migratableObject.migrationsByKey[key] = []
+        migratableObject.migrationsByKey[key].push(...recipe.migrations)
+      }
+
       postRecipes.push(...mdoRecipes)
     }
 
@@ -432,39 +468,39 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
 
-    // fill migratableObject migrations index
-    const allRecipes = [...recipes, ...postRecipes]
-    for (const recipe of allRecipes) {
-      const key = recipe.key
-      migratableObject.migrations.push(...recipe.migrations)
-
-      if (migratableObject.migrationsByKey[key] === undefined) migratableObject.migrationsByKey[key] = []
-      migratableObject.migrationsByKey[key].push(...recipe.migrations)
-    }
-
     // pass mutated data to this.data
     const mutations = [] as [string, unknown, unknown, MigrationValue<any>[]][]
     const mutatedKeys = [] as string[]
-    for (const key of Object.keys(mutableData)) {
-      if (mutableData[key] === undefined) continue
-
+    for (const key of Object.keys(migratableObject.migrationsByKey)) {
       // this.fire(`before-compile.${key}`, { key, value: data.data[key], migration: data.migrationsByKey[key] })
-      const value = mutableData[key]
       const migration = migratableObject.migrationsByKey[key]
+      const value = get(mutableData, key)
+      const previousValue = get(this.data, key)
 
-      let keyMutated = false
-      if (isNil(value) || isNil(this.data[key])) keyMutated = !isEqual(value, this.data[key])
-      else if (isPrimitive(value) && isPrimitive(this.data[key])) keyMutated = !isEqual(value, this.data[key])
-      else {
-        const diff = deepDiff(this.data[key], value)
-        keyMutated = !isNil(diff) && Object.keys(diff).length > 0
+      if (value === undefined) continue
+
+      const mudatedPaths = [] as string[]
+      // eslint-disable-next-line quotes, prettier/prettier
+      const paths = key.split('.').map((path, index, array) => [...Array(array.length).keys()].slice(0, index+1).map(i => array[i]).join('.')).reverse()
+
+      if (isNil(value) || isNil(previousValue)) {
+        if (!isEqual(value, previousValue)) mudatedPaths.push(...paths)
+      } else if (isPrimitive(value) && isPrimitive(previousValue)) {
+        if (!isEqual(value, previousValue)) mudatedPaths.push(...paths)
+      } else {
+        const diff = deepDiff(previousValue, value)
+        const changedKeys = isNil(diff) ? [] : Object.keys(diff)
+
+        const newPaths = uniq([...paths, ...changedKeys.map(subKey => `${key}.${subKey}`)])
+
+        mudatedPaths.push(...newPaths)
       }
 
-      if (keyMutated) {
-        mutatedKeys.push(key)
-        mutations.push([key, cloneDeep(this.data[key]), cloneDeep(value), migration])
+      if (mudatedPaths.length > 0) {
+        mutatedKeys.push(...mudatedPaths.filter(path => !mutatedKeys.includes(path)))
+        mutations.push([key, cloneDeep(previousValue), cloneDeep(value), migration])
 
-        this.data[key] = value
+        set(this.data, key, value)
         this.__.compilation.migrations[key] = migration
       }
 
@@ -621,6 +657,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // this.compile(new RegExp(`^${this.id}\\.`), { actor }))
     this.fire(`update`, { keys: [new RegExp(`^actor.*`)] })
+    this.fire(`integrate`, { feature: this, keys: [new RegExp(`^actor.*`)] })
 
     return this
   }

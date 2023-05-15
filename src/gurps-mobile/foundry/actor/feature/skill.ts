@@ -6,7 +6,7 @@ import LOGGER from "../../../logger"
 import { SkillFeaturePipeline, ISkillFeatureData, SkillManualSource } from "./pipelines/skill"
 import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
-import { IWeaponizableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/weaponizable"
+import { IUsableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/usable"
 import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/weapons"
 import { isNilOrEmpty, push } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
@@ -422,6 +422,7 @@ export default class SkillFeature extends GenericFeature {
       }
 
       const definition = createLevelDefinition(expression, variables, { flags })
+      // console.warn(`gurps-mobile`, this.id, `pre-calculateLevel`, definition, this)
       const attributeBasedLevel = calculateLevel(definition, this, actor)
 
       // ERROR: Cannot
