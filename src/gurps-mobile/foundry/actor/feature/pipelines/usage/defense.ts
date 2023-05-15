@@ -1,7 +1,7 @@
-import { String, flatten, indexOf, isArray, isEmpty, isNil, last, uniq } from "lodash"
+import { String, cloneDeep, flatten, groupBy, indexOf, isArray, isEmpty, isNil, last, mapValues, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from ".."
 import { isNilOrEmpty } from "../../../../../../december/utils/lodash"
-import { ILevelDefinition, parseLevelDefinition, setupCheck } from "../../../../../../gurps-extension/utils/level"
+import { ILevelDefinition, IVariable, calculateLevel, createLevelDefinition, createVariable, parseLevelDefinition, setupCheck } from "../../../../../../gurps-extension/utils/level"
 import { FALLBACK, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "../generic"
 import { IFeatureData } from "../.."
@@ -11,7 +11,7 @@ import { IFeatureUsageData, IHit, IHitRollToHit, IHitTargetMelee, IHitTargetRang
 import GenericFeature from "../../generic"
 import LOGGER from "../../../../../logger"
 import { IAttributeBonusComponent } from "../../../../../../gurps-extension/utils/component"
-import { FeatureState } from "../../../../../core/feature/utils"
+import { FeatureState, specializedName } from "../../../../../core/feature/utils"
 import { GCATypes } from "../../../../core/gca/types"
 
 export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData, { mode: `parry` | `block` | `dodge` }> = [
@@ -25,13 +25,11 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
     const value = gcs[activeDefense] as string
     const defaults = gcs.defaults!
 
-    if (value === `No` || value === `-` || isNil(value)) {
-      debugger
-      return {}
-    }
+    if (value === `No` || value === `-` || isNil(value)) debugger
+    if (value === `No` || value === `-` || isNil(value)) return {}
 
     const use = { rule: `automatic` } as IUse
-    const hit = { rule: `roll_to_hit`, target: null } as IHit
+    const hit = { rule: `roll_to_hit`, target: null } as IHitRollToHit
 
     /**
      * A Defense Level Definition can be broken in specific parts:
@@ -58,7 +56,9 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
     // most important data, those informations take precedence over the rest
     // feature can imply base, if not specified it will be derived from GCS.weapons
     let featureFormula: string | null = null
-    let featureBase: { type: `skill` | `attribute`; value: number[] | string } | null
+    let featureBase: { type: `skill` | `attribute`; value: number[] | string } | null = null
+
+    // #region get formula from feature (parent)
 
     // only ADVANTAGE or EQUIPMENT feature can have a formula
     if (![`advantage`, `equipment`].some(type => object.type.compare(type))) {
@@ -79,6 +79,8 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
         debugger
       }
     }
+
+    // #endregion
 
     // a weapon modifier takes precedence over base specific modifiers
     // skills from weapons.defaults are implied as bases for defense
@@ -106,20 +108,28 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
       // list of variants of a skill acceptable to that variable in definition
       const pool = listOfIndexes[0].map(index => GCA.entries[index])
 
-      // ERROR: Untested
-      if (pool.length > 1) debugger
+      const formulas = uniq(pool.map(skill => skill[`${activeDefense}at`] as string))
+      const modifiers = uniq(pool.map(skill => skill[activeDefense] as string))
+
+      // ERROR: Unimplemented for multiple formulas/modifiers for a batch of variant skills
+      if (formulas.length !== 1) debugger
+      if (modifiers.length !== 1) debugger
+
       // #endregion
 
-      const skill = pool[0] as GCATypes.Entry
-
       // #region get formula and modifier from GCA properties
-      let formula = skill[`${activeDefense}at`] as string // formula
-      let modifier = (skill[activeDefense] as string) ?? `No` // modifier
+
+      let formula = formulas[0] // formula
+      let modifier = modifiers[0] // modifier
 
       // mode reduction
       if (formula?.options || modifier?.options) {
+        const modes = uniq(pool.map(skill => skill.mode?.options))
+        if (modes.length !== 1) debugger
+        if (isNil(modes[0])) debugger
+
         const modeIndex = indexOf(
-          skill.mode.options.map(o => o.toLowerCase()),
+          modes[0]!.map(o => o.toLowerCase()),
           gcs.usage?.toLowerCase(),
         )
 
@@ -142,6 +152,8 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
       if (!isNil(baseDefenseModifier) && isNaN(baseDefenseModifier)) debugger
 
       // #region default formulas where they dont exist
+      //    prefeer non-specialized entry
+      const skill = pool.filter(skill => isNil(skill.nameext))[0] ?? pool[0]
 
       // [entry has property <defense>at (internaly known as "formula")]
       if (formula !== `No` && formula !== `-` && !isNil(formula)) baseDefenseFormula = formula
@@ -158,42 +170,122 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
       }
       // #endregion
 
-      // ERROR: Untested, shouldnt be
-      if (isNil(baseDefenseModifier) && isNil(baseDefenseFormula)) debugger
+      // skill lacks formula or modifier, so it should not be used to defend
+      if (isNil(baseDefenseModifier) && isNil(baseDefenseFormula)) continue
 
       const base = {
         formula: baseDefenseFormula,
         modifier: baseDefenseModifier,
-        base: [{ type: `skill` as const, value: [skill.index] }],
+        base: [{ type: `skill` as const, value: pool.map(skill => skill._index) }],
       }
-
-      debugger
 
       skillDefenseFormulasAndModifiers.push(base)
     }
 
     // #endregion
 
-    debugger
+    const byFormulaAndModifier = mapValues(
+      groupBy(skillDefenseFormulasAndModifiers, ({ formula, modifier }) => `${formula ?? `null`}:${modifier || `null`}`),
+      bases => {
+        const flatBases = bases.map(({ base }) => base).flat()
+
+        const byType = groupBy(flatBases, `type`)
+
+        const aggregateByType = mapValues(byType, bases => bases.map(base => base?.value).filter(value => !isNil(value)))
+        const types = Object.entries(aggregateByType)
+
+        // ERROR: Untested, probably would set single.base as null
+        if (types.length === 0) debugger
+
+        const single = bases[0]
+
+        const splitByValueCluster = types.map(([type, listOfValues]) => listOfValues.map(values => ({ type, value: values })))
+        return splitByValueCluster.map(base => ({ ...cloneDeep(single), base }))
+      },
+    )
+    const aggregateSkillBases = Object.values(byFormulaAndModifier).flat()
+
+    // ERROR: Untested multiple options
+    if (aggregateSkillBases.length !== 1) debugger
 
     /**
      * Defense Level Definition -> Level Definition -> Level
      * {formula(base)} + {modifier}
+     *
+     * so... basically agregate all things together
      */
 
-    const handle = `skill`[0].toUpperCase()
+    const skillBase = aggregateSkillBases[0]
 
-    // replace level references for vS/vA in formula (to allow for me:: references only in feature context)
-    if (baseDefenseFormula) baseDefenseFormula = baseDefenseFormula.replaceAll(/%level/g, `∂${handle}`).replaceAll(/me::level/g, `∂${handle}`)
+    let formula: string = featureFormula ?? skillBase.formula!
+    const modifier: number = skillBase.modifier ?? weaponModifier
+    // REMEMBER: Not all bases are the same. But they refer to the same skill and modifier, so each "unique" base (not the same attribute/skill unspecialized) should yield a unique level
+    const bases: { type: `skill` | `attribute`; value: number[] | string }[] = [...(featureBase ? [featureBase] : []), ...(skillBase.base ?? [])]
 
-    // ERROR: Unimplemented "me::" formula for skill
-    if (baseDefenseFormula.match(/me::/i)) debugger
+    // ERROR: Untested
+    if (isNil(formula)) debugger
+    if (isNil(modifier)) debugger
+    if (!isNil(weaponModifier) && modifier !== weaponModifier) debugger
+
+    const activeDefenseDefinitions = [] as ILevelDefinition[]
+    for (const base of bases) {
+      const handle = base.type[0].toUpperCase()
+
+      let localFormula = formula
+
+      // replace level references for vS/vA in formula (to allow for me:: references only in feature context)
+      if (localFormula) localFormula = localFormula.replaceAll(/%level/g, `∂${handle}`).replaceAll(/me::level/g, `∂${handle}`)
+
+      // ERROR: Unimplemented "me::" formula for skill
+      if (localFormula.match(/me::/i)) debugger
+
+      if (base.type === `skill`) {
+        const skills = (base.value as number[]).map(index => GCA.entries[index])
+        const skill = skills.filter(skill => isNil(skill.nameext))[0] ?? skills[0]
+
+        const S = createVariable(handle, `skill`, base.value as number[], {
+          meta: {
+            fullName: specializedName(skill),
+            name: skill.name,
+            nameext: skill.nameext,
+          },
+        })
+
+        const definition = createLevelDefinition(`${localFormula} + ∂MODIFIER`, {
+          MODIFIER: createVariable(`MODIFIER`, `constant`, modifier),
+          [handle]: S,
+        })
+
+        activeDefenseDefinitions.push(definition)
+      } else if (base.type === `attribute`) {
+        const A = createVariable(handle, `attribute`, base.value, {
+          meta: { name: base.value },
+        })
+
+        const definition = createLevelDefinition(`${localFormula} + ∂MODIFIER`, {
+          MODIFIER: createVariable(`MODIFIER`, `constant`, modifier),
+          [handle]: A,
+        })
+
+        activeDefenseDefinitions.push(definition)
+      } else {
+        // ERROR: Unimplemented
+        debugger
+      }
+    }
+
+    // ERROR: Unimplemented
+    if (activeDefenseDefinitions.length === 0) debugger
+
+    hit.rolls = activeDefenseDefinitions
 
     // ERROR: Should have rolls
     if (!hit.rolls) debugger
     if (!hit.rolls.length) debugger
 
-    debugger
+    // if (!object.parent || !object.actor) debugger
+    // hit.rolls.map(roll => calculateLevel(roll, object.parent!, object.actor))
+
     return { use, hit, tags: PUSH(`tags`, [activeDefense]) }
   }) as any,
   // #endregion
@@ -201,39 +293,7 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
 
   // #endregion
   // #region DATA
-  derivation([`hit.rule`], [`hit.rolls`], (_, __, { object }) => {
-    const activeDefense = last(object.id.split(`-`))! as `parry` | `block` | `dodge`
-    const hit = object.data.hit as IHit
 
-    const value = object.sources.gcs[activeDefense] as string
-
-    if (hit.rule !== `roll_to_hit`) {
-      debugger
-      return { "hit.rolls": [] }
-    }
-
-    if (value === `No` || value === `-` || isNil(value)) return {}
-
-    const modifier = parseInt(isEmpty(value) ? `0` : value)
-    if (isNaN(modifier)) debugger
-
-    // TODO: Get defense rolls (ILevelDefinition[])
-    // defense usage is how a feature (object.parent) is going to use a active defense
-    //  object.parent is the source of defense
-    //  the skill/attribute for base calculation is
-    if (activeDefense === `block`) {
-      debugger
-    } else if (activeDefense === `dodge`) {
-      debugger
-    } else if (activeDefense === `parry`) {
-      debugger
-    } else {
-      debugger
-    }
-
-    debugger
-    return {}
-  }),
   // #endregion
 ]
 
