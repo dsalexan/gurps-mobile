@@ -843,27 +843,27 @@ const FeatureGroups = [
   //   },
   // },
   // ooc
-  {
-    section: `occ`,
-    key: `advantages`,
-    filter: (f: Feature<any, any>) => !f.data.placeholder && f.type.compare(`generic_advantage`, false),
-  },
-  {
-    section: `occ`,
-    key: `skills`,
-    filter: (f: SkillFeature) => {
-      if (f.data.placeholder) return false
-      if (!f.type.compare(`skill`, true)) return false
-      if (f.data.container) return f.children.some(c => c.data.training === `trained`)
-      return f.data.training === `trained`
-    },
-    sort: (f: SkillFeature) => {
-      if (f.data.training === `untrained`) return -1
-      if (f.data.training === `unknown`) return -Infinity
-      return parseInt(f.key.tree[0].toString())
-    },
-    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  },
+  // {
+  //   section: `occ`,
+  //   key: `advantages`,
+  //   filter: (f: Feature<any, any>) => !f.data.placeholder && f.type.compare(`generic_advantage`, false),
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `skills`,
+  //   filter: (f: SkillFeature) => {
+  //     if (f.data.placeholder) return false
+  //     if (!f.type.compare(`skill`, true)) return false
+  //     if (f.data.container) return f.children.some(c => c.data.training === `trained`)
+  //     return f.data.training === `trained`
+  //   },
+  //   sort: (f: SkillFeature) => {
+  //     if (f.data.training === `untrained`) return -1
+  //     if (f.data.training === `unknown`) return -Infinity
+  //     return parseInt(f.key.tree[0].toString())
+  //   },
+  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  // },
   {
     section: `occ`,
     key: `spells`,

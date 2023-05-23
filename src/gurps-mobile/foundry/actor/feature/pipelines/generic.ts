@@ -44,7 +44,7 @@ export interface IGenericFeatureData extends IFeatureData {
 
   categories: string[]
   notes: string[]
-  meta: string
+  meta: string[]
   tags: string[]
   conditional: string[]
   reference: string[]
@@ -91,7 +91,10 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
   }),
   proxy.gcs(`label`),
   derivation.gcs(`notes`, `notes`, ({ notes }) => ({ notes: flattenDeep([notes ?? []]) })),
-  derivation.gcs(`vtt_notes`, `meta`, ({ vtt_notes }) => ({ meta: vtt_notes })),
+  derivation.gcs(`vtt_notes`, `meta`, ({ vtt_notes }) => {
+    if (isNil(vtt_notes)) return {}
+    return { meta: vtt_notes.split(`;`) }
+  }),
   derivation.gcs(`reference`, `reference`, ({ reference }) => ({
     reference: PUSH(
       `reference`,

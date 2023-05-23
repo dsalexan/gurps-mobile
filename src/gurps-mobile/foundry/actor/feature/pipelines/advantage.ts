@@ -1,4 +1,4 @@
-import { isNil } from "lodash"
+import { isNil, uniq } from "lodash"
 import { IDerivationPipeline, derivation, proxy } from "."
 import { calculateLevel, createLevelDefinition, createVariable } from "../../../../../gurps-extension/utils/level"
 import { MigrationDataObject, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
@@ -111,20 +111,32 @@ AdvantageFeaturePipeline.post = function postAdvantage(data) {
   const MDO = {} as MigrationDataObject<any>
 
   if (data.has(`meta`)) {
-    const meta = data.get(`meta`)
-    if (meta.includes(`:`)) {
-      const [meta1, links] = linkFromVTTNotes(meta)
+    const metaList = data.get(`meta`)
 
-      MDO.meta = OVERWRITE(`meta`, meta1)
-      MDO.links = PUSH(`links`, links)
+    let newMeta = [] as string[]
+    let links = [] as string[]
 
-      if (links.some(link => link.split(`.`)[0] === `placeholder`)) {
-        MDO.links = PUSH(
-          `links`,
-          links.filter(link => link.split(`.`)[0] !== `placeholder`),
-        )
-        MDO.placeholder = WRITE(`placeholder`, true)
+    for (const meta of metaList) {
+      if (meta.includes(`:`)) {
+        const [_meta, _link] = linkFromVTTNotes(meta)
+
+        newMeta.push(_meta)
+        links.push(..._link)
       }
+    }
+
+    newMeta = uniq(newMeta)
+    links = uniq(links)
+
+    MDO.meta = OVERWRITE(`meta`, newMeta)
+    MDO.links = PUSH(`links`, links)
+
+    if (links.some(link => link.split(`.`)[0] === `placeholder`)) {
+      MDO.links = PUSH(
+        `links`,
+        links.filter(link => link.split(`.`)[0] !== `placeholder`),
+      )
+      MDO.placeholder = WRITE(`placeholder`, true)
     }
   }
 

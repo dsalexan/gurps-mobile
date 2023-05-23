@@ -99,7 +99,7 @@ export default class ContextManager {
       return this.list({
         feature: feature,
         id: feature.id,
-        label: feature.data.name,
+        label: feature.specializedName,
         children: [],
       })
     }
@@ -113,21 +113,41 @@ export default class ContextManager {
     listSpecs?: (feature: GenericFeature, parent?: GenericFeature) => Partial<ListContextSpecs>,
     featureSpecs?: (feature: GenericFeature, parent?: GenericFeature) => IgnoreFeatureFallbacks<FeatureBaseContextSpecs>,
   ) {
-    const parentFeature = parent !== undefined ? featureTree.byId[parent] : parent
+    const parentFeature = (parent !== undefined ? featureTree.byId[parent] : parent) as undefined | GenericFeature
     const features = (featureTree.byParent[String(parent)] ?? []).map(id => featureTree.byId[id]) as any as GenericFeature[]
 
     const nonContainers = features.filter(feature => !feature.data.container)
     const containers = features.filter(feature => feature.data.container)
 
+    let rootGroup = (parentFeature && parentFeature.data.meta ? parentFeature.data.meta.filter(meta => meta.split(`:`)[0] === `root_group`) : undefined) as string | undefined
+    if (rootGroup?.length > 1) debugger
+    else if (rootGroup?.length === 1) rootGroup = rootGroup[0].split(`:`)[1]
+
     const contexts = [] as (IListContext | IFeatureContext)[]
 
     if (nonContainers.length > 0) {
+      const nonContainerContexts = [] as IFeatureContext[]
+
       // compile context for all non-containers
       for (const nonContainer of nonContainers) {
         const specs = featureSpecs ? featureSpecs(nonContainer, parentFeature as any) : ({} as IgnoreFeatureFallbacks<FeatureBaseContextSpecs>)
 
         const feature = this.feature(nonContainer, specs)
-        contexts.push(feature)
+        nonContainerContexts.push(feature)
+      }
+
+      if (rootGroup) {
+        const list = this.list({
+          feature: parentFeature!,
+          id: `${parentFeature!.id}-root`,
+          label: rootGroup,
+          // children: container.children.map(feature => this.feature(feature, featureSpecs(feature) ?? {})),
+          children: nonContainerContexts,
+        })
+
+        contexts.push(list)
+      } else {
+        contexts.push(...nonContainerContexts)
       }
     }
 
@@ -137,7 +157,7 @@ export default class ContextManager {
       const list = this.list({
         feature: container,
         id: container.id,
-        label: container.data.name,
+        label: container.specializedName,
         // children: container.children.map(feature => this.feature(feature, featureSpecs(feature) ?? {})),
         children: this.featuresToContexts(container.id, featureTree, listSpecs, featureSpecs),
         ...specs,
@@ -187,8 +207,6 @@ export default class ContextManager {
           push(byDepth, depth, feature.id)
           push(byParent, String(parent), feature.id)
         }
-
-        if (feature.data.name === `Wizardly Study`) debugger
       }
 
       parents = cloneDeep(byDepth[depth]) // update parents for next iteration
