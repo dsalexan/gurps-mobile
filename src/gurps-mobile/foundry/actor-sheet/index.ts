@@ -6,7 +6,7 @@ import { GurpsMobileActor } from "../actor/actor"
 
 import createManeuverTray, { Tray } from "./maneuverTray"
 
-import { flatten, flattenDeep, get, groupBy, isBoolean, isNil, last, orderBy, set, sortBy, uniq, unzip } from "lodash"
+import { cloneDeep, flatten, flattenDeep, get, groupBy, intersection, isBoolean, isNil, last, max, orderBy, set, sortBy, uniq, unzip } from "lodash"
 import { getStatus } from "./status"
 import HTMLManager from "./html"
 import ContextManager from "./context/manager"
@@ -18,9 +18,12 @@ import GenericFeature from "../actor/feature/generic"
 import WeaponFeature from "../actor/feature/usage"
 import { push } from "../../../december/utils/lodash"
 import { IListContext } from "./context/container/list"
-import DefenseFeature from "../actor/feature/defense"
-import { IDefenseLevel } from "../actor/feature/pipelines/defense"
 import { IContext } from "./context/context"
+import { usage } from "yargs"
+import FeatureUsage from "../actor/feature/usage"
+import { calculateLevel, nonSkillVariables, allowedSkillVariables, viabilityTest } from "../../../gurps-extension/utils/level"
+import { DefenseFeatureContextSpecs } from "./context/feature/defense"
+import DefenseFeature from "../actor/feature/defense"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -457,7 +460,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
     sheetData.combatTab = this.actor.getLocalStorage(`combat.selectedTab`, `attack`)
     // TODO: based on selected maneuver
-    sheetData.tags = [`defense`, `spell`, `equipment`]
+    sheetData.tags = [] // [`defense`, `spell`, `equipment`]
 
     sheetData.oocTab = this.actor.getLocalStorage(`ooc.selectedTab`, `attribute`)
 
@@ -472,7 +475,6 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
 
     // Preparing tabs
     sheetData.tabs = {
-      attacks: [],
       defenses: [],
       //
       attributes: [],
@@ -492,10 +494,10 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     const tGroupingFeatures = logger.time(`Grouping Features`) // COMMENT
 
     const allFeatures = Object.values(cache.features ?? {})
-    const groupedFeatures = FeatureGroups.map(({ section, key, specs, transform, map, filter, sort, order, groups }) => {
+    const groupedFeatures = FeatureGroups.map(({ section, key, specs, transform, map, filter, sort, order, group }) => {
       const transformedFeatures = transform === undefined ? allFeatures : transform(allFeatures)
-      const mappedFeatures = flatten(map === undefined ? transformedFeatures : transformedFeatures.map(f => map(f as any)))
-      const features = filter === undefined ? mappedFeatures : mappedFeatures.filter(f => filter(f as any))
+      const filteredFeatures = filter === undefined ? transformedFeatures : transformedFeatures.filter(f => filter(f as any))
+      const features = flatten(map === undefined ? filteredFeatures : filteredFeatures.map(f => map(f as any)))
 
       // // group by parent
       // const grouped_ = ContextManager.toContextList(
@@ -521,16 +523,19 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
       //   )
       // }
 
-      return { section, key, specs, features: ContextManager.prepareTree(features, sort === undefined ? f => f.key.value : sort, order) }
+      const _sort = sort ?? (f => f.key.value)
+
+      return { section, key, specs, sort: { fn: _sort, order }, features: ContextManager.prepareTree(features, _sort, order) }
     })
 
     tGroupingFeatures(`    Grouping ${allFeatures.length} Features`, [`font-weight: bold;`]) // COMMENT
     const tFeatureContextBuildingAndContainerization = logger.time(`Feature Context Building and Containerization`) // COMMENT
 
     sheetData.tabs.attributes.push(...this.buildAttributes())
-    // sheetData.tabs.defenses.push(...this.buildDefenses())
+    sheetData.tabs.defenses.push(...this.buildDefenses())
 
     for (const type of groupedFeatures) {
+      if (Object.keys(type.features.byId).length === 0) continue
       const { byId, byDepth, byParent } = type.features
 
       const tabPrefix = `${type.section}-${type.key}`
@@ -548,6 +553,7 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
             classes: [`full`],
             list: `${tabPrefix}-${parent?.id ?? `root`}`,
             ...(type.specs ?? {}),
+            index: type.sort.fn(feature),
           }
         },
       )
@@ -631,77 +637,78 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
     return [contextManager.list({ id: listId, label: `Speed and Move`, children })]
   }
 
-  buildDefenses() {
+  /**
+   * Build defense features in a dedicated function, since they are highly customizable and not well-defined inside GCS/GCA
+   */
+  buildDefenses(): any[] {
     const logger = LOGGER.get(`actor-sheet`)
     const cache = this.actor.cache
     const contextManager = this.actor.cache.contextManager
 
     if (!contextManager) return []
     if (!cache.features) return []
+    // hack to not throw a error when i comment basic_speed/moves feature caching in actor
+    if (!cache.features[`move-basic_speed`] && !cache.features[`move-ground`]) return []
 
+    const specs = {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
+
+        return defense
+      },
+    } as Partial<DefenseFeatureContextSpecs>
+
+    const listPrefix = `combat-defenses`
     const lists = [] as IListContext[]
 
-    const tab = `combat-defenses`
-    const activeDefenses = [`block`, `dodge`, `parry`]
-    for (const activeDefense of activeDefenses) {
-      const listId = `${tab}-activedefense-${activeDefense}`
-      const defenseId = `activedefense-${activeDefense}`
+    const defenses = [`block`, `dodge`, `parry`] as const
+    for (const defense of defenses) {
+      const listId = `${listPrefix}-${defense}`
 
-      const feature = cache.features?.[defenseId] as DefenseFeature
+      const feature = cache.features?.[`activedefense-${defense}`] as DefenseFeature
 
-      // ERROR: Untested when no levels
-      if (!feature.data.levels?.length) debugger
+      const children = feature.data.features.map(id => cache.features?.[id]) as GenericFeature[]
+      const indexedChildren = children.map(feature => {
+        const defenseUsages = (feature.data.usages ?? [])?.filter(usage => {
+          const defense = [`defense`].includes(usage.data.type)
 
-      const bySource = groupBy(feature.data.levels, `source`)
-
-      const children = [] as IContext[]
-      for (const levels of Object.values(bySource)) {
-        const source = cache.features?.[levels[0].source] as GenericFeature
-
-        // const orderedLevels = orderBy(levels, `level.value`, `desc`)
-        // for (const { base, level } of orderedLevels) {
-        //   if (base.type === `skill`) {
-        //     const skill = cache.features?.[base.id] as SkillFeature
-        //   } else {
-        //     debugger
-        //   }
-        // }
-
-        const context = contextManager.defense(source, {
-          classes: [`full`],
-          list: listId,
-          defense: activeDefense,
-          components: feature.data.actorComponents,
-          levels,
+          return defense
         })
 
-        children.push(context)
+        const keys = defenseUsages?.map(usage => usageSort(usage))
+        const key = max(keys)
+
+        return [feature, key! + feature.key.value / 10]
+      }) as [GenericFeature, number][]
+
+      const orderedChildren = orderBy(indexedChildren, tuple => tuple[1])
+      const contexts = [] as IContext[]
+      for (const [defenseCapableFeature, index] of orderedChildren) {
+        const context = contextManager.feature(defenseCapableFeature, {
+          classes: [`full`],
+          list: listId,
+          ...cloneDeep(specs),
+          index,
+        })
+
+        contexts.push(context)
       }
 
-      const list = contextManager.list({
-        id: listId,
-        classes: [],
-        label: activeDefense.capitalize(),
-        children,
-      })
-
-      lists.push(list)
-
-      // const defense = cache.features[id]
-      // if (!defense) continue
-
-      // children.push(
-      //   contextManager.feature(defense, {
-      //     classes: [`full`],
-      //     list: listId,
-      //   }),
-      // )
+      lists.push(
+        contextManager.list({
+          id: listId,
+          classes: [],
+          label: defense.capitalize(),
+          children: contexts,
+        }),
+      )
     }
 
-    // build list
-    // return [contextManager.list({ id: listId, label: undefined, children })]
     return lists
   }
+
   // #endregion
 
   openDesktopSheet() {
@@ -709,49 +716,157 @@ export class GurpsMobileActorSheet extends GurpsActorSheet {
   }
 }
 
+function usageSort(usage: FeatureUsage) {
+  // position above 10, below 11 if there is no level associated
+  let level = -10.8
+
+  if (usage.data.use && usage.data.use.rule !== `automatic`) debugger
+
+  if (usage.data.hit) {
+    if (usage.data.hit.rule === `automatic`) {
+      // pass
+    } else if (usage.data.hit.rule === `roll_to_hit` || usage.data.hit.rule === `roll_to_resist`) {
+      const levels = usage.data.hit.levels
+      level = -1 * levels?.[0]?.value ?? 1000
+    }
+  }
+
+  return level
+}
+
 const FeatureGroups = [
   // combat
-  // TODO: Only damaging usages (whot)
-  // {
-  //   section: `combat`,
-  //   key: `attacks`,
-  //   map: (f: GenericFeature) => f.data.usages ?? [],
-  //   // sort: (f: WeaponFeature) => f?.level ?? Infinity,
-  //   specs: {
-  //     showParent: true,
-  //   },
-  //   order: `desc`,
-  //   groups: false,
-  // },
+  {
+    section: `combat`,
+    key: `attacks`,
+    filter: (f: GenericFeature) =>
+      f.data.usages?.length > 0 &&
+      (f.type.compare(`equipment`, false) || f.data.name === `Natural Attacks`) &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
+
+        return attackOrAffliction || (damage && !defense)
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
+
+        return attackOrAffliction || (damage && !defense)
+      },
+    },
+  },
+  {
+    section: `combat`,
+    key: `traits`,
+    filter: (f: GenericFeature) =>
+      f.data.usages?.length > 0 &&
+      f.type.compare(`generic_advantage`, false) &&
+      f.data.name !== `Natural Attacks` &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
+
+        return !defense
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
+
+        return !defense
+      },
+    },
+    // sort: (usage: FeatureUsage) => {
+    //   let value = usageSort(usage)
+
+    //   return value + usage.key.value / 10
+    // },
+  },
+  {
+    section: `combat`,
+    key: `spell_usage`,
+    filter: (f: GenericFeature) =>
+      f.data.usages?.length > 0 &&
+      f.type.compare(`spell`, false) &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
+
+        return !defense
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
+
+        return !defense
+      },
+    },
+  },
+  {
+    section: `combat`,
+    key: `equipment_usage`,
+    filter: (f: GenericFeature) =>
+      f.data.usages?.length > 0 &&
+      f.type.compare(`equipment`, false) &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
+
+        return !attackOrAffliction && !damage && !defense
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
+
+        return !attackOrAffliction && !damage && !defense
+      },
+    },
+  },
   // ooc
-  {
-    section: `occ`,
-    key: `advantages`,
-    filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
-  },
-  {
-    section: `occ`,
-    key: `skills`,
-    filter: (f: SkillFeature) => {
-      if (!f.type.compare(`skill`, true)) return false
-      if (f.data.container) return f.children.some(c => c.data.training === `trained`)
-      return f.data.training === `trained`
-    },
-    sort: (f: SkillFeature) => {
-      if (f.data.training === `untrained`) return -1
-      if (f.data.training === `unknown`) return -Infinity
-      return parseInt(f.key.tree[0].toString())
-    },
-    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  },
-  {
-    section: `occ`,
-    key: `spells`,
-    filter: (f: Feature<any, any>) => f.type.compare(`spell`, true),
-  },
-  {
-    section: `occ`,
-    key: `equipment`,
-    filter: (f: Feature<any, any>) => f.type.compare(`equipment`, true),
-  },
+  // {
+  //   section: `occ`,
+  //   key: `advantages`,
+  //   filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `skills`,
+  //   filter: (f: SkillFeature) => {
+  //     if (!f.type.compare(`skill`, true)) return false
+  //     if (f.data.container) return f.children.some(c => c.data.training === `trained`)
+  //     return f.data.training === `trained`
+  //   },
+  //   sort: (f: SkillFeature) => {
+  //     if (f.data.training === `untrained`) return -1
+  //     if (f.data.training === `unknown`) return -Infinity
+  //     return parseInt(f.key.tree[0].toString())
+  //   },
+  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `spells`,
+  //   filter: (f: Feature<any, any>) => f.type.compare(`spell`, true),
+  // },
+  // {
+  //   section: `occ`,
+  //   key: `equipment`,
+  //   filter: (f: Feature<any, any>) => f.type.compare(`equipment`, true),
+  // },
 ]

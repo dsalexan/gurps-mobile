@@ -720,10 +720,9 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
         if (this.cache.features?.[id] === undefined) {
           factory
             .build(`defense`, id, [2, i], undefined, {
-              context: { templates: DefenseFeatureContextTemplate },
+              context: { templates: [] }, // DefenseFeatureContextTemplate
             })
-            .addPipeline<IGenericFeatureData>([proxy.manual(`name`)])
-            .addSource(`manual`, { type: FEATURE.GENERIC, name: upperFirst(activeDefense) })
+            .addSource(`manual`, { type: FEATURE.DEFENSE, activeDefense: activeDefense, name: upperFirst(activeDefense) })
             .integrateOn(`compile:manual`, this)
         } else {
           // TODO: Implement reactive compile
@@ -743,6 +742,33 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
   // #endregion
 
   // #region UTIL
+
+  getAttribute(attribute: string) {
+    const upper = attribute.toUpperCase()
+    let lower = attribute.toLowerCase().replaceAll(/ +/g, ``)
+
+    if (lower === `perception`) lower = `per`
+
+    let value = {} as { value: number | null; label: string }
+
+    let property = this.system.attributes[upper] ?? this.system[lower]
+
+    if (lower === `sw` || lower === `thr`) {
+      value.value = null
+      value.label = lower === `sw` ? this.system.swing : this.system.thrust
+    } else {
+      // ERROR: Unimplemented
+      if (isNil(property?.value)) debugger
+
+      value.value = parseFloat(property.value)
+      value.label = upper
+    }
+
+    // WARN: Checking UNTESTED attributes, but just when they kind of worked anyway. How?
+    if (![`ST`, `DX`, `IQ`, `HT`, `PER`, `WILL`, `DODGE`, `BASIC SPEED`, `THR`, `SW`].includes(upper)) debugger
+
+    return Object.keys(value).length === 0 ? undefined : value
+  }
 
   // #endregion
 }

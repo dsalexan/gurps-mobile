@@ -7,7 +7,7 @@ import { IGenericFeatureData } from "../generic"
 import { IFeatureData } from "../.."
 import { IBase } from "../../../../../../gurps-extension/utils/base"
 import FeatureUsage from "../../usage"
-import { IFeatureUsageData, IHit, IHitRollToHit, IHitTargetMelee, IUsageEffectDamage, IUse } from "./usage"
+import { IFeatureUsageData, IHit, IHitRollToHit, IHitTargetMelee, IUsageEffectDamage, IUse, UsageType } from "./usage"
 import GenericFeature from "../../generic"
 import LOGGER from "../../../../../logger"
 
@@ -25,6 +25,7 @@ export const FeatureMeleeUsagePipeline: IDerivationPipeline<IFeatureUsageData> =
       }
     }
 
+    const usageType: UsageType = `attack`
     const hit: IHitRollToHit = {
       rule: `roll_to_hit`,
       target: undefined,
@@ -44,7 +45,7 @@ export const FeatureMeleeUsagePipeline: IDerivationPipeline<IFeatureUsageData> =
     if (isNil(hit.target)) debugger
 
     // TODO: Detect affliction
-    return { use, hit, tags: PUSH(`tags`, `attack`) }
+    return { type: usageType, use, hit, tags: PUSH(`tags`, `attack`) }
   }),
   // #endregion
   // #region GCA

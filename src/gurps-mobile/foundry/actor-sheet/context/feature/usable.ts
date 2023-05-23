@@ -1,4 +1,4 @@
-import { cloneDeep, flattenDeep, get, isArray, isNil, isNumber, isString, set } from "lodash"
+import { cloneDeep, flattenDeep, get, isArray, isNil, isNumber, isString, max, orderBy, set } from "lodash"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../context"
 import ContextManager from "../manager"
 import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFeatureDataVariant } from "./interfaces"
@@ -9,14 +9,18 @@ import FeatureBaseContextTemplate from "./base"
 
 import FeatureUsageContextTemplate, { FeatureUsageContextSpecs } from "./variants/usage"
 import GenericFeature from "../../../actor/feature/generic"
+import { calculateLevel, nonSkillVariables, allowedSkillVariables, viabilityTest } from "../../../../../gurps-extension/utils/level"
+import { GurpsMobileActor } from "../../../actor/actor"
+import FeatureUsage from "../../../actor/feature/usage"
 
 export interface FeatureUsagesDataContextSpecs extends ContextSpecs {
   feature: GenericFeature
   //
   usages: ContextSpecs
+  usageFilter?: (usage: FeatureUsage) => boolean
 }
 
-export interface IWeaponizableFeatureContext extends IContext {
+export interface IUsableFeatureContext extends IContext {
   children: Record<string, IFeatureDataContext[]> & { weapons?: IFeatureDataContext[] }
 }
 
@@ -41,7 +45,11 @@ export default class FeatureUsagesDataContextTemplate extends BaseContextTemplat
    */
   static usages(data: IFeatureDataContext[], specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
     if (data === undefined) data = []
+
     const feature = getSpec(specs, `feature`)
+    const actor = getSpec(specs, `actor`) as GurpsMobileActor
+
+    if (!actor) debugger
 
     const hasUsages = feature.data.usages && feature.data.usages.length > 0
     if (!hasUsages) return null
@@ -51,18 +59,48 @@ export default class FeatureUsagesDataContextTemplate extends BaseContextTemplat
     if (data.length > 0) debugger
 
     const usagesSpecs = get(specs, `usages`) ?? {}
+    const usageFilter = get(specs, `usageFilter`)
 
-    for (const usage of feature.data.usages) {
+    const filteredUsages = usageFilter ? feature.data.usages!.filter(usage => usageFilter(usage)) : feature.data.usages!
+
+    const orderedUsages = orderBy(
+      filteredUsages,
+      usage => {
+        let value = { attack: 3, affliction: 2, defense: 1 }[usage.data.type] ?? -Infinity
+        let level = 0
+
+        if (usage.data.use && usage.data.use.rule !== `automatic`) {
+          debugger
+        }
+
+        if (usage.data.hit) {
+          if (usage.data.hit.rule === `automatic`) {
+            // pass
+          } else if (usage.data.hit.rule === `roll_to_hit` || usage.data.hit.rule === `roll_to_resist`) {
+            const levels = usage.data.hit.levels
+            if (levels && levels[0].value) level = levels[0].value
+          } else {
+            debugger
+          }
+        }
+
+        return value + level / 10
+      },
+      `desc`,
+    )
+
+    for (const usage of orderedUsages) {
       const _specs = { ...cloneDeep(usage.__.context.specs ?? {}), ...cloneDeep(usagesSpecs) } as FeatureUsageContextSpecs
       _specs.list = specs.list
+      _specs.secondary = true
       push(_specs, `innerClasses`, `swipe-variant`)
 
       const context = manager.feature(usage, _specs)
 
       const main = context.children.main[0]
       main.id = `usage-${usage.id}`
-      debugger
-      main.variants = FeatureUsageContextTemplate.skillsVariants(main.variants, _specs, manager)
+
+      // main.variants = FeatureUsageContextTemplate.skillsVariants(main.variants, _specs, manager)
 
       main.actions = false
       main.classes = main.classes.filter(classe => classe !== `has-swipe`)
@@ -79,7 +117,7 @@ export default class FeatureUsagesDataContextTemplate extends BaseContextTemplat
     return data
   }
 
-  static base(context: IFeatureContext, specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IWeaponizableFeatureContext {
+  static base(context: IFeatureContext, specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IUsableFeatureContext {
     super.base(context, specs, manager)
 
     const children = get(context, `children`) ?? {}

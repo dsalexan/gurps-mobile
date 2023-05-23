@@ -14,6 +14,7 @@ import {
   has,
   intersection,
   isArray,
+  isEmpty,
   isEqual,
   isFunction,
   isNil,
@@ -46,6 +47,7 @@ import {
 import { EventEmitter } from "@billjs/event-emitter"
 import { Datachanges } from "../../../../december/utils"
 import { deepDiff } from "../../../../december/utils/diff"
+import { ToggableValue } from "../../../core/feature/base"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
@@ -360,6 +362,14 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region EXECUTE derivations and pool results
 
+    // compile a utils object for all pipelines
+    const utils = {} as Record<string, unknown>
+    for (const pipeline of Object.values(this.__.compilation.pipelines)) {
+      if (!pipeline.utils) continue
+      pipeline.utils(utils, this)
+    }
+
+    // execute derivations
     const MDOs = [] as MigrationDataObject[]
     for (const derivation of derivations) {
       let result: ReturnType<typeof derivation.derive>
@@ -368,6 +378,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
         previousSources: this.__.compilation.previousSources,
         sources: this.sources,
         object: this,
+        utils,
       })
 
       // ERROR
@@ -410,6 +421,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     const orderedMDOs = orderBy(preIndexedMDOs, ([depth]) => depth, [`asc`]).map(([, mdo]) => mdo)
 
     const mutableData = {} as TData
+    const newMigrationsByKey = {} as Record<string, MigrationValue<any>[]>
     const recipes = [] as MigrationRecipe<unknown>[]
     for (const mdo of orderedMDOs) {
       const mdoRecipes = resolveMigrationDataObject(mutableData, migratableObject, mdo, context, this)
@@ -420,6 +432,9 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
         if (migratableObject.migrationsByKey[key] === undefined) migratableObject.migrationsByKey[key] = []
         migratableObject.migrationsByKey[key].push(...recipe.migrations)
+
+        if (newMigrationsByKey[key] === undefined) newMigrationsByKey[key] = []
+        newMigrationsByKey[key].push(...recipe.migrations)
       }
 
       recipes.push(...mdoRecipes)
@@ -456,6 +471,9 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
         if (migratableObject.migrationsByKey[key] === undefined) migratableObject.migrationsByKey[key] = []
         migratableObject.migrationsByKey[key].push(...recipe.migrations)
+
+        if (newMigrationsByKey[key] === undefined) newMigrationsByKey[key] = []
+        newMigrationsByKey[key].push(...recipe.migrations)
       }
 
       postRecipes.push(...mdoRecipes)
@@ -468,12 +486,15 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region APPLY results into feature data substructure (NEVER apply into source, value there is readyonly from here)
 
+    // order keys by depth
+    const orderedKeys = orderBy(Object.keys(newMigrationsByKey), key => key.split(`.`).length, [`asc`])
+
     // pass mutated data to this.data
     const mutations = [] as [string, unknown, unknown, MigrationValue<any>[]][]
     const mutatedKeys = [] as string[]
-    for (const key of Object.keys(migratableObject.migrationsByKey)) {
+    for (const key of orderedKeys) {
       // this.fire(`before-compile.${key}`, { key, value: data.data[key], migration: data.migrationsByKey[key] })
-      const migration = migratableObject.migrationsByKey[key]
+      const migration = newMigrationsByKey[key]
       const value = get(mutableData, key)
       const previousValue = get(this.data, key)
 
@@ -501,7 +522,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
         mutations.push([key, cloneDeep(previousValue), cloneDeep(value), migration])
 
         set(this.data, key, value)
-        this.__.compilation.migrations[key] = migration
+        push(this.__.compilation.migrations, key, ...migration)
       }
 
       // this.fire(`after-compile`, { key, value, migration })
@@ -542,7 +563,20 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       document.__STACK_OVERFLOW_FEATURE_PROTECTION[this.id] = overlap
     }
 
-    this.fire(`update`, { feature: this, changes, keys: mutatedKeys, ignoreCompile: overlap })
+    // parse mutated keys into regex expression (LEAVES ONLY)
+    const _keys = [] as (string | RegExp)[]
+    for (let i = 0; i < mutatedKeys.length; i++) {
+      const key = mutatedKeys[i]
+      const otherKeys = mutatedKeys.slice(0, i).concat(mutatedKeys.slice(i + 1))
+
+      const isNotLeaf = otherKeys.some(otherKey => new RegExp(`^${key}\\.`).test(otherKey))
+
+      _keys.push(new RegExp(`^${key}.*`))
+      // if (!isNotLeaf)
+      // else _keys.push(key)
+    }
+
+    this.fire(`update`, { feature: this, changes, keys: _keys, ignoreCompile: overlap })
     this.fire(`compile`, { feature: this, changes, keys: mutatedKeys, ignoreCompile: overlap })
     if (this.__fire_loadFromGCA && changes?.some(key => (isString(key) ? key.startsWith(`gca.`) : key.test(`gca.`)))) {
       this.__fire_loadFromGCA = false
@@ -681,6 +715,77 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       event.data.feature.integrate(actor)
     })
     return this
+  }
+
+  // #endregion
+
+  // #region FOUNDRY
+
+  /**
+   * Any change made here should not affect the html (this._manager.nodes), it will be done inside _updateHTML or _replaceHTML at actor sheet
+   */
+  _toggleFlag<T>(
+    actor: GurpsMobileActor,
+    key: string | number,
+    value: ToggableValue<T> = `__TOGGLE__`,
+    { id = null, removeFalse = true }: { id?: string | null; removeFalse?: boolean } = {},
+  ) {
+    const _id = id ?? this.id
+
+    const _value = value === `__TOGGLE__` ? !actor.getFlag(`gurps`, `${key}.${_id}`) : value
+
+    if (_value) return actor.update({ [`flags.gurps.${key}.${_id}`]: _value })
+    else if (removeFalse) return actor.update({ [`flags.gurps.${key}.-=${_id}`]: null })
+    else return actor.update({ [`flags.gurps.${key}.${_id}`]: false })
+  }
+
+  /**
+   * Toogle HIDDEN flag
+   */
+  hide<T>(actor: GurpsMobileActor, listID: string, value: ToggableValue<T> = `__TOGGLE__`) {
+    // ERROR: It NEEDS a list ID to update hidden
+    // eslint-disable-next-line no-debugger
+    if (isNil(listID) || isEmpty(listID) || !isString(listID)) debugger
+
+    const _listID = listID.replaceAll(/\./g, `-`)
+
+    const flag = get(actor.flags, `gurps.mobile.features.hidden.${this.id}`) ?? {}
+    const current = flag[_listID] as T
+
+    let _value = value as T | boolean
+    if (_value === `__TOGGLE__`) _value = !current
+
+    flag[_listID] = _value
+
+    this._toggleFlag(actor, `mobile.features.hidden`, flag)
+  }
+
+  /**
+   * Toogle PIN flag
+   */
+  pin(actor: GurpsMobileActor, value?: boolean) {
+    this._toggleFlag(actor, `mobile.features.pinned`, value)
+  }
+
+  /**
+   * Toogle EXAPANDED flag
+   */
+  expand<T>(actor: GurpsMobileActor, dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
+    // ERROR: It NEEDS a list ID to update hidden
+    // eslint-disable-next-line no-debugger
+    if (isNil(dataId) || isEmpty(dataId) || !isString(dataId)) debugger
+
+    const _dataId = dataId.replaceAll(/\./g, `-`)
+
+    const flag = get(actor.flags, `gurps.mobile.features.expanded.${this.id}`) ?? {}
+    const current = flag[_dataId] as T
+
+    let _value = value as T | boolean
+    if (_value === `__TOGGLE__`) _value = !current
+
+    flag[_dataId] = _value
+
+    this._toggleFlag(actor, `mobile.features.expanded`, flag)
   }
 
   // #endregion

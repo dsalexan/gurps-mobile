@@ -6,7 +6,7 @@ import { GenericFeaturePipeline, IGenericFeatureData, IGenericFeatureFormulas } 
 import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
 import { IUsableFeatureData, UsableFeaturePipeline } from "./pipelines/usable"
-import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/weapons"
+import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/usable"
 import { isNilOrEmpty } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 import { GenericSource } from "./pipelines"
@@ -61,44 +61,7 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IUsabl
     actor.setFeature(this.id, this)
 
     if (this.data.usages) {
-      const compiledUsages = Object.fromEntries(this.data.usages.map(usage => [usage.id, false]))
-      const registerCompiledUsage = (usage: FeatureUsage) => {
-        compiledUsages[usage.id] = true
-
-        const allLoaded = Object.values(compiledUsages).every(loaded => loaded)
-        if (allLoaded) this.fire(`update`, { keys: [`usages:compiled`] })
-      }
-
-      const registerIntegratedUsage = (usage: FeatureUsage) => {
-        compiledUsages[usage.id] = true
-
-        const allLoaded = Object.values(compiledUsages).every(loaded => loaded)
-        if (allLoaded) this.fire(`update`, { keys: [`usages:integrated`] })
-      }
-
-      for (const usage of this.data.usages) {
-        const alreadyCompiled = usage.__.compilation.compilations > 0
-
-        // LOGGER.info(
-        //   `GenericFeature:assign:integrateOn${alreadyCompiled ? ` (:integrate)` : ``}`,
-        //   usage.id,
-        //   usage.data.name,
-        //   `@`,
-        //   usage.parent.id,
-        //   usage.parent.data.name,
-        //   usage,
-        // )
-
-        usage.integrateOn(`compile:gcs`, actor)
-        if (alreadyCompiled) {
-          registerCompiledUsage(usage)
-          usage.integrate(actor)
-          registerIntegratedUsage(usage)
-        } else {
-          usage.once(`compile`, () => registerCompiledUsage(usage))
-          usage.once(`integrate`, () => registerIntegratedUsage(usage))
-        }
-      }
+      for (const usage of this.data.usages) if (!usage.actor) usage.integrate(actor)
     }
 
     // TECH_LEVEL
@@ -153,73 +116,6 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IUsabl
   // #endregion
 
   // #region FOUNDRY
-
-  /**
-   * Any change made here should not affect the html (this._manager.nodes), it will be done inside _updateHTML or _replaceHTML at actor sheet
-   */
-  _toggleFlag<T>(
-    actor: GurpsMobileActor,
-    key: string | number,
-    value: ToggableValue<T> = `__TOGGLE__`,
-    { id = null, removeFalse = true }: { id?: string | null; removeFalse?: boolean } = {},
-  ) {
-    const _id = id ?? this.id
-
-    const _value = value === `__TOGGLE__` ? !actor.getFlag(`gurps`, `${key}.${_id}`) : value
-
-    if (_value) return actor.update({ [`flags.gurps.${key}.${_id}`]: _value })
-    else if (removeFalse) return actor.update({ [`flags.gurps.${key}.-=${_id}`]: null })
-    else return actor.update({ [`flags.gurps.${key}.${_id}`]: false })
-  }
-
-  /**
-   * Toogle HIDDEN flag
-   */
-  hide<T>(actor: GurpsMobileActor, listID: string, value: ToggableValue<T> = `__TOGGLE__`) {
-    // ERROR: It NEEDS a list ID to update hidden
-    // eslint-disable-next-line no-debugger
-    if (isNil(listID) || isEmpty(listID) || !isString(listID)) debugger
-
-    const _listID = listID.replaceAll(/\./g, `-`)
-
-    const flag = get(actor.flags, `gurps.mobile.features.hidden.${this.id}`) ?? {}
-    const current = flag[_listID] as T
-
-    let _value = value as T | boolean
-    if (_value === `__TOGGLE__`) _value = !current
-
-    flag[_listID] = _value
-
-    this._toggleFlag(actor, `mobile.features.hidden`, flag)
-  }
-
-  /**
-   * Toogle PIN flag
-   */
-  pin(actor: GurpsMobileActor, value?: boolean) {
-    this._toggleFlag(actor, `mobile.features.pinned`, value)
-  }
-
-  /**
-   * Toogle EXAPANDED flag
-   */
-  expand<T>(actor: GurpsMobileActor, dataId: string, value: ToggableValue<T> = `__TOGGLE__`) {
-    // ERROR: It NEEDS a list ID to update hidden
-    // eslint-disable-next-line no-debugger
-    if (isNil(dataId) || isEmpty(dataId) || !isString(dataId)) debugger
-
-    const _dataId = dataId.replaceAll(/\./g, `-`)
-
-    const flag = get(actor.flags, `gurps.mobile.features.expanded.${this.id}`) ?? {}
-    const current = flag[_dataId] as T
-
-    let _value = value as T | boolean
-    if (_value === `__TOGGLE__`) _value = !current
-
-    flag[_dataId] = _value
-
-    this._toggleFlag(actor, `mobile.features.expanded`, flag)
-  }
 
   /**
    * Toogle ROLLER flag

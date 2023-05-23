@@ -7,7 +7,7 @@ import { IGenericFeatureData } from "../generic"
 import { IFeatureData } from "../.."
 import { IBase } from "../../../../../../gurps-extension/utils/base"
 import FeatureUsage from "../../usage"
-import { IFeatureUsageData, IHit, IHitRollToHit, IHitTargetMelee, IHitTargetRanged, IUsageEffectDamage, IUse } from "./usage"
+import { IFeatureUsageData, IHit, IHitRollToHit, IHitTargetMelee, IHitTargetRanged, IUsageEffectDamage, IUse, UsageType } from "./usage"
 import GenericFeature from "../../generic"
 import LOGGER from "../../../../../logger"
 
@@ -28,6 +28,7 @@ export const FeatureRangedUsagePipeline: IDerivationPipeline<IFeatureUsageData> 
         }
       }
 
+      const usageType: UsageType = `attack`
       const hit: IHitRollToHit = {
         rule: `roll_to_hit`,
         target: undefined,
@@ -35,11 +36,12 @@ export const FeatureRangedUsagePipeline: IDerivationPipeline<IFeatureUsageData> 
         //
       }
 
+      // TODO: detect affliction/resist through modifiers
       if (defaults) hit.rolls = defaults.map(_default => parseLevelDefinition(_default))
       // if (damage) hit.success.push({ rule: `damage`, damage: damage } as IUsageEffectDamage)
 
       if (range || accuracy || rate_of_fire || recoil) {
-        const target = {} as IHitTargetRanged
+        const target = { rule: `ranged` } as IHitTargetRanged
         target.range = range as string
         if (accuracy) target.accuracy = parseInt(accuracy as string)
         if (rate_of_fire) target.rof = rate_of_fire as string
@@ -55,7 +57,7 @@ export const FeatureRangedUsagePipeline: IDerivationPipeline<IFeatureUsageData> 
       if (isNil(hit.target)) debugger
 
       // TODO: Detect affliction
-      return { use, hit, tags: PUSH(`tags`, `attack`) }
+      return { type: usageType, use, hit, tags: PUSH(`tags`, `attack`) }
     },
   ),
   // #endregion

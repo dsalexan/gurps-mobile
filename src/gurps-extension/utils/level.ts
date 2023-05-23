@@ -64,7 +64,16 @@ export interface ILevel<THandle extends string = string> {
   definition: ILevelDefinition<THandle>
 }
 
-export type CompoundMathScope = Record<string, { number: number; string?: string }>
+/**
+ * Partial of ILevel, with anything but the numeric value
+ */
+export interface IPreparedLevel<THandle extends string = string> {
+  expression: string
+  scope: CompoundMathScope // holds many types for each variable, but usually numeric and string
+  definition: ILevelDefinition<THandle>
+}
+
+export type CompoundMathScope = Record<string, { number: number; string?: string; reference?: string }>
 
 /**
  * Get scope for a level definition (based on its variables)
@@ -89,7 +98,7 @@ export function prepareScope<TMe extends GenericFeature = GenericFeature>(
     const prefix = symbol.substring(0, firstUnderscoreIndex).toUpperCase()
     const name = symbol.substring(firstUnderscoreIndex + 1)
 
-    let symbolValue: { number: number; string?: string } = { number: null } as any
+    let symbolValue: { number: number; string?: string; reference?: string } = { number: null } as any
 
     if (prefix === `ME`) {
       if (me === undefined) throw new Error(`"me" was not informed, but expression tries to access its property "me::${name}".`)
@@ -163,9 +172,9 @@ export function prepareScope<TMe extends GenericFeature = GenericFeature>(
 }
 
 /**
- * Calculate numeric value from a level definition
+ * Prepare to calculate the numeric value from a level definition
  */
-export function calculateLevel<TMe extends GenericFeature = GenericFeature>(definition: ILevelDefinition, me: TMe, actor: GurpsMobileActor): ILevel | null {
+export function prepareLevel<TMe extends GenericFeature = GenericFeature>(definition: ILevelDefinition, me: TMe, actor: GurpsMobileActor): IPreparedLevel {
   const math = mathInstance()
 
   const expression = preprocess(definition.expression)
@@ -183,6 +192,44 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
     scope = prepareScope(node, definition, me, actor)
   }
 
+  // const entries = mapValues(scope, value => value.number ?? value.string)
+  // const numericScope = new Map(Object.entries(entries))
+
+  // const viable = [...numericScope.values()].some(value => !isNil(value))
+  // if (!viable) return null
+
+  const level = {
+    expression,
+    scope,
+    definition,
+  } as IPreparedLevel
+
+  return level
+}
+
+/**
+ * Calculate numeric value from a level definition
+ */
+export function calculateLevel<TMe extends GenericFeature = GenericFeature>(definition: ILevelDefinition, me: TMe, actor: GurpsMobileActor): ILevel | null {
+  const { scope, expression } = prepareLevel(definition, me, actor)
+
+  const math = mathInstance()
+
+  // const expression = preprocess(definition.expression)
+  const node = math.parse(expression)
+  postprocess(node)
+
+  // let scope = {} as CompoundMathScope
+  // try {
+  //   scope = prepareScope(node, definition, me, actor)
+  // } catch (error) {
+  //   console.error(`parseScope`)
+  //   console.error(error)
+  //   mathError(expression, scope, error)
+  //   debugger
+  //   scope = prepareScope(node, definition, me, actor)
+  // }
+
   const entries = mapValues(scope, value => value.number ?? value.string)
   const numericScope = new Map(Object.entries(entries))
 
@@ -190,11 +237,7 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
   if (!viable) return null
 
   let value: number = undefined as any as number
-  // if (expression === `VAR_B + VAR_P`) {
-  //   debugger
-  //   const code = node.compile()
-  //   value = code.evaluate(numericScope)
-  // }
+
   try {
     const code = node.compile()
     value = code.evaluate(numericScope)
@@ -219,38 +262,44 @@ export function calculateLevel<TMe extends GenericFeature = GenericFeature>(defi
   return level
 }
 
+export function buildSimplifyScope(scope: CompoundMathScope, simplify: true | (string | RegExp | Record<string, string>)[]) {
+  let simplifyScope = scope as CompoundMathScope | MathScope
+
+  if (simplify !== true) {
+    simplifyScope = new Map()
+
+    const keys = Object.keys(scope)
+    for (const simplifyDirective of simplify) {
+      if (typeof simplifyDirective === `string`) {
+        simplifyScope.set(simplifyDirective, scope[simplifyDirective].number ?? scope[simplifyDirective].string)
+      } else if (isRegExp(simplifyDirective)) {
+        const chosenKeys = keys.filter(key => key.match(simplifyDirective))
+        for (const key of chosenKeys) {
+          simplifyScope.set(key, scope[key].number ?? scope[key].string)
+        }
+      } else {
+        for (const [key, value] of Object.entries(simplifyDirective)) {
+          simplifyScope.set(key, value)
+        }
+      }
+    }
+  }
+
+  return simplifyScope
+}
+
 export function levelToTex(
-  level: ILevel,
+  level: ILevel | IPreparedLevel,
   options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | (string | RegExp | Record<string, string>)[]; acronym?: boolean; tex?: boolean } = {},
 ) {
   const math = mathInstance()
   const completeNode = math.parse(level.expression)
-  postprocess(node)
+  postprocess(completeNode)
 
   let node = completeNode
   // TODO: Reimplement simplify from mathjs to keep register of which nodes were simplified
   if (options.simplify) {
-    let simplifyScope = level.scope as CompoundMathScope | MathScope
-
-    if (options.simplify !== true) {
-      simplifyScope = new Map()
-
-      const keys = Object.keys(level.scope)
-      for (const simplifyDirective of options.simplify) {
-        if (typeof simplifyDirective === `string`) {
-          simplifyScope.set(simplifyDirective, level.scope[simplifyDirective].number ?? level.scope[simplifyDirective].string)
-        } else if (isRegExp(simplifyDirective)) {
-          const chosenKeys = keys.filter(key => key.match(simplifyDirective))
-          for (const key of chosenKeys) {
-            simplifyScope.set(key, level.scope[key].number ?? level.scope[key].string)
-          }
-        } else {
-          for (const [key, value] of Object.entries(simplifyDirective)) {
-            simplifyScope.set(key, value)
-          }
-        }
-      }
-    }
+    const simplifyScope = buildSimplifyScope(level.scope, options.simplify)
 
     node = math.simplify(completeNode, simplifyScope)
   }
@@ -309,7 +358,7 @@ export function levelToTex(
 }
 
 export function levelToHTML(
-  level: ILevel,
+  level: ILevel | IPreparedLevel,
   options: Omit<MathPrintOptions, `label`> & { simplify?: boolean | (string | RegExp | Record<string, string>)[]; acronym?: boolean; tex?: boolean } = {},
 ) {
   const math = mathInstance()
@@ -319,27 +368,7 @@ export function levelToHTML(
   let node = completeNode
   // TODO: Reimplement simplify from mathjs to keep register of which nodes were simplified
   if (options.simplify) {
-    let simplifyScope = level.scope as CompoundMathScope | MathScope
-
-    if (options.simplify !== true) {
-      simplifyScope = new Map()
-
-      const keys = Object.keys(level.scope)
-      for (const simplifyDirective of options.simplify) {
-        if (typeof simplifyDirective === `string`) {
-          simplifyScope.set(simplifyDirective, level.scope[simplifyDirective].number ?? level.scope[simplifyDirective].string)
-        } else if (isRegExp(simplifyDirective)) {
-          const chosenKeys = keys.filter(key => key.match(simplifyDirective))
-          for (const key of chosenKeys) {
-            simplifyScope.set(key, level.scope[key].number ?? level.scope[key].string)
-          }
-        } else {
-          for (const [key, value] of Object.entries(simplifyDirective)) {
-            simplifyScope.set(key, value)
-          }
-        }
-      }
-    }
+    const simplifyScope = buildSimplifyScope(level.scope, options.simplify)
 
     node = math.simplify(completeNode, simplifyScope)
   }
@@ -391,14 +420,15 @@ export function levelToHTML(
   })
 }
 
-export function levelToString(level: ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
+export function levelToString(definition: IPreparedLevel | ILevel, options: MathPrintOptions & { simplify?: boolean | string[] } = {}) {
   const math = mathInstance()
-  const completeNode = math.parse(level.expression)
-  postprocess(node)
+  const completeNode = math.parse(definition.expression)
+  postprocess(completeNode)
 
   let node = completeNode
   if (options.simplify) {
-    const simplifyScope = options.simplify === true ? level.scope : Object.fromEntries(options.simplify.map(symbol => [symbol, level.scope[symbol]]))
+    const simplifyScope = buildSimplifyScope(definition.scope, options.simplify)
+
     node = math.simplify(completeNode, simplifyScope)
   }
 
@@ -544,7 +574,7 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
   if (invalidTransforms.length !== 0) debugger
   if (dynamicMeta) debugger
 
-  let value: { number: number; string?: string } = { number: null } as any
+  let value: { number: number; string?: string; reference?: string } = { number: null } as any
 
   if (variable.type === `me`) {
     if (has(me, variable.value as keyof TMe)) {
@@ -578,14 +608,13 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
       }
     }
   } else if (variable.type === `attribute`) {
-    const attribute = variable.value as GURPS4th.Attributes
-    const _value = (actor.system.attributes[attribute.toUpperCase()] ?? actor.system[attribute.toLowerCase().replaceAll(/ +/g, ``)]).value
+    const attribute = actor.getAttribute(variable.value)
 
-    value.number = parseFloat(_value)
-    value.string = attribute.toUpperCase()
+    // ERROR: Unimplemented attribute
+    if (!attribute) debugger
 
-    // WARN: Checking UNTESTED attributes
-    if (![`ST`, `DX`, `IQ`, `HT`, `PER`, `WILL`, `DODGE`, `BASIC SPEED`].includes(attribute.toUpperCase())) debugger
+    value.number = attribute!.value
+    value.string = attribute!.label
 
     // The Rule of 20 (B 173) applies only to defaulting skills to attributes (not every level math is about skills m8)
   } else if (variable.type === `skill`) {
@@ -616,6 +645,7 @@ export function parseVariable<TMe extends GenericFeature = GenericFeature, THand
 
       value.number = level!.value
       value.string = skill.specializedName
+      value.reference = skill.id
 
       // ERROR: Unimplemented
       if (isNil(value.number)) debugger
@@ -663,6 +693,9 @@ export function setupCheck(definition: ILevelDefinition) {
   // ERROR: Untested viability of targetless definitions (if they really exist)  // COMMENT
   if (!definition.variables) debugger // COMMENT
 
+  // ERROR: Untested, no variables to begin with   // COMMENT
+  if (Object.keys(definition.variables ?? {}).length === 0) debugger // COMMENT
+
   // ERROR: Untested, other types then skill/atribute // COMMENT
   if (!types.includes(`skill`) && !types.includes(`attribute`)) debugger // COMMENT
 
@@ -683,21 +716,64 @@ export function allowedSkillVariables(definition: ILevelDefinition, allowedSkill
 
   return allowedSkillVariables
 }
+allowedSkillVariables.positive = `some are allowed skill variables`
+allowedSkillVariables.negative = `there is no allowed skill variables`
 
-export function nonSkillOrAllowedSkillVariables(definition: ILevelDefinition, allowedSkillList: number[], cachedSetup?: ReturnType<typeof setupCheck>) {
+export function nonSkillVariables(definition: ILevelDefinition, cachedSetup?: ReturnType<typeof setupCheck>) {
   let setup = cachedSetup
   if (!setup) setup = setupCheck(definition)
   const { variables } = setup
 
-  const nonSkillOrAllowedSkillVariables = [] as IVariable[]
+  const nonSkillVariables = variables.filter(target => target.type !== `skill`)
 
-  // non-skills
-  nonSkillOrAllowedSkillVariables.push(...variables.filter(target => target.type !== `skill`))
+  return nonSkillVariables
+}
+nonSkillVariables.positive = `some are non-skill variables`
+nonSkillVariables.negative = `all variables are skills`
 
-  // trained skills
-  nonSkillOrAllowedSkillVariables.push(...allowedSkillVariables(definition, allowedSkillList, setup))
+export type ILevelVariableCheck = (typeof allowedSkillVariables | typeof nonSkillVariables) & { positive: string; negative: string }
+export interface ILevelViability {
+  viable: boolean
+  positives: Record<string, string[]> // Record<variable.handle, check.positive[]>
+  negatives: Record<string, string[]> // Record<variable.handle, check.negative[]>
+}
+export function viabilityTest(
+  definition: ILevelDefinition,
+  variableFunctions: ILevelVariableCheck[],
+  options?: { cachedSetup?: ReturnType<typeof setupCheck>; allowedSkillList?: number[] },
+): ILevelViability {
+  let setup = options?.cachedSetup
+  if (!setup) setup = setupCheck(definition)
 
-  return nonSkillOrAllowedSkillVariables
+  const positives = {} as Record<string, string[]> // Record<variable.handle, check.positive[]>
+  const negatives = {} as Record<string, string[]> // Record<variable.handle, check.negative[]>
+
+  // for each of the checking functions
+  const allVariables = setup.variables.map(variable => variable.handle)
+  for (const check of variableFunctions) {
+    let passingVariables = [] as IVariable<string>[]
+
+    // store all viable variables for this function
+    if (check.name === `allowedSkillVariables`) passingVariables = check(definition, options?.allowedSkillList ?? [], setup!)
+    else passingVariables = check(definition, setup!)
+
+    const passingVariablesHandles = passingVariables.map(variable => variable.handle)
+
+    for (const variable of allVariables) {
+      if (passingVariablesHandles.includes(variable)) {
+        if (positives[variable]?.includes(check.positive)) continue
+        push(positives, variable, check.positive)
+      } else {
+        if (negatives[variable]?.includes(check.negative)) continue
+        push(negatives, variable, check.negative)
+      }
+    }
+  }
+
+  // all variables must have at least one positive to be viable
+  let viable = allVariables.reduce((bool, variable) => bool && positives[variable]?.length > 0, true)
+
+  return { viable, positives, negatives }
 }
 
 export function getFeaturesFromVariable(actor: GurpsMobileActor, variable: IVariable) {

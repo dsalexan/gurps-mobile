@@ -19,6 +19,7 @@ export interface FeatureMainVariantContextSpecs extends ContextSpecs {
   index?: number
   tags?: FastTag[]
   variantClasses?: string[]
+  usage?: boolean
 }
 
 export default class FeatureMainVariantContextTemplate extends BaseContextTemplate {
@@ -119,13 +120,14 @@ export default class FeatureMainVariantContextTemplate extends BaseContextTempla
     }
 
     //    TAGS (feature tags, the property)
-    tags.add(
-      ...(feature.data.tags ?? []).map(featureTag => ({
-        type: `feature`,
-        classes: `box`,
-        children: featureTag,
-      })),
-    )
+    if (!specs.usage)
+      tags.add(
+        ...(feature.data.tags ?? []).map(featureTag => ({
+          type: `tag`,
+          classes: `box`,
+          children: featureTag,
+        })),
+      )
 
     //    REFERENCE
     if (feature.data.reference?.length)

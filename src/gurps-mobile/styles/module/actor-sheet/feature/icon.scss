@@ -16,11 +16,11 @@
         & > svg.icon { height: calc(1 * var(--icon-size)); }
       }
 
-      &.secondary {        
-        font-size: calc(0.6 * var(--icon-size));
+      &.secondary {
+        font-size: calc(0.8 * var(--icon-size));
         //
-        margin-right: calc(-0.2 * var(--icon-size));
-        margin-top: calc(-0.6 * var(--icon-size));
+        margin-right: calc(-0.3 * var(--icon-size));
+        margin-top: calc(-0.7 * var(--icon-size));
         text-align: right;
         color: black;
 

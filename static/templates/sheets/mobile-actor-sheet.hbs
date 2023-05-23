@@ -112,106 +112,83 @@
     </div>
 
     <div class="tabs" data-value="{{combatTab}}">
+      {{#if (not (isNilOrEmpty tabs.attacks))}}
       <div class="tab {{equals 'attack' combatTab 'selected'}} {{equals 'attack' tags 'tagged'}}" data-value="attack">
         <div class="wrapper-icon">
           <i class="icon">{{gurpsIcon 'attack'}}</i>
         </div>
         <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.defenses))}}
       <div class="tab {{equals 'defense' combatTab 'selected'}} {{equals 'defense' tags 'tagged'}}" data-value="defense">
         <div class="wrapper-icon">
           <i class="icon">{{gurpsIcon 'defense'}}</i>
         </div>
         <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.traits))}}
       <div class="tab {{equals 'advantage' combatTab 'selected'}} {{equals 'advantage' tags 'tagged'}}" data-value="advantage">
         <div class="wrapper-icon">
           <i class="icon">{{gurpsIcon 'advantage'}}</i>
         </div>
         <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.spell_usage))}}
       <div class="tab {{equals 'spell' combatTab 'selected'}} {{equals 'spell' tags 'tagged'}}" data-value="spell">
         <div class="wrapper-icon">
           <i class="icon">{{gurpsIcon 'spell'}}</i>
         </div>
         <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.equipment_usage))}}
       <div class="tab {{equals 'equipment' combatTab 'selected'}} {{equals 'equipment' tags 'tagged'}}" data-value="equipment">
         <div class="wrapper-icon">
           <i class="icon">{{gurpsIcon 'equipment'}}</i>
         </div>
         <svg class="tag" viewBox="0 0 2 2" fill="currentColor"><circle cx="1" cy="1" r="1" /></svg>
       </div>
+      {{/if}}
     </div>
     <div class="panels">
-      <div class="panel {{equals 'attack' combatTab 'selected'}}" data-value="attack">
+      {{#if (not (isNilOrEmpty tabs.attacks))}}
+      <div class="panel {{equals 'attack' combatTab 'selected'}} {{isNilOrEmpty tabs.attacks 'hidden'}}" data-value="attack">
         {{#each tabs.attacks}}
           {{> gurps/feature_list this}}
         {{/each}}
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.defenses))}}
       <div class="panel {{equals 'defense' combatTab 'selected'}}" data-value="defense">
         {{#each tabs.defenses}}
           {{> gurps/feature_list this}}
         {{/each}}
-      </div>      
+      </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.traits))}}
       <div class="panel {{equals 'advantage' combatTab 'selected'}}" data-value="advantage">
-        <div class="feature interactible">
-          <div class="value">10<i>*</i></div>
-          <div class="label">Air Move</div>
-          <div class="extras">
-            <div>Flight</div>
-            <div>X-Heavy Encumbrance</div>
-          </div>
-          <div class="background-icon">
-            <svg  fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
-            </svg>
-          </div>
-        </div>
-        <div class="feature interactible">
-          <div class="value">10<i>*</i></div>
-          <div class="label">Air Move</div>
-          <div class="extras">
-            <div>Flight</div>
-            <div>X-Heavy Encumbrance</div>
-          </div>
-          <div class="background-icon">
-            <svg  fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
-            </svg>
-          </div>
-        </div>
-        <div class="feature interactible">
-          <div class="value">10<i>*</i></div>
-          <div class="label">Air Move</div>
-          <div class="extras">
-            <div>Flight</div>
-            <div>X-Heavy Encumbrance</div>
-          </div>
-          <div class="background-icon">
-            <svg  fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
-            </svg>
-          </div>
-        </div>
+        {{#each tabs.traits}}
+          {{> gurps/feature_list this}}
+        {{/each}}
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.spell_usage))}}
       <div class="panel {{equals 'spell' combatTab 'selected'}}" data-value="spell">
-        <div class="feature interactible">
-          <div class="value">10<i>*</i></div>
-          <div class="label">Air Move</div>
-          <div class="extras">
-            <div>Flight</div>
-            <div>X-Heavy Encumbrance</div>
-          </div>
-          <div class="background-icon">
-            <svg  fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4Z"/>
-            </svg>
-          </div>
-        </div>
-      </div>      
-      <div class="panel {{equals 'equipment' combatTab 'selected'}}" data-value="equipment">
+        {{#each tabs.spell_usage}}
+          {{> gurps/feature_list this}}
+        {{/each}}
       </div>
+      {{/if}}
+      {{#if (not (isNilOrEmpty tabs.equipment_usage))}}
+      <div class="panel {{equals 'equipment' combatTab 'selected'}}" data-value="equipment">
+        {{#each tabs.equipment_usage}}
+          {{> gurps/feature_list this}}
+        {{/each}}
+      </div>
+      {{/if}}
     </div>
   </div>
   <div class="content ooc light {{actor.flags.gurps.mobile.oocClass}}">

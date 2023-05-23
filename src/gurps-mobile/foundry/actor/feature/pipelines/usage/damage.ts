@@ -1,7 +1,7 @@
 import { String, flatten, isEmpty, isNil, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from ".."
 import { isNilOrEmpty } from "../../../../../../december/utils/lodash"
-import { ILevelDefinition, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
+import { ILevelDefinition, IVariable, createLevelDefinition, createVariable, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
 import { FALLBACK, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "../generic"
 import { IFeatureData } from "../.."
@@ -19,7 +19,28 @@ export const FeatureDamageUsagePipeline: IDerivationPipeline<IFeatureUsageData> 
     const effect = {} as IUsageEffectDamage
 
     effect.rule = `damage`
-    effect.damage = damage as any
+
+    const modifier = !isNil(damage.base) ? parseInt(damage.base) : undefined
+    const base = damage.st as any as `thr` | `sw`
+    const type = damage.type as any as string
+
+    const variables = {} as Record<string, IVariable<string>>
+
+    const expression = [] as string[]
+
+    if (!isNilOrEmpty(base)) {
+      expression.push(`∂ST`)
+      variables.ST = createVariable(`ST`, `attribute`, base, { label: base })
+    }
+
+    if (!isNil(modifier)) {
+      expression.push(`∂MODIFIER`)
+      variables.MODIFIER = createVariable(`MODIFIER`, `constant`, modifier)
+    }
+
+    const definition = createLevelDefinition(expression.join(` + `), variables)
+
+    effect.damage = { definition, type }
 
     if (isNil(effect.damage)) return {}
 

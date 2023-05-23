@@ -124,7 +124,7 @@ export const SkillFeaturePipeline: IDerivationPipeline<ISkillFeatureData> = [
     if (isNil(actor) || isNil(actor.cache.components)) return {}
 
     const skill = object as SkillFeature
-    const modifier = skill.calcActorModifier()
+    const modifier = skill.calcActorModifier(actor)
 
     return { actorModifier: OVERWRITE(`actorModifier`, modifier) }
   }),

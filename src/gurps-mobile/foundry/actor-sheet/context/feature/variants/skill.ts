@@ -9,6 +9,8 @@ import { push } from "../../../../../../december/utils/lodash"
 import SkillFeature from "../../../../actor/feature/skill"
 import { createRoll, parseRollContext } from "../../../../../../gurps-extension/utils/roll"
 import { levelToHTML } from "../../../../../../gurps-extension/utils/level"
+import { parseSign } from "../../../../../../gurps-extension/utils/bonus"
+import GenericFeature from "../../../../actor/feature/generic"
 
 export interface SkillFeatureContextSpecs extends FeatureBaseContextSpecs {
   feature: SkillFeature
@@ -43,12 +45,95 @@ export default class SkillFeatureContextTemplate extends BaseContextTemplate {
     else {
       const level = feature.data.level
       if (level) {
+        const simplify = [/modifier/i]
         variant.value.value = level.value.toString()
-        variant.value.label = levelToHTML(level, { acronym: true })
+        variant.value.label = levelToHTML(level, { acronym: true, simplify })
 
         if (!variant.rolls) variant.rolls = []
         // TODO: Add in content explanation of modifiers sources (proficiency, actor components, defaults, etc)
         variant.rolls.push(parseRollContext(createRoll(level, `regular`), variant.rolls.length))
+
+        const scope = level.scope ?? {}
+        const variables = Object.values(level.definition.variables ?? {})
+        for (const variable of variables) {
+          let icon: string | undefined = undefined
+          let label: string = undefined as any as string
+          let value: number | undefined = undefined
+          const classes = [] as string[]
+
+          const scopedVariable = scope[`VAR_${variable.handle}`] ?? {}
+
+          // FLAG
+          if (variable.flags?.includes(`actor-component`)) {
+            const components = feature.calcActorModifier(actor, true)
+            for (const { component, value } of components) {
+              const source = actor.cache.features?.[component.feature] as GenericFeature
+
+              icon = source.type.icon ?? undefined
+              label = source.data.name
+
+              tags.at(-2).add({
+                type: `variable`,
+                classes: [`box`],
+                children: [
+                  { icon: source.type.icon ?? undefined },
+                  {
+                    classes: [`interactible`],
+                    label: source.specializedName,
+                  },
+                  { label: parseSign(value) },
+                ],
+              })
+            }
+
+            continue
+          }
+
+          // TYPE
+          if (variable.type === `skill`) {
+            const skill = actor.cache.features?.[scopedVariable.reference!] as SkillFeature
+
+            // ERROR: Unimplemented
+            if (!skill) debugger
+
+            icon = skill.data.training === `trained` ? `skill` : `untrained_skill`
+            label = scopedVariable.string!
+            value = scopedVariable.number
+
+            classes.push(`interactible`)
+
+            // ERROR: Unimplemented
+            if (!label) debugger
+            if (isNil(value)) debugger
+          } else if (variable.type === `attribute`) {
+            icon = `attribute`
+            label = scopedVariable.string ?? variable.meta?.name ?? variable.value
+            value = actor.getAttribute(variable.value)?.value ?? undefined
+
+            classes.push(`interactible`)
+          } else if (variable.type === `constant`) {
+            label = variable.label
+            value = parseSign(scopedVariable.number)
+
+            // ERROR: Unimplemented
+            if (!label) debugger
+          } else {
+            // ERROR: Unimplemented
+            debugger
+          }
+
+          const tag = {
+            type: `variable`,
+            classes: [`box`],
+            children: [],
+          } as any
+
+          if (icon) tag.children.push({ icon })
+          tag.children.push({ classes, label })
+          if (value !== undefined) tag.children.push({ label: value.toString() })
+
+          tags.at(-2).add(tag)
+        }
       }
     }
 

@@ -48,10 +48,12 @@
 
   & > .label {
     --font-size: 12px;
+    --color: 88, 88, 88;
+    --light-color: 129, 129, 129;
     grid-area: label;
     //
     padding: 0;
-    color: #585858;
+    color: rgb(var(--color), 1);
     font-family: Roboto;
     font-weight: 400;
     font-size: calc(var(--font-size) * 1);
@@ -97,7 +99,8 @@
 
     & > .math-number, & > .math-paranthesis, & > .math-operator {
       font-weight: 300;
-      color: rgb(var(--light-main-color), 0.75);
+      color: rgb(var(--light-color), 0.75);
+      // color: rgb(var(--light-main-color), 0.75);
     }
 
     // katex

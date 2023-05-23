@@ -1,19 +1,30 @@
-import { String, flatten, isEmpty, isNil, uniq } from "lodash"
+import { String, flatten, intersection, isEmpty, isNil, orderBy, uniq } from "lodash"
 import { GenericSource, IDerivationPipeline, derivation, proxy } from ".."
 import { isNilOrEmpty } from "../../../../../../december/utils/lodash"
-import { ILevelDefinition, parseLevelDefinition } from "../../../../../../gurps-extension/utils/level"
+import {
+  ILevel,
+  ILevelDefinition,
+  calculateLevel,
+  nonSkillVariables,
+  allowedSkillVariables,
+  parseLevelDefinition,
+  viabilityTest,
+} from "../../../../../../gurps-extension/utils/level"
 import { FALLBACK, MigrationDataObject, MigrationValue, OVERWRITE, PUSH, WRITE } from "../../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "../generic"
 import { IFeatureData } from "../.."
 import { IBase } from "../../../../../../gurps-extension/utils/base"
 import FeatureUsage from "../../usage"
 import LOGGER from "../../../../../logger"
+import { GurpsMobileActor } from "../../../actor"
+import GenericFeature from "../../generic"
 
 export type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never
 
 export type UsageManualSource = GenericSource
 
 // #region USE
+
 export interface IUseBase {
   rule: `automatic` | `roll_to_use` | `trigger`
   /**
@@ -37,6 +48,7 @@ export interface IUseAutomatic extends IUseBase {
 export interface IUseRollToUse extends IUseBase {
   rule: `roll_to_use`
   rolls: ILevelDefinition[]
+  levels: ILevel[]
 }
 
 export interface IUseTrigger extends IUseBase {
@@ -69,6 +81,7 @@ export interface IHitRollToHit extends IHitBase {
   rule: `roll_to_hit`
   //
   rolls: ILevelDefinition[]
+  levels: ILevel[]
   // any defense modifier (or attack modifier) is injected into roll definition (that standardizes the treatment of variables on printing definitions)
 }
 
@@ -76,6 +89,7 @@ export interface IHitRollToResist extends IHitBase {
   rule: `roll_to_resist`
   //
   rolls: ILevelDefinition[]
+  levels: ILevel[]
 }
 
 export type IHit = IHitAutomatic | IHitRollToHit | IHitRollToResist
@@ -92,7 +106,7 @@ export interface IUsageEffectBase {
 export interface IUsageEffectDamage extends IUsageEffectBase {
   rule: `damage`
   //
-  damage: { base: number; type: string; st?: `sw` | `thu` }
+  damage: { type: string; definition: ILevelDefinition }
 }
 
 export type IUsageEffect = IUsageEffectDamage
@@ -128,13 +142,72 @@ export type IHitTarget = IHitTargetSelf | IHitTargetMelee | IHitTargetRanged
 
 // #endregion
 
-export const UsageAttackTags = [`attack`, `affliction`] as const
 export const UsageDefenseTags = [`block`, `dodge`, `parry`] as const
 export const UsageDamageTags = [`damage`] as const
 
-export type IUsageTag = ArrayElement<typeof UsageAttackTags | typeof UsageDefenseTags | typeof UsageDamageTags>
+export type UsageType = `attack` | `affliction` | `defense`
+
+export type IUsageTag = ArrayElement<typeof UsageDefenseTags | typeof UsageDamageTags>
+
+export function getUsageType(usage: IFeatureUsageData) {
+  let tags = [] as (`defense` | `unknown`)[]
+  let name: string = undefined as any as string
+  let icon: string | undefined
+
+  // if (usage.use.rule === `automatic`) {
+  //   // pass
+  // } else {
+  //   debugger
+  // }
+
+  // if (usage.hit.rule === `automatic`) {
+  //   // pass
+  // } else if (usage.hit.rule === `roll_to_hit`) {
+  //   debugger
+  // } else if (usage.hit.rule === `roll_to_resist`) {
+  //   debugger
+  // }
+
+  // if (usage.hit.target) {
+  //   if (usage.hit.target.rule === `self`) {
+  //     debugger
+  //   } else if (usage.hit.target.rule === `melee`) {
+  //     debugger
+  //   } else if (usage.hit.target.rule === `ranged`) {
+  //     debugger
+  //   } else {
+  //     debugger
+  //   }
+  // } else {
+  //   debugger
+  // }
+
+  // if (usage.hit.success) {
+  //   debugger
+  // } else {
+  //   debugger
+  // }
+
+  // if (usage.hit.failure) {
+  //   debugger
+  // }
+
+  const defenses = intersection(usage.tags, [`block`, `dodge`, `parry`])
+  if (defenses.length > 0) {
+    if (defenses.length > 1) debugger
+
+    tags.push(`defense`)
+    name = `Active Defense`
+  }
+
+  // ERROR: Unimplemented
+  if (!name) debugger
+
+  return { tags, name, icon }
+}
 
 export interface IFeatureUsageData extends IFeatureData {
+  type: UsageType
   label: string
   tags: IUsageTag[] // general purpose tags for easier filtering
   //
@@ -256,6 +329,54 @@ export const FeatureUsagePipeline: IDerivationPipeline<IFeatureUsageData> = [
 
   //   debugger
   // }),
+  derivation([`use.rolls`], [`use.levels`], function (_, __, { object, utils }: { object: FeatureUsage; utils: { knownSkills: number[] } }) {
+    const feature = object.parent
+    const actor = feature.actor as GurpsMobileActor
+
+    if (object.data.use.rule !== `roll_to_use`) return {}
+    debugger
+
+    const rolls = object.data.use.rolls
+
+    // ERROR: Unimplemented
+    if (isNil(rolls)) debugger
+
+    const levels = rolls.map(definition => {
+      const viability = viabilityTest(definition, [nonSkillVariables, allowedSkillVariables], { allowedSkillList: utils.knownSkills })
+
+      if (viability.viable) return calculateLevel(definition, feature, actor)
+      return { value: null, definition }
+    })
+    const orderedLevels = orderBy(levels, def => def?.value ?? -Infinity, `desc`)
+
+    debugger
+
+    return { "use.levels": OVERWRITE(`use.levels`, orderedLevels) }
+  }),
+  derivation([`hit.rolls`], [`hit.levels`], function (_, __, { object, utils }: { object: FeatureUsage; utils: { knownSkills: number[] } }) {
+    const feature = object.parent
+    const actor = feature.actor as GurpsMobileActor
+
+    if (object.data.hit.rule !== `roll_to_hit` && object.data.hit.rule !== `roll_to_resist`) return {}
+
+    const rolls = object.data.hit.rolls
+
+    // ERROR: Unimplemented
+    if (isNil(rolls)) {
+      LOGGER.error(`Missing "rolls" in ${object.data.hit.rule} usage`, object.data, object)
+      return {}
+    }
+
+    const levels = rolls.map(definition => {
+      const viability = viabilityTest(definition, [nonSkillVariables, allowedSkillVariables], { allowedSkillList: utils.knownSkills })
+
+      if (viability.viable) return calculateLevel(definition, feature, actor)
+      return { value: null, definition, viability }
+    })
+    const orderedLevels = orderBy(levels, def => def?.value ?? -Infinity, `desc`)
+
+    return { "hit.levels": OVERWRITE(`hit.levels`, orderedLevels) }
+  }),
   // // #endregion
 ]
 
@@ -272,6 +393,19 @@ FeatureUsagePipeline.name = `FeatureUsagePipeline`
 //     }
 //   },
 // }
+
+FeatureUsagePipeline.utils = function utilsUsage(utils, object) {
+  const actor = object.actor
+
+  if (!actor) debugger
+
+  // GET ALL TRAINED SKILLS
+  const _knownSkills = actor.getSkills(`known`)
+  const knownSkills = _knownSkills.map(feature => feature.sources.gca?._index).filter(index => !isNil(index))
+
+  utils._knownSkills = _knownSkills
+  utils.knownSkills = knownSkills
+}
 
 FeatureUsagePipeline.post = function postUsage(data) {
   const MDO = {} as MigrationDataObject<any>

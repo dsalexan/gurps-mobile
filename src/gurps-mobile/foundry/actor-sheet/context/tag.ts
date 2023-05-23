@@ -19,7 +19,8 @@ export interface PartialTag {
   children?: FastDisplayable | FastDisplayable[]
 }
 
-export type FastTag = string | [string | string[], string | string[], FastDisplayable | FastDisplayable[]] | PartialTag
+export type IncompleteTag = string | [string | string[], string | string[], FastDisplayable | FastDisplayable[]] | PartialTag
+export type FastTag = IncompleteTag | ITag
 
 export default class TagBuilder {
   tags: ITag[]
@@ -102,7 +103,8 @@ export default class TagBuilder {
    */
 
   //  * @returns {{add: (tag: Tag) => this, update: (callback: any) => this, remove: () => this}}
-  at(index: number) {
+  at(_index: number) {
+    const index = _index < 0 ? this.tags.length + _index : _index
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this
 
@@ -180,6 +182,13 @@ export default class TagBuilder {
       return self.update(index(), callback)
     }
 
-    return { add, push, update }
+    /**
+     * Removes all tags from a certain type
+     */
+    function remove() {
+      self.tags = self.tags.filter(tag => !tag.type?.some(type => types.includes(type)))
+    }
+
+    return { add, push, update, remove }
   }
 }

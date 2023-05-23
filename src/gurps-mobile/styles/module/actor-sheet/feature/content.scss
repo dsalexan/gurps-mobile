@@ -1,6 +1,7 @@
 @use "../../../../../december/utils/styles" as utils;
 
 & > .content {
+  --icon-width: calc(7 * var(--s1));
   --icon-height: calc(7 * var(--s1));
 
   grid-area: content;
@@ -18,26 +19,26 @@
   //   "stats stats"
   //   "buttons buttons";
   grid-template-areas: 
-    "icon main main expand"
-    "icon secondary value value"
-    "icon secondary value value"
-    "icon label-value value value"
+    "icon1 main main expand"
+    "icon2 secondary value value"
+    "icon3 secondary value value"
+    "icon4 label-value value value"
     "stats stats stats stats"
     "rolls rolls rolls rolls"
     "slot1 slot1 slot1 slot1"
     "slot2 slot2 slot2 slot2";
-  grid-template-columns: var(--icon-height) 1fr auto min-content;
+  grid-template-columns: var(--icon-width) 1fr auto min-content;
   /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
   grid-template-rows: auto auto auto auto auto auto auto;
 
   & > * { z-index: 1; }
 
   & > .icon {
-    grid-area: icon;
+    grid-area: icon1 / icon1 / icon4 / icon4;
 
     border-radius: var(--s1);
     background-color: hsl(0, 0%, 95%);
-    width: var(--icon-height);
+    width: var(--icon-width);
     height: var(--icon-height);
 
     & > .wrapper {
@@ -193,7 +194,9 @@
 
     & > .feature-roll {
       & > .label {
-        color: rgb(var(--darker-main-color), 1);
+        --color: var(--dark-main-color);
+        --light-color: var(--semi-dark-main-color);
+        // color: rgb(var(--darker-main-color), 1);
       }
 
       & > .value {
@@ -423,7 +426,9 @@
           }
 
           & > .label {
-            color: rgb(var(--dark-main-color), 1);
+            --color: var(--dark-main-color);
+            --light-color: var(--semi-dark-main-color);
+            // color: rgb(var(--dark-main-color), 1);
           }
         }
       }

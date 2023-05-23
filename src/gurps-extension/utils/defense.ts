@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 import { cloneDeep, flatten, flattenDeep, groupBy, intersection, isNil, orderBy, partition, sum, uniq, uniqBy, unzip } from "lodash"
 import { parseBonus } from "./bonus"
-import { ILevel, ILevelDefinition, calculateLevel, nonSkillOrAllowedSkillVariables } from "./level"
+import { ILevel, ILevelDefinition, calculateLevel, nonSkillVariables, allowedSkillVariables, viabilityTest } from "./level"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { parseExpression } from "../../december/utils/math"
 import SkillFeature from "../../gurps-mobile/foundry/actor/feature/skill"
@@ -185,8 +185,11 @@ export function activeDefenseLevel(
       const defaults = usage.data.rolls ?? []
       if (defaults.length === 0) continue
 
-      const viableDefinitions = defaults.filter(definition => nonSkillOrAllowedSkillVariables(definition, knownLeveledSkills))
+      // calculate level should be source feature, right? (since FeatureUsage is not a GCA concept, most of the formulas would not require a me::)
+      //      technically a FeatureUsage is collection of subsets of skills, as per mode
+      const viableDefinitions = defaults.filter(definition => viabilityTest(definition, [nonSkillVariables, allowedSkillVariables], { allowedSkillList: knownLeveledSkills }))
 
+      debugger
       // get all known leveled skills from viable definitions
       const skillIndexes = viableDefinitions
         .map(definition => {

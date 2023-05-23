@@ -14,21 +14,15 @@ import GenericFeature from "../../../actor/feature/generic"
 import { IAttributeBonusComponent, IComponentDefinition } from "../../../../../gurps-extension/utils/component"
 import { push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
-import { IDefenseLevel } from "../../../actor/feature/pipelines/defense"
 import { levelToHTML, levelToTex } from "../../../../../gurps-extension/utils/level"
 import SkillFeature from "../../../actor/feature/skill"
+import DefenseFeature from "../../../actor/feature/defense"
 
-interface DefenseSpecs {
-  activeDefense: `block` | `dodge` | `parry`
-  components: IAttributeBonusComponent[]
-  adls: IActiveDefenseLevel[]
-}
+interface DefenseSpecs {}
 
 export interface DefenseFeatureContextSpecs extends FeatureBaseContextSpecs {
-  feature: GenericFeature
+  feature: DefenseFeature
   //
-  defense: `block` | `dodge` | `parry`
-  levels: IDefenseLevel[]
 }
 
 export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
@@ -386,10 +380,6 @@ export default class DefenseFeatureContextTemplate extends BaseContextTemplate {
     if (!actor) debugger
 
     const children = get(context, `children`) ?? {}
-
-    const activeDefense = feature.id.replace(`activedefense-`, ``) as `block` | `dodge` | `parry`
-    // const components = actor.getComponents(`attribute_bonus`, (component: IAttributeBonusComponent) => component.attribute.includes(activeDefense), null)
-    // const adls = activeDefenseLevel(activeDefense as any, actor)
 
     // COMPOUNDING CLASSES
     // const classes = [...(context.classes ?? []), `set-move-default`]

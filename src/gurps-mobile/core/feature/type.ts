@@ -14,6 +14,8 @@ export const TypeIDS = [
   `equipment`,
   // usage
   `usage`,
+  // containers
+  `defense`,
 ] as const
 export type TypeID = (typeof TypeIDS)[number]
 
@@ -94,4 +96,6 @@ export const FEATURE = {
   EQUIPMENT: new Type(`Equipment`, `equipment`, `equipment`),
   //
   USAGE: new Type(`Usage`, `usage`, `usage`),
+  //
+  DEFENSE: new Type(`Defense`, `defense`, `defense`),
 } as Record<Uppercase<TypeID>, Type>

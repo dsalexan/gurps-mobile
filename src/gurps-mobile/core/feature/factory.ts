@@ -25,7 +25,7 @@ import { PatternChanges } from "../../../december/utils/datachanges"
 import { GurpsMobileActor } from "../../foundry/actor"
 import { isNilOrEmpty } from "../../../december/utils/lodash"
 import DefenseFeature from "../../foundry/actor/feature/defense"
-import { IDefenseFeatureData } from "../../foundry/actor/feature/pipelines/defense"
+import { IDefenseFeatureData } from "../../foundry/actor/feature/pipelines/old_defense"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 

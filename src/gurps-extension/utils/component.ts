@@ -104,29 +104,29 @@ export function compareComponent(component: ISkillBonusComponent | IComponentDef
       const filters = component.selection_filter
 
       for (const filter of filters) {
+        let satisfiesAllConditions = true
+
+        // if satisfies all conditions of at least one filter
         for (const condition of filter) {
           const { key, compare, qualifier } = condition // ex.: key is qualifier
 
           const value = feature.data[key]
-
-          // ERROR: untested, probably ok
-          if (isNil(value)) debugger
 
           let passed = false
           if ([`is`, `starts_with`, `ends_with`].includes(compare)) {
             const suffix = compare === `is` || compare === `ends_with` ? `$` : ``
             const prefix = compare === `is` || compare === `starts_with` ? `^` : ``
 
-            passed = !!value!.match(new RegExp(`${prefix}${qualifier}${suffix}`, `i`))
+            passed = !!value?.match(new RegExp(`${prefix}${qualifier}${suffix}`, `i`))
           } else {
             // ERROR: Unimplemented compare (in selection_filter)
             debugger
           }
 
-          if (!passed) return false
+          satisfiesAllConditions = satisfiesAllConditions && passed
         }
 
-        return true
+        if (satisfiesAllConditions) return true
       }
     } else {
       // ERROR: Unimplemented selection_type

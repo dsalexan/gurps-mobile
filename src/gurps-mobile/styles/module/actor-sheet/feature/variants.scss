@@ -18,15 +18,15 @@
             margin-left: 0px;
             
             &.main {
-              grid-area: icon / icon / main / main;
+              grid-area: icon1;
             }
             
             &.secondary {
-              grid-area: icon / icon / secondary / secondary;
+              grid-area: icon2 / icon2 / icon3 / icon3;
             }
 
-            &.label {
-              grid-area: icon / icon / label-value / label-value;
+            &.value {
+              grid-area: icon4;
             }
           }
 
@@ -35,6 +35,49 @@
           }
         }
       }
+
+      // "icon main main expand"
+      // "icon secondary value value"
+      // "icon secondary value value"
+      // "icon label-value value value"
+      // "stats stats stats stats"
+      // "rolls rolls rolls rolls"
+      // "slot1 slot1 slot1 slot1"
+      // "slot2 slot2 slot2 slot2";
+
+      &.small-icon {
+        & > .wrapper > .content {
+          --icon-width: calc(1 * var(--s2));
+          --icon-height: calc(2 * var(--s2));
+          
+          & > .icon {
+            background-color: transparent !important;
+            align-items: flex-start !important;
+
+            & > .wrapper {
+              --icon-size: var(--s2);
+              margin-top: -1px;
+
+              & > .icon {
+                &.secondary {
+                  margin-top: -3px;
+                  margin-left: 0px;
+                  margin-right: 0px;
+                  text-align: center;
+                  //
+                  font-size: unset;
+                  color: #BBBBBB;
+
+                  & > svg.icon {
+                    height: auto;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
 
       // #endregion
 
@@ -491,7 +534,8 @@
                 & > .value.roll-selected {
                   & > .feature-roll {
                     & > .label {
-                      color: rgba(var(--darker-main-color), 1);
+                      --color: var(--darker-main-color);
+                      --light-color: var(--dark-main-color);
                     }
 
                     & > .value {

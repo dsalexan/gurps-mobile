@@ -82,7 +82,7 @@ export function parseRollContext(roll: IRoll, step: number, classes?: string[]):
     let target = roll.target!
 
     value = typeof target === `number` ? target.toString() : target.value.toString()
-    label = typeof target === `number` ? undefined : levelToHTML(target, { acronym: true })
+    label = typeof target === `number` ? undefined : levelToHTML(target, { acronym: true, simplify: [/modifier/i] })
 
     if (roll.tags.includes(`self_control`)) label = `<span class="math-symbol">CR</span>`
   }

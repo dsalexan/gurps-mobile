@@ -229,6 +229,7 @@ export type IDerivationPipeline<TData extends IFeatureData, TManualSource extend
 >[] & {
   name?: string
   conflict?: Partial<Record<keyof TData, IConflictResolution<TManualSource>>>
+  utils?: (utils: Record<string, unknown>, object: Feature<TData, TManualSource>) => void
   pre?: (
     this: CompilationContext,
     data: MigratableObject<TData>,

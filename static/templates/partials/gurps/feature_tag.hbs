@@ -2,7 +2,7 @@
 {{#if (isString this)}}
   <div class="tag">{{this}}</div>
 {{else}}
-  <div class="tag {{join classes}} {{join types}}">
+  <div class="tag {{join classes}} {{join type}}">
   {{#each children}}
     {{!-- {{#if @index}}<div class="divider"><div></div></div>{{/if}} --}}
     {{#if (or (not (isNilOrEmpty icon)) (not (isNilOrEmpty label)))}}

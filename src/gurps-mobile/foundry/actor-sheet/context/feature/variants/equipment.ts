@@ -45,52 +45,54 @@ export default class EquipmentFeatureContextTemplate extends BaseContextTemplate
       })
     }
 
-    // WEIGHT
-    if (!isNil(feature.data.weight?.extended)) {
-      tags.type(`type`).push({
-        type: `weight`,
-        classes: [`box`, `collapsed`],
-        children: [
-          { icon: `mdi-weight` },
-          {
-            classes: [], //feature.data.carried ? `interactible` : [],
-            label: `<b>${feature.data.weight.extended}</b> kg`,
-          },
-          {
-            classes: [`interactible`],
-            icon: feature.data.carried ? `mdi-bag-carry-on` : `mdi-bag-carry-on-off`,
-            label: feature.data.carried ? undefined : `Not Carried`,
-          },
-        ],
-      })
+    if (!specs.usage) {
+      // WEIGHT
+      if (!isNil(feature.data.weight?.extended)) {
+        tags.type(`type`).push({
+          type: `weight`,
+          classes: [`box`, `collapsed`],
+          children: [
+            { icon: `mdi-weight` },
+            {
+              classes: [], //feature.data.carried ? `interactible` : [],
+              label: `<b>${feature.data.weight.extended}</b> kg`,
+            },
+            {
+              classes: [`interactible`],
+              icon: feature.data.carried ? `mdi-bag-carry-on` : `mdi-bag-carry-on-off`,
+              label: feature.data.carried ? undefined : `Not Carried`,
+            },
+          ],
+        })
 
-      // if (!main.actions?.right) set(main, `actions.right`, [])
-      // main.actions.right.splice(main.actions.right.length ? 1 : 0, 0, {
-      //   classes: [`horizontal`],
-      //   children: [
-      //     {
-      //       icon: feature.data.carried ? `mdi-bag-carry-on-off` : `mdi-bag-carry-on`,
-      //       classes: [`target`, `action-carry`],
-      //     },
-      //   ],
-      // })
-    }
+        // if (!main.actions?.right) set(main, `actions.right`, [])
+        // main.actions.right.splice(main.actions.right.length ? 1 : 0, 0, {
+        //   classes: [`horizontal`],
+        //   children: [
+        //     {
+        //       icon: feature.data.carried ? `mdi-bag-carry-on-off` : `mdi-bag-carry-on`,
+        //       classes: [`target`, `action-carry`],
+        //     },
+        //   ],
+        // })
+      }
 
-    // COST
-    if (!isNil(feature.data.cost?.extended)) {
-      tags.type(`type`).push({
-        type: `cost`,
-        classes: [`box`],
-        children: [
-          {
-            icon: `mdi-currency-usd`,
-          },
-          {
-            classes: `interactible`,
-            label: `<b>${feature.data.cost.extended}</b> cp`,
-          },
-        ],
-      })
+      // COST
+      if (!isNil(feature.data.cost?.extended)) {
+        tags.type(`type`).push({
+          type: `cost`,
+          classes: [`box`],
+          children: [
+            {
+              icon: `mdi-currency-usd`,
+            },
+            {
+              classes: `interactible`,
+              label: `<b>${feature.data.cost.extended}</b> cp`,
+            },
+          ],
+        })
+      }
     }
 
     variant.tags = tags.tags

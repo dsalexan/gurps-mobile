@@ -7,7 +7,7 @@ import { SkillFeaturePipeline, ISkillFeatureData, SkillManualSource } from "./pi
 import { Utils } from "../../../core/feature"
 import { GurpsMobileActor } from "../actor"
 import { IUsableFeatureData, WeaponizableFeaturePipeline } from "./pipelines/usable"
-import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/weapons"
+import FeatureWeaponsDataContextTemplate from "../../actor-sheet/context/feature/usable"
 import { isNilOrEmpty, push } from "../../../../december/utils/lodash"
 import { GURPS4th } from "../../../../gurps-extension/types/gurps4th"
 import GenericFeature from "./generic"
@@ -333,9 +333,7 @@ export default class SkillFeature extends GenericFeature {
     return 0
   }
 
-  calcActorModifier(): number {
-    const actor = this.actor
-
+  calcActorModifier(actor: GurpsMobileActor, components = false): number | { component: IComponentDefinition; value: number }[] {
     // ERROR: Unimplemented
     if (isNil(actor)) throw new Error(`Cannot calculate actor modifier for skill an actor dude`)
 
@@ -381,6 +379,8 @@ export default class SkillFeature extends GenericFeature {
     const unavailableComponents = componentsBonus.filter(({ value }) => isNil(value) || isNaN(value))
     const availableComponents = componentsBonus.filter(({ value }) => !(isNil(value) || isNaN(value)))
 
+    if (components) return availableComponents
+
     const actorBonus = availableComponents.map(({ value }) => value).reduce((a, b) => a + b, 0)
 
     return actorBonus
@@ -412,13 +412,13 @@ export default class SkillFeature extends GenericFeature {
       const variables = { B } as any
 
       if (proficiencyModifier) {
-        variables.P = createVariable(`P`, `constant`, proficiencyModifier, { label: `Profiency` })
-        expression += ` + ∂P`
+        variables.PROFICIENCY_MODIFIER = createVariable(`PROFICIENCY_MODIFIER`, `constant`, proficiencyModifier, { label: `Proficiency` })
+        expression += ` + ∂PROFICIENCY_MODIFIER`
       }
 
       if (actorModifier) {
-        variables.A = createVariable(`A`, `constant`, actorModifier, { label: `Actor` })
-        expression += ` + ∂A`
+        variables.ACTOR_MODIFIER = createVariable(`ACTOR_MODIFIER`, `constant`, actorModifier, { label: `Actor Bonus`, flags: [`actor-component`] })
+        expression += ` + ∂ACTOR_MODIFIER`
       }
 
       const definition = createLevelDefinition(expression, variables, { flags })

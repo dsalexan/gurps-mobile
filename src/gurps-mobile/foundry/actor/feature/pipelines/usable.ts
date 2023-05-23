@@ -17,7 +17,6 @@ import { FeatureMeleeUsagePipeline } from "./usage/melee"
 import { FeatureRangedUsagePipeline } from "./usage/ranged"
 import { FeatureDamageUsagePipeline } from "./usage/damage"
 import { FeatureDefenseUsagePipeline } from "./usage/defense"
-import { GCATypes } from "../../../../core/gca/types"
 
 export interface IUsableFeatureData extends IFeatureData {
   recipes?: IUsageRecipe[]
@@ -37,7 +36,7 @@ export interface IUsageRecipe {
 
 export const UsableFeaturePipeline: IDerivationPipeline<IUsableFeatureData & IGenericFeatureData> = [
   //
-  derivation([`gcs:weapons`, `gca`], [`recipes`], function derivationWeaponToUsages(_, __, { object }) {
+  derivation([`gcs:weapons`], [`recipes`], function derivationWeaponToUsages(_, __, { object }) {
     const { weapons, recipes: existingRecipes } = object.sources.gcs ?? {}
 
     if (weapons && weapons.length > 0) {
@@ -74,13 +73,15 @@ export const UsableFeaturePipeline: IDerivationPipeline<IUsableFeatureData & IGe
 
         const localRecipes = [] as IUsageRecipe[]
 
+        // TODO: Malediction (roll against Will to use, target roll a Quick Contest of your Will vs. his Will (default Will, could be other shit) to resist)
+
         // WEAPON.TYPE
         if (weapon.type === `melee_weapon`) {
           const recipe = cloneDeep(baseRecipe) as IUsageRecipe
 
           recipe.id = `${recipe.id}-melee`
           recipe.pipelines.push(FeatureMeleeUsagePipeline)
-          recipe.pipelines.push(FeatureDamageUsagePipeline)
+          if (weapon.damage) recipe.pipelines.push(FeatureDamageUsagePipeline)
 
           localRecipes.push(recipe)
         } else if (weapon.type === `ranged_weapon`) {
@@ -88,7 +89,7 @@ export const UsableFeaturePipeline: IDerivationPipeline<IUsableFeatureData & IGe
 
           recipe.id = `${recipe.id}-ranged`
           recipe.pipelines.push(FeatureRangedUsagePipeline)
-          recipe.pipelines.push(FeatureDamageUsagePipeline)
+          if (weapon.damage) recipe.pipelines.push(FeatureDamageUsagePipeline)
 
           localRecipes.push(recipe)
         } else {
@@ -253,6 +254,7 @@ export const UsableFeaturePipeline: IDerivationPipeline<IUsableFeatureData & IGe
 
   // #region DATA
   derivation([`recipes`], [`usages`], function (_, __, { object }: { object: GenericFeature }) {
+    const actor = object.actor
     const factory = object.factory
     const allRecipes = object.data.recipes ?? []
 
@@ -297,6 +299,8 @@ export const UsableFeaturePipeline: IDerivationPipeline<IUsableFeatureData & IGe
         //     event.data.feature,
         //   )
         // })
+
+        if (actor) feature.integrate(actor)
 
         features.push(feature as any as FeatureUsage)
       }

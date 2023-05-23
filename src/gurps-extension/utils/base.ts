@@ -48,18 +48,13 @@ export function getBaseValue(base: IBase, actor?: GurpsMobileActor): number | nu
   }
 
   if (base.type === `attribute`) {
-    const lower = base.name.toLowerCase().trim()
-    const upper = base.name.toUpperCase().trim()
-
-    let id = lower.replaceAll(/ +/g, ``)
-    if (lower === `perception`) id = `per`
-
-    const attribute = actor.system.attributes[id] ?? actor.system[id]
+    const attribute = actor.getAttribute(base.name)
 
     // ERROR: Unimplemented attribute
     if (!attribute) debugger
+    if (isNil(attribute!.value)) debugger
 
-    return attribute?.value
+    return attribute!.value as number
   }
 
   if ([`advantage`, `skill`].includes(base.type)) {

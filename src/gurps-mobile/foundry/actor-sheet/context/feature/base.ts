@@ -6,6 +6,7 @@ import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import GenericFeature from "../../../actor/feature/generic"
 import { GurpsMobileActor } from "../../../actor/actor"
+import Feature from "../../../actor/feature"
 
 export interface FeatureDataVariantActionSpecs {
   noDefault?: boolean
@@ -13,14 +14,16 @@ export interface FeatureDataVariantActionSpecs {
 
 export interface FeatureBaseContextSpecs extends ContextSpecs {
   actor: GurpsMobileActor
-  feature: GenericFeature
+  feature: GenericFeature | Feature
   label?: string
   ignoreSpecialization?: boolean
   proxyTo?: GenericFeature[]
+  secondary?: boolean
   //
   index?: number
   innerClasses?: string[]
   actions?: false | { left: FeatureDataVariantActionSpecs; right: FeatureDataVariantActionSpecs }
+  usage?: boolean
 }
 
 export default class FeatureBaseContextTemplate extends BaseContextTemplate {
