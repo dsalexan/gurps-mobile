@@ -9,7 +9,8 @@
     "build": "node server/build.js",
     "foundry": "gulp link",
     "foundry:clean": "gulp link --clean",
-    "gca": "node scripts/gca/index.js"
+    "gca": "node scripts/gca/index.js",
+    "sheet": "node ./scripts/sheet"
   },
   "dependencies": {
     "@billjs/event-emitter": "^1.0.3",

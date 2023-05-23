@@ -45,11 +45,16 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
   const base_points = get(raw, `base_points`) as number | undefined
   let points = get(raw, `calc.points`, 0) as number
   const points_per_level = get(raw, `points_per_level`, 0)
+  const tags = get(raw, `tags`, []) as string[]
 
   if (points === 0 && !isNil(base_points)) points = base_points
 
   if (type === `trait`) {
     const probablyNaturalAttacks = points === 0 && !points_per_level && !!raw.name?.match(/natural attacks?/gi)
+
+    if (tags.some(tag => tag.match(/^spell$/i) || tag.match(/^spell list$/i))) {
+      return FEATURE.SPELL
+    }
 
     let genericAdvantage = !points && !probablyNaturalAttacks
     let purposefulGenericAdvantage = false
@@ -113,7 +118,8 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
       else if (isNil(points_per_level) && singlePoint) return FEATURE.PERK
       return FEATURE.ADVANTAGE
     } else return FEATURE.GENERIC_ADVANTAGE
-  } else if (type === `skill`) return FEATURE.SKILL
+  } else if (type === `technique`) return FEATURE.SKILL
+  else if (type === `skill`) return FEATURE.SKILL
   else if (type === `spell`) return FEATURE.SPELL
   else if (type === `equipment`) return FEATURE.EQUIPMENT
   else if (type === `weapon`) return FEATURE.USAGE

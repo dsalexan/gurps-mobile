@@ -55,6 +55,7 @@ export interface IGenericFeatureData extends IFeatureData {
   group?: string // string to group features by
   links: string[] // strings to establish relationships between features
   components: IComponentDefinition[] // basically modifiers to other features or aspects of the actor
+  placeholder?: boolean // placeholder entry, should be mostly ignored
 }
 
 export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = [

@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { before, cloneDeep, findIndex, indexOf, isArray, isNil, isString, uniq } from "lodash"
+import { before, cloneDeep, findIndex, indexOf, isArray, isNil, isString, last, uniq } from "lodash"
 
 import { FeatureCollection } from "./collection"
 
@@ -23,9 +23,11 @@ import { EventEmitter } from "@billjs/event-emitter"
 import { Datachanges } from "../../../december/utils"
 import { PatternChanges } from "../../../december/utils/datachanges"
 import { GurpsMobileActor } from "../../foundry/actor"
-import { isNilOrEmpty } from "../../../december/utils/lodash"
+import { isNilOrEmpty, isNumeric } from "../../../december/utils/lodash"
 import DefenseFeature from "../../foundry/actor/feature/defense"
 import { IDefenseFeatureData } from "../../foundry/actor/feature/pipelines/old_defense"
+import { typeFromGCS } from "./utils"
+import { asNumber } from "../../../december/utils/string"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
@@ -39,6 +41,14 @@ export type FeatureDataByType = {
   usage: IFeatureUsageData
   //
   defense: IDefenseFeatureData
+}
+
+export interface DeepGCSOptions {
+  actor: GurpsMobileActor
+  datachanges: Datachanges
+  templateByType: Partial<Record<keyof FeatureDataByType, FeatureTemplate>>
+  path?: string
+  rootKey?: number[]
 }
 
 export default class FeatureFactory extends EventEmitter {
@@ -142,7 +152,7 @@ export default class FeatureFactory extends EventEmitter {
     rootKey: number | number[],
     path: string,
     parent?: Feature<any, any>,
-    template?: FeatureTemplate,
+    templateByType?: Record<keyof FeatureDataByType, FeatureTemplate>,
   ) {
     const collection = new FeatureCollection()
     if (!GCS) return collection
@@ -157,6 +167,9 @@ export default class FeatureFactory extends EventEmitter {
       let feature: GenericFeature
 
       if (!featureExists) {
+        const template = templateByType[type]
+        if (isNil(template)) debugger
+
         // effectivelly creates and compiles feature
         feature = this.build(type, gcs.id, [...(isArray(rootKey) ? rootKey : [rootKey]), parseInt(key)], parent, template) as any
 
@@ -183,12 +196,115 @@ export default class FeatureFactory extends EventEmitter {
         // ERROR: Pathless parent
         if (parent && !parent.path) debugger
 
+        const template = templateByType[type]
+        if (isNil(template)) debugger
+
         const childrenCollection = this.GCS(actor, datachanges, type, children, [], `${feature.path!}.children`, feature, template)
 
         // only adds to collection new features (to be GCA loaded and compiled on main thread)
         if (!featureExists) {
           feature.children.push(...(childrenCollection.items as any[]))
           collection.add(...childrenCollection.items)
+        }
+      }
+    }
+
+    return collection
+  }
+
+  /**
+   * Compile GCS entries into features
+   */
+  deepGCS(GCS: object, parent: Feature<any> | null, { actor, datachanges, templateByType, path, rootKey }: DeepGCSOptions) {
+    const collection = new FeatureCollection()
+    if (!GCS) return collection
+
+    if (parent) {
+      if (isNil(path)) path = parent.path ?? undefined
+      if (isNil(rootKey)) rootKey = parent.key.array
+    }
+
+    const entries = isArray(GCS) ? GCS.map((c, i) => [i, c]) : Object.entries(GCS)
+
+    for (const [key, object] of entries) {
+      const numericKey = !(isNumeric(key) || typeof key === `number`) ? asNumber(key) : parseInt(key)
+
+      if (isArray(object)) {
+        const _collection = this.deepGCS(object, parent, {
+          actor,
+          datachanges,
+          templateByType,
+          path: `${isNilOrEmpty(path) ? `` : `${path}.`}${key}`,
+          rootKey: [...(rootKey ?? []), numericKey],
+        })
+
+        collection.add(..._collection.items)
+      } else {
+        const doesFeatureExist = actor.cache.features?.[object.id] !== undefined
+        let feature: GenericFeature
+
+        if (doesFeatureExist) {
+          // feature already exists, just inform update
+          debugger
+          const changes = datachanges?.listAll(new RegExp(`system\\.move\\.${key}`, `i`))
+          feature = actor.cache.features?.[object.id] as GenericFeature
+
+          // ERROR: Wtf m8
+          if (feature === undefined) debugger
+
+          this.react(feature!, changes, (feature, changes) => {
+            debugger
+          })
+        }
+
+        const featureType = typeFromGCS(object)
+        let type = undefined as any as keyof FeatureDataByType
+        if (featureType.compare(`generic_advantage`, false)) type = `advantage`
+        else if (featureType.compare(`skill`)) type = `skill`
+        else if (featureType.compare(`spell`)) type = `spell`
+        else if (featureType.compare(`equipment`)) type = `equipment`
+        else {
+          // ERROR: Unimplemented conversion from feature type
+          debugger
+        }
+
+        const template = templateByType[type]
+        if (!template) debugger
+
+        if (!object.id) debugger
+
+        // effectivelly creates and compiles feature
+
+        // ERROR: Untested for string keys
+        if (isString(key) && !isNumeric(key)) debugger
+
+        const localPath = `${isNilOrEmpty(path) ? `` : `${path}.`}${key}`
+        const localKey = [...(rootKey ?? []), numericKey]
+
+        feature = this.build(type, object.id, localKey, parent ?? undefined, template) as any
+        feature.addSource(`gcs`, object, { path: localPath })
+        collection.add(feature)
+
+        // just maintain the loop, call deepGCS for children
+        if (!isNil(object.children)) {
+          const childrenCollection = this.deepGCS(object.children, feature, { actor, datachanges, templateByType, path: `${localPath}.children`, rootKey: localKey })
+
+          // just push built features to composite
+          collection.add(...childrenCollection.items)
+
+          // look at every feature and add it to correct index inside parent
+          const ids = object.children.map(child => child.id)
+          const children = childrenCollection.items.filter(item => ids.includes(item.id))
+
+          for (const child of children) {
+            const destinationIndex = last(child.key.array)!
+
+            // ERROR: Feature already has a children at destination index
+            if (feature.children[destinationIndex] !== undefined) debugger
+
+            if (!feature.children) feature.children = []
+            feature.children[destinationIndex] = child as any
+          }
         }
       }
     }

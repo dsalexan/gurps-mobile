@@ -119,6 +119,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   type: Type // weird case, set lately on GCS setting
   id: string
   key: {
+    array: number[]
     tree: (string | number)[]
     value: number
   }
@@ -126,7 +127,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   children: Feature<IFeatureData, GenericSource>[]
   // TODO: add path, key and prefix to GCS source
 
-  constructor(id: string, key: number | number[], parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
+  constructor(id: string, key: number[], parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
     super()
 
     // META DATA
@@ -161,7 +162,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
     const key_tree = Utils.keyTree(key, parent)
     // IMMUTABLE DATA
     this.id = id
-    this.key = { tree: key_tree, value: Utils.keyTreeValue(key_tree) }
+    this.key = { array: key, tree: key_tree, value: Utils.keyTreeValue(key_tree) }
     this.parent = parent
     this.children = []
 

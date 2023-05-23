@@ -1,7 +1,7 @@
 import { isNil } from "lodash"
 import { IDerivationPipeline, derivation, proxy } from "."
 import { calculateLevel, createLevelDefinition, createVariable } from "../../../../../gurps-extension/utils/level"
-import { MigrationDataObject, OVERWRITE, PUSH } from "../../../../core/feature/compilation/migration"
+import { MigrationDataObject, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./generic"
 import { IUsableFeatureData } from "./usable"
 import { parseExpression } from "../../../../../december/utils/math"
@@ -117,6 +117,14 @@ AdvantageFeaturePipeline.post = function postAdvantage(data) {
 
       MDO.meta = OVERWRITE(`meta`, meta1)
       MDO.links = PUSH(`links`, links)
+
+      if (links.some(link => link.split(`.`)[0] === `placeholder`)) {
+        MDO.links = PUSH(
+          `links`,
+          links.filter(link => link.split(`.`)[0] !== `placeholder`),
+        )
+        MDO.placeholder = WRITE(`placeholder`, true)
+      }
     }
   }
 

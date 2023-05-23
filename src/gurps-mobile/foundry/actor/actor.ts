@@ -1,11 +1,11 @@
-import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil, omit, sum } from "lodash"
+import { flatten, flattenDeep, get, has, isString, set, isObjectLike, groupBy, sortBy, filter, range, isArray, upperFirst, isRegExp, isNil, omit, sum, pick } from "lodash"
 
 import { MODULE_ID } from "config"
 import LOGGER from "logger"
 
 import { Datachanges } from "december/utils"
 import BaseFeature from "../../core/feature/base"
-import FeatureFactory, { FeatureDataByType } from "../../core/feature/factory"
+import FeatureFactory, { DeepGCSOptions, FeatureDataByType } from "../../core/feature/factory"
 
 import ContextManager from "../actor-sheet/context/manager"
 import MoveFeatureContextTemplate from "../actor-sheet/context/feature/variants/move"
@@ -393,7 +393,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const do_basicspeed = all || this._datachanges?.has(`system.basicspeed`)
     const do_moves = all || this._datachanges?.has(/system\.move\.\d+$/i)
     //
-    const do_ads = all || this._datachanges?.has(/system\.ads$/i)
+    const do_traits = all || this._datachanges?.has(/system\.traits$/i)
     const do_skills = all || this._datachanges?.has(/system\.skills$/i)
     const do_spells = all || this._datachanges?.has(/system\.spells$/i)
     const do_carried_equipment = all || this._datachanges?.has(/system\.equipment\.carried$/i)
@@ -405,7 +405,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       do_basicspeed,
       do_moves,
       //
-      do_ads,
+      do_traits,
       do_skills,
       do_spells,
       do_carried_equipment,
@@ -609,34 +609,55 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const actorData = this.system // where "gurps" stores parsed GCS data (as recommended by v9 of foundry)
     const rawGCS = actorData._import // where my modded version of "gurps" store raw GCS data
 
-    const { do_ads, do_skills, do_spells, do_carried_equipment, do_other_equipment } = dos
+    const { do_traits, do_skills, do_spells, do_carried_equipment, do_other_equipment } = dos
 
-    if ([do_ads, do_skills, do_spells, do_carried_equipment, do_other_equipment].every(b => !b)) return
+    if ([do_traits, do_skills, do_spells, do_carried_equipment, do_other_equipment].every(b => !b)) return
 
     console.log(` `)
 
+    const options = {
+      actor: this,
+      datachanges,
+      templateByType: {
+        advantage: {
+          context: { templates: AdvantageFeatureContextTemplate },
+        },
+        skill: {
+          context: { templates: SkillFeatureContextTemplate },
+        },
+        spell: {
+          context: { templates: SpellFeatureContextTemplate },
+        },
+        equipment: {
+          context: { templates: EquipmentFeatureContextTemplate },
+        },
+      },
+    } as DeepGCSOptions
+
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
-    if (do_ads) {
-      const timer_advantages = logger.openGroup(true).info(`    Advantages`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
-      factory
-        .GCS(this, datachanges, `advantage`, rawGCS.traits, [], `traits`, undefined, {
-          context: { templates: AdvantageFeatureContextTemplate },
-        })
+    if (do_traits) {
+      const timer_advantages = logger.openGroup(true).info(`    Traits`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareAdvantages`) // COMMENT
+      factory //
+        .deepGCS(pick(rawGCS, `traits`), undefined, options)
         .loadFromGCAOn(`compile:gcs`, true)
         .integrateOn(`loadFromGCA`, this)
 
       factory.startCompilation()
-      this.updateFeature(Object.values(this.cache.features ?? {}), [`actor.advantages`])
-      timer_advantages.group()(`    Advantages`, [`font-weight: bold;`]) // COMMENT
+
+      const allFeatures = Object.values(this.cache.features ?? {})
+      const advantages = allFeatures.filter(feature => feature.type.compare(`generic_advantage`, false))
+      const spells = allFeatures.filter(feature => feature.type.compare(`spell`, false))
+
+      if (advantages.length) this.updateFeature(advantages, [`actor.advantages`])
+      if (spells.length) this.updateFeature(spells, [`actor.spells`])
+      timer_advantages.group()(`    Traits`, [`font-weight: bold;`]) // COMMENT
     }
 
     if (do_skills) {
       const timer_skills = logger.openGroup().info(`    Skills`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSkills`) // COMMENT
-      factory
-        .GCS(this, datachanges, `skill`, rawGCS.skills, [], `skills`, undefined, {
-          context: { templates: SkillFeatureContextTemplate },
-        })
+      factory //
+        .deepGCS(pick(rawGCS, `skills`), undefined, options)
         .loadFromGCAOn(`compile:gcs`, true)
         .integrateOn(`loadFromGCA`, this)
 
@@ -665,10 +686,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
 
     if (do_spells) {
       const timer_spells = logger.openGroup().info(`    Spells`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareSpells`) // COMMENT
-      factory
-        .GCS(this, datachanges, `spell`, rawGCS.spells, [], `spells`, undefined, {
-          context: { templates: SpellFeatureContextTemplate },
-        })
+      factory //
+        .deepGCS(pick(rawGCS, `spells`), undefined, options)
         .loadFromGCAOn(`compile:gcs`, true)
         .integrateOn(`loadFromGCA`, this)
 
@@ -680,10 +699,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     if (do_carried_equipment) {
       // eslint-disable-next-line prettier/prettier
       const timer_carried_equipment = logger.openGroup().info(`    Carried Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareCarriedEquipment`) // COMMENT
-      factory
-        .GCS(this, datachanges, `equipment`, rawGCS.equipment, [], `equipment`, undefined, {
-          context: { templates: EquipmentFeatureContextTemplate },
-        })
+      factory //
+        .deepGCS(pick(rawGCS, `equipment`), undefined, options)
         .addSource(`manual`, { carried: true }, { delayCompile: true })
         .loadFromGCAOn(`compile:gcs`, true)
         .integrateOn(`loadFromGCA`, this)
@@ -697,10 +714,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     if (do_other_equipment) {
       // eslint-disable-next-line prettier/prettier
       const timer_other_equipment = logger.openGroup().info(`    Other Equipment`, [`color: rgba(0, 0, 0, 0.5); font-weight: regular; font-style: italic;`]).time(`prepareOtherEquipment`) // COMMENT
-      factory
-        .GCS(this, datachanges, `equipment`, rawGCS.other_equipment, [], `other_equipment`, undefined, {
-          context: { templates: EquipmentFeatureContextTemplate },
-        })
+      factory //
+        .deepGCS(pick(rawGCS, `other_equipment`), undefined, options)
         .addSource(`manual`, { carried: false }, { delayCompile: true })
         .loadFromGCAOn(`compile:gcs`, true)
         .integrateOn(`loadFromGCA`, this)

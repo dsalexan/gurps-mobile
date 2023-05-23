@@ -171,7 +171,15 @@ export default class ContextManager {
       for (const featureId of _features) {
         const feature = byId[featureId]
 
-        const parent = allowedParents.includes(feature.parent?.id) ? feature.parent?.id : undefined
+        let featureParent = feature.parent
+        while (featureParent) {
+          const isParentAllowed = allowedParents.includes(featureParent.id)
+          if (isParentAllowed) break
+
+          featureParent = featureParent.parent
+        }
+
+        const parent = allowedParents.includes(featureParent?.id) ? featureParent?.id : undefined
 
         if (includes(parents, parent)) {
           remove.push(featureId)
@@ -179,6 +187,8 @@ export default class ContextManager {
           push(byDepth, depth, feature.id)
           push(byParent, String(parent), feature.id)
         }
+
+        if (feature.data.name === `Wizardly Study`) debugger
       }
 
       parents = cloneDeep(byDepth[depth]) // update parents for next iteration
