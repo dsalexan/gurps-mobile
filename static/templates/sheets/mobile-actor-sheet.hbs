@@ -240,7 +240,7 @@
       </div>      
       <div class="panel {{equals 'skill' oocTab 'selected'}}" data-value="skill">
         <div class="header flex-end">
-          <div class="button" data-value="search-skills">
+          <div class="button modal" data-value="search-skills">
             <div class="wrapper-icon">
               <i class="icon mdi mdi-magnify"></i>
             </div>
@@ -258,11 +258,59 @@
       </div>      
       <div class="panel {{equals 'equipment' oocTab 'selected'}}" data-value="equipment">
         <div class="header flex-end">
-          <div class="button">
+          <div class="button wrapper coin-pouch" data-value="coin-pouch">
+            <div class="appendix">
+              <div class="total">
+                <b>10</b> kg
+              </div>
+            </div>
+            <div class="appendix">
+              <div class="total">
+                $ <b>100</b>
+              </div>
+            </div>
             <div class="wrapper-icon">
               <i class="icon">{{gurpsIcon 'coin'}}</i>
             </div>
             <div class="label">Coin Pouch</div>
+          </div>
+        </div>
+        <div class="header">
+          <div class="wrapper coin-pouch hidden">
+            <div class="coins">
+              <div class="coin">
+                <div class="wrapper-icon" style="color: silver;"><i class="icon mdi mdi-rhombus"></i></div>
+                <div class="label"><b>100</b> gp</div>
+                <div class="label secondary">$ <b>101000</b></div>
+                <div class="label secondary"><b>10</b> kg</div>
+              </div>
+              <div class="coin">
+                <div class="wrapper-icon" style="color: goldenrod;"><i class="icon mdi mdi-circle"></i></div>
+                <div class="label"><b>100</b> gp</div>
+                <div class="label secondary">$ <b>101000</b></div>
+                <div class="label secondary"><b>10</b> kg</div>
+              </div>
+              <div class="coin">
+                <div class="wrapper-icon" style="color: rgb(105, 105, 105);"><i class="icon mdi mdi-triangle"></i></div>
+                <div class="label"><b>100</b> gp</div>
+                <div class="label secondary">$ <b>101000</b></div>
+                <div class="label secondary"><b>10</b> kg</div>
+              </div>
+              <div class="coin">
+                <div class="wrapper-icon" style="color: #844e22;"><i class="icon mdi mdi-square-rounded"></i></div>
+                <div class="label"><b>100</b> gp</div>
+                <div class="label secondary">$ <b>101000</b></div>
+                <div class="label secondary"><b>10</b> kg</div>
+              </div>
+            </div>
+            <div class="others">
+              <div class="treasure">
+                <div class="wrapper-icon" style="color: rgb(22, 193, 209);"><i class="icon mdi mdi-diamond"></i></div>
+                <div class="label"><b>Diamond Dust</b>, 10 kg</div>
+                <div class="label secondary"><b>100</b> gp or $ <b>101000</b></div>
+                <div class="label secondary"><b>10</b> kg</div>
+              </div>
+            </div>
           </div>
         </div>
         {{#each tabs.equipment}}
@@ -304,6 +352,7 @@
       </div>
     </div>
   </div>
+  <!-- modals -->
   <div class="modal has-features search-skills hidden menu" data-filter="search-skills">
     <div class="backdrop"></div>
 

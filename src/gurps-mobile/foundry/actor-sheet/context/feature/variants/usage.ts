@@ -1,4 +1,4 @@
-import { flatten, flattenDeep, get, intersection, isArray, isNil, isNumber, isString, orderBy, set, uniq } from "lodash"
+import { flatten, flattenDeep, get, intersection, isArray, isNil, isNumber, isString, orderBy, set, startCase, uniq } from "lodash"
 import { FeatureBaseContextSpecs } from "../base"
 import BaseContextTemplate, { ContextSpecs, IContext, getSpec } from "../../context"
 import { Displayable, FastDisplayable, IFeatureContext, IFeatureDataContext, IFeatureDataVariant, ITag } from "../interfaces"
@@ -324,6 +324,8 @@ export default class FeatureUsageContextTemplate extends BaseContextTemplate {
                 icon = `attribute`
                 label = scopedVariable.string ?? variable.meta?.name ?? variable.value
                 value = actor.getAttribute(variable.value)?.value ?? undefined
+
+                if (label.length > 4) label = startCase(label.toLowerCase())
               } else {
                 // ERROR: Unimplemented
                 debugger

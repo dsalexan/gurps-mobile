@@ -839,34 +839,34 @@ const FeatureGroups = [
     },
   },
   // ooc
-  // {
-  //   section: `occ`,
-  //   key: `advantages`,
-  //   filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
-  // },
-  // {
-  //   section: `occ`,
-  //   key: `skills`,
-  //   filter: (f: SkillFeature) => {
-  //     if (!f.type.compare(`skill`, true)) return false
-  //     if (f.data.container) return f.children.some(c => c.data.training === `trained`)
-  //     return f.data.training === `trained`
-  //   },
-  //   sort: (f: SkillFeature) => {
-  //     if (f.data.training === `untrained`) return -1
-  //     if (f.data.training === `unknown`) return -Infinity
-  //     return parseInt(f.key.tree[0].toString())
-  //   },
-  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  // },
-  // {
-  //   section: `occ`,
-  //   key: `spells`,
-  //   filter: (f: Feature<any, any>) => f.type.compare(`spell`, true),
-  // },
-  // {
-  //   section: `occ`,
-  //   key: `equipment`,
-  //   filter: (f: Feature<any, any>) => f.type.compare(`equipment`, true),
-  // },
+  {
+    section: `occ`,
+    key: `advantages`,
+    filter: (f: Feature<any, any>) => f.type.compare(`generic_advantage`, false),
+  },
+  {
+    section: `occ`,
+    key: `skills`,
+    filter: (f: SkillFeature) => {
+      if (!f.type.compare(`skill`, true)) return false
+      if (f.data.container) return f.children.some(c => c.data.training === `trained`)
+      return f.data.training === `trained`
+    },
+    sort: (f: SkillFeature) => {
+      if (f.data.training === `untrained`) return -1
+      if (f.data.training === `unknown`) return -Infinity
+      return parseInt(f.key.tree[0].toString())
+    },
+    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  },
+  {
+    section: `occ`,
+    key: `spells`,
+    filter: (f: Feature<any, any>) => f.type.compare(`spell`, true),
+  },
+  {
+    section: `occ`,
+    key: `equipment`,
+    filter: (f: Feature<any, any>) => f.type.compare(`equipment`, true),
+  },
 ]

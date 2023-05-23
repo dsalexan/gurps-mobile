@@ -61,16 +61,20 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     HTMLFeature(html.find(`.feature[data-id="${id}"]`), feature, feature.actor).listen()
   }
 
-  // Modals
-  // Search Skills
-  html.find(`.content.ooc > .panels > .panel[data-value="skill"] > .header > .button[data-value="search-skills"]`).on(`click`, ev => {
+  // Wrapper
+  // SHOW
+  html.find(`.content > .panels > .panel > .header > .button.wrapper`).on(`click`, ev => {
     if ($(ev.currentTarget).hasClass(`disabled`)) return
 
-    html.find(`.modal.search-skills`).removeClass(`hidden`)
+    const id = $(ev.currentTarget).data(`value`)
+    html.find(`.wrapper.${id}`).toggleClass(`hidden`)
   })
 
+  // Modals
+  // Render all modals
   modal.render(sheet, html)
 
+  // Search Skills
   const id = `#search-skills-auto-complete`
   const autoCompleteJS = createAutoComplete(id, GCA.skills.list, `queryResult`, (entry: { value: GCA.IndexedSkill }) => {
     const actor = GURPS.LastAccessedActor as any as GurpsMobileActor

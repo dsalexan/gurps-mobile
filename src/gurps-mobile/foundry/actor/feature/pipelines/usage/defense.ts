@@ -61,18 +61,20 @@ export const FeatureDefenseUsagePipeline: IDerivationPipeline<IFeatureUsageData,
 
     // #region get formula from feature (parent)
 
-    // only ADVANTAGE or EQUIPMENT feature can have a formula
-    if (![`advantage`, `equipment`].some(type => object.type.compare(type))) {
+    // only ADVANTAGE or EQUIPMENT or GENERIC feature can have a formula
+    if ([`advantage`, `equipment`].some(type => object.type.compare(type)) || object.type.compare(`generic`, true)) {
       featureFormula = (feature?.data.formulas?.activeDefense?.[activeDefense] ?? null) as string | null
-      if (isArray(featureFormula)) debugger
+
+      if (isArray(featureFormula) && featureFormula.length !== 1) debugger
+      if (isArray(featureFormula)) featureFormula = featureFormula[0]
     }
 
     // setup default formula/base
     if (featureFormula === `__default__formula__`) {
-      if (activeDefense === `block`) {
+      if (activeDefense === `dodge`) {
         featureFormula = `@int(∂A) + 3`
         featureBase = { type: `attribute`, value: `basic speed` }
-      } else if (activeDefense === `dodge`) {
+      } else if (activeDefense === `block`) {
         debugger
       } else if (activeDefense === `parry`) {
         debugger

@@ -3,6 +3,14 @@ import { GurpsMobileActorSheet } from "../.."
 import { createAutoComplete } from "./autocomplete"
 
 export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) {
+  // SHOW
+  html.find(`.content > .panels > .panel > .header > .button.modal`).on(`click`, ev => {
+    if ($(ev.currentTarget).hasClass(`disabled`)) return
+
+    const id = $(ev.currentTarget).data(`value`)
+    html.find(`.modal.${id}`).removeClass(`hidden`)
+  })
+
   // BUTTONS
   html.find(`.modal > .wrapper > .header > .button.menu`).on(`click`, event => {
     $(event.currentTarget).parents(`.modal`).toggleClass(`menu`)

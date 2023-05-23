@@ -24,6 +24,7 @@ import SkillFeature from "./feature/skill"
 import Fuse from "fuse.js"
 import { push } from "../../../december/utils/lodash"
 import Feature from "./feature"
+import { FeatureDefenseUsagePipeline } from "./feature/pipelines/usage/defense"
 
 export type ActorCache = {
   lastImport: string
@@ -510,7 +511,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
             .build(`generic`, id, [0, 0], undefined, {
               context: { templates: MoveFeatureContextTemplate },
             })
-            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`), proxy.manual(`formulas`)])
+            .addPipeline<IGenericFeatureData>([proxy.manual(`name`), proxy.manual(`label`), proxy.manual(`value`), proxy.manual(`formulas`), proxy.manual(`recipes`)])
             .addSource(
               `manual`,
               {
@@ -518,7 +519,25 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
                 name: game.i18n.localize(`GURPS.basicspeed`),
                 label: `GURPS.basicspeed`,
                 ...((actorData.basicspeed as any) ?? {}),
-                formulas: { activeDefense: { dodge: [`__default__formula__`] } },
+                formulas: { activeDefense: { dodge: `__default__formula__` } },
+                recipes: [
+                  {
+                    id: `manual-${id}-dodge`,
+                    index: [23, 0],
+                    path: null,
+                    pipelines: [FeatureDefenseUsagePipeline],
+                    source: id,
+                    sources: {
+                      manual: { mode: `dodge` },
+                      gcs: {
+                        usage: `Dodge`,
+                        dodge: `0`,
+                        defaults: [],
+                      },
+                    },
+                    tags: [],
+                  },
+                ],
               },
               { path: `basicspeed` },
             )

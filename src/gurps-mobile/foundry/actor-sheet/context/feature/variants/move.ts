@@ -61,11 +61,12 @@ export default class MoveFeatureContextTemplate extends BaseContextTemplate {
       ...(variant ?? {}),
       classes,
       //
-      value,
       mark,
       //
       tags: tags.tags,
     }
+
+    if (!specs.usage) variant.value = value
 
     return [variant]
   }

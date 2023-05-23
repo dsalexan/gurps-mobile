@@ -24,8 +24,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-bottom: calc(var(--s1-5));
       color: #777;
+
+      &:last-of-type { margin-bottom: calc(var(--s1-5)); }
 
       &.flex-end {
         justify-content: flex-end;
@@ -41,6 +42,7 @@
         //
         display: flex;
         justify-content: center;
+        align-items: center;
 
         &:first-of-type {
           margin-left: 0;
