@@ -12,6 +12,8 @@ export const TypeIDS = [
   `skill`,
   `spell`,
   `equipment`,
+  `power`,
+  `spell_as_power`,
   // usage
   `usage`,
   // containers
@@ -88,6 +90,7 @@ export const FEATURE = {
   GENERIC: new Type(`Generic`, `generic`, null),
   GENERIC_ADVANTAGE: new Type(`Generic Advantage`, `generic_advantage`, `advantage`),
   ADVANTAGE: new Type(`Advantage`, [`generic_advantage`, `advantage`], `advantage`),
+  SPELL_AS_POWER: new Type(`Spell`, [`generic_advantage`, `advantage`, `spell`], `spell`),
   DISADVANTAGE: new Type(`Disadvantage`, [`generic_advantage`, `disadvantage`], `disadvantage`),
   PERK: new Type(`Perk`, [`generic_advantage`, `advantage`, `perk`], `advantage`),
   QUIRK: new Type(`Quirk`, [`generic_advantage`, `disadvantage`, `quirk`], `disadvantage`),

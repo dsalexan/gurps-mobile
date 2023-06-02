@@ -15,13 +15,15 @@ import { derivation, passthrough, proxy } from "./pipelines"
 import { MERGE } from "../../../core/feature/compilation/migration"
 import { IGenericFeatureData } from "./pipelines/generic"
 import type { GCA } from "../../../core/gca/types"
+import { ParentFeaturePipeline } from "./pipelines/parent"
 
 export default class FeatureUsage extends Feature<IFeatureUsageData, any> {
   declare data: IFeatureUsageData
   declare parent: GenericFeature
 
-  constructor(id: string, key: number | number[], parent?: GenericFeature, template?: FeatureTemplate) {
+  constructor(id: string, key: string | number | (string | number)[], parent?: GenericFeature, template?: FeatureTemplate) {
     super(id, key, parent, template)
+    this.addPipeline(ParentFeaturePipeline)
     this.addPipeline(FeatureUsagePipeline)
   }
 

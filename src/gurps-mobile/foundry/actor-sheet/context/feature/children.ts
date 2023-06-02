@@ -5,45 +5,49 @@ import { Displayable, IFeatureAction, IFeatureContext, IFeatureDataContext, IFea
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import LOGGER from "../../../../logger"
 import TagBuilder, { FastTag } from "../tag"
-import FeatureBaseContextTemplate from "./base"
+import FeatureBaseContextTemplate, { FeatureBaseContextSpecs } from "./base"
 
 import FeatureUsageContextTemplate, { FeatureUsageContextSpecs } from "./variants/usage"
 import GenericFeature from "../../../actor/feature/generic"
 import { calculateLevel, nonSkillVariables, allowedSkillVariables, viabilityTest } from "../../../../../gurps-extension/utils/level"
 import { GurpsMobileActor } from "../../../actor/actor"
 import FeatureUsage from "../../../actor/feature/usage"
+import { FeatureMainVariantContextSpecs } from "./main"
+import Feature from "../../../actor/feature"
 
-export interface FeatureUsagesDataContextSpecs extends ContextSpecs {
+export interface FeatureChildrenDataContextSpecs extends ContextSpecs {
   feature: GenericFeature
   //
-  usages: ContextSpecs
-  usageFilter?: (usage: FeatureUsage) => boolean
+  child: ContextSpecs
+  childFilter?: (child: Feature<any, any>) => boolean
 }
 
 export interface IUsableFeatureContext extends IContext {
   children: Record<string, IFeatureDataContext[]> & { weapons?: IFeatureDataContext[] }
 }
 
-export default class FeatureUsagesDataContextTemplate extends BaseContextTemplate {
+export default class FeatureChildrenDataContextTemplate extends BaseContextTemplate {
   static pre(context: IContext, specs: ContextSpecs, manager: ContextManager): IContext {
     super.pre(context, specs, manager)
 
     const feature = getSpec(specs, `feature`)
-    const hasUsages = feature.data.usages && feature.data.usages.length > 0
 
-    if (hasUsages) {
+    const isNotContainer = !feature.data.container
+    const hasChildren = feature.data.children && feature.data.children.length > 0
+
+    if (isNotContainer && hasChildren) {
       context._template.push(`feature-usages`)
       if (context._metadata?.childrenKeys === undefined) set(context, `_metadata.childrenKeys`, [])
-      context._metadata?.childrenKeys.push([5, `usages`])
+      context._metadata?.childrenKeys.push([3, `children`])
     }
 
     return context
   }
 
   /**
-   * Builds N FeatureData's, one for every weapon linked to feature
+   * Builds N FeatureData's, one for every feature fathered(?) to feature
    */
-  static usages(data: IFeatureDataContext[], specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
+  static children(data: IFeatureDataContext[], specs: FeatureChildrenDataContextSpecs, manager: ContextManager): IFeatureDataContext[] | null {
     if (data === undefined) data = []
 
     const feature = getSpec(specs, `feature`)
@@ -51,56 +55,32 @@ export default class FeatureUsagesDataContextTemplate extends BaseContextTemplat
 
     if (!actor) debugger
 
-    const hasUsages = feature.data.usages && feature.data.usages.length > 0
-    if (!hasUsages) return null
+    const isNotContainer = !feature.data.container
+    const hasChildren = feature.data.children && feature.data.children.length > 0
+    if (!hasChildren || !isNotContainer) return null
 
     // WARN: Unimplemented pre-defined featureData array
     // eslint-disable-next-line no-debugger
     if (data.length > 0) debugger
 
-    const usagesSpecs = get(specs, `usages`) ?? {}
-    const usageFilter = get(specs, `usageFilter`)
+    const childSpecs = get(specs, `child`) ?? {}
+    const childFilter = get(specs, `childFilter`)
 
-    const usages = feature.data.usages!
+    const features = actor.cache.features!
+    const children = feature.data.children!.map(id => features[id])
 
-    const filteredUsages = usageFilter ? usages.filter(usage => usageFilter(usage)) : usages
+    const filteredChildren = childFilter ? children.filter(child => childFilter(child)) : children
 
-    const orderedUsages = orderBy(
-      filteredUsages,
-      usage => {
-        let value = { attack: 3, affliction: 2, defense: 1 }[usage.data.type] ?? -Infinity
-        let level = 0
-
-        if (usage.data.use && usage.data.use.rule !== `automatic`) {
-          debugger
-        }
-
-        if (usage.data.hit) {
-          if (usage.data.hit.rule === `automatic`) {
-            // pass
-          } else if (usage.data.hit.rule === `roll_to_hit` || usage.data.hit.rule === `roll_to_resist`) {
-            const levels = usage.data.hit.levels
-            if (levels && levels[0].value) level = levels[0].value
-          } else {
-            debugger
-          }
-        }
-
-        return value + level / 10
-      },
-      `desc`,
-    )
-
-    for (const usage of orderedUsages) {
-      const _specs = { ...cloneDeep(usage.__.context.specs ?? {}), ...cloneDeep(usagesSpecs) } as FeatureUsageContextSpecs
+    for (const child of filteredChildren) {
+      const _specs = { ...cloneDeep(child.__.context.specs ?? {}), ...cloneDeep(childSpecs) } as FeatureBaseContextSpecs & FeatureMainVariantContextSpecs
       _specs.list = specs.list
       _specs.secondary = true
-      push(_specs, `innerClasses`, `swipe-variant`)
+      // push(_specs, `innerClasses`, `swipe-variant`)
 
-      const context = manager.feature(usage, _specs)
+      const context = manager.feature(child, _specs)
 
       const main = context.children.main[0]
-      main.id = `usage-${usage.id}`
+      main.id = `child-${child.id}`
 
       // main.variants = FeatureUsageContextTemplate.skillsVariants(main.variants, _specs, manager)
 
@@ -119,20 +99,20 @@ export default class FeatureUsagesDataContextTemplate extends BaseContextTemplat
     return data
   }
 
-  static base(context: IFeatureContext, specs: FeatureUsagesDataContextSpecs, manager: ContextManager): IUsableFeatureContext {
+  static base(context: IFeatureContext, specs: FeatureChildrenDataContextSpecs, manager: ContextManager): IUsableFeatureContext {
     super.base(context, specs, manager)
 
-    const children = get(context, `children`) ?? {}
+    const contextChildren = get(context, `children`) ?? {}
 
-    const usages = this.usages(children.usages, specs, manager)
-    if (!usages) return context
+    const children = this.children(contextChildren.children, specs, manager)
+    if (!children) return context
 
     context = {
       ...context,
       // {key: FeatureData} -> {main, ...secondaries}
       children: {
-        ...children,
-        usages,
+        ...contextChildren,
+        children,
       },
     }
 

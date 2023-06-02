@@ -1,4 +1,4 @@
-import { isNil, uniq } from "lodash"
+import { intersection, isNil, uniq } from "lodash"
 import { IDerivationPipeline, derivation, proxy } from "."
 import { calculateLevel, createLevelDefinition, createVariable } from "../../../../../gurps-extension/utils/level"
 import { MigrationDataObject, OVERWRITE, PUSH, WRITE } from "../../../../core/feature/compilation/migration"
@@ -6,6 +6,9 @@ import { IGenericFeatureData } from "./generic"
 import { IUsableFeatureData } from "./usable"
 import { parseExpression } from "../../../../../december/utils/math"
 import { IRoll, createRoll } from "../../../../../gurps-extension/utils/roll"
+import { IModifier, IModifierCost, parseModifier } from "../../../../../gurps-extension/utils/modifier"
+import { isNilOrEmpty } from "../../../../../december/utils/lodash"
+import { parseSpecializedName, specializedName } from "../../../../core/feature/utils"
 
 export interface IAdvantageFeatureData extends IGenericFeatureData, IUsableFeatureData {
   rolls?: IRoll[]
@@ -49,6 +52,22 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
 
     return { level }
   }),
+  derivation.gcs(`modifiers`, `level`, function ({ modifiers: allModifiers }) {
+    if (this.container) return {}
+    if (isNil(allModifiers)) return {}
+    if (this.type.compare(`disadvantage`, false)) return {}
+
+    const modifiers = allModifiers.filter(modifier => !modifier.disabled)
+
+    const newModifiers = [] as IModifier[]
+    for (const raw of modifiers) {
+      const modifiersFromRaw = parseModifier(raw)
+
+      newModifiers.push(...modifiersFromRaw)
+    }
+
+    return { modifiers: OVERWRITE(`modifiers`, newModifiers) }
+  }),
   // #endregion
   // #region GCA
   proxy.gca(`cost`),
@@ -62,6 +81,7 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
 
       if (isNaN(max_level)) debugger
 
+      if (max_level === 0) return {}
       return { maxLevel: max_level }
     }
 
@@ -69,6 +89,16 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
   }),
   // #endregion
   // #region DATA
+  // derivation([`gcs`], [], function (_, __, { object }) {
+  //   const gcs = object.sources.gcs
+  //   if (gcs.type?.endsWith(`_container`)) return {}
+
+  //   if (object.type.compare(`spell_as_power`)) {
+  //     debugger
+  //   }
+
+  //   return {}
+  // }),
   derivation([`gcs:cr`, `gca:mods`], [`rolls`], function (_, __, { object }) {
     const { gcs, gca } = object.sources
     const { cr } = gcs ?? {}
@@ -117,36 +147,49 @@ AdvantageFeaturePipeline.post = function postAdvantage(data) {
     let links = [] as string[]
 
     for (const meta of metaList) {
-      if (meta.includes(`:`)) {
-        const [_meta, _link] = linkFromVTTNotes(meta)
+      // colon without spaces around
+      if (meta.match(/(?<! ):(?! )/)) {
+        const [_meta, ..._values] = meta.split(`:`)
 
-        newMeta.push(_meta)
-        links.push(..._link)
+        // ERROR: Unimplemented
+        if (_values.length !== 1) debugger
+
+        newMeta.push(meta)
+      } else {
+        newMeta.push(meta)
       }
     }
 
+    // LINKS
+    MDO.links = PUSH(`links`, uniq(links))
+
+    // META
     newMeta = uniq(newMeta)
-    links = uniq(links)
 
-    MDO.meta = OVERWRITE(`meta`, newMeta)
-    MDO.links = PUSH(`links`, links)
+    const basedOn = newMeta.filter(meta => meta.startsWith(`based_on:`))
+    const nonBasedOn = newMeta.filter(meta => !meta.startsWith(`based_on:`))
 
-    if (links.some(link => link.split(`.`)[0] === `placeholder`)) {
-      MDO.links = PUSH(
-        `links`,
-        links.filter(link => link.split(`.`)[0] !== `placeholder`),
+    const placeholder = nonBasedOn.filter(meta => meta.startsWith(`placeholder:`))
+    const nonPlaceholder = nonBasedOn.filter(meta => !meta.startsWith(`placeholder:`))
+
+    MDO.meta = OVERWRITE(`meta`, nonPlaceholder)
+
+    // DEDICATED META
+    if (basedOn.length > 0)
+      MDO.basedOn = OVERWRITE(
+        `basedOn`,
+        basedOn.map(link => {
+          const [, fullName, type] = link.split(`:`)
+
+          const obj = parseSpecializedName(fullName) as { name: string; specialization?: string; fullName: string; type?: string }
+          obj.fullName = specializedName(obj.name, obj.specialization)
+          obj.type = type
+
+          return obj as { name: string; specialization?: string; fullName: string; type?: string }
+        }),
       )
-      MDO.placeholder = WRITE(`placeholder`, true)
-    }
+    if (placeholder.length > 0) MDO.placeholder = WRITE(`placeholder`, true)
   }
 
   return MDO
-}
-
-function linkFromVTTNotes(_meta: string) {
-  const pattern = / ?\w+:([\w:]+)\w+\b ?/gi
-  const links = _meta.match(pattern)
-  const meta = _meta.replace(pattern, ``)
-
-  return [meta, links ? links.map(match => match.replace(/ */gi, ``).replace(/:/gi, `.`)) : []] as [string, string[]]
 }

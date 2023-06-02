@@ -14,13 +14,18 @@ import { ILevel } from "../../../../gurps-extension/utils/level"
 import FeatureProxiesDataContextTemplate from "../../actor-sheet/context/feature/proxy"
 import SkillFeature from "./skill"
 import FeatureUsage from "./usage"
+import { TypeIDS } from "../../../core/feature/type"
+import { ParentFeaturePipeline } from "./pipelines/parent"
+import FeatureChildrenDataContextTemplate from "../../actor-sheet/context/feature/children"
 
 export default class GenericFeature extends Feature<IGenericFeatureData & IUsableFeatureData, any> {
-  constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
+  constructor(id: string, key: string | number | (string | number)[], parent?: Feature<any, any>, template?: FeatureTemplate) {
     super(id, key, parent, template)
+    this.addPipeline(ParentFeaturePipeline)
     this.addPipeline(GenericFeaturePipeline)
     this.addPipeline(UsableFeaturePipeline)
 
+    this.__.context.templates.push(FeatureChildrenDataContextTemplate)
     this.__.context.templates.push(FeatureWeaponsDataContextTemplate)
     this.__.context.templates.push(FeatureProxiesDataContextTemplate)
   }
@@ -106,12 +111,34 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IUsabl
       return parameters
     }
 
-    const name = this.data.name
-    const specializedName = isNil(this.data.specialization) ? this.data.name : this.specializedName
+    let name = this.data.name
+    let specializedName = isNil(this.data.specialization) ? this.data.name : this.specializedName
     const merge = true
+
+    if (this.data.basedOn?.length) {
+      // ERROR: Unimplemented multiple basedOn
+      if (this.data.basedOn?.length > 1) debugger
+
+      const basedOn = this.data.basedOn[0]
+
+      // Unimplemented basedOn type
+      if (![...TypeIDS, undefined].includes(basedOn.type as any)) debugger
+
+      name = basedOn.name
+      specializedName = basedOn.fullName
+      parameters.type = basedOn.type as any
+
+      parameters.fromBasedOn = true
+    }
 
     return { ...parameters, directive: `continue` as const, name, specializedName, merge }
   }
+
+  // loadFromGCA(cache = false) {
+  //   super.loadFromGCA(cache)
+
+  //   return this
+  // }
 
   // #endregion
 

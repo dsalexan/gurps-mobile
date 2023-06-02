@@ -103,6 +103,10 @@ export default class Logger {
     return this
   }
 
+  log(...message: any[]) {
+    return this.info(message)
+  }
+
   group(collapsed?: boolean) {
     const needsClosing = this.closeGroups > 0
 

@@ -36,7 +36,7 @@ import { expression } from "mathjs"
 export default class SkillFeature extends GenericFeature {
   declare data: ISkillFeatureData
 
-  constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
+  constructor(id: string, key: string | number | (string | number)[], parent?: Feature<any, any>, template?: FeatureTemplate) {
     super(id, key, parent, template)
     this.addPipeline(SkillFeaturePipeline)
   }

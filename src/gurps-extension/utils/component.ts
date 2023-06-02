@@ -2,9 +2,10 @@ import { GCS } from "../types/gcs"
 import Feature, { IFeatureData } from "../../gurps-mobile/foundry/actor/feature"
 import { GenericSource } from "../../gurps-mobile/foundry/actor/feature/pipelines"
 import GenericFeature from "../../gurps-mobile/foundry/actor/feature/generic"
-import { cloneDeep, isArray, isNil } from "lodash"
+import { cloneDeep, intersection, isArray, isNil } from "lodash"
 import { GurpsMobileActor } from "../../gurps-mobile/foundry/actor"
 import { FeatureState } from "../../gurps-mobile/core/feature/utils"
+import LOGGER from "../../gurps-mobile/logger"
 
 export interface IBaseComponent {
   feature: string
@@ -203,6 +204,43 @@ export function updateComponentSchema(oldComponent: IComponentDefinition, newCom
 
   // other types dont have mandatory modifications
   return newComponent
+}
+
+export function buildComponent(type: string | undefined, name: string, bonus: number, feature: string, index: number): IComponentDefinition | null {
+  let component = {} as IComponentDefinition
+
+  component.feature = feature
+  component.id = `${feature}-${index}`
+
+  if (type === undefined || type === `ST`) {
+    const attributeComponent = component as IAttributeBonusComponent
+
+    attributeComponent.type = `attribute_bonus`
+    attributeComponent.attribute = [name.toLowerCase()] as any
+    attributeComponent.amount = bonus
+
+    // ERROR: Unimplemented attributes
+    if (!attributeComponent.attribute.every(attribute => [`dodge`, `block`, `parry`].includes(attribute))) {
+      LOGGER.error(`buildComponent`, `attribute`, `Unimplemented attribute`, attributeComponent.attribute, type, name, bonus)
+
+      component = null as any
+    }
+  } else if ([`GR`].includes(type)) {
+    LOGGER.error(`buildComponent`, `attribute`, `Unimplemented type "${type}"`, type, name, bonus)
+
+    component = null as any
+  } else {
+    // ERROR: Unimplemented
+    debugger
+  }
+
+  if (component) {
+    if (isNil(component.feature)) debugger
+    if (isNil(component.type)) debugger
+    if (isNil(component.id)) debugger
+  }
+
+  return component
 }
 
 function parseSkillBonus(raw: GCS.Feature) {

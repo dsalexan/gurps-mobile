@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { before, cloneDeep, findIndex, indexOf, isArray, isNil, isString, last, uniq } from "lodash"
+import { before, cloneDeep, findIndex, indexOf, isArray, isNil, isString, last, set, uniq } from "lodash"
 
 import { FeatureCollection } from "./collection"
 
@@ -26,8 +26,11 @@ import { GurpsMobileActor } from "../../foundry/actor"
 import { isNilOrEmpty, isNumeric } from "../../../december/utils/lodash"
 import DefenseFeature from "../../foundry/actor/feature/defense"
 import { IDefenseFeatureData } from "../../foundry/actor/feature/pipelines/old_defense"
-import { typeFromGCS } from "./utils"
+import { idFromGCA, idFromGCS, typeFromGCA, typeFromGCS } from "./utils"
 import { asNumber } from "../../../december/utils/string"
+import { GCS } from "../../../gurps-extension/types/gcs"
+import { GCA as GCATypes } from "../gca/types"
+import { TemplateByType } from "../../foundry/actor-sheet/context/manager"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
@@ -45,11 +48,18 @@ export type FeatureDataByType = {
 
 export interface DeepGCSOptions {
   actor: GurpsMobileActor
-  datachanges: Datachanges
-  templateByType: Partial<Record<keyof FeatureDataByType, FeatureTemplate>>
+  // datachanges: Datachanges
   path?: string
-  rootKey?: number[]
 }
+
+export interface FeatureRecipe {
+  type: keyof FeatureDataByType
+  id: string
+  template: FeatureTemplate
+  path: string | undefined
+}
+
+export type FactoryLog = `compiling.general` | `compiling.request`
 
 export default class FeatureFactory extends EventEmitter {
   logs: {
@@ -102,6 +112,19 @@ export default class FeatureFactory extends EventEmitter {
     }
   }
 
+  setLogs(paths: FactoryLog | FactoryLog[] | `all`, value: boolean) {
+    const allPaths = [`compiling.general` as const, `compiling.request` as const]
+
+    let paths_: FactoryLog[] = paths !== `all` ? (isArray(paths) ? paths : [paths]) : allPaths
+
+    for (const path of paths_) {
+      // ERROR: Path not found
+      if (!allPaths.includes(path)) debugger
+
+      set(this.logs, path, value)
+    }
+  }
+
   listen() {
     // this.on(`compilation:done`, event => {})
   }
@@ -122,7 +145,7 @@ export default class FeatureFactory extends EventEmitter {
   build<TManualSource extends GenericSource = never, T extends keyof FeatureDataByType = keyof FeatureDataByType>(
     type: T,
     id: string,
-    key: number | number[],
+    key: string | number | (string | number)[],
     parent?: Feature<any, any>,
     template?: FeatureTemplate,
   ): Feature<FeatureDataByType[T], TManualSource> {
@@ -203,7 +226,8 @@ export default class FeatureFactory extends EventEmitter {
 
         // only adds to collection new features (to be GCA loaded and compiled on main thread)
         if (!featureExists) {
-          feature.children.push(...(childrenCollection.items as any[]))
+          if (feature.data.children === undefined) feature.data.children = []
+          feature.data.children.push(...childrenCollection.items.map(item => item.id))
           collection.add(...childrenCollection.items)
         }
       }
@@ -215,7 +239,7 @@ export default class FeatureFactory extends EventEmitter {
   /**
    * Compile GCS entries into features
    */
-  deepGCS(GCS: object, parent: Feature<any> | null, { actor, datachanges, templateByType, path, rootKey }: DeepGCSOptions) {
+  deepGCS(GCS: object, parent: Feature<any> | null, { actor, path }: DeepGCSOptions) {
     const collection = new FeatureCollection()
     if (!GCS) return collection
 
@@ -261,7 +285,7 @@ export default class FeatureFactory extends EventEmitter {
         let type = undefined as any as keyof FeatureDataByType
         if (featureType.compare(`generic_advantage`, false)) type = `advantage`
         else if (featureType.compare(`skill`)) type = `skill`
-        else if (featureType.compare(`spell`)) type = `spell`
+        else if (featureType.compare(`spell`, false)) type = `spell`
         else if (featureType.compare(`equipment`)) type = `equipment`
         else {
           // ERROR: Unimplemented conversion from feature type
@@ -299,17 +323,145 @@ export default class FeatureFactory extends EventEmitter {
           for (const child of children) {
             const destinationIndex = last(child.key.array)!
 
-            // ERROR: Feature already has a children at destination index
-            if (feature.children[destinationIndex] !== undefined) debugger
+            if (!feature.data.children) feature.data.children = []
 
-            if (!feature.children) feature.children = []
-            feature.children[destinationIndex] = child as any
+            // ERROR: Feature already has a children at destination index
+            if (feature.data.children[destinationIndex] !== undefined) debugger
+
+            feature.data.children[destinationIndex] = child.id
           }
         }
       }
     }
 
     return collection
+  }
+
+  buildCollection<TEntry extends GCS.Entry | GCATypes.Entry>(
+    source: `gca` | `gcs`,
+    entries: TEntry[] | Record<string, TEntry>,
+    parent: Feature<any, any> | undefined,
+    { actor, path }: DeepGCSOptions,
+  ) {
+    // ERROR: Unknown source
+    if (![`gcs`, `gca`].includes(source)) debugger
+
+    const collection = new FeatureCollection()
+
+    const entries_ = (isArray(entries) ? entries.map((c, i) => [i, c]) : Object.entries(entries)) as [string, TEntry][]
+
+    for (const [key, entry] of entries_) {
+      // ERROR: Unimplemented
+      if (source === `gcs` && !entry.id) debugger
+      if (source === `gca` && !entry._index) debugger
+      if (isArray(entry)) debugger
+
+      const recipe = this.prepareEntry(source, path, entry, parent)
+
+      const doesFeatureExist = actor.cache.features?.[recipe.id] !== undefined
+
+      if (doesFeatureExist) {
+        // feature already exists, just inform update
+        debugger
+        const changes = datachanges?.listAll(new RegExp(`system\\.move\\.${key}`, `i`))
+        feature = actor.cache.features?.[object.id] as GenericFeature
+
+        // ERROR: Wtf m8
+        if (feature === undefined) debugger
+
+        this.react(feature!, changes, (feature, changes) => {
+          debugger
+        })
+
+        continue
+      }
+
+      let feature: Feature<any, any>
+      if (source === `gcs`) {
+        feature = this.buildFromGCS(recipe, key, entry as GCS.Entry, parent)
+      } else {
+        // source == 'gca'
+        feature = this.buildFromGCA(recipe, key, entry as GCATypes.Entry, parent)
+      }
+
+      collection.add(feature as GenericFeature)
+    }
+
+    return collection
+  }
+
+  prepareEntry(source: `gca` | `gcs`, path: string | undefined, entry: GCS.Entry | GCATypes.Entry, parent: Feature<any, any> | undefined): FeatureRecipe {
+    // ERROR: Unknown source
+    if (![`gcs`, `gca`].includes(source)) debugger
+
+    let id: string
+    let type: ReturnType<typeof typeFromGCS> | ReturnType<typeof typeFromGCA>
+
+    // ERROR: Unimplemented
+    if (path === undefined) debugger
+
+    // #region defining immutable prioritary data by source
+    if (source === `gcs`) {
+      const e = entry as GCS.Entry
+
+      id = idFromGCS(e)
+      type = typeFromGCS(e)
+    } else if (source === `gca`) {
+      const e = entry as GCATypes.Entry
+
+      id = idFromGCA(e, path)
+      type = typeFromGCA(e)
+    } else {
+      throw new Error(`Unknown source`)
+    }
+    // #endregion
+
+    // define instance type based on entry
+    let instance = undefined as any as keyof FeatureDataByType
+    if (type.compare(`generic_advantage`, false)) instance = `advantage`
+    else if (type.compare(`skill`)) instance = `skill`
+    else if (type.compare(`spell`, false)) instance = `spell`
+    else if (type.compare(`equipment`)) instance = `equipment`
+    else {
+      // ERROR: Unimplemented conversion from feature type
+      debugger
+    }
+
+    const template = TemplateByType[instance]!
+    if (!template) debugger
+
+    return {
+      type: instance,
+      id,
+      template,
+      path,
+    }
+  }
+
+  buildFromGCS<TFeature extends Feature<any, any>>(
+    recipe: FeatureRecipe,
+    key: string | number | (string | number)[],
+    entry: GCS.Entry,
+    parent: Feature<any, any> | undefined,
+  ): TFeature {
+    const feature = this.build(recipe.type, recipe.id, key, parent ?? undefined, recipe.template) as TFeature
+
+    const localPath = `${isNilOrEmpty(recipe.path) ? `` : `${recipe.path}.`}${key}`
+    feature.addSource(`gcs`, entry, { path: localPath })
+
+    return feature
+  }
+
+  buildFromGCA<TFeature extends Feature<any, any>>(
+    recipe: FeatureRecipe,
+    key: string | number | (string | number)[],
+    entry: GCATypes.Entry,
+    parent: Feature<any, any> | undefined,
+  ): TFeature {
+    const feature = this.build(recipe.type, recipe.id, key, parent ?? undefined, recipe.template) as TFeature
+    feature.addSource(`gca`, entry)
+
+    return feature
   }
 
   requestCompilation(

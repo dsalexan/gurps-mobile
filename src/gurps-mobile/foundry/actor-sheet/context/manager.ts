@@ -9,11 +9,16 @@ import FeatureMainVariantContextTemplate from "./feature/main"
 import PinnedFeatureContextTemplate from "./feature/pinned"
 import QueryResultFeatureContextTemplate from "./feature/queryResult"
 import { GurpsMobileActor } from "../../actor/actor"
-import Feature from "../../actor/feature"
+import Feature, { FeatureTemplate } from "../../actor/feature"
 import { push } from "../../../../december/utils/lodash"
 import GenericFeature from "../../actor/feature/generic"
 import LOGGER from "../../../logger"
 import DefenseFeatureContextTemplate from "./feature/defense"
+import AdvantageFeatureContextTemplate from "./feature/variants/advantage"
+import SkillFeatureContextTemplate from "./feature/variants/skill"
+import SpellFeatureContextTemplate from "./feature/variants/spell"
+import EquipmentFeatureContextTemplate from "./feature/variants/equipment"
+import { FeatureDataByType } from "../../../core/feature/factory"
 
 export type IgnoreFeatureFallbacks<TSpecs> = Omit<TSpecs, `feature` | `actor` | `hidden` | `pinned` | `expanded` | `roller`>
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -121,7 +126,7 @@ export default class ContextManager {
 
     let rootGroup = (parentFeature && parentFeature.data.meta ? parentFeature.data.meta.filter(meta => meta.split(`:`)[0] === `root_group`) : undefined) as string | undefined
     if (rootGroup?.length > 1) debugger
-    else if (rootGroup?.length === 1) rootGroup = rootGroup[0].split(`:`)[1]
+    rootGroup = rootGroup?.[0]?.split(`:`)?.[1]
 
     const contexts = [] as (IListContext | IFeatureContext)[]
 
@@ -349,4 +354,19 @@ export default class ContextManager {
 
     return { collapsed, shown }
   }
+}
+
+export const TemplateByType: Partial<Record<keyof FeatureDataByType, FeatureTemplate>> = {
+  advantage: {
+    context: { templates: AdvantageFeatureContextTemplate },
+  },
+  skill: {
+    context: { templates: SkillFeatureContextTemplate },
+  },
+  spell: {
+    context: { templates: SpellFeatureContextTemplate },
+  },
+  equipment: {
+    context: { templates: EquipmentFeatureContextTemplate },
+  },
 }

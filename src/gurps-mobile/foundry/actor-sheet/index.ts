@@ -24,6 +24,7 @@ import FeatureUsage from "../actor/feature/usage"
 import { calculateLevel, nonSkillVariables, allowedSkillVariables, viabilityTest } from "../../../gurps-extension/utils/level"
 import { DefenseFeatureContextSpecs } from "./context/feature/defense"
 import DefenseFeature from "../actor/feature/defense"
+import { someParent } from "../../core/feature/utils"
 
 export interface Options extends ActorSheet.Options {
   noContext: boolean
@@ -736,138 +737,146 @@ function usageSort(usage: FeatureUsage) {
 
 const FeatureGroups = [
   // combat
-  // {
-  //   section: `combat`,
-  //   key: `attacks`,
-  //   filter: (f: GenericFeature) =>
-  //     !f.data.placeholder &&
-  //     f.data.usages?.length > 0 &&
-  //     (f.type.compare(`equipment`, false) || f.data.name === `Natural Attacks`) &&
-  //     (f.data.usages ?? []).filter((usage: FeatureUsage) => {
-  //       const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+  {
+    section: `combat`,
+    key: `attacks`,
+    filter: (f: GenericFeature) =>
+      !f.data.placeholder &&
+      f.data.usages?.length > 0 &&
+      (f.type.compare(`equipment`, false) || f.data.name === `Natural Attacks`) &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
 
-  //       const defense = [`defense`].includes(usage.data.type)
-  //       const damage = intersection(usage.data.tags, [`damage`]).length > 0
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
 
-  //       return attackOrAffliction || (damage && !defense)
-  //     }).length > 0,
-  //   specs: {
-  //     usage: true,
-  //     secondary: true,
-  //     usageFilter: (usage: FeatureUsage) => {
-  //       const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+        return attackOrAffliction || (damage && !defense)
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
 
-  //       const defense = [`defense`].includes(usage.data.type)
-  //       const damage = intersection(usage.data.tags, [`damage`]).length > 0
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
 
-  //       return attackOrAffliction || (damage && !defense)
-  //     },
-  //   },
-  // },
-  // {
-  //   section: `combat`,
-  //   key: `traits`,
-  //   filter: (f: GenericFeature) =>
-  //     !f.data.placeholder &&
-  //     f.data.usages?.length > 0 &&
-  //     f.type.compare(`generic_advantage`, false) &&
-  //     f.data.name !== `Natural Attacks` &&
-  //     (f.data.usages ?? []).filter((usage: FeatureUsage) => {
-  //       const defense = [`defense`].includes(usage.data.type)
+        return attackOrAffliction || (damage && !defense)
+      },
+    },
+  },
+  {
+    section: `combat`,
+    key: `traits`,
+    filter: (f: GenericFeature) =>
+      !f.data.placeholder &&
+      f.data.usages?.length > 0 &&
+      f.type.compare(`generic_advantage`, false) &&
+      f.data.name !== `Natural Attacks` &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
 
-  //       return !defense
-  //     }).length > 0,
-  //   specs: {
-  //     usage: true,
-  //     secondary: true,
-  //     usageFilter: (usage: FeatureUsage) => {
-  //       const defense = [`defense`].includes(usage.data.type)
+        return !defense
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
 
-  //       return !defense
-  //     },
-  //   },
-  //   // sort: (usage: FeatureUsage) => {
-  //   //   let value = usageSort(usage)
+        return !defense
+      },
+    },
+    // sort: (usage: FeatureUsage) => {
+    //   let value = usageSort(usage)
 
-  //   //   return value + usage.key.value / 10
-  //   // },
-  // },
-  // {
-  //   section: `combat`,
-  //   key: `spell_usage`,
-  //   filter: (f: GenericFeature) =>
-  //     !f.data.placeholder &&
-  //     f.data.usages?.length > 0 &&
-  //     f.type.compare(`spell`, false) &&
-  //     (f.data.usages ?? []).filter((usage: FeatureUsage) => {
-  //       const defense = [`defense`].includes(usage.data.type)
+    //   return value + usage.key.value / 10
+    // },
+  },
+  {
+    section: `combat`,
+    key: `spell_usage`,
+    filter: (f: GenericFeature) =>
+      !f.data.placeholder &&
+      f.data.usages?.length > 0 &&
+      f.type.compare(`spell`, false) &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
 
-  //       return !defense
-  //     }).length > 0,
-  //   specs: {
-  //     usage: true,
-  //     secondary: true,
-  //     usageFilter: (usage: FeatureUsage) => {
-  //       const defense = [`defense`].includes(usage.data.type)
+        return !defense
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const defense = [`defense`].includes(usage.data.type)
 
-  //       return !defense
-  //     },
-  //   },
-  // },
-  // {
-  //   section: `combat`,
-  //   key: `equipment_usage`,
-  //   filter: (f: GenericFeature) =>
-  //     !f.data.placeholder &&
-  //     f.data.usages?.length > 0 &&
-  //     f.type.compare(`equipment`, false) &&
-  //     (f.data.usages ?? []).filter((usage: FeatureUsage) => {
-  //       const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+        return !defense
+      },
+    },
+  },
+  {
+    section: `combat`,
+    key: `equipment_usage`,
+    filter: (f: GenericFeature) =>
+      !f.data.placeholder &&
+      f.data.usages?.length > 0 &&
+      f.type.compare(`equipment`, false) &&
+      (f.data.usages ?? []).filter((usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
 
-  //       const defense = [`defense`].includes(usage.data.type)
-  //       const damage = intersection(usage.data.tags, [`damage`]).length > 0
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
 
-  //       return !attackOrAffliction && !damage && !defense
-  //     }).length > 0,
-  //   specs: {
-  //     usage: true,
-  //     secondary: true,
-  //     usageFilter: (usage: FeatureUsage) => {
-  //       const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
+        return !attackOrAffliction && !damage && !defense
+      }).length > 0,
+    specs: {
+      usage: true,
+      secondary: true,
+      usageFilter: (usage: FeatureUsage) => {
+        const attackOrAffliction = [`attack`, `affliction`].includes(usage.data.type)
 
-  //       const defense = [`defense`].includes(usage.data.type)
-  //       const damage = intersection(usage.data.tags, [`damage`]).length > 0
+        const defense = [`defense`].includes(usage.data.type)
+        const damage = intersection(usage.data.tags, [`damage`]).length > 0
 
-  //       return !attackOrAffliction && !damage && !defense
-  //     },
-  //   },
-  // },
+        return !attackOrAffliction && !damage && !defense
+      },
+    },
+  },
   // ooc
-  // {
-  //   section: `occ`,
-  //   key: `advantages`,
-  //   filter: (f: Feature<any, any>) => !f.data.placeholder && f.type.compare(`generic_advantage`, false),
-  // },
-  // {
-  //   section: `occ`,
-  //   key: `skills`,
-  //   filter: (f: SkillFeature) => {
-  //     if (f.data.placeholder) return false
-  //     if (!f.type.compare(`skill`, true)) return false
-  //     if (f.data.container) return f.children.some(c => c.data.training === `trained`)
-  //     return f.data.training === `trained`
-  //   },
-  //   sort: (f: SkillFeature) => {
-  //     if (f.data.training === `untrained`) return -1
-  //     if (f.data.training === `unknown`) return -Infinity
-  //     return parseInt(f.key.tree[0].toString())
-  //   },
-  //   // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
-  // },
+  {
+    section: `occ`,
+    key: `advantages`,
+    filter: (f: Feature<any, any>) =>
+      !f.data.placeholder && f.type.compare(`generic_advantage`, false) && !f.type.compare(`spell`, false) && !someParent(f, parent => parent.data.metatrait),
+  },
+  {
+    section: `occ`,
+    key: `skills`,
+    filter: (f: SkillFeature) => {
+      if (f.data.placeholder) return false
+      if (!f.type.compare(`skill`, true)) return false
+
+      const actor = f.actor
+      if (!actor) debugger
+
+      const cache = actor.cache!
+      if (!cache || !cache.features) debugger
+
+      if (f.data.container) return f.data.children?.some(id => cache.features![id].data.training === `trained`)
+      return f.data.training === `trained`
+    },
+    sort: (f: SkillFeature) => {
+      if (f.data.training === `untrained`) return -1
+      if (f.data.training === `unknown`) return -Infinity
+      return parseInt(f.key.tree[0].toString())
+    },
+    // extra: SkillContextBuilder.allSkills(sheetData.actor), // COMPILE OTHER SKILLS (defaulted by attribute alone)
+  },
   {
     section: `occ`,
     key: `spells`,
-    filter: (f: Feature<any, any>) => !f.data.placeholder && f.type.compare(`spell`, true),
+    filter: (f: Feature<any, any>) => !f.data.placeholder && f.type.compare(`spell`, false),
   },
   {
     section: `occ`,

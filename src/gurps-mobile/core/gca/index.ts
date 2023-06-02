@@ -1,6 +1,24 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-debugger */
-import { isNil, isObjectLike, isArray, get, flattenDeep, remove, zip, flatten, sortBy, orderBy, isElement, isEmpty, isString, isEqual, uniqBy, cloneDeep } from "lodash"
+import {
+  isNil,
+  isObjectLike,
+  isArray,
+  get,
+  flattenDeep,
+  remove,
+  zip,
+  flatten,
+  sortBy,
+  orderBy,
+  isElement,
+  isEmpty,
+  isString,
+  isEqual,
+  uniqBy,
+  cloneDeep,
+  intersection,
+} from "lodash"
 import { isNilOrEmpty } from "utils/lodash"
 import Fuse from "fuse.js"
 
@@ -153,6 +171,7 @@ export default class GCAManager {
     const treatedTypes = flatten(
       typeArray.map(type => {
         if (type === `generic_advantage`) return [`advantage`, `disadvantage`]
+        else if (type === `spell_as_power`) return [`advantage`]
         return type
       }),
     ) as Feature.TypeID[]
@@ -166,6 +185,7 @@ export default class GCAManager {
         // check if arg is singular
         if (type[type.length - 1] !== `S`) {
           type = `${type}S` as _GCA.Section
+          if (!this.types.includes(type)) debugger
           if (!this.types.includes(type)) throw new Error(`Type "${type}" is missing in GCA extraction`)
         } else {
           throw new Error(`Type "${type}" is missing in GCA extraction`)
@@ -186,25 +206,40 @@ export default class GCAManager {
   }
 
   search(name: string, specializedName: string | undefined, types: _GCA.Section[], weight = 0): SearchResult[][] {
-    return types.map(type => {
-      const byName = this.fuse.bySection[type].byName.search(name)
-      const byFullname = specializedName ? this.fuse.bySection[type].byFullname.search(specializedName) : []
+    const resultsByType = [] as SearchResult[][]
+
+    for (const type of types) {
+      let byName: Fuse.FuseResult<string>[]
+      let byFullname: Fuse.FuseResult<string>[]
+
+      if (type === `any`) {
+        byName = this.fuse.byName.search(name)
+        byFullname = specializedName ? this.fuse.byFullname.search(specializedName) : []
+      } else {
+        byName = this.fuse.bySection[type].byName.search(name)
+        byFullname = specializedName ? this.fuse.bySection[type].byFullname.search(specializedName) : []
+      }
 
       const typeMatches = [
         ...byName.map(r => ({ ...r, source: `byName`, sourceWeight: 0, type, typeWeight: weight })),
         ...byFullname.map(r => ({ ...r, source: `byFullname`, sourceWeight: 1, type, typeWeight: weight })),
       ]
 
-      return typeMatches as SearchResult[]
-    })
+      resultsByType.push(typeMatches as SearchResult[])
+    }
+
+    return resultsByType
   }
 
   query({ name, specializedName, type: _types }: { name: string; specializedName?: string; type?: Feature.TypeID | Feature.TypeID[] }): _GCA.Entry | null {
-    const mainTypes = _types ? this.getType(_types) : []
+    let mainTypes = _types ? this.getType(_types) : []
     const alternativeTypes = _types ? this.getAlternativeType(mainTypes) : []
 
     if (isNil(mainTypes)) debugger
     if (isNil(alternativeTypes)) debugger
+
+    // if (mainTypes.length === 0) debugger
+    if (mainTypes.length === 0) mainTypes = [`any`]
 
     // name0 @ types
     //   (if imperfect matching) name0 @ alternative types
@@ -229,6 +264,8 @@ export default class GCAManager {
     const allMatches = flattenDeep([this.search(name, specializedName, mainTypes), this.search(name, specializedName, alternativeTypes, 1)]) as SearchResult[]
     const matches = orderBy(allMatches, [`score`, `sourceWeight`, `typeWeight`], [`asc`, `desc`, `desc`])
     const best = matches[0]
+
+    // if (name === `Affliction)`) debugger
 
     // NOT MATCH
     if (isNil(best)) {
@@ -270,7 +307,7 @@ export default class GCAManager {
     // pack it and ship it
     const index = this.index[best.source][best.item]
 
-    const entries = index.map(i => ({ ...this.entries[i], _index: i })).filter(entry => entry.section === best.type)
+    const entries = index.map(i => ({ ...this.entries[i], _index: i })).filter(entry => best.type === `any` || entry.section === best.type)
 
     // NO ENTRIES WITH CORRECT TYPE
     if (entries.length === 0) debugger
@@ -307,9 +344,28 @@ export default class GCAManager {
         const onesWithMandatorySpecializationAndNameExt = onesWithMandatorySpecialization.filter(entry => !isNilOrEmpty(entry.nameext))
         if (onesWithMandatorySpecializationAndNameExt.length === 1) return onesWithMandatorySpecializationAndNameExt[0]
         else if (onesWithMandatorySpecialization.length === 1) return onesWithMandatorySpecialization[0]
-        else debugger
+        else {
+          // ERROR: Too many mandatory specialization options
+          debugger
+        }
       } else if (sendNoSpecialization) return entries.find(entry => isNil(entry.nameext) || isEmpty(entry.nameext))
-      else debugger
+
+      // test for ointments bother
+      const anyType = mainTypes.some(type => type === `any`)
+      const nonPotions = entries.filter(entry => !(entry.section === `EQUIPMENT` && intersection([`Potion`, `Ointment`], entry.mods).length > 0))
+
+      const sendNonPotions = anyType && nonPotions.length > 0
+
+      if (sendNonPotions) {
+        if (nonPotions.length === 1) return nonPotions[0]
+        else {
+          // ERROR: Too many non-potions options
+          debugger
+        }
+      }
+
+      // ERROR: Unimplemented decision tree
+      debugger
     }
 
     return undefined

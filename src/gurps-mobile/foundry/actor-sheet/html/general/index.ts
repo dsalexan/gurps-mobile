@@ -67,7 +67,8 @@ export function render(sheet: GurpsMobileActorSheet, html: JQuery<HTMLElement>) 
     if ($(ev.currentTarget).hasClass(`disabled`)) return
 
     const id = $(ev.currentTarget).data(`value`)
-    html.find(`.wrapper.${id}`).toggleClass(`hidden`)
+    $(ev.currentTarget).toggleClass(`active`)
+    html.find(`.wrapper.${id}:not(.button)`).toggleClass(`hidden`)
   })
 
   // Modals

@@ -20,7 +20,7 @@ export const FeatureMeleeUsagePipeline: IDerivationPipeline<IFeatureUsageData> =
 
     if (object.parent) {
       // TODO: Detect "use" based on parent (weapons usually are automatic, but spells and advantages are not)
-      if (object.parent.type.compare(`advantage`) || object.parent.type.compare(`spell`)) {
+      if (object.parent.type.compare(`generic_advantage`, false) || object.parent.type.compare(`spell`, false)) {
         LOGGER.error(`Deal with advantage/spell on usage pipeline`)
       }
     }

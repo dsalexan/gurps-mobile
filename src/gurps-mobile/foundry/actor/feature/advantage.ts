@@ -14,7 +14,7 @@ import GenericFeature from "./generic"
 export default class AdvantageFeature extends GenericFeature {
   declare data: IAdvantageFeatureData
 
-  constructor(id: string, key: number | number[], parent?: Feature<any, any>, template?: FeatureTemplate) {
+  constructor(id: string, key: string | number | (string | number)[], parent?: Feature<any, any>, template?: FeatureTemplate) {
     super(id, key, parent, template)
     this.addPipeline(AdvantageFeaturePipeline)
   }

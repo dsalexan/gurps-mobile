@@ -10,12 +10,13 @@ import {
   IDRBonusComponent,
   ISkillBonusComponent,
   IWeaponBonusComponent,
+  buildComponent,
   parseComponentDefinition,
   updateComponentSchema,
 } from "../../../../../gurps-extension/utils/component"
 import { IFeatureData } from ".."
 import { Type } from "../../../../core/feature"
-import { FeatureState } from "../../../../core/feature/utils"
+import { FeatureState, parseSpecializedName } from "../../../../core/feature/utils"
 import { ILevelDefinition, setupCheck } from "../../../../../gurps-extension/utils/level"
 import { GURPS4th } from "../../../../../gurps-extension/types/gurps4th"
 import { deepDiff } from "../../../../../december/utils/diff"
@@ -31,7 +32,6 @@ export interface IGenericFeatureData extends IFeatureData {
   name: string
   specialization?: string
   specializationRequired?: boolean
-  container: boolean
   proxy?: boolean
 
   value?: string | number
@@ -56,6 +56,8 @@ export interface IGenericFeatureData extends IFeatureData {
   links: string[] // strings to establish relationships between features
   components: IComponentDefinition[] // basically modifiers to other features or aspects of the actor
   placeholder?: boolean // placeholder entry, should be mostly ignored
+  basedOn?: { name: string; specialization?: string; fullName: string; type?: string }[] // gca names to search for
+  metatrait: boolean
 }
 
 export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = [
@@ -69,12 +71,10 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     this.humanId = name
 
     if (isNilOrEmpty(specialization) && !isNilOrEmpty(name)) {
-      const _hasSpecialization = / \((.*)\)$/
-
-      const hasSpecialization = name.match(_hasSpecialization)
-      if (hasSpecialization) {
-        name = name.replace(hasSpecialization[0], ``)
-        specialization = hasSpecialization[1].replaceAll(/[\[\]]/g, ``)
+      const parsed = parseSpecializedName(name)
+      if (parsed.name !== name) {
+        name = OVERWRITE(`name`, parsed.name)
+        specialization = OVERWRITE(`specialization`, parsed.specialization)
       }
     }
 
@@ -192,6 +192,11 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
 
     return { components: PUSH(`components`, finalComponents) }
   }),
+  derivation.gcs(`container_type`, `metatrait`, function ({ container_type }) {
+    if (container_type === `meta-trait` || container_type === `metatrait`) return { metatrait: OVERWRITE(`metatrait`, true) }
+
+    return {}
+  }),
   // #endregion
   // #region ACTOR
   derivation([`actor`, `components`], [], function (_, __, { object }) {
@@ -210,7 +215,9 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
   }),
   // #endregion
   // #region GCA
-  derivation.gca([`name`, `nameext`], [`name`, `specialization`], function ({ name, nameext }) {
+  derivation.gca([`name`, `nameext`, `_fromBasedOn`], [`name`, `specialization`], function ({ name, nameext, _fromBasedOn }) {
+    if (_fromBasedOn) return {}
+
     this.humanId = this.humanId ?? name
 
     let specialization = nameext
@@ -245,6 +252,59 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
 
     if (Object.keys(activeDefense).length === 0) return {}
     return { formulas: MERGE(`formulas`, { activeDefense }) }
+  }),
+  derivation.gca(`gives`, `components`, function ({ gives }, _, { object }) {
+    if (!gives) return {}
+
+    if (object.sources.gca._basedOn) debugger
+
+    const gives_ = (isString(gives) ? [gives] : gives) as string[] | string[][]
+
+    const finalComponents = [] as IComponentDefinition[]
+    // for (const expression of gives_) {
+    for (let i = 0; i < gives_.length; i++) {
+      const expression = gives_[i]
+
+      // TODO: Deal with parenthetic expressions inside GCA conversor
+      let expression_ = expression as string
+      if (isArray(expression)) {
+        if (expression[0].match === undefined) debugger
+
+        const firstIsExpression = expression[0].match(/^=/)
+        const someFollowUpItemHasFirstCharacterSpace = expression.some((item, index) => expression[index + 1]?.[0] === ` `)
+
+        if (firstIsExpression && someFollowUpItemHasFirstCharacterSpace) {
+          // ERROR: Unimplemented
+          if (expression.length !== 3) debugger
+
+          expression_ = `${expression[0]}(${expression[1]})${expression.slice(2).join(``)}`
+        }
+      }
+
+      if (!isString(expression_)) debugger
+
+      if (expression_.match(/=/)) {
+        LOGGER.error(`gca`, `gives`, `Not implemented gives → components with "=" expression`, gives, object)
+        continue
+      }
+
+      const to_ = expression_.split(/ to /i)
+
+      const bonus = parseFloat(to_[0])
+      const rawTarget = to_[1]
+
+      const type_ = rawTarget.split(`:`)
+      const type = type_.length > 1 ? type_[0] : undefined
+      const name = type_.length > 1 ? type_[1] : type_[0]
+
+      const component = buildComponent(type, name, bonus, object.id, i)
+      if (!component) continue
+
+      finalComponents.push(component)
+    }
+
+    if (finalComponents.length === 0) return {}
+    return { components: PUSH(`components`, finalComponents) }
   }),
   // #endregion
   // #region DATA

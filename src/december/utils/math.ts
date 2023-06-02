@@ -13,7 +13,7 @@ function _if(args: OperatorNode[], math: MathJsStatic, scope: Map<string, any>) 
   const expressions = args.map(arg => arg.toString())
 
   // ERROR: Unimplemented
-  if (expressions.length !== 3) debugger
+  if (expressions.length !== 3 && expressions.length !== 2) debugger
 
   // const pattern = condition.match(/(.*) ?THEN ?(.*) ?ELSE ?(.*)/i) as RegExpMatchArray
   const condition = expressions[0]
@@ -29,7 +29,7 @@ function _if(args: OperatorNode[], math: MathJsStatic, scope: Map<string, any>) 
   if (ternary) {
     result = math.evaluate(_then, scope)
   } else {
-    result = math.evaluate(_else, scope)
+    result = math.evaluate(_else ?? `0`, scope)
   }
 
   return result
@@ -43,14 +43,20 @@ function _int(x: number) {
 function _hasmod(args: OperatorNode[], math: MathJsStatic, scope: Map<string, any>) {
   const expressions = args.map(arg => arg.toString())
 
+  console.error(`gurps-mobile`, `math`, `@hasmod`, expressions, scope)
+
   // ERROR: Untested
   if (expressions.length > 1) debugger
 
-  const modifier = expressions[0].replace(/"([^"])"/g, `$1`)
-  const feature = scope.get(`__me`)
-  // TODO: Implement modifiers in feature
-  const modifiers = [] as string[] // feature.data.modifier
+  const modifier_ = expressions[0].replace(/"([^"])"/g, `$1`)
+  const modifier = scope.has(modifier_) ? scope.get(modifier_) : modifier_
 
+  const feature = scope.get(`__me`)
+
+  // ERROR: Unimplemented for missing GCA source
+  if (!feature.sources.gca) debugger
+
+  const modifiers = feature.sources.gca.mods ?? []
   return modifiers.includes(modifier) ? 1 : 0
 }
 _hasmod.rawArgs = true // mark the function as "rawArgs", so it will be called with unevaluated arguments
@@ -267,14 +273,23 @@ export function setupExpression(
 ) {
   const math = mathInstance()
 
-  const expression = preprocess(stringExpression)
+  let expression = preprocess(stringExpression)
   const node = math.parse(expression)
   postprocess(node)
 
   const scope = new Map() as MathScope
 
   try {
-    const symbols = node.filter((node: any) => node.isSymbolNode).map((node: any) => node.name)
+    const symbols = node
+      .filter((node: any) => node.isSymbolNode)
+      .map((node: any) => {
+        // const simplifiedNode = math.simplify(node)
+
+        // if (simplifiedNode.name !== node.name) debugger
+        // if (node.name === `Partial Dice(Does only (1) pt)`) debugger
+
+        return node.name
+      })
 
     for (const symbol of symbols) {
       if (ignorableSymbols.some(s => s.toUpperCase() === symbol.toUpperCase())) continue
@@ -316,15 +331,42 @@ export function setupExpression(
 
         scope.set(symbol, _value)
       } else {
-        // ERROR: Unimplemented
-        throw new Error(`Unimplemented function/prefix "${symbol}"`)
+        const prefix = symbol.replaceAll(/[^\w]+/g, ``).toUpperCase()
+        const random = Math.floor(Math.random() * 10000)
+        const randomString = [...random.toString()].map(number => String.fromCharCode(`a`.charCodeAt(0) + parseInt(number)).toUpperCase()).join(``)
+
+        const handle = `${prefix.substring(0, Math.min(prefix.length, Math.floor(Math.random() * 10)))}tmp${randomString}`
+
+        let symbol_ = symbol
+
+        const patternsCycle = [
+          [
+            [/\((\d+)\)/g, `$1`],
+            [/(?<! )\(/g, ` (`],
+          ],
+        ]
+        for (const patterns of patternsCycle) {
+          if (expression.includes(symbol_)) break
+
+          for (const [pattern, replace] of patterns) symbol_ = symbol_.replaceAll(pattern, replace)
+        }
+
+        expression = expression.replace(symbol_, handle)
+        scope.set(handle, symbol_)
+
+        console.error(`gurps-mobile`, `math`, `Unimplemented function/prefix "${symbol}", considering as a string handled by scope "${handle}"`)
+        // // ERROR: Unimplemented
+        // throw new Error(`Unimplemented function/prefix "${symbol}"`)
       }
     }
 
     scope.set(`__me`, me)
     if (baseScope) for (const [key, value] of Object.entries(baseScope)) scope.set(key, value)
 
-    return { node, expression, scope, math }
+    const postNode = math.parse(expression)
+    postprocess(postNode)
+
+    return { node: postNode, expression, scope, math }
   } catch (error) {
     const logger = Logger.get(`math`)
     logger.warn(`Could not parse expression`, stringExpression, `→`, expression, [

@@ -48,6 +48,8 @@ export const SpellFeaturePipeline: IDerivationPipeline<ISpellFeatureData> = [
     return { powerSource: power_source }
   }),
   // #endregion
+  // #region DATA
+  // #endregion
 ]
 
 SpellFeaturePipeline.name = `SpellFeaturePipeline`

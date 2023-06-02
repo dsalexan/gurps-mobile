@@ -232,7 +232,7 @@ export default class GenericFeature extends BaseFeature implements IGenericFeatu
   }
 
   static linkForDefenses(feature: GenericFeature) {
-    if (feature.type.compare(`spell`)) return []
+    if (feature.type.compare(`spell`, false)) return []
 
     const links = [] as string[]
 

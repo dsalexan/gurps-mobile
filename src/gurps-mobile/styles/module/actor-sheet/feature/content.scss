@@ -273,6 +273,11 @@
             align-items: center;
             //
             height: calc(var(--s1) * 1.8);
+
+            &[class*="mdi-alpha-"] + .icon[class*="mdi-alpha-"] {
+              margin-left: calc(-1 * 9px);
+              margin-right: calc(-0.5 * 9px);
+            }
           }
         }
 

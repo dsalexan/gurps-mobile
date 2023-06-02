@@ -30,7 +30,7 @@ import {
   sortBy,
   uniq,
 } from "lodash"
-import { isPrimitive, push } from "../../../../december/utils/lodash"
+import { isNumeric, isPrimitive, push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
 import { AllSources, CompilationContext, DeepKeyOf, FeatureSources, GenericSource, IDerivation, IDerivationFunction, IDerivationPipeline, IManualPipeline } from "./pipelines"
 import { FeatureState, typeFromGCA, typeFromGCS, typeFromManual } from "../../../core/feature/utils"
@@ -48,11 +48,15 @@ import { EventEmitter } from "@billjs/event-emitter"
 import { Datachanges } from "../../../../december/utils"
 import { deepDiff } from "../../../../december/utils/diff"
 import { ToggableValue } from "../../../core/feature/base"
+import { asNumber } from "../../../../december/utils/string"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IFeatureData {
   // live shit
   state: FeatureState
+
+  container: boolean
+  children: string[] // Feature<IFeatureData, GenericSource>[]
 }
 
 // export type IManualSourceDerivations<TSource extends Record<string, unknown>, TDestination extends string | number | symbol> = Record<string, IDerivation<TSource, TDestination>>
@@ -88,6 +92,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   actor: GurpsMobileActor // fill at integrate
   factory: FeatureFactory // fill externally, after construction
   // meta data
+  __past: string[]
   __fire_loadFromGCA = false
   __: {
     //
@@ -119,18 +124,18 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   type: Type // weird case, set lately on GCS setting
   id: string
   key: {
-    array: number[]
-    tree: (string | number)[]
+    key: string | number | (string | number)[]
+    tree: number[]
     value: number
   }
   parent?: Feature<any, any>
-  children: Feature<IFeatureData, GenericSource>[]
   // TODO: add path, key and prefix to GCS source
 
-  constructor(id: string, key: number[], parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
+  constructor(id: string, key: number | string | (string | number)[], parent?: Feature<any, any>, template: Partial<FeatureTemplate> = {}) {
     super()
 
     // META DATA
+    this.__past = []
     this.__ = {
       compilation: {
         compilations: 0,
@@ -159,12 +164,29 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       state: FeatureState.PASSIVE,
     } as TData
 
-    const key_tree = Utils.keyTree(key, parent)
     // IMMUTABLE DATA
+
+    // parse key into numeric value
+    const keyList = isArray(key) ? key : [key]
+    const numericKeys = keyList.map(key => {
+      const numericKey = !(isNumeric(key) || typeof key === `number`) ? asNumber(key) : parseInt(key as string)
+
+      // ERROR: I never saw a numericKey parsed from a strict string key, so UNTESTED
+      if (isString(key) && !isNumeric(key)) debugger
+      if (isNaN(numericKey)) debugger
+
+      return numericKey
+    })
+
+    const keyTree = !parent ? numericKeys : [...parent.key.tree, ...numericKeys]
+
     this.id = id
-    this.key = { array: key, tree: key_tree, value: Utils.keyTreeValue(key_tree) }
+    this.key = {
+      key,
+      tree: keyTree,
+      value: Utils.keyTreeValue(keyTree),
+    }
     this.parent = parent
-    this.children = []
 
     this.listen()
   }
@@ -621,7 +643,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   /**
    * Build GCA query parameters
    */
-  prepareQueryGCA(): { directive: `continue` | `skip`; type?: Type[`value`]; name?: string; specializedName?: string; merge?: boolean } {
+  prepareQueryGCA(): { directive: `continue` | `skip`; type?: Type[`value`]; name?: string; specializedName?: string; merge?: boolean; fromBasedOn?: boolean } {
     if (this.type.compare(FEATURE.GENERIC)) {
       LOGGER.get(`gca`).warn(`Cannot query a generic feature`, this)
       return { directive: `skip` }
@@ -651,6 +673,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
       }
     }
 
+    // if (this.data.name === `Language`) debugger
+
     // prepare GCA query (with name, specializedName, type, etc...)
     const parameters = this.prepareQueryGCA()
     if (parameters.directive === `skip`) {
@@ -660,6 +684,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // execute query
     entry = GCA.query(parameters as any)
+
+    if (entry && parameters?.fromBasedOn) entry._fromBasedOn = true
 
     // update cache for this id
     GCA.setCache(this.id, entry)

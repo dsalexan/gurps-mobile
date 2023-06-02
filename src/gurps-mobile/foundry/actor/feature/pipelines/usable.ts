@@ -17,6 +17,7 @@ import { FeatureMeleeUsagePipeline } from "./usage/melee"
 import { FeatureRangedUsagePipeline } from "./usage/ranged"
 import { FeatureDamageUsagePipeline } from "./usage/damage"
 import { FeatureDefenseUsagePipeline } from "./usage/defense"
+import { GCA as GCATypes } from "../../../../core/gca/types"
 
 export interface IUsableFeatureData extends IFeatureData {
   recipes?: IUsageRecipe[]
@@ -250,6 +251,15 @@ export const UsableFeaturePipeline: IDerivationPipeline<IUsableFeatureData & IGe
 
     debugger
     return { recipes: PUSH(`recipes`, recipes) }
+  }),
+  derivation([`gca`], [], function derivationGCAToUsages(_, __, { object }) {
+    const gca = object.sources.gca as GCATypes.Entry
+
+    if (object.type.compare(`skill`)) return {}
+
+    if (gca._fromBasedOn) LOGGER.warn(`usable`, `Feature ${object.data.name ?? `<unnamed>`}:${object.id} based on GCA entry "${gca.name}"`, gca)
+
+    return {}
   }),
 
   // #region DATA

@@ -41,7 +41,13 @@ export class FeatureCollection<TFeature extends GenericFeature = GenericFeature>
   }
 
   integrateOn(eventName: string, actor: GurpsMobileActor) {
-    this.items.map(item => item.on(eventName, event => event.data.feature.integrate(actor)))
+    this.items.map(item => {
+      // ALGORITHM NOT IMPLEMENTED, ABOVE IS JUST AN "IDEA"
+      // // ALREADY CALLED THIS EVENT IN THE ITERATION, UUGGH ITS ALL OK????
+      // if (item.past.includes(eventName)) debugger
+
+      item.on(eventName, event => event.data.feature.integrate(actor))
+    })
     return this
   }
 }

@@ -30,7 +30,7 @@ export interface IFeature {
   // relative
   // _actor: GurpsMobileActor
   // parent?: BaseFeature | null
-  // children: BaseFeature[]
+  children: BaseFeature[]
 
   // base
   // key: string | number
@@ -102,7 +102,6 @@ export default class BaseFeature implements IFeature {
 
   // relative
   parent?: BaseFeature | null
-  children: BaseFeature[]
 
   // base
   key: string | number
@@ -151,7 +150,6 @@ export default class BaseFeature implements IFeature {
 
     // relative
     this.parent = parent
-    this.children = []
 
     // BASE DATA
     this.key = key

@@ -35,6 +35,20 @@ export function stateToString(state: FeatureState) {
 }
 
 /**
+ * Return id for GCS entry
+ */
+export function idFromGCS(entry: GCS.Entry) {
+  return entry.id
+}
+
+/**
+ * Return id for GCA entry
+ */
+export function idFromGCA(entry: GCA.Entry, suffix?: string) {
+  return `gca-${entry._index}${!suffix ? `` : `-${suffix}`}`
+}
+
+/**
  * Return type from GCS data
  *
  * @param raw
@@ -53,7 +67,7 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
     const probablyNaturalAttacks = points === 0 && !points_per_level && !!raw.name?.match(/natural attacks?/gi)
 
     if (tags.some(tag => tag.match(/^spell$/i) || tag.match(/^spell list$/i))) {
-      return FEATURE.SPELL
+      return FEATURE.SPELL_AS_POWER
     }
 
     let genericAdvantage = !points && !probablyNaturalAttacks
@@ -134,22 +148,28 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
  */
 export function typeFromGCA(raw: GCA.Entry): Type {
   if (isNil(raw)) return FEATURE.GENERIC
-  else if ([`ADVANTAGES`, `LANGUAGES`, `CULTURES`].includes(raw.section)) return FEATURE.ADVANTAGE
-  else if (raw.section === `PERKS`) return FEATURE.PERK
-  else if (raw.section === `QUIRKS`) return FEATURE.QUIRK
-  else if (raw.section === `DISADVANTAGES`) return FEATURE.DISADVANTAGE
-  else if (raw.section === `SKILLS`) return FEATURE.SKILL
-  else if (raw.section === `SPELLS`) return FEATURE.SPELL
-  else if (raw.section === `EQUIPMENT`) return FEATURE.EQUIPMENT
+
+  const type = typeFromGCASection(raw.section)
+  if (type) return type
 
   // FEATURES
   // TEMPLATES
 
-  LOGGER.info(`deriveFeatureTypeFromSection`, raw.section)
+  LOGGER.info(`deriveFeatureTypeFromSection`, raw)
   // eslint-disable-next-line no-debugger
   debugger
 
   return FEATURE.GENERIC
+}
+
+export function typeFromGCASection(section: GCA.Section): Type | undefined {
+  if ([`ADVANTAGES`, `LANGUAGES`, `CULTURES`].includes(section)) return FEATURE.ADVANTAGE
+  else if (section === `PERKS`) return FEATURE.PERK
+  else if (section === `QUIRKS`) return FEATURE.QUIRK
+  else if (section === `DISADVANTAGES`) return FEATURE.DISADVANTAGE
+  else if (section === `SKILLS`) return FEATURE.SKILL
+  else if (section === `SPELLS`) return FEATURE.SPELL
+  else if (section === `EQUIPMENT`) return FEATURE.EQUIPMENT
 }
 
 export function typeFromManual(raw: object): Type | undefined {
@@ -189,18 +209,28 @@ export function specializedName(name: string | GCA.Entry, nameext?: string): str
 }
 
 /**
- * Return keyTree from feature
+ * Parse a full name (specialized or not) into name and specialization
  *
- * @param feature
- * @param getter
+ * @param name
  */
+export function parseSpecializedName(fullName: string): { name: string; specialization?: string } {
+  let name: string
+  let specialization: string | undefined
 
-export function keyTree(key: number | number[] | string[], parent?: Feature<any, any>): (string | number)[] {
-  let _key = key as number[]
-  if (!isArray(key)) _key = [key] as any
+  const _hasSpecialization = / \((.*)\)$/
 
-  if (!parent) return [..._key]
-  return [...parent.key.tree, ..._key]
+  const hasSpecialization = fullName.match(_hasSpecialization)
+  if (hasSpecialization) {
+    name = fullName.replace(hasSpecialization[0], ``)
+    specialization = hasSpecialization[1].replaceAll(/[\[\]]/g, ``)
+  } else {
+    name = fullName
+  }
+
+  const obj = { name } as { name: string; specialization?: string }
+  if (!isNilOrEmpty(specialization)) obj.specialization = specialization
+
+  return obj
 }
 
 /**
@@ -208,17 +238,19 @@ export function keyTree(key: number | number[] | string[], parent?: Feature<any,
  *
  * @param key_tree
  */
-export function keyTreeValue(key_tree: (string | number)[]): number {
+export function keyTreeValue(key_tree: number[]) {
   let value = 0
   let i = 0
   for (const key of key_tree) {
-    const _key = parseFloat(key as string) / 10 ** i
+    const _key = key / 10 ** i
     value += _key
 
     i += 1
   }
 
-  return isNaN(value) ? -1 : value
+  if (isNaN(value)) debugger
+
+  return value
 }
 
 /**
@@ -268,4 +300,14 @@ export function setMoveDefault(feature: GenericFeature) {
   } else {
     LOGGER.warn(`setMoveDefault`, `No path found for feature ${feature.data.name ? feature.data.name : `id:${feature.id}`}`)
   }
+}
+
+export function someParent(feature: Feature<any, any>, some: (parent: Feature<any, any>) => boolean) {
+  let parent = feature.parent
+  while (parent) {
+    if (some(parent)) return true
+    parent = parent.parent
+  }
+
+  return false
 }
