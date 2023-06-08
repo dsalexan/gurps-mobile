@@ -255,7 +255,11 @@ export function HTMLFeatureElement(element: HTMLElement, feature: GenericFeature
   function click(event: any) {
     const node = $(event.currentTarget)
 
-    console.debug(`gurps-mobile`, `feature`, `click`, node.data(`id`))
+    console.debug(`gurps-mobile`, `feature`, `click`, node.data(`id`), event)
+    if (event.altKey) {
+      const feature = GURPS.LastAccessedActor.cache.features[node.data(`id`)]
+      LOGGER.warn(`feature`, node.data(`id`), feature.data?.name ?? `<unnamed>`, feature)
+    }
 
     // cancel event if swipe is open
     if (node.hasClass(`cancel-post-swipe-click`)) {

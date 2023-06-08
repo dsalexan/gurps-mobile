@@ -1,7 +1,26 @@
 const path = require(`path`)
 const fs = require(`fs`)
 const _ = require(`lodash`)
-const { isNil, isObjectLike, isArray, get, uniq, flatten, groupBy, isString, isNumber, isBoolean, toPath, isEqual, flattenDeep, chunk, zip, cloneDeep, sortBy } = require(`lodash`)
+const {
+  isNil,
+  isEmpty,
+  isObjectLike,
+  isArray,
+  get,
+  uniq,
+  flatten,
+  groupBy,
+  isString,
+  isNumber,
+  isBoolean,
+  toPath,
+  isEqual,
+  flattenDeep,
+  chunk,
+  zip,
+  cloneDeep,
+  sortBy,
+} = require(`lodash`)
 
 const Entry = require(`./entry.js`)
 const TypedValue = require(`./typed_value`)
@@ -169,7 +188,7 @@ module.exports.extract = function (pathfile) {
       },
     },
     {
-      name: `groups`,
+      name: `modifiers`,
       header: [parseInt],
       chunks: 5,
       format: (line, header) => {
@@ -177,8 +196,9 @@ module.exports.extract = function (pathfile) {
           U_0: line[0].trim(),
           name: line[1].trim(),
           nameext: line[2].trim(),
+          section: `MODIFIERS`,
           group: line[3].trim(),
-          U_4: line[4].trim(),
+          raw: line[4].trim(),
         }
 
         return entry
@@ -299,13 +319,16 @@ module.exports.extract = function (pathfile) {
 }
 
 module.exports.index = function (output) {
-  const { header, entries } = output.result.find(e => e.name === `entries`)
+  const { entries } = output.result.find(e => e.name === `entries`)
+  const { entries: modifiers } = output.result.find(e => e.name === `modifiers`)
 
   const byRow = {}
   const byName = {}
   const byNameExt = {}
   const byFullname = {}
   const bySection = {}
+
+  const allModifiers = {}
 
   for (const entry of entries) {
     const extendedName = entry.nameext === undefined ? entry.name : `${entry.name} (${entry.nameext})`
@@ -332,6 +355,17 @@ module.exports.index = function (output) {
     }
   }
 
+  for (const entry of modifiers) {
+    const extendedName = entry.nameext === undefined ? entry.name : `${entry.name} (${entry.nameext})`
+
+    // INDEX
+    if (allModifiers[entry._index] !== undefined) debugger
+    allModifiers[entry._index] = entry
+
+    // ERROR: Untested
+    if (isNil(entry.group) || isEmpty(entry.group)) debugger
+  }
+
   // let U_3 = entries.map(entry => parseInt(entry.U_3))
   // U_3 = sortBy(U_3)
 
@@ -344,5 +378,5 @@ module.exports.index = function (output) {
   // console.log(U_4)
   // debugger
 
-  return { byRow, byName, byNameExt, byFullname, bySection, N: entries.length }
+  return { byRow, byName, byNameExt, byFullname, bySection, allModifiers, N: entries.length, M: modifiers.length }
 }

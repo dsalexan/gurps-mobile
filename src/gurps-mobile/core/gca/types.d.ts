@@ -4,7 +4,21 @@ import { GURPS4th } from "../../../gurps-extension/types/gurps4th"
 import SkillFeature from "../../foundry/actor/feature/skill"
 
 export namespace GCA {
-  type Section = `ATTRIBUTES` | `LANGUAGES` | `CULTURES` | `ADVANTAGES` | `PERKS` | `DISADVANTAGES` | `QUIRKS` | `FEATURES` | `SKILLS` | `SPELLS` | `EQUIPMENT` | `TEMPLATES`
+  type Section =
+    | `ATTRIBUTES`
+    | `LANGUAGES`
+    | `CULTURES`
+    | `ADVANTAGES`
+    | `PERKS`
+    | `DISADVANTAGES`
+    | `QUIRKS`
+    | `FEATURES`
+    | `SKILLS`
+    | `SPELLS`
+    | `EQUIPMENT`
+    | `TEMPLATES`
+    | `MODIFIERS`
+    | `any`
 
   type IndexedSkill = {
     proxy: SkillFeature
@@ -91,36 +105,42 @@ export namespace GCA {
     text: string
   }
 
-  type PreCompiledSectionIndex<T> = Record<
-    Section,
-    {
-      byName: T
-      byNameExt: T
-      byFullname: T
-    }
-  >
-
-  type CompletePreCompiledIndex<T> = {
+  type PreCompiledIndex<T> = {
     byName: T
     byNameExt: T
     byFullname: T
+  }
+
+  type PreCompiledDictionaryIndex<T, TKey extends string = string> = Record<TKey, PreCompiledIndex>
+
+  type PreCompiledSectionIndex<T> = PreCompiledDictionaryIndex<T, Section>
+
+  type CompletePreCompiledIndex<T> = PreCompiledIndex<T> & {
     bySection: PreCompiledSectionIndex<T> &
       Record<
         `SKILLS`,
-        {
-          byName: T
-          byNameExt: T
-          byFullname: T
+        PreCompiledIndex<T> & {
           byDefault: Record<string, SkillDefaultSource[]>
           byDefaultAttribute: Record<string, SkillDefaultSource[]>
+        }
+      > &
+      Record<
+        `MODIFIERS`,
+        PreCompiledIndex<T> & {
+          allGroups: T
+          byGroup: PreCompiledDictionaryIndex<T>
         }
       >
   }
 
-  type BarebonesPreCompiledIndex<T> = {
-    byName: T
-    byNameExt: T
-    byFullname: T
-    bySection: PreCompiledSectionIndex<T>
+  type BarebonesPreCompiledIndex<T> = PreCompiledIndex<T> & {
+    bySection: PreCompiledSectionIndex<T> &
+      Record<
+        `MODIFIERS`,
+        PreCompiledIndex<T> & {
+          allGroups: T
+          byGroup: PreCompiledDictionaryIndex<T>
+        }
+      >
   }
 }

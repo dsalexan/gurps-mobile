@@ -5,7 +5,7 @@ import LOGGER from "logger"
 
 import { Datachanges } from "december/utils"
 import BaseFeature from "../../core/feature/base"
-import FeatureFactory, { DeepGCSOptions, FeatureDataByType } from "../../core/feature/factory"
+import FeatureFactory, { DeepOptions, FeatureDataByType, GCSFilters } from "../../core/feature/factory"
 
 import ContextManager, { TemplateByType } from "../actor-sheet/context/manager"
 import MoveFeatureContextTemplate from "../actor-sheet/context/feature/variants/move"
@@ -25,6 +25,7 @@ import Fuse from "fuse.js"
 import { push } from "../../../december/utils/lodash"
 import Feature from "./feature"
 import { FeatureDefenseUsagePipeline } from "./feature/pipelines/usage/defense"
+import { GCS } from "../../../gurps-extension/types/gcs"
 
 export type ActorCache = {
   lastImport: string
@@ -620,7 +621,8 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
     const options = {
       actor: this,
       datachanges,
-    } as DeepGCSOptions
+      filter: GCSFilters.modifierTree,
+    } as DeepOptions
 
     const timer = logger.time(`prepareFeatures`) // COMMENT
 
@@ -637,7 +639,7 @@ export class GurpsMobileActor extends GURPS.GurpsActor {
       //   .loadFromGCAOn(`compile:gcs`, true)
       //   .integrateOn(`loadFromGCA`, this)
 
-      factory.setLogs(`all`, true)
+      // factory.setLogs(`all`, true)
       factory.startCompilation()
 
       const allFeatures = Object.values(this.cache.features ?? {})

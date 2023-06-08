@@ -137,6 +137,7 @@ export function typeFromGCS(raw: GCS.Entry, base?: Type): Type {
   else if (type === `spell`) return FEATURE.SPELL
   else if (type === `equipment`) return FEATURE.EQUIPMENT
   else if (type === `weapon`) return FEATURE.USAGE
+  else if (type === `modifier`) return FEATURE.MODIFIER
 
   return FEATURE.GENERIC
 }
@@ -288,6 +289,7 @@ export function parseModifier(modifier: number | string, [minus, plus] = [`-`, `
   if (_modifier < 0) return `${minus}${Math.abs(_modifier).toString()}`
   return `${plus}${_modifier.toString()}`
 }
+
 /**
  * (For "MoveFeature") Set feature as default move in actor
  */

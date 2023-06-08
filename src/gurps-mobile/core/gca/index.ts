@@ -18,6 +18,8 @@ import {
   uniqBy,
   cloneDeep,
   intersection,
+  groupBy,
+  filter,
 } from "lodash"
 import { isNilOrEmpty } from "utils/lodash"
 import Fuse from "fuse.js"
@@ -32,10 +34,10 @@ import SkillFeature from "../../foundry/actor/feature/skill"
 import SkillFeatureContextTemplate from "../../foundry/actor-sheet/context/feature/variants/skill"
 
 type SearchResult = {
-  source: `byName` | `byNameExt` | `byFullname`
-  sourceWeight: number
   type: _GCA.Section
-  typeWeight: number
+  source: `byName` | `byNameExt` | `byFullname` | `byGroup`
+  group: string
+  weight: number
   item: string
   refIndex: number
   score: number
@@ -81,14 +83,39 @@ export default class GCAManager {
       bySection: Object.fromEntries(
         (Object.keys(this.index.bySection) as _GCA.Section[]).map(key => {
           const section = this.index.bySection[key]
-          return [
-            key,
-            {
-              byName: new Fuse(Object.keys(section.byName), { includeScore: true }),
-              byNameExt: new Fuse(Object.keys(section.byNameExt), { includeScore: true }),
-              byFullname: new Fuse(Object.keys(section.byFullname), { includeScore: true }),
-            },
-          ]
+
+          const bySection = {
+            byName: new Fuse(Object.keys(section.byName), { includeScore: true }),
+            byNameExt: new Fuse(Object.keys(section.byNameExt), { includeScore: true }),
+            byFullname: new Fuse(Object.keys(section.byFullname), { includeScore: true }),
+          }
+
+          if (key === `MODIFIERS`) {
+            bySection.allGroups = new Fuse(Object.keys(section.byGroup), { includeScore: true })
+
+            bySection.byGroup = {}
+            for (const [group, indexes] of Object.entries(section.byGroup)) {
+              const entries = indexes.map(index => this.entries[index])
+
+              const names = groupBy(entries, entry => entry.name)
+              const nameexts = groupBy(entries, entry => entry.nameext)
+              const fullnames = groupBy(entries, entry => `${entry.name}${entry.nameext ? ` (${entry.nameext})` : ``}`)
+
+              section.byGroup[group] = {
+                byName: Object.fromEntries(Object.entries(names).map(([name, entries]) => [name, entries.map(entry => entry._index)])),
+                byNameExt: Object.fromEntries(Object.entries(nameexts).map(([name, entries]) => [name, entries.map(entry => entry._index)])),
+                byFullname: Object.fromEntries(Object.entries(fullnames).map(([name, entries]) => [name, entries.map(entry => entry._index)])),
+              }
+
+              bySection.byGroup[group] = {
+                byName: new Fuse(Object.keys(names), { includeScore: true }),
+                byNameExt: new Fuse(Object.keys(nameexts), { includeScore: true }),
+                byFullname: new Fuse(Object.keys(fullnames), { includeScore: true }),
+              }
+            }
+          }
+
+          return [key, bySection]
         }),
       ) as Record<_GCA.Section, { byName: Fuse<string>; byNameExt: Fuse<string>; byFullname: Fuse<string> }>,
     }
@@ -231,7 +258,37 @@ export default class GCAManager {
     return resultsByType
   }
 
-  query({ name, specializedName, type: _types }: { name: string; specializedName?: string; type?: Feature.TypeID | Feature.TypeID[] }): _GCA.Entry | null {
+  search2(source: string, query: string, types: (_GCA.Section | `any`)[], weight = 0): SearchResult[][] {
+    const resultsByType = [] as SearchResult[][]
+
+    for (const type of types) {
+      let result: Fuse.FuseResult<string>[]
+
+      if (type === `any`) {
+        result = this.fuse[source].search(query)
+      } else {
+        result = this.fuse.bySection[type][source].search(query)
+      }
+
+      const typeMatches = result.map(r => ({ ...r, source, type, weight }))
+
+      resultsByType.push(typeMatches as SearchResult[])
+    }
+
+    return resultsByType
+  }
+
+  query({
+    name,
+    specializedName,
+    groups,
+    type: _types,
+  }: {
+    name: string
+    specializedName?: string
+    groups?: string[]
+    type?: Feature.TypeID | Feature.TypeID[]
+  }): _GCA.Entry | null {
     let mainTypes = _types ? this.getType(_types) : []
     const alternativeTypes = _types ? this.getAlternativeType(mainTypes) : []
 
@@ -240,6 +297,9 @@ export default class GCAManager {
 
     // if (mainTypes.length === 0) debugger
     if (mainTypes.length === 0) mainTypes = [`any`]
+
+    const weightedSections = mainTypes.map(section => [0, section]) as [number, _GCA.Section][]
+    if (alternativeTypes.length > 0) weightedSections.push(...(alternativeTypes.map(section => [100, section]) as [number, _GCA.Section][]))
 
     // name0 @ types
     //   (if imperfect matching) name0 @ alternative types
@@ -260,12 +320,70 @@ export default class GCAManager {
     // PROTOTYPE
     //    fuse by name
 
-    // @ts-ignore
-    const allMatches = flattenDeep([this.search(name, specializedName, mainTypes), this.search(name, specializedName, alternativeTypes, 1)]) as SearchResult[]
-    const matches = orderBy(allMatches, [`score`, `sourceWeight`, `typeWeight`], [`asc`, `desc`, `desc`])
+    const indexes = [] as { fuse: Fuse<string>; type: _GCA.Section; source: string; query: string; weight: number; group?: string }[]
+    for (const [weight, section] of weightedSections) {
+      let preCompiledIndex = this.fuse
+      if (section !== `any`) preCompiledIndex = this.fuse.bySection[section]
+
+      if (!preCompiledIndex) debugger
+
+      indexes.push({ fuse: preCompiledIndex.byName, type: section, source: `byName`, query: name, weight: weight + 0 })
+      if (specializedName) indexes.push({ fuse: preCompiledIndex.byFullname, type: section, source: `byFullname`, query: specializedName, weight: weight + 1 })
+
+      if (section === `MODIFIERS` && !isNilOrEmpty(groups)) {
+        for (const groupQuery of groups) {
+          const groupResults = this.fuse.bySection[`MODIFIERS`].allGroups.search(groupQuery)
+          const best = groupResults[0]
+
+          // NO MATCH/IMPERFECT MATCHING for group
+          if (!best || best.score > this.e) {
+            LOGGER.warn(`gca`, !best ? `No match for group` : `Imperfect matching for group`, `"${groupQuery}"`, `from entry`, `"${specializedName ?? name}"`, groupResults, [
+              `color: #826835;`,
+              `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+              `color: black; font-style: regular; font-weight: bold`,
+              `color: rgba(130, 104, 53, 60%); font-style: italic;`,
+              `color: black; font-style: regular; font-weight: bold`,
+              ``,
+            ])
+            return null
+          }
+
+          const group = best.item
+
+          preCompiledIndex = this.fuse.bySection[`MODIFIERS`].byGroup[group]
+
+          if (!preCompiledIndex) debugger
+
+          indexes.push({ fuse: preCompiledIndex.byName, type: section, source: `byName`, query: name, group, weight: weight + 10 + 0 })
+          if (specializedName) indexes.push({ fuse: preCompiledIndex.byFullname, type: section, source: `byFullname`, query: specializedName, group, weight: weight + 10 + 1 })
+        }
+      }
+    }
+
+    const allMatches = indexes.map(index => {
+      const results = index.fuse.search(index.query)
+
+      const searchResults = [] as SearchResult[]
+      for (const result of results) {
+        const searchResult = {
+          ...result,
+          type: index.type,
+          source: index.source,
+          group: index.group,
+          weight: index.weight,
+        } as SearchResult
+
+        searchResults.push(searchResult)
+      }
+
+      return searchResults
+    })
+
+    const matches = orderBy(allMatches.flat(), [`score`, `weight`], [`asc`, `desc`])
     const best = matches[0]
 
     // if (name === `Affliction)`) debugger
+    if (weightedSections.filter(([weight, section]) => section === `MODIFIERS`).length > 1) debugger
 
     // NOT MATCH
     if (isNil(best)) {
@@ -290,7 +408,7 @@ export default class GCAManager {
     }
 
     // multiple match warning
-    if (best.score === matches[1].score) {
+    if (best.score === matches[1].score && best.weight === matches[1].weight) {
       if (!!specializedName && best.source !== matches[1].source) {
         // do nothing
       } else {
@@ -307,13 +425,26 @@ export default class GCAManager {
     // pack it and ship it
     const index = this.index[best.source][best.item]
 
-    const entries = index.map(i => ({ ...this.entries[i], _index: i })).filter(entry => best.type === `any` || entry.section === best.type)
+    const entries = [] as _GCA.Entry[]
+    for (const i of index) {
+      const entry = this.entries[i]
+      entry._index = i
+
+      const anyType = best.type === `any`
+      const matchingType = entry.section === best.type
+
+      const groupMatters = best.type === `MODIFIERS` && !isNilOrEmpty(best.group)
+      const matchingGroup = groupMatters ? entry.group === best.group : true
+
+      if (anyType || (matchingType && matchingGroup)) entries.push(entry)
+    }
+    // const entries = index.map(i => ({ ...this.entries[i], _index: i })).filter(entry => best.type === `any` || entry.section === best.type)
 
     // NO ENTRIES WITH CORRECT TYPE
     if (entries.length === 0) debugger
 
     // TREAT MULTIPLE ENTRIES
-    return this.decide(entries, matches, name, specializedName, mainTypes, alternativeTypes) ?? null
+    return this.decide(entries, matches, name, specializedName, groups, mainTypes, alternativeTypes) ?? null
   }
 
   decide(
@@ -321,6 +452,7 @@ export default class GCAManager {
     matches: SearchResult[],
     name: string,
     specializedName: string | undefined,
+    groups: string[] | undefined,
     mainTypes: _GCA.Section[],
     alternativeTypes: _GCA.Section[],
   ): _GCA.Entry | undefined {
@@ -362,6 +494,35 @@ export default class GCAManager {
           // ERROR: Too many non-potions options
           debugger
         }
+      }
+
+      // test for generic groups in modifiers
+      const areModifiers = mainTypes.some(type => type === `MODIFIERS`) || alternativeTypes.some(type => type === `MODIFIERS`)
+      if (areModifiers) {
+        const entryGroups = entries.map(entry => entry.group)
+
+        const overlapingGroups = intersection(groups ?? [], entryGroups)
+
+        if (overlapingGroups.length > 0) {
+          // ERROR: There is a overlap, why are we here?
+          debugger
+        }
+
+        const genericGroups = entries.filter(entry => entry.group.startsWith(`_`))
+        if (genericGroups.length === 1) return genericGroups[0]
+
+        // too many generic group option, thin the herd
+        const isGroupAttack = groups?.some(group => group.match(/attack/i))
+        if (isGroupAttack) {
+          const genericAttackGroups = genericGroups.filter(entry => entry.group.match(/attack/i))
+          if (genericAttackGroups.length === 1) return genericGroups[0]
+
+          // ERROR: Too many generic attack group options
+          debugger
+        }
+
+        // ERROR: Too many generic group options
+        debugger
       }
 
       // ERROR: Unimplemented decision tree

@@ -1,7 +1,7 @@
 const path = require(`path`)
 const fs = require(`fs`)
 const _ = require(`lodash`)
-const { isNil, isObjectLike, isArray, get, uniq, flatten, groupBy, isString, isNumber, isBoolean, toPath, isEqual, flattenDeep, intersection, omit } = require(`lodash`)
+const { isNil, isObjectLike, isArray, get, uniq, flatten, groupBy, isString, isNumber, isBoolean, toPath, isEqual, flattenDeep, intersection, omit, isEmpty } = require(`lodash`)
 
 const Entry = require(`./entry.js`)
 const TypedValue = require(`./typed_value`)
@@ -72,18 +72,62 @@ module.exports.extract = function (pathfile) {
     // console.log(` `)
     // TypedValue.print(_data)
     // console.log(data)
-    // console.log(` `)
-    // console.log(` `)
-    // console.log(` `)
-    // console.log(` `)
-    // console.log(` `)
-    // console.log(` `)
-    // console.log(` `)
+    // console.log(` \n \n \n \n \n \n \n`)
     // debugger
 
     // ERROR: every entry should have a name
     try {
       if (entry.data.name.match(_placeholder)) continue
+    } catch (ex) {
+      console.log(ex)
+      console.log(``)
+      console.log(entry)
+      console.log(``)
+      console.log(`book???`)
+      debugger
+    }
+
+    entries.push(entry)
+  }
+
+  return entries
+}
+
+module.exports.extractModifiers = function (modifiers) {
+  // PARSE ENTRIES INTO OBJECTS
+  const _placeholder = /^[-]+$/
+  const entries = []
+
+  for (const [i, fstEntry] of Object.entries(modifiers)) {
+    const _line = fstEntry.raw
+    if (_line === ``) debugger
+
+    // if (![11893, 3375, 1588, 802, 759, 308, 205, 166, 147, 135, 122, 112, 111, 105, 92, 68, 50, 36, 47, 7, 0].includes(i)) continue
+    // if (![105].includes(i)) continue
+    // if (![459].includes(i)) continue
+
+    let line = _line
+    const shiftLine = line.substring(1) // remove first character comma
+    // console.log(`  `, i, `:`, shiftLine.substring(0, 69 ** 1) + `...`)
+
+    const entry = new GDF(shiftLine)
+    entry._index = entries.length
+    entry._row = fstEntry._index
+    entry.section = `MODIFIERS`
+
+    const _data = entry._data
+    const data = entry.data
+
+    // console.log(` `)
+    // TypedValue.print(_data)
+    // console.log(data)
+    // console.log(` \n \n \n \n \n \n \n`)
+    // debugger
+
+    // ERROR: every entry should have a name
+    try {
+      // what is this??
+      if (entry.data.name.match(_placeholder)) debugger
     } catch (ex) {
       console.log(ex)
       console.log(``)
@@ -185,6 +229,8 @@ module.exports.reindex = function (entries, index) {
   index.bySection.SKILLS[`byDefault`] = {}
   index.bySection.SKILLS[`byDefaultAttribute`] = {}
 
+  index.bySection.MODIFIERS[`byGroup`] = {}
+
   for (let i = 0; i < entries.length; i++) {
     const entry = entries[i]
     const data = entry.data
@@ -216,6 +262,9 @@ module.exports.reindex = function (entries, index) {
           }
         }
       }
+    } else if (entry.section === `MODIFIERS`) {
+      if (isNil(entry.data.group) || isEmpty(entry.data.group)) debugger
+      push(index.bySection.MODIFIERS[`byGroup`], entry.data.group, i)
     }
   }
 }

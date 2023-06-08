@@ -21,6 +21,7 @@ import {
   isObjectLike,
   isRegExp,
   isString,
+  map,
   max,
   omit,
   orderBy,
@@ -29,6 +30,7 @@ import {
   set,
   sortBy,
   uniq,
+  uniqBy,
 } from "lodash"
 import { isNumeric, isPrimitive, push } from "../../../../december/utils/lodash"
 import ManualCompilationTemplate from "../../../core/feature/compilation/manual"
@@ -360,23 +362,35 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // #region LIST derivations by updated keys
 
-    const derivationsPath = {} as Record<string, string[]> // Record<derivation, targets[]>
+    const allDerivations = [] as { pipeline: string; derivationIndex: number }[]
     for (const target of targets) {
       const paths = this.__.compilation.derivationsByTarget[target]
-
-      for (const _path of paths) {
-        const path = _path.join(`.`)
-        if (derivationsPath[path] === undefined) derivationsPath[path] = []
-        derivationsPath[path].push(target)
-      }
+      allDerivations.push(...paths.map(([pipeline, derivationIndex]) => ({ pipeline, derivationIndex })))
     }
+    const uniqDerivations = uniqBy(allDerivations, ({ pipeline, derivationIndex }) => `${pipeline}.${derivationIndex}`)
+    const derivationPaths = orderBy(uniqDerivations, ({ pipeline, derivationIndex }) => this.__.compilation.pipelineOrder.indexOf(pipeline), [`asc`])
+    const derivations = derivationPaths.map(({ pipeline, derivationIndex }) => this.__.compilation.pipelines[pipeline][derivationIndex])
 
-    const derivations = Object.keys(derivationsPath).map(path => {
-      const [pipeline, derivation] = path.split(`.`)
-      const derivationInstance = this.__.compilation.pipelines[pipeline][parseInt(derivation)]
-      if (derivationInstance === undefined) debugger // COMMENT
-      return derivationInstance
-    })
+    // const derivationsPath = {} as Record<string, string[]> // Record<derivation, targets[]>
+    // for (const target of targets) {
+    //   const paths = this.__.compilation.derivationsByTarget[target]
+
+    //   for (const _path of paths) {
+    //     const path = _path.join(`.`)
+    //     if (derivationsPath[path] === undefined) derivationsPath[path] = []
+    //     derivationsPath[path].push(target)
+    //   }
+    // }
+
+    // const derivations = Object.keys(derivationsPath).map(path => {
+    //   const [pipeline, derivation] = path.split(`.`)
+    //   const derivationInstance = this.__.compilation.pipelines[pipeline][parseInt(derivation)]
+    //   if (derivationInstance === undefined) debugger // COMMENT
+    //   return derivationInstance
+    // })
+
+    // console.log(derivations_)
+    // if (this.id === `7abb37aa-ada7-406a-a4ab-20af2b154e8c`) debugger
 
     // #endregion
 
@@ -643,7 +657,7 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
   /**
    * Build GCA query parameters
    */
-  prepareQueryGCA(): { directive: `continue` | `skip`; type?: Type[`value`]; name?: string; specializedName?: string; merge?: boolean; fromBasedOn?: boolean } {
+  prepareQueryGCA(): { directive: `continue` | `skip`; type?: Type[`value`]; name?: string; specializedName?: string; groups?: string[]; merge?: boolean; fromBasedOn?: boolean } {
     if (this.type.compare(FEATURE.GENERIC)) {
       LOGGER.get(`gca`).warn(`Cannot query a generic feature`, this)
       return { directive: `skip` }
@@ -684,8 +698,9 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
 
     // execute query
     entry = GCA.query(parameters as any)
-
     if (entry && parameters?.fromBasedOn) entry._fromBasedOn = true
+
+    this.fire(`gca:query`, { feature: this, parameters, entry })
 
     // update cache for this id
     GCA.setCache(this.id, entry)
@@ -711,6 +726,8 @@ export default class Feature<TData extends IFeatureData = IFeatureData, TManualS
    * A GenericFeature, by default, has no required integrations2
    */
   integrate(actor: GurpsMobileActor) {
+    // ERROR: Trying to reintegrate a feature
+    if (this.actor) debugger
     if (actor.id === null) throw new Error(`Actor is missing an id`)
     this.actor = actor
 

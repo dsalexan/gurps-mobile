@@ -6,7 +6,6 @@ import { IGenericFeatureData } from "./generic"
 import { IUsableFeatureData } from "./usable"
 import { parseExpression } from "../../../../../december/utils/math"
 import { IRoll, createRoll } from "../../../../../gurps-extension/utils/roll"
-import { IModifier, IModifierCost, parseModifier } from "../../../../../gurps-extension/utils/modifier"
 import { isNilOrEmpty } from "../../../../../december/utils/lodash"
 import { parseSpecializedName, specializedName } from "../../../../core/feature/utils"
 
@@ -51,22 +50,6 @@ export const AdvantageFeaturePipeline: IDerivationPipeline<IAdvantageFeatureData
     if (isNaN(level)) debugger
 
     return { level }
-  }),
-  derivation.gcs(`modifiers`, `level`, function ({ modifiers: allModifiers }) {
-    if (this.container) return {}
-    if (isNil(allModifiers)) return {}
-    if (this.type.compare(`disadvantage`, false)) return {}
-
-    const modifiers = allModifiers.filter(modifier => !modifier.disabled)
-
-    const newModifiers = [] as IModifier[]
-    for (const raw of modifiers) {
-      const modifiersFromRaw = parseModifier(raw)
-
-      newModifiers.push(...modifiersFromRaw)
-    }
-
-    return { modifiers: OVERWRITE(`modifiers`, newModifiers) }
   }),
   // #endregion
   // #region GCA

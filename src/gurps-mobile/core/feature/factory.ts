@@ -31,6 +31,8 @@ import { asNumber } from "../../../december/utils/string"
 import { GCS } from "../../../gurps-extension/types/gcs"
 import { GCA as GCATypes } from "../gca/types"
 import { TemplateByType } from "../../foundry/actor-sheet/context/manager"
+import ModifierFeature from "../../foundry/actor/feature/modifier"
+import { IModifierFeatureData } from "../../foundry/actor/feature/pipelines/modifier"
 
 type CompilationInstructions = { feature: GenericFeature; keys: (string | RegExp)[]; baseContext: Partial<CompilationContext>; ignores: string[] }
 
@@ -44,12 +46,15 @@ export type FeatureDataByType = {
   usage: IFeatureUsageData
   //
   defense: IDefenseFeatureData
+  //
+  modifier: IModifierFeatureData
 }
 
-export interface DeepGCSOptions {
+export interface DeepOptions {
   actor: GurpsMobileActor
   // datachanges: Datachanges
   path?: string
+  filter?: <TEntry extends GCS.Entry | GCATypes.Entry>(entry: TEntry, source: `gca` | `gcs`) => boolean
 }
 
 export interface FeatureRecipe {
@@ -138,6 +143,7 @@ export default class FeatureFactory extends EventEmitter {
     else if (type === `equipment`) return EquipmentFeature
     else if (type === `usage`) return FeatureUsage
     else if (type === `defense`) return DefenseFeature
+    else if (type === `modifier`) return ModifierFeature
 
     throw new Error(`Feature of type "${type}" is not implemented`)
   }
@@ -239,7 +245,7 @@ export default class FeatureFactory extends EventEmitter {
   /**
    * Compile GCS entries into features
    */
-  deepGCS(GCS: object, parent: Feature<any> | null, { actor, path }: DeepGCSOptions) {
+  deepGCS(GCS: object, parent: Feature<any> | null, { actor, path }: DeepOptions) {
     const collection = new FeatureCollection()
     if (!GCS) return collection
 
@@ -341,7 +347,7 @@ export default class FeatureFactory extends EventEmitter {
     source: `gca` | `gcs`,
     entries: TEntry[] | Record<string, TEntry>,
     parent: Feature<any, any> | undefined,
-    { actor, path }: DeepGCSOptions,
+    { actor, path, filter }: DeepOptions,
   ) {
     // ERROR: Unknown source
     if (![`gcs`, `gca`].includes(source)) debugger
@@ -355,6 +361,9 @@ export default class FeatureFactory extends EventEmitter {
       if (source === `gcs` && !entry.id) debugger
       if (source === `gca` && !entry._index) debugger
       if (isArray(entry)) debugger
+
+      const skip = isNil(filter) ? false : !filter(entry, source)
+      if (skip) continue
 
       const recipe = this.prepareEntry(source, path, entry, parent)
 
@@ -422,6 +431,7 @@ export default class FeatureFactory extends EventEmitter {
     else if (type.compare(`skill`)) instance = `skill`
     else if (type.compare(`spell`, false)) instance = `spell`
     else if (type.compare(`equipment`)) instance = `equipment`
+    else if (type.compare(`modifier`)) instance = `modifier`
     else {
       // ERROR: Unimplemented conversion from feature type
       debugger
@@ -481,7 +491,7 @@ export default class FeatureFactory extends EventEmitter {
       if (this.logs.compiling.request)
         LOGGER.get(`actor`)
           .get(`factory`)
-          .info(`delay`, feature.data.name ?? `id:${feature.id}`, keys.map(key => key.toString()).join(`, `), baseContext, [
+          .info(`delay`, `${feature.data.name ?? `id`}:${feature.id}`, keys.map(key => key.toString()).join(`, `), baseContext, [
             `color: rgba(0, 0, 0, 0.5); font-style: italic;`,
             `color: black; font-weight: bold; font-style: regular;`,
             `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
@@ -526,13 +536,15 @@ export default class FeatureFactory extends EventEmitter {
 
       const targetInstructionsId = futureQueuedInstructions[0]
 
+      const keys_ = `[${keys.map(key => key.toString()).join(`, `)}]`
+
       if (this.logs.compiling.request)
         LOGGER.get(`actor`)
           .get(`factory`)
           .info(
             `merged`,
-            feature.data.name ?? `id:${feature.id}`,
-            `[${keys.map(key => key.toString()).join(`, `)}]`,
+            `${feature.data.name ?? `id`}:${feature.id}`,
+            keys_,
             `![${ignores.map(key => key.toString()).join(`, `)}]`,
             `into instruction id`,
             targetInstructionsId,
@@ -549,6 +561,15 @@ export default class FeatureFactory extends EventEmitter {
               `color: rgb(210, 78, 76); font-weight: regular; font-style: italic;`,
             ],
           )
+
+      // DEBUG: Conditional breakpoint for specific merge
+      if (
+        //
+        keys_ === `[/^gcs.*/]` &&
+        feature.id === `8d0191e2-1c6b-4fd8-9bbb-fe2592935753` &&
+        targetInstructionsId === 341
+      )
+        debugger
 
       this.compiling.index[targetInstructionsId].keys = uniq([...this.compiling.index[targetInstructionsId].keys, ...instructions.keys])
       this.compiling.index[targetInstructionsId].baseContext = { ...this.compiling.index[targetInstructionsId].baseContext, ...instructions.baseContext }
@@ -578,7 +599,7 @@ export default class FeatureFactory extends EventEmitter {
             `request${log_extras.length > 0 ? ` (${log_extras.join(`, `)})` : ``}`,
             id,
             `[ /+1]`,
-            feature.data.name ?? `id:${feature.id}`,
+            `${feature.data.name ?? `id`}:${feature.id}`,
             `[${instructions.keys.map(key => key.toString()).join(`, `)}]`,
             `![${instructions.ignores.map(key => key.toString()).join(`, `)}]`,
             instructions.baseContext,
@@ -600,7 +621,7 @@ export default class FeatureFactory extends EventEmitter {
           .info(
             `request${log_extras.length > 0 ? ` (${log_extras.join(`, `)})` : ``}`,
             id,
-            feature.data.name ?? `id:${feature.id}`,
+            `${feature.data.name ?? `id`}:${feature.id}`,
             `[${instructions.keys.map(key => key.toString()).join(`, `)}]`,
             `![${instructions.ignores.map(key => key.toString()).join(`, `)}]`,
             instructions.baseContext,
@@ -660,7 +681,7 @@ export default class FeatureFactory extends EventEmitter {
               `run`,
               id,
               `[${this.compiling.compiledEntities + 1}/${this.compiling.queueSize}]`,
-              `${feature.data.name ?? `id:${feature.id}`}`,
+              `${`${feature.data.name ?? `id`}:${feature.id}`}`,
               `(${this.compiling.queue.length} entries left in queue)`,
               `[${targets.map(key => key.toString()).join(`, `)}]`,
               `⇔`,
@@ -696,7 +717,7 @@ export default class FeatureFactory extends EventEmitter {
               `skip`,
               id,
               `[${this.compiling.compiledEntities + 1}/${this.compiling.queueSize}]`,
-              `${feature.data.name ?? `id:${feature.id}`}`,
+              `${`${feature.data.name ?? `id`}:${feature.id}`}`,
               `(${this.compiling.queue.length} entries left in queue)`,
               `[${keys.map(key => key.toString()).join(`, `)}]`,
               `![${ignores.map(key => key.toString()).join(`, `)}]`,
@@ -815,4 +836,25 @@ export default class FeatureFactory extends EventEmitter {
       debugger
     }
   }
+}
+
+export const GCSFilters = {
+  modifierTree(entry: GCS.Entry, source: `gcs`) {
+    if (source !== `gcs`) return true
+
+    if ([`modifier`, `modifier_container`].includes(entry.type)) return true
+    if (entry.modifiers) return true
+
+    if (entry.children) {
+      // if some child pass the filter, the parent does too
+      for (const child of entry.children) {
+        const pass = GCSFilters.modifierTree(child, source)
+        if (pass) return true
+      }
+
+      return false
+    }
+
+    return false
+  },
 }

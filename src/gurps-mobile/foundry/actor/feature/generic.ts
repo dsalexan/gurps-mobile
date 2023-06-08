@@ -62,6 +62,7 @@ export default class GenericFeature extends Feature<IGenericFeatureData & IUsabl
         `color: rgba(130, 104, 53, 60%); font-style: italic;`,
         ``,
       ])
+      debugger
     }
     actor.setFeature(this.id, this)
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { cloneDeep, flatten, flattenDeep, get, groupBy, isArray, isEmpty, isNil, isString, set, uniq } from "lodash"
+import { cloneDeep, flatten, flattenDeep, get, groupBy, isArray, isEmpty, isNil, isString, last, set, uniq } from "lodash"
 import { IDerivation, IDerivationPipeline, derivation, proxy } from "."
 import { isNilOrEmpty, push } from "../../../../../december/utils/lodash"
 import { GCS } from "../../../../../gurps-extension/types/gcs"
@@ -14,7 +14,7 @@ import {
   parseComponentDefinition,
   updateComponentSchema,
 } from "../../../../../gurps-extension/utils/component"
-import { IFeatureData } from ".."
+import Feature, { IFeatureData } from ".."
 import { Type } from "../../../../core/feature"
 import { FeatureState, parseSpecializedName } from "../../../../core/feature/utils"
 import { ILevelDefinition, setupCheck } from "../../../../../gurps-extension/utils/level"
@@ -23,6 +23,8 @@ import { deepDiff } from "../../../../../december/utils/diff"
 import GenericFeature from "../generic"
 import SkillFeature from "../skill"
 import LOGGER from "../../../../logger"
+import { IModifierFeatureData } from "./modifier"
+import { FeatureRecipe } from "../../../../core/feature/factory"
 
 export interface IGenericFeatureFormulas {
   activeDefense?: Record<`block` | `dodge` | `parry`, string[]>
@@ -50,6 +52,8 @@ export interface IGenericFeatureData extends IFeatureData {
   reference: string[]
 
   formulas?: IGenericFeatureFormulas
+
+  modifiers?: string[] // Feature<IFeatureData, GenericSource>[]
 
   // relationships
   group?: string // string to group features by
@@ -196,6 +200,67 @@ export const GenericFeaturePipeline: IDerivationPipeline<IGenericFeatureData> = 
     if (container_type === `meta-trait` || container_type === `metatrait`) return { metatrait: OVERWRITE(`metatrait`, true) }
 
     return {}
+  }),
+  derivation([`gcs:modifiers`, `actor`], `modifiers`, function derivationGCSModifiers(_, __, { object }) {
+    const actor = object.actor
+    if (!actor) return {}
+
+    const cache = actor.cache
+
+    const gcs = object.sources.gcs as GCS.Entry
+    const modifiers = gcs?.modifiers
+
+    if (!modifiers || modifiers?.length === 0) return {}
+
+    // ERROR: Untested for existing children
+    if (object.data.modifiers?.length > 0) debugger
+
+    // ERROR: Unimplemented
+    if (!isArray(modifiers)) debugger
+
+    type ParentedModifier = { modifier: GCS.Entry; parents: string[]; path: (string | number)[] }
+    const flatModifiers = [] as ParentedModifier[]
+
+    let stack = modifiers.map((modifier, index) => ({ modifier, parents: [], path: [`modifiers`, index] })) as ParentedModifier[]
+    while (stack.length > 0) {
+      const item = stack.shift()
+      if (!item) continue
+
+      const { modifier, parents, path } = item
+
+      if (modifier.disabled) continue
+
+      if (modifier.type === `modifier_container`) {
+        const children = modifier.children as GCS.Entry[] | undefined
+        if (children && children.length)
+          stack.push(...children.map((child, index) => ({ modifier: child, parents: [...parents, modifier.name], path: [...path, `children`, index] })))
+      } else {
+        flatModifiers.push({ modifier, parents, path })
+      }
+    }
+
+    if (flatModifiers.length === 0) return {}
+
+    const features = [] as any[]
+    for (const { modifier, parents, path } of flatModifiers) {
+      const recipe = object.factory.prepareEntry(`gcs`, path.slice(0, -1).join(`.`), modifier, object)
+      recipe.id = `${recipe.id}-mod-${object.id}-at-${path.slice(1).join(``)}`
+
+      if (parents.length > 0) debugger
+
+      const feature = object.factory //
+        .buildFromGCS(recipe, last(path)!, modifier, object)
+        .addSource(`manual`, { parents })
+        .loadFromGCAOn(`compile:gcs`, true)
+        .integrateOn(`loadFromGCA`, actor)
+
+      features.push(feature)
+    }
+
+    const ids = features.map(feature => feature.id)
+
+    if (ids.length === 0) return {}
+    return { modifiers: OVERWRITE(`modifiers`, ids) }
   }),
   // #endregion
   // #region ACTOR
@@ -407,14 +472,24 @@ GenericFeaturePipeline.conflict = {
   //   return undefined
   // },
   specialization: function genericConflictResolution(migrations: MigrationValue<any>[], { gca }) {
+    const gcsMigrations = migrations.filter(migration => flatten(migration._meta.origin.map(origin => origin.source)).includes(`gcs`))
     if (gca.specializationRequired) {
-      const gcsMigrations = migrations.filter(migration => flatten(migration._meta.origin.map(origin => origin.source)).includes(`gcs`))
       if (gcsMigrations.length === 1) return { specialization: gcsMigrations[0] }
       else {
         // ERROR: Unimplemented, too many migrations to decide
         debugger
       }
     } else {
+      // ERROR: GCA Lacks specialization
+      if (!gca.nameext) debugger
+
+      // ERROR: Unimplemented, too many GCS migrations to decide
+      if (gcsMigrations.length !== 1) debugger
+
+      const GCAIsLowerCase = gca.nameext === gca.nameext!.toLowerCase()
+
+      if (GCAIsLowerCase) return { specialization: gcsMigrations[0] }
+
       // ERROR: Unimplemented conflict between two different non-required specializations
       debugger
     }

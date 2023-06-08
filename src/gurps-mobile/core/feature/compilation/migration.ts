@@ -217,7 +217,7 @@ export function isOrigin(origin: { sources?: string[]; migrations?: MigrationVal
 }
 
 function printConflict<TValue, TData extends object = object>(data: TData, migration: MigrationValue<TValue>, lastMigration: MigrationValue<TValue>, context: CompilationContext) {
-  LOGGER.group().info(`[${context.humanId ?? (data as any).name ?? `?`}]`, `Migration Conflict`, `"${migration._meta.key}"`, [
+  LOGGER.group().info(`[${context.humanId ?? (data as any).name ?? `?`}]`, `Migration Conflict`, `"${migration === undefined ? `<UNDEFINED MIGRATION>` : migration._meta.key}"`, [
     `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: regular;`,
     `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-style: italic; color: #999;`,
     `background-color: rgb(255, 224, 60, 0.45); padding: 3px 0; font-weight: bold;`,
@@ -225,7 +225,14 @@ function printConflict<TValue, TData extends object = object>(data: TData, migra
   LOGGER.info(`    `, `current:`, lastMigration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
   LOGGER.info(`    `, `    new:`, migration, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
   LOGGER.info(` `)
-  LOGGER.info(`    `, ` values:`, data[migration._meta.key], `<-`, migration.value, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
+  LOGGER.info(
+    `    `,
+    ` values:`,
+    migration === undefined ? `<UNDEFINED MIGRATION>` : data[migration._meta.key],
+    `<-`,
+    migration === undefined ? `<UNDEFINED MIGRATION>` : migration.value,
+    [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`],
+  )
   LOGGER.info(`    `, `   from:`, data, [, `font-style: italic; color: #999;`, `font-style: normal; color: black;`])
   LOGGER.group()
 }
@@ -343,7 +350,7 @@ export function prepareMigrationValue<TValue>(
         recipe(`set`, newValue, migration)
       } else {
         // CONFLICT
-        recipe(`conflict`)
+        recipe(`conflict`, newValue, migration)
       }
     }
   } else if (mode === `overwrite`) {
@@ -396,9 +403,6 @@ export function applyMigrationRecipe<TValue>(shadowData: MigratableObject[`data`
     // pass, just do nothing mate
   } else if (action === `set` || action === `push` || action === `merge`) {
     if (action === `set`) {
-      // ERROR: Wait, how a set of undefined is possible??
-      if (recipe.value === undefined) debugger
-
       set(shadowData, key, recipe.value)
     } else if (action === `push`) {
       let value = [] as any[]
@@ -497,6 +501,12 @@ export function resolveMigrationDataObject(
           // if cannot determine how to resolve conflict, print it and log it
           printConflict(migratableObject.data, recipe.migrations[0], lastMigration, context)
           debugger
+
+          // DEBUG: Rerunning recipe for debug
+          const recipe2 = prepareMigrationValue(shadowData, migratableObject, migration)
+
+          // DEBUG: Rerunning resolution for debug
+          const resolution2 = prepareMigrationConflict(migration, lastMigration)
         }
       }
     }

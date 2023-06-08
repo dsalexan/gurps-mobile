@@ -369,4 +369,7 @@ export const TemplateByType: Partial<Record<keyof FeatureDataByType, FeatureTemp
   equipment: {
     context: { templates: EquipmentFeatureContextTemplate },
   },
+  modifier: {
+    context: {},
+  },
 }

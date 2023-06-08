@@ -28,7 +28,12 @@ console.log(`FAST INDEX`)
 const output = fstidx.extract(`${GCA5_DIRECTORY}/libraries/${FILE}.gds.fstndx`)
 const fastIndex = fstidx.index(output)
 console.log(`  `, `${fastIndex.N} entries`)
+console.log(`  `, `${fastIndex.M} modifiers`)
 // console.log(`  `, fastIndex)
+
+console.log(`  `, `Extracting modifiers`)
+const modifiers = fast.extractModifiers(fastIndex.allModifiers)
+console.log(`    `, `${modifiers.length} modifiers`)
 
 // READ FAST LIBRARY
 console.log(`FAST`)
@@ -40,16 +45,19 @@ fast.typing(entries, fastIndex)
 console.log(`  `, `${entries.filter(entry => !entry.section).length} entries without section!!!`)
 console.log(`  `, `${entries.filter(entry => isArray(entry.section)).length} entries with multiple sections!!!`)
 
+const allEntries = [...entries, ...modifiers]
+for (let i = 0; i < allEntries.length; i++) allEntries[i]._index = i
+
 console.log(`INDEX`)
-const index = fast.index(entries)
-fast.prebuild(entries, index)
-fast.reindex(entries, index)
+const index = fast.index(allEntries)
+fast.prebuild(allEntries, index)
+fast.reindex(allEntries, index)
 
 console.log(`DUPLICATES`)
-fast.duplicates(entries, index)
+fast.duplicates(allEntries, index)
 
 console.log(`SAVE`)
-fast.save(entries, index, OUTPUT)
+fast.save(allEntries, index, OUTPUT)
 
 // debugger
 exit()
